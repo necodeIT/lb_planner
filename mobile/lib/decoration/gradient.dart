@@ -13,9 +13,10 @@ class DefaultGradient extends StatelessWidget {
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [
-            HexColor.fromHex("#362F3F"),
+            HexColor.fromHex("#694370"),
             HexColor.fromHex("#282A2E"),
-            HexColor.fromHex("#353550"),
+            HexColor.fromHex("#282A2E"),
+            HexColor.fromHex("#3E325B"),
           ],
         ),
       ),
