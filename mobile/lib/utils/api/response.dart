@@ -1,7 +1,7 @@
 class Response<T> {
   Response({this.errorMessage = "", T? value}) {
     this.value = value;
-    isError = errorMessage.isEmpty || value == null;
+    isError = errorMessage.isNotEmpty || value == null;
   }
 
   String errorMessage;

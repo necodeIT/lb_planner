@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lb_planner/utils/api/api.dart' as api;
 import 'package:lb_planner/utils/color.dart';
+import 'package:lb_planner/widgets/dashboard/dashboard.dart';
 import 'package:lb_planner/widgets/defaults/default.dart' as Default;
 import 'package:lb_planner/widgets/login/input_field.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -18,7 +19,6 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     final double witdth = MediaQuery.of(context).size.width * 0.90;
-
     return Scaffold(
       body: SafeArea(
         child: Default.Gradient(
@@ -40,14 +40,14 @@ class _LoginState extends State<Login> {
                   placeholder: "Username",
                   margin: EdgeInsets.only(top: 30),
                   width: witdth,
-                  onChanched: (value) => username = value,
+                  onChanched: (value) => setState(() => username = value),
                 ),
                 InputField(
                   icon: Icons.lock,
                   placeholder: "Password",
                   margin: EdgeInsets.only(top: 15),
                   width: witdth,
-                  onChanched: (value) => password = value,
+                  onChanched: (value) => setState(() => password = value),
                   obscureText: true,
                 ),
                 Container(
@@ -55,7 +55,22 @@ class _LoginState extends State<Login> {
                   width: witdth,
                   height: 50,
                   child: ElevatedButton(
-                    onPressed: () => api.login(username, password).then((response) => {if (response.isError) print(response.errorMessage) else print(response.value?.token)}),
+                    onPressed: username.isEmpty || password.isEmpty
+                        ? null
+                        : () => {
+                              api.login(username, password).then(
+                                    (respone) => {
+                                      if (respone.isError)
+                                        Default.alertDialog(context: context, message: respone.errorMessage, caption: "Login Failed").then((value) => null)
+                                      else
+                                        {
+                                          // TODO save token to local storage
+
+                                          Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Dashboard()))
+                                        }
+                                    },
+                                  ),
+                            },
                     child: Text(
                       "LOGIN",
                       style: new TextStyle(
@@ -91,6 +106,4 @@ class _LoginState extends State<Login> {
       ),
     );
   }
-
-  // void login() {}
 }

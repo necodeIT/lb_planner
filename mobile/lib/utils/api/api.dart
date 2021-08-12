@@ -15,20 +15,20 @@ final _ioClient = new HttpClient()..badCertificateCallback = _certificateCheck;
 
 final http.Client client = IOClient(_ioClient);
 
-const String _error = "Internal Error";
+String _error(String message) => "Internal Error: $message";
 
 Future<Response<Token>> login(String username, String password) async {
-  final response = await client.get(Uri.parse("https://elearning.tgm.ac.at/login/token.php?username=$username&password=$password&$format&$service")).catchError(() => {
-    return new Response<Token>(errorMessage: _error);
-  })
+  try {
+    final response = await client.get(Uri.parse("https://elearning.tgm.ac.at/login/token.php?username=$username&password=$password&$format&$service"));
 
-  Map<String, dynamic> data = json.decode(response.body);
+    Map<String, dynamic> data = json.decode(response.body);
 
-  if (data["error"] != null) return new Response<Token>(errorMessage: data["error"]);
+    if (data["error"] != null) return new Response<Token>(errorMessage: data["error"]);
 
-  Token token = new Token(token: data["token"], privateToken: data["privatetoken"]);
+    Token token = new Token(token: data["token"], privateToken: data["privatetoken"]);
 
-  return new Response<Token>(value: token);
+    return new Response<Token>(value: token);
+  } catch (e) {
+    return new Response<Token>(errorMessage: _error(e.toString()));
+  }
 }
-
-void
