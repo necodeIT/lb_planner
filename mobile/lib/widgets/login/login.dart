@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lb_planner/utils/api/api.dart' as api;
 import 'package:lb_planner/utils/color.dart';
-import 'package:lb_planner/widgets/dashboard/dashboard.dart';
+import 'package:lb_planner/widgets/home/home.dart';
 import 'package:lb_planner/widgets/defaults/default.dart' as Default;
 import 'package:lb_planner/widgets/login/input_field.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -66,7 +66,7 @@ class _LoginState extends State<Login> {
                                         {
                                           // TODO save token to local storage
 
-                                          Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Dashboard()))
+                                          Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Home()))
                                         }
                                     },
                                   ),
