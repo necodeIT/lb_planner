@@ -27,6 +27,7 @@ dependencies:
   flutter_svg: ^0.22.0
   http: ^0.13.3
   shared_preferences: ^2.0.6
+  stacked_themes: ^0.3.6
   url_launcher: ^6.0.9
 
 dev_dependencies:
