@@ -3,8 +3,10 @@ import 'package:flare_flutter/base/math/mat2d.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flare_flutter/flare_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:lb_planner/ui.dart';
 
 void main() {
+  NcThemes.current = NcThemes.dark;
   runApp(App());
 }
 
@@ -14,18 +16,6 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-      ),
       home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
@@ -52,7 +42,25 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Penguin());
+    NcThemes.onCurrentThemeChange = () => setState(() => {});
+    return Scaffold(
+      backgroundColor: NcThemes.current.secondaryColor,
+      // backgroundColor: Colors.amber,
+      body: NcButton(
+        width: 500,
+        // leadingIcon: Icon(Icons.ac_unit_outlined),
+        onTap: switchTheme,
+        text: 'Confdirm',
+        trailingIcon: Icon(Icons.access_alarms),
+      ),
+    );
+  }
+
+  switchTheme() {
+    if (NcThemes.current == NcThemes.dark)
+      NcThemes.current = NcThemes.light;
+    else
+      NcThemes.current = NcThemes.dark;
   }
 }
 
@@ -60,8 +68,6 @@ class Penguin extends StatefulWidget {
   Penguin({
     Key? key,
   }) : super(key: key);
-
-  @override
   _PenguinState createState() => _PenguinState();
 }
 
