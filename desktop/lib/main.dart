@@ -4,6 +4,8 @@ import 'package:flare_flutter/flare_actor.dart';
 import 'package:flare_flutter/flare_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:lb_planner/ui.dart';
+import 'package:lb_planner/ui/themes/theme.dart';
+import 'package:lb_planner/ui/widgets/boxes/boxes.dart';
 import 'package:lb_planner/ui/widgets/buttons/text_buttton.dart';
 
 void main() {
@@ -45,19 +47,15 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     NcThemes.onCurrentThemeChange = () => setState(() => {});
     return Scaffold(
-      backgroundColor: NcThemes.current.secondaryColor,
-      // backgroundColor: Colors.amber,
-      body: NcTextButton(
-        text: "Cagtgirl",
-        onTap: switchTheme,
-        // leadingIcon: Icon(Icons.access_alarms),
-        trailingIcon: Icon(
-          Icons.arrow_circle_down_outlined,
-          color: NcThemes.current.accentColor,
-        ),
-      ),
-      // body: Penguin(),
-    );
+        backgroundColor: NcThemes.current.secondaryColor,
+        // backgroundColor: Colors.amber,
+        body: NcBox(
+          label: NcCaptionText("dasdasdd"),
+          trailingIcon: Icon(Icons.more_horiz, color: NcThemes.current.textColor),
+          leadingIcon: Icon(Icons.info, color: NcThemes.current.textColor),
+        )
+        // body: Penguin(),
+        );
   }
 
   switchTheme() {

@@ -3,17 +3,17 @@ import 'package:lb_planner/ui.dart';
 
 // ignore: camel_case_types
 class NcCaptionText extends StatelessWidget {
-  const NcCaptionText(this.text, {Key? key, this.fontSize = 20, this.buttonText = false}) : super(key: key);
+  const NcCaptionText(this.text, {Key? key, this.fontSize, this.buttonText = false}) : super(key: key);
 
   final String text;
-  final double fontSize;
+  final double? fontSize;
   final bool buttonText;
 
   static TextStyle get baseStyle {
     return TextStyle(fontWeight: FontWeight.w600, fontSize: 20, color: NcThemes.current.textColor);
   }
 
-  static TextStyle style({double fontSize = 20, buttonText = false}) {
+  static TextStyle style({double? fontSize, buttonText = false}) {
     return TextStyle(fontWeight: FontWeight.w600, fontSize: fontSize, color: buttonText ? NcThemes.current.buttonTextColor : NcThemes.current.textColor);
   }
 

@@ -33,7 +33,7 @@ class NcButton extends StatelessWidget {
           // mainAxisSize: MainAxisSiz    e.min,
           children: [
             if (leadingIcon != null) leadingIcon ?? Container(),
-            if (leadingIcon != null) SizedBox(width: 10),
+            if (leadingIcon != null) SizedBox(width: ncSpacing),
             Align(
               alignment: Alignment.centerLeft,
               child: NcTitleText(
