@@ -4,6 +4,7 @@ import 'package:flare_flutter/flare_actor.dart';
 import 'package:flare_flutter/flare_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:lb_planner/ui.dart';
+import 'package:lb_planner/ui/widgets/buttons/text_buttton.dart';
 
 void main() {
   NcThemes.current = NcThemes.dark;
@@ -46,19 +47,22 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       backgroundColor: NcThemes.current.secondaryColor,
       // backgroundColor: Colors.amber,
-      body: NcButton(
-        width: 500,
-        // leadingIcon: Icon(Icons.ac_unit_outlined),
+      body: NcTextButton(
+        text: "Cagtgirl",
         onTap: switchTheme,
-        text: 'Confdirm',
-        trailingIcon: Icon(Icons.access_alarms),
+        // leadingIcon: Icon(Icons.access_alarms),
+        trailingIcon: Icon(
+          Icons.arrow_circle_down_outlined,
+          color: NcThemes.current.accentColor,
+        ),
       ),
+      // body: Penguin(),
     );
   }
 
   switchTheme() {
     if (NcThemes.current == NcThemes.dark)
-      NcThemes.current = NcThemes.light;
+      NcThemes.current = NcThemes.ocean;
     else
       NcThemes.current = NcThemes.dark;
   }
