@@ -17,6 +17,7 @@ class NcBox extends StatelessWidget {
     return Container(
       width: width,
       height: height,
+      padding: EdgeInsets.all(25),
       child: Column(
         children: [
           Row(
