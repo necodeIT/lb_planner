@@ -19,7 +19,7 @@ class _NcDropdownState extends State<NcDropdown> {
     return Container(
       height: 40,
       padding: EdgeInsets.symmetric(horizontal: 10),
-      decoration: BoxDecoration(color: NcThemes.current.tertiaryColor, borderRadius: BorderRadius.circular(7)),
+      decoration: BoxDecoration(color: NcThemes.current.secondaryColor, borderRadius: BorderRadius.circular(7)),
       child: DropdownButton<String>(
         value: widget.items[current],
         icon: Icon(Icons.arrow_drop_down),
