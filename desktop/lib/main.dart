@@ -53,7 +53,19 @@ class _MyHomePageState extends State<MyHomePage> {
         // backgroundColor: Colors.amber,
         body: Column(
           children: [
-            NcMaterialInputField(placeholder: "sddsddssd"),
+            NcMaterialInputField(
+              placeholder: "sddsddssd",
+              suffixIcon: Icon(Icons.access_alarms, color: NcThemes.current.textColor),
+              leadingIcon: Icon(Icons.youtube_searched_for_outlined, color: NcThemes.current.textColor),
+              width: 500,
+            ),
+            SizedBox(height: 20),
+            NcInputField(
+              placeholder: "catgirl",
+              suffixIcon: Icon(Icons.ac_unit, color: NcThemes.current.textColor),
+              leadingIcon: Icon(Icons.zoom_out_map_sharp, color: NcThemes.current.textColor),
+              width: 500,
+            ),
             SizedBox(height: 20),
             NcDropdown(value: 1, items: ["catgirl", "neko", "doggirl", "foxgirl", "bunnygirl"], icon: Icon(Icons.ac_unit_outlined)),
             SizedBox(height: 20),
