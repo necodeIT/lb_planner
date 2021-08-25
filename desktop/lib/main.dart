@@ -7,6 +7,8 @@ import 'package:lb_planner/ui.dart';
 import 'package:lb_planner/ui/themes/theme.dart';
 import 'package:lb_planner/ui/widgets/boxes/boxes.dart';
 import 'package:lb_planner/ui/widgets/buttons/text_buttton.dart';
+import 'package:lb_planner/ui/widgets/dropdown/dropdown.dart';
+import 'package:lb_planner/ui/widgets/input_fields/input_fields.dart';
 
 void main() {
   NcThemes.current = NcThemes.dark;
@@ -49,10 +51,18 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
         backgroundColor: NcThemes.current.secondaryColor,
         // backgroundColor: Colors.amber,
-        body: NcBox(
-          label: NcCaptionText("dasdasdd"),
-          trailingIcon: Icon(Icons.more_horiz, color: NcThemes.current.textColor),
-          leadingIcon: Icon(Icons.info, color: NcThemes.current.textColor),
+        body: Column(
+          children: [
+            NcMaterialInputField(placeholder: "sddsddssd"),
+            SizedBox(height: 20),
+            NcDropdown(value: 1, items: ["catgirl", "neko", "doggirl", "foxgirl", "bunnygirl"], icon: Icon(Icons.ac_unit_outlined)),
+            SizedBox(height: 20),
+            NcButton(
+              text: "sdasda",
+              onTap: switchTheme,
+              width: 60,
+            ),
+          ],
         )
         // body: Penguin(),
         );
