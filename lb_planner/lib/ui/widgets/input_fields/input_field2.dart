@@ -28,7 +28,9 @@ class NcInputField2 extends StatelessWidget {
         initialValue: 'Input text',
         decoration: InputDecoration(
           //wenn Icon da -13, wenn ne dann -23 -> Benjo
-          contentPadding: const EdgeInsets.only(top: -23.0),
+          contentPadding: leadingIcon != null
+              ? const EdgeInsets.only(top: -13.0)
+              : const EdgeInsets.only(top: -23.0),
           prefixIcon: leadingIcon,
           labelText: text,
           floatingLabelBehavior: FloatingLabelBehavior.never,
