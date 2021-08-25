@@ -6,22 +6,35 @@ class NcDropdown extends StatefulWidget {
   final int value;
   final List<String> items;
   final Widget icon;
-  
+
   @override
   _NcDropdownState createState() => _NcDropdownState();
 }
 
 class _NcDropdownState extends State<NcDropdown> {
+  late int current = widget.value;
+
   @override
   Widget build(BuildContext context) {
-    return DropdownButton<String>(
-      value: widget.items[widget.value],
-      items: widget.items
-      .map<DropdownMenuItem<String>>((String value) {
-        return DropdownMenuItem<String>(
-          value: value,
-          child: Text(value),
-      );}).toList(),
+    return Container(
+      height: 40,
+      padding: EdgeInsets.symmetric(horizontal: 10),
+      decoration: BoxDecoration(color: NcThemes.current.tertiaryColor, borderRadius: BorderRadius.circular(7)),
+      child: DropdownButton<String>(
+        value: widget.items[current],
+        icon: Icon(Icons.arrow_drop_down),
+        underline: SizedBox(),
+        onChanged: (String? value) => setState(() => current = value != null ? widget.items.indexOf(value) : current),
+        items: widget.items.map<DropdownMenuItem<String>>((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: NcCaptionText(value, buttonText: true),
+          );
+        }).toList(),
+        dropdownColor: NcThemes.current.secondaryColor,
+        iconEnabledColor: NcThemes.current.buttonTextColor,
+        iconDisabledColor: NcThemes.current.tertiaryColor,
+      ),
     );
   }
 }
