@@ -2,21 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lb_planner/ui.dart';
 
-class NcInputField2 extends StatelessWidget {
-  const NcInputField2(
-      {Key? key,
-      this.leadingIcon,
-      required this.text,
-      this.width,
-      required this.onValueChanged,
-      this.suffixIcon})
-      : super(key: key);
+class NcMaterialInputField extends StatelessWidget {
+  const NcMaterialInputField({Key? key, this.leadingIcon, this.placeholder, this.width, this.onValueChanged, this.suffixIcon}) : super(key: key);
 
   final Widget? leadingIcon;
   final Widget? suffixIcon;
-  final String text;
+  final String? placeholder;
   final double? width;
-  final Function(String) onValueChanged;
+  final Function(String)? onValueChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -28,11 +21,9 @@ class NcInputField2 extends StatelessWidget {
         initialValue: 'Input text',
         decoration: InputDecoration(
           //wenn Icon da -13, wenn ne dann -23 -> Benjo
-          contentPadding: leadingIcon != null
-              ? const EdgeInsets.only(top: -13.0)
-              : const EdgeInsets.only(top: -23.0),
+          contentPadding: leadingIcon != null ? const EdgeInsets.only(top: -13.0) : const EdgeInsets.only(top: -23.0),
           prefixIcon: leadingIcon,
-          labelText: text,
+          labelText: placeholder,
           floatingLabelBehavior: FloatingLabelBehavior.never,
           labelStyle: NcBodyText.baseStyle,
           //alignLabelWithHint: ,

@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:lb_planner/ui.dart';
 
 class NcBox extends StatelessWidget {
-  const NcBox({Key? key, required this.label, this.leadingIcon, this.trailingIcon, this.width, this.height}) : super(key: key);
+  const NcBox({Key? key, required this.body, required this.label, this.leadingIcon, this.trailingIcon, this.width, this.height}) : super(key: key);
 
   final Widget label;
+  final Widget body;
   final Widget? leadingIcon;
   final Widget? trailingIcon;
   final double? width;
@@ -33,6 +34,7 @@ class NcBox extends StatelessWidget {
               trailingIcon ?? Container(),
             ],
           ),
+          body
         ],
       ),
       decoration: BoxDecoration(
