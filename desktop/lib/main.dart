@@ -54,20 +54,26 @@ class _MyHomePageState extends State<MyHomePage> {
         body: Column(
           children: [
             NcMaterialInputField(
-              placeholder: "sddsddssd",
-              suffixIcon: Icon(Icons.access_alarms, color: NcThemes.current.textColor),
-              leadingIcon: Icon(Icons.youtube_searched_for_outlined, color: NcThemes.current.textColor),
+              placeholder: "Passwort",
+              // prefixIcon:
+              //     Icon(Icons.access_alarms, color: NcThemes.current.textColor),
               width: 500,
             ),
             SizedBox(height: 20),
             NcInputField(
+              //primary: false,
               placeholder: "catgirl",
-              suffixIcon: Icon(Icons.ac_unit, color: NcThemes.current.textColor),
-              leadingIcon: Icon(Icons.zoom_out_map_sharp, color: NcThemes.current.textColor),
+              suffixIcon:
+                  Icon(Icons.ac_unit, color: NcThemes.current.textColor),
+              leadingIcon: Icon(Icons.zoom_out_map_sharp,
+                  color: NcThemes.current.textColor),
               width: 500,
             ),
             SizedBox(height: 20),
-            NcDropdown(value: 1, items: ["catgirl", "neko", "doggirl", "foxgirl", "bunnygirl"], icon: Icon(Icons.ac_unit_outlined)),
+            NcDropdown(
+                value: 1,
+                items: ["catgirl", "neko", "doggirl", "foxgirl", "bunnygirl"],
+                icon: Icon(Icons.ac_unit_outlined)),
             SizedBox(height: 20),
             NcButton(
               text: "sdasda",
@@ -106,7 +112,12 @@ class _PenguinState extends State<Penguin> with FlareController {
 
   @override
   Widget build(BuildContext context) {
-    return FlareActor("assets/Penguin.flr", alignment: Alignment.center, isPaused: false, fit: BoxFit.cover, animation: "walk", controller: this);
+    return FlareActor("assets/Penguin.flr",
+        alignment: Alignment.center,
+        isPaused: false,
+        fit: BoxFit.cover,
+        animation: "walk",
+        controller: this);
   }
 
   @override
