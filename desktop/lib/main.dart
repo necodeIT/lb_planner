@@ -4,12 +4,6 @@ import 'package:flare_flutter/flare_actor.dart';
 import 'package:flare_flutter/flare_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:lb_planner/ui.dart';
-import 'package:lb_planner/ui/themes/theme.dart';
-import 'package:lb_planner/ui/widgets/boxes/boxes.dart';
-import 'package:lb_planner/ui/widgets/buttons/text_buttton.dart';
-import 'package:lb_planner/ui/widgets/dropdown/dropdown.dart';
-import 'package:lb_planner/ui/widgets/input_fields/input_fields.dart';
-import 'package:lb_planner/ui/widgets/subject_icon/subjects.dart';
 
 void main() {
   NcThemes.current = NcThemes.dark;
@@ -66,27 +60,30 @@ class _MyHomePageState extends State<MyHomePage> {
             NcInputField(
               //primary: false,
               placeholder: "catgirl",
-              suffixIcon:
-                  Icon(Icons.ac_unit, color: NcThemes.current.textColor),
-              leadingIcon: Icon(Icons.zoom_out_map_sharp,
-                  color: NcThemes.current.textColor),
+              suffixIcon: Icon(Icons.ac_unit, color: NcThemes.current.textColor),
+              leadingIcon: Icon(Icons.zoom_out_map_sharp, color: NcThemes.current.textColor),
               width: 500,
             ),
             SizedBox(height: 20),
-            NcDropdown(
-                value: 1,
-                items: ["catgirl", "neko", "doggirl", "foxgirl", "bunnygirl"],
-                icon: Icon(Icons.ac_unit_outlined)),
+            NcDropdown(value: 1, items: ["catgirl", "neko", "doggirl", "foxgirl", "bunnygirl"], icon: Icon(Icons.ac_unit_outlined)),
+            SizedBox(height: 20),
             SizedBox(height: 20),
             NcButton(
               text: "sdasda",
               onTap: switchTheme,
               width: 60,
             ),
+            SizedBox(height: 20),
             NcCheckBox(
               toggle: true,
               //prefixIcon: Icon(Icons.update),
             ),
+            SizedBox(height: 20),
+            NcTag(
+              text: "AM",
+              backgroundColor: NcThemes.current.accentColor,
+              width: 60,
+            )
           ],
         ),
       ),
@@ -120,12 +117,7 @@ class _PenguinState extends State<Penguin> with FlareController {
 
   @override
   Widget build(BuildContext context) {
-    return FlareActor("assets/Penguin.flr",
-        alignment: Alignment.center,
-        isPaused: false,
-        fit: BoxFit.cover,
-        animation: "walk",
-        controller: this);
+    return FlareActor("assets/Penguin.flr", alignment: Alignment.center, isPaused: false, fit: BoxFit.cover, animation: "walk", controller: this);
   }
 
   @override
