@@ -22,7 +22,7 @@ class MoodleAPI {
 
   static Future<ApiResponse<Token>> login(String username, String password) async {
     try {
-      var response = await client.get(Uri.parse("https://elearning.tgm.ac.at/login/token.php?username=$username&password=$password&$format&$service"));
+      var response = await client.get(Uri.parse("https://elearning.tgm.ac.at/login/token.php?username=$username&password=$password&$format&service=$service"));
 
       Map<String, dynamic> data = json.decode(response.body);
 
@@ -37,4 +37,24 @@ class MoodleAPI {
       return ApiResponse.error(error(e.toString()));
     }
   }
+
+  static Future<ApiResponse<int>> getUserID(Token token) async {
+    try {
+      var response = await client.get(function("core_webservice_get_site_info", {"wstoken": token.token, "serviceshortnames[]": service}));
+
+      Map<String, dynamic> data = json.decode(response.body);
+
+      var error = data["errorcode"];
+
+      if (error != null) return ApiResponse.error(error);
+
+      return ApiResponse(data["userid"]);
+    } catch (e) {
+      return ApiResponse.error(e.toString());
+    }
+  }
+
+  // static Future<ApiResponse<List<Course>> getCourses(){
+
+  // }
 }

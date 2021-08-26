@@ -10,5 +10,5 @@ class ApiResponse<T> {
 
   late final String errorMessage;
   late final bool isError;
-  late final T? value;
+  late final T value;
 }

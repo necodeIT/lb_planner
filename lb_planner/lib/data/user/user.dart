@@ -1,6 +1,10 @@
 import '../../data.dart';
 
 class User {
+  User({required this.id, required this.token, required this.name, this.role = UserPermissions.Student}) {
+    email = "$name@$emailSubfix";
+  }
+
   static const emailSubfix = "student.tgm.ac.at";
   static User? _current;
 
@@ -13,13 +17,9 @@ class User {
     DB.init();
   }
 
-  User({required this.id, required this.token, required this.name, required this.role}) {
-    email = "$name@$emailSubfix";
-  }
-
   final int id;
   final Token token;
   final String name;
   late final String email;
-  final UserRole role;
+  final UserPermissions role;
 }

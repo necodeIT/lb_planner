@@ -1,11 +1,12 @@
 import 'package:lb_planner/api/moodle.dart';
 import 'package:lb_planner/data.dart';
+import 'package:lb_planner/data/module.dart';
 
 class DB {
-  static List<int> _admins = List.empty();
-  static List<int> _mods = List.empty();
-  static List<int> _modules = List.empty();
-  static List<int> _courses = List.empty();
+  static List<int> _admins = [];
+  static List<int> _mods = [];
+  static Map<int, Module> _modules = {};
+  static Map<int, Course> _courses = {};
 
   static void _clear() {
     _admins = List.empty();
@@ -24,6 +25,6 @@ class DB {
 
   static List<int> get admins => _admins;
   static List<int> get mods => _mods;
-  static List<int> get modules => _modules;
-  static List<int> get courses => _courses;
+  static Map<int, Module> get modules => _modules;
+  static Map<int, Course> get courses => _courses;
 }
