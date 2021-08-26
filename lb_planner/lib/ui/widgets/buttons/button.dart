@@ -3,16 +3,22 @@ import 'package:lb_planner/ui.dart';
 
 // ignore: camel_case_types
 class NcButton extends StatelessWidget {
-  const NcButton({Key? key, this.cancel = false, required this.text, required this.onTap, this.leadingIcon, this.trailingIcon, this.width}) : super(key: key);
+  NcButton({Key? key, required this.text, required this.onTap, this.leadingIcon, this.trailingIcon, this.width}) : super(key: key) {
+    this.cancel = false;
+  }
+
+  NcButton.cancel({Key? key, required this.text, required this.onTap, this.leadingIcon, this.trailingIcon, this.width}) : super(key: key) {
+    this.cancel = true;
+  }
 
   final Widget? leadingIcon;
   final Widget? trailingIcon;
 
-  final bool cancel;
   final String text;
   final Function() onTap;
 
   final double? width;
+  late final bool cancel;
 
   @override
   Widget build(BuildContext context) {
