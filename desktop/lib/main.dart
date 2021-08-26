@@ -54,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
         // backgroundColor: Colors.amber,
         body: Column(
           children: [
-           NcSubject(subjectName: "AM", textColor: NcThemes.current.primaryColor, backgroundColor: NcThemes.current.tertiaryColor)
+           NcSubject(subjectName: "AM", backgroundColor: NcThemes.current.tertiaryColor)
           ],
         )
         // body: Penguin(),

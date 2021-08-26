@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:lb_planner/ui.dart';
 
 class NcSubject extends StatelessWidget {
-  const NcSubject({ Key? key, required this.subjectName, required this.textColor, required this.backgroundColor, this.width, this.height}) : super(key: key);
+  const NcSubject({ Key? key, required this.subjectName, required this.backgroundColor, this.width, this.height}) : super(key: key);
   final Color backgroundColor;
-  final Color textColor;
   final String subjectName;
   final int? width;
   final int? height;
@@ -17,7 +16,7 @@ class NcSubject extends StatelessWidget {
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(7), color: backgroundColor),
       child: Center(
         child:
-        NcTitleText(subjectName, textColor: textColor),
+        NcTitleText(subjectName),
       )
     );
   }
