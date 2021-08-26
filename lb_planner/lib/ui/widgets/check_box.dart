@@ -3,37 +3,38 @@
 import 'package:flutter/material.dart';
 import 'package:lb_planner/ui.dart';
 
-class NcCheckBox extends StatelessWidget {
+class NcCheckBox extends StatefulWidget {
   const NcCheckBox({
     Key? key,
     this.prefixIcon,
-    this.toggle,
+    this.value = false,
+    required this.onChanged,
+    this.scale = 1,
   }) : super(key: key);
 
   final Widget? prefixIcon;
-  final bool? toggle;
+  final bool value;
+  final double scale;
+  final Function(bool?) onChanged;
 
   @override
+  State<NcCheckBox> createState() => _NcCheckBoxState();
+}
+
+class _NcCheckBoxState extends State<NcCheckBox> {
+  late bool current = widget.value;
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 50.0,
-      width: 50.0,
-      child: Center(
-        child: toggle == true
-            ? prefixIcon != null
-                ? prefixIcon
-                : Icon(Icons.check)
-            : Icon(Icons.search, color: Colors.transparent),
-        //child: prefixIcon != null ? prefixIcon : Icon(Icons.check),
-      ),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border.all(
-          width: 1.0,
-          color: Colors.grey,
-        ),
-        borderRadius: const BorderRadius.all(const Radius.circular(2.0)),
-      ),
+    return Transform.scale(
+      scale: widget.scale,
+      child: Checkbox(
+          value: current,
+          onChanged: (value) {
+            setState(() {
+              current = value!;
+              widget.onChanged(current);
+            });
+          }),
     );
   }
 }
