@@ -30,7 +30,7 @@ class NcMaterialInputField extends StatelessWidget {
             //labelText: placeholder,
             floatingLabelBehavior: FloatingLabelBehavior.never,
             labelStyle: NcBodyText.baseStyle,
-            //alignLabelWithHint: ,
+            ////alignLabelWithHint: ,
             enabledBorder: UnderlineInputBorder(
               borderSide: BorderSide(color: NcThemes.current.textColor),
             ),
