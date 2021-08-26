@@ -1,3 +1,3 @@
 library lb_planner.data;
 
-export 'user_role.dart';
+export 'user_permissions.dart';
