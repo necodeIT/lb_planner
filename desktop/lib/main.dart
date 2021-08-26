@@ -50,15 +50,43 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     NcThemes.onCurrentThemeChange = () => setState(() => {});
     return Scaffold(
-        backgroundColor: NcThemes.current.secondaryColor,
-        // backgroundColor: Colors.amber,
-        body: Column(
+      backgroundColor: NcThemes.current.secondaryColor,
+      // backgroundColor: Colors.amber,
+
+      body: Scrollbar(
+        child: ListView(
           children: [
-           NcSubject(subjectName: "AM", backgroundColor: NcThemes.current.tertiaryColor)
+            NcMaterialInputField(
+              placeholder: "Passwort",
+              // prefixIcon:
+              //     Icon(Icons.access_alarms, color: NcThemes.current.textColor),
+              width: 500,
+            ),
+            SizedBox(height: 20),
+            NcInputField(
+              //primary: false,
+              placeholder: "catgirl",
+              suffixIcon: Icon(Icons.ac_unit, color: NcThemes.current.textColor),
+              leadingIcon: Icon(Icons.zoom_out_map_sharp, color: NcThemes.current.textColor),
+              width: 500,
+            ),
+            SizedBox(height: 20),
+            NcDropdown(value: 1, items: ["catgirl", "neko", "doggirl", "foxgirl", "bunnygirl"], icon: Icon(Icons.ac_unit_outlined)),
+            SizedBox(height: 20),
+            NcButton(
+              text: "sdasda",
+              onTap: switchTheme,
+              width: 60,
+            ),
+            Container(
+              height: 600,
+              color: Colors.red,
+            )
           ],
-        )
-        // body: Penguin(),
-        );
+        ),
+      ),
+      // body: Penguin(),
+    );
   }
 
   switchTheme() {
