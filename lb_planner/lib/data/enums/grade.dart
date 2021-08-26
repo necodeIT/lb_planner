@@ -1,1 +1,1 @@
-enum Grade { EKV, EKUE, GKV, GKUE, NF }
+enum Grade { EKV, EKUE, GKV, GKUE, NF, None }

@@ -18,16 +18,14 @@ class Course {
   late final String tag;
   late final List<CourseTags> tags;
 
-  CourseStats calculateStats() {
+  CourseStats stats() {
     int done = 0;
     int late = 0;
     int pending = 0;
     int uploaded = 0;
 
     modules.forEach((i) {
-      var module = DB.modules[i];
-
-      switch (module!.status) {
+      switch (DB.modules[i]!.status) {
         case ModuleStatus.Done:
           done++;
           break;
@@ -46,11 +44,15 @@ class Course {
     return CourseStats(done: done, late: late, uploaded: uploaded, pending: pending);
   }
 
-  double grade() {
+  double averageGrade() {
     int sum = 0;
 
     modules.forEach((i) {
-      sum += Grade.values.indexOf(DB.modules[i]!.grade) + 1;
+      var module = DB.modules[i];
+
+      if (module!.grade == Grade.None) return;
+
+      sum += Grade.values.indexOf(module.grade) + 1;
     });
 
     return sum >= 0 ? sum / modules.length : 0;
