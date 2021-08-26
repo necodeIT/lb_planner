@@ -24,9 +24,6 @@ class NcMaterialInputField extends StatelessWidget {
         style: NcBodyText.baseStyle,
         initialValue: 'Input text',
         decoration: InputDecoration(
-            // contentPadding: prefixIcon != null
-            //     ? const EdgeInsets.only(top: -13.0)
-            //     : const EdgeInsets.only(top: -23.0),
             prefixIcon: prefixIcon,
             hintText: placeholder,
             hintStyle: NcBodyText.baseStyle,
