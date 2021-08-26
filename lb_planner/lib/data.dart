@@ -4,3 +4,5 @@ export 'data/enums/enums.dart';
 export 'data/user/token.dart';
 export 'data/user/user.dart';
 export 'data/db.dart';
+export 'data/module.dart';
+export 'data/course.dart';

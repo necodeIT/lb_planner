@@ -1,7 +1,7 @@
 import '../../data.dart';
 
 class User {
-  User({required this.id, required this.token, required this.name, this.role = UserPermissions.None}) {
+  User({required this.id, required this.token, required this.name, this.role = UserPermissions.Student}) {
     email = "$name@$emailSubfix";
   }
 

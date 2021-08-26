@@ -54,7 +54,7 @@ class MoodleAPI {
     }
   }
 
-  // static Future<ApiResponse<List<Module>> getCourses(){
+  // static Future<ApiResponse<List<Course>> getCourses(){
 
   // }
 }

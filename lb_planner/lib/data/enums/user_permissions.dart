@@ -1,1 +1,1 @@
-enum UserPermissions { Adimin, Moderator, None }
+enum UserPermissions { Admin, Moderator, Teacher, Student }

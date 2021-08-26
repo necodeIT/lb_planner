@@ -88,9 +88,10 @@ class _MyHomePageState extends State<MyHomePage> {
             // ),
             NcBox.window(
               label: NcTitleText("sdasd", fontSize: 30),
-              body: NcBodyText("sdasdasd"),
+              body: Penguin(),
+              // body: NcBodyText("dasdasd"),
               width: 400,
-              height: 600,
+              // height: ,
             )
           ],
         ),
@@ -125,7 +126,11 @@ class _PenguinState extends State<Penguin> with FlareController {
 
   @override
   Widget build(BuildContext context) {
-    return FlareActor("assets/Penguin.flr", alignment: Alignment.center, isPaused: false, fit: BoxFit.cover, animation: "walk", controller: this);
+    return Container(
+      height: 500,
+      width: 500,
+      child: FlareActor("assets/Penguin.flr", alignment: Alignment.center, isPaused: false, fit: BoxFit.cover, animation: "walk", controller: this),
+    );
   }
 
   @override
