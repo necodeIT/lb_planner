@@ -9,6 +9,7 @@ import 'package:lb_planner/ui/widgets/boxes/boxes.dart';
 import 'package:lb_planner/ui/widgets/buttons/text_buttton.dart';
 import 'package:lb_planner/ui/widgets/dropdown/dropdown.dart';
 import 'package:lb_planner/ui/widgets/input_fields/input_fields.dart';
+import 'package:lb_planner/ui/widgets/subject_icon/subjects.dart';
 
 void main() {
   NcThemes.current = NcThemes.dark;
@@ -49,9 +50,11 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     NcThemes.onCurrentThemeChange = () => setState(() => {});
     return Scaffold(
-        backgroundColor: NcThemes.current.secondaryColor,
-        // backgroundColor: Colors.amber,
-        body: Column(
+      backgroundColor: NcThemes.current.secondaryColor,
+      // backgroundColor: Colors.amber,
+
+      body: Scrollbar(
+        child: ListView(
           children: [
             NcMaterialInputField(
               placeholder: "Passwort",
@@ -85,9 +88,10 @@ class _MyHomePageState extends State<MyHomePage> {
               //prefixIcon: Icon(Icons.update),
             ),
           ],
-        )
-        // body: Penguin(),
-        );
+        ),
+      ),
+      // body: Penguin(),
+    );
   }
 
   switchTheme() {
