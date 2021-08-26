@@ -4,12 +4,6 @@ import 'package:flare_flutter/flare_actor.dart';
 import 'package:flare_flutter/flare_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:lb_planner/ui.dart';
-import 'package:lb_planner/ui/themes/theme.dart';
-import 'package:lb_planner/ui/widgets/boxes/boxes.dart';
-import 'package:lb_planner/ui/widgets/buttons/text_buttton.dart';
-import 'package:lb_planner/ui/widgets/dropdown/dropdown.dart';
-import 'package:lb_planner/ui/widgets/input_fields/input_fields.dart';
-import 'package:lb_planner/ui/widgets/subject_icon/subjects.dart';
 
 void main() {
   NcThemes.current = NcThemes.dark;
@@ -50,15 +44,57 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     NcThemes.onCurrentThemeChange = () => setState(() => {});
     return Scaffold(
-        backgroundColor: NcThemes.current.secondaryColor,
-        // backgroundColor: Colors.amber,
-        body: Column(
+      backgroundColor: NcThemes.current.secondaryColor,
+      // backgroundColor: Colors.amber,
+
+      body: Scrollbar(
+        child: ListView(
           children: [
-           NcSubject(subjectName: "AM", backgroundColor: NcThemes.current.tertiaryColor)
+            NcMaterialInputField(
+              placeholder: "Passwort",
+              // prefixIcon:
+              //     Icon(Icons.access_alarms, color: NcThemes.current.textColor),
+              width: 500,
+            ),
+            SizedBox(height: 20),
+            NcInputField(
+              primary: true,
+              placeholder: "catgirl",
+              suffixIcon:
+                  Icon(Icons.ac_unit, color: NcThemes.current.textColor),
+              prefixIcon: Icon(Icons.zoom_out_map_sharp,
+                  color: NcThemes.current.textColor),
+              width: 500,
+            ),
+            SizedBox(height: 20),
+            NcDropdown(
+                value: 1,
+                items: ["catgirl", "neko", "doggirl", "foxgirl", "bunnygirl"],
+                icon: Icon(Icons.ac_unit_outlined)),
+            SizedBox(height: 20),
+            SizedBox(height: 20),
+            NcButton(
+              text: "sdasda",
+              onTap: switchTheme,
+              width: 60,
+            ),
+            SizedBox(height: 20),
+            SizedBox(height: 20),
+            NcTag(
+              text: "AM",
+              backgroundColor: NcThemes.current.accentColor,
+              width: 60,
+            ),
+            NcCheckBox(
+              scale: 10,
+              value: false,
+              onChanged: (_) {},
+            ),
           ],
-        )
-        // body: Penguin(),
-        );
+        ),
+      ),
+      // body: Penguin(),
+    );
   }
 
   switchTheme() {
@@ -87,7 +123,12 @@ class _PenguinState extends State<Penguin> with FlareController {
 
   @override
   Widget build(BuildContext context) {
-    return FlareActor("assets/Penguin.flr", alignment: Alignment.center, isPaused: false, fit: BoxFit.cover, animation: "walk", controller: this);
+    return FlareActor("assets/Penguin.flr",
+        alignment: Alignment.center,
+        isPaused: false,
+        fit: BoxFit.cover,
+        animation: "walk",
+        controller: this);
   }
 
   @override

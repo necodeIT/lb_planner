@@ -22,18 +22,15 @@ class NcMaterialInputField extends StatelessWidget {
       height: 40,
       child: TextFormField(
         style: NcBodyText.baseStyle,
-        initialValue: 'Input text',
+        //initialValue: 'Input text',
         decoration: InputDecoration(
-            // contentPadding: prefixIcon != null
-            //     ? const EdgeInsets.only(top: -13.0)
-            //     : const EdgeInsets.only(top: -23.0),
             prefixIcon: prefixIcon,
             hintText: placeholder,
             hintStyle: NcBodyText.baseStyle,
             //labelText: placeholder,
             floatingLabelBehavior: FloatingLabelBehavior.never,
             labelStyle: NcBodyText.baseStyle,
-            //alignLabelWithHint: ,
+            ////alignLabelWithHint: ,
             enabledBorder: UnderlineInputBorder(
               borderSide: BorderSide(color: NcThemes.current.textColor),
             ),
