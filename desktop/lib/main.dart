@@ -79,16 +79,17 @@ class _MyHomePageState extends State<MyHomePage> {
               width: 60,
             ),
             SizedBox(height: 20),
-            NcCheckBox(
-              value: false,
-              onChanged: (_) {},
-            ),
             SizedBox(height: 20),
             NcTag(
               text: "AM",
               backgroundColor: NcThemes.current.accentColor,
               width: 60,
-            )
+            ),
+            NcCheckBox(
+              scale: 10,
+              value: false,
+              onChanged: (_) {},
+            ),
           ],
         ),
       ),
