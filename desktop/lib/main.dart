@@ -9,6 +9,7 @@ import 'package:lb_planner/ui/widgets/boxes/boxes.dart';
 import 'package:lb_planner/ui/widgets/buttons/text_buttton.dart';
 import 'package:lb_planner/ui/widgets/dropdown/dropdown.dart';
 import 'package:lb_planner/ui/widgets/input_fields/input_fields.dart';
+import 'package:lb_planner/ui/widgets/subject_icon/subjects.dart';
 
 void main() {
   NcThemes.current = NcThemes.dark;
@@ -53,27 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
         // backgroundColor: Colors.amber,
         body: Column(
           children: [
-            NcMaterialInputField(
-              placeholder: "sddsddssd",
-              suffixIcon: Icon(Icons.access_alarms, color: NcThemes.current.textColor),
-              leadingIcon: Icon(Icons.youtube_searched_for_outlined, color: NcThemes.current.textColor),
-              width: 500,
-            ),
-            SizedBox(height: 20),
-            NcInputField(
-              placeholder: "catgirl",
-              suffixIcon: Icon(Icons.ac_unit, color: NcThemes.current.textColor),
-              leadingIcon: Icon(Icons.zoom_out_map_sharp, color: NcThemes.current.textColor),
-              width: 500,
-            ),
-            SizedBox(height: 20),
-            NcDropdown(value: 1, items: ["catgirl", "neko", "doggirl", "foxgirl", "bunnygirl"], icon: Icon(Icons.ac_unit_outlined)),
-            SizedBox(height: 20),
-            NcButton(
-              text: "sdasda",
-              onTap: switchTheme,
-              width: 60,
-            ),
+           NcSubject(subjectName: "AM", textColor: NcThemes.current.primaryColor, backgroundColor: NcThemes.current.tertiaryColor)
           ],
         )
         // body: Penguin(),
