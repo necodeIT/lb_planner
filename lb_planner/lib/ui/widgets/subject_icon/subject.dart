@@ -5,8 +5,8 @@ class NcSubject extends StatelessWidget {
   const NcSubject({ Key? key, required this.subjectName, required this.backgroundColor, this.width, this.height}) : super(key: key);
   final Color backgroundColor;
   final String subjectName;
-  final int? width;
-  final int? height;
+  final double? width;
+  final double? height;
 
   @override
   Widget build(BuildContext context) {
