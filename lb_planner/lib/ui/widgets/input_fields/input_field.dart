@@ -6,7 +6,7 @@ import 'package:lb_planner/ui.dart';
 class NcInputField extends StatelessWidget {
   const NcInputField(
       {Key? key,
-      this.leadingIcon,
+      this.prefixIcon,
       this.placeholder,
       this.width,
       this.onValueChanged,
@@ -14,7 +14,7 @@ class NcInputField extends StatelessWidget {
       this.primary = false})
       : super(key: key);
 
-  final Widget? leadingIcon;
+  final Widget? prefixIcon;
   final Widget? suffixIcon;
   final String? placeholder;
   final bool? primary;
@@ -49,7 +49,7 @@ class NcInputField extends StatelessWidget {
           fillColor: primary != true
               ? NcThemes.current.secondaryColor
               : NcThemes.current.primaryColor,
-          prefixIcon: leadingIcon,
+          prefixIcon: prefixIcon,
         ),
       ),
     );
