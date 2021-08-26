@@ -44,11 +44,12 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     NcThemes.onCurrentThemeChange = () => setState(() => {});
     return Scaffold(
-      backgroundColor: NcThemes.current.secondaryColor,
+      backgroundColor: NcThemes.current.tertiaryColor,
       // backgroundColor: Colors.amber,
 
-      body: Scrollbar(
+      body: NcScrollbar(
         child: ListView(
+          physics: NcScrollbar.physics,
           children: [
             NcMaterialInputField(
               placeholder: "Passwort",
@@ -60,17 +61,12 @@ class _MyHomePageState extends State<MyHomePage> {
             NcInputField(
               primary: true,
               placeholder: "catgirl",
-              suffixIcon:
-                  Icon(Icons.ac_unit, color: NcThemes.current.textColor),
-              prefixIcon: Icon(Icons.zoom_out_map_sharp,
-                  color: NcThemes.current.textColor),
+              suffixIcon: Icon(Icons.ac_unit, color: NcThemes.current.textColor),
+              prefixIcon: Icon(Icons.zoom_out_map_sharp, color: NcThemes.current.textColor),
               width: 500,
             ),
             SizedBox(height: 20),
-            NcDropdown(
-                value: 1,
-                items: ["catgirl", "neko", "doggirl", "foxgirl", "bunnygirl"],
-                icon: Icon(Icons.ac_unit_outlined)),
+            NcDropdown(value: 1, items: ["catgirl", "neko", "doggirl", "foxgirl", "bunnygirl"], icon: Icon(Icons.ac_unit_outlined)),
             SizedBox(height: 20),
             SizedBox(height: 20),
             NcButton(
@@ -79,17 +75,23 @@ class _MyHomePageState extends State<MyHomePage> {
               width: 60,
             ),
             SizedBox(height: 20),
-            SizedBox(height: 20),
             NcTag(
               text: "AM",
               backgroundColor: NcThemes.current.accentColor,
               width: 60,
             ),
-            NcCheckBox(
-              scale: 10,
-              value: false,
-              onChanged: (_) {},
-            ),
+            SizedBox(height: 20),
+            // NcCheckBox(
+            //   scale: 10,
+            //   value: false,
+            //   onChanged: (_) {},
+            // ),
+            NcBox.window(
+              label: NcTitleText("sdasd", fontSize: 30),
+              body: NcBodyText("sdasdasd"),
+              width: 400,
+              height: 600,
+            )
           ],
         ),
       ),
@@ -123,12 +125,7 @@ class _PenguinState extends State<Penguin> with FlareController {
 
   @override
   Widget build(BuildContext context) {
-    return FlareActor("assets/Penguin.flr",
-        alignment: Alignment.center,
-        isPaused: false,
-        fit: BoxFit.cover,
-        animation: "walk",
-        controller: this);
+    return FlareActor("assets/Penguin.flr", alignment: Alignment.center, isPaused: false, fit: BoxFit.cover, animation: "walk", controller: this);
   }
 
   @override
