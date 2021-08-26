@@ -6,3 +6,4 @@ export 'data/user/user.dart';
 export 'data/db.dart';
 export 'data/course/module.dart';
 export 'data/course/course.dart';
+export 'data/course/course_stats.dart';

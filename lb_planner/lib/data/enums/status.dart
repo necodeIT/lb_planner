@@ -1,4 +1,4 @@
-enum Status {
+enum ModuleStatus {
   Done,
   Uploaded,
   Late,
