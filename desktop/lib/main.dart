@@ -64,11 +64,11 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             SizedBox(height: 20),
             NcInputField(
-              //primary: false,
+              primary: true,
               placeholder: "catgirl",
               suffixIcon:
                   Icon(Icons.ac_unit, color: NcThemes.current.textColor),
-              leadingIcon: Icon(Icons.zoom_out_map_sharp,
+              prefixIcon: Icon(Icons.zoom_out_map_sharp,
                   color: NcThemes.current.textColor),
               width: 500,
             ),

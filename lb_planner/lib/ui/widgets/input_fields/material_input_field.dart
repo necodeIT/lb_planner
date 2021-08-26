@@ -22,7 +22,7 @@ class NcMaterialInputField extends StatelessWidget {
       height: 40,
       child: TextFormField(
         style: NcBodyText.baseStyle,
-        initialValue: 'Input text',
+        //initialValue: 'Input text',
         decoration: InputDecoration(
             prefixIcon: prefixIcon,
             hintText: placeholder,
