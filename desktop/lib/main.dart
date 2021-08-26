@@ -80,6 +80,10 @@ class _MyHomePageState extends State<MyHomePage> {
               onTap: switchTheme,
               width: 60,
             ),
+            NcCheckBox(
+              toggle: true,
+              //prefixIcon: Icon(Icons.update),
+            ),
           ],
         )
         // body: Penguin(),
