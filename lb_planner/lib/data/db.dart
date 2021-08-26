@@ -1,6 +1,6 @@
 import 'package:lb_planner/api/moodle.dart';
 import 'package:lb_planner/data.dart';
-import 'package:lb_planner/data/module.dart';
+import 'package:lb_planner/data/course/module.dart';
 
 class DB {
   static List<int> _admins = [];
