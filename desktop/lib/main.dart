@@ -47,54 +47,61 @@ class _MyHomePageState extends State<MyHomePage> {
       backgroundColor: NcThemes.current.tertiaryColor,
       // backgroundColor: Colors.amber,
 
-      body: NcScrollbar(
-        child: ListView(
-          physics: NcScrollbar.physics,
-          children: [
-            NcMaterialInputField(
-              placeholder: "Passwort",
-              // prefixIcon:
-              //     Icon(Icons.access_alarms, color: NcThemes.current.textColor),
-              width: 500,
-            ),
-            SizedBox(height: 20),
-            NcInputField(
-              primary: true,
-              placeholder: "catgirl",
-              suffixIcon: Icon(Icons.ac_unit, color: NcThemes.current.textColor),
-              prefixIcon: Icon(Icons.zoom_out_map_sharp, color: NcThemes.current.textColor),
-              width: 500,
-            ),
-            SizedBox(height: 20),
-            NcDropdown(value: 1, items: ["catgirl", "neko", "doggirl", "foxgirl", "bunnygirl"], icon: Icon(Icons.ac_unit_outlined)),
-            SizedBox(height: 20),
-            SizedBox(height: 20),
-            NcButton(
-              text: "sdasda",
-              onTap: switchTheme,
-              width: 60,
-            ),
-            SizedBox(height: 20),
-            NcTag(
-              text: "AM",
-              backgroundColor: NcThemes.current.accentColor,
-              width: 60,
-            ),
-            SizedBox(height: 20),
-            // NcCheckBox(
-            //   scale: 10,
-            //   value: false,
-            //   onChanged: (_) {},
-            // ),
-            NcBox.window(
-              label: NcTitleText("sdasd", fontSize: 30),
-              body: Penguin(),
-              // body: NcBodyText("dasdasd"),
-              width: 400,
-              // height: ,
-            )
-          ],
-        ),
+      body: Column(
+        //physics: NcScrollbar.physics,
+        children: [
+          // NcMaterialInputField(
+          //   placeholder: "Passwort",
+          //   // prefixIcon:
+          //   //     Icon(Icons.access_alarms, color: NcThemes.current.textColor),
+          //   width: 500,
+          // ),
+          // SizedBox(height: 20),
+          // NcInputField(
+          //   primary: true,
+          //   placeholder: "catgirl",
+          //   suffixIcon: Icon(Icons.ac_unit, color: NcThemes.current.textColor),
+          //   prefixIcon: Icon(Icons.zoom_out_map_sharp,
+          //       color: NcThemes.current.textColor),
+          //   width: 500,
+          // ),
+          // SizedBox(height: 20),
+          // NcDropdown(
+          //     value: 1,
+          //     items: ["catgirl", "neko", "doggirl", "foxgirl", "bunnygirl"],
+          //     icon: Icon(Icons.ac_unit_outlined)),
+          // SizedBox(height: 20),
+          // SizedBox(height: 20),
+          NcButton(
+            text: "sdasda",
+            onTap: switchTheme,
+            width: 60,
+          ),
+          // SizedBox(height: 20),
+          // NcTag(
+          //   text: "AM",
+          //   backgroundColor: NcThemes.current.accentColor,
+          //   width: 60,
+          // ),
+          // //SizedBox(height: 20),
+          // // NcCheckBox(
+          // //   scale: 10,
+          // //   value: false,
+          // //   onChanged: (_) {},
+          // // ),
+          // NcCheckBox(
+          //   onChanged: (_) {},
+          //   //ncColor: NcThemes.current.textColor,
+          // ),
+          // // NcBox.window(
+          // //   label: NcTitleText("sdasd", fontSize: 30),
+          // //   body: Penguin(),
+          // //   // body: NcBodyText("dasdasd"),
+          // //   width: 400,
+          // //   // height: ,
+          // // )
+          NcLogo(),
+        ],
       ),
       // body: Penguin(),
     );
@@ -103,7 +110,9 @@ class _MyHomePageState extends State<MyHomePage> {
   switchTheme() {
     if (NcThemes.current == NcThemes.dark)
       NcThemes.current = NcThemes.ocean;
-    else
+    else if (NcThemes.current == NcThemes.ocean)
+      NcThemes.current = NcThemes.light;
+    else if (NcThemes.current == NcThemes.light)
       NcThemes.current = NcThemes.dark;
   }
 }
@@ -129,7 +138,12 @@ class _PenguinState extends State<Penguin> with FlareController {
     return Container(
       height: 500,
       width: 500,
-      child: FlareActor("assets/Penguin.flr", alignment: Alignment.center, isPaused: false, fit: BoxFit.cover, animation: "walk", controller: this),
+      child: FlareActor("assets/Penguin.flr",
+          alignment: Alignment.center,
+          isPaused: false,
+          fit: BoxFit.cover,
+          animation: "walk",
+          controller: this),
     );
   }
 
