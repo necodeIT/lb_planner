@@ -6,3 +6,4 @@ export 'tag.dart';
 export 'dropdown.dart';
 export 'input_fields/input_fields.dart';
 export 'scrollbar.dart';
+export 'confirmDialog.dart';
