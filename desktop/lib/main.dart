@@ -115,8 +115,9 @@ class _MyHomePageState extends State<MyHomePage> {
   switchTheme() {
     if (NcThemes.current == NcThemes.dark)
       NcThemes.current = NcThemes.ocean;
-    else
-      NcThemes.current = NcThemes.dark;
+    else if (NcThemes.current == NcThemes.ocean)
+      NcThemes.current = NcThemes.light;
+    else if (NcThemes.current == NcThemes.light) NcThemes.current = NcThemes.dark;
   }
 }
 

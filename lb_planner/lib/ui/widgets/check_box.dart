@@ -11,12 +11,14 @@ class NcCheckBox extends StatefulWidget {
     this.iconSize = 35,
     this.height = 40,
     this.width = 40,
+    this.ncColor,
   }) : super(key: key);
 
   final bool value;
   final double? iconSize;
   final double? height;
   final double? width;
+  final Color? ncColor;
   final Function(bool?) onChanged;
 
   @override
@@ -48,6 +50,14 @@ class _NcCheckBoxState extends State<NcCheckBox> {
                   color: Colors.transparent,
                 ),
           decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.5),
+                spreadRadius: 0.1,
+                blurRadius: 10,
+                offset: Offset(0, 0), // changes position of shadow
+              ),
+            ],
             //boxShadow: ,
             border: current != true
                 ? Border.all(color: NcThemes.current.accentColor, width: 3)
@@ -55,7 +65,9 @@ class _NcCheckBoxState extends State<NcCheckBox> {
             borderRadius: BorderRadius.circular(13.0),
             color: current != false
                 ? NcThemes.current.accentColor
-                : Colors.transparent,
+                : widget.ncColor == null
+                    ? NcThemes.current.tertiaryColor
+                    : widget.ncColor,
           )),
     );
   }
