@@ -71,7 +71,19 @@ class _MyHomePageState extends State<MyHomePage> {
             SizedBox(height: 20),
             NcButton(
               text: "sdasda",
-              onTap: switchTheme,
+              onTap: () => {
+                showDialog(
+                  context: context,
+                  builder: (context) => NcConfirmDialog.window(
+                    label: NcTitleText("sasd"),
+                    body: NcBodyText("sdasd"),
+                    button: NcButton(
+                      onTap: () {},
+                      text: "sdads",
+                    ),
+                  ),
+                ),
+              },
               width: 60,
             ),
             SizedBox(height: 20),
@@ -92,7 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
               // body: NcBodyText("dasdasd"),
               width: 400,
               // height: ,
-            )
+            ),
           ],
         ),
       ),
