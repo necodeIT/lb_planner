@@ -1,24 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:lb_planner/ui.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 void main() {
   NcThemes.current = NcThemes.dark;
-  runApp(App());
+  runApp(MaterialApp(home: App()));
 }
 
-class App extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
+class App extends StatefulWidget {
+  App({Key? key}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -29,13 +19,11 @@ class MyHomePage extends StatefulWidget {
   // used by the build method of the State. Fields in a Widget subclass are
   // always marked "final".
 
-  final String title;
-
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _AppState createState() => _AppState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
     NcThemes.onCurrentThemeChange = () => setState(() => {});
@@ -43,7 +31,11 @@ class _MyHomePageState extends State<MyHomePage> {
       backgroundColor: NcThemes.current.tertiaryColor,
       // backgroundColor: Colors.amber,
 
-      body: NcLoadingIndicator(),
+      body: NcTextButton(
+        text: "sdasdasd",
+        onTap: switchTheme,
+        leadingIcon: Icon(Feather.arrow_left_circle, color: NcThemes.current.textColor),
+      ),
     );
   }
 

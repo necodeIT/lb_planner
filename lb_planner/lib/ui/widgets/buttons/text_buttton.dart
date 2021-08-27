@@ -3,12 +3,13 @@ import 'package:lb_planner/ui.dart';
 import 'package:lb_planner/ui/widgets/text/caption_text.dart';
 
 class NcTextButton extends StatelessWidget {
-  const NcTextButton({Key? key, required this.text, this.trailingIcon, this.leadingIcon, required this.onTap, this.width}) : super(key: key);
+  const NcTextButton({Key? key, required this.text, this.trailingIcon, this.leadingIcon, required this.onTap, this.width, this.fontSize}) : super(key: key);
 
   final String text;
   final Widget? trailingIcon;
   final Widget? leadingIcon;
   final double? width;
+  final double? fontSize;
 
   final Function() onTap;
 
@@ -24,9 +25,9 @@ class NcTextButton extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             leadingIcon ?? Container(),
-            SizedBox(width: ncSpacing),
-            NcCaptionText(text),
-            SizedBox(width: ncSpacing),
+            NcSpacing.width(),
+            NcCaptionText(text, fontSize: fontSize),
+            NcSpacing.width(),
             trailingIcon ?? Container(),
           ],
         ),
