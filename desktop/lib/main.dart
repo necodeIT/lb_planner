@@ -126,7 +126,9 @@ class _MyHomePageState extends State<MyHomePage> {
       NcThemes.current = NcThemes.ocean;
     else if (NcThemes.current == NcThemes.ocean)
       NcThemes.current = NcThemes.light;
-    else if (NcThemes.current == NcThemes.light) NcThemes.current = NcThemes.dark;
+    else if (NcThemes.current == NcThemes.light)
+      NcThemes.current = NcThemes.sakura;
+    else if (NcThemes.current == NcThemes.sakura) NcThemes.current = NcThemes.dark;
   }
 }
 
