@@ -10,10 +10,11 @@ class NcLoadingIndicator extends StatefulWidget {
 
   final double? width;
   final double? height;
+
+  static const assset = "packages/lb_planner/assets/Penguin.flr";
 }
 
-class _NcLoadingIndicatorState extends State<NcLoadingIndicator>
-    with FlareController {
+class _NcLoadingIndicatorState extends State<NcLoadingIndicator> with FlareController {
   ActorAnimation? _rock;
 
   double _rockAmount = 0.5;
@@ -27,17 +28,13 @@ class _NcLoadingIndicatorState extends State<NcLoadingIndicator>
     return Container(
       height: widget.height,
       width: widget.width,
-      child: FlareActor("assets/Penguin.flr",
-          alignment: Alignment.center,
-          isPaused: false,
-          fit: BoxFit.cover,
-          animation: "walk",
-          controller: this),
+      child: FlareActor(NcLoadingIndicator.assset, alignment: Alignment.center, isPaused: false, fit: BoxFit.cover, animation: "walk", controller: this),
     );
   }
 
   @override
   bool advance(FlutterActorArtboard artboard, double elapsed) {
+    artboard.nodes[0]!.opacity = .5;
     _rockTime += elapsed * _speed;
     _rock!.apply(_rockTime % _rock!.duration, artboard, _rockAmount);
     return true;
