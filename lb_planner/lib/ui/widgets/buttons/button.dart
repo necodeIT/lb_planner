@@ -64,7 +64,7 @@ class NcButton extends StatelessWidget {
         ),
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(7.0),
+            borderRadius: BorderRadius.circular(ncRadius),
           ),
         ),
       ),

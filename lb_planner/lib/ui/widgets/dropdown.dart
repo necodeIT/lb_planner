@@ -7,6 +7,8 @@ class NcDropdown extends StatefulWidget {
   final List<String> items;
   final Widget icon;
 
+  static const double padding = 10;
+
   @override
   _NcDropdownState createState() => _NcDropdownState();
 }
@@ -18,8 +20,8 @@ class _NcDropdownState extends State<NcDropdown> {
   Widget build(BuildContext context) {
     return Container(
       height: 40,
-      padding: EdgeInsets.symmetric(horizontal: 10),
-      decoration: BoxDecoration(color: NcThemes.current.secondaryColor, borderRadius: BorderRadius.circular(7)),
+      padding: EdgeInsets.symmetric(horizontal: NcDropdown.padding),
+      decoration: BoxDecoration(color: NcThemes.current.secondaryColor, borderRadius: BorderRadius.circular(ncRadius)),
       child: DropdownButton<String>(
         value: widget.items[current],
         icon: Icon(Icons.arrow_drop_down),

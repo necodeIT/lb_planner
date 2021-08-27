@@ -55,5 +55,5 @@ class NcThemes {
 
   static Function? onCurrentThemeChange;
 
-  static Map<String, NcTheme> get all => {"Dark": dark, "Light": light, "Ocean": ocean, "桜": sakura};
+  static final Map<String, NcTheme> all = {"Dark": dark, "Light": light, "Ocean": ocean, "桜": sakura};
 }
