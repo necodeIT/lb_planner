@@ -16,7 +16,10 @@ class NcTag extends StatelessWidget {
         height: height,
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(7), color: backgroundColor),
         child: Center(
-          child: NcTitleText(text),
+          child: NcTitleText(
+            text,
+            buttonText: true,
+          ),
         ));
   }
 }

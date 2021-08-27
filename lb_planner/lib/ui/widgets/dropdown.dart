@@ -28,11 +28,11 @@ class _NcDropdownState extends State<NcDropdown> {
         items: widget.items.map<DropdownMenuItem<String>>((String value) {
           return DropdownMenuItem<String>(
             value: value,
-            child: NcCaptionText(value, buttonText: true),
+            child: NcCaptionText(value),
           );
         }).toList(),
         dropdownColor: NcThemes.current.secondaryColor,
-        iconEnabledColor: NcThemes.current.buttonTextColor,
+        iconEnabledColor: NcThemes.current.textColor,
         iconDisabledColor: NcThemes.current.tertiaryColor,
       ),
     );
