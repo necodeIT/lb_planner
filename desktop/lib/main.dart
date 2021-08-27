@@ -1,7 +1,3 @@
-import 'package:flare_flutter/flare.dart';
-import 'package:flare_flutter/base/math/mat2d.dart';
-import 'package:flare_flutter/flare_actor.dart';
-import 'package:flare_flutter/flare_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:lb_planner/ui.dart';
 
@@ -44,12 +40,11 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     NcThemes.onCurrentThemeChange = () => setState(() => {});
     return Scaffold(
-        backgroundColor: NcThemes.current.tertiaryColor,
-        // backgroundColor: Colors.amber,
+      backgroundColor: NcThemes.current.tertiaryColor,
+      // backgroundColor: Colors.amber,
 
-        body: NcLoadingIndicator()
-        // body: Penguin(),
-        );
+      body: NcLoadingIndicator(),
+    );
   }
 
   switchTheme() {

@@ -6,10 +6,11 @@ import 'package:flutter/material.dart';
 
 class NcLoadingIndicator extends StatefulWidget {
   NcLoadingIndicator({Key? key, this.width, this.height}) : super(key: key);
-  _NcLoadingIndicatorState createState() => _NcLoadingIndicatorState();
 
   final double? width;
   final double? height;
+
+  _NcLoadingIndicatorState createState() => _NcLoadingIndicatorState();
 
   static const assset = "packages/lb_planner/assets/Penguin.flr";
 }
@@ -34,7 +35,6 @@ class _NcLoadingIndicatorState extends State<NcLoadingIndicator> with FlareContr
 
   @override
   bool advance(FlutterActorArtboard artboard, double elapsed) {
-    artboard.nodes[0]!.opacity = .5;
     _rockTime += elapsed * _speed;
     _rock!.apply(_rockTime % _rock!.duration, artboard, _rockAmount);
     return true;
