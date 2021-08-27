@@ -8,3 +8,4 @@ export 'input_fields/input_fields.dart';
 export 'scrollbar.dart';
 export 'logo.dart';
 export 'confirmDialog.dart';
+export 'loading_indicator.dart';
