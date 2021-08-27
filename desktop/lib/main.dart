@@ -31,21 +31,7 @@ class _AppState extends State<App> {
       backgroundColor: NcThemes.current.tertiaryColor,
       // backgroundColor: Colors.amber,
 
-      body: NcTextButton(
-        text: "sdasdasd",
-        onTap: switchTheme,
-        leadingIcon: Icon(Feather.arrow_left_circle, color: NcThemes.current.textColor),
-      ),
+      body: NcLoadingIndicator(),
     );
-  }
-
-  switchTheme() {
-    if (NcThemes.current == NcThemes.dark)
-      NcThemes.current = NcThemes.ocean;
-    else if (NcThemes.current == NcThemes.ocean)
-      NcThemes.current = NcThemes.light;
-    else if (NcThemes.current == NcThemes.light)
-      NcThemes.current = NcThemes.sakura;
-    else if (NcThemes.current == NcThemes.sakura) NcThemes.current = NcThemes.dark;
   }
 }
