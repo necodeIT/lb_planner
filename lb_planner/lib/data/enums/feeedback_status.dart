@@ -1,0 +1,1 @@
+enum FeedbackStatus { Read, Unread }

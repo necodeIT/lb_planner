@@ -54,6 +54,7 @@ class NcBox extends StatelessWidget {
         borderRadius: BorderRadius.all(
           Radius.circular(ncRadius),
         ),
+        boxShadow: ncShadow,
       ),
     );
   }

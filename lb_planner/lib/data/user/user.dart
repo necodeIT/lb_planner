@@ -1,7 +1,7 @@
-import '../../data.dart';
+import 'package:lb_planner/data.dart';
 
 class User {
-  User({required this.id, required this.token, required this.name, this.role = UserPermissions.Student}) {
+  User(this.id, this.token, this.name, this.plan, this.email, this.settings, [this.role = UserPermissions.Student]) {
     email = "$name@$emailSubfix";
   }
 
@@ -22,4 +22,6 @@ class User {
   final String name;
   late final String email;
   final UserPermissions role;
+  final Plan plan;
+  final Settings settings;
 }

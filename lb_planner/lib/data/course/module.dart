@@ -3,7 +3,7 @@ import 'package:lb_planner/data/enums/module_type.dart';
 import 'package:lb_planner/data/enums/status.dart';
 
 class Module {
-  Module(this.isEnabled, this.moodleDeadline, this.deadlineEnd, this.deadlineStart, this.id, this.name, this.url, this.grade, this.status, this.type) {
+  Module(this.isEnabled, this.id, this.name, this.url, this.grade, this.status, this.type, this.deadline) {
     var filter = name.toLowerCase();
 
     type = ModuleType.GK;
@@ -11,7 +11,7 @@ class Module {
     if (ekKeywords.any((i) => filter.contains(i))) type = ModuleType.EK;
   }
 
-  final DateTime moodleDeadline;
+  final DateTime deadline;
   final int id;
   final String name;
   final String url;
@@ -21,8 +21,6 @@ class Module {
   late final ModuleType type;
 
   late bool isEnabled;
-  late DateTime deadlineEnd;
-  late DateTime deadlineStart;
 
   static const List<String> testKeywords = ["[test]", "[schularbeit]", "[exam]", "[sa]"];
   static const List<String> ekKeywords = ["[extend]", "[erweitert]", "[ek]", "[ei]"];
