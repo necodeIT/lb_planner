@@ -72,13 +72,13 @@ class _MyHomePageState extends State<MyHomePage> {
             onTap: () => {
               showDialog(
                 context: context,
-                builder: (context) => NcConfirmDialog.window(
-                  label: NcTitleText("sasd"),
-                  body: NcBodyText("sdasd"),
-                  button: NcButton(
-                    onTap: () {},
-                    text: "sdads",
-                  ),
+                builder: (context) => NcConfirmDialog(
+                  title: "Catgirl",
+                  body: NcBodyText("You have found 1 out of 10 catgirls!Find all of them to unlock a special theme!"),
+                  onConfirm: () => Navigator.of(context).pop(),
+                  onCancel: () => Navigator.of(context).pop(),
+                  // onCancel: () => Navigator.of(context).pop(),
+                  // confirmText: "Catgirl!",
                 ),
               ),
             },

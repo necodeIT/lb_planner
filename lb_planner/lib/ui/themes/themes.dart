@@ -40,7 +40,7 @@ class NcThemes {
     buttonTextColor: Color(0xFFFCE9EB),
     doneColor: Color(0xFFB2C959),
     uploadedColor: Color(0xFFE5D75A),
-    lateColor: Color(0xFFC95959),
+    lateColor: Color(0xFFC26161),
     pendingColor: Color(0xFFE0BAC0),
   );
 

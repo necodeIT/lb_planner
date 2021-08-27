@@ -17,7 +17,7 @@ class _NcScrollbarState extends State<NcScrollbar> {
     return RawScrollbar(
       isAlwaysShown: widget.isAlwaysShown,
       thumbColor: NcThemes.current.accentColor,
-      radius: Radius.circular(10),
+      radius: Radius.circular(ncRadius),
       child: widget.child,
     );
   }
