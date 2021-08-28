@@ -10,6 +10,7 @@ class SidebarItem extends StatelessWidget {
   final Function() onTap;
 
   static const double padding = 10;
+  static const double radius = 15;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class SidebarItem extends StatelessWidget {
         padding: EdgeInsets.all(padding),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(
-            Radius.circular(NcCheckBox.radius),
+            Radius.circular(radius),
           ),
           color: isSelected ? NcThemes.current.accentColor : NcThemes.current.secondaryColor,
           boxShadow: isSelected ? ncShadow : null,

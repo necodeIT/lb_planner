@@ -31,7 +31,7 @@ class _AppState extends State<App> {
   Widget build(BuildContext context) {
     NcThemes.onCurrentThemeChange = () => setState(() => {});
     return Scaffold(
-      backgroundColor: NcThemes.current.primaryColor,
+      backgroundColor: NcThemes.current.secondaryColor,
       body: Sidebar(
         dashboard: Container(color: Colors.amber),
         admin: Container(color: Colors.green),

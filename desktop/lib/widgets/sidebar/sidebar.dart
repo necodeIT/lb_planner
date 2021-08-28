@@ -88,6 +88,7 @@ class _SidebarState extends State<Sidebar> {
             ],
           ),
         ),
+        NcSpacing.width(),
         Expanded(
           child: Container(
             color: NcThemes.current.secondaryColor,
