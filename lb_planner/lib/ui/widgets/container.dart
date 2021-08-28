@@ -46,6 +46,7 @@ class NcContainer extends StatelessWidget {
               ],
             ),
           ),
+          NcSpacing.height(),
           body
         ],
       ),
