@@ -1,6 +1,6 @@
 export 'buttons/buttons.dart';
 export 'text/text.dart';
-export 'box.dart';
+export 'container.dart';
 export 'check_box.dart';
 export 'tag.dart';
 export 'dropdown.dart';
