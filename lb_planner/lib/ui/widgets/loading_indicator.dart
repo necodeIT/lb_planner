@@ -6,14 +6,16 @@ import 'package:flutter/material.dart';
 
 class NcLoadingIndicator extends StatefulWidget {
   NcLoadingIndicator({Key? key, this.width, this.height}) : super(key: key);
-  _NcLoadingIndicatorState createState() => _NcLoadingIndicatorState();
 
   final double? width;
   final double? height;
+
+  _NcLoadingIndicatorState createState() => _NcLoadingIndicatorState();
+
+  static const assset = "packages/lb_planner/assets/Penguin.flr";
 }
 
-class _NcLoadingIndicatorState extends State<NcLoadingIndicator>
-    with FlareController {
+class _NcLoadingIndicatorState extends State<NcLoadingIndicator> with FlareController {
   ActorAnimation? _rock;
 
   double _rockAmount = 0.5;
@@ -27,12 +29,7 @@ class _NcLoadingIndicatorState extends State<NcLoadingIndicator>
     return Container(
       height: widget.height,
       width: widget.width,
-      child: FlareActor("assets/Penguin.flr",
-          alignment: Alignment.center,
-          isPaused: false,
-          fit: BoxFit.cover,
-          animation: "walk",
-          controller: this),
+      child: FlareActor(NcLoadingIndicator.assset, alignment: Alignment.center, isPaused: false, fit: BoxFit.cover, animation: "walk", controller: this),
     );
   }
 

@@ -38,7 +38,7 @@ class NcBox extends StatelessWidget {
                 Row(
                   children: [
                     leadingIcon ?? Container(),
-                    SizedBox(width: ncSpacing),
+                    NcSpacing.width(),
                     label,
                   ],
                 ),

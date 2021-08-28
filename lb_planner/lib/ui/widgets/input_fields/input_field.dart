@@ -4,15 +4,7 @@ import 'package:lb_planner/ui.dart';
 
 // ignore: camel_case_types
 class NcInputField extends StatelessWidget {
-  const NcInputField(
-      {Key? key,
-      this.prefixIcon,
-      this.placeholder,
-      this.width,
-      this.onValueChanged,
-      this.suffixIcon,
-      this.primary = false})
-      : super(key: key);
+  const NcInputField({Key? key, this.prefixIcon, this.placeholder, this.width, this.onValueChanged, this.suffixIcon, this.primary = false}) : super(key: key);
 
   final Widget? prefixIcon;
   final Widget? suffixIcon;
@@ -34,7 +26,7 @@ class NcInputField extends StatelessWidget {
           suffixIcon: suffixIcon,
           contentPadding: EdgeInsets.only(top: 10, left: 20),
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(7),
+            borderRadius: BorderRadius.circular(ncRadius),
             borderSide: BorderSide(
               width: 0,
               style: BorderStyle.none,
@@ -46,9 +38,7 @@ class NcInputField extends StatelessWidget {
           hintText: placeholder,
           filled: true,
 
-          fillColor: primary != true
-              ? NcThemes.current.secondaryColor
-              : NcThemes.current.primaryColor,
+          fillColor: primary != true ? NcThemes.current.secondaryColor : NcThemes.current.primaryColor,
           prefixIcon: prefixIcon,
         ),
       ),

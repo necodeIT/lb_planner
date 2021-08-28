@@ -35,7 +35,7 @@ class NcConfirmDialog extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             if (!confirmOnly) NcButton.cancel(text: cancelText ?? "", onTap: onCancel ?? () {}, width: width),
-            SizedBox(width: ncSpacing),
+            NcSpacing.width(),
             NcButton(text: confirmText, onTap: onConfirm, width: width),
           ],
         )

@@ -1,28 +1,14 @@
-import 'package:flare_flutter/flare.dart';
-import 'package:flare_flutter/base/math/mat2d.dart';
-import 'package:flare_flutter/flare_actor.dart';
-import 'package:flare_flutter/flare_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:lb_planner/ui.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 void main() {
   NcThemes.current = NcThemes.dark;
-  runApp(App());
+  runApp(MaterialApp(home: App()));
 }
 
-class App extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
+class App extends StatefulWidget {
+  App({Key? key}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -33,13 +19,11 @@ class MyHomePage extends StatefulWidget {
   // used by the build method of the State. Fields in a Widget subclass are
   // always marked "final".
 
-  final String title;
-
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _AppState createState() => _AppState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
     NcThemes.onCurrentThemeChange = () => setState(() => {});
@@ -47,64 +31,7 @@ class _MyHomePageState extends State<MyHomePage> {
       backgroundColor: NcThemes.current.tertiaryColor,
       // backgroundColor: Colors.amber,
 
-      body: NcBox(
-        label: NcTitleText("sdasdasd"),
-        body: Penguin(),
-        width: 500,
-        height: 600,
-      ),
-      // body: Penguin(),
+      body: NcLoadingIndicator(),
     );
   }
-
-  switchTheme() {
-    if (NcThemes.current == NcThemes.dark)
-      NcThemes.current = NcThemes.ocean;
-    else if (NcThemes.current == NcThemes.ocean)
-      NcThemes.current = NcThemes.light;
-    else if (NcThemes.current == NcThemes.light)
-      NcThemes.current = NcThemes.sakura;
-    else if (NcThemes.current == NcThemes.sakura) NcThemes.current = NcThemes.dark;
-  }
-}
-
-class Penguin extends StatefulWidget {
-  Penguin({
-    Key? key,
-  }) : super(key: key);
-  _PenguinState createState() => _PenguinState();
-}
-
-class _PenguinState extends State<Penguin> with FlareController {
-  ActorAnimation? _rock;
-
-  double _rockAmount = 0.5;
-
-  double _speed = 1.0;
-
-  double _rockTime = 0.0;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 500,
-      width: 500,
-      child: FlareActor("assets/Penguin.flr", alignment: Alignment.center, isPaused: false, fit: BoxFit.cover, animation: "walk", controller: this),
-    );
-  }
-
-  @override
-  bool advance(FlutterActorArtboard artboard, double elapsed) {
-    _rockTime += elapsed * _speed;
-    _rock!.apply(_rockTime % _rock!.duration, artboard, _rockAmount);
-    return true;
-  }
-
-  @override
-  void initialize(FlutterActorArtboard artboard) {
-    _rock = artboard.getAnimation("music_walk");
-  }
-
-  @override
-  void setViewTransform(Mat2D viewTransform) {}
 }

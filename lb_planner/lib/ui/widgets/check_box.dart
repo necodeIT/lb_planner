@@ -19,6 +19,9 @@ class NcCheckBox extends StatefulWidget {
   final double? width;
   final Function(bool?) onChanged;
 
+  static const double radius = 13.0;
+  static const double borderWidth = 3;
+
   @override
   State<NcCheckBox> createState() => _NcCheckBoxState();
 }
@@ -48,8 +51,8 @@ class _NcCheckBoxState extends State<NcCheckBox> {
                   color: Colors.transparent,
                 ),
           decoration: BoxDecoration(
-            border: current != true ? Border.all(color: NcThemes.current.accentColor, width: 3) : Border.all(color: Colors.transparent, width: 0),
-            borderRadius: BorderRadius.circular(13.0),
+            border: current != true ? Border.all(color: NcThemes.current.accentColor, width: NcCheckBox.borderWidth) : Border.all(color: Colors.transparent, width: 0),
+            borderRadius: BorderRadius.circular(NcCheckBox.radius),
             color: current ? NcThemes.current.accentColor : Colors.transparent,
           )),
     );

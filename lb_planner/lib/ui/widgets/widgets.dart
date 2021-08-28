@@ -9,3 +9,4 @@ export 'scrollbar.dart';
 export 'logo.dart';
 export 'confirmDialog.dart';
 export 'loading_indicator.dart';
+export 'spacing.dart';
