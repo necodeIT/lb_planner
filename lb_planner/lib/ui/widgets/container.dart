@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:lb_planner/ui.dart';
 
-class NcBox extends StatelessWidget {
-  NcBox({Key? key, required this.body, required this.label, this.leadingIcon, this.trailingIcon, this.width, this.height}) : super(key: key) {
+class NcContainer extends StatelessWidget {
+  NcContainer({Key? key, required this.body, required this.label, this.leadingIcon, this.trailingIcon, this.width, this.height}) : super(key: key) {
     window = false;
   }
-  NcBox.window({Key? key, required this.body, required this.label, this.leadingIcon, this.trailingIcon, this.width, this.height}) : super(key: key) {
+  NcContainer.window({Key? key, required this.body, required this.label, this.leadingIcon, this.trailingIcon, this.width, this.height}) : super(key: key) {
     window = true;
   }
 
