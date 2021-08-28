@@ -3,9 +3,11 @@ import 'package:lb_planner/ui.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 void main() {
-  NcThemes.current = NcThemes.dark;
-  runApp(MaterialApp(home: App()));
+  NcThemes.current = NcThemes.light;
+  runApp(app);
 }
+
+final app = MaterialApp(home: App(), title: "LB Planner");
 
 class App extends StatefulWidget {
   App({Key? key}) : super(key: key);
@@ -28,10 +30,12 @@ class _AppState extends State<App> {
   Widget build(BuildContext context) {
     NcThemes.onCurrentThemeChange = () => setState(() => {});
     return Scaffold(
-      backgroundColor: NcThemes.current.tertiaryColor,
-      // backgroundColor: Colors.amber,
-
-      body: NcLoadingIndicator(),
+      body: NcContainer.window(
+        body: NcBodyText("sdasdasd"),
+        label: NcTitleText("lol"),
+        width: 600,
+        height: 600,
+      ),
     );
   }
 }
