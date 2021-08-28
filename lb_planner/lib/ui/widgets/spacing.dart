@@ -6,7 +6,7 @@ class NcSpacing extends StatelessWidget {
     height = spacing;
   }
 
-  NcSpacing.hieght({Key? key}) : super(key: key) {
+  NcSpacing.height({Key? key}) : super(key: key) {
     height = spacing;
   }
 
