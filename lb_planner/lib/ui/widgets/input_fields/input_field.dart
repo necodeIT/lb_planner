@@ -4,11 +4,12 @@ import 'package:lb_planner/ui.dart';
 
 // ignore: camel_case_types
 class NcInputField extends StatelessWidget {
-  const NcInputField({Key? key, this.prefixIcon, this.placeholder, this.width, this.onValueChanged, this.suffixIcon, this.primary = false}) : super(key: key);
+  const NcInputField({Key? key, this.prefixIcon, this.placeholder, this.width, this.onValueChanged, this.suffixIcon, this.primary = false, this.obscureText = false}) : super(key: key);
 
   final Widget? prefixIcon;
   final Widget? suffixIcon;
   final String? placeholder;
+  final bool obscureText;
   final bool? primary;
   final double? width;
   final Function(String)? onValueChanged;
@@ -19,6 +20,7 @@ class NcInputField extends StatelessWidget {
       width: width,
       height: 40,
       child: TextField(
+        obscureText: obscureText,
         style: NcBodyText.baseStyle,
         onChanged: onValueChanged,
         keyboardType: TextInputType.text,
@@ -37,7 +39,6 @@ class NcInputField extends StatelessWidget {
 
           hintText: placeholder,
           filled: true,
-
           fillColor: primary != true ? NcThemes.current.secondaryColor : NcThemes.current.primaryColor,
           prefixIcon: prefixIcon,
         ),
