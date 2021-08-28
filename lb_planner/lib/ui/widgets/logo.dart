@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:lb_planner/ui.dart';
 
 class NcLogo extends StatelessWidget {
-  const NcLogo({Key? key, this.width, this.height}) : super(key: key);
+  const NcLogo({Key? key, this.width, this.height, this.aliignment = Alignment.center}) : super(key: key);
 
   final double? width;
   final double? height;
+  final Alignment aliignment;
 
   static const rawSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="425.491" height="386" viewBox="0 0 425.491 386">' +
       '<g id="Dark1" transform="translate(-7529.924 6213.369)" shape-rendering="crispEdges">' +
@@ -15,6 +16,11 @@ class NcLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return NcVectorImage(code: rawSvg, width: width, height: height);
+    return NcVectorImage(
+      code: rawSvg,
+      width: width,
+      height: height,
+      aliignment: aliignment,
+    );
   }
 }

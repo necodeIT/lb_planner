@@ -3,11 +3,12 @@ import 'package:flutter_svg/svg.dart';
 import 'package:lb_planner/ui.dart';
 
 class NcVectorImage extends StatelessWidget {
-  const NcVectorImage({Key? key, required this.code, this.width, this.height}) : super(key: key);
+  const NcVectorImage({Key? key, required this.code, this.width, this.height, this.aliignment = Alignment.center}) : super(key: key);
 
   final String code;
   final double? width;
   final double? height;
+  final Alignment aliignment;
 
   static const accentColor = "{accentcolor}";
   static const textColor = "{textcolor}";
@@ -38,10 +39,11 @@ class NcVectorImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SvgPicture.string(
+      svg(code),
       width: width,
       height: height,
-      child: SvgPicture.string(svg(code)),
+      alignment: aliignment,
     );
   }
 }

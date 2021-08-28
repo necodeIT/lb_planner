@@ -31,6 +31,10 @@ dependencies:
     path: ../lb_planner
   rive: ^0.7.28
   shared_preferences: ^2.0.7
+  window_size:
+      git:
+        url: git://github.com/google/flutter-desktop-embedding.git
+        path: plugins/window_size
 
 dev_dependencies:
   flutter_test:
