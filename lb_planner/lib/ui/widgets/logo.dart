@@ -15,6 +15,6 @@ class NcLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return NcVectorImage(code: rawSvg, width: width);
+    return NcVectorImage(code: rawSvg, width: width, height: height);
   }
 }

@@ -1,9 +1,10 @@
+import 'package:desktop/widgets/sidebar/sidebar.dart';
+import 'package:desktop/widgets/sidebar/sidebarItem.dart';
 import 'package:flutter/material.dart';
 import 'package:lb_planner/ui.dart';
-import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 void main() {
-  NcThemes.current = NcThemes.light;
+  NcThemes.current = NcThemes.dark;
   runApp(app);
 }
 
@@ -30,11 +31,15 @@ class _AppState extends State<App> {
   Widget build(BuildContext context) {
     NcThemes.onCurrentThemeChange = () => setState(() => {});
     return Scaffold(
-      body: NcContainer.window(
-        body: NcBodyText("sdasdasd"),
-        label: NcTitleText("lol"),
-        width: 600,
-        height: 600,
+      backgroundColor: NcThemes.current.primaryColor,
+      body: Sidebar(
+        dashboard: Container(color: Colors.amber),
+        admin: Container(color: Colors.green),
+        calendar: Container(color: Colors.red),
+        coursesOverwiev: Container(color: Colors.yellow),
+        onLogout: () {},
+        planner: Container(color: Colors.pink),
+        settings: Container(color: Colors.black),
       ),
     );
   }
