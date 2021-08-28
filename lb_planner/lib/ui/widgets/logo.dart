@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:lb_planner/ui.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class NcLogo extends StatelessWidget {
   const NcLogo({
