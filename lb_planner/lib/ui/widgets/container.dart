@@ -38,7 +38,7 @@ class NcContainer extends StatelessWidget {
                 Row(
                   children: [
                     leadingIcon ?? Container(),
-                    NcSpacing.width(),
+                    NcSpacing.medium(),
                     label,
                   ],
                 ),
@@ -46,7 +46,7 @@ class NcContainer extends StatelessWidget {
               ],
             ),
           ),
-          NcSpacing.height(),
+          NcSpacing.medium(),
           body
         ],
       ),
