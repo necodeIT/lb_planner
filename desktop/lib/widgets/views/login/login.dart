@@ -3,11 +3,15 @@ import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:lb_planner/ui.dart';
 import 'svg/wave.dart';
 
+// ignore: must_be_immutable
 class Login extends StatelessWidget {
   Login({Key? key}) : super(key: key);
 
   String username = "";
   String password = "";
+
+  static const double formMargin = 60;
+  static const double formWidth = 350;
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +26,11 @@ class Login extends StatelessWidget {
             aliignment: Alignment.bottomLeft,
           ),
           Positioned(
-            right: 60,
-            width: 350,
+            right: formMargin,
+            width: formWidth,
+            height: MediaQuery.of(context).size.height,
             child: Column(
+              mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 NcLogo(
