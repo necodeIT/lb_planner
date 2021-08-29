@@ -6,18 +6,16 @@ import 'package:lb_planner/ui.dart';
 import 'package:lb_planner/data.dart';
 
 class DashboardTodaysTasksItem extends StatelessWidget {
-  DashboardTodaysTasksItem({
-    Key? key,
-    required this.id,
-  }) : super(key: key);
+  DashboardTodaysTasksItem({Key? key, required this.id, this.margin = true}) : super(key: key);
 
   final int id;
+  final bool margin;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(left: 10, right: 10),
-      margin: EdgeInsets.only(bottom: NcSpacing.smallSpacing),
+      margin: EdgeInsets.only(bottom: margin ? NcSpacing.smallSpacing : 0),
       width: 400,
       height: 40,
       decoration: BoxDecoration(

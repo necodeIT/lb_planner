@@ -16,7 +16,7 @@ void main() {
   runApp(app);
 }
 
-final app = MaterialApp(home: App(), title: "LB Planner");
+final app = MaterialApp(home: App(), title: "LB Planner", scrollBehavior: NcScrollBehavior());
 
 class App extends StatefulWidget {
   App({Key? key}) : super(key: key);

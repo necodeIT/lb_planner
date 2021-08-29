@@ -6,7 +6,10 @@ class NcScrollbar extends StatefulWidget {
 
   final Widget child;
   final bool isAlwaysShown;
-  static ScrollPhysics get physics => const BouncingScrollPhysics();
+
+  static const double scrollbarWidth = 5;
+  static const double padding = 1;
+
   @override
   _NcScrollbarState createState() => _NcScrollbarState();
 }
@@ -15,10 +18,14 @@ class _NcScrollbarState extends State<NcScrollbar> {
   @override
   Widget build(BuildContext context) {
     return RawScrollbar(
+      thickness: NcScrollbar.scrollbarWidth,
       isAlwaysShown: widget.isAlwaysShown,
       thumbColor: NcThemes.current.accentColor,
       radius: Radius.circular(ncRadius),
-      child: widget.child,
+      child: Container(
+        child: widget.child,
+        padding: EdgeInsets.only(right: NcScrollbar.scrollbarWidth + NcScrollbar.padding),
+      ),
     );
   }
 }

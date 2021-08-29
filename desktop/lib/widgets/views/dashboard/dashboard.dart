@@ -1,4 +1,5 @@
 import 'package:desktop/widgets/view.dart';
+import 'package:desktop/widgets/views/dashboard/exams.dart';
 import 'package:desktop/widgets/views/dashboard/todays_task.dart';
 import 'package:flutter/material.dart';
 import 'package:lb_planner/ui.dart';
@@ -23,29 +24,27 @@ class Dashboard extends StatelessWidget {
                 Expanded(
                   child: NcContainer(
                     body: Expanded(
-                      child: NcScrollbar(
-                        child: ListView(
-                          children: [
-                            DashboardTodaysTasksItem(id: 0),
-                            DashboardTodaysTasksItem(id: 0),
-                            DashboardTodaysTasksItem(id: 0),
-                            DashboardTodaysTasksItem(id: 0),
-                            DashboardTodaysTasksItem(id: 0),
-                            DashboardTodaysTasksItem(id: 0),
-                            DashboardTodaysTasksItem(id: 0),
-                            DashboardTodaysTasksItem(id: 0),
-                            DashboardTodaysTasksItem(id: 0),
-                            DashboardTodaysTasksItem(id: 0),
-                            DashboardTodaysTasksItem(id: 0),
-                            DashboardTodaysTasksItem(id: 0),
-                            DashboardTodaysTasksItem(id: 0),
-                            DashboardTodaysTasksItem(id: 0),
-                            DashboardTodaysTasksItem(id: 0),
-                            DashboardTodaysTasksItem(id: 0),
-                            DashboardTodaysTasksItem(id: 0),
-                          ],
-                          physics: NcScrollbar.physics,
-                        ),
+                      child: ListView(
+                        // behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
+                        children: [
+                          DashboardTodaysTasksItem(id: 0),
+                          DashboardTodaysTasksItem(id: 0),
+                          DashboardTodaysTasksItem(id: 0),
+                          DashboardTodaysTasksItem(id: 0),
+                          DashboardTodaysTasksItem(id: 0),
+                          DashboardTodaysTasksItem(id: 0),
+                          DashboardTodaysTasksItem(id: 0),
+                          DashboardTodaysTasksItem(id: 0),
+                          DashboardTodaysTasksItem(id: 0),
+                          DashboardTodaysTasksItem(id: 0),
+                          DashboardTodaysTasksItem(id: 0),
+                          DashboardTodaysTasksItem(id: 0),
+                          DashboardTodaysTasksItem(id: 0),
+                          DashboardTodaysTasksItem(id: 0),
+                          DashboardTodaysTasksItem(id: 0),
+                          DashboardTodaysTasksItem(id: 0),
+                          DashboardTodaysTasksItem(id: 0, margin: false),
+                        ],
                       ),
                     ),
                     // body: NcCaptionText("Today's Tasks"),
@@ -118,9 +117,32 @@ class Dashboard extends StatelessWidget {
                 Expanded(
                   child: NcContainer(
                     body: Expanded(
-                      child: NcLoadingIndicator(
-                          // height: 100,
+                      child: ListView(
+                        // behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
+                        children: [
+                          DashboardExamItem(id: 0),
+                          DashboardExamItem(id: 0),
+                          DashboardExamItem(id: 0),
+                          DashboardExamItem(id: 0),
+                          DashboardExamItem(id: 0),
+                          DashboardExamItem(id: 0),
+                          DashboardExamItem(id: 0),
+                          DashboardExamItem(id: 0),
+                          DashboardExamItem(id: 0),
+                          DashboardExamItem(id: 0),
+                          DashboardExamItem(id: 0),
+                          DashboardExamItem(id: 0),
+                          DashboardExamItem(id: 0),
+                          DashboardExamItem(id: 0),
+                          DashboardExamItem(id: 0),
+                          DashboardExamItem(id: 0),
+                          DashboardExamItem(id: 0),
+                          DashboardExamItem(id: 0),
+                          DashboardExamItem(
+                            id: 0,
                           ),
+                        ],
+                      ),
                     ),
                     // body: NcCaptionText("Today's Tasks"),
                     label: NcCaptionText(
