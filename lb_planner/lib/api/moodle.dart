@@ -11,7 +11,8 @@ class MoodleAPI {
 
   static List<int> getMods() {
     List<int> mods = List.empty(growable: true);
-    if (User.current == null) return mods;
+
+    if (User.current.isDummy) return mods;
 
     for (var i = 0; i < 10; i++) {
       mods.add(i);

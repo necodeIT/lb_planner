@@ -3,6 +3,7 @@ import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:lb_planner/ui.dart';
 import 'package:lb_planner/data.dart';
 import 'package:lb_planner/api.dart';
+import '../../../version.dart';
 import 'svg/wave.dart';
 
 // ignore: must_be_immutable
@@ -72,10 +73,7 @@ class Login extends StatelessWidget {
                         (response) {
                           if (response.isError)
                             return ScaffoldMessenger.of(context).showSnackBar(
-                              NcSnackBar.bottomRight(
-                                  content: NcBodyText(response.errorMessage),
-                                  prefixIcon: Icon(Icons.error,
-                                      color: NcThemes.current.lateColor)),
+                              NcSnackBar.bottomRight(content: NcBodyText(response.errorMessage), prefixIcon: Icon(Icons.error, color: NcThemes.current.lateColor)),
                             );
 
                           onLoginSuccess(response.value);
@@ -86,6 +84,14 @@ class Login extends StatelessWidget {
               ],
             ),
           ),
+          Positioned(
+            bottom: 20,
+            left: 20,
+            child: NcBodyText(
+              version,
+              buttonText: true,
+            ),
+          )
         ],
       ),
     );

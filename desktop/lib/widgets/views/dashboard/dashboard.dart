@@ -6,7 +6,6 @@ import 'package:desktop/widgets/views/dashboard/svg/timetable.dart';
 import 'package:desktop/widgets/views/dashboard/todays_task.dart';
 import 'package:flutter/material.dart';
 import 'package:lb_planner/ui.dart';
-import 'package:lb_planner/data.dart';
 
 class Dashboard extends StatelessWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -15,8 +14,6 @@ class Dashboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var now = DateTime.now();
-
     return View(
       title: "Dashboard",
       content: Row(

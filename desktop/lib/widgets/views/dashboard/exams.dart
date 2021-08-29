@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lb_planner/ui.dart';
-import 'package:lb_planner/data.dart';
 
 class DashboardExamItem extends StatelessWidget {
-  DashboardExamItem({Key? key, required this.id, this.margin = true})
-      : super(key: key);
+  DashboardExamItem({Key? key, required this.id, this.margin = true}) : super(key: key);
 
   final int id;
   final bool margin;

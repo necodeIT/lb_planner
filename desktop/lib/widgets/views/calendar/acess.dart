@@ -29,7 +29,7 @@ class CalenderAccess extends StatelessWidget {
             'Hallo',
             style: NcBodyText.baseStyle,
           ),
-          User.current!.plan.access[id] == PlanAccess.Owner
+          User.current.plan.access[id] == PlanAccess.Owner
               ? Icon(
                   FontAwesome5Solid.crown,
                   color: NcThemes.current.accentColor,
@@ -38,14 +38,11 @@ class CalenderAccess extends StatelessWidget {
               : Row(
                   children: [
                     Icon(
-                      User.current!.plan.access[id] == PlanAccess.Read
-                          ? Feather.edit_2
-                          : FontAwesome5Solid.eye,
+                      User.current.plan.access[id] == PlanAccess.Read ? Feather.edit_2 : FontAwesome5Solid.eye,
                       color: NcThemes.current.accentColor,
                       size: size,
                     ),
-                    if (User.current!.plan.access[User.current!.id] ==
-                        PlanAccess.Owner)
+                    if (User.current.plan.access[User.current.id] == PlanAccess.Owner)
                       GestureDetector(
                         child: Icon(
                           Icons.remove_circle_outline,

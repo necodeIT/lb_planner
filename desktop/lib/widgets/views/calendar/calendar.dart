@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:lb_planner/ui.dart';
-import 'package:lb_planner/data.dart';
 
 class CalendarItem extends StatelessWidget {
-  CalendarItem({
-    Key? key,
-    required this.id,
-  }) : super(key: key) {}
+  CalendarItem({Key? key, required this.id}) : super(key: key);
 
   final int id;
 

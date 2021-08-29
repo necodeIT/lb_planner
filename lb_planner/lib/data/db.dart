@@ -14,7 +14,7 @@ class DB {
   }
 
   static void init() {
-    if (User.current == null) {
+    if (User.current.isDummy) {
       _clear();
       return;
     }
