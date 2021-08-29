@@ -1,23 +1,33 @@
 import 'package:flutter/material.dart';
 
 class NcSpacing extends StatelessWidget {
-  NcSpacing.all({Key? key}) : super(key: key) {
-    width = spacing;
-    height = spacing;
+  NcSpacing.xs({Key? key}) : super(key: key) {
+    spacing = xlSpacing;
   }
 
-  NcSpacing.height({Key? key}) : super(key: key) {
-    height = spacing;
+  NcSpacing.small({Key? key}) : super(key: key) {
+    spacing = smallSpacing;
   }
 
-  NcSpacing.width({Key? key}) : super(key: key) {
-    width = spacing;
+  NcSpacing.medium({Key? key}) : super(key: key) {
+    spacing = mediumSpacing;
   }
 
-  static const double spacing = 10;
+  NcSpacing.large({Key? key}) : super(key: key) {
+    spacing = largeSpacing;
+  }
 
-  late final double width;
-  late final double height;
+  NcSpacing.xl({Key? key}) : super(key: key) {
+    spacing = xlSpacing;
+  }
+
+  static const double xsSpacing = 5;
+  static const double smallSpacing = 10;
+  static const double mediumSpacing = 20;
+  static const double largeSpacing = 25;
+  static const double xlSpacing = 30;
+
+  late final double spacing;
 
   @override
   Widget build(BuildContext context) {
