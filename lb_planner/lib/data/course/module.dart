@@ -3,7 +3,7 @@ import 'package:lb_planner/data/enums/module_type.dart';
 import 'package:lb_planner/data/enums/status.dart';
 
 class Module {
-  Module(this.isEnabled, this.id, this.name, this.url, this.grade, this.status, this.type, this.deadline) {
+  Module(this.isEnabled, this.id, this.name, this.url, this.grade, this.status, this.type, this.deadline, this.course) {
     var filter = name.toLowerCase();
 
     type = ModuleType.GK;
@@ -13,6 +13,7 @@ class Module {
 
   final DateTime deadline;
   final int id;
+  final int course;
   final String name;
   final String url;
   final Grade grade;
