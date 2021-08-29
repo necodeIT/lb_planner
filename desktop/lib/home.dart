@@ -1,9 +1,10 @@
+import 'package:desktop/widgets/views/dashboard/dashboard.dart';
 import 'package:desktop/widgets/views/login/login.dart';
 import 'package:flutter/material.dart';
 import 'package:lb_planner/data.dart';
 
 import 'widgets/sidebar/sidebar.dart';
-import 'widgets/views/view.dart';
+import 'widgets/view.dart';
 
 class Home extends StatefulWidget {
   Home({Key? key}) : super(key: key);
@@ -26,7 +27,7 @@ class _HomeState extends State<Home> {
     return showLogin
         ? Login(onLoginSuccess: (token) => handleLogin(token))
         : Sidebar(
-            dashboard: Text("wasdasdasd"),
+            dashboard: Dashboard(),
             admin: View(
               content: Container(color: Colors.green),
               title: "Admin",

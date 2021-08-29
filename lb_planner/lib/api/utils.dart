@@ -17,7 +17,7 @@ http.Client get client => _client;
 String error(String message) => "Internal Error: $message";
 
 Uri function(String name, Map<String, dynamic> args) {
-  var url = "https://elearning.tgm.ac.at/webservice/rest/server.php?${User.current != null ? "wstoken=${User.current?.token.token}&" : ""}$format&wsfunction=$name";
+  var url = "https://elearning.tgm.ac.at/webservice/rest/server.php?wstoken=${User.current.token.token}&$format&wsfunction=$name";
 
   args.forEach((key, value) => url += "&$key=$value");
 

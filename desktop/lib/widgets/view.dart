@@ -1,5 +1,4 @@
-import 'dart:ui';
-
+import 'package:desktop/widgets/user_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:lb_planner/ui.dart';
@@ -25,6 +24,7 @@ class _ViewState extends State<View> {
         NcSpacing.small(),
         Container(
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               widget.onNavigateBack != null
                   ? NcTextButton(
@@ -37,12 +37,14 @@ class _ViewState extends State<View> {
                         size: View.fontSize,
                       ),
                     )
-                  : NcTitleText(widget.title, fontSize: View.fontSize)
+                  : NcTitleText(widget.title, fontSize: View.fontSize),
+              UserProfile(),
             ],
           ),
         ),
         NcSpacing.small(),
         Expanded(child: widget.content),
+        NcSpacing.small(),
       ],
     );
   }

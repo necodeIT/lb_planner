@@ -3,16 +3,20 @@ import 'package:flutter/material.dart';
 // ignore: camel_case_types
 class NcTheme {
   NcTheme(
-      {required Color primaryColor,
-      required Color secondaryColor,
-      required Color tertiaryColor,
-      required Color accentColor,
-      required Color textColor,
-      Color? buttonTextColor,
-      Color? pendingColor,
-      Color? lateColor,
-      Color? uploadedColor,
-      Color? doneColor}) {
+    this.name, {
+    required Color primaryColor,
+    required Color secondaryColor,
+    required Color tertiaryColor,
+    required Color accentColor,
+    required Color textColor,
+    Color? buttonTextColor,
+    Color? pendingColor,
+    Color? lateColor,
+    Color? uploadedColor,
+    Color? doneColor,
+    required this.icon,
+    required this.iconColor,
+  }) {
     this._primaryColor = primaryColor;
     this._secondaryColor = secondaryColor;
     this._tertiaryColor = tertiaryColor;
@@ -37,6 +41,10 @@ class NcTheme {
   late Color _uploadedColor = Color(0xFFF1C40F);
   late Color _lateColor = Color(0xFFE74C3C);
   late Color _pendingColor = Color(0xFF7F8C8D);
+
+  final IconData icon;
+  final Color iconColor;
+  final String name;
 
   Color get primaryColor => _primaryColor;
   Color get secondaryColor => _secondaryColor;

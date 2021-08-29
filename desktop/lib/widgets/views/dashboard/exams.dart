@@ -13,12 +13,12 @@ class DashboardExamItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+      padding: const EdgeInsets.only(left: ncRadius, right: ncRadius),
       width: 400,
       height: 50,
       decoration: BoxDecoration(
         color: NcThemes.current.primaryColor,
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(ncRadius),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

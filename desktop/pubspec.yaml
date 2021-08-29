@@ -52,6 +52,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - packages/lb_planner/assets/Penguin.flr
+    - assets/placeholders/profile.png
   #     - packages/lb_planner/assets/Penguin.flr
   # - assets/
   #   - images/a_dot_burr.jpeg

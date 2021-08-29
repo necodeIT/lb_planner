@@ -95,6 +95,7 @@ class _SidebarState extends State<Sidebar> {
             child: widget.views[current],
           ),
         ),
+        NcSpacing.small(),
       ],
     );
   }

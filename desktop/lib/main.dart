@@ -1,16 +1,13 @@
 import 'dart:io';
-
-import 'package:desktop/widgets/dashboard/exams.dart';
-import 'package:desktop/widgets/dashboard/todays_task.dart';
-import 'package:desktop/widgets/sidebar/sidebar.dart';
-import 'package:desktop/widgets/views/login/login.dart';
+import 'package:desktop/home.dart';
 import 'package:flutter/material.dart';
+import 'package:lb_planner/data.dart';
 import 'package:lb_planner/ui.dart';
 import 'package:window_size/window_size.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  NcThemes.current = NcThemes.dark;
+  NcThemes.current = NcThemes.all[User.current.settings.theme] ?? NcThemes.dark;
   if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
     setWindowMinSize(const Size(950, 550));
     setWindowMaxSize(Size.infinite);
@@ -42,16 +39,7 @@ class _AppState extends State<App> {
     NcThemes.onCurrentThemeChange = () => setState(() => {});
     return Scaffold(
       backgroundColor: NcThemes.current.secondaryColor,
-      body: Login(),
-      // body: Sidebar(
-      //   dashboard: Container(color: Colors.amber),
-      //   admin: Container(color: Colors.green),
-      //   calendar: Container(color: Colors.red),
-      //   coursesOverwiev: Container(color: Colors.yellow),
-      //   onLogout: () {},
-      //   planner: Container(color: Colors.pink),
-      //   settings: Container(color: Colors.black),
-      // ),
+      body: Home(),
       //body: Dashboard_TodaysTasksItem(),
       //body: Dashboard_ExamItem(),
     );

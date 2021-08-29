@@ -17,17 +17,17 @@ class NcContainer extends StatelessWidget {
   final double? height;
   late final bool window;
 
-  static const double padding = 10;
+  static const double padding = 15;
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.all(padding),
       width: width,
       height: height,
       child: Column(
         children: [
           Container(
-            padding: EdgeInsets.only(top: padding, left: padding, bottom: padding),
             decoration: BoxDecoration(
               color: window ? NcThemes.current.secondaryColor : null,
               borderRadius: window ? BorderRadius.only(topLeft: Radius.circular(ncRadius), topRight: Radius.circular(ncRadius)) : null,
@@ -38,7 +38,7 @@ class NcContainer extends StatelessWidget {
                 Row(
                   children: [
                     leadingIcon ?? Container(),
-                    NcSpacing.medium(),
+                    if (leadingIcon != null) NcSpacing.medium(),
                     label,
                   ],
                 ),
@@ -47,7 +47,8 @@ class NcContainer extends StatelessWidget {
             ),
           ),
           NcSpacing.medium(),
-          body
+          body,
+          NcSpacing.xs(),
         ],
       ),
       decoration: BoxDecoration(
