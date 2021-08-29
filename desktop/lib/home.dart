@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:lb_planner/data.dart';
 
 import 'widgets/sidebar/sidebar.dart';
+import 'widgets/views/view.dart';
 
 class Home extends StatefulWidget {
   Home({Key? key}) : super(key: key);
@@ -26,7 +27,13 @@ class _HomeState extends State<Home> {
         ? Login(onLoginSuccess: (token) => handleLogin(token))
         : Sidebar(
             dashboard: Text("wasdasdasd"),
-            admin: Expanded(child: Container(color: Colors.green)),
+            admin: View(
+              content: Container(color: Colors.green),
+              title: "Admin",
+              onNavigateBack: () {
+                print("dasdasdad");
+              },
+            ),
             calendar: Container(color: Colors.red),
             coursesOverwiev: Container(color: Colors.yellow),
             onLogout: () {},
