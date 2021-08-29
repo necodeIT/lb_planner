@@ -11,3 +11,4 @@ export 'confirmDialog.dart';
 export 'loading_indicator.dart';
 export 'spacing.dart';
 export 'vector_image.dart';
+export 'snackbar.dart';
