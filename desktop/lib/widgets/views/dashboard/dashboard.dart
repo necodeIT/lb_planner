@@ -93,7 +93,7 @@ class Dashboard extends StatelessWidget {
                 ),
                 NcSpacing.large(),
                 Expanded(
-                  flex: 4,
+                  flex: 5,
                   child: NcContainer(
                     body: Expanded(
                       child: NcLoadingIndicator(

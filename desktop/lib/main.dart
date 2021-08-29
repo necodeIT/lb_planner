@@ -10,13 +10,14 @@ void main() {
   NcThemes.current = NcThemes.all[User.current.settings.theme] ?? NcThemes.dark;
   // NcThemes.current = NcThemes.dark;
   if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
-    setWindowMinSize(const Size(950, 550));
+    setWindowMinSize(const Size(1056, 550));
     setWindowMaxSize(Size.infinite);
   }
   runApp(app);
 }
 
-final app = MaterialApp(home: App(), title: "LB Planner", scrollBehavior: NcScrollBehavior());
+final app = MaterialApp(
+    home: App(), title: "LB Planner", scrollBehavior: NcScrollBehavior());
 
 class App extends StatefulWidget {
   App({Key? key}) : super(key: key);

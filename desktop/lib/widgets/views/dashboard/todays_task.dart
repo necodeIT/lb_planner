@@ -6,7 +6,8 @@ import 'package:lb_planner/ui.dart';
 import 'package:lb_planner/data.dart';
 
 class DashboardTodaysTasksItem extends StatelessWidget {
-  DashboardTodaysTasksItem({Key? key, required this.id, this.margin = true}) : super(key: key);
+  DashboardTodaysTasksItem({Key? key, required this.id, this.margin = true})
+      : super(key: key);
 
   final int id;
   final bool margin;
@@ -33,11 +34,16 @@ class DashboardTodaysTasksItem extends StatelessWidget {
             backgroundColor: NcThemes.current.accentColor,
             //width: 40,
           ),
-          NcCaptionText(
-            //DB.modules[id]!.name,
-            'Hallo',
-            fontSize: 20,
+          NcSpacing.xs(),
+          Expanded(
+            child: NcCaptionText(
+              //DB.modules[id]!.name,
+              'Hallddddddddddddddddddddddddddddddo',
+              textAlign: TextAlign.center,
+              fontSize: 20,
+            ),
           ),
+          NcSpacing.xs(),
           NcCheckBox(
             interactable: false,
             radius: 6.5,

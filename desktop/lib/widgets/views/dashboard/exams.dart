@@ -3,7 +3,8 @@ import 'package:lb_planner/ui.dart';
 import 'package:lb_planner/data.dart';
 
 class DashboardExamItem extends StatelessWidget {
-  DashboardExamItem({Key? key, required this.id, this.margin = true}) : super(key: key);
+  DashboardExamItem({Key? key, required this.id, this.margin = true})
+      : super(key: key);
 
   final int id;
   final bool margin;
@@ -11,10 +12,10 @@ class DashboardExamItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(left: ncRadius, right: ncRadius),
+      padding: const EdgeInsets.only(left: 10, right: 10),
       margin: EdgeInsets.only(bottom: margin ? NcSpacing.smallSpacing : 0),
       width: 400,
-      height: 50,
+      height: 40,
       decoration: BoxDecoration(
         color: NcThemes.current.secondaryColor,
         borderRadius: BorderRadius.circular(ncRadius),
@@ -23,19 +24,29 @@ class DashboardExamItem extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           NcTag(
-            fontSize: 20,
-            height: 32,
+            fontSize: 18,
+            height: 27,
             text: 'AM',
             //text: DB.courses[DB.modules[id]!.course]!.tag,
             backgroundColor: NcThemes.current.accentColor,
             //width: 40,
           ),
-          NcBodyText(
+          NcSpacing.xs(),
+          Expanded(
+            child: NcCaptionText(
               //DB.modules[id]!.name,
-              'hallo'),
-          NcBodyText(
+              'Mathe',
+              textAlign: TextAlign.center,
+              //overflow: TextOverflow.visible,
+              fontSize: 20,
+            ),
+          ),
+          NcSpacing.xs(),
+          NcCaptionText(
             //DB.modules[id]!.deadline.toString(),
-            '22.8',
+            '28.5',
+            textAlign: TextAlign.right,
+            fontSize: 20,
           ),
         ],
       ),
