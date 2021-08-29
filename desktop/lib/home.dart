@@ -14,7 +14,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  bool showLogin = false;
+  bool showLogin = true;
 
   void handleLogin(Token token) {
     setState(() {

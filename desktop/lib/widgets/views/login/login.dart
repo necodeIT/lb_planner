@@ -57,7 +57,7 @@ class Login extends StatelessWidget {
                 NcMaterialInputField(
                   obscureText: true,
                   onValueChanged: (value) => password = value,
-                  placeholder: 'Passsword',
+                  placeholder: 'Password',
                   prefixIcon: Icon(
                     FontAwesome5Solid.lock,
                     color: NcThemes.current.textColor,
@@ -72,7 +72,10 @@ class Login extends StatelessWidget {
                         (response) {
                           if (response.isError)
                             return ScaffoldMessenger.of(context).showSnackBar(
-                              NcSnackBar.bottomRight(content: NcBodyText(response.errorMessage), prefixIcon: Icon(Icons.error, color: NcThemes.current.lateColor)),
+                              NcSnackBar.bottomRight(
+                                  content: NcBodyText(response.errorMessage),
+                                  prefixIcon: Icon(Icons.error,
+                                      color: NcThemes.current.lateColor)),
                             );
 
                           onLoginSuccess(response.value);
