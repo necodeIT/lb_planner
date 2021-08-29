@@ -8,18 +8,21 @@ class NcTag extends StatelessWidget {
   final double? width;
   final double height;
 
+  static const double padding = 10;
+
   @override
   Widget build(BuildContext context) {
     return Container(
-        // padding: ,
-        width: width,
-        height: height,
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(7), color: backgroundColor),
-        child: Center(
-          child: NcTitleText(
-            text,
-            buttonText: true,
-          ),
-        ));
+      padding: EdgeInsets.only(left: padding, right: padding),
+      width: width,
+      height: height,
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(7), color: backgroundColor),
+      child: Center(
+        child: NcTitleText(
+          text,
+          buttonText: true,
+        ),
+      ),
+    );
   }
 }
