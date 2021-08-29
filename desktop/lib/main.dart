@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:desktop/widgets/dashboard/exams.dart';
+import 'package:desktop/widgets/dashboard/todays_task.dart';
 import 'package:desktop/widgets/sidebar/sidebar.dart';
 import 'package:desktop/widgets/views/login/login.dart';
 import 'package:flutter/material.dart';
@@ -50,6 +52,8 @@ class _AppState extends State<App> {
       //   planner: Container(color: Colors.pink),
       //   settings: Container(color: Colors.black),
       // ),
+      //body: Dashboard_TodaysTasksItem(),
+      //body: Dashboard_ExamItem(),
     );
   }
 }
