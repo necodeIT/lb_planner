@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class NcSpacing extends StatelessWidget {
   NcSpacing.xs({Key? key}) : super(key: key) {
-    spacing = xlSpacing;
+    spacing = xsSpacing;
   }
 
   NcSpacing.small({Key? key}) : super(key: key) {
