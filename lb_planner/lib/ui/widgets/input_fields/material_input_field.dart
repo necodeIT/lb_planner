@@ -18,6 +18,7 @@ class NcMaterialInputField extends StatelessWidget {
       width: width,
       height: height,
       child: TextField(
+        obscureText: obscureText,
         onChanged: onValueChanged,
         style: NcBodyText.baseStyle,
         decoration: InputDecoration(
