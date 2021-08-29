@@ -11,10 +11,12 @@ class NcCheckBox extends StatefulWidget {
     this.iconSize = 35,
     this.height = 40,
     this.width = 40,
+    this.interactable = true,
     this.radius = defaltRadius,
   }) : super(key: key);
 
   final bool value;
+  final bool interactable;
   final double? iconSize;
   final double? height;
   final double? width;
@@ -36,7 +38,9 @@ class _NcCheckBoxState extends State<NcCheckBox> {
     return GestureDetector(
       onTap: () {
         setState(() {
-          current = !current;
+          if (widget.interactable == true) {
+            current = !current;
+          }
         });
       },
       child: Container(
@@ -53,7 +57,11 @@ class _NcCheckBoxState extends State<NcCheckBox> {
                   color: Colors.transparent,
                 ),
           decoration: BoxDecoration(
-            border: current != true ? Border.all(color: NcThemes.current.accentColor, width: NcCheckBox.borderWidth) : Border.all(color: Colors.transparent, width: 0),
+            border: current != true
+                ? Border.all(
+                    color: NcThemes.current.accentColor,
+                    width: NcCheckBox.borderWidth)
+                : Border.all(color: Colors.transparent, width: 0),
             borderRadius: BorderRadius.circular(widget.radius),
             color: current ? NcThemes.current.accentColor : Colors.transparent,
           )),

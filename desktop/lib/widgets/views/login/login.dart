@@ -18,12 +18,14 @@ class Login extends StatelessWidget {
     return Container(
       color: NcThemes.current.primaryColor,
       width: double.infinity,
+      height: double.infinity,
       child: Stack(
         // alignment: Alignment.,
         children: [
           NcVectorImage(
             code: wave,
             aliignment: Alignment.bottomLeft,
+            height: double.infinity,
           ),
           Positioned(
             right: formMargin,

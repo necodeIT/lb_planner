@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lb_planner/ui.dart';
 
-class Dashboard_TodaysTasks extends StatelessWidget {
-  Dashboard_TodaysTasks({
+class Dashboard_TodaysTasksItem extends StatelessWidget {
+  Dashboard_TodaysTasksItem({
     Key? key,
     this.id,
   }) : super(key: key) {}
@@ -13,7 +13,7 @@ class Dashboard_TodaysTasks extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-      width: 200,
+      width: 400,
       height: 50,
       decoration: BoxDecoration(
         color: NcThemes.current.primaryColor,
@@ -25,16 +25,18 @@ class Dashboard_TodaysTasks extends StatelessWidget {
           NcTag(
             text: 'AM',
             backgroundColor: NcThemes.current.accentColor,
-            width: 30,
+            //width: 40,
           ),
           Text(
             'Hallo',
             style: NcBodyText.baseStyle,
           ),
           NcCheckBox(
+            interactable: false,
+            radius: 8,
             onChanged: (_) {},
-            width: 30,
-            height: 30,
+            width: 25,
+            height: 25,
             iconSize: 25,
           )
         ],
