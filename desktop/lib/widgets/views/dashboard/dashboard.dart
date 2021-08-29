@@ -134,9 +134,7 @@ class Dashboard extends StatelessWidget {
                           DashboardExamItem(id: 0),
                           DashboardExamItem(id: 0),
                           DashboardExamItem(id: 0),
-                          DashboardExamItem(
-                            id: 0,
-                          ),
+                          DashboardExamItem(id: 0, margin: false),
                         ],
                       ),
                     ),
