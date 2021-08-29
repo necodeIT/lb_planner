@@ -60,7 +60,11 @@ class Dashboard extends StatelessWidget {
                 NcSpacing.large(),
                 Expanded(
                   child: NcContainer(
-                    body: Expanded(child: NcVectorImage(code: holidaysTBA)),
+                    body: Expanded(
+                        child: NcVectorImage(
+                      code: holidaysTBA,
+                      aliignment: Alignment.bottomCenter,
+                    )),
                     // body: NcCaptionText("Today's Tasks"),
                     label: NcCaptionText(
                       "Holidays (TBA)",
@@ -78,11 +82,7 @@ class Dashboard extends StatelessWidget {
               children: [
                 Expanded(
                   child: NcContainer(
-                    body: Expanded(
-                      child: NcLoadingIndicator(
-                          // height: 100,
-                          ),
-                    ),
+                    body: Expanded(child: Container()),
                     // body: NcCaptionText("Today's Tasks"),
                     label: NcCaptionText(
                       "Status Overview",
@@ -94,7 +94,11 @@ class Dashboard extends StatelessWidget {
                 Expanded(
                   flex: 5,
                   child: NcContainer(
-                    body: Expanded(child: NcVectorImage(code: timetableTBA)),
+                    body: Expanded(
+                        child: NcVectorImage(
+                      code: timetableTBA,
+                      aliignment: Alignment.bottomCenter,
+                    )),
                     // body: NcCaptionText("Today's Tasks"),
                     label: NcCaptionText(
                       "Timelable (TBA)",
@@ -149,7 +153,11 @@ class Dashboard extends StatelessWidget {
                 NcSpacing.large(),
                 Expanded(
                   child: NcContainer(
-                    body: Expanded(child: NcVectorImage(code: lb_plannerTBA)),
+                    body: Expanded(
+                        child: NcVectorImage(
+                      code: lb_plannerTBA,
+                      aliignment: Alignment.bottomCenter,
+                    )),
                     // body: NcCaptionText("Today's Tasks"),
                     label: NcCaptionText(
                       "LB Planner (TBA)",
