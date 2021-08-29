@@ -14,11 +14,13 @@ class NcInputField extends StatelessWidget {
   final double? width;
   final Function(String)? onValueChanged;
 
+  static const double height = 40;
+
   @override
   Widget build(BuildContext context) {
     return Container(
       width: width,
-      height: 40,
+      height: height,
       child: TextField(
         obscureText: obscureText,
         style: NcBodyText.baseStyle,
