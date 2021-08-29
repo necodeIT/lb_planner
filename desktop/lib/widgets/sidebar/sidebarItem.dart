@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:lb_planner/ui.dart';
-import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 class SidebarItem extends StatelessWidget {
   const SidebarItem({Key? key, required this.icon, required this.isSelected, required this.onTap}) : super(key: key);
@@ -10,7 +9,7 @@ class SidebarItem extends StatelessWidget {
   final Function() onTap;
 
   static const double padding = 10;
-  static const double radius = 15;
+  static const double radius = 16;
 
   @override
   Widget build(BuildContext context) {

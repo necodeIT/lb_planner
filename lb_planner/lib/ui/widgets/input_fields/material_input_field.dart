@@ -2,27 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:lb_planner/ui.dart';
 
 class NcMaterialInputField extends StatelessWidget {
-  const NcMaterialInputField({
-    Key? key,
-    this.prefixIcon,
-    this.placeholder,
-    this.width,
-    this.onValueChanged,
-  }) : super(key: key);
+  const NcMaterialInputField({Key? key, this.prefixIcon, this.placeholder, this.width, this.onValueChanged, this.obscureText = false}) : super(key: key);
 
   final Widget? prefixIcon;
   final String? placeholder;
   final double? width;
+  final bool obscureText;
   final Function(String)? onValueChanged;
+
+  static const double height = 40;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: width,
-      height: 40,
-      child: TextFormField(
+      height: height,
+      child: TextField(
+        onChanged: onValueChanged,
         style: NcBodyText.baseStyle,
-        //initialValue: 'Input text',
         decoration: InputDecoration(
             prefixIcon: prefixIcon,
             hintText: placeholder,
@@ -34,8 +31,7 @@ class NcMaterialInputField extends StatelessWidget {
             enabledBorder: UnderlineInputBorder(
               borderSide: BorderSide(color: NcThemes.current.textColor),
             ),
-            focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: NcThemes.current.accentColor))),
+            focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: NcThemes.current.accentColor))),
       ),
     );
   }
