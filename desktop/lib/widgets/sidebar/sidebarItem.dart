@@ -16,7 +16,7 @@ class SidebarItem extends StatelessWidget {
     return GestureDetector(
       onTap: isSelected ? null : onTap,
       child: Container(
-        margin: EdgeInsets.only(top: NcSpacing.spacing),
+        margin: EdgeInsets.only(top: NcSpacing.smallSpacing),
         padding: EdgeInsets.all(padding),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(

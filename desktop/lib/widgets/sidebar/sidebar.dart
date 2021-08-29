@@ -56,7 +56,7 @@ class _SidebarState extends State<Sidebar> {
               Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  NcSpacing.height(),
+                  NcSpacing.small(),
                   NcLogo(
                     height: 45,
                   ),
@@ -82,13 +82,13 @@ class _SidebarState extends State<Sidebar> {
                         }),
                   // for (int i = Sidebar.topEnd; i < widget.views.length - 1; i++) Text(i.toString()),
                   SidebarItem(icon: Sidebar.icons.last, isSelected: false, onTap: widget.onLogout),
-                  NcSpacing.height(),
+                  NcSpacing.small(),
                 ],
               )
             ],
           ),
         ),
-        NcSpacing.width(),
+        NcSpacing.small(),
         Expanded(
           child: Container(
             color: NcThemes.current.secondaryColor,
