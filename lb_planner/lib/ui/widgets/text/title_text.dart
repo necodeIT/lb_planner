@@ -3,12 +3,13 @@ import 'package:lb_planner/ui.dart';
 
 // ignore: camel_case_types
 class NcTitleText extends StatelessWidget {
-  const NcTitleText(this.text, {Key? key, this.fontSize, this.buttonText = false, this.overflow = TextOverflow.ellipsis}) : super(key: key);
+  const NcTitleText(this.text, {Key? key, this.fontSize, this.buttonText = false, this.overflow = TextOverflow.ellipsis, this.textAlign = TextAlign.left}) : super(key: key);
 
   final String text;
   final double? fontSize;
   final bool buttonText;
   final TextOverflow overflow;
+  final TextAlign textAlign;
 
   static TextStyle get baseStyle {
     return TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: NcThemes.current.textColor);
@@ -24,6 +25,7 @@ class NcTitleText extends StatelessWidget {
       text,
       style: style(fontSize: fontSize, buttonText: buttonText),
       overflow: overflow,
+      textAlign: textAlign,
     );
   }
 }

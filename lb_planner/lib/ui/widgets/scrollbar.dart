@@ -8,7 +8,7 @@ class NcScrollbar extends StatefulWidget {
   final bool isAlwaysShown;
 
   static const double scrollbarWidth = 5;
-  static const double padding = 1;
+  static const double padding = 2;
 
   @override
   _NcScrollbarState createState() => _NcScrollbarState();
