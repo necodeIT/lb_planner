@@ -11,15 +11,17 @@ class NcCheckBox extends StatefulWidget {
     this.iconSize = 35,
     this.height = 40,
     this.width = 40,
+    this.radius = defaltRadius,
   }) : super(key: key);
 
   final bool value;
   final double? iconSize;
   final double? height;
   final double? width;
+  final double radius;
   final Function(bool?) onChanged;
 
-  static const double radius = 13.0;
+  static const double defaltRadius = 13.0;
   static const double borderWidth = 3;
 
   @override
@@ -52,7 +54,7 @@ class _NcCheckBoxState extends State<NcCheckBox> {
                 ),
           decoration: BoxDecoration(
             border: current != true ? Border.all(color: NcThemes.current.accentColor, width: NcCheckBox.borderWidth) : Border.all(color: Colors.transparent, width: 0),
-            borderRadius: BorderRadius.circular(NcCheckBox.radius),
+            borderRadius: BorderRadius.circular(widget.radius),
             color: current ? NcThemes.current.accentColor : Colors.transparent,
           )),
     );
