@@ -1,5 +1,8 @@
 import 'package:desktop/widgets/view.dart';
 import 'package:desktop/widgets/views/dashboard/exams.dart';
+import 'package:desktop/widgets/views/dashboard/svg/holidays.dart';
+import 'package:desktop/widgets/views/dashboard/svg/lb_planner.dart';
+import 'package:desktop/widgets/views/dashboard/svg/timetable.dart';
 import 'package:desktop/widgets/views/dashboard/todays_task.dart';
 import 'package:flutter/material.dart';
 import 'package:lb_planner/ui.dart';
@@ -57,11 +60,7 @@ class Dashboard extends StatelessWidget {
                 NcSpacing.large(),
                 Expanded(
                   child: NcContainer(
-                    body: Expanded(
-                      child: NcLoadingIndicator(
-                          // height: 100,
-                          ),
-                    ),
+                    body: Expanded(child: NcVectorImage(code: holidaysTBA)),
                     // body: NcCaptionText("Today's Tasks"),
                     label: NcCaptionText(
                       "Holidays (TBA)",
@@ -95,11 +94,7 @@ class Dashboard extends StatelessWidget {
                 Expanded(
                   flex: 5,
                   child: NcContainer(
-                    body: Expanded(
-                      child: NcLoadingIndicator(
-                          // height: 100,
-                          ),
-                    ),
+                    body: Expanded(child: NcVectorImage(code: timetableTBA)),
                     // body: NcCaptionText("Today's Tasks"),
                     label: NcCaptionText(
                       "Timelable (TBA)",
@@ -154,11 +149,7 @@ class Dashboard extends StatelessWidget {
                 NcSpacing.large(),
                 Expanded(
                   child: NcContainer(
-                    body: Expanded(
-                      child: NcLoadingIndicator(
-                          // height: 100,
-                          ),
-                    ),
+                    body: Expanded(child: NcVectorImage(code: lb_plannerTBA)),
                     // body: NcCaptionText("Today's Tasks"),
                     label: NcCaptionText(
                       "LB Planner (TBA)",
