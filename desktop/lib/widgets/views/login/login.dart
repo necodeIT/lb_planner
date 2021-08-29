@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:lb_planner/ui.dart';
+import 'package:lb_planner/data.dart';
+import 'package:lb_planner/api.dart';
 import 'svg/wave.dart';
 
 // ignore: must_be_immutable
 class Login extends StatelessWidget {
-  Login({Key? key}) : super(key: key);
+  Login({Key? key, required this.onLoginSuccess}) : super(key: key);
 
   String username = "";
   String password = "";
 
   static const double formMargin = 60;
-  static const double formWidth = 350;
+  static const double widthFactor = 0.25;
+  static const double logoFactor = 0.1;
+
+  final Function(Token) onLoginSuccess;
 
   @override
   Widget build(BuildContext context) {
@@ -29,17 +34,18 @@ class Login extends StatelessWidget {
           ),
           Positioned(
             right: formMargin,
-            width: formWidth,
+            width: MediaQuery.of(context).size.width * widthFactor,
             height: MediaQuery.of(context).size.height,
             child: Column(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 NcLogo(
-                  width: 100,
+                  width: MediaQuery.of(context).size.width * logoFactor,
                 ),
                 NcSpacing.large(),
                 NcMaterialInputField(
+                  autoFocus: true,
                   onValueChanged: (value) => username = value,
                   placeholder: 'Username',
                   prefixIcon: Icon(
@@ -60,7 +66,19 @@ class Login extends StatelessWidget {
                 NcSpacing.large(),
                 NcButton(
                   text: "LOGIN",
-                  onTap: () {},
+                  onTap: () {
+                    MoodleAPI.login(username, password)
+                      ..then(
+                        (response) {
+                          if (response.isError)
+                            return ScaffoldMessenger.of(context).showSnackBar(
+                              NcSnackBar.bottomRight(content: NcBodyText(response.errorMessage), prefixIcon: Icon(Icons.error, color: NcThemes.current.lateColor)),
+                            );
+
+                          onLoginSuccess(response.value);
+                        },
+                      );
+                  },
                 )
               ],
             ),

@@ -92,7 +92,7 @@ class _SidebarState extends State<Sidebar> {
         Expanded(
           child: Container(
             color: NcThemes.current.secondaryColor,
-            // child: widget.views[current],
+            child: widget.views[current],
           ),
         ),
       ],
