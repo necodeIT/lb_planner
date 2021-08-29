@@ -13,17 +13,16 @@ class Login extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: NcThemes.current.primaryColor,
-      padding: EdgeInsets.zero,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      width: double.infinity,
+      child: Stack(
+        // alignment: Alignment.,
         children: [
           NcVectorImage(
             code: wave,
             aliignment: Alignment.bottomLeft,
           ),
-          Container(
-            margin: EdgeInsets.only(right: 50),
-            alignment: Alignment.center,
+          Positioned(
+            right: 60,
             width: 350,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -39,6 +38,7 @@ class Login extends StatelessWidget {
                     color: NcThemes.current.textColor,
                   ),
                 ),
+                NcSpacing.all(),
                 NcMaterialInputField(
                   onValueChanged: (value) => password = value,
                   placeholder: 'Passsword',
@@ -47,6 +47,7 @@ class Login extends StatelessWidget {
                     color: NcThemes.current.textColor,
                   ),
                 ),
+                NcSpacing.all(),
                 NcButton(
                   text: "Login",
                   onTap: () {},
