@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:lb_planner/ui.dart';
+import 'package:lb_planner/data.dart';
 
-class Dashboard_ExamItem extends StatelessWidget {
-  Dashboard_ExamItem({
+class DashboardExamItem extends StatelessWidget {
+  DashboardExamItem({
     Key? key,
-    this.id,
+    required this.id,
   }) : super(key: key) {}
 
-  final int? id;
+  final int id;
 
   @override
   Widget build(BuildContext context) {
@@ -23,17 +24,19 @@ class Dashboard_ExamItem extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           NcTag(
+            fontSize: 20,
+            height: 32,
             text: 'AM',
+            //text: DB.courses[DB.modules[id]!.course]!.tag,
             backgroundColor: NcThemes.current.accentColor,
             //width: 40,
           ),
-          Text(
-            'Hallo',
-            style: NcBodyText.baseStyle,
-          ),
-          Text(
+          NcBodyText(
+              //DB.modules[id]!.name,
+              'hallo'),
+          NcBodyText(
+            //DB.modules[id]!.deadline.toString(),
             '22.8',
-            style: NcBodyText.baseStyle,
           ),
         ],
       ),

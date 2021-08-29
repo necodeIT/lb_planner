@@ -7,12 +7,14 @@ class NcTag extends StatelessWidget {
       required this.text,
       required this.backgroundColor,
       this.width,
-      this.height = 25})
+      this.height = 25,
+      this.fontSize})
       : super(key: key);
   final Color backgroundColor;
   final String text;
   final double? width;
   final double height;
+  final double? fontSize;
 
   static const double padding = 5;
 
@@ -28,6 +30,7 @@ class NcTag extends StatelessWidget {
         child: NcTitleText(
           text,
           buttonText: true,
+          fontSize: fontSize,
         ),
       ),
     );

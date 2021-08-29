@@ -1,13 +1,16 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:lb_planner/ui.dart';
+import 'package:lb_planner/data.dart';
 
-class Dashboard_TodaysTasksItem extends StatelessWidget {
-  Dashboard_TodaysTasksItem({
+class DashboardTodaysTasksItem extends StatelessWidget {
+  DashboardTodaysTasksItem({
     Key? key,
-    this.id,
+    required this.id,
   }) : super(key: key) {}
 
-  final int? id;
+  final int id;
 
   @override
   Widget build(BuildContext context) {
@@ -23,13 +26,16 @@ class Dashboard_TodaysTasksItem extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           NcTag(
+            fontSize: 20,
+            height: 32,
             text: 'AM',
+            //text: DB.courses[DB.modules[id]!.course]!.tag,
             backgroundColor: NcThemes.current.accentColor,
             //width: 40,
           ),
-          Text(
+          NcBodyText(
+            //DB.modules[id]!.name,
             'Hallo',
-            style: NcBodyText.baseStyle,
           ),
           NcCheckBox(
             interactable: false,
