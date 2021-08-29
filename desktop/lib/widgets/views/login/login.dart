@@ -38,6 +38,7 @@ class Login extends StatelessWidget {
                 NcLogo(
                   width: 100,
                 ),
+                NcSpacing.large(),
                 NcMaterialInputField(
                   onValueChanged: (value) => username = value,
                   placeholder: 'Username',
@@ -46,8 +47,9 @@ class Login extends StatelessWidget {
                     color: NcThemes.current.textColor,
                   ),
                 ),
-                NcSpacing.all(),
+                NcSpacing.medium(),
                 NcMaterialInputField(
+                  obscureText: true,
                   onValueChanged: (value) => password = value,
                   placeholder: 'Passsword',
                   prefixIcon: Icon(
@@ -55,9 +57,9 @@ class Login extends StatelessWidget {
                     color: NcThemes.current.textColor,
                   ),
                 ),
-                NcSpacing.all(),
+                NcSpacing.large(),
                 NcButton(
-                  text: "Login",
+                  text: "LOGIN",
                   onTap: () {},
                 )
               ],
