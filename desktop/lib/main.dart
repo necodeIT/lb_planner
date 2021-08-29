@@ -7,7 +7,8 @@ import 'package:window_size/window_size.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  NcThemes.current = NcThemes.all[User.current.settings.theme] ?? NcThemes.dark;
+  //NcThemes.current = NcThemes.all[User.current.settings.theme] ?? NcThemes.dark;
+  NcThemes.current = NcThemes.dark;
   if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
     setWindowMinSize(const Size(950, 550));
     setWindowMaxSize(Size.infinite);

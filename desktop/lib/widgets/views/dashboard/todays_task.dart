@@ -19,7 +19,7 @@ class DashboardTodaysTasksItem extends StatelessWidget {
       padding: EdgeInsets.only(left: 10, right: 10),
       margin: EdgeInsets.only(bottom: NcSpacing.smallSpacing),
       width: 400,
-      height: 50,
+      height: 40,
       decoration: BoxDecoration(
         color: NcThemes.current.secondaryColor,
         borderRadius: BorderRadius.circular(ncRadius),
@@ -28,24 +28,25 @@ class DashboardTodaysTasksItem extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           NcTag(
-            fontSize: 20,
-            height: 32,
+            fontSize: 18,
+            height: 27,
             text: 'AM',
             //text: DB.courses[DB.modules[id]!.course]!.tag,
             backgroundColor: NcThemes.current.accentColor,
             //width: 40,
           ),
-          NcBodyText(
+          NcCaptionText(
             //DB.modules[id]!.name,
             'Hallo',
+            fontSize: 20,
           ),
           NcCheckBox(
             interactable: false,
-            radius: 8,
+            radius: 6.5,
             onChanged: (_) {},
-            width: 25,
-            height: 25,
-            iconSize: 25,
+            width: 20,
+            height: 20,
+            iconSize: 18,
           ),
         ],
       ),
