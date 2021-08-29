@@ -26,6 +26,7 @@ class NcInputField extends StatelessWidget {
         style: NcBodyText.baseStyle,
         onChanged: onValueChanged,
         keyboardType: TextInputType.text,
+        cursorColor: NcThemes.current.accentColor,
         decoration: InputDecoration(
           suffixIcon: suffixIcon,
           contentPadding: EdgeInsets.only(top: 10, left: 20),

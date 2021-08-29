@@ -23,6 +23,7 @@ class NcMaterialInputField extends StatelessWidget {
         obscureText: obscureText,
         onChanged: onValueChanged,
         style: NcBodyText.baseStyle,
+        cursorColor: NcThemes.current.accentColor,
         decoration: InputDecoration(
             prefixIcon: prefixIcon,
             hintText: placeholder,
