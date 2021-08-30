@@ -3,9 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:lb_planner/ui.dart';
 
+// ignore: must_be_immutable
 class AdminLogin extends StatelessWidget {
-  AdminLogin({ Key? key }) : super(key: key);
-  String password="";
+  AdminLogin({Key? key}) : super(key: key);
+
+  String password = "";
+
   @override
   Widget build(BuildContext context) {
     return View(
@@ -19,7 +22,10 @@ class AdminLogin extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(FontAwesome5Solid.fingerprint, size: 60,),
+                    Icon(
+                      FontAwesome5Solid.fingerprint,
+                      size: 60,
+                    ),
                     NcSpacing.xl(),
                     NcMaterialInputField(
                       obscureText: true,
@@ -30,13 +36,13 @@ class AdminLogin extends StatelessWidget {
                         color: NcThemes.current.textColor,
                         size: 20,
                       ),
+                    ),
+                    NcSpacing.medium(),
+                    NcButton(text: "Login", onTap: () {})
+                  ],
                 ),
-                  NcSpacing.medium(),
-                  NcButton(text: "Login", onTap: () {})
-                ],
               ),
-            ) 
-          )
+            ),
           )
         ],
       ),
