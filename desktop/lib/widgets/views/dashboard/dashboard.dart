@@ -98,7 +98,7 @@ class Dashboard extends StatelessWidget {
                     )),
                     // body: NcCaptionText("Today's Tasks"),
                     label: NcCaptionText(
-                      "Timelable (TBA)",
+                      "Timetable (TBA)",
                       fontSize: titleSize,
                     ),
                   ),
