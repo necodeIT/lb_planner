@@ -19,8 +19,7 @@ class UserProfile extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             NcCaptionText(
-              'tbeck',
-              //User.current.name,
+              User.current.name,
               fontSize: 22,
             ),
             Text(

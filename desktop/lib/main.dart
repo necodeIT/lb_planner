@@ -17,8 +17,7 @@ void main() {
   runApp(app);
 }
 
-final app = MaterialApp(
-    home: App(), title: "LB Planner", scrollBehavior: NcScrollBehavior());
+final app = MaterialApp(home: App(), title: "LB Planner", scrollBehavior: NcScrollBehavior());
 
 class App extends StatefulWidget {
   App({Key? key}) : super(key: key);
@@ -42,10 +41,10 @@ class _AppState extends State<App> {
     NcThemes.onCurrentThemeChange = () => setState(() => {});
     return Scaffold(
       backgroundColor: NcThemes.current.secondaryColor,
-      //body: Home(),
+      body: Home(),
       //body: Dashboard_TodaysTasksItem(),
       //body: Dashboard_ExamItem(),
-      body: CourseOverviewItem(id: 1),
+      // body: CourseOverviewItem(id: 1),
     );
   }
 }
