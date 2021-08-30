@@ -1,3 +1,4 @@
+import 'package:desktop/widgets/views/Admin/admin_login.dart';
 import 'package:desktop/widgets/views/dashboard/dashboard.dart';
 import 'package:desktop/widgets/views/login/login.dart';
 import 'package:flutter/material.dart';
@@ -28,13 +29,7 @@ class _HomeState extends State<Home> {
         ? Login(onLoginSuccess: (token) => handleLogin(token))
         : Sidebar(
             dashboard: Dashboard(),
-            admin: View(
-              content: Container(color: Colors.green),
-              title: "Admin",
-              onNavigateBack: () {
-                print("dasdasdad");
-              },
-            ),
+            admin: AdminLogin(),
             calendar: Container(color: Colors.red),
             coursesOverwiev: Container(color: Colors.yellow),
             onLogout: () {},
