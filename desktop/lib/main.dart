@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:desktop/home.dart';
+import 'package:desktop/widgets/views/courses_overview/module.dart';
 import 'package:flutter/material.dart';
 import 'package:lb_planner/data.dart';
 import 'package:lb_planner/ui.dart';
@@ -41,9 +42,10 @@ class _AppState extends State<App> {
     NcThemes.onCurrentThemeChange = () => setState(() => {});
     return Scaffold(
       backgroundColor: NcThemes.current.secondaryColor,
-      body: Home(),
+      //body: Home(),
       //body: Dashboard_TodaysTasksItem(),
       //body: Dashboard_ExamItem(),
+      body: CourseOverviewItem(id: 1),
     );
   }
 }
