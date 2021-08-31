@@ -37,7 +37,7 @@ class App extends StatefulWidget {
 class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
-    NcThemes.onCurrentThemeChange = () => setState(() => {});
+    NcThemes.onCurrentThemeChange = () => setState(() => User.current.settings.theme = NcThemes.current.name);
     return Scaffold(
       backgroundColor: NcThemes.current.secondaryColor,
       body: Home(),

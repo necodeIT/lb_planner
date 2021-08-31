@@ -1,4 +1,5 @@
 import 'package:desktop/widgets/views/dashboard/dashboard.dart';
+import 'package:desktop/widgets/views/settings/course_selection_item.dart';
 import 'package:desktop/widgets/views/settings/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:lb_planner/ui.dart';
@@ -56,7 +57,28 @@ class SettingView extends StatelessWidget {
                       "Courses",
                       fontSize: Dashboard.titleSize,
                     ),
-                    body: NcLoadingIndicator(),
+                    body: ListView(
+                      children: [
+                        NcInputField(
+                          placeholder: "Search",
+                          prefixIcon: Icon(
+                            Icons.search,
+                            color: NcThemes.current.textColor,
+                          ),
+                        ),
+                        NcSpacing.small(),
+                        CourseSelectionItem(id: 0),
+                        CourseSelectionItem(id: 0),
+                        CourseSelectionItem(id: 0),
+                        CourseSelectionItem(id: 0),
+                        CourseSelectionItem(id: 0),
+                        CourseSelectionItem(id: 0),
+                        CourseSelectionItem(id: 0),
+                        CourseSelectionItem(id: 0),
+                        CourseSelectionItem(id: 0),
+                        CourseSelectionItem(id: 0),
+                      ],
+                    ),
                   ),
                 )
               ],

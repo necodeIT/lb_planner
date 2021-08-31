@@ -3,21 +3,19 @@ import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:lb_planner/ui.dart';
 
 class CourseSelectionItem extends StatelessWidget {
-  CourseSelectionItem({
-    Key? key,
-    required this.id,
-  }) : super(key: key);
+  CourseSelectionItem({Key? key, required this.id, this.margin = true}) : super(key: key);
 
   final int id;
+  final bool margin;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-      width: 300,
-      height: 50,
+      margin: const EdgeInsets.only(bottom: 10.0),
+      height: 40,
       decoration: BoxDecoration(
-        color: NcThemes.current.primaryColor,
+        color: NcThemes.current.secondaryColor,
         borderRadius: BorderRadius.circular(10),
       ),
       child: Container(
@@ -50,10 +48,22 @@ class CourseSelectionItem extends StatelessWidget {
               'Hallo',
             ),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                showDialog(
+                  context: context,
+                  builder: (context) => NcDialog.ok(
+                    title: "Course Settings",
+                    body: NcLoadingIndicator(),
+                    onConfirm: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                );
+              },
               child: Icon(
                 FontAwesome5Solid.ellipsis_h,
                 color: NcThemes.current.buttonTextColor,
+                size: 17,
               ),
             )
           ],

@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:lb_planner/ui.dart';
 
-class NcConfirmDialog extends StatelessWidget {
-  NcConfirmDialog(
-      {Key? key, this.title = "", required this.body, this.confirmText = "Confirm", this.cancelText = "Cancel", required this.onConfirm, required this.onCancel, this.width = defaultWidth, this.label, this.buttonWidth = defaultButtonWidth})
+class NcDialog extends StatelessWidget {
+  NcDialog({Key? key, this.title = "", required this.body, this.confirmText = "Confirm", this.cancelText = "Cancel", required this.onConfirm, required this.onCancel, this.width = defaultWidth, this.label, this.buttonWidth = defaultButtonWidth})
       : super(key: key) {
     confirmOnly = false;
   }
-  NcConfirmDialog.ok({Key? key, required this.title, required this.body, required this.onConfirm, this.confirmText = "OK", this.width = defaultWidth, this.label, this.buttonWidth = defaultButtonWidth}) : super(key: key) {
+  NcDialog.ok({Key? key, required this.title, required this.body, required this.onConfirm, this.confirmText = "OK", this.width = defaultWidth, this.label, this.buttonWidth = defaultButtonWidth}) : super(key: key) {
     confirmOnly = true;
   }
 

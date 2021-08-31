@@ -7,7 +7,7 @@ export 'dropdown.dart';
 export 'input_fields/input_fields.dart';
 export 'scrollbar.dart';
 export 'logo.dart';
-export 'confirmDialog.dart';
+export 'dialog.dart';
 export 'loading_indicator.dart';
 export 'spacing.dart';
 export 'vector_image.dart';
