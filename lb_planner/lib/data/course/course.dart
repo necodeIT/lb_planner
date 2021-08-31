@@ -18,7 +18,7 @@ class Course {
   late final String tag;
   late final List<CourseTags> tags;
 
-  CourseStats stats() {
+  StatusProfile stats() {
     int done = 0;
     int late = 0;
     int pending = 0;
@@ -41,7 +41,7 @@ class Course {
       }
     });
 
-    return CourseStats(done: done, late: late, uploaded: uploaded, pending: pending);
+    return StatusProfile(done: done, late: late, uploaded: uploaded, pending: pending);
   }
 
   double averageGrade() {
