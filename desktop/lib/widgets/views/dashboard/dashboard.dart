@@ -6,6 +6,7 @@ import 'package:desktop/widgets/views/dashboard/svg/lb_planner.dart';
 import 'package:desktop/widgets/views/dashboard/svg/timetable.dart';
 import 'package:desktop/widgets/views/dashboard/todays_task.dart';
 import 'package:flutter/material.dart';
+import 'package:lb_planner/data.dart';
 import 'package:lb_planner/ui.dart';
 
 class Dashboard extends StatelessWidget {
@@ -15,6 +16,9 @@ class Dashboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // StatusProfile stats = User.current.plan.stats();
+    StatusProfile stats = StatusProfile(done: 10, late: 5, uploaded: 20, pending: 15);
+
     return View(
       title: "Dashboard",
       content: Row(
@@ -75,10 +79,41 @@ class Dashboard extends StatelessWidget {
               children: [
                 Expanded(
                   child: NcContainer(
-                    body: StatusOverview(),
+                    body: StatusOverview(stats: stats),
                     label: NcCaptionText(
                       "Status Overview",
                       fontSize: titleSize,
+                    ),
+                    trailingIcon: Row(
+                      children: [
+                        NcTag(
+                          text: stats.done.toString(),
+                          backgroundColor: NcThemes.current.doneColor,
+                          height: 30,
+                          width: 30,
+                        ),
+                        NcSpacing.small(),
+                        NcTag(
+                          text: stats.uploaded.toString(),
+                          backgroundColor: NcThemes.current.uploadedColor,
+                          height: 30,
+                          width: 30,
+                        ),
+                        NcSpacing.small(),
+                        NcTag(
+                          text: stats.late.toString(),
+                          backgroundColor: NcThemes.current.lateColor,
+                          height: 30,
+                          width: 30,
+                        ),
+                        NcSpacing.small(),
+                        NcTag(
+                          text: stats.pending.toString(),
+                          backgroundColor: NcThemes.current.pendingColor,
+                          height: 30,
+                          width: 30,
+                        ),
+                      ],
                     ),
                   ),
                 ),

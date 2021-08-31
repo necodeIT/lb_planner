@@ -5,15 +5,16 @@ import 'package:lb_planner/data/enums/enums.dart';
 import 'package:lb_planner/ui.dart';
 
 class StatusOverview extends StatelessWidget {
-  const StatusOverview({Key? key}) : super(key: key);
+  const StatusOverview({Key? key, required this.stats}) : super(key: key);
+
+  final StatusProfile stats;
+
+  static const double maxHeight = 20;
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, size) {
-        // StatusProfile stats = User.current.plan.stats();
-        StatusProfile stats = StatusProfile(done: 10, late: 5, uploaded: 20, pending: 15);
-
         bool done;
         bool uploaded;
         bool late;
@@ -39,18 +40,13 @@ class StatusOverview extends StatelessWidget {
 
         return Row(
           children: [
-            if (done)
-              StatusOverviewBar(
-                status: ModuleStatus.Done,
-                width: doneWidth,
-                height: size.maxHeight,
-              ),
+            if (done) StatusOverviewBar(status: ModuleStatus.Done, width: doneWidth, height: maxHeight),
             if (done) NcSpacing.medium(),
-            if (uploaded) StatusOverviewBar(status: ModuleStatus.Uploaded, width: uploadedWidth, height: size.maxHeight),
+            if (uploaded) StatusOverviewBar(status: ModuleStatus.Uploaded, width: uploadedWidth, height: maxHeight),
             if (uploaded) NcSpacing.medium(),
-            if (late) StatusOverviewBar(status: ModuleStatus.Late, width: lateWidth, height: size.maxHeight),
+            if (late) StatusOverviewBar(status: ModuleStatus.Late, width: lateWidth, height: maxHeight),
             if (late) NcSpacing.medium(),
-            if (pending) StatusOverviewBar(status: ModuleStatus.Pending, width: pendingWidth, height: size.maxHeight),
+            if (pending) StatusOverviewBar(status: ModuleStatus.Pending, width: pendingWidth, height: maxHeight),
           ],
         );
       },
