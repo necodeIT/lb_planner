@@ -70,7 +70,9 @@ class Dashboard extends StatelessWidget {
                 NcSpacing.large(),
                 Expanded(
                   child: NcContainer(
-                    body: NcCommingSoon(),
+                    body: NcCommingSoon(
+                      type: CommingSoonSvg.Three,
+                    ),
                     label: NcCaptionText(
                       "Holidays (TBA)",
                       fontSize: titleSize,
@@ -187,7 +189,7 @@ class Dashboard extends StatelessWidget {
                 NcSpacing.large(),
                 Expanded(
                   child: NcContainer(
-                    body: NcCommingSoon(),
+                    body: NcCommingSoon(type: CommingSoonSvg.Two),
                     label: NcCaptionText(
                       "LB Planner (TBA)",
                       fontSize: titleSize,

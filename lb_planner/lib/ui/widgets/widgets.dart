@@ -17,3 +17,4 @@ export 'comming_soon/comming_soon.dart';
 export 'normal_fucking_gridview.dart';
 export 'user_profile.dart';
 export 'view.dart';
+export 'comming_soon/svg/types.dart';

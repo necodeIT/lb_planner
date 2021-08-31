@@ -1,8 +1,11 @@
+import 'package:desktop/version.dart';
 import 'package:desktop/widgets/views/dashboard/dashboard.dart';
 import 'package:desktop/widgets/views/settings/course_selection_item.dart';
 import 'package:desktop/widgets/views/settings/feedback.dart';
+import 'package:desktop/widgets/views/settings/general.dart';
 import 'package:desktop/widgets/views/settings/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:lb_planner/ui.dart';
 
 class SettingView extends StatelessWidget {
@@ -27,7 +30,41 @@ class SettingView extends StatelessWidget {
                             "General",
                             fontSize: Dashboard.titleSize,
                           ),
-                          body: NcLoadingIndicator(),
+                          body: ListView(
+                            children: [
+                              SettingsGeneralItem(
+                                text: version,
+                                icon: Icons.update,
+                                onTap: () {
+                                  // TODO: Check for updates
+                                },
+                              ),
+                              NcSpacing.small(),
+                              SettingsGeneralItem(
+                                text: "Clear Cache",
+                                icon: Icons.arrow_forward_ios,
+                                onTap: () {
+                                  // TODO: clear cache
+                                },
+                              ),
+                              NcSpacing.small(),
+                              SettingsGeneralItem(
+                                text: "Delete Profile",
+                                icon: Feather.trash_2,
+                                onTap: () {
+                                  // TODO: Check for updates
+                                },
+                              ),
+                              NcSpacing.small(),
+                              SettingsGeneralItem(
+                                text: "Credits",
+                                icon: Icons.info_outline,
+                                onTap: () {
+                                  // TODO: Check for updates
+                                },
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                       NcSpacing.large(),

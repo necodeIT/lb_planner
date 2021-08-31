@@ -46,6 +46,7 @@ class CourseSelectionItem extends StatelessWidget {
             NcBodyText(
               //TODO:DB.modules[id]!.name,
               'Hallo',
+              fontSize: 20,
             ),
             GestureDetector(
               onTap: () {

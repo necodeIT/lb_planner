@@ -4,16 +4,9 @@ import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:lb_planner/data.dart';
 import 'package:lb_planner/ui.dart';
 
-class SettingsFeedback extends StatefulWidget {
-  SettingsFeedback({Key? key}) : super(key: key);
+class SettingsFeedback extends StatelessWidget {
+  const SettingsFeedback({Key? key}) : super(key: key);
 
-  // static get List<String> types => ;
-
-  @override
-  _SettingsFeedbackState createState() => _SettingsFeedbackState();
-}
-
-class _SettingsFeedbackState extends State<SettingsFeedback> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -22,7 +15,7 @@ class _SettingsFeedbackState extends State<SettingsFeedback> {
           alignment: Alignment.centerLeft,
           child: NcDropdown(
             fontSize: 20,
-            value: 0,
+            value: FeedbackType.values.length - 1,
             items: EnumToString.toList(FeedbackType.values),
           ),
         ),
