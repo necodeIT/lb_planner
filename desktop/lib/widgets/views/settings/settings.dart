@@ -1,8 +1,7 @@
 import 'package:desktop/widgets/views/dashboard/dashboard.dart';
+import 'package:desktop/widgets/views/settings/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:lb_planner/ui.dart';
-
-import '../../view.dart';
 
 class SettingView extends StatelessWidget {
   const SettingView({Key? key}) : super(key: key);
@@ -14,32 +13,61 @@ class SettingView extends StatelessWidget {
       content: Row(
         children: [
           Expanded(
-            flex: 3,
+            flex: 2,
             child: Column(
               children: [
-                Row(
-                  children: [
-                    NcContainer(
-                      label: NcTitleText(
-                        "General",
-                        fontSize: Dashboard.titleSize,
+                Expanded(
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: NcContainer(
+                          label: NcCaptionText(
+                            "General",
+                            fontSize: Dashboard.titleSize,
+                          ),
+                          body: NcLoadingIndicator(),
+                        ),
                       ),
-                      body: Column(),
-                    ),
-                  ],
+                      NcSpacing.large(),
+                      Expanded(
+                        child: NcContainer(
+                          label: NcCaptionText(
+                            "Themes",
+                            fontSize: Dashboard.titleSize,
+                          ),
+                          body: NcGridView(
+                            spacing: NcSpacing.xlSpacing,
+                            children: [
+                              for (var theme in NcThemes.all.keys) ThemeItem(theme: theme),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 NcSpacing.large(),
-                NcContainer(
-                  label: NcInputField(
-                    placeholder: "Search",
-                    prefixIcon: Icon(
-                      Icons.search,
-                      color: NcThemes.current.textColor,
+                Expanded(
+                  flex: 2,
+                  child: NcContainer(
+                    label: NcCaptionText(
+                      "Courses",
+                      fontSize: Dashboard.titleSize,
                     ),
+                    body: NcLoadingIndicator(),
                   ),
-                  body: Container(),
                 )
               ],
+            ),
+          ),
+          NcSpacing.large(),
+          Expanded(
+            child: NcContainer(
+              label: NcCaptionText(
+                "Feedback",
+                fontSize: Dashboard.titleSize,
+              ),
+              body: NcLoadingIndicator(),
             ),
           ),
         ],

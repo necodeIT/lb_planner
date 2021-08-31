@@ -1,4 +1,3 @@
-import 'package:desktop/widgets/view.dart';
 import 'package:desktop/widgets/views/dashboard/exams.dart';
 import 'package:desktop/widgets/views/dashboard/status_overview/status_overview.dart';
 import 'package:desktop/widgets/views/dashboard/svg/yay.dart';
