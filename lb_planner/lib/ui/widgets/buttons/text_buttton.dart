@@ -25,9 +25,13 @@ class NcTextButton extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             leadingIcon ?? Container(),
-            NcSpacing.medium(),
-            NcCaptionText(text, fontSize: fontSize),
-            NcSpacing.medium(),
+            NcSpacing.small(),
+            NcCaptionText(
+              text,
+              fontSize: fontSize,
+              textAlign: TextAlign.center,
+            ),
+            NcSpacing.small(),
             trailingIcon ?? Container(),
           ],
         ),

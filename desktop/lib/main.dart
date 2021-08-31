@@ -5,6 +5,8 @@ import 'package:lb_planner/data.dart';
 import 'package:lb_planner/ui.dart';
 import 'package:window_size/window_size.dart';
 
+import 'widgets/views/courses_overview/course_overview_item.dart';
+
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   NcThemes.current = NcThemes.all[User.current.settings.theme] ?? NcThemes.dark;
@@ -40,10 +42,10 @@ class _AppState extends State<App> {
     NcThemes.onCurrentThemeChange = () => setState(() => {});
     return Scaffold(
       backgroundColor: NcThemes.current.secondaryColor,
-      body: Home(),
+      // body: Home(),
       //body: Dashboard_TodaysTasksItem(),
       //body: Dashboard_ExamItem(),
-      // body: CourseOverviewItem(id: 1),
+      body: CourseOverviewItem(id: 1),
     );
   }
 }
