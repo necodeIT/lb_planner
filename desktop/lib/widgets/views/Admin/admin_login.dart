@@ -25,6 +25,7 @@ class AdminLogin extends StatelessWidget {
                     Icon(
                       FontAwesome5Solid.fingerprint,
                       size: 60,
+                      color: NcThemes.current.textColor,
                     ),
                     NcSpacing.xl(),
                     NcMaterialInputField(
@@ -38,7 +39,7 @@ class AdminLogin extends StatelessWidget {
                       ),
                     ),
                     NcSpacing.medium(),
-                    NcButton(text: "Login", onTap: () {})
+                    NcButton(text: "LOGIN", onTap: () {})
                   ],
                 ),
               ),
