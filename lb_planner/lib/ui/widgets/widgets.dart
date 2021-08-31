@@ -13,3 +13,4 @@ export 'spacing.dart';
 export 'vector_image.dart';
 export 'snackbar.dart';
 export 'scroll_behavior.dart';
+export 'comming_soon/comming_soon.dart';

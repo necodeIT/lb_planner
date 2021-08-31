@@ -1,9 +1,7 @@
 import 'package:desktop/widgets/view.dart';
 import 'package:desktop/widgets/views/dashboard/exams.dart';
 import 'package:desktop/widgets/views/dashboard/status_overview/status_overview.dart';
-import 'package:desktop/widgets/views/dashboard/svg/holidays.dart';
-import 'package:desktop/widgets/views/dashboard/svg/lb_planner.dart';
-import 'package:desktop/widgets/views/dashboard/svg/timetable.dart';
+import 'package:desktop/widgets/views/dashboard/svg/yay.dart';
 import 'package:desktop/widgets/views/dashboard/todays_task.dart';
 import 'package:flutter/material.dart';
 import 'package:lb_planner/data.dart';
@@ -16,8 +14,10 @@ class Dashboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: StatusProfile stats = User.current.plan.stats();
-    StatusProfile stats = StatusProfile(done: 10, late: 5, uploaded: 20, pending: 15);
+    // TODO: StatusProfile stats = User.current.plan.getStats();
+    var stats = StatusProfile(done: 10, late: 5, uploaded: 20, pending: 15);
+    List<int> exams = User.current.getUpcommingExams();
+    var now = DateTime.now();
 
     return View(
       title: "Dashboard",
@@ -28,28 +28,40 @@ class Dashboard extends StatelessWidget {
               children: [
                 Expanded(
                   child: NcContainer(
-                    body: ListView(
-                      // behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
-                      children: [
-                        DashboardTodaysTasksItem(id: 0),
-                        DashboardTodaysTasksItem(id: 0),
-                        DashboardTodaysTasksItem(id: 0),
-                        DashboardTodaysTasksItem(id: 0),
-                        DashboardTodaysTasksItem(id: 0),
-                        DashboardTodaysTasksItem(id: 0),
-                        DashboardTodaysTasksItem(id: 0),
-                        DashboardTodaysTasksItem(id: 0),
-                        DashboardTodaysTasksItem(id: 0),
-                        DashboardTodaysTasksItem(id: 0),
-                        DashboardTodaysTasksItem(id: 0),
-                        DashboardTodaysTasksItem(id: 0),
-                        DashboardTodaysTasksItem(id: 0),
-                        DashboardTodaysTasksItem(id: 0),
-                        DashboardTodaysTasksItem(id: 0),
-                        DashboardTodaysTasksItem(id: 0),
-                        DashboardTodaysTasksItem(id: 0, margin: false),
-                      ],
-                    ),
+                    body: User.current.plan.moduleDates.keys.isNotEmpty
+                        ? ListView(
+                            // behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
+                            children: [
+                              for (int id in User.current.plan.moduleDates.keys)
+                                if (User.current.plan.moduleDates[id]!.year == now.year && User.current.plan.moduleDates[id]!.month == now.month && User.current.plan.moduleDates[id]!.day == now.day)
+                                  DashboardTodaysTasksItem(id: id, margin: id != User.current.plan.moduleDates.keys.last)
+
+                              // DashboardTodaysTasksItem(id: 0),
+                              // DashboardTodaysTasksItem(id: 0),
+                              // DashboardTodaysTasksItem(id: 0),
+                              // DashboardTodaysTasksItem(id: 0),
+                              // DashboardTodaysTasksItem(id: 0),
+                              // DashboardTodaysTasksItem(id: 0),
+                              // DashboardTodaysTasksItem(id: 0),
+                              // DashboardTodaysTasksItem(id: 0),
+                              // DashboardTodaysTasksItem(id: 0),
+                              // DashboardTodaysTasksItem(id: 0),
+                              // DashboardTodaysTasksItem(id: 0),
+                              // DashboardTodaysTasksItem(id: 0),
+                              // DashboardTodaysTasksItem(id: 0),
+                              // DashboardTodaysTasksItem(id: 0),
+                              // DashboardTodaysTasksItem(id: 0),
+                              // DashboardTodaysTasksItem(id: 0),
+                              // DashboardTodaysTasksItem(id: 0, margin: false),
+                            ],
+                          )
+                        : Column(
+                            children: [
+                              Expanded(child: NcVectorImage(code: todays_tasks_yay)),
+                              NcSpacing.small(),
+                              NcBodyText("Nothing planned for today!"),
+                            ],
+                          ),
                     label: NcCaptionText(
                       "Today's Tasks",
                       fontSize: titleSize,
@@ -59,10 +71,7 @@ class Dashboard extends StatelessWidget {
                 NcSpacing.large(),
                 Expanded(
                   child: NcContainer(
-                    body: NcVectorImage(
-                      code: holidaysTBA,
-                      aliignment: Alignment.bottomCenter,
-                    ),
+                    body: NcCommingSoon(),
                     label: NcCaptionText(
                       "Holidays (TBA)",
                       fontSize: titleSize,
@@ -121,10 +130,7 @@ class Dashboard extends StatelessWidget {
                 Expanded(
                   flex: 5,
                   child: NcContainer(
-                    body: NcVectorImage(
-                      code: timetableTBA,
-                      aliignment: Alignment.bottomCenter,
-                    ),
+                    body: NcCommingSoon(),
                     label: NcCaptionText(
                       "Timetable (TBA)",
                       fontSize: titleSize,
@@ -140,30 +146,39 @@ class Dashboard extends StatelessWidget {
               children: [
                 Expanded(
                   child: NcContainer(
-                    body: ListView(
-                      // behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
-                      children: [
-                        DashboardExamItem(id: 0),
-                        DashboardExamItem(id: 0),
-                        DashboardExamItem(id: 0),
-                        DashboardExamItem(id: 0),
-                        DashboardExamItem(id: 0),
-                        DashboardExamItem(id: 0),
-                        DashboardExamItem(id: 0),
-                        DashboardExamItem(id: 0),
-                        DashboardExamItem(id: 0),
-                        DashboardExamItem(id: 0),
-                        DashboardExamItem(id: 0),
-                        DashboardExamItem(id: 0),
-                        DashboardExamItem(id: 0),
-                        DashboardExamItem(id: 0),
-                        DashboardExamItem(id: 0),
-                        DashboardExamItem(id: 0),
-                        DashboardExamItem(id: 0),
-                        DashboardExamItem(id: 0),
-                        DashboardExamItem(id: 0, margin: false),
-                      ],
-                    ),
+                    body: exams.isNotEmpty
+                        ? ListView(
+                            // behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
+                            children: [
+                              for (var id in exams) DashboardExamItem(id: id, margin: id == exams.last),
+                              // DashboardExamItem(id: 0),
+                              // DashboardExamItem(id: 0),
+                              // DashboardExamItem(id: 0),
+                              // DashboardExamItem(id: 0),
+                              // DashboardExamItem(id: 0),
+                              // DashboardExamItem(id: 0),
+                              // DashboardExamItem(id: 0),
+                              // DashboardExamItem(id: 0),
+                              // DashboardExamItem(id: 0),
+                              // DashboardExamItem(id: 0),
+                              // DashboardExamItem(id: 0),
+                              // DashboardExamItem(id: 0),
+                              // DashboardExamItem(id: 0),
+                              // DashboardExamItem(id: 0),
+                              // DashboardExamItem(id: 0),
+                              // DashboardExamItem(id: 0),
+                              // DashboardExamItem(id: 0),
+                              // DashboardExamItem(id: 0),
+                              // DashboardExamItem(id: 0, margin: false),
+                            ],
+                          )
+                        : Column(
+                            children: [
+                              Expanded(child: NcVectorImage(code: exams_yay)),
+                              NcSpacing.small(),
+                              NcBodyText("No upcomming exams this month!"),
+                            ],
+                          ),
                     label: NcCaptionText(
                       "Exams",
                       fontSize: titleSize,
@@ -173,10 +188,7 @@ class Dashboard extends StatelessWidget {
                 NcSpacing.large(),
                 Expanded(
                   child: NcContainer(
-                    body: NcVectorImage(
-                      code: lb_plannerTBA,
-                      aliignment: Alignment.bottomCenter,
-                    ),
+                    body: NcCommingSoon(),
                     label: NcCaptionText(
                       "LB Planner (TBA)",
                       fontSize: titleSize,
@@ -192,15 +204,15 @@ class Dashboard extends StatelessWidget {
   }
 }
 
-     // if (User.current.plan.moduleDates.keys.isNotEmpty)
-                          //   for (int id in User.current.plan.moduleDates.keys)
-                          //     if (User.current.plan.moduleDates[id]!.year == now.year && User.current.plan.moduleDates[id]!.month == now.month && User.current.plan.moduleDates[id]!.day == now.day) DashboardTodaysTasksItem(id: id)
-                          // DashboardTodaysTasksItem(id: 0),
-                          // DashboardTodaysTasksItem(id: 0),
-                          // DashboardTodaysTasksItem(id: 0),
-                          // DashboardTodaysTasksItem(id: 0),
-                          // DashboardTodaysTasksItem(id: 0),
-                          // DashboardTodaysTasksItem(id: 0),
-                          // DashboardTodaysTasksItem(id: 0),
-                          // DashboardTodaysTasksItem(id: 0),
-                          // DashboardTodaysTasksItem(id: 0),
+// if (User.current.plan.moduleDates.keys.isNotEmpty)
+//   for (int id in User.current.plan.moduleDates.keys)
+//     if (User.current.plan.moduleDates[id]!.year == now.year && User.current.plan.moduleDates[id]!.month == now.month && User.current.plan.moduleDates[id]!.day == now.day) DashboardTodaysTasksItem(id: id)
+// DashboardTodaysTasksItem(id: 0),
+// DashboardTodaysTasksItem(id: 0),
+// DashboardTodaysTasksItem(id: 0),
+// DashboardTodaysTasksItem(id: 0),
+// DashboardTodaysTasksItem(id: 0),
+// DashboardTodaysTasksItem(id: 0),
+// DashboardTodaysTasksItem(id: 0),
+// DashboardTodaysTasksItem(id: 0),
+// DashboardTodaysTasksItem(id: 0),

@@ -1,8 +1,10 @@
 import 'package:desktop/widgets/views/Admin/admin_login.dart';
 import 'package:desktop/widgets/views/dashboard/dashboard.dart';
 import 'package:desktop/widgets/views/login/login.dart';
+import 'package:desktop/widgets/views/settings/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:lb_planner/data.dart';
+import 'package:lb_planner/ui.dart';
 
 import 'widgets/sidebar/sidebar.dart';
 
@@ -31,12 +33,12 @@ class _HomeState extends State<Home> {
         ? Login(onLoginSuccess: (token) => handleLogin(token))
         : Sidebar(
             dashboard: Dashboard(),
-            admin: AdminLogin(),
             calendar: Container(color: Colors.red),
             coursesOverwiev: Container(color: Colors.yellow),
+            planner: NcCommingSoon(),
+            admin: AdminLogin(),
+            settings: SettingView(),
             onLogout: () {},
-            planner: Container(color: Colors.pink),
-            settings: Container(color: Colors.black),
           );
   }
 }

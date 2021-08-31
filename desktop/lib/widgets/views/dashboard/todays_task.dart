@@ -33,7 +33,7 @@ class DashboardTodaysTasksItem extends StatelessWidget {
           Expanded(
             child: NcCaptionText(
               //TODO:DB.modules[id]!.name,
-              'Hallddddddddddddddddddddddddddddddo',
+              'S04D',
               textAlign: TextAlign.center,
               fontSize: 20,
             ),

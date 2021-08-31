@@ -30,6 +30,17 @@ class User {
     DB.init();
   }
 
+  List<int> getUpcommingExams() {
+    var now = DateTime.now();
+    var exams = List<int>.empty(growable: true);
+
+    DB.modules.forEach((key, value) {
+      if (value.type == ModuleType.Test && value.deadline.month == now.month && value.deadline.isBefore(now.add(Duration(days: 1)))) exams.add(key);
+    });
+
+    return exams;
+  }
+
   late final int id;
   late final Token token;
   late final String name;

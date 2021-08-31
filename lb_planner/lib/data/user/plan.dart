@@ -6,7 +6,7 @@ class Plan {
   final Map<int, PlanAccess> access;
   final Map<int, DateTime> moduleDates;
 
-  StatusProfile stats() {
+  StatusProfile getStats() {
     int done = 0;
     int late = 0;
     int pending = 0;
