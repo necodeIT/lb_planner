@@ -33,7 +33,7 @@ class StatusOverviewBar extends StatelessWidget {
     return Container(
       width: width,
       height: height,
-      decoration: BoxDecoration(color: color),
+      decoration: BoxDecoration(color: color, borderRadius: BorderRadius.circular(ncRadius)),
     );
   }
 }

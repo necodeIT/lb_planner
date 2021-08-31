@@ -9,7 +9,7 @@ class StatusOverview extends StatelessWidget {
 
   final StatusProfile stats;
 
-  static const double maxHeight = 20;
+  static const double maxHeight = 15;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class StatusOverview extends StatelessWidget {
 
         spacing--;
 
-        double width = size.maxWidth - NcSpacing.mediumSpacing * spacing;
+        double width = size.maxWidth - NcSpacing.smallSpacing * spacing;
 
         double doneWidth = width * stats.donePercentage;
         double uploadedWidth = width * stats.uploadedPercentage;
@@ -41,11 +41,11 @@ class StatusOverview extends StatelessWidget {
         return Row(
           children: [
             if (done) StatusOverviewBar(status: ModuleStatus.Done, width: doneWidth, height: maxHeight),
-            if (done) NcSpacing.medium(),
+            if (done) NcSpacing.small(),
             if (uploaded) StatusOverviewBar(status: ModuleStatus.Uploaded, width: uploadedWidth, height: maxHeight),
-            if (uploaded) NcSpacing.medium(),
+            if (uploaded) NcSpacing.small(),
             if (late) StatusOverviewBar(status: ModuleStatus.Late, width: lateWidth, height: maxHeight),
-            if (late) NcSpacing.medium(),
+            if (late) NcSpacing.small(),
             if (pending) StatusOverviewBar(status: ModuleStatus.Pending, width: pendingWidth, height: maxHeight),
           ],
         );
