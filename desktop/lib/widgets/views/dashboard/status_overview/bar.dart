@@ -3,12 +3,11 @@ import 'package:lb_planner/data.dart';
 import 'package:lb_planner/ui.dart';
 
 class StatusOverviewBar extends StatelessWidget {
-  const StatusOverviewBar({Key? key, required this.status, required this.width}) : super(key: key);
+  const StatusOverviewBar({Key? key, required this.status, required this.width, required this.height}) : super(key: key);
 
   final ModuleStatus status;
   final double width;
-
-  static const double height = 10;
+  final double height;
 
   @override
   Widget build(BuildContext context) {

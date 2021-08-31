@@ -10,7 +10,7 @@ void main() {
   NcThemes.current = NcThemes.all[User.current.settings.theme] ?? NcThemes.dark;
   // NcThemes.current = NcThemes.dark;
   if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
-    setWindowMinSize(const Size(1056, 550));
+    setWindowMinSize(const Size(1097, 706));
     setWindowMaxSize(Size.infinite);
   }
   runApp(app);

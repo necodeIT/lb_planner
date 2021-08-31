@@ -39,13 +39,18 @@ class StatusOverview extends StatelessWidget {
 
         return Row(
           children: [
-            if (done) StatusOverviewBar(status: ModuleStatus.Done, width: doneWidth),
+            if (done)
+              StatusOverviewBar(
+                status: ModuleStatus.Done,
+                width: doneWidth,
+                height: size.maxHeight,
+              ),
             if (done) NcSpacing.medium(),
-            if (uploaded) StatusOverviewBar(status: ModuleStatus.Uploaded, width: uploadedWidth),
+            if (uploaded) StatusOverviewBar(status: ModuleStatus.Uploaded, width: uploadedWidth, height: size.maxHeight),
             if (uploaded) NcSpacing.medium(),
-            if (late) StatusOverviewBar(status: ModuleStatus.Late, width: lateWidth),
+            if (late) StatusOverviewBar(status: ModuleStatus.Late, width: lateWidth, height: size.maxHeight),
             if (late) NcSpacing.medium(),
-            if (pending) StatusOverviewBar(status: ModuleStatus.Pending, width: pendingWidth),
+            if (pending) StatusOverviewBar(status: ModuleStatus.Pending, width: pendingWidth, height: size.maxHeight),
           ],
         );
       },
