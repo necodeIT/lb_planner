@@ -1,5 +1,6 @@
 import 'package:desktop/widgets/views/dashboard/dashboard.dart';
 import 'package:desktop/widgets/views/settings/course_selection_item.dart';
+import 'package:desktop/widgets/views/settings/feedback.dart';
 import 'package:desktop/widgets/views/settings/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:lb_planner/ui.dart';
@@ -91,7 +92,7 @@ class SettingView extends StatelessWidget {
                 "Feedback",
                 fontSize: Dashboard.titleSize,
               ),
-              body: NcLoadingIndicator(),
+              body: SettingsFeedback(),
             ),
           ),
         ],

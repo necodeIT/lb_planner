@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:lb_planner/ui.dart';
 
 class NcDropdown extends StatefulWidget {
-  const NcDropdown({Key? key, required this.value, required this.items, required this.icon}) : super(key: key);
+  const NcDropdown({Key? key, required this.value, required this.items, this.icon, this.fontSize}) : super(key: key);
   final int value;
   final List<String> items;
-  final Widget icon;
+  final Widget? icon;
+  final double? fontSize;
 
   static const double padding = 10;
 
@@ -24,13 +25,13 @@ class _NcDropdownState extends State<NcDropdown> {
       decoration: BoxDecoration(color: NcThemes.current.secondaryColor, borderRadius: BorderRadius.circular(ncRadius)),
       child: DropdownButton<String>(
         value: widget.items[current],
-        icon: Icon(Icons.arrow_drop_down),
+        icon: widget.icon ?? Icon(Icons.arrow_drop_down, color: NcThemes.current.textColor),
         underline: SizedBox(),
         onChanged: (String? value) => setState(() => current = value != null ? widget.items.indexOf(value) : current),
         items: widget.items.map<DropdownMenuItem<String>>((String value) {
           return DropdownMenuItem<String>(
             value: value,
-            child: NcCaptionText(value),
+            child: NcCaptionText(value, fontSize: widget.fontSize),
           );
         }).toList(),
         dropdownColor: NcThemes.current.secondaryColor,

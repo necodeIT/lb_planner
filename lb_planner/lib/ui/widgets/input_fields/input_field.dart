@@ -4,7 +4,35 @@ import 'package:lb_planner/ui.dart';
 
 // ignore: camel_case_types
 class NcInputField extends StatelessWidget {
-  const NcInputField({Key? key, this.prefixIcon, this.placeholder, this.width, this.onValueChanged, this.suffixIcon, this.primary = false, this.obscureText = false}) : super(key: key);
+  NcInputField({
+    Key? key,
+    this.prefixIcon,
+    this.placeholder,
+    this.width,
+    this.onValueChanged,
+    this.suffixIcon,
+    this.primary = false,
+    this.obscureText = false,
+  }) : super(key: key) {
+    height = NcMaterialInputField.height;
+    this.maxLines = 1;
+    type = TextInputType.text;
+  }
+
+  NcInputField.multiline({
+    Key? key,
+    this.prefixIcon,
+    this.placeholder,
+    this.width,
+    this.onValueChanged,
+    this.suffixIcon,
+    this.primary = false,
+    this.obscureText = false,
+    this.maxLines = 1,
+    this.height,
+  }) : super(key: key) {
+    type = TextInputType.multiline;
+  }
 
   final Widget? prefixIcon;
   final Widget? suffixIcon;
@@ -14,7 +42,9 @@ class NcInputField extends StatelessWidget {
   final double? width;
   final Function(String)? onValueChanged;
 
-  static const double height = 40;
+  late final double? height;
+  late final int? maxLines;
+  late final TextInputType type;
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +52,11 @@ class NcInputField extends StatelessWidget {
       width: width,
       height: height,
       child: TextField(
+        maxLines: maxLines,
         obscureText: obscureText,
         style: NcBodyText.baseStyle,
         onChanged: onValueChanged,
-        keyboardType: TextInputType.text,
+        keyboardType: type,
         cursorColor: NcThemes.current.accentColor,
         decoration: InputDecoration(
           suffixIcon: suffixIcon,
