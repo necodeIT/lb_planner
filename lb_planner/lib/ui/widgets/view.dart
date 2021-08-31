@@ -3,7 +3,12 @@ import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:lb_planner/ui.dart';
 
 class View extends StatefulWidget {
-  View({Key? key, required this.title, this.onNavigateBack, required this.content}) : super(key: key);
+  View(
+      {Key? key,
+      required this.title,
+      this.onNavigateBack,
+      required this.content})
+      : super(key: key);
 
   final String title;
   final Widget content;
