@@ -1,5 +1,6 @@
 import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:lb_planner/data.dart';
 import 'package:lb_planner/ui.dart';
 
@@ -25,10 +26,24 @@ class _SettingsFeedbackState extends State<SettingsFeedback> {
           ),
         ),
         NcSpacing.medium(),
-        NcInputField.multiline(
-          placeholder: "Feedback here...",
-          maxLines: null,
-          // height: double.infinity,
+        Expanded(
+          child: NcInputField.multiline(
+            placeholder: "Feedback here...",
+            maxLines: null,
+          ),
+        ),
+        NcSpacing.small(),
+        Container(
+          alignment: Alignment.centerRight,
+          child: NcTextButton(
+            text: "Submit",
+            onTap: () {},
+            trailingIcon: Icon(
+              Feather.arrow_right_circle,
+              color: NcThemes.current.textColor,
+            ),
+            fontSize: 20,
+          ),
         ),
       ],
     );

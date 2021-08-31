@@ -42,7 +42,7 @@ class NcThemes {
   );
 
   static final NcTheme sakura = NcTheme(
-    "Sakura",
+    "桜",
     primaryColor: Color(0xFFFCE9EB),
     secondaryColor: Color(0xFFF3DCDB),
     tertiaryColor: Color(0xFFfde0d8),
@@ -68,10 +68,5 @@ class NcThemes {
 
   static Function? onCurrentThemeChange;
 
-  static final Map<String, NcTheme> all = {
-    dark.name: dark,
-    light.name: light,
-    ocean.name: ocean,
-    sakura.name: sakura
-  };
+  static final Map<String, NcTheme> all = {dark.name: dark, light.name: light, ocean.name: ocean, sakura.name: sakura};
 }
