@@ -24,7 +24,9 @@ class NcCommingSoon extends StatelessWidget {
               "Coming soon!",
               fontSize: size.maxWidth * .05,
             ),
+            NcSpacing.medium(),
             Expanded(child: NcVectorImage(code: svg)),
+            NcSpacing.medium(),
             NcTextButton(
               text: "Check out our roadmap for more inforamtion",
               trailingIcon: Icon(
@@ -36,6 +38,7 @@ class NcCommingSoon extends StatelessWidget {
                 launch(roadmapURL);
               },
             ),
+            NcSpacing.xs(),
           ],
         ),
       ),

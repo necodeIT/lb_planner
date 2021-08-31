@@ -13,13 +13,13 @@ class SettingView extends StatelessWidget {
       content: Row(
         children: [
           Expanded(
-            flex: 2,
             child: Column(
               children: [
                 Expanded(
                   child: Row(
                     children: [
                       Expanded(
+                        flex: 2,
                         child: NcContainer(
                           label: NcCaptionText(
                             "General",
@@ -30,6 +30,7 @@ class SettingView extends StatelessWidget {
                       ),
                       NcSpacing.large(),
                       Expanded(
+                        flex: 3,
                         child: NcContainer(
                           label: NcCaptionText(
                             "Themes",
