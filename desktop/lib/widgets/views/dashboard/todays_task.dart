@@ -25,14 +25,14 @@ class DashboardTodaysTasksItem extends StatelessWidget {
             fontSize: 18,
             height: 27,
             text: 'AM',
-            //text: DB.courses[DB.modules[id]!.course]!.tag,
+            //TODO:text: DB.courses[DB.modules[id]!.course]!.tag,
             backgroundColor: NcThemes.current.accentColor,
             //width: 40,
           ),
           NcSpacing.xs(),
           Expanded(
             child: NcCaptionText(
-              //DB.modules[id]!.name,
+              //TODO:DB.modules[id]!.name,
               'Hallddddddddddddddddddddddddddddddo',
               textAlign: TextAlign.center,
               fontSize: 20,

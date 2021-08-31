@@ -17,6 +17,9 @@ class _HomeState extends State<Home> {
   bool showLogin = false;
 
   void handleLogin(Token token) {
+    //TODO: save user to disk
+    //TODO: check if user is new ? show select courses : show dashboard
+    //TODO: load user theme
     setState(() {
       showLogin = false;
     });

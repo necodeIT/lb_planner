@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:lb_planner/ui.dart';
 
-class SettingsCourses extends StatelessWidget {
-  SettingsCourses({
+class CourseSelectionItem extends StatelessWidget {
+  CourseSelectionItem({
     Key? key,
     required this.id,
   }) : super(key: key);
@@ -39,14 +39,14 @@ class SettingsCourses extends StatelessWidget {
                   fontSize: 17,
                   height: 27,
                   text: 'AM',
-                  //text: DB.courses[DB.modules[id]!.course]!.tag,
+                  //TODO:text: DB.courses[DB.modules[id]!.course]!.tag,
                   backgroundColor: NcThemes.current.accentColor,
                   //width: 40,
                 ),
               ],
             ),
             NcBodyText(
-              //DB.modules[id]!.name,
+              //TODO:DB.modules[id]!.name,
               'Hallo',
             ),
             GestureDetector(

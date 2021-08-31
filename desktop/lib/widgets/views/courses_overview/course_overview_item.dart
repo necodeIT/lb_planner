@@ -68,19 +68,16 @@ class _CourseOverviewItemState extends State<CourseOverviewItem> {
                   ),
                   NcSpacing.small(),
                   Container(
-                    //HHHHHHHHHHHHHHHHHHHHIIIIIIIIIIIIIIIIEEEEEEEEEEEEEEEEEERRRRRRRRRRRRRRR ICONBUTTON NICHT VERGESSSENNN!!!!!!!!!!!!!!!!
                     child: GestureDetector(
                       child: Icon(
-                        // DB.modules[widget.id]!.isEnabled ? FontAwesome5Solid.eye : FontAwesome5Solid.eye_slash,
+                        // TODO: DB.modules[widget.id]!.isEnabled ? FontAwesome5Solid.eye : FontAwesome5Solid.eye_slash,
                         FontAwesome5Solid.eye,
                         color: NcThemes.current.textColor,
                         size: 17,
                       ),
                       onTap: () {
                         print("Toggle Enabled");
-                        // setState(() {
-                        //   DB.modules[widget.id]!.isEnabled = !DB.modules[widget.id]!.isEnabled;
-                        // });
+                        // TODO: setState(() { DB.modules[widget.id]!.isEnabled = !DB.modules[widget.id]!.isEnabled; });
                       },
                     ),
                   ),

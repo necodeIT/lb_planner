@@ -23,7 +23,7 @@ class CalendarItem extends StatelessWidget {
             fontSize: 17,
             height: 27,
             text: 'AM',
-            //text: DB.courses[DB.modules[id]!.course]!.tag,
+            // TODO: text: DB.courses[DB.modules[id]!.course]!.tag,
             backgroundColor: NcThemes.current.accentColor,
             //width: 40,
           ),
@@ -31,7 +31,7 @@ class CalendarItem extends StatelessWidget {
             'Hallo',
             style: NcBodyText.baseStyle,
           ),
-          // Container(
+          // TODO: Container(
           //     width: 23,
           //     height: 23,
           //     decoration: BoxDecoration(

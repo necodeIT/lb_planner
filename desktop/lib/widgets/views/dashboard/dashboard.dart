@@ -16,7 +16,7 @@ class Dashboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // StatusProfile stats = User.current.plan.stats();
+    // TODO: StatusProfile stats = User.current.plan.stats();
     StatusProfile stats = StatusProfile(done: 10, late: 5, uploaded: 20, pending: 15);
 
     return View(
