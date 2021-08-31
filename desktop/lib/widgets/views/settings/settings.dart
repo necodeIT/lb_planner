@@ -38,6 +38,7 @@ class SettingView extends StatelessWidget {
                           body: NcGridView(
                             spacing: NcSpacing.xlSpacing,
                             children: [
+                              // TODO: for (var theme in User.current.themes) ThemeItem(theme: theme),
                               for (var theme in NcThemes.all.keys) ThemeItem(theme: theme),
                             ],
                           ),
