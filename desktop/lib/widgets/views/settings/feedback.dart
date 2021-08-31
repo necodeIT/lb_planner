@@ -21,23 +21,16 @@ class _SettingsFeedbackState extends State<SettingsFeedback> {
         Container(
           alignment: Alignment.centerLeft,
           child: NcDropdown(
+            fontSize: 20,
             value: 0,
             items: EnumToString.toList(FeedbackType.values),
           ),
         ),
         NcSpacing.medium(),
-        Container(
-          height: 500,
-          //color: NcThemes.current.secondaryColor,
-          decoration: new BoxDecoration(
-            color: NcThemes.current.secondaryColor,
-            borderRadius: BorderRadius.all(Radius.circular(10)),
-          ),
-          child: Expanded(
-            child: NcInputField.multiline(
-              placeholder: "Feedback here...",
-              maxLines: null,
-            ),
+        Expanded(
+          child: NcInputField.multiline(
+            placeholder: "Feedback here...",
+            maxLines: null,
           ),
         ),
         NcSpacing.small(),

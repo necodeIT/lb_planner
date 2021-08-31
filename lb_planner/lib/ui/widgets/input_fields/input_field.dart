@@ -17,6 +17,7 @@ class NcInputField extends StatelessWidget {
     height = NcMaterialInputField.height;
     this.maxLines = 1;
     type = TextInputType.text;
+    multiline = false;
   }
 
   NcInputField.multiline({
@@ -32,6 +33,7 @@ class NcInputField extends StatelessWidget {
     this.height,
   }) : super(key: key) {
     type = TextInputType.multiline;
+    multiline = true;
   }
 
   final Widget? prefixIcon;
@@ -45,12 +47,20 @@ class NcInputField extends StatelessWidget {
   late final double? height;
   late final int? maxLines;
   late final TextInputType type;
+  late final bool multiline;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: width,
       height: height,
+      padding: multiline ? EdgeInsets.only(top: 10, bottom: 10) : null,
+      decoration: multiline
+          ? BoxDecoration(
+              color: NcThemes.current.secondaryColor,
+              borderRadius: BorderRadius.all(Radius.circular(ncRadius)),
+            )
+          : null,
       child: TextField(
         maxLines: maxLines,
         obscureText: obscureText,
@@ -59,6 +69,11 @@ class NcInputField extends StatelessWidget {
         keyboardType: type,
         cursorColor: NcThemes.current.accentColor,
         decoration: InputDecoration(
+          hoverColor: multiline
+              ? primary != true
+                  ? NcThemes.current.secondaryColor
+                  : NcThemes.current.primaryColor
+              : null,
           suffixIcon: suffixIcon,
           contentPadding: EdgeInsets.only(top: 10, left: 20),
           border: OutlineInputBorder(
