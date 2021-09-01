@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:lb_planner/ui.dart';
 
 class NcSnackBar {
-  static SnackBar bottomRight({required Widget content, Widget? prefixIcon, Duration duration = const Duration(seconds: 1, milliseconds: 500)}) {
+  static const double fontSize = 18;
+
+  static SnackBar bottomRightMessage({required String message, Widget? prefixIcon, Duration duration = const Duration(seconds: 1, milliseconds: 500)}) {
     return SnackBar(
       duration: duration,
       content: Row(
@@ -21,7 +23,10 @@ class NcSnackBar {
               children: [
                 prefixIcon ?? Container(),
                 if (prefixIcon != null) NcSpacing.small(),
-                content,
+                NcBodyText(
+                  message,
+                  fontSize: fontSize,
+                ),
               ],
             ),
           ),

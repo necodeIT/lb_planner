@@ -73,7 +73,7 @@ class Login extends StatelessWidget {
                         (response) {
                           if (response.isError)
                             return ScaffoldMessenger.of(context).showSnackBar(
-                              NcSnackBar.bottomRight(content: NcBodyText(response.errorMessage), prefixIcon: Icon(Icons.error, color: NcThemes.current.lateColor)),
+                              NcSnackBar.bottomRightMessage(message: response.errorMessage, prefixIcon: Icon(Icons.error, color: NcThemes.current.lateColor)),
                             );
 
                           onLoginSuccess(response.value);
