@@ -42,10 +42,14 @@ class CourseOverviewItem extends StatelessWidget {
               ),
               Row(
                 children: [
-                  if (DB.courses[id]!.tags.contains(CourseTags.Done)) NcTag(text: "Done", backgroundColor: NcThemes.current.doneColor),
-                  if (DB.courses[id]!.tags.contains(CourseTags.Uploaded)) NcTag(text: "Uploaded", backgroundColor: NcThemes.current.uploadedColor),
-                  if (DB.courses[id]!.tags.contains(CourseTags.Late)) NcTag(text: "Late", backgroundColor: NcThemes.current.lateColor),
-                  if (DB.courses[id]!.tags.contains(CourseTags.Pending)) NcTag(text: "Pending", backgroundColor: NcThemes.current.pendingColor),
+                  //TODO: if (DB.courses[id]!.tags.contains(CourseTags.Done))
+                  NcTag(text: "Done", backgroundColor: NcThemes.current.doneColor),
+                  //TODO: if (DB.courses[id]!.tags.contains(CourseTags.Uploaded))
+                  NcTag(text: "Uploaded", backgroundColor: NcThemes.current.uploadedColor),
+                  //TODO: if (DB.courses[id]!.tags.contains(CourseTags.Late))
+                  NcTag(text: "Late", backgroundColor: NcThemes.current.lateColor),
+                  //TODO: if (DB.courses[id]!.tags.contains(CourseTags.Pending))
+                  NcTag(text: "Pending", backgroundColor: NcThemes.current.pendingColor),
                 ],
               )
             ],
