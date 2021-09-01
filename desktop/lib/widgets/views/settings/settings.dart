@@ -1,6 +1,6 @@
 import 'package:desktop/version.dart';
+import 'package:desktop/widgets/course_selection/course_selection.dart';
 import 'package:desktop/widgets/views/dashboard/dashboard.dart';
-import 'package:desktop/widgets/views/settings/course_selection.dart';
 import 'package:desktop/widgets/views/settings/feedback.dart';
 import 'package:desktop/widgets/views/settings/general.dart';
 import 'package:desktop/widgets/views/settings/theme.dart';

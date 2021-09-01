@@ -12,7 +12,7 @@ class CourseSelectionItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-      margin: const EdgeInsets.only(bottom: 10.0),
+      margin: margin ? EdgeInsets.only(bottom: 10.0) : null,
       height: 40,
       decoration: BoxDecoration(
         color: NcThemes.current.secondaryColor,

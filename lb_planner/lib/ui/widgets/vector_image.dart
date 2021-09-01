@@ -14,21 +14,21 @@ class NcVectorImage extends StatelessWidget {
   static const textColor = "{textcolor}";
   static const secondaryColor = "{secondarycolor}";
   static const primaryColor = "{primarycolor}";
-  static const teritaryColor = "{teritaryColor}";
+  static const tertiaryColor = "{tertiaryColor}";
   static const lateColor = "{lateColor}";
   static const pendingColor = "{pendingColor}";
   static const uploadedColor = "{uploadedColor}";
   static const doneColor = "{doneColor}";
   static const buttonTextColor = "{teritaryColor}";
 
-  static const List<String> colors = [accentColor, textColor, secondaryColor, primaryColor, teritaryColor, doneColor, buttonTextColor, uploadedColor, lateColor, pendingColor];
+  static const List<String> colors = [accentColor, textColor, secondaryColor, primaryColor, tertiaryColor, doneColor, buttonTextColor, uploadedColor, lateColor, pendingColor];
 
   static String svg(String code) {
     code = code.replaceAll(accentColor, "#${NcThemes.current.accentColor.value.toRadixString(16)}");
     code = code.replaceAll(textColor, "#${NcThemes.current.textColor.value.toRadixString(16)}");
     code = code.replaceAll(secondaryColor, "#${NcThemes.current.secondaryColor.value.toRadixString(16)}");
     code = code.replaceAll(primaryColor, "#${NcThemes.current.primaryColor.value.toRadixString(16)}");
-    code = code.replaceAll(teritaryColor, "#${NcThemes.current.tertiaryColor.value.toRadixString(16)}");
+    code = code.replaceAll(tertiaryColor, "#${NcThemes.current.tertiaryColor.value.toRadixString(16)}");
     code = code.replaceAll(lateColor, "#${NcThemes.current.lateColor.value.toRadixString(16)}");
     code = code.replaceAll(uploadedColor, "#${NcThemes.current.uploadedColor.value.toRadixString(16)}");
     code = code.replaceAll(doneColor, "#${NcThemes.current.doneColor.value.toRadixString(16)}");
