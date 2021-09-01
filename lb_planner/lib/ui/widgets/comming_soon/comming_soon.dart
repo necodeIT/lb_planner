@@ -10,6 +10,9 @@ class NcCommingSoon extends StatelessWidget {
 
   static const roadmapURL = "https://lbplanner.notion.site/a4e2baf2676a4ce08696fb731afd8be7?v=1fc664711d944fcbbf9aa0db2958551e";
 
+  static const double headingFactor = .05;
+  static const double bodyFactor = .03;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,7 +24,7 @@ class NcCommingSoon extends StatelessWidget {
           children: [
             NcTitleText(
               "Coming soon!",
-              fontSize: size.maxWidth * .05,
+              fontSize: size.maxWidth * headingFactor,
             ),
             NcSpacing.medium(),
             Expanded(child: NcVectorImage(code: ncCommingSoonSVGs[NcCommingSoonSvgType.values.indexOf(type)])),
@@ -31,8 +34,9 @@ class NcCommingSoon extends StatelessWidget {
               trailingIcon: Icon(
                 Icons.arrow_right_alt,
                 color: NcThemes.current.textColor,
+                size: size.maxWidth * bodyFactor,
               ),
-              fontSize: size.maxWidth * .03,
+              fontSize: size.maxWidth * bodyFactor,
               onTap: () {
                 launch(roadmapURL);
               },
