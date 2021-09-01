@@ -27,6 +27,12 @@ class _HomeState extends State<Home> {
     });
   }
 
+  logout() {
+    setState(() {
+      showLogin = true;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return showLogin
@@ -38,7 +44,7 @@ class _HomeState extends State<Home> {
             planner: NcCommingSoon(),
             admin: AdminLogin(),
             settings: SettingView(),
-            onLogout: () {},
+            onLogout: logout,
           );
   }
 }
