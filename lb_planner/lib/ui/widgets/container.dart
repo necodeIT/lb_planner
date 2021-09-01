@@ -33,8 +33,9 @@ class NcContainer extends StatelessWidget {
               color: window ? NcThemes.current.secondaryColor : null,
               borderRadius: window ? BorderRadius.only(topLeft: Radius.circular(ncRadius), topRight: Radius.circular(ncRadius)) : null,
             ),
-            child: leadingIcon != null && trailingIcon != null
-                ? Row(
+            child: leadingIcon == null && trailingIcon == null
+                ? label
+                : Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Row(
@@ -46,8 +47,7 @@ class NcContainer extends StatelessWidget {
                       ),
                       trailingIcon ?? Container(),
                     ],
-                  )
-                : label,
+                  ),
           ),
           NcSpacing.medium(),
           Expanded(child: body),

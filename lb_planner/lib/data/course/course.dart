@@ -18,7 +18,7 @@ class Course {
   late final String tag;
   late final List<CourseTags> tags;
 
-  StatusProfile stats() {
+  StatusProfile getStats() {
     int done = 0;
     int late = 0;
     int pending = 0;
@@ -44,7 +44,7 @@ class Course {
     return StatusProfile(done: done, late: late, uploaded: uploaded, pending: pending);
   }
 
-  double averageGrade() {
+  double getAverageGrade() {
     int sum = 0;
 
     modules.forEach((i) {

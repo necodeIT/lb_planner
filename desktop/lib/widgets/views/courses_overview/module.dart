@@ -1,109 +1,149 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:lb_planner/data.dart';
 import 'package:lb_planner/ui.dart';
 
-class CourseOverviewItem extends StatelessWidget {
-  CourseOverviewItem({
+class CourseOverviewModuleItem extends StatefulWidget {
+  CourseOverviewModuleItem({
     Key? key,
     required this.id,
   }) : super(key: key);
 
   final int id;
+  static const double borderWidth = 2;
+  static const double indicatorWidth = 5;
+  static const double fontSize = 20;
+
+  @override
+  _CourseOverviewModuleItemState createState() => _CourseOverviewModuleItemState();
+}
+
+class _CourseOverviewModuleItemState extends State<CourseOverviewModuleItem> {
   final double? height = 40;
+
+  final BoxDecoration border = BoxDecoration(
+    border: Border(
+      top: BorderSide(
+        color: NcThemes.current.tertiaryColor,
+        width: CourseOverviewModuleItem.borderWidth,
+      ),
+      right: BorderSide(
+        color: NcThemes.current.tertiaryColor,
+        width: CourseOverviewModuleItem.borderWidth,
+      ),
+      bottom: BorderSide(
+        color: NcThemes.current.tertiaryColor,
+        width: CourseOverviewModuleItem.borderWidth,
+      ),
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        width: 1000,
-        height: height,
-        //color: Colors.black,
-        child: Row(
-          children: [
-            Container(
-              width: 10,
-              //height: 40,
-              color: Colors.red,
-            ),
-            Container(
-              width: 500,
+    return Container(
+      height: height,
+      child: Row(
+        children: [
+          Container(
+            height: height,
+            width: CourseOverviewModuleItem.indicatorWidth,
+            //height: 40,
+            color: NcThemes.current.doneColor,
+          ),
+          Expanded(
+            flex: 8,
+            child: Container(
               height: height,
-              color: Colors.yellow,
+              decoration: border,
               child: Row(
                 children: [
                   Expanded(
                     child: Container(
-                        margin: EdgeInsets.only(left: 10),
-                        child: NcCaptionText(
-                          'Klassenlektüre Ringparabel',
-                          fontSize: 20,
-                        )),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(right: 10),
-                    //////HHHHHHHHHHHHHHHHHHHHIIIIIIIIIIIIIIIIEEEEEEEEEEEEEEEEEERRRRRRRRRRRRRRR ICONBUTTON NICHT VERGESSSENNN!!!!!!!!!!!!!!!!
-                    child: Icon(Icons.ac_unit),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              width: 125,
-              height: height,
-              color: Colors.green,
-              child: Expanded(
-                child: Center(
-                  child: NcCaptionText(
-                    '22.8.2021',
-                    fontSize: 20,
-                  ),
-                ),
-              ),
-            ),
-            Container(
-              width: 125,
-              height: height,
-              color: Colors.blue,
-              child: Expanded(
-                child: Center(
-                  child: NcCaptionText(
-                    '22.8.2021',
-                    fontSize: 20,
-                  ),
-                ),
-              ),
-            ),
-            Container(
-              width: 50,
-              height: height,
-              color: Colors.purple,
-              child: Expanded(
-                child: Center(
-                  child: NcCaptionText(
-                    '1',
-                    fontSize: 27,
-                  ),
-                ),
-              ),
-            ),
-            Container(
-              width: 190,
-              height: height,
-              color: Colors.cyan,
-              child: Center(
-                  child: Row(
-                children: [
-                  Expanded(
-                    child: NcCaptionText(
-                      'Moodle',
-                      fontSize: 20,
+                      margin: EdgeInsets.only(left: 10),
+                      child: NcCaptionText(
+                        'Klassenlektüre Ringparabel',
+                        fontSize: CourseOverviewModuleItem.fontSize,
+                      ),
                     ),
                   ),
-                  Icon(Icons.ac_unit),
+                  NcSpacing.small(),
+                  Container(
+                    child: GestureDetector(
+                      child: Icon(
+                        // TODO: DB.modules[widget.id]!.isEnabled ? FontAwesome5Solid.eye : FontAwesome5Solid.eye_slash,
+                        FontAwesome5Solid.eye,
+                        color: NcThemes.current.textColor,
+                        size: 17,
+                      ),
+                      onTap: () {
+                        print("Toggle Enabled");
+                        // TODO: setState(() { DB.modules[widget.id]!.isEnabled = !DB.modules[widget.id]!.isEnabled; });
+                      },
+                    ),
+                  ),
+                  NcSpacing.small(),
                 ],
-              )),
+              ),
             ),
-          ],
-        ),
+          ),
+          Expanded(
+            flex: 2,
+            child: Container(
+              height: height,
+              decoration: border,
+              child: Center(
+                child: NcCaptionText(
+                  '22.8.21',
+                  fontSize: CourseOverviewModuleItem.fontSize,
+                ),
+              ),
+            ),
+          ),
+          Expanded(
+            flex: 2,
+            child: Container(
+              height: height,
+              decoration: border,
+              child: Center(
+                child: NcCaptionText(
+                  '22.8.CourseOverviewItem.fontSize21',
+                  fontSize: CourseOverviewModuleItem.fontSize,
+                ),
+              ),
+            ),
+          ),
+          Expanded(
+            flex: 1,
+            child: Container(
+              height: height,
+              decoration: border,
+              child: Center(
+                child: NcTitleText(
+                  '1',
+                  fontSize: CourseOverviewModuleItem.fontSize,
+                ),
+              ),
+            ),
+          ),
+          Expanded(
+            flex: 2,
+            child: Container(
+              height: height,
+              decoration: border,
+              child: Center(
+                child: NcTextButton(
+                  text: "Moodle",
+                  fontSize: CourseOverviewModuleItem.fontSize,
+                  onTap: () {},
+                  trailingIcon: Icon(
+                    Icons.upcoming,
+                    color: NcThemes.current.textColor,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

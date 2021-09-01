@@ -1,4 +1,5 @@
 import 'package:desktop/widgets/views/Admin/admin_login.dart';
+import 'package:desktop/widgets/views/courses_overview/course_overview.dart';
 import 'package:desktop/widgets/views/dashboard/dashboard.dart';
 import 'package:desktop/widgets/views/login/login.dart';
 import 'package:desktop/widgets/views/select_courses/select_courses.dart';
@@ -17,7 +18,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  HomeState state = HomeState.Login;
+  HomeState state = HomeState.Sidebar;
 
   void handleLogin(Token token) {
     //TODO: save user to disk
@@ -55,7 +56,7 @@ class _HomeState extends State<Home> {
         return Sidebar(
           dashboard: Dashboard(),
           calendar: Container(color: Colors.red),
-          coursesOverwiev: Container(color: Colors.yellow),
+          coursesOverwiev: CourseOverview(),
           planner: NcCommingSoon(),
           admin: AdminLogin(),
           settings: SettingView(),
