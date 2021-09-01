@@ -29,7 +29,6 @@ class Dashboard extends StatelessWidget {
                   child: NcContainer(
                     body: User.current.plan.moduleDates.keys.isNotEmpty
                         ? ListView(
-                            // behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
                             children: [
                               for (int id in User.current.plan.moduleDates.keys)
                                 if (User.current.plan.moduleDates[id]!.year == now.year && User.current.plan.moduleDates[id]!.month == now.month && User.current.plan.moduleDates[id]!.day == now.day)
