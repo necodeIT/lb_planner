@@ -28,23 +28,26 @@ class NcContainer extends StatelessWidget {
       child: Column(
         children: [
           Container(
+            alignment: Alignment.centerLeft,
             decoration: BoxDecoration(
               color: window ? NcThemes.current.secondaryColor : null,
               borderRadius: window ? BorderRadius.only(topLeft: Radius.circular(ncRadius), topRight: Radius.circular(ncRadius)) : null,
             ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    leadingIcon ?? Container(),
-                    if (leadingIcon != null) NcSpacing.medium(),
-                    label,
-                  ],
-                ),
-                trailingIcon ?? Container(),
-              ],
-            ),
+            child: leadingIcon != null && trailingIcon != null
+                ? Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          leadingIcon ?? Container(),
+                          if (leadingIcon != null) NcSpacing.medium(),
+                          label,
+                        ],
+                      ),
+                      trailingIcon ?? Container(),
+                    ],
+                  )
+                : label,
           ),
           NcSpacing.medium(),
           Expanded(child: body),

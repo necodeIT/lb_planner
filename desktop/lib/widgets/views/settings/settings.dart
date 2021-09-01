@@ -1,6 +1,6 @@
 import 'package:desktop/version.dart';
 import 'package:desktop/widgets/views/dashboard/dashboard.dart';
-import 'package:desktop/widgets/views/settings/course_selection_item.dart';
+import 'package:desktop/widgets/views/settings/course_selection.dart';
 import 'package:desktop/widgets/views/settings/feedback.dart';
 import 'package:desktop/widgets/views/settings/general.dart';
 import 'package:desktop/widgets/views/settings/theme.dart';
@@ -90,34 +90,7 @@ class SettingView extends StatelessWidget {
                 NcSpacing.large(),
                 Expanded(
                   flex: 2,
-                  child: NcContainer(
-                    label: NcCaptionText(
-                      "Courses",
-                      fontSize: Dashboard.titleSize,
-                    ),
-                    body: ListView(
-                      children: [
-                        NcInputField(
-                          placeholder: "Search",
-                          prefixIcon: Icon(
-                            Icons.search,
-                            color: NcThemes.current.textColor,
-                          ),
-                        ),
-                        NcSpacing.small(),
-                        CourseSelectionItem(id: 0),
-                        CourseSelectionItem(id: 0),
-                        CourseSelectionItem(id: 0),
-                        CourseSelectionItem(id: 0),
-                        CourseSelectionItem(id: 0),
-                        CourseSelectionItem(id: 0),
-                        CourseSelectionItem(id: 0),
-                        CourseSelectionItem(id: 0),
-                        CourseSelectionItem(id: 0),
-                        CourseSelectionItem(id: 0),
-                      ],
-                    ),
-                  ),
+                  child: CourseSelection(),
                 )
               ],
             ),
