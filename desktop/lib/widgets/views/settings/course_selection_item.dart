@@ -63,7 +63,7 @@ class CourseSelectionItem extends StatelessWidget {
               },
               child: Icon(
                 FontAwesome5Solid.ellipsis_h,
-                color: NcThemes.current.buttonTextColor,
+                color: NcThemes.current.textColor,
                 size: 17,
               ),
             )

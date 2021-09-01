@@ -18,6 +18,7 @@ class _NcScrollbarState extends State<NcScrollbar> {
   @override
   Widget build(BuildContext context) {
     return RawScrollbar(
+      controller: ScrollController(),
       thickness: NcScrollbar.scrollbarWidth,
       isAlwaysShown: widget.isAlwaysShown,
       thumbColor: NcThemes.current.accentColor,

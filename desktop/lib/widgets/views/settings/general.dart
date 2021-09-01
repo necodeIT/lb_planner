@@ -18,10 +18,13 @@ class SettingsGeneralItem extends StatelessWidget {
         child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        NcCaptionText(
-          text,
-          fontSize: fontsize,
+        Expanded(
+          child: NcCaptionText(
+            text,
+            fontSize: fontsize,
+          ),
         ),
+        NcSpacing.small(),
         GestureDetector(
           onTap: () {},
           child: Container(
