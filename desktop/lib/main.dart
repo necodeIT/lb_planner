@@ -6,6 +6,8 @@ import 'package:lb_planner/data.dart';
 import 'package:lb_planner/ui.dart';
 import 'package:window_size/window_size.dart';
 
+import 'widgets/views/courses_overview/course_stats/course_stats_chart.dart';
+
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   NcThemes.current = NcThemes.all[User.current.settings.theme] ?? NcThemes.dark;
@@ -42,6 +44,7 @@ class _AppState extends State<App> {
     return Scaffold(
       backgroundColor: NcThemes.current.secondaryColor,
       body: Home(),
+      // body: CourseStatsChart(stats: StatusProfile(done: 10, late: 15, uploaded: 20, pending: 5)),
     );
   }
 }

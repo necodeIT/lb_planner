@@ -10,7 +10,25 @@ class CourseOverview extends StatelessWidget {
     return View(
       title: "Course Overview",
       content: NcGridView(
-        children: [],
+        spacing: NcSpacing.mediumSpacing,
+        alignment: Alignment.topLeft,
+        // margin: EdgeInsets.only(left: 0),
+        children: [
+          CourseOverviewItem(id: 0),
+          CourseOverviewItem(id: 0),
+          CourseOverviewItem(id: 0),
+          CourseOverviewItem(id: 0),
+          CourseOverviewItem(id: 0),
+          CourseOverviewItem(id: 0),
+          CourseOverviewItem(id: 0),
+          CourseOverviewItem(id: 0),
+          CourseOverviewItem(id: 0),
+          CourseOverviewItem(id: 0),
+          CourseOverviewItem(id: 0),
+          CourseOverviewItem(id: 0),
+          CourseOverviewItem(id: 0),
+          CourseOverviewItem(id: 0),
+        ],
       ),
     );
   }

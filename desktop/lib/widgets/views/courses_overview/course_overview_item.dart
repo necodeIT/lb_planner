@@ -1,4 +1,6 @@
+import 'package:desktop/widgets/views/courses_overview/course_stats/course_stats_chart.dart';
 import 'package:desktop/widgets/views/courses_overview/svg/svg.dart';
+import 'package:desktop/widgets/views/dashboard/dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:lb_planner/data.dart';
 import 'package:lb_planner/ui.dart';
@@ -11,17 +13,29 @@ class CourseOverviewItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // var stats = DB.courses[id]!.getStats();
+    var stats = StatusProfile(done: 15, late: 10, uploaded: 5, pending: 20);
+
     return NcContainer(
-      label: NcTitleText("Deutsch"),
+      width: 450,
+      height: 250,
+      label: NcCaptionText(
+        "Deutsch",
+        fontSize: 20,
+      ),
+      trailingIcon: Icon(Icons.ac_unit),
       // TODO: NcTitleText(DB.courses[id]!.name),
       body: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 children: [
                   NcTag(
                     text: "D",
+
                     //TODO:text: DB.courses[id]!.tag,
                     backgroundColor: Colors.purple,
                     // TODO: Farbe von Datenbank ziehen
@@ -35,30 +49,39 @@ class CourseOverviewItem extends StatelessWidget {
                   ),
                 ],
               ),
-              Wrap(
-                children: [
-                  if (DB.courses[id]!.tags.contains(CourseTags.Completed)) NcTag(text: "Completed", backgroundColor: Colors.cyan),
-                ],
-              ),
+              NcSpacing.small(),
+              // if (DB.courses[id]!.tags.contains(CourseTags.Completed)) NcTag(text: "Completed", backgroundColor: Colors.cyan),
               Row(
                 children: [
-                  //TODO: if (DB.courses[id]!.tags.contains(CourseTags.Done))
                   NcTag(text: "Done", backgroundColor: NcThemes.current.doneColor),
+                  NcSpacing.small(),
                   //TODO: if (DB.courses[id]!.tags.contains(CourseTags.Uploaded))
                   NcTag(text: "Uploaded", backgroundColor: NcThemes.current.uploadedColor),
-                  //TODO: if (DB.courses[id]!.tags.contains(CourseTags.Late))
+                  NcSpacing.small(),
                   NcTag(text: "Late", backgroundColor: NcThemes.current.lateColor),
+                  NcSpacing.small(),
                   //TODO: if (DB.courses[id]!.tags.contains(CourseTags.Pending))
-                  NcTag(text: "Pending", backgroundColor: NcThemes.current.pendingColor),
+                  NcTag(text: "Pending", backgroundColor: NcThemes.current.pendingColor)
+                  //TODO: if (DB.courses[id]!.tags.contains(CourseTags.Late))
                 ],
-              )
+              ),
+              // NcSpacing.small(),
+              // Row(
+              //   children: [
+              //     ,
+              //   ],
+              // )
             ],
           ),
-          Expanded(
-            child: DB.courses[id]!.tags.contains(CourseTags.Completed) ? NcVectorImage(code: you_are_done_svg) : CourseOverviewCharts(),
+          // TODO: child: DB.courses[id]!.tags.contains(CourseTags.Completed) ? NcVectorImage(code: you_are_done_svg) : CourseOverviewCharts(),
+          CourseStatsChart(
+            stats: stats,
           )
         ],
       ),
+
+      // body: NcBodyText("test"),
     );
+    // return NcButton(text: "sdasd", onTap: () {});
   }
 }
