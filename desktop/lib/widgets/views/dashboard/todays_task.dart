@@ -12,7 +12,6 @@ class DashboardTodaysTasksItem extends StatelessWidget {
     return Container(
       padding: EdgeInsets.only(left: 10, right: 10),
       margin: EdgeInsets.only(bottom: margin ? NcSpacing.smallSpacing : 0),
-      width: 400,
       height: 40,
       decoration: BoxDecoration(
         color: NcThemes.current.secondaryColor,

@@ -1,5 +1,6 @@
 import 'package:desktop/widgets/views/dashboard/exams.dart';
 import 'package:desktop/widgets/views/dashboard/status_overview/status_overview.dart';
+import 'package:desktop/widgets/views/dashboard/svg/catgirl.dart';
 import 'package:desktop/widgets/views/dashboard/svg/yay.dart';
 import 'package:desktop/widgets/views/dashboard/todays_task.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,11 @@ class Dashboard extends StatelessWidget {
     List<int> exams = User.current.getUpcommingExams();
     var now = DateTime.now();
 
+    bool hasModulesForToday = User.current.plan.moduleDates.keys.any((id) => (User.current.plan.moduleDates[id]!.year == now.year && User.current.plan.moduleDates[id]!.month == now.month && User.current.plan.moduleDates[id]!.day == now.day));
+
+    bool doneForToday = User.current.plan.moduleDates.keys
+        .any((id) => (User.current.plan.moduleDates[id]!.year == now.year && User.current.plan.moduleDates[id]!.month == now.month && User.current.plan.moduleDates[id]!.day == now.day && DB.modules[id]!.status != ModuleStatus.Pending));
+
     return View(
       title: "Dashboard",
       content: Row(
@@ -27,32 +33,34 @@ class Dashboard extends StatelessWidget {
               children: [
                 Expanded(
                   child: NcContainer(
-                    body: User.current.plan.moduleDates.keys.isNotEmpty
-                        ? ListView(
-                            children: [
-                              for (int id in User.current.plan.moduleDates.keys)
-                                if (User.current.plan.moduleDates[id]!.year == now.year && User.current.plan.moduleDates[id]!.month == now.month && User.current.plan.moduleDates[id]!.day == now.day)
-                                  DashboardTodaysTasksItem(id: id, margin: id != User.current.plan.moduleDates.keys.last)
+                    body: hasModulesForToday
+                        ? !doneForToday
+                            ? ListView(
+                                children: [
+                                  for (int id in User.current.plan.moduleDates.keys)
+                                    if (User.current.plan.moduleDates[id]!.year == now.year && User.current.plan.moduleDates[id]!.month == now.month && User.current.plan.moduleDates[id]!.day == now.day)
+                                      DashboardTodaysTasksItem(id: id, margin: id != User.current.plan.moduleDates.keys.last)
 
-                              // DashboardTodaysTasksItem(id: 0),
-                              // DashboardTodaysTasksItem(id: 0),
-                              // DashboardTodaysTasksItem(id: 0),
-                              // DashboardTodaysTasksItem(id: 0),
-                              // DashboardTodaysTasksItem(id: 0),
-                              // DashboardTodaysTasksItem(id: 0),
-                              // DashboardTodaysTasksItem(id: 0),
-                              // DashboardTodaysTasksItem(id: 0),
-                              // DashboardTodaysTasksItem(id: 0),
-                              // DashboardTodaysTasksItem(id: 0),
-                              // DashboardTodaysTasksItem(id: 0),
-                              // DashboardTodaysTasksItem(id: 0),
-                              // DashboardTodaysTasksItem(id: 0),
-                              // DashboardTodaysTasksItem(id: 0),
-                              // DashboardTodaysTasksItem(id: 0),
-                              // DashboardTodaysTasksItem(id: 0),
-                              // DashboardTodaysTasksItem(id: 0, margin: false),
-                            ],
-                          )
+                                  // DashboardTodaysTasksItem(id: 0),
+                                  // DashboardTodaysTasksItem(id: 0),
+                                  // DashboardTodaysTasksItem(id: 0),
+                                  // DashboardTodaysTasksItem(id: 0),
+                                  // DashboardTodaysTasksItem(id: 0),
+                                  // DashboardTodaysTasksItem(id: 0),
+                                  // DashboardTodaysTasksItem(id: 0),
+                                  // DashboardTodaysTasksItem(id: 0),
+                                  // DashboardTodaysTasksItem(id: 0),
+                                  // DashboardTodaysTasksItem(id: 0),
+                                  // DashboardTodaysTasksItem(id: 0),
+                                  // DashboardTodaysTasksItem(id: 0),
+                                  // DashboardTodaysTasksItem(id: 0),
+                                  // DashboardTodaysTasksItem(id: 0),
+                                  // DashboardTodaysTasksItem(id: 0),
+                                  // DashboardTodaysTasksItem(id: 0),
+                                  // DashboardTodaysTasksItem(id: 0, margin: false),
+                                ],
+                              )
+                            : NcVectorImage(code: you_are_done_svg)
                         : Column(
                             children: [
                               Expanded(child: NcVectorImage(code: todays_tasks_yay)),
@@ -130,7 +138,7 @@ class Dashboard extends StatelessWidget {
                 Expanded(
                   flex: 5,
                   child: NcContainer(
-                    body: NcCommingSoon(),
+                    body: NcVectorImage(code: you_are_done_svg),
                     label: NcCaptionText(
                       "Timetable (TBA)",
                       fontSize: titleSize,
