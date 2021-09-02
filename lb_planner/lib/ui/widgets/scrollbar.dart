@@ -22,10 +22,7 @@ class _NcScrollbarState extends State<NcScrollbar> {
       isAlwaysShown: widget.isAlwaysShown,
       thumbColor: NcThemes.current.accentColor,
       radius: Radius.circular(ncRadius),
-      child: Container(
-        child: widget.child,
-        padding: EdgeInsets.only(right: NcScrollbar.scrollbarWidth + NcScrollbar.padding),
-      ),
+      child: widget.child,
     );
   }
 }

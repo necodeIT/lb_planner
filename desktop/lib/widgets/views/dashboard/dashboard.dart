@@ -24,7 +24,7 @@ class Dashboard extends StatelessWidget {
     bool doneForToday = User.current.plan.moduleDates.keys
         .any((id) => (User.current.plan.moduleDates[id]!.year == now.year && User.current.plan.moduleDates[id]!.month == now.month && User.current.plan.moduleDates[id]!.day == now.day && DB.modules[id]!.status != ModuleStatus.Pending));
 
-    return View(
+    return NcView(
       title: "Dashboard",
       content: Row(
         children: [

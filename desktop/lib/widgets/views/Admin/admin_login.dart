@@ -10,7 +10,7 @@ class AdminLogin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return View(
+    return NcView(
       title: ("Admin Login"),
       content: Row(
         children: [

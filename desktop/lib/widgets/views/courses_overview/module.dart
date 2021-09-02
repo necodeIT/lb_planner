@@ -7,10 +7,14 @@ class CourseOverviewModuleItem extends StatefulWidget {
   CourseOverviewModuleItem({
     Key? key,
     required this.id,
+    this.bottom = false,
   }) : super(key: key);
 
   final int id;
+  final bool bottom;
+
   static const double borderWidth = 2;
+  static const double height = 40;
   static const double indicatorWidth = 5;
   static const double fontSize = 20;
 
@@ -19,33 +23,33 @@ class CourseOverviewModuleItem extends StatefulWidget {
 }
 
 class _CourseOverviewModuleItemState extends State<CourseOverviewModuleItem> {
-  final double? height = 40;
-
-  final BoxDecoration border = BoxDecoration(
-    border: Border(
-      top: BorderSide(
-        color: NcThemes.current.tertiaryColor,
-        width: CourseOverviewModuleItem.borderWidth,
-      ),
-      right: BorderSide(
-        color: NcThemes.current.tertiaryColor,
-        width: CourseOverviewModuleItem.borderWidth,
-      ),
-      bottom: BorderSide(
-        color: NcThemes.current.tertiaryColor,
-        width: CourseOverviewModuleItem.borderWidth,
-      ),
-    ),
-  );
+  BoxDecoration _border() => BoxDecoration(
+        border: Border(
+          top: BorderSide(
+            color: NcThemes.current.tertiaryColor,
+            width: CourseOverviewModuleItem.borderWidth,
+          ),
+          right: BorderSide(
+            color: NcThemes.current.tertiaryColor,
+            width: CourseOverviewModuleItem.borderWidth,
+          ),
+          bottom: widget.bottom
+              ? BorderSide(
+                  color: NcThemes.current.tertiaryColor,
+                  width: CourseOverviewModuleItem.borderWidth,
+                )
+              : BorderSide.none,
+        ),
+      );
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: height,
+      height: CourseOverviewModuleItem.height,
       child: Row(
         children: [
           Container(
-            height: height,
+            height: CourseOverviewModuleItem.height,
             width: CourseOverviewModuleItem.indicatorWidth,
             //height: 40,
             color: NcThemes.current.doneColor,
@@ -53,8 +57,8 @@ class _CourseOverviewModuleItemState extends State<CourseOverviewModuleItem> {
           Expanded(
             flex: 8,
             child: Container(
-              height: height,
-              decoration: border,
+              height: CourseOverviewModuleItem.height,
+              decoration: _border(),
               child: Row(
                 children: [
                   Expanded(
@@ -89,8 +93,8 @@ class _CourseOverviewModuleItemState extends State<CourseOverviewModuleItem> {
           Expanded(
             flex: 2,
             child: Container(
-              height: height,
-              decoration: border,
+              height: CourseOverviewModuleItem.height,
+              decoration: _border(),
               child: Center(
                 child: NcCaptionText(
                   '22.8.21',
@@ -102,8 +106,8 @@ class _CourseOverviewModuleItemState extends State<CourseOverviewModuleItem> {
           Expanded(
             flex: 2,
             child: Container(
-              height: height,
-              decoration: border,
+              height: CourseOverviewModuleItem.height,
+              decoration: _border(),
               child: Center(
                 child: NcCaptionText(
                   '22.8.CourseOverviewItem.fontSize21',
@@ -115,8 +119,8 @@ class _CourseOverviewModuleItemState extends State<CourseOverviewModuleItem> {
           Expanded(
             flex: 1,
             child: Container(
-              height: height,
-              decoration: border,
+              height: CourseOverviewModuleItem.height,
+              decoration: _border(),
               child: Center(
                 child: NcTitleText(
                   '1',
@@ -128,8 +132,8 @@ class _CourseOverviewModuleItemState extends State<CourseOverviewModuleItem> {
           Expanded(
             flex: 2,
             child: Container(
-              height: height,
-              decoration: border,
+              height: CourseOverviewModuleItem.height,
+              decoration: _border(),
               child: Center(
                 child: NcTextButton(
                   text: "Moodle",

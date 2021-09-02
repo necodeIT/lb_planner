@@ -62,9 +62,9 @@ class CourseSelectionItem extends StatelessWidget {
                 );
               },
               child: Icon(
-                FontAwesome5Solid.ellipsis_h,
+                Icons.more_horiz,
                 color: NcThemes.current.textColor,
-                size: 17,
+                size: 20,
               ),
             )
           ],

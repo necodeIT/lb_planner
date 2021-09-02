@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:lb_planner/ui.dart';
 
 class NcContainer extends StatelessWidget {
-  NcContainer({Key? key, required this.label, required this.body, this.leadingIcon, this.trailingIcon, this.width, this.height}) : super(key: key) {
+  NcContainer({Key? key, required this.label, required this.body, this.leadingIcon, this.trailingIcon, this.width, this.height, this.contentPadding = true, this.labelPadding = true}) : super(key: key) {
     window = false;
   }
-  NcContainer.window({Key? key, required this.body, required this.label, this.leadingIcon, this.trailingIcon, this.width, this.height}) : super(key: key) {
+  NcContainer.window({Key? key, required this.body, required this.label, this.leadingIcon, this.trailingIcon, this.width, this.height, this.contentPadding = true, this.labelPadding = true}) : super(key: key) {
     window = true;
   }
 
@@ -16,18 +16,21 @@ class NcContainer extends StatelessWidget {
   final double? width;
   final double? height;
   late final bool window;
+  final bool contentPadding;
+  final bool labelPadding;
 
   static const double padding = 15;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(padding),
+      padding: contentPadding && labelPadding ? EdgeInsets.all(padding) : EdgeInsets.only(top: padding, bottom: padding),
       width: width,
       height: height,
       child: Column(
         children: [
           Container(
+            padding: labelPadding && !contentPadding ? EdgeInsets.only(left: padding, right: padding) : null,
             alignment: Alignment.centerLeft,
             decoration: BoxDecoration(
               color: window ? NcThemes.current.secondaryColor : null,
