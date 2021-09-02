@@ -110,7 +110,7 @@ class _CourseOverviewModuleItemState extends State<CourseOverviewModuleItem> {
               decoration: _border(),
               child: Center(
                 child: NcCaptionText(
-                  '22.8.CourseOverviewItem.fontSize21',
+                  '22.8.21',
                   fontSize: CourseOverviewModuleItem.fontSize,
                 ),
               ),
@@ -140,8 +140,9 @@ class _CourseOverviewModuleItemState extends State<CourseOverviewModuleItem> {
                   fontSize: CourseOverviewModuleItem.fontSize,
                   onTap: () {},
                   trailingIcon: Icon(
-                    Icons.upcoming,
+                    Icons.open_in_new_rounded,
                     color: NcThemes.current.textColor,
+                    size: 15,
                   ),
                 ),
               ),

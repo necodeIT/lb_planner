@@ -5,7 +5,9 @@ import 'package:lb_planner/data.dart';
 import 'package:lb_planner/ui.dart';
 
 class SettingsFeedback extends StatelessWidget {
-  const SettingsFeedback({Key? key}) : super(key: key);
+  SettingsFeedback({Key? key}) : super(key: key);
+
+  FeedbackType feedbackType = FeedbackType.Bug;
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +19,7 @@ class SettingsFeedback extends StatelessWidget {
             fontSize: 20,
             value: FeedbackType.values.length - 1,
             items: EnumToString.toList(FeedbackType.values),
+            onValueChanged: (index) => feedbackType = FeedbackType.values[index],
           ),
         ),
         NcSpacing.medium(),
