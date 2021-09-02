@@ -1,5 +1,5 @@
 import 'package:desktop/widgets/views/courses_overview/course_stats/course_stats_chart.dart';
-import 'package:desktop/widgets/views/courses_overview/svg/svg.dart';
+import 'package:desktop/widgets/views/dashboard/svg/catgirl.dart';
 import 'package:desktop/widgets/views/dashboard/dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:lb_planner/data.dart';
