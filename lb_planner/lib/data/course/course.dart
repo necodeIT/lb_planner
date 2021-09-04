@@ -1,7 +1,10 @@
+import 'dart:math';
+
+import 'package:flutter/material.dart';
 import 'package:lb_planner/data.dart';
 
 class Course {
-  Course(this.id, this.name, this.modules, this.tag, this.tags) {
+  Course(this.id, this.name, this.modules, this.tag, this.tags, Color? color) {
     var filter = name.toLowerCase();
 
     splitCharachters.forEach((i) => filter = filter.replaceAll(i, splitCharacter));
@@ -9,6 +12,7 @@ class Course {
     var split = name.replaceAll("-", splitCharacter).split(splitCharacter);
 
     tag = split.length >= 0 ? split.first : name;
+    this.color = color ?? colorPresets[Random().nextInt(colorPresets.length)];
   }
 
   final int id;
@@ -17,6 +21,7 @@ class Course {
 
   late final String tag;
   late final List<CourseTags> tags;
+  late Color color;
 
   StatusProfile getStats() {
     int done = 0;
@@ -59,5 +64,6 @@ class Course {
   }
 
   static const List<String> splitCharachters = ["-"];
+  static const List<Color> colorPresets = [Colors.red];
   static const String splitCharacter = " ";
 }
