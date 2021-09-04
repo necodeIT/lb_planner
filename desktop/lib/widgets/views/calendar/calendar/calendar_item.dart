@@ -2,16 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:lb_planner/ui.dart';
 
 class CalendarItem extends StatelessWidget {
-  CalendarItem({Key? key, required this.id}) : super(key: key);
+  CalendarItem({Key? key, required this.id, this.height = 35})
+      : super(key: key);
 
   final int id;
+  final double? height;
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(bottom: NcSpacing.xsSpacing),
       padding: const EdgeInsets.only(left: ncRadius, right: ncRadius),
-      width: 300,
-      height: 50,
+      //width: 300,
+      height: height,
       decoration: BoxDecoration(
         color: NcThemes.current.primaryColor,
         borderRadius: BorderRadius.circular(ncRadius),
