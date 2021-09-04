@@ -18,3 +18,4 @@ export 'normal_fucking_gridview.dart';
 export 'user_profile.dart';
 export 'view/view.dart';
 export 'comming_soon/svg/types.dart';
+export 'color_picker/flutter_hsvcolor_picker.dart';
