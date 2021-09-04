@@ -1,3 +1,4 @@
+import 'package:desktop/dialogs/edit_course_dialog.dart';
 import 'package:desktop/widgets/views/courses_overview/course_stats/course_stats_chart.dart';
 import 'package:desktop/widgets/views/dashboard/svg/catgirl.dart';
 import 'package:desktop/widgets/views/dashboard/dashboard.dart';
@@ -26,18 +27,7 @@ class CourseOverviewItem extends StatelessWidget {
           fontSize: 20,
         ),
         trailingIcon: GestureDetector(
-          onTap: () {
-            showDialog(
-              context: context,
-              builder: (context) => NcDialog.ok(
-                title: "Course Settings",
-                body: NcLoadingIndicator(),
-                onConfirm: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            );
-          },
+          onTap: () => showEditCourseDialog(context, id),
           child: Icon(
             Icons.more_horiz,
             color: NcThemes.current.textColor,

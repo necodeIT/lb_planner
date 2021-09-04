@@ -1,3 +1,4 @@
+import 'package:desktop/dialogs/edit_course_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:lb_planner/ui.dart';
@@ -49,18 +50,7 @@ class CourseSelectionItem extends StatelessWidget {
               fontSize: 20,
             ),
             GestureDetector(
-              onTap: () {
-                showDialog(
-                  context: context,
-                  builder: (context) => NcDialog.ok(
-                    title: "Course Settings",
-                    body: NcLoadingIndicator(),
-                    onConfirm: () {
-                      Navigator.of(context).pop();
-                    },
-                  ),
-                );
-              },
+              onTap: () => showEditCourseDialog(context, id),
               child: Icon(
                 Icons.more_horiz,
                 color: NcThemes.current.textColor,
