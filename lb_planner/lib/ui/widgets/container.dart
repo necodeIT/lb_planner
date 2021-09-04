@@ -24,13 +24,12 @@ class NcContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: contentPadding && labelPadding ? EdgeInsets.all(padding) : EdgeInsets.only(top: padding, bottom: padding),
       width: width,
       height: height,
       child: Column(
         children: [
           Container(
-            padding: labelPadding && !contentPadding ? EdgeInsets.only(left: padding, right: padding) : null,
+            padding: labelPadding ? EdgeInsets.all(padding) : null,
             alignment: Alignment.centerLeft,
             decoration: BoxDecoration(
               color: window ? NcThemes.current.secondaryColor : null,
@@ -52,9 +51,13 @@ class NcContainer extends StatelessWidget {
                     ],
                   ),
           ),
-          NcSpacing.medium(),
-          Expanded(child: body),
           NcSpacing.xs(),
+          Expanded(
+            child: Container(
+              padding: contentPadding ? EdgeInsets.only(left: padding, right: padding, bottom: padding) : EdgeInsets.only(bottom: padding),
+              child: body,
+            ),
+          ),
         ],
       ),
       decoration: BoxDecoration(

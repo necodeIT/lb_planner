@@ -4,15 +4,20 @@ import 'package:lb_planner/ui.dart';
 import 'package:lb_planner/data.dart';
 
 class UserProfile extends StatelessWidget {
-  const UserProfile({Key? key}) : super(key: key);
+  const UserProfile({Key? key, this.onShowNotifications}) : super(key: key);
+
+  final Function()? onShowNotifications;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Icon(
-          Feather.bell,
-          color: NcThemes.current.textColor,
+        GestureDetector(
+          onTap: onShowNotifications,
+          child: Icon(
+            Feather.bell,
+            color: NcThemes.current.textColor,
+          ),
         ),
         NcSpacing.medium(),
         Column(
