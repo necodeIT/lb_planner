@@ -27,7 +27,7 @@ class User {
     _current = user;
 
     if (user.isDummy) return;
-    DB.init();
+    // DB.init();
   }
 
   List<int> getUpcommingExams() {

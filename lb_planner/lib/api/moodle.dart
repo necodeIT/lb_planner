@@ -75,9 +75,9 @@ class MoodleAPI {
     try {
       var response = await client.get(function("core_enrol_get_users_courses", {"userid": User.current.id}));
 
-      try {
-        Map<String, dynamic> data = json.decode(response.body);
+      var data = json.decode(response.body);
 
+      try {
         var error = data["errorcode"];
 
         if (error != null) return ApiResponse.error(error);
@@ -85,7 +85,7 @@ class MoodleAPI {
 
       var courses = List<Course>.empty();
 
-      List<Map<String, dynamic>> data = json.decode(response.body);
+      // List<dynamic> data = catgirl.values.first;
 
       for (var course in data) {
         // TODO: get course color from settings if user is not new
@@ -107,9 +107,8 @@ class MoodleAPI {
     try {
       var response = await client.get(function("core_course_get_contents", {"courseid": courseID}));
 
+      var data = json.decode(response.body);
       try {
-        Map<String, dynamic> data = json.decode(response.body);
-
         var error = data["errorcode"];
 
         if (error != null) return ApiResponse.error(error);
@@ -117,11 +116,9 @@ class MoodleAPI {
 
       var modules = List<Module>.empty();
 
-      List<Map<String, dynamic>> catgirl = json.decode(response.body);
+      var catgirl = data.first["modules"];
 
-      List<Map<String, dynamic>> data = catgirl.first["modules"];
-
-      data.forEach((module) {
+      catgirl.forEach((module) {
         // TODO: get "isEnabled" if user is not new
         // TODO: get grade from moodle
         // TODO: "customdata": "{\"duedate\":1603464600}",
