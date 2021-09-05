@@ -17,8 +17,10 @@ class NcView extends StatefulWidget {
   _NcViewState createState() => _NcViewState();
 }
 
-class _NcViewState extends State<NcView> {
+class _NcViewState extends State<NcView> with SingleTickerProviderStateMixin {
   bool showNotifications = false;
+  // late AnimationController _controller;
+  // late Animation<double> _animation;
 
   void hideNotificationsPopuop() {
     setState(() {
@@ -31,6 +33,28 @@ class _NcViewState extends State<NcView> {
       showNotifications = true;
     });
   }
+
+  // @override
+  // void initState() {
+  //   _controller = AnimationController(
+  //     vsync: this,
+  //     duration: Duration(milliseconds: 350),
+  //   );
+
+  //   _controller.forward();
+  //   _animation = CurvedAnimation(
+  //     parent: _controller,
+  //     curve: Curves.easeOutCubic,
+  //   );
+
+  //   super.initState();
+  // }
+
+  // @override
+  // void dispose() {
+  //   _controller.dispose();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +84,15 @@ class _NcViewState extends State<NcView> {
               ),
             ),
             NcSpacing.small(),
-            Expanded(child: widget.content),
+            // Expanded(
+            //   child: SlideTransition(
+            //     child: widget.content,
+            //     position: Tween<Offset>(begin: Offset(0, 1), end: Offset(0, 0)).animate(_animation),
+            //   ),
+            // ),
+            Expanded(
+              child: widget.content,
+            ),
             NcSpacing.small(),
           ],
         ),
