@@ -18,17 +18,17 @@ class NcView extends StatefulWidget {
 }
 
 class _NcViewState extends State<NcView> {
-  bool showNotificationsPopup = false;
+  bool showNotifications = false;
 
-  void hideNotifications() {
+  void hideNotificationsPopuop() {
     setState(() {
-      showNotificationsPopup = false;
+      showNotifications = false;
     });
   }
 
-  void showNotifications() {
+  void showNotificationsPopup() {
     setState(() {
-      showNotificationsPopup = true;
+      showNotifications = true;
     });
   }
 
@@ -55,7 +55,7 @@ class _NcViewState extends State<NcView> {
                           ),
                         )
                       : NcCaptionText(widget.title, fontSize: NcView.fontSize),
-                  UserProfile(onShowNotifications: showNotifications),
+                  UserProfile(onShowNotifications: showNotificationsPopup),
                 ],
               ),
             ),
@@ -64,39 +64,48 @@ class _NcViewState extends State<NcView> {
             NcSpacing.small(),
           ],
         ),
-        if (showNotificationsPopup)
-          Positioned(
-            top: 60,
-            right: 140,
-            child: NcContainer(
-              width: NcView.notificationsSize,
-              height: NcView.notificationsSize,
-              label: NcCaptionText(
-                "Notifications",
-                fontSize: 20,
-              ),
-              body: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Expanded(
-                      child: NcVectorImage(
-                    code: no_notifications,
-                  )),
-                  NcBodyText(
-                    "No Notifications",
-                    fontSize: 15,
+        AnimatedPositioned(
+          duration: Duration(milliseconds: 500),
+          curve: Curves.easeOutCubic,
+          top: showNotifications ? 60 : 0,
+          right: 140,
+          child: AnimatedOpacity(
+            duration: Duration(milliseconds: 500),
+            curve: Curves.easeOutCubic,
+            opacity: showNotifications ? 1 : 0,
+            child: Visibility(
+              visible: showNotifications,
+              child: NcContainer(
+                width: NcView.notificationsSize,
+                height: NcView.notificationsSize,
+                label: NcCaptionText(
+                  "Notifications",
+                  fontSize: 20,
+                ),
+                body: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Expanded(
+                        child: NcVectorImage(
+                      code: no_notifications,
+                    )),
+                    NcBodyText(
+                      "No Notifications",
+                      fontSize: 15,
+                    ),
+                  ],
+                ),
+                trailingIcon: GestureDetector(
+                  onTap: hideNotificationsPopuop,
+                  child: Icon(
+                    Icons.close,
+                    color: NcThemes.current.lateColor,
                   ),
-                ],
-              ),
-              trailingIcon: GestureDetector(
-                onTap: hideNotifications,
-                child: Icon(
-                  Icons.close,
-                  color: NcThemes.current.lateColor,
                 ),
               ),
             ),
-          )
+          ),
+        )
       ],
     );
   }
