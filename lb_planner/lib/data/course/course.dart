@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:lb_planner/data.dart';
 
 class Course {
-  Course(this.id, this.name, this.modules, this.tag, this.tags, Color? color) {
+  Course(this.id, this.name, this.modules, Color? color) {
     var filter = name.toLowerCase();
 
     splitCharachters.forEach((i) => filter = filter.replaceAll(i, splitCharacter));
@@ -20,8 +20,13 @@ class Course {
   final List<int> modules;
 
   late final String tag;
-  late final List<CourseTags> tags;
   late Color color;
+
+  List<CourseTags> getTags() {
+    // TODO: evaluate tags
+
+    return [];
+  }
 
   StatusProfile getStats() {
     int done = 0;

@@ -2,7 +2,7 @@ import 'package:lb_planner/data.dart';
 import 'package:lb_planner/ui.dart';
 
 class User {
-  User(this.id, this.token, this.name, this.plan, this.email, this.settings, [this.role = UserPermissions.Student]) {
+  User(this.id, this.token, this.name, this.plan, this.settings, [this.role = UserPermissions.Student]) {
     email = "$name@$emailSubfix";
     isDummy = false;
   }
