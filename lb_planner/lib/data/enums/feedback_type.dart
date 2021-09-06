@@ -1,1 +1,1 @@
-enum FeedbackType { Suggestion, Error, Bug }
+enum FeedbackType { Praise, Suggestion, Error, Bug }

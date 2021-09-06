@@ -4,7 +4,7 @@ import 'package:lb_planner/ui.dart';
 class NcSnackBar {
   static const double fontSize = 18;
 
-  static SnackBar bottomRightMessage({required String message, Widget? prefixIcon, Duration duration = const Duration(seconds: 1, milliseconds: 500)}) {
+  static bottomRightMessage({required String message, Widget? prefixIcon, Duration duration = const Duration(seconds: 1, milliseconds: 500)}) {
     return SnackBar(
       duration: duration,
       content: Row(

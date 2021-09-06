@@ -1,8 +1,7 @@
 import 'dart:io';
 import 'package:desktop/home.dart';
-import 'package:desktop/widgets/views/calendar/calendar/calendar_item.dart';
 import 'package:desktop/widgets/views/calendar/calendar_switch.dart';
-import 'package:desktop/widgets/views/calendar/calender_day.dart';
+import 'package:desktop/widgets/views/calendar/calendar_day.dart';
 import 'package:desktop/widgets/views/calendar/modules/modules_day.dart';
 import 'package:flutter/material.dart';
 import 'package:lb_planner/data.dart';

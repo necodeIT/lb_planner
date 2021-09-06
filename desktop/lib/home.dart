@@ -1,4 +1,5 @@
 import 'package:desktop/widgets/views/Admin/admin_login.dart';
+import 'package:desktop/widgets/views/calendar/calendar.dart';
 import 'package:desktop/widgets/views/courses_overview/course_overview.dart';
 import 'package:desktop/widgets/views/dashboard/dashboard.dart';
 import 'package:desktop/widgets/views/login/login.dart';
@@ -55,7 +56,7 @@ class _HomeState extends State<Home> {
       case HomeState.Sidebar:
         return Sidebar(
           dashboard: Dashboard(),
-          calendar: Container(color: Colors.red),
+          calendar: CalendarView(),
           coursesOverwiev: CourseOverview(),
           planner: NcCommingSoon(),
           admin: AdminLogin(),
