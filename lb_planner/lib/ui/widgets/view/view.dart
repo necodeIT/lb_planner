@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:lb_planner/data.dart';
 import 'package:lb_planner/ui.dart';
 import 'package:lb_planner/ui/widgets/view/svg/notifactions_svg.dart';
 
@@ -79,7 +80,7 @@ class _NcViewState extends State<NcView> with SingleTickerProviderStateMixin {
                           ),
                         )
                       : NcCaptionText(widget.title, fontSize: NcView.fontSize),
-                  UserProfile(onShowNotifications: showNotificationsPopup),
+                  NcUserProfile(onShowNotifications: showNotificationsPopup),
                 ],
               ),
             ),
@@ -100,7 +101,7 @@ class _NcViewState extends State<NcView> with SingleTickerProviderStateMixin {
           duration: Duration(milliseconds: 500),
           curve: Curves.easeOutCubic,
           top: showNotifications ? 60 : 0,
-          right: 140,
+          right: _popupOffset(),
           child: AnimatedOpacity(
             duration: Duration(milliseconds: 500),
             curve: Curves.easeOutCubic,
@@ -140,5 +141,11 @@ class _NcViewState extends State<NcView> with SingleTickerProviderStateMixin {
         )
       ],
     );
+  }
+
+  // Here it is!
+  double _popupOffset() {
+    final TextPainter textPainter = TextPainter(text: TextSpan(text: User.current.name, style: NcCaptionText.style(fontSize: NcUserProfile.nameSize)), maxLines: 1, textDirection: TextDirection.ltr)..layout(minWidth: 0, maxWidth: double.infinity);
+    return textPainter.size.width + NcUserProfile.bellSize + NcUserProfile.ppWidth + NcSpacing.xsSpacing;
   }
 }

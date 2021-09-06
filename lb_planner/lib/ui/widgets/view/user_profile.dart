@@ -3,10 +3,14 @@ import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:lb_planner/ui.dart';
 import 'package:lb_planner/data.dart';
 
-class UserProfile extends StatelessWidget {
-  const UserProfile({Key? key, this.onShowNotifications}) : super(key: key);
+class NcUserProfile extends StatelessWidget {
+  const NcUserProfile({Key? key, this.onShowNotifications}) : super(key: key);
 
   final Function()? onShowNotifications;
+
+  static const double ppWidth = 60;
+  static const double nameSize = 22;
+  static const double bellSize = 25;
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +21,7 @@ class UserProfile extends StatelessWidget {
           child: Icon(
             Feather.bell,
             color: NcThemes.current.textColor,
+            size: bellSize,
           ),
         ),
         NcSpacing.medium(),
@@ -25,7 +30,7 @@ class UserProfile extends StatelessWidget {
           children: [
             NcCaptionText(
               User.current.name,
-              fontSize: 22,
+              fontSize: nameSize,
             ),
             Text(
               User.current.role.toString().substring(
@@ -45,7 +50,7 @@ class UserProfile extends StatelessWidget {
           child: Image.asset(
             // TODO: get user profile
             "assets/placeholders/profile.png",
-            width: 60,
+            width: ppWidth,
             //height: ,
           ),
         )
