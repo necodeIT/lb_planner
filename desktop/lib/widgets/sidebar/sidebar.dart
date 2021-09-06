@@ -4,7 +4,16 @@ import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:lb_planner/ui.dart';
 
 class Sidebar extends StatefulWidget {
-  Sidebar({Key? key, required this.dashboard, required this.calendar, required this.coursesOverwiev, required this.planner, required this.admin, required this.settings, required this.onLogout}) : super(key: key);
+  Sidebar(
+      {Key? key,
+      required this.dashboard,
+      required this.calendar,
+      required this.coursesOverwiev,
+      required this.planner,
+      required this.admin,
+      required this.settings,
+      required this.onLogout})
+      : super(key: key);
 
   final Widget dashboard;
   final Widget calendar;
@@ -26,7 +35,8 @@ class Sidebar extends StatefulWidget {
     Feather.log_out,
   ];
 
-  List<Widget> get views => [dashboard, calendar, coursesOverwiev, planner, admin, settings];
+  List<Widget> get views =>
+      [dashboard, calendar, coursesOverwiev, planner, admin, settings];
 
   static const double width = 70;
 
@@ -48,7 +58,8 @@ class _SidebarState extends State<Sidebar> {
     return Row(
       children: [
         Container(
-          decoration: BoxDecoration(color: NcThemes.current.primaryColor, boxShadow: ncShadow),
+          decoration: BoxDecoration(
+              color: NcThemes.current.primaryColor, boxShadow: ncShadow),
           width: Sidebar.width,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -73,7 +84,9 @@ class _SidebarState extends State<Sidebar> {
               Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  for (int i = Sidebar.topEnd + 1; i < Sidebar.icons.length - 1; i++)
+                  for (int i = Sidebar.topEnd + 1;
+                      i < Sidebar.icons.length - 1;
+                      i++)
                     SidebarItem(
                         icon: Sidebar.icons[i],
                         isSelected: i == current,
@@ -81,7 +94,10 @@ class _SidebarState extends State<Sidebar> {
                           setCurrent(i);
                         }),
                   // for (int i = Sidebar.topEnd; i < widget.views.length - 1; i++) Text(i.toString()),
-                  SidebarItem(icon: Sidebar.icons.last, isSelected: false, onTap: widget.onLogout),
+                  SidebarItem(
+                      icon: Sidebar.icons.last,
+                      isSelected: false,
+                      onTap: widget.onLogout),
                   NcSpacing.small(),
                 ],
               )

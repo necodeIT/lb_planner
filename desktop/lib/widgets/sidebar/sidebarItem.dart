@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lb_planner/ui.dart';
 
-class SidebarItem extends StatelessWidget {
-  const SidebarItem(
+class SidebarItem extends StatefulWidget {
+  SidebarItem(
       {Key? key,
       required this.icon,
       required this.isSelected,
@@ -17,24 +17,31 @@ class SidebarItem extends StatelessWidget {
   static const double radius = 16;
 
   @override
+  _SidebarItem createState() => _SidebarItem();
+}
+
+class _SidebarItem extends State<SidebarItem> {
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: isSelected ? null : onTap,
-      child: Container(
+      onTap: widget.isSelected ? null : widget.onTap,
+      child: AnimatedContainer(
+        duration: Duration(milliseconds: 100),
+        curve: Curves.easeInCubic,
         margin: EdgeInsets.only(top: NcSpacing.smallSpacing),
-        padding: EdgeInsets.all(padding),
+        padding: EdgeInsets.all(SidebarItem.padding),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(
-            Radius.circular(radius),
+            Radius.circular(SidebarItem.radius),
           ),
-          color: isSelected
+          color: widget.isSelected
               ? NcThemes.current.accentColor
               : NcThemes.current.secondaryColor,
-          boxShadow: isSelected ? ncShadow : null,
+          boxShadow: widget.isSelected ? ncShadow : null,
         ),
         child: Icon(
-          icon,
-          color: isSelected
+          widget.icon,
+          color: widget.isSelected
               ? NcThemes.current.buttonTextColor
               : NcThemes.current.textColor,
         ),
