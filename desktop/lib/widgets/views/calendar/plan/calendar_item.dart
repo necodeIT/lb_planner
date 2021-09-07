@@ -16,7 +16,7 @@ class CalendarItem extends StatelessWidget {
       //width: 300,
       height: height,
       decoration: BoxDecoration(
-        color: NcThemes.current.primaryColor,
+        color: NcThemes.current.secondaryColor,
         borderRadius: BorderRadius.circular(ncRadius),
       ),
       child: Row(

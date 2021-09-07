@@ -16,8 +16,8 @@ class CalenderDayItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 150, //TODO: Weg löschn
-      width: 200, //TODO: Weg löschn
+      //height: 100, //TODO: Weg löschn
+      //width: 200, //TODO: Weg löschn
       decoration: BoxDecoration(
         border: Border.all(
           color: NcThemes.current.tertiaryColor,
@@ -28,13 +28,13 @@ class CalenderDayItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           Expanded(
-              child: ListView(
-            children: children
-            // CalendarItem(id: 1),
-            // CalendarItem(id: 1),
-            // CalendarItem(id: 1),
-            ,
-          )),
+            child: ListView(
+              children: children,
+              // CalendarItem(id: 1),
+              // CalendarItem(id: 1),
+              // CalendarItem(id: 1),
+            ),
+          ),
           NcCaptionText(
             '01',
             fontSize: 20,
