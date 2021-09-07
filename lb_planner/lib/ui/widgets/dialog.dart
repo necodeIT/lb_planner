@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:lb_planner/ui.dart';
 
 class NcDialog extends StatelessWidget {
-  NcDialog({Key? key, this.title = "", required this.body, this.confirmText = "Confirm", this.cancelText = "Cancel", required this.onConfirm, required this.onCancel, this.width = defaultWidth, this.label, this.buttonWidth = defaultButtonWidth})
+  NcDialog({Key? key, this.title = "", required this.body, this.confirmText = "Confirm", this.cancelText = "Cancel", required this.onConfirm, this.onCancel, this.width = defaultWidth, this.label, this.buttonWidth = defaultButtonWidth})
       : super(key: key) {
     confirmOnly = false;
   }
-  NcDialog.ok({Key? key, required this.title, required this.body, required this.onConfirm, this.confirmText = "OK", this.width = defaultWidth, this.label, this.buttonWidth = defaultButtonWidth}) : super(key: key) {
+  NcDialog.ok({Key? key, required this.title, required this.body, this.onConfirm, this.confirmText = "OK", this.width = defaultWidth, this.label, this.buttonWidth = defaultButtonWidth}) : super(key: key) {
     confirmOnly = true;
   }
 
@@ -19,7 +19,7 @@ class NcDialog extends StatelessWidget {
   late final String? cancelText;
   late final bool confirmOnly;
 
-  final Function() onConfirm;
+  final Function()? onConfirm;
   late final Function()? onCancel;
 
   static const double padding = 20;
@@ -43,9 +43,9 @@ class NcDialog extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            if (!confirmOnly) NcButton.cancel(text: cancelText ?? "", onTap: onCancel ?? () {}, width: buttonWidth),
+            if (!confirmOnly) NcButton.cancel(text: cancelText ?? "", onTap: onCancel ?? Navigator.of(context).pop, width: buttonWidth),
             NcSpacing.medium(),
-            NcButton(text: confirmText, onTap: onConfirm, width: buttonWidth),
+            NcButton(text: confirmText, onTap: onConfirm ?? Navigator.of(context).pop, width: buttonWidth),
           ],
         )
       ],
