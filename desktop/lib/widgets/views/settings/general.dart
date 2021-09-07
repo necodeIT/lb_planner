@@ -25,7 +25,7 @@ class SettingsGeneralItem extends StatelessWidget {
         ),
         NcSpacing.small(),
         GestureDetector(
-          onTap: () {},
+          onTap: onTap,
           child: Container(
             height: height,
             width: width,
