@@ -11,7 +11,7 @@ class Credits extends StatelessWidget {
     return NcView(
         title: "Settings",
         onNavigateBack: goBack,
-        content: Column(
+        content: ListView(
           children: [
             NcBodyText(
               '''Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nibh ipsum consequat nisl vel pretium lectus quam id leo. Porta nibh venenatis cras sed felis eget velit. Est velit egestas dui id ornare arcu odio ut. Ac ut consequat semper viverra nam libero justo laoreet. Feugiat sed lectus vestibulum mattis ullamcorper velit sed ullamcorper morbi. Est velit egestas dui id ornare arcu odio. Amet commodo nulla facilisi nullam. Ullamcorper sit amet risus nullam eget felis. Risus quis varius quam quisque id diam vel quam elementum. Tellus mauris a diam maecenas sed. Tortor consequat id porta nibh venenatis cras sed felis eget.
