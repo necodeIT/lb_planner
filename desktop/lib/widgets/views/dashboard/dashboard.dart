@@ -1,7 +1,7 @@
 import 'package:desktop/widgets/views/dashboard/exams.dart';
 import 'package:desktop/widgets/views/dashboard/status_overview/status_overview.dart';
 import 'package:desktop/widgets/views/dashboard/svg/catgirl.dart';
-import 'package:desktop/widgets/views/dashboard/svg/yay.dart';
+import 'package:desktop/widgets/views/dashboard/svg/exams.dart';
 import 'package:desktop/widgets/views/dashboard/todays_task.dart';
 import 'package:flutter/material.dart';
 import 'package:lb_planner/data.dart';
@@ -33,6 +33,7 @@ class Dashboard extends StatelessWidget {
               children: [
                 Expanded(
                   child: NcContainer(
+                    width: double.infinity,
                     body: hasModulesForToday
                         ? !doneForToday
                             ? ListView(
