@@ -55,10 +55,10 @@ class _SettingsFeedbackState extends State<SettingsFeedback> {
                     showFeedbackDialog(context);
                   }
                 : null,
-            // trailingIcon: Icon(
-            //   Feather.arrow_right_circle,
-            //   color: NcThemes.current.textColor,
-            // ),
+            trailingIcon: Icon(
+              Feather.arrow_right_circle,
+              color: NcThemes.current.textColor,
+            ),
             fontSize: 20,
           ),
         ),

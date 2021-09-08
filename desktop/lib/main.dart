@@ -1,9 +1,12 @@
 import 'dart:io';
 import 'package:desktop/home.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:lb_planner/data.dart';
 import 'package:lb_planner/ui.dart';
 import 'package:window_size/window_size.dart';
+
+import 'svg/error.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,12 +35,35 @@ class App extends StatefulWidget {
 class _AppState extends State<App> {
   @override
   void initState() {
-    NcThemes.onCurrentThemeChange = () =>
-        setState(() => User.current.settings.theme = NcThemes.current.name);
+    NcThemes.onCurrentThemeChange = () => setState(() => User.current.settings.theme = NcThemes.current.name);
 
-    FlutterError.onError = (details) => reportError(context, error: details);
+    ErrorWidget.builder = kReleaseMode
+        ? (details) => LayoutBuilder(
+              builder: (context, size) {
+                final message = "Internal Error:  '${details.context != null ? details.context!.name ?? noInfo : noInfo}'. Please restart the application and try again.";
 
-    ErrorWidget.builder = (details) => NcBodyText("lol");
+                return Center(
+                  child: Column(
+                    children: [
+                      NcSpacing.small(),
+                      NcVectorImage(
+                        code: error_svg,
+                        width: size.maxWidth * .8,
+                      ),
+                      NcSpacing.small(),
+                      Tooltip(
+                        message: message,
+                        child: NcBodyText(message),
+                      ),
+                      NcSpacing.small(),
+                    ],
+                  ),
+                );
+              },
+            )
+        : ErrorWidget.builder;
+
+    FlutterError.onError = (details) => Guard.reportError(context, error: details);
 
     super.initState();
   }
