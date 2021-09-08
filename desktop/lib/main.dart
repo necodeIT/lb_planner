@@ -6,8 +6,6 @@ import 'package:lb_planner/data.dart';
 import 'package:lb_planner/ui.dart';
 import 'package:window_size/window_size.dart';
 
-import 'svg/error.dart';
-
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   NcThemes.current = NcThemes.all[User.current.settings.theme] ?? NcThemes.dark;
@@ -35,37 +33,12 @@ class App extends StatefulWidget {
 class _AppState extends State<App> {
   @override
   void initState() {
+    super.initState();
     NcThemes.onCurrentThemeChange = () => setState(() => User.current.settings.theme = NcThemes.current.name);
 
-    ErrorWidget.builder = kReleaseMode
-        ? (details) => LayoutBuilder(
-              builder: (context, size) {
-                final message = "Internal Error:  '${details.context != null ? details.context!.name ?? noInfo : noInfo}'. Please restart the application and try again.";
+    Guard.init(context);
 
-                return Center(
-                  child: Column(
-                    children: [
-                      NcSpacing.small(),
-                      NcVectorImage(
-                        code: error_svg,
-                        width: size.maxWidth * .8,
-                      ),
-                      NcSpacing.small(),
-                      Tooltip(
-                        message: message,
-                        child: NcBodyText(message),
-                      ),
-                      NcSpacing.small(),
-                    ],
-                  ),
-                );
-              },
-            )
-        : ErrorWidget.builder;
-
-    FlutterError.onError = (details) => Guard.reportError(context, error: details);
-
-    super.initState();
+    Guard.checkForRecentCrash(context);
   }
 
   @override
@@ -73,7 +46,6 @@ class _AppState extends State<App> {
     return Scaffold(
       backgroundColor: NcThemes.current.secondaryColor,
       body: Home(),
-      // body: NcTextButton(text: "sdasd", onTap: () {}),
     );
   }
 }

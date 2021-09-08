@@ -21,13 +21,13 @@ class SettingView extends StatefulWidget {
 class _SettingViewState extends State<SettingView> {
   SettingsState state = SettingsState.Settings;
 
-  showSettings() {
+  _showSettings() {
     setState(() {
       state = SettingsState.Settings;
     });
   }
 
-  showCredits() {
+  _showCredits() {
     setState(() {
       state = SettingsState.Credits;
     });
@@ -66,8 +66,7 @@ class _SettingViewState extends State<SettingView> {
                                             Icons.update,
                                             color: NcThemes.current.textColor,
                                           ),
-                                          message:
-                                              "You already are up to date!",
+                                          message: "You already are up to date!",
                                         );
                                       },
                                     ),
@@ -92,7 +91,7 @@ class _SettingViewState extends State<SettingView> {
                                     SettingsGeneralItem(
                                       text: "Credits",
                                       icon: Icons.info_outline,
-                                      onTap: showCredits,
+                                      onTap: _showCredits,
                                     ),
                                   ],
                                 ),
@@ -110,8 +109,7 @@ class _SettingViewState extends State<SettingView> {
                                   spacing: NcSpacing.xlSpacing,
                                   children: [
                                     // TODO: for (var theme in User.current.themes) ThemeItem(theme: theme),
-                                    for (var theme in NcThemes.all.keys)
-                                      ThemeItem(theme: theme),
+                                    for (var theme in NcThemes.all.keys) ThemeItem(theme: theme),
                                   ],
                                 ),
                               ),
@@ -140,7 +138,7 @@ class _SettingViewState extends State<SettingView> {
               ],
             ),
           )
-        : Credits(goBack: showSettings);
+        : Credits(goBack: _showSettings);
   }
 }
 

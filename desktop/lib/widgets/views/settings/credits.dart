@@ -25,6 +25,7 @@ class Credits extends StatelessWidget {
               text: "",
               onTap: () {
                 // TODO: Unlock Oceon Theme
+                throw Exception("test");
                 goBack();
               },
             )
