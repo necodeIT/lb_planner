@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:catcher/catcher.dart';
+//import 'package:catcher/catcher.dart';
 import 'package:desktop/home.dart';
 import 'package:flutter/material.dart';
 import 'package:lb_planner/data.dart';
@@ -25,11 +25,14 @@ void main() {
 }
 
 final app = MaterialApp(
-  navigatorKey: Catcher.navigatorKey,
+  //navigatorKey: Catcher.navigatorKey,
   home: App(),
   title: "LB Planner",
   scrollBehavior: NcScrollBehavior(),
 );
+
+class Catcher {}
+
 // final EventEmitter errorNotifier = EventEmitter();
 const onError = "onError";
 
@@ -69,7 +72,8 @@ class _AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
-    NcThemes.onCurrentThemeChange = () => setState(() => User.current.settings.theme = NcThemes.current.name);
+    NcThemes.onCurrentThemeChange = () =>
+        setState(() => User.current.settings.theme = NcThemes.current.name);
 
     return Scaffold(
       backgroundColor: NcThemes.current.secondaryColor,
