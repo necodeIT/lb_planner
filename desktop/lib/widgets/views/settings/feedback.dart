@@ -44,7 +44,7 @@ class _SettingsFeedbackState extends State<SettingsFeedback> {
             maxLines: null,
           ),
         ),
-        if(feedbackContent.isNotEmpty)NcSpacing.small(),
+        if (feedbackContent.isNotEmpty) NcSpacing.small(),
         Container(
           alignment: Alignment.centerRight,
           child: NcTextButton(
