@@ -54,19 +54,7 @@ class _AppState extends State<App> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: NcThemes.current.secondaryColor,
-      body: NcButton(
-        text: "Crash",
-        onTap: () {
-          // guard(
-          //   context,
-          //   () {
-          //     throw Exception("testytest");
-          //   },
-          // );
-          throw Exception("Catch me");
-        },
-      ),
-      // body: Home(),
+      body: Home(),
     );
   }
 }

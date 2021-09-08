@@ -16,26 +16,29 @@ class NcTextButton extends StatelessWidget {
   Widget build(BuildContext context) {
     if (trailingIcon == null && leadingIcon == null) throw ArgumentError("You need to specify either a leading icon or a trailing icon!");
 
+    bool enabled = onTap != null;
+
     return GestureDetector(
       onTap: onTap,
-      child: Container(
-        width: width,
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            leadingIcon ?? Container(),
-            NcSpacing.small(),
-            NcCaptionText(
-              text,
-              fontSize: fontSize,
-              textAlign: TextAlign.center,
-              buttonText: onTap == null,
-            ),
-            NcSpacing.small(),
-            trailingIcon ?? Container(),
-          ],
-        ),
-      ),
+      child: enabled
+          ? Container(
+              width: width,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  leadingIcon ?? Container(),
+                  NcSpacing.small(),
+                  NcCaptionText(
+                    text,
+                    fontSize: fontSize,
+                    textAlign: TextAlign.center,
+                  ),
+                  NcSpacing.small(),
+                  trailingIcon ?? Container(),
+                ],
+              ),
+            )
+          : SizedBox.shrink(),
     );
   }
 }

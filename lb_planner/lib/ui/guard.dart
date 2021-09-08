@@ -28,6 +28,7 @@ reportError(BuildContext context, {Exception? exception, FlutterErrorDetails? er
         Navigator.of(context).pop();
       },
       confirmText: "Send Report",
+      buttonWidth: 130,
     ),
   );
 }
