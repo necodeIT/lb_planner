@@ -17,7 +17,7 @@ void main() {
     setWindowMaxSize(Size.infinite);
   }
 
-  ErrorWidget.builder = (details) => ErrorReporter(details: details);
+  // ErrorWidget.builder = (details) => ErrorReporter(details: details);
   // ErrorWidget.
 
   runApp(app);
@@ -59,6 +59,7 @@ class _AppState extends State<App> {
   //           onConfirm: () {
   //             // TODO: send crash report
   //             Navigator.of(context).pop();
+  //             Navigator.of(context).pop();
   //             setState(() {});
   //           },
   //           confirmText: "Send Report",
@@ -71,8 +72,7 @@ class _AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
-    NcThemes.onCurrentThemeChange = () =>
-        setState(() => User.current.settings.theme = NcThemes.current.name);
+    NcThemes.onCurrentThemeChange = () => setState(() => User.current.settings.theme = NcThemes.current.name);
 
     return Scaffold(
       backgroundColor: NcThemes.current.secondaryColor,
