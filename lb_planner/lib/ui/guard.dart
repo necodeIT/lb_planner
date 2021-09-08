@@ -16,21 +16,39 @@ reportError(BuildContext context, {Exception? exception, FlutterErrorDetails? er
   String message = "${exception ?? error ?? 'No information provided.'}";
   // String message = 'No information provided.';
 
-  return showDialog(
-    context: context,
-    builder: (context) => NcDialog(
-      title: "Something went wrong!",
-      body: SingleChildScrollView(
-        child: NcBodyText(message),
+  try {
+    return showDialog(
+      context: context,
+      builder: (context) => NcDialog(
+        title: "Something went wrong!",
+        body: SingleChildScrollView(
+          child: NcBodyText(message),
+        ),
+        onConfirm: () {
+          // TODO: report error
+          Navigator.of(context).pop();
+        },
+        confirmText: "Send Report",
+        buttonWidth: 130,
       ),
-      onConfirm: () {
-        // TODO: report error
-        Navigator.of(context).pop();
+    );
+  } catch (e) {
+    WidgetsBinding.instance!.addPostFrameCallback(
+      (_) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (_) => Column(
+              children: [
+                NcTitleText("Oh no!"),
+                NcBodyText("Please restart the application"),
+              ],
+            ),
+          ),
+        );
       },
-      confirmText: "Send Report",
-      buttonWidth: 130,
-    ),
-  );
+    );
+  }
 }
 
 guard(BuildContext context, Function body) {

@@ -17,7 +17,7 @@ class NcThemes {
     iconColor: Colors.amber,
   );
 
-//Dark Theme
+  //Dark Theme
   static final NcTheme dark = NcTheme(
     "Dark",
     primaryColor: Color(0xFF1D1D1D),

@@ -47,6 +47,7 @@ class _AppState extends State<App> {
     return Scaffold(
       backgroundColor: NcThemes.current.secondaryColor,
       body: Home(),
+      // body: NcTextButton(text: "sdasd", onTap: () {}),
     );
   }
 }

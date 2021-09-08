@@ -22,6 +22,7 @@ class NcDialog extends StatelessWidget {
 
   static const double padding = 20;
   static const double widthFactor = .5;
+  static const double heightFactor = .8;
   static const double defaultButtonWidth = 100;
 
   @override
@@ -33,9 +34,13 @@ class NcDialog extends StatelessWidget {
       titlePadding: EdgeInsets.all(padding),
       buttonPadding: EdgeInsets.only(left: padding, right: padding),
       contentPadding: EdgeInsets.only(bottom: padding, left: padding, right: padding),
-      content: Container(
+      content: ConstrainedBox(
+        constraints: BoxConstraints(
+          minWidth: MediaQuery.of(context).size.width * widthFactor,
+          maxHeight: MediaQuery.of(context).size.height * heightFactor,
+          maxWidth: MediaQuery.of(context).size.width * widthFactor,
+        ),
         child: body,
-        width: MediaQuery.of(context).size.width * widthFactor,
       ),
       actions: <Widget>[
         Row(
