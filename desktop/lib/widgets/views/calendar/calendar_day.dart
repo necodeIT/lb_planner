@@ -28,11 +28,14 @@ class CalenderDayItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           Expanded(
-            child: ListView(
-              children: children,
-              // CalendarItem(id: 1),
-              // CalendarItem(id: 1),
-              // CalendarItem(id: 1),
+            child: Container(
+              padding: EdgeInsets.only(top: 5, right: 2, left: 2),
+              child: ListView(
+                children: children,
+                // CalendarItem(id: 1),
+                // CalendarItem(id: 1),
+                // CalendarItem(id: 1),
+              ),
             ),
           ),
           NcCaptionText(

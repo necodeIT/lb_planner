@@ -30,7 +30,11 @@ class PlanWidget extends StatelessWidget {
             flex: 1,
             child: CalenderDayItem(
               text: 'text',
-              children: [CalendarDragItem(id: 01)],
+              children: [
+                CalendarDragItem(id: 01),
+                CalendarDragItem(id: 01),
+                CalendarDragItem(id: 01),
+              ],
             ),
           ),
           Expanded(
