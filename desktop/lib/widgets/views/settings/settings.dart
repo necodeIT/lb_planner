@@ -1,3 +1,4 @@
+import 'package:desktop/dialogs/confirm_delete_profile.dart';
 import 'package:desktop/version.dart';
 import 'package:desktop/widgets/course_selection/course_selection.dart';
 import 'package:desktop/widgets/views/dashboard/dashboard.dart';
@@ -72,7 +73,8 @@ class _SettingViewState extends State<SettingView> {
                                     SettingsGeneralItem(
                                       text: "Delete Profile",
                                       icon: Feather.trash_2,
-                                      onTap: () {
+                                      onTap: (){
+                                        showDeleteProfileDialog(context);
                                         // TODO: Check for updates
                                       },
                                     ),
