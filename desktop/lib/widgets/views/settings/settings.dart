@@ -60,6 +60,15 @@ class _SettingViewState extends State<SettingView> {
                                       icon: Icons.update,
                                       onTap: () {
                                         // TODO: Check for updates
+                                        NcSnackBar.showBottomRightMessage(
+                                          context,
+                                          prefixIcon: Icon(
+                                            Icons.update,
+                                            color: NcThemes.current.textColor,
+                                          ),
+                                          message:
+                                              "You already are up to date!",
+                                        );
                                       },
                                     ),
                                     NcSpacing.small(),
@@ -74,7 +83,7 @@ class _SettingViewState extends State<SettingView> {
                                     SettingsGeneralItem(
                                       text: "Delete Profile",
                                       icon: Feather.trash_2,
-                                      onTap: (){
+                                      onTap: () {
                                         showDeleteProfileDialog(context);
                                         // TODO: Check for updates
                                       },
@@ -101,7 +110,8 @@ class _SettingViewState extends State<SettingView> {
                                   spacing: NcSpacing.xlSpacing,
                                   children: [
                                     // TODO: for (var theme in User.current.themes) ThemeItem(theme: theme),
-                                    for (var theme in NcThemes.all.keys) ThemeItem(theme: theme),
+                                    for (var theme in NcThemes.all.keys)
+                                      ThemeItem(theme: theme),
                                   ],
                                 ),
                               ),
