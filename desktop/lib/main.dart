@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:io';
 //import 'package:catcher/catcher.dart';
 import 'package:desktop/home.dart';
-import 'package:desktop/widgets/report_error.dart';
 import 'package:flutter/material.dart';
 import 'package:lb_planner/data.dart';
 import 'package:lb_planner/ui.dart';
@@ -20,7 +19,14 @@ void main() {
   // ErrorWidget.builder = (details) => ErrorReporter(details: details);
   // ErrorWidget.
 
+  // runApp(app);
+
   runApp(app);
+
+  FlutterError.onError = (FlutterErrorDetails details) {
+    print("=================== CAUGHT FLUTTER ERROR");
+    // Send report
+  };
 }
 
 final app = MaterialApp(
@@ -29,11 +35,6 @@ final app = MaterialApp(
   title: "LB Planner",
   scrollBehavior: NcScrollBehavior(),
 );
-
-class Catcher {}
-
-// final EventEmitter errorNotifier = EventEmitter();
-const onError = "onError";
 
 class App extends StatefulWidget {
   App({Key? key}) : super(key: key);
@@ -74,6 +75,7 @@ class _AppState extends State<App> {
   void initState() {
     NcThemes.onCurrentThemeChange = () => setState(() => User.current.settings.theme = NcThemes.current.name);
 
+    FlutterError.onError = reportError(context, )
     super.initState();
   }
 
@@ -81,13 +83,18 @@ class _AppState extends State<App> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: NcThemes.current.secondaryColor,
-      // body: NcButton(
-      //   text: "Crash",
-      //   onTap: () {
-      //     ErrorWidget.withDetails(message: "Deine mom ist fett");
-      //   },
-      // ),
-      body: Home(),
+      body: NcButton(
+        text: "Crash",
+        onTap: () {
+          guard(
+            context,
+            () {
+              throw Exception("testytest");
+            },
+          );
+        },
+      ),
+      // body: Home(),
     );
   }
 }
