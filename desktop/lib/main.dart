@@ -71,9 +71,14 @@ class _AppState extends State<App> {
   // }
 
   @override
-  Widget build(BuildContext context) {
+  void initState() {
     NcThemes.onCurrentThemeChange = () => setState(() => User.current.settings.theme = NcThemes.current.name);
 
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: NcThemes.current.secondaryColor,
       // body: NcButton(
