@@ -1,6 +1,8 @@
+import 'dart:async';
 import 'dart:io';
 //import 'package:catcher/catcher.dart';
 import 'package:desktop/home.dart';
+import 'package:desktop/widgets/report_error.dart';
 import 'package:flutter/material.dart';
 import 'package:lb_planner/data.dart';
 import 'package:lb_planner/ui.dart';
@@ -10,18 +12,17 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   NcThemes.current = NcThemes.all[User.current.settings.theme] ?? NcThemes.dark;
   // NcThemes.current = NcThemes.light;
-  // FlutterError.onError = (details) => errorNotifier.emit(onError, null, details);
   if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
     setWindowMinSize(const Size(1550.0, 850.0));
     setWindowMaxSize(Size.infinite);
   }
-  // runApp(app);
 
-  // CatcherOptions config = CatcherOptions(DialogReportMode(), [ConsoleHandler()]);
+  ErrorWidget.builder = (details) => ErrorReporter(details: details);
+  // ErrorWidget.
 
-  // Catcher(rootWidget: app, navigatorKey: GlobalKey<NavigatorState>());
-  // Catcher.getInstance().
-  runApp(app);
+  runZoned(() => runApp(app), onError: () {
+    print("fett");
+  });
 }
 
 final app = MaterialApp(
@@ -72,17 +73,17 @@ class _AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
-    NcThemes.onCurrentThemeChange = () =>
-        setState(() => User.current.settings.theme = NcThemes.current.name);
+    NcThemes.onCurrentThemeChange = () => setState(() => User.current.settings.theme = NcThemes.current.name);
 
     return Scaffold(
       backgroundColor: NcThemes.current.secondaryColor,
-      // body: NcButton(
-      //     text: "Crash",
-      //     onTap: () {
-      //       throw Exception("Deine mom ist fett");
-      //     },),
-      body: Home(),
+      body: NcButton(
+        text: "Crash",
+        onTap: () {
+          ErrorWidget.withDetails(message: "Deine mom ist fett");
+        },
+      ),
+      // body: Home(),
     );
   }
 }
