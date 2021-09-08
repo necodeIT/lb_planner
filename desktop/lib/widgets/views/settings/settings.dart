@@ -1,3 +1,4 @@
+import 'package:desktop/dialogs/confirm_clear_cache.dart';
 import 'package:desktop/dialogs/confirm_delete_profile.dart';
 import 'package:desktop/version.dart';
 import 'package:desktop/widgets/course_selection/course_selection.dart';
@@ -66,7 +67,7 @@ class _SettingViewState extends State<SettingView> {
                                       text: "Clear Cache",
                                       icon: Icons.arrow_forward_ios,
                                       onTap: () {
-                                        // TODO: clear cache
+                                        showConfirmClearCache(context);
                                       },
                                     ),
                                     NcSpacing.small(),
