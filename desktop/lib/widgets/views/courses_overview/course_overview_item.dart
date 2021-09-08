@@ -7,7 +7,9 @@ import 'package:lb_planner/data.dart';
 import 'package:lb_planner/ui.dart';
 
 class CourseOverviewItem extends StatelessWidget {
-  const CourseOverviewItem({Key? key, required this.id, required this.onShowDetails}) : super(key: key);
+  const CourseOverviewItem(
+      {Key? key, required this.id, required this.onShowDetails})
+      : super(key: key);
 
   final int id;
   final Function(int) onShowDetails;
@@ -20,7 +22,7 @@ class CourseOverviewItem extends StatelessWidget {
     return GestureDetector(
       onTap: () => onShowDetails(id),
       child: NcContainer(
-        width: 450,
+        width: 400,
         height: 250,
         label: NcCaptionText(
           "Deutsch",
@@ -62,15 +64,23 @@ class CourseOverviewItem extends StatelessWidget {
                 // if (DB.courses[id]!.tags.contains(CourseTags.Completed)) NcTag(text: "Completed", backgroundColor: Colors.cyan),
                 Row(
                   children: [
-                    NcTag(text: "Done", backgroundColor: NcThemes.current.doneColor),
+                    NcTag(
+                        text: "Done",
+                        backgroundColor: NcThemes.current.doneColor),
                     NcSpacing.small(),
                     //TODO: if (DB.courses[id]!.tags.contains(CourseTags.Uploaded))
-                    NcTag(text: "Uploaded", backgroundColor: NcThemes.current.uploadedColor),
+                    NcTag(
+                        text: "Uploaded",
+                        backgroundColor: NcThemes.current.uploadedColor),
                     NcSpacing.small(),
-                    NcTag(text: "Late", backgroundColor: NcThemes.current.lateColor),
+                    NcTag(
+                        text: "Late",
+                        backgroundColor: NcThemes.current.lateColor),
                     NcSpacing.small(),
                     //TODO: if (DB.courses[id]!.tags.contains(CourseTags.Pending))
-                    NcTag(text: "Pending", backgroundColor: NcThemes.current.pendingColor)
+                    NcTag(
+                        text: "Pending",
+                        backgroundColor: NcThemes.current.pendingColor)
                     //TODO: if (DB.courses[id]!.tags.contains(CourseTags.Late))
                   ],
                 ),
