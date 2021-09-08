@@ -35,7 +35,9 @@ class _AppState extends State<App> {
     NcThemes.onCurrentThemeChange = () => setState(() => User.current.settings.theme = NcThemes.current.name);
 
     FlutterError.onError = (details) => reportError(context, error: details);
-    // FlutterError.onError = (details) => print("fett");
+
+    ErrorWidget.builder = (details) => NcBodyText("lol");
+
     super.initState();
   }
 
