@@ -1,8 +1,4 @@
-import 'dart:async';
 import 'dart:io';
-import 'dart:math';
-//import 'package:catcher/catcher.dart';
-import 'package:desktop/dialogs/not_implemented_dialog.dart';
 import 'package:desktop/home.dart';
 import 'package:flutter/material.dart';
 import 'package:lb_planner/data.dart';
@@ -17,17 +13,10 @@ void main() {
     setWindowMinSize(const Size(1550.0, 850.0));
     setWindowMaxSize(Size.infinite);
   }
-
-  // ErrorWidget.builder = (details) => ErrorReporter(details: details);
-  // ErrorWidget.
-
-  // runApp(app);
-
   runApp(app);
 }
 
 final app = MaterialApp(
-  //navigatorKey: Catcher.navigatorKey,
   home: App(),
   title: "LB Planner",
   scrollBehavior: NcScrollBehavior(),
