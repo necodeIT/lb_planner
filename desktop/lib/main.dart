@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:math';
 //import 'package:catcher/catcher.dart';
+import 'package:desktop/dialogs/not_implemented_dialog.dart';
 import 'package:desktop/home.dart';
 import 'package:flutter/material.dart';
 import 'package:lb_planner/data.dart';
@@ -22,11 +24,6 @@ void main() {
   // runApp(app);
 
   runApp(app);
-
-  FlutterError.onError = (FlutterErrorDetails details) {
-    print("=================== CAUGHT FLUTTER ERROR");
-    // Send report
-  };
 }
 
 final app = MaterialApp(
@@ -44,38 +41,12 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  // @override
-  // void initState() {
-  //   errorNotifier.on(
-  //     onError,
-  //     context,
-  //     (ev, catgirl) {
-  //       var error = ev.eventData as FlutterErrorDetails;
-
-  //       showDialog(
-  //         context: context,
-  //         builder: (context) => NcDialog(
-  //           title: "Something went wrong!",
-  //           body: NcBodyText(error.context.toString()),
-  //           onConfirm: () {
-  //             // TODO: send crash report
-  //             Navigator.of(context).pop();
-  //             Navigator.of(context).pop();
-  //             setState(() {});
-  //           },
-  //           confirmText: "Send Report",
-  //         ),
-  //       );
-  //     },
-  //   );
-  //   super.initState();
-  // }
-
   @override
   void initState() {
     NcThemes.onCurrentThemeChange = () => setState(() => User.current.settings.theme = NcThemes.current.name);
 
-    FlutterError.onError = reportError(context, )
+    FlutterError.onError = (details) => reportError(context, error: details);
+    // FlutterError.onError = (details) => print("fett");
     super.initState();
   }
 
@@ -86,12 +57,13 @@ class _AppState extends State<App> {
       body: NcButton(
         text: "Crash",
         onTap: () {
-          guard(
-            context,
-            () {
-              throw Exception("testytest");
-            },
-          );
+          // guard(
+          //   context,
+          //   () {
+          //     throw Exception("testytest");
+          //   },
+          // );
+          throw Exception("Catch me");
         },
       ),
       // body: Home(),

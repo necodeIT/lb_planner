@@ -15,11 +15,11 @@ class SettingsFeedback extends StatefulWidget {
 class _SettingsFeedbackState extends State<SettingsFeedback> {
   FeedbackType feedbackType = FeedbackType.Bug;
 
-  String content= "";
+  String feedbackContent = "";
 
-  setContent(String){
+  setContent(String value) {
     setState(() {
-      content
+      feedbackContent = value;
     });
   }
 
@@ -40,7 +40,7 @@ class _SettingsFeedbackState extends State<SettingsFeedback> {
         Expanded(
           child: NcInputField.multiline(
             placeholder: "Feedback here...",
-            onValueChanged:(content),
+            onValueChanged: setContent,
             maxLines: null,
           ),
         ),
@@ -49,11 +49,12 @@ class _SettingsFeedbackState extends State<SettingsFeedback> {
           alignment: Alignment.centerRight,
           child: NcTextButton(
             text: "Submit",
-            onTap: () // TODO: send Feedback
-            if(content)
-            {
-              showFeedbackDialog(context);
-              },
+            onTap: feedbackContent.isNotEmpty
+                ? () {
+                    // TODO: send Feedback
+                    showFeedbackDialog(context);
+                  }
+                : null,
             trailingIcon: Icon(
               Feather.arrow_right_circle,
               color: NcThemes.current.textColor,

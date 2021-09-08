@@ -10,8 +10,7 @@ class NcTextButton extends StatelessWidget {
   final Widget? leadingIcon;
   final double? width;
   final double? fontSize;
-
-  final Function() onTap;
+  final Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +29,7 @@ class NcTextButton extends StatelessWidget {
               text,
               fontSize: fontSize,
               textAlign: TextAlign.center,
+              buttonText: onTap == null,
             ),
             NcSpacing.small(),
             trailingIcon ?? Container(),
