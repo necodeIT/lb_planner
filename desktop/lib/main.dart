@@ -20,9 +20,7 @@ void main() {
   ErrorWidget.builder = (details) => ErrorReporter(details: details);
   // ErrorWidget.
 
-  runZoned(() => runApp(app), onError: () {
-    print("fett");
-  });
+  runApp(app);
 }
 
 final app = MaterialApp(
@@ -73,17 +71,18 @@ class _AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
-    NcThemes.onCurrentThemeChange = () => setState(() => User.current.settings.theme = NcThemes.current.name);
+    NcThemes.onCurrentThemeChange = () =>
+        setState(() => User.current.settings.theme = NcThemes.current.name);
 
     return Scaffold(
       backgroundColor: NcThemes.current.secondaryColor,
-      body: NcButton(
-        text: "Crash",
-        onTap: () {
-          ErrorWidget.withDetails(message: "Deine mom ist fett");
-        },
-      ),
-      // body: Home(),
+      // body: NcButton(
+      //   text: "Crash",
+      //   onTap: () {
+      //     ErrorWidget.withDetails(message: "Deine mom ist fett");
+      //   },
+      // ),
+      body: Home(),
     );
   }
 }
