@@ -18,10 +18,14 @@ import 'svg/error.dart';
 class Guard {
   static bool _showNextError = true;
 
-  static const noInfo = 'No information proivided.';
-  static const crashKey = "crash";
   static const filedReportsKey = "filedReports";
+  static const crashKey = "crash";
+
   static const badBoys = ["EXCEPTION CAUGHT BY RENDERING LIBRARY", "EXCEPTION CAUGHT BY WIDGETS LIBRAR"];
+
+  static const noInfo = 'No information proivided.';
+  static const ingore = "Ignore";
+  static const sendReport = "Send Report";
 
   static List<ErrorCacheEntry> _errorCache = List.empty(growable: true);
 
@@ -65,6 +69,7 @@ class Guard {
           _enableErrors();
           _pop(context);
         },
+        confirmText: ingore,
       );
     }
     showNcDialog(
@@ -87,7 +92,8 @@ class Guard {
 
         _enableErrors();
       },
-      confirmText: "Send Report",
+      cancelText: ingore,
+      confirmText: sendReport,
       buttonWidth: 130,
     );
   }
@@ -121,9 +127,7 @@ class Guard {
 
     if (skipReport) print("This error has already been reported. Skipping report option.");
 
-    String message = "${details.context ?? noInfo}";
-
-    // print('catgirl ${details.toString()}');
+    String message = "Name: '${details.context != null ? details.context!.name ?? noInfo : noInfo}'\n---\nException: '${details.exception}'\n---\nStack: ${details.stack}\n---\nContext: ${details.context}";
 
     report(context, message, onReportSent: () => _errorCache.add(error), informativeOnly: skipReport);
 
