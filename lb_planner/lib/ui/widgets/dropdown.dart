@@ -38,7 +38,6 @@ class _NcDropdownState extends State<NcDropdown> {
             child: NcCaptionText(value, fontSize: widget.fontSize),
           );
         }).toList(),
-        borderRadius: BorderRadius.circular(ncRadius),
         dropdownColor: NcThemes.current.secondaryColor,
         iconEnabledColor: NcThemes.current.textColor,
         iconDisabledColor: NcThemes.current.tertiaryColor,
