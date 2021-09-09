@@ -1,12 +1,10 @@
 import 'package:desktop/widgets/views/calendar/plan/calendar_item.dart';
-import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:lb_planner/ui.dart';
 
 class CalendarDragItem extends StatelessWidget {
-  CalendarDragItem({Key? key, required this.id, this.height = 35})
-      : super(key: key);
+  CalendarDragItem({Key? key, required this.id, this.height = 35}) : super(key: key);
 
   final int id;
   final double? height;

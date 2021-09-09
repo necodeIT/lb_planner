@@ -100,9 +100,11 @@ class Guard {
     // TODO: check if error is build error ? return : show dialog
 
     print("Guard.handleFlutterError(BuildContext context, FlutterErrorDetails details) is not fully implemented yet!");
-    if (details.context != null && details.context.toString().contains("build")) return;
+    if (details.toString().contains("EXCEPTION CAUGHT BY RENDERING LIBRARY") || details.toString().contains("EXCEPTION CAUGHT BY WIDGETS LIBRAR")) return print("Error is builderror. Skipping dialog.");
 
     String message = "${details.context ?? noInfo}";
+
+    // print('catgirl ${details.toString()}');
 
     report(context, message);
 
