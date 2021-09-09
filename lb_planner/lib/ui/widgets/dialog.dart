@@ -2,28 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:lb_planner/ui.dart';
 
 class NcDialog extends StatelessWidget {
-  NcDialog(
-      {Key? key,
-      this.title = "",
-      required this.body,
-      this.confirmText = "Confirm",
-      this.cancelText = "Cancel",
-      required this.onConfirm,
-      this.onCancel,
-      this.label,
-      this.buttonWidth = defaultButtonWidth})
-      : super(key: key) {
+  NcDialog({Key? key, this.title = "", required this.body, this.confirmText = "Confirm", this.cancelText = "Cancel", required this.onConfirm, this.onCancel, this.label, this.buttonWidth = defaultButtonWidth}) : super(key: key) {
     confirmOnly = false;
   }
-  NcDialog.ok(
-      {Key? key,
-      required this.title,
-      required this.body,
-      this.onConfirm,
-      this.confirmText = "OK",
-      this.label,
-      this.buttonWidth = defaultButtonWidth})
-      : super(key: key) {
+  NcDialog.ok({Key? key, required this.title, required this.body, this.onConfirm, this.confirmText = "OK", this.label, this.buttonWidth = defaultButtonWidth}) : super(key: key) {
     confirmOnly = true;
   }
 
@@ -48,8 +30,7 @@ class NcDialog extends StatelessWidget {
     return ScaleTransition(
       scale: CurvedAnimation(parent: animation, curve: Curves.linearToEaseOut),
       child: FadeTransition(
-        opacity:
-            CurvedAnimation(parent: animation, curve: Curves.linearToEaseOut),
+        opacity: CurvedAnimation(parent: animation, curve: Curves.linearToEaseOut),
         child: dialog,
       ),
     );
@@ -57,15 +38,13 @@ class NcDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (title.isEmpty && label == null)
-      throw ArgumentError("Please define either a label or a title!");
+    if (title.isEmpty && label == null) throw ArgumentError("Please define either a label or a title!");
 
     return AlertDialog(
       title: label ?? NcTitleText(title, fontSize: 30),
       titlePadding: EdgeInsets.all(padding),
       buttonPadding: EdgeInsets.only(left: padding, right: padding),
-      contentPadding:
-          EdgeInsets.only(bottom: padding, left: padding, right: padding),
+      contentPadding: EdgeInsets.only(bottom: padding, left: padding, right: padding),
       content: ConstrainedBox(
         constraints: BoxConstraints(
           minWidth: MediaQuery.of(context).size.width * widthFactor,
@@ -78,16 +57,9 @@ class NcDialog extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            if (!confirmOnly)
-              NcButton.cancel(
-                  text: cancelText ?? "",
-                  onTap: onCancel ?? Navigator.of(context).pop,
-                  width: buttonWidth),
+            if (!confirmOnly) NcButton.cancel(text: cancelText ?? "", onTap: onCancel ?? Navigator.of(context).pop, width: buttonWidth),
             NcSpacing.medium(),
-            NcButton(
-                text: confirmText,
-                onTap: onConfirm ?? Navigator.of(context).pop,
-                width: buttonWidth),
+            NcButton(text: confirmText, onTap: onConfirm ?? Navigator.of(context).pop, width: buttonWidth),
           ],
         )
       ],
@@ -126,8 +98,7 @@ void showNcDialog(
     transitionDuration: NcDialog.duration,
     barrierColor: Colors.black.withOpacity(0.5),
     pageBuilder: (_, __, ___) => Container(),
-    transitionBuilder: (context, animation, _, widget) =>
-        NcDialog.transition(dialog, animation),
+    transitionBuilder: (context, animation, _, widget) => NcDialog.transition(dialog, animation),
   );
 }
 
@@ -154,7 +125,6 @@ void showNcDialogOK(
     transitionDuration: NcDialog.duration,
     barrierColor: Colors.black.withOpacity(0.5),
     pageBuilder: (_, __, ___) => Container(),
-    transitionBuilder: (context, animation, _, widget) =>
-        NcDialog.transition(dialog, animation),
+    transitionBuilder: (context, animation, _, widget) => NcDialog.transition(dialog, animation),
   );
 }
