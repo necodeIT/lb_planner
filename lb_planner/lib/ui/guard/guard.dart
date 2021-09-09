@@ -117,9 +117,9 @@ class Guard {
   }
 
   static handleFlutterError(BuildContext context, FlutterErrorDetails details) {
-    var error = ErrorCacheEntry(details.exception.toString(), details.stack.toString());
+    if (!kReleaseMode) return print(details);
 
-    print(details);
+    var error = ErrorCacheEntry(details.exception.toString(), details.stack.toString());
 
     if (badBoys.any(details.toString().contains)) return print("Error is derived from builderror. Skipping dialog.\n $details");
 
