@@ -23,7 +23,10 @@ class Guard {
 
   static const noInfo = 'No information proivided.';
   static const crashKey = "crash";
-  static const badBoys = ["EXCEPTION CAUGHT BY RENDERING LIBRARY", "EXCEPTION CAUGHT BY WIDGETS LIBRAR"];
+  static const badBoys = [
+    "EXCEPTION CAUGHT BY RENDERING LIBRARY",
+    "EXCEPTION CAUGHT BY WIDGETS LIBRAR"
+  ];
 
   static void init(BuildContext context) {
     _setErrorWidgetBuilder();
@@ -48,7 +51,8 @@ class Guard {
     report(context, exception.toString());
   }
 
-  static report(BuildContext context, String message, {String title = "Something went wrong!"}) {
+  static report(BuildContext context, String message,
+      {String title = "Something went wrong!"}) {
     _blockErrors();
 
     showDialog(
@@ -88,7 +92,8 @@ class Guard {
   }
 
   static checkForRecentCrash(BuildContext context) {
-    print("Guard.checkForRecentCrash(BuildContext context) is not fully implemented yet!");
+    print(
+        "Guard.checkForRecentCrash(BuildContext context) is not fully implemented yet!");
     // SharedPreferences.getInstance().then(
     //   (prefs) {
     //     var crash = prefs.getString(crashKey);
@@ -101,7 +106,9 @@ class Guard {
     // TODO: check if error is build error ? return : show dialog
 
     // print("Guard.handleFlutterError(BuildContext context, FlutterErrorDetails details) is not fully implemented yet!");
-    if (badBoys.any(details.toString().contains)) return print("Error is derived from builderror. Skipping dialog.");
+    if (badBoys.any(details.toString().contains))
+      return print(
+          "Error is derived from builderror. Skipping dialog.\n ${details.context.toString()}");
 
     String message = "${details.context ?? noInfo}";
 
@@ -115,14 +122,16 @@ class Guard {
   }
 
   static _setFlutterErrorHandler(BuildContext context) {
-    FlutterError.onError = (details) => Guard.handleFlutterError(context, details);
+    FlutterError.onError =
+        (details) => Guard.handleFlutterError(context, details);
   }
 
   static _setErrorWidgetBuilder() {
     ErrorWidget.builder = kReleaseMode
         ? (details) => LayoutBuilder(
               builder: (context, size) {
-                final message = "Internal Error:  '${details.context != null ? details.context!.name ?? Guard.noInfo : Guard.noInfo}'. Please restart the application and try again.";
+                final message =
+                    "Internal Error:  '${details.context != null ? details.context!.name ?? Guard.noInfo : Guard.noInfo}'. Please restart the application and try again.";
 
                 return Center(
                   child: Column(
