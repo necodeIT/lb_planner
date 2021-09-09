@@ -139,7 +139,7 @@ class Dashboard extends StatelessWidget {
                 Expanded(
                   flex: 5,
                   child: NcContainer(
-                    body: NcVectorImage(code: you_are_done_svg),
+                    body: NcCommingSoon(),
                     label: NcCaptionText(
                       "Timetable (TBA)",
                       fontSize: titleSize,
