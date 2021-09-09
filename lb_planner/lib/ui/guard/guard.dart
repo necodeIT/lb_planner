@@ -1,10 +1,6 @@
-import 'dart:io';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:lb_planner/ui.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
 import 'svg/error.dart';
 
 // class NcGuard extends InheritedWidget {
@@ -23,10 +19,10 @@ class Guard {
 
   static const noInfo = 'No information proivided.';
   static const crashKey = "crash";
-  static const badBoys = [
-    "EXCEPTION CAUGHT BY RENDERING LIBRARY",
-    "EXCEPTION CAUGHT BY WIDGETS LIBRAR"
-  ];
+  static const filedReportsKey = "filedReports";
+  static const badBoys = ["EXCEPTION CAUGHT BY RENDERING LIBRARY", "EXCEPTION CAUGHT BY WIDGETS LIBRAR"];
+
+  static List<_GuardFlutterError> _filedErrors = List.empty(growable: true);
 
   static void init(BuildContext context) {
     _setErrorWidgetBuilder();
@@ -51,34 +47,48 @@ class Guard {
     report(context, exception.toString());
   }
 
-  static report(BuildContext context, String message,
-      {String title = "Something went wrong!"}) {
+  static report(BuildContext context, String message, {String title = "Something went wrong!", Function()? onReportSent, bool informativeOnly = false}) {
     _blockErrors();
 
     showDialog(
       context: context,
       builder: (context) {
-        return NcDialog(
-          title: title,
-          body: SingleChildScrollView(
-            child: NcBodyText(
-              message,
-              overflow: TextOverflow.visible,
-            ),
-          ),
-          onConfirm: () {
-            // TODO: report error
-            _enableErrors();
-            _pop(context);
-          },
-          onCancel: () {
-            _pop(context);
+        return !informativeOnly
+            ? NcDialog(
+                title: title,
+                body: SingleChildScrollView(
+                  child: NcBodyText(
+                    message,
+                    overflow: TextOverflow.visible,
+                  ),
+                ),
+                onConfirm: () {
+                  // TODO: report error
+                  _enableErrors();
+                  onReportSent?.call();
+                  _pop(context);
+                },
+                onCancel: () {
+                  _pop(context);
 
-            _enableErrors();
-          },
-          confirmText: "Send Report",
-          buttonWidth: 130,
-        );
+                  _enableErrors();
+                },
+                confirmText: "Send Report",
+                buttonWidth: 130,
+              )
+            : NcDialog.ok(
+                title: title,
+                body: SingleChildScrollView(
+                  child: NcBodyText(
+                    message,
+                    overflow: TextOverflow.visible,
+                  ),
+                ),
+                onConfirm: () {
+                  _enableErrors();
+                  _pop(context);
+                },
+              );
       },
     );
   }
@@ -92,8 +102,7 @@ class Guard {
   }
 
   static checkForRecentCrash(BuildContext context) {
-    print(
-        "Guard.checkForRecentCrash(BuildContext context) is not fully implemented yet!");
+    print("Guard.checkForRecentCrash(BuildContext context) is not fully implemented yet!");
     // SharedPreferences.getInstance().then(
     //   (prefs) {
     //     var crash = prefs.getString(crashKey);
@@ -103,18 +112,19 @@ class Guard {
   }
 
   static handleFlutterError(BuildContext context, FlutterErrorDetails details) {
-    // TODO: check if error is build error ? return : show dialog
+    var error = _GuardFlutterError(details.exception.toString(), details.stack.toString());
 
-    // print("Guard.handleFlutterError(BuildContext context, FlutterErrorDetails details) is not fully implemented yet!");
-    if (badBoys.any(details.toString().contains))
-      return print(
-          "Error is derived from builderror. Skipping dialog.\n ${details.context.toString()}");
+    if (badBoys.any(details.toString().contains)) return print("Error is derived from builderror. Skipping dialog.\n $details");
+
+    final skipReport = _filedErrors.contains(error);
+
+    if (skipReport) print("Report for current error has already been filed. Skipping report option.");
 
     String message = "${details.context ?? noInfo}";
 
     // print('catgirl ${details.toString()}');
 
-    report(context, message);
+    report(context, message, onReportSent: () => _filedErrors.add(error), informativeOnly: skipReport);
 
     // if (kReleaseMode) {
     //   SharedPreferences.getInstance().then((prefs) => prefs.setString(crashKey, message));
@@ -122,16 +132,14 @@ class Guard {
   }
 
   static _setFlutterErrorHandler(BuildContext context) {
-    FlutterError.onError =
-        (details) => Guard.handleFlutterError(context, details);
+    FlutterError.onError = (details) => Guard.handleFlutterError(context, details);
   }
 
   static _setErrorWidgetBuilder() {
     ErrorWidget.builder = kReleaseMode
         ? (details) => LayoutBuilder(
               builder: (context, size) {
-                final message =
-                    "Internal Error:  '${details.context != null ? details.context!.name ?? Guard.noInfo : Guard.noInfo}'. Please restart the application and try again.";
+                final message = "Internal Error:  '${details.context != null ? details.context!.name ?? Guard.noInfo : Guard.noInfo}'. Please restart the application and try again.";
 
                 return Center(
                   child: Column(
@@ -154,6 +162,23 @@ class Guard {
             )
         : ErrorWidget.builder;
   }
+}
+
+class _GuardFlutterError {
+  _GuardFlutterError(this.exception, this.stack);
+
+  final String exception;
+  final String stack;
+
+  @override
+  bool operator ==(other) {
+    if (other is! _GuardFlutterError) return false;
+
+    return stack == other.stack && exception == other.exception;
+  }
+
+  @override
+  int get hashCode => super.hashCode;
 }
 
 guard(BuildContext context, Function body) => Guard.run;
