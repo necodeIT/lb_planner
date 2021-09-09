@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:lb_planner/ui.dart';
+import 'package:lb_planner/ui/guard/error_cache_entry.dart';
 import 'svg/error.dart';
 
 // class NcGuard extends InheritedWidget {
@@ -22,7 +23,7 @@ class Guard {
   static const filedReportsKey = "filedReports";
   static const badBoys = ["EXCEPTION CAUGHT BY RENDERING LIBRARY", "EXCEPTION CAUGHT BY WIDGETS LIBRAR"];
 
-  static List<_GuardFlutterError> _filedErrors = List.empty(growable: true);
+  static List<ErrorCacheEntry> _errorCache = List.empty(growable: true);
 
   static void init(BuildContext context) {
     _setErrorWidgetBuilder();
@@ -112,19 +113,19 @@ class Guard {
   }
 
   static handleFlutterError(BuildContext context, FlutterErrorDetails details) {
-    var error = _GuardFlutterError(details.exception.toString(), details.stack.toString());
+    var error = ErrorCacheEntry(details.exception.toString(), details.stack.toString());
 
     if (badBoys.any(details.toString().contains)) return print("Error is derived from builderror. Skipping dialog.\n $details");
 
-    final skipReport = _filedErrors.contains(error);
+    final skipReport = _errorCache.contains(error);
 
-    if (skipReport) print("Report for current error has already been filed. Skipping report option.");
+    if (skipReport) print("This error has already been reported. Skipping report option.");
 
     String message = "${details.context ?? noInfo}";
 
     // print('catgirl ${details.toString()}');
 
-    report(context, message, onReportSent: () => _filedErrors.add(error), informativeOnly: skipReport);
+    report(context, message, onReportSent: () => _errorCache.add(error), informativeOnly: skipReport);
 
     // if (kReleaseMode) {
     //   SharedPreferences.getInstance().then((prefs) => prefs.setString(crashKey, message));
@@ -162,23 +163,6 @@ class Guard {
             )
         : ErrorWidget.builder;
   }
-}
-
-class _GuardFlutterError {
-  _GuardFlutterError(this.exception, this.stack);
-
-  final String exception;
-  final String stack;
-
-  @override
-  bool operator ==(other) {
-    if (other is! _GuardFlutterError) return false;
-
-    return stack == other.stack && exception == other.exception;
-  }
-
-  @override
-  int get hashCode => super.hashCode;
 }
 
 guard(BuildContext context, Function body) => Guard.run;
