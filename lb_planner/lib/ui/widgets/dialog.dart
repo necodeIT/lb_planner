@@ -24,6 +24,7 @@ class NcDialog extends StatelessWidget {
   static const double widthFactor = .5;
   static const double heightFactor = .8;
   static const double defaultButtonWidth = 100;
+  static const Duration duration = Duration(milliseconds: 500);
 
   @override
   Widget build(BuildContext context) {
@@ -58,4 +59,66 @@ class NcDialog extends StatelessWidget {
       ),
     );
   }
+}
+
+void showNcDialog(
+  BuildContext context, {
+  String title = "",
+  required Widget body,
+  String confirmText = "Confirm",
+  String cancelText = "Cancel",
+  required Function() onConfirm,
+  Function()? onCancel,
+  Widget? label,
+  double buttonWidth = NcDialog.defaultButtonWidth,
+}) {
+  var dialog = NcDialog(
+    title: title,
+    body: body,
+    confirmText: confirmText,
+    cancelText: cancelText,
+    onConfirm: onConfirm,
+    onCancel: onCancel,
+    label: label,
+    buttonWidth: buttonWidth,
+  );
+
+  showGeneralDialog(
+    context: context,
+    transitionDuration: NcDialog.duration,
+    barrierColor: Colors.black.withOpacity(0.5),
+    pageBuilder: (context, animation1, animation2) => Container(),
+    transitionBuilder: (context, a1, a2, widget) => ScaleTransition(
+      scale: CurvedAnimation(parent: a1, curve: Curves.easeInExpo),
+      child: dialog,
+    ),
+  );
+}
+
+void showNcDialogOK(
+  BuildContext context, {
+  String title = "",
+  required Widget body,
+  String confirmText = "Confirm",
+  required Function() onConfirm,
+  Widget? label,
+  double buttonWidth = NcDialog.defaultButtonWidth,
+}) {
+  showGeneralDialog(
+    context: context,
+    transitionDuration: NcDialog.duration,
+    barrierColor: Colors.black.withOpacity(0.5),
+    pageBuilder: (context, animation1, animation2) => Container(),
+    transitionBuilder: (context, a1, a2, widget) => ScaleTransition(
+      scale: CurvedAnimation(parent: a1, curve: Curves.easeInExpo),
+      child: NcDialog.ok(
+        title: title,
+        body: body,
+        confirmText: confirmText,
+        onConfirm: onConfirm,
+        label: label,
+        buttonWidth: buttonWidth,
+      ),
+    ),
+  );
 }

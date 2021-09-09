@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:desktop/widgets/sidebar/sidebarItem.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
@@ -78,8 +79,14 @@ class _SidebarState extends State<Sidebar> {
         ),
         NcSpacing.medium(),
         Expanded(
-          child: Container(
-            color: NcThemes.current.secondaryColor,
+          child: PageTransitionSwitcher(
+            // duration: Duration(seconds: 2),
+            transitionBuilder: (child, animationIn, animationOut) => FadeThroughTransition(
+              fillColor: NcThemes.current.secondaryColor,
+              animation: animationIn,
+              secondaryAnimation: animationOut,
+              child: child,
+            ),
             child: widget.views[current],
           ),
         ),

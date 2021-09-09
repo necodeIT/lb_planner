@@ -8,6 +8,7 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
+  animations: ^2.0.1
   flare_flutter: ^3.0.2
   flutter:
     sdk: flutter

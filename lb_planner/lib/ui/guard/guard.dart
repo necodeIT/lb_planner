@@ -51,46 +51,44 @@ class Guard {
   static report(BuildContext context, String message, {String title = "Something went wrong!", Function()? onReportSent, bool informativeOnly = false}) {
     _blockErrors();
 
-    showDialog(
-      context: context,
-      builder: (context) {
-        return !informativeOnly
-            ? NcDialog(
-                title: title,
-                body: SingleChildScrollView(
-                  child: NcBodyText(
-                    message,
-                    overflow: TextOverflow.visible,
-                  ),
-                ),
-                onConfirm: () {
-                  // TODO: report error
-                  _enableErrors();
-                  onReportSent?.call();
-                  _pop(context);
-                },
-                onCancel: () {
-                  _pop(context);
-
-                  _enableErrors();
-                },
-                confirmText: "Send Report",
-                buttonWidth: 130,
-              )
-            : NcDialog.ok(
-                title: title,
-                body: SingleChildScrollView(
-                  child: NcBodyText(
-                    message,
-                    overflow: TextOverflow.visible,
-                  ),
-                ),
-                onConfirm: () {
-                  _enableErrors();
-                  _pop(context);
-                },
-              );
+    if (informativeOnly) {
+      return showNcDialogOK(
+        context,
+        title: title,
+        body: SingleChildScrollView(
+          child: NcBodyText(
+            message,
+            overflow: TextOverflow.visible,
+          ),
+        ),
+        onConfirm: () {
+          _enableErrors();
+          _pop(context);
+        },
+      );
+    }
+    showNcDialog(
+      context,
+      title: title,
+      body: SingleChildScrollView(
+        child: NcBodyText(
+          message,
+          overflow: TextOverflow.visible,
+        ),
+      ),
+      onConfirm: () {
+        // TODO: report error
+        _enableErrors();
+        onReportSent?.call();
+        _pop(context);
       },
+      onCancel: () {
+        _pop(context);
+
+        _enableErrors();
+      },
+      confirmText: "Send Report",
+      buttonWidth: 130,
     );
   }
 

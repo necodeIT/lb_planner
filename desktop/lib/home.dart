@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:desktop/widgets/views/Admin/admin_login.dart';
 import 'package:desktop/widgets/views/calendar/calendar.dart';
 import 'package:desktop/widgets/views/courses_overview/course_overview.dart';
@@ -46,15 +47,19 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    Widget child;
+
     switch (state) {
       case HomeState.Login:
-        return Login(onLoginSuccess: (token) => handleLogin(token));
+        child = Login(onLoginSuccess: (token) => handleLogin(token));
+        break;
 
       case HomeState.SelectCourses:
-        return SelectCoursesView(onSubmit: submitCourseSelection);
+        child = SelectCoursesView(onSubmit: submitCourseSelection);
 
+        break;
       case HomeState.Sidebar:
-        return Sidebar(
+        child = Sidebar(
           dashboard: Dashboard(),
           calendar: CalendarView(),
           coursesOverwiev: CourseOverview(),
@@ -63,9 +68,21 @@ class _HomeState extends State<Home> {
           settings: SettingView(),
           onLogout: logout,
         );
+        break;
       default:
-        return NcLoadingIndicator();
+        child = NcLoadingIndicator();
     }
+
+    return PageTransitionSwitcher(
+      // duration: Duration(seconds: 2),
+      transitionBuilder: (child, animationIn, animationOut) => FadeThroughTransition(
+        fillColor: NcThemes.current.secondaryColor,
+        animation: animationIn,
+        secondaryAnimation: animationOut,
+        child: child,
+      ),
+      child: child,
+    );
   }
 }
 

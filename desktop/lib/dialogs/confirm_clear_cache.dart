@@ -2,18 +2,31 @@ import 'package:flutter/material.dart';
 import 'package:lb_planner/ui.dart';
 
 showConfirmClearCache(BuildContext context) {
-  return showDialog(
-    context: context,
-    builder: (context) => NcDialog(
-      title: "Clear Cache",
-      body: NcCaptionText("Are you you sure you want to clear your cache? You will be logged out.", overflow: TextOverflow.visible,),
-      confirmText: "Delete",
-      onConfirm: () {
-        // TODO: Delete Cache
-      },
-      onCancel: (){
-        Navigator.of(context).pop();
-        },
+  // return showDialog(
+  //   context: context,
+  //   // builder: (context) => NcDialog(
+  //   //   title: "Clear Cache",
+  //   //   body: NcCaptionText("Are you you sure you want to clear your cache? You will be logged out.", overflow: TextOverflow.visible,),
+  //   //   confirmText: "Delete",
+  //   //   onConfirm: () {
+  //   //     // TODO: Delete Cache
+  //   //   },
+  //   //   onCancel: (){
+  //   //     Navigator.of(context).pop();
+  //   //     },
+  //   // ),
+  // );
+
+  showNcDialog(
+    context,
+    title: "Clear Cache",
+    body: NcCaptionText(
+      "Are you you sure you want to clear your cache? You will be logged out.",
+      overflow: TextOverflow.visible,
     ),
+    confirmText: "Delete",
+    onConfirm: () {
+      // TODO: Clear cache
+    },
   );
 }
