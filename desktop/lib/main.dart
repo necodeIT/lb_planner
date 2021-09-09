@@ -34,7 +34,8 @@ class _AppState extends State<App> {
   @override
   void initState() {
     super.initState();
-    NcThemes.onCurrentThemeChange = () => setState(() => User.current.settings.theme = NcThemes.current.name);
+    NcThemes.onCurrentThemeChange = () =>
+        setState(() => User.current.settings.theme = NcThemes.current.name);
 
     Guard.init(context);
 
