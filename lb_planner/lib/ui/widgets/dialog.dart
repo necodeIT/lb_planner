@@ -24,7 +24,17 @@ class NcDialog extends StatelessWidget {
   static const double widthFactor = .5;
   static const double heightFactor = .8;
   static const double defaultButtonWidth = 100;
-  static const Duration duration = Duration(milliseconds: 500);
+  static const Duration duration = Duration(milliseconds: 400);
+
+  static Widget transition(Widget dialog, Animation<double> animation) {
+    return ScaleTransition(
+      scale: CurvedAnimation(parent: animation, curve: Curves.linearToEaseOut),
+      child: FadeTransition(
+        opacity: CurvedAnimation(parent: animation, curve: Curves.linearToEaseOut),
+        child: dialog,
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -87,11 +97,8 @@ void showNcDialog(
     context: context,
     transitionDuration: NcDialog.duration,
     barrierColor: Colors.black.withOpacity(0.5),
-    pageBuilder: (context, animation1, animation2) => Container(),
-    transitionBuilder: (context, a1, a2, widget) => ScaleTransition(
-      scale: CurvedAnimation(parent: a1, curve: Curves.easeInExpo),
-      child: dialog,
-    ),
+    pageBuilder: (_, __, ___) => Container(),
+    transitionBuilder: (context, animation, _, widget) => NcDialog.transition(dialog, animation),
   );
 }
 
@@ -104,21 +111,20 @@ void showNcDialogOK(
   Widget? label,
   double buttonWidth = NcDialog.defaultButtonWidth,
 }) {
+  var dialog = NcDialog.ok(
+    title: title,
+    body: body,
+    confirmText: confirmText,
+    onConfirm: onConfirm,
+    label: label,
+    buttonWidth: buttonWidth,
+  );
+
   showGeneralDialog(
     context: context,
     transitionDuration: NcDialog.duration,
     barrierColor: Colors.black.withOpacity(0.5),
-    pageBuilder: (context, animation1, animation2) => Container(),
-    transitionBuilder: (context, a1, a2, widget) => ScaleTransition(
-      scale: CurvedAnimation(parent: a1, curve: Curves.easeInExpo),
-      child: NcDialog.ok(
-        title: title,
-        body: body,
-        confirmText: confirmText,
-        onConfirm: onConfirm,
-        label: label,
-        buttonWidth: buttonWidth,
-      ),
-    ),
+    pageBuilder: (_, __, ___) => Container(),
+    transitionBuilder: (context, animation, _, widget) => NcDialog.transition(dialog, animation),
   );
 }
