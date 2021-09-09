@@ -23,6 +23,7 @@ class Guard {
 
   static const noInfo = 'No information proivided.';
   static const crashKey = "crash";
+  static const badBoys = ["EXCEPTION CAUGHT BY RENDERING LIBRARY", "EXCEPTION CAUGHT BY WIDGETS LIBRAR"];
 
   static void init(BuildContext context) {
     _setErrorWidgetBuilder();
@@ -99,8 +100,8 @@ class Guard {
   static handleFlutterError(BuildContext context, FlutterErrorDetails details) {
     // TODO: check if error is build error ? return : show dialog
 
-    print("Guard.handleFlutterError(BuildContext context, FlutterErrorDetails details) is not fully implemented yet!");
-    if (details.toString().contains("EXCEPTION CAUGHT BY RENDERING LIBRARY") || details.toString().contains("EXCEPTION CAUGHT BY WIDGETS LIBRAR")) return print("Error is builderror. Skipping dialog.");
+    // print("Guard.handleFlutterError(BuildContext context, FlutterErrorDetails details) is not fully implemented yet!");
+    if (badBoys.any(details.toString().contains)) return print("Error is derived from builderror. Skipping dialog.");
 
     String message = "${details.context ?? noInfo}";
 
