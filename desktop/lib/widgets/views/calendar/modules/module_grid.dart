@@ -15,14 +15,59 @@ class ModuleGrid extends StatelessWidget {
       color: Colors.transparent,
       child: Row(
         children: [
-          ModuleWidget(tag: 'AM'),
-          ModuleWidget(tag: 'E'),
-          ModuleWidget(tag: 'D'),
-          ModuleWidget(tag: 'MEDT'),
-          ModuleWidget(tag: 'SEW'),
-          ModuleWidget(tag: 'SYT'),
-          ModuleWidget(tag: 'SEW'),
-          ModuleWidget(tag: 'ITSI'),
+          RotatedBox(
+            quarterTurns: -1,
+            child: Row(
+              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: NcTitleText(
+                    'May',
+                    textAlign: TextAlign.center,
+                    fontSize: 20,
+                  ),
+                ),
+                Expanded(
+                  child: NcTitleText(
+                    'May',
+                    textAlign: TextAlign.center,
+                    fontSize: 20,
+                  ),
+                ),
+                Expanded(
+                  child: NcTitleText(
+                    'May',
+                    textAlign: TextAlign.center,
+                    fontSize: 20,
+                  ),
+                ),
+                Expanded(
+                  child: NcTitleText(
+                    'May',
+                    textAlign: TextAlign.center,
+                    fontSize: 20,
+                  ),
+                ),
+                Expanded(
+                  child: NcTitleText(
+                    'May',
+                    textAlign: TextAlign.center,
+                    fontSize: 20,
+                  ),
+                ),
+                SizedBox(
+                  //width: ModuleWidget.heightTag,
+                  width: ModuleWidget.heightTag,
+                ),
+              ],
+            ),
+          ),
+          ModuleWidget(id: 1),
+          ModuleWidget(id: 1),
+          ModuleWidget(id: 1),
+          ModuleWidget(id: 1),
+          ModuleWidget(id: 1),
+          ModuleWidget(id: 1),
         ],
       ),
     );
