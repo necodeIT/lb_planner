@@ -1,6 +1,7 @@
 import 'package:desktop/dialogs/edit_course_dialog.dart';
 import 'package:desktop/dialogs/not_implemented_dialog.dart';
 import 'package:desktop/widgets/views/calendar/calendar_switch.dart';
+import 'package:desktop/widgets/views/calendar/modules/module_grid.dart';
 import 'package:desktop/widgets/views/calendar/plan/plan.dart';
 import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flutter/material.dart';
@@ -72,8 +73,7 @@ class _CalendarViewState extends State<CalendarView> {
             ),
           ],
         ),
-        body:
-            state == CalendarState.Plan ? CalendarGrid() : NcLoadingIndicator(),
+        body: state == CalendarState.Plan ? CalendarGrid() : ModuleGrid(),
       ),
     );
   }
