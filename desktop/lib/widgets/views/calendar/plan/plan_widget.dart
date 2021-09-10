@@ -1,8 +1,5 @@
 import 'package:desktop/widgets/views/calendar/calendar_day.dart';
-import 'package:desktop/widgets/views/calendar/modules/modules.dart';
-import 'package:desktop/widgets/views/calendar/modules/modules_day.dart';
 import 'package:desktop/widgets/views/calendar/plan/calendar_drag_item.dart';
-import 'package:desktop/widgets/views/calendar/plan/calendar_item.dart';
 import 'package:flutter/material.dart';
 import 'package:lb_planner/ui.dart';
 

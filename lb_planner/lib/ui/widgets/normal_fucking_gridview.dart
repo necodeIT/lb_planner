@@ -57,11 +57,8 @@ class NcGridView extends StatelessWidget {
               width -= edgePadding;
               // height -= edgePadding;
 
-              print(catgirlsVert);
-
               catgirlsHoriz = width / catgirlsHoriz < minWidth ? catgirlsHoriz -= (width / catgirlsHoriz / minWidth).ceil() : catgirlsHoriz;
               catgirlsVert = height / catgirlsVert < minHeight ? catgirlsVert -= (height / catgirlsVert / minHeight).ceil() : catgirlsVert;
-              print(catgirlsVert);
 
               double itemWidth = width / catgirlsHoriz;
 
