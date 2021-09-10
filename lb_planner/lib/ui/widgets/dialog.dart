@@ -77,7 +77,7 @@ void showNcDialog(
   required Widget body,
   String confirmText = "Confirm",
   String cancelText = "Cancel",
-  required Function() onConfirm,
+   Function()? onConfirm,
   Function()? onCancel,
   Widget? label,
   double buttonWidth = NcDialog.defaultButtonWidth,
@@ -107,7 +107,7 @@ void showNcDialogOK(
   String title = "",
   required Widget body,
   String confirmText = "Confirm",
-  required Function() onConfirm,
+  Function()? onConfirm,
   Widget? label,
   double buttonWidth = NcDialog.defaultButtonWidth,
 }) {
