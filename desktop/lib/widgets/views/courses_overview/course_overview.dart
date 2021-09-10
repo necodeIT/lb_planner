@@ -23,7 +23,7 @@ class _CourseOverviewState extends State<CourseOverview> {
 
   @override
   Widget build(BuildContext context) {
-    return NcView(
+    return NcView.route(
       title: "Course Overview",
       onNavigateBack: _hasHighlight ? showGrid : null,
       content: _hasHighlight

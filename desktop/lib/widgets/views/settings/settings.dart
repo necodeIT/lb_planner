@@ -35,9 +35,9 @@ class _SettingViewState extends State<SettingView> {
 
   @override
   Widget build(BuildContext context) {
-    return state == SettingsState.Settings
-        ? NcView(
-            title: "Settings",
+    return NcView(
+
+      builder: (context, showRoute) => NcView.route( title: "Settings",
             content: Row(
               children: [
                 Expanded(
@@ -91,7 +91,7 @@ class _SettingViewState extends State<SettingView> {
                                     SettingsGeneralItem(
                                       text: "Credits",
                                       icon: Icons.info_outline,
-                                      onTap: _showCredits,
+                                      onTap: showRoute(Credits(goBack: showRoute())),
                                     ),
                                   ],
                                 ),
@@ -136,9 +136,8 @@ class _SettingViewState extends State<SettingView> {
                   ),
                 ),
               ],
-            ),
-          )
-        : Credits(goBack: _showSettings);
+            ),),
+    )
   }
 }
 

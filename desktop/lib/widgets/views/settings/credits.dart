@@ -8,7 +8,7 @@ class Credits extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return NcView(
+    return NcView.route(
         title: "Settings",
         onNavigateBack: goBack,
         content: ListView(
