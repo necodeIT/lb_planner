@@ -6,7 +6,7 @@ import 'package:lb_planner/ui.dart';
 import 'package:lb_planner/ui/widgets/view/svg/notifactions_svg.dart';
 
 class NcView extends StatefulWidget {
-  NcView.route({Key? key, required this.title, this.onNavigateBack, required this.content}) : super(key: key) {
+  NcView.route({Key? key, required this.title, this.popRoute, required this.content}) : super(key: key) {
     isRoute = true;
   }
   NcView({Key? key, required this.routes}) : super(key: key) {
@@ -16,25 +16,16 @@ class NcView extends StatefulWidget {
 
   late final String title;
   late final Widget content;
-  late final Function()? onNavigateBack;
+  late final String? popRoute;
 
   late final bool isRoute;
   late final List<NcView> routes;
   late final Map<String, Widget> _routes;
-  late final _NcViewController controller;
 
   static const double fontSize = 30;
   static const double notificationsSize = 400;
 
-  static _NcViewController of(BuildContext context, {rootController = false}) {
-    _NcViewController? controller = context.dependOnInheritedWidgetOfExactType<_NcViewController>();
-
-    if (context.widget is _NcViewController) {
-      controller = context.widget as _NcViewController;
-    }
-
-    return controller!;
-  }
+  static _NcViewController of(BuildContext context, {rootController = false}) => context.dependOnInheritedWidgetOfExactType<_NcViewController>()!;
 
   @override
   _NcViewState createState() => _NcViewState();
@@ -42,6 +33,7 @@ class NcView extends StatefulWidget {
 
 class _NcViewState extends State<NcView> {
   bool showNotifications = false;
+  late String _current;
 
   void hideNotificationsPopuop() {
     setState(() {
@@ -54,8 +46,6 @@ class _NcViewState extends State<NcView> {
       showNotifications = true;
     });
   }
-
-  late String _current;
 
   void route(String name) {
     setState(() {
@@ -83,11 +73,13 @@ class _NcViewState extends State<NcView> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        widget.onNavigateBack != null
+                        widget.popRoute != null
                             ? NcTextButton(
                                 fontSize: NcView.fontSize,
                                 text: widget.title,
-                                onTap: widget.onNavigateBack ?? () {},
+                                onTap: () {
+                                  if (widget.popRoute != null) NcView.of(context).route(widget.popRoute!);
+                                },
                                 leadingIcon: Icon(
                                   Feather.arrow_left_circle,
                                   color: NcThemes.current.textColor,
@@ -150,19 +142,21 @@ class _NcViewState extends State<NcView> {
               )
             ],
           )
-        : _NcViewController(
-            child: PageTransitionSwitcher(
-              // duration: Duration(seconds: 2),
-              transitionBuilder: (child, animationIn, animationOut) => FadeThroughTransition(
-                fillColor: NcThemes.current.secondaryColor,
-                animation: animationIn,
-                secondaryAnimation: animationOut,
-                child: child,
-              ),
-              // child: routes[_current],
-              child: widget._routes[_current],
+        : PageTransitionSwitcher(
+            transitionBuilder: (child, animationIn, animationOut) => FadeThroughTransition(
+              fillColor: NcThemes.current.secondaryColor,
+              animation: animationIn,
+              secondaryAnimation: animationOut,
+              child: child,
             ),
-            state: this);
+            child: _NcViewController(
+              // duration: Duration(seconds: 2),
+
+              // child: routes[_current],
+              child: widget._routes[_current] ?? NcBodyText("Route '$_current' does not exist!"),
+              state: this,
+            ),
+          );
   }
 
   // Here it is!

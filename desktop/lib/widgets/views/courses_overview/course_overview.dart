@@ -25,13 +25,13 @@ class _CourseOverviewState extends State<CourseOverview> {
   Widget build(BuildContext context) {
     return NcView.route(
       title: "Course Overview",
-      onNavigateBack: _hasHighlight ? showGrid : null,
+      // onNavigateBack: _hasHighlight ? showGrid : null,
       content: _hasHighlight
           ? CourseHighlight(id: highlightID ?? 0)
-          : NcGridView(
-              minHeight: 250,
-              maxHeight: 250,
-              minWidth: 400,
+          : NcGridView.responsive(
+              minHeight: CourseOverviewItem.height,
+              maxHeight: CourseOverviewItem.height,
+              minWidth: CourseOverviewItem.minWidth,
               children: [
                 CourseOverviewItem(id: 01, onShowDetails: highlightCourse),
                 CourseOverviewItem(id: 01, onShowDetails: highlightCourse),

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:lb_planner/ui.dart';
 
 class Credits extends StatelessWidget {
-  const Credits({Key? key, required this.onOceanThemeUnlocked}) : super(key: key);
+  const Credits({Key? key}) : super(key: key);
 
-  final Function() onOceanThemeUnlocked;
+  static const name = "Credits";
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,6 @@ class Credits extends StatelessWidget {
           text: "",
           onTap: () {
             // TODO: Unlock Oceon Theme
-            onOceanThemeUnlocked();
             throw Exception("test");
           },
         )

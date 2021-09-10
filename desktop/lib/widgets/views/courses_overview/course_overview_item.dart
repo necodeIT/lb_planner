@@ -7,12 +7,13 @@ import 'package:lb_planner/data.dart';
 import 'package:lb_planner/ui.dart';
 
 class CourseOverviewItem extends StatelessWidget {
-  const CourseOverviewItem({Key? key, required this.id, required this.onShowDetails, this.height, this.width}) : super(key: key);
+  const CourseOverviewItem({Key? key, required this.id, required this.onShowDetails}) : super(key: key);
 
   final int id;
-  final double? height;
-  final double? width;
   final Function(int) onShowDetails;
+
+  static const double minWidth = 400;
+  static const double height = 250;
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +24,6 @@ class CourseOverviewItem extends StatelessWidget {
     return GestureDetector(
       onTap: () => onShowDetails(id),
       child: NcContainer(
-        width: width,
-        height: height,
         label: NcCaptionText(
           "Deutsch",
           fontSize: 20,

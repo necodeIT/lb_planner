@@ -14,6 +14,8 @@ import 'feedback.dart';
 class SettingsRoute extends StatelessWidget {
   const SettingsRoute({Key? key}) : super(key: key);
 
+  static const name = "Settings";
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -88,10 +90,6 @@ class SettingsRoute extends StatelessWidget {
                           fontSize: Dashboard.titleSize,
                         ),
                         body: NcGridView(
-                          minHeight: ThemeItem.size,
-                          maxHeight: ThemeItem.size,
-                          minWidth: ThemeItem.size,
-                          maxWidth: ThemeItem.size,
                           spacing: NcSpacing.xlSpacing,
                           children: [
                             // TODO: for (var theme in User.current.themes) ThemeItem(theme: theme),

@@ -16,13 +16,13 @@ class _SettingViewState extends State<SettingView> {
     return NcView(
       routes: [
         NcView.route(
-          title: "Settings",
+          title: SettingsRoute.name,
           content: SettingsRoute(),
         ),
         NcView.route(
-          title: "Credits",
-          onNavigateBack: NcView.of(context).route("Settings"),
-          content: Credits(onOceanThemeUnlocked: () {}),
+          title: Credits.name,
+          popRoute: SettingsRoute.name,
+          content: Credits(),
         )
       ],
     );

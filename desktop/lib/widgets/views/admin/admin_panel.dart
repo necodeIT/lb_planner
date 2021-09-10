@@ -20,10 +20,9 @@ class _AdminPanelState extends State<AdminPanel> {
   Widget build(BuildContext context) {
     return NcView.route(
       title: "Admin",
-      content: NcGridView(
+      content: NcGridView.responsive(
         maxHeight: AdminPanel.height,
         minHeight: AdminPanel.height,
-        maxWidth: double.infinity,
         minWidth: AdminPanel.width,
         children: [
           NcContainer(
