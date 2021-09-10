@@ -22,12 +22,18 @@ class CourseOverviewItem extends StatelessWidget {
     var stats = StatusProfile(done: 15, late: 10, uploaded: 5, pending: 20);
     var testi = 1.0;
 
-    if (testWidth > 1500) {
-      testi = 3.4;
+    if (testWidth > 2100) {
+      testi = 5.6;
     } else {
-      if (testWidth > 1000) {
-        testi = 2.3;
-      } else {}
+      if (testWidth > 1750) {
+        testi = 4.5;
+      } else if (testWidth > 1500) {
+        testi = 3.4;
+      } else {
+        if (testWidth > 1000) {
+          testi = 2.3;
+        }
+      }
     }
 
     return GestureDetector(
