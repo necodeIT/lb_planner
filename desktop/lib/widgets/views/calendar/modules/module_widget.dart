@@ -9,23 +9,26 @@ import 'package:lb_planner/ui.dart';
 class ModuleWidget extends StatelessWidget {
   ModuleWidget({
     Key? key,
-    required this.tag,
+    required this.id,
   }) : super(key: key);
 
-  final String tag;
+  final int id;
+  static const double heightTag = 30;
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: Column(
         children: [
-          Expanded(
-            flex: 0,
-            child: Container(
-              child: NcCaptionText(
-                tag,
-                fontSize: 20,
-              ),
+          Container(
+            height: heightTag,
+            alignment: Alignment.center,
+            //width: double.infinity,
+            color: Colors.red,
+            child: NcCaptionText(
+              'SEW',
+              fontSize: 20,
+              buttonText: true,
             ),
           ),
           Expanded(
