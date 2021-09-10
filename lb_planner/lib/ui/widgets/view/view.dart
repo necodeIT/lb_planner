@@ -26,7 +26,15 @@ class NcView extends StatefulWidget {
   static const double fontSize = 30;
   static const double notificationsSize = 400;
 
-  static _NcViewController of(BuildContext context) => context.dependOnInheritedWidgetOfExactType<_NcViewController>()!;
+  static _NcViewController of(BuildContext context, {rootController = false}) {
+    _NcViewController? controller = context.dependOnInheritedWidgetOfExactType<_NcViewController>();
+
+    if (context.widget is _NcViewController) {
+      controller = context.widget as _NcViewController;
+    }
+
+    return controller!;
+  }
 
   @override
   _NcViewState createState() => _NcViewState();

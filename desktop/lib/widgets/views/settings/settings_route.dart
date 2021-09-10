@@ -88,6 +88,10 @@ class SettingsRoute extends StatelessWidget {
                           fontSize: Dashboard.titleSize,
                         ),
                         body: NcGridView(
+                          minHeight: ThemeItem.size,
+                          maxHeight: ThemeItem.size,
+                          minWidth: ThemeItem.size,
+                          maxWidth: ThemeItem.size,
                           spacing: NcSpacing.xlSpacing,
                           children: [
                             // TODO: for (var theme in User.current.themes) ThemeItem(theme: theme),

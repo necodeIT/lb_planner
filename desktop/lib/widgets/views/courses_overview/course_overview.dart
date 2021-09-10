@@ -28,36 +28,24 @@ class _CourseOverviewState extends State<CourseOverview> {
       onNavigateBack: _hasHighlight ? showGrid : null,
       content: _hasHighlight
           ? CourseHighlight(id: highlightID ?? 0)
-          : Container(
-              child: ListView(
-                padding: EdgeInsets.all(10),
-                children: [
-                  Wrap(
-                    spacing: 20,
-                    runSpacing: 20,
-                    children: [
-                      CourseOverviewItem(
-                          id: 01, onShowDetails: highlightCourse),
-                      CourseOverviewItem(
-                          id: 01, onShowDetails: highlightCourse),
-                      CourseOverviewItem(
-                          id: 01, onShowDetails: highlightCourse),
-                      CourseOverviewItem(
-                          id: 01, onShowDetails: highlightCourse),
-                      CourseOverviewItem(
-                          id: 01, onShowDetails: highlightCourse),
-                      CourseOverviewItem(
-                          id: 01, onShowDetails: highlightCourse),
-                      CourseOverviewItem(
-                          id: 01, onShowDetails: highlightCourse),
-                      CourseOverviewItem(
-                          id: 01, onShowDetails: highlightCourse),
-                      CourseOverviewItem(
-                          id: 01, onShowDetails: highlightCourse),
-                    ],
-                  ),
-                ],
-              ),
+          : NcGridView(
+              minHeight: 250,
+              maxHeight: 250,
+              minWidth: 400,
+              children: [
+                CourseOverviewItem(id: 01, onShowDetails: highlightCourse),
+                CourseOverviewItem(id: 01, onShowDetails: highlightCourse),
+                CourseOverviewItem(id: 01, onShowDetails: highlightCourse),
+                CourseOverviewItem(id: 01, onShowDetails: highlightCourse),
+                CourseOverviewItem(id: 01, onShowDetails: highlightCourse),
+                CourseOverviewItem(id: 01, onShowDetails: highlightCourse),
+                CourseOverviewItem(id: 01, onShowDetails: highlightCourse),
+                CourseOverviewItem(id: 01, onShowDetails: highlightCourse),
+                CourseOverviewItem(id: 01, onShowDetails: highlightCourse),
+                CourseOverviewItem(id: 01, onShowDetails: highlightCourse),
+                CourseOverviewItem(id: 01, onShowDetails: highlightCourse),
+                CourseOverviewItem(id: 01, onShowDetails: highlightCourse),
+              ],
             ),
       // : NcGridView(
       //     spacing: NcSpacing.mediumSpacing,

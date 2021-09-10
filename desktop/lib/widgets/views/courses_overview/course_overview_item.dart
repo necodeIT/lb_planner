@@ -7,40 +7,24 @@ import 'package:lb_planner/data.dart';
 import 'package:lb_planner/ui.dart';
 
 class CourseOverviewItem extends StatelessWidget {
-  const CourseOverviewItem(
-      {Key? key, required this.id, required this.onShowDetails})
-      : super(key: key);
+  const CourseOverviewItem({Key? key, required this.id, required this.onShowDetails, this.height, this.width}) : super(key: key);
 
   final int id;
+  final double? height;
+  final double? width;
   final Function(int) onShowDetails;
 
   @override
   Widget build(BuildContext context) {
     // var stats = DB.courses[id]!.getStats();
 
-    double testWidth = MediaQuery.of(context).size.width;
     var stats = StatusProfile(done: 15, late: 10, uploaded: 5, pending: 20);
-    var testi = 1.0;
-
-    if (testWidth > 2100) {
-      testi = 5.6;
-    } else {
-      if (testWidth > 1750) {
-        testi = 4.5;
-      } else if (testWidth > 1500) {
-        testi = 3.4;
-      } else {
-        if (testWidth > 1000) {
-          testi = 2.3;
-        }
-      }
-    }
 
     return GestureDetector(
       onTap: () => onShowDetails(id),
       child: NcContainer(
-        width: testWidth / testi,
-        height: 250,
+        width: width,
+        height: height,
         label: NcCaptionText(
           "Deutsch",
           fontSize: 20,
@@ -81,23 +65,15 @@ class CourseOverviewItem extends StatelessWidget {
                 // if (DB.courses[id]!.tags.contains(CourseTags.Completed)) NcTag(text: "Completed", backgroundColor: Colors.cyan),
                 Row(
                   children: [
-                    NcTag(
-                        text: "Done",
-                        backgroundColor: NcThemes.current.doneColor),
+                    NcTag(text: "Done", backgroundColor: NcThemes.current.doneColor),
                     NcSpacing.small(),
                     //TODO: if (DB.courses[id]!.tags.contains(CourseTags.Uploaded))
-                    NcTag(
-                        text: "Uploaded",
-                        backgroundColor: NcThemes.current.uploadedColor),
+                    NcTag(text: "Uploaded", backgroundColor: NcThemes.current.uploadedColor),
                     NcSpacing.small(),
-                    NcTag(
-                        text: "Late",
-                        backgroundColor: NcThemes.current.lateColor),
+                    NcTag(text: "Late", backgroundColor: NcThemes.current.lateColor),
                     NcSpacing.small(),
                     //TODO: if (DB.courses[id]!.tags.contains(CourseTags.Pending))
-                    NcTag(
-                        text: "Pending",
-                        backgroundColor: NcThemes.current.pendingColor)
+                    NcTag(text: "Pending", backgroundColor: NcThemes.current.pendingColor)
                     //TODO: if (DB.courses[id]!.tags.contains(CourseTags.Late))
                   ],
                 ),

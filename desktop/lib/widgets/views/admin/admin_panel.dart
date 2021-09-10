@@ -21,17 +21,17 @@ class _AdminPanelState extends State<AdminPanel> {
     return NcView.route(
       title: "Admin",
       content: NcGridView(
+        maxHeight: AdminPanel.height,
+        minHeight: AdminPanel.height,
+        maxWidth: double.infinity,
+        minWidth: AdminPanel.width,
         children: [
           NcContainer(
-            height: AdminPanel.height,
-            width: AdminPanel.width,
             label: NcTitleText("Stats", fontSize: AdminPanel.fontSize),
             leadingIcon: Icon(Icons.query_stats, size: AdminPanel.fontSize, color: NcThemes.current.textColor),
             body: NcVectorImage(code: stats_svg),
           ),
           NcContainer(
-            height: AdminPanel.height,
-            width: AdminPanel.width,
             label: NcTitleText("Feedback", fontSize: AdminPanel.fontSize),
             leadingIcon: Icon(Icons.chat_bubble, size: AdminPanel.fontSize, color: NcThemes.current.textColor),
             body: NcVectorImage(code: feedback_svg),
