@@ -26,8 +26,8 @@ class NcGridView extends StatelessWidget {
   late final EdgeInsetsGeometry margin;
   late final Alignment alignment;
 
-  static const edgePadding = NcScrollbar.scrollbarWidth + NcSpacing.smallSpacing;
-  // static const edgePadding = 0;
+  // static const edgePadding = NcScrollbar.scrollbarWidth + NcSpacing.smallSpacing;
+  static const edgePadding = 0;
 
   Widget generateSpacing() => SizedBox(width: spacing, height: spacing);
 
@@ -43,12 +43,8 @@ class NcGridView extends StatelessWidget {
         width -= edgePadding;
         height -= edgePadding;
 
-        print("Smaller than bounds ? ${width / catgirlsHoriz < minWidth}");
-        print("Min: $minWidth");
-        print("Current: ${width / catgirlsHoriz}");
-        // print("Compromise: ${}");
-
         catgirlsHoriz = width / catgirlsHoriz < minWidth ? catgirlsHoriz -= (width / catgirlsHoriz / minWidth).ceil() : catgirlsHoriz;
+        catgirlsVert = width / catgirlsVert < minHeight ? catgirlsVert -= (height / catgirlsVert / minHeight).ceil() : catgirlsVert;
 
         double itemWidth = width / catgirlsHoriz;
 
@@ -68,7 +64,7 @@ class NcGridView extends StatelessWidget {
 
         int i = -1; // negative one because we increment the index before accessing the list
 
-        // catgirlsVert = MediaQuery.of(context).size.height.toInt();
+        catgirlsVert = MediaQuery.of(context).size.height ~/ itemHeight;
 
         return SingleChildScrollView(
           physics: NcScrollBehavior.physics,
