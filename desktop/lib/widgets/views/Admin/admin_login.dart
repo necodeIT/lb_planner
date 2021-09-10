@@ -30,7 +30,7 @@ class _AdminLoginState extends State<AdminLogin> {
   @override
   Widget build(BuildContext context) {
     return state == AdminState.AdminLogin
-        ? NcView(
+        ? NcView.route(
             title: ("Admin Login"),
             content: Row(
               children: [

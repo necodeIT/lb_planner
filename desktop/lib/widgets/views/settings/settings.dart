@@ -35,110 +35,110 @@ class _SettingViewState extends State<SettingView> {
 
   @override
   Widget build(BuildContext context) {
-    return state == SettingsState.Settings
-        ? NcView(
-            title: "Settings",
-            content: Row(
-              children: [
-                Expanded(
-                  child: Column(
-                    children: [
-                      Expanded(
-                        child: Row(
-                          children: [
-                            Expanded(
-                              flex: 2,
-                              child: NcContainer(
-                                label: NcCaptionText(
-                                  "General",
-                                  fontSize: Dashboard.titleSize,
-                                ),
-                                body: ListView(
-                                  children: [
-                                    SettingsGeneralItem(
-                                      text: version,
-                                      icon: Icons.update,
-                                      onTap: () {
-                                        // TODO: Check for updates
-                                        NcSnackBar.showBottomRightMessage(
-                                          context,
-                                          prefixIcon: Icon(
-                                            Icons.update,
-                                            color: NcThemes.current.textColor,
-                                          ),
-                                          message: "You already are up to date!",
-                                        );
-                                      },
-                                    ),
-                                    NcSpacing.small(),
-                                    SettingsGeneralItem(
-                                      text: "Clear Cache",
-                                      icon: Icons.arrow_forward_ios,
-                                      onTap: () {
-                                        showConfirmClearCache(context);
-                                      },
-                                    ),
-                                    NcSpacing.small(),
-                                    SettingsGeneralItem(
-                                      text: "Delete Profile",
-                                      icon: Feather.trash_2,
-                                      onTap: () {
-                                        showDeleteProfileDialog(context);
-                                        // TODO: Check for updates
-                                      },
-                                    ),
-                                    NcSpacing.small(),
-                                    SettingsGeneralItem(
-                                      text: "Credits",
-                                      icon: Icons.info_outline,
-                                      onTap: _showCredits,
-                                    ),
-                                  ],
-                                ),
-                              ),
+    return NcView(
+      builder: (context, route(Widget view), pop()) => NcView.route(
+        title: "Settings",
+        content: Row(
+          children: [
+            Expanded(
+              child: Column(
+                children: [
+                  Expanded(
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 2,
+                          child: NcContainer(
+                            label: NcCaptionText(
+                              "General",
+                              fontSize: Dashboard.titleSize,
                             ),
-                            NcSpacing.large(),
-                            Expanded(
-                              flex: 3,
-                              child: NcContainer(
-                                label: NcCaptionText(
-                                  "Themes",
-                                  fontSize: Dashboard.titleSize,
+                            body: ListView(
+                              children: [
+                                SettingsGeneralItem(
+                                  text: version,
+                                  icon: Icons.update,
+                                  onTap: () {
+                                    // TODO: Check for updates
+                                    NcSnackBar.showBottomRightMessage(
+                                      context,
+                                      prefixIcon: Icon(
+                                        Icons.update,
+                                        color: NcThemes.current.textColor,
+                                      ),
+                                      message: "You already are up to date!",
+                                    );
+                                  },
                                 ),
-                                body: NcGridView(
-                                  spacing: NcSpacing.xlSpacing,
-                                  children: [
-                                    // TODO: for (var theme in User.current.themes) ThemeItem(theme: theme),
-                                    for (var theme in NcThemes.all.keys) ThemeItem(theme: theme),
-                                  ],
+                                NcSpacing.small(),
+                                SettingsGeneralItem(
+                                  text: "Clear Cache",
+                                  icon: Icons.arrow_forward_ios,
+                                  onTap: () {
+                                    showConfirmClearCache(context);
+                                  },
                                 ),
-                              ),
+                                NcSpacing.small(),
+                                SettingsGeneralItem(
+                                  text: "Delete Profile",
+                                  icon: Feather.trash_2,
+                                  onTap: () {
+                                    showDeleteProfileDialog(context);
+                                    // TODO: Check for updates
+                                  },
+                                ),
+                                NcSpacing.small(),
+                                SettingsGeneralItem(
+                                  text: "Credits",
+                                  icon: Icons.info_outline,
+                                  onTap: route(Credits(goBack: pop)),
+                                ),
+                              ],
                             ),
-                          ],
+                          ),
                         ),
-                      ),
-                      NcSpacing.large(),
-                      Expanded(
-                        flex: 2,
-                        child: CourseSelection(),
-                      )
-                    ],
-                  ),
-                ),
-                NcSpacing.large(),
-                Expanded(
-                  child: NcContainer(
-                    label: NcCaptionText(
-                      "Feedback",
-                      fontSize: Dashboard.titleSize,
+                        NcSpacing.large(),
+                        Expanded(
+                          flex: 3,
+                          child: NcContainer(
+                            label: NcCaptionText(
+                              "Themes",
+                              fontSize: Dashboard.titleSize,
+                            ),
+                            body: NcGridView(
+                              spacing: NcSpacing.xlSpacing,
+                              children: [
+                                // TODO: for (var theme in User.current.themes) ThemeItem(theme: theme),
+                                for (var theme in NcThemes.all.keys) ThemeItem(theme: theme),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                    body: SettingsFeedback(),
                   ),
-                ),
-              ],
+                  NcSpacing.large(),
+                  Expanded(
+                    flex: 2,
+                    child: CourseSelection(),
+                  )
+                ],
+              ),
             ),
-          )
-        : Credits(goBack: _showSettings);
+            NcSpacing.large(),
+            Expanded(
+              child: NcContainer(
+                label: NcCaptionText(
+                  "Feedback",
+                  fontSize: Dashboard.titleSize,
+                ),
+                body: SettingsFeedback(),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
 

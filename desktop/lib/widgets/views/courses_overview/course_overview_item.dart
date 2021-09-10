@@ -17,12 +17,23 @@ class CourseOverviewItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // var stats = DB.courses[id]!.getStats();
+
+    double testWidth = MediaQuery.of(context).size.width;
     var stats = StatusProfile(done: 15, late: 10, uploaded: 5, pending: 20);
+    var testi = 1.0;
+
+    if (testWidth > 1500) {
+      testi = 3.4;
+    } else {
+      if (testWidth > 1000) {
+        testi = 2.3;
+      } else {}
+    }
 
     return GestureDetector(
       onTap: () => onShowDetails(id),
       child: NcContainer(
-        width: 400,
+        width: testWidth / testi,
         height: 250,
         label: NcCaptionText(
           "Deutsch",

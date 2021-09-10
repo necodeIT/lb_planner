@@ -6,13 +6,13 @@ import 'package:desktop/widgets/views/calendar/plan/calendar_item.dart';
 import 'package:flutter/material.dart';
 import 'package:lb_planner/ui.dart';
 
-class PlanWidget extends StatelessWidget {
-  PlanWidget({
+class ModuleWidget extends StatelessWidget {
+  ModuleWidget({
     Key? key,
-    required this.day,
+    required this.tag,
   }) : super(key: key);
 
-  final String day;
+  final String tag;
 
   @override
   Widget build(BuildContext context) {
@@ -21,27 +21,29 @@ class PlanWidget extends StatelessWidget {
         children: [
           Expanded(
             flex: 0,
-            child: NcCaptionText(
-              day,
-              fontSize: 20,
+            child: Container(
+              child: NcCaptionText(
+                tag,
+                fontSize: 20,
+              ),
             ),
           ),
           Expanded(
             flex: 1,
             child: CalenderDayItem(
-              dayModules: '01',
+              dayModules: '+1',
               text: 'text',
               children: [
-                CalendarDragItem(id: 01),
-                CalendarDragItem(id: 01),
-                CalendarDragItem(id: 01),
+                // CalendarDragItem(id: 01),
+                // CalendarDragItem(id: 01),
+                // CalendarDragItem(id: 01),
               ],
             ),
           ),
           Expanded(
             flex: 1,
             child: CalenderDayItem(
-              dayModules: '01',
+              dayModules: '+1',
               text: 'text',
               children: [],
             ),
@@ -49,7 +51,7 @@ class PlanWidget extends StatelessWidget {
           Expanded(
             flex: 1,
             child: CalenderDayItem(
-              dayModules: '01',
+              dayModules: '+1',
               text: 'text',
               children: [],
             ),
@@ -57,7 +59,7 @@ class PlanWidget extends StatelessWidget {
           Expanded(
             flex: 1,
             child: CalenderDayItem(
-              dayModules: '01',
+              dayModules: '+1',
               text: 'text',
               children: [],
             ),
@@ -65,7 +67,7 @@ class PlanWidget extends StatelessWidget {
           Expanded(
             flex: 1,
             child: CalenderDayItem(
-              dayModules: '01',
+              dayModules: '+1',
               text: 'text',
               children: [],
             ),

@@ -23,37 +23,68 @@ class _CourseOverviewState extends State<CourseOverview> {
 
   @override
   Widget build(BuildContext context) {
-    return NcView(
+    return NcView.route(
       title: "Course Overview",
       onNavigateBack: _hasHighlight ? showGrid : null,
       content: _hasHighlight
           ? CourseHighlight(id: highlightID ?? 0)
-          : NcGridView(
-              spacing: NcSpacing.mediumSpacing,
-              alignment: Alignment.topLeft,
-              children: [
-                // TODO: for (int id in DB.courses.keys) CourseOverviewItem(id: id, onShowDetails: highlightCourse),
-                CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
-                CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
-                CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
-                CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
-                CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
-                CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
-                CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
-                CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
-                CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
-                CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
-                CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
-                CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
-                CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
-                CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
-                CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
-                CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
-                CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
-                CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
-                CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
-              ],
+          : Container(
+              child: ListView(
+                padding: EdgeInsets.all(10),
+                children: [
+                  Wrap(
+                    spacing: 20,
+                    runSpacing: 20,
+                    children: [
+                      CourseOverviewItem(
+                          id: 01, onShowDetails: highlightCourse),
+                      CourseOverviewItem(
+                          id: 01, onShowDetails: highlightCourse),
+                      CourseOverviewItem(
+                          id: 01, onShowDetails: highlightCourse),
+                      CourseOverviewItem(
+                          id: 01, onShowDetails: highlightCourse),
+                      CourseOverviewItem(
+                          id: 01, onShowDetails: highlightCourse),
+                      CourseOverviewItem(
+                          id: 01, onShowDetails: highlightCourse),
+                      CourseOverviewItem(
+                          id: 01, onShowDetails: highlightCourse),
+                      CourseOverviewItem(
+                          id: 01, onShowDetails: highlightCourse),
+                      CourseOverviewItem(
+                          id: 01, onShowDetails: highlightCourse),
+                    ],
+                  ),
+                ],
+              ),
             ),
+      // : NcGridView(
+      //     spacing: NcSpacing.mediumSpacing,
+      //     alignment: Alignment.topLeft,
+      //     children: [
+      //       // TODO: for (int id in DB.courses.keys) CourseOverviewItem(id: id, onShowDetails: highlightCourse),
+      //       CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
+      //       CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
+      //       CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
+      //       CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
+      //       CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
+      //       CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
+      //       CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
+      //       CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
+      //       CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
+      //       CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
+      //       CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
+      //       CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
+      //       CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
+      //       CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
+      //       CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
+      //       CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
+      //       CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
+      //       CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
+      //       CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
+      //     ],
+      //   ),
     );
   }
 
