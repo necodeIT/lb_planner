@@ -18,7 +18,7 @@ class NcView extends StatefulWidget {
   late final Function()? onNavigateBack;
 
   late final bool isRoute;
-  late final Widget Function(BuildContext, Function(NcView)) builder;
+  late final Widget Function(BuildContext, Function(Widget), Function()) builder;
 
   static const double fontSize = 30;
   static const double notificationsSize = 400;
@@ -56,8 +56,7 @@ class _NcViewState extends State<NcView> {
   pop() {
     if (widget.isRoute) return;
     setState(() {
-      last = current;
-      current = view;
+      current = last;
     });
   }
 
@@ -148,7 +147,7 @@ class _NcViewState extends State<NcView> {
               secondaryAnimation: animationOut,
               child: child,
             ),
-            child: current,
+            child: current = widget.builder(context, route, pop),
           );
   }
 
