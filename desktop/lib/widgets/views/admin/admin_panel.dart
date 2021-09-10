@@ -27,35 +27,26 @@ class _AdminPanelState extends State<AdminPanel> {
         children: [
           NcContainer(
             label: NcTitleText("Stats", fontSize: AdminPanel.fontSize),
-            leadingIcon: Icon(Icons.query_stats, size: AdminPanel.fontSize, color: NcThemes.current.textColor),
+            leadingIcon: Icon(Icons.query_stats,
+                size: AdminPanel.fontSize, color: NcThemes.current.textColor),
             body: NcVectorImage(code: stats_svg),
           ),
           NcContainer(
             label: NcTitleText("Feedback", fontSize: AdminPanel.fontSize),
-            leadingIcon: Icon(Icons.chat_bubble, size: AdminPanel.fontSize, color: NcThemes.current.textColor),
+            leadingIcon: Icon(Icons.chat_bubble,
+                size: AdminPanel.fontSize, color: NcThemes.current.textColor),
             body: NcVectorImage(code: feedback_svg),
           ),
           NcContainer(
             height: AdminPanel.height,
             width: AdminPanel.width,
             label: NcTitleText("Database", fontSize: AdminPanel.fontSize),
-            leadingIcon: Icon(FontAwesome5Solid.database, size: AdminPanel.fontSize, color: NcThemes.current.textColor),
+            leadingIcon: Icon(FontAwesome5Solid.database,
+                size: AdminPanel.fontSize, color: NcThemes.current.textColor),
             body: NcVectorImage(code: database_svg),
           ),
         ],
       ),
     );
-    // return NcView(
-    //   title: "Admin",
-    //   content: NcGridView(
-    //     children: [
-    //       NcContainer(
-    //         label: NcTitleText("Stats"),
-    //         trailingIcon: Icon(Icons.query_stats),
-    //         body: Container(),
-    //       ),
-    //     ],
-    //   ),
-    // );
   }
 }
