@@ -44,18 +44,22 @@ class Guard {
     _showNextError = true;
   }
 
-  static reportError(BuildContext context, Object exception) {
+  static reportError(BuildContext context, Object exception, StackTrace stack) {
     if (!_showNextError) return;
 
     // if (!kReleaseMode) return print(message);
 
-    report(context, exception.toString());
+    report(context, exception.toString(), ErrorCacheEntry(exception.toString(), stack.toString()));
   }
 
-  static report(BuildContext context, String message, {String title = "Something went wrong!", Function()? onReportSent, bool informativeOnly = false}) {
+  static report(BuildContext context, String message, ErrorCacheEntry error, {Function()? onReportSent, String title = "Something went wrong!"}) {
     _blockErrors();
 
-    if (informativeOnly) {
+    final skipReport = _errorCache.contains(error);
+
+    if (skipReport) print("This error has already been reported. Skipping report option.");
+
+    if (skipReport) {
       return showNcDialogOK(
         context,
         title: title,
@@ -83,13 +87,13 @@ class Guard {
       ),
       onConfirm: () {
         // TODO: report error
-        _enableErrors();
         onReportSent?.call();
+        _errorCache.add(error);
+        _enableErrors();
         _pop(context);
       },
       onCancel: () {
         _pop(context);
-
         _enableErrors();
       },
       cancelText: ingore,
@@ -101,8 +105,8 @@ class Guard {
   static run(BuildContext context, Function body) {
     try {
       body();
-    } catch (e) {
-      reportError(context, e);
+    } catch (e, stack) {
+      reportError(context, e, stack);
     }
   }
 
@@ -117,19 +121,15 @@ class Guard {
   }
 
   static handleFlutterError(BuildContext context, FlutterErrorDetails details) {
-    if (!kReleaseMode) return print(details);
+    if (!kReleaseMode) return FlutterError.dumpErrorToConsole(details);
 
     var error = ErrorCacheEntry(details.exception.toString(), details.stack.toString());
 
     if (badBoys.any(details.toString().contains)) return print("Error is derived from builderror. Skipping dialog.\n $details");
 
-    final skipReport = _errorCache.contains(error);
-
-    if (skipReport) print("This error has already been reported. Skipping report option.");
-
     String message = "Name: '${details.context != null ? details.context!.name ?? noInfo : noInfo}'\n---\nException: '${details.exception}'\n---\nStack: ${details.stack}\n---\nContext: ${details.context}";
 
-    report(context, message, onReportSent: () => _errorCache.add(error), informativeOnly: skipReport);
+    report(context, message, error);
 
     // if (kReleaseMode) {
     //   SharedPreferences.getInstance().then((prefs) => prefs.setString(crashKey, message));
@@ -169,4 +169,4 @@ class Guard {
   }
 }
 
-guard(BuildContext context, Function body) => Guard.run;
+guard(BuildContext context, Function body) => Guard.run(context, body);
