@@ -5,18 +5,20 @@ class ModuleItem extends StatelessWidget {
   ModuleItem({
     Key? key,
     required this.id,
+    this.height = 35,
   }) : super(key: key);
 
   final int id;
+  final double? height;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-      width: 300,
-      height: 50,
+      margin: const EdgeInsets.only(top: 2, bottom: 2),
+      height: height,
       decoration: BoxDecoration(
-        color: NcThemes.current.primaryColor,
+        color: NcThemes.current.secondaryColor,
         borderRadius: BorderRadius.circular(10),
       ),
       child: Row(
