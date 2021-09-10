@@ -51,7 +51,7 @@ class NcContainer extends StatelessWidget {
                     ],
                   ),
           ),
-          NcSpacing.xs(),
+          if (contentPadding) NcSpacing.xs(),
           Expanded(
             child: Container(
               padding: contentPadding ? EdgeInsets.only(left: padding, right: padding, bottom: padding) : EdgeInsets.only(bottom: padding),

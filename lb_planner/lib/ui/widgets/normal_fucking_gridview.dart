@@ -55,10 +55,13 @@ class NcGridView extends StatelessWidget {
               double width = size.maxWidth - spacing * catgirlsHoriz;
               double height = size.maxHeight - spacing * catgirlsVert;
               width -= edgePadding;
-              height -= edgePadding;
+              // height -= edgePadding;
+
+              print(catgirlsVert);
 
               catgirlsHoriz = width / catgirlsHoriz < minWidth ? catgirlsHoriz -= (width / catgirlsHoriz / minWidth).ceil() : catgirlsHoriz;
-              catgirlsVert = width / catgirlsVert < minHeight ? catgirlsVert -= (height / catgirlsVert / minHeight).ceil() : catgirlsVert;
+              catgirlsVert = height / catgirlsVert < minHeight ? catgirlsVert -= (height / catgirlsVert / minHeight).ceil() : catgirlsVert;
+              print(catgirlsVert);
 
               double itemWidth = width / catgirlsHoriz;
 
@@ -68,7 +71,7 @@ class NcGridView extends StatelessWidget {
                       ? maxWidth
                       : itemWidth;
 
-              double itemHeight = height;
+              double itemHeight = height / catgirlsVert;
 
               itemHeight = itemHeight < minHeight
                   ? minHeight
@@ -78,10 +81,10 @@ class NcGridView extends StatelessWidget {
 
               int i = -1; // negative one because we increment the index before accessing the list
 
-              catgirlsVert = MediaQuery.of(context).size.height ~/ itemHeight;
+              catgirlsVert = (children.length / catgirlsHoriz).ceil();
 
               return SingleChildScrollView(
-                physics: NcScrollBehavior.physics,
+                // physics: NcScrollBehavior.physics,
                 child: Container(
                   alignment: alignment,
                   margin: margin,

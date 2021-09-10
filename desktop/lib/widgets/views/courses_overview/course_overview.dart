@@ -12,79 +12,49 @@ class CourseOverview extends StatefulWidget {
   static const double labelFontSize = 20;
   static const double labelHeight = 60;
 
+  static const gridRoute = "Course Overview";
+  static const courseHighlightRoute = "Course Highlight";
+
   @override
   _CourseOverviewState createState() => _CourseOverviewState();
 }
 
 class _CourseOverviewState extends State<CourseOverview> {
-  int? highlightID;
-
-  get _hasHighlight => highlightID != null;
+  int highlightID = 0;
 
   @override
   Widget build(BuildContext context) {
-    return NcView.route(
-      title: "Course Overview",
-      // onNavigateBack: _hasHighlight ? showGrid : null,
-      content: _hasHighlight
-          ? CourseHighlight(id: highlightID ?? 0)
-          : NcGridView.responsive(
-              minHeight: CourseOverviewItem.height,
-              maxHeight: CourseOverviewItem.height,
-              minWidth: CourseOverviewItem.minWidth,
-              children: [
-                CourseOverviewItem(id: 01, onShowDetails: highlightCourse),
-                CourseOverviewItem(id: 01, onShowDetails: highlightCourse),
-                CourseOverviewItem(id: 01, onShowDetails: highlightCourse),
-                CourseOverviewItem(id: 01, onShowDetails: highlightCourse),
-                CourseOverviewItem(id: 01, onShowDetails: highlightCourse),
-                CourseOverviewItem(id: 01, onShowDetails: highlightCourse),
-                CourseOverviewItem(id: 01, onShowDetails: highlightCourse),
-                CourseOverviewItem(id: 01, onShowDetails: highlightCourse),
-                CourseOverviewItem(id: 01, onShowDetails: highlightCourse),
-                CourseOverviewItem(id: 01, onShowDetails: highlightCourse),
-                CourseOverviewItem(id: 01, onShowDetails: highlightCourse),
-                CourseOverviewItem(id: 01, onShowDetails: highlightCourse),
-              ],
-            ),
-      // : NcGridView(
-      //     spacing: NcSpacing.mediumSpacing,
-      //     alignment: Alignment.topLeft,
-      //     children: [
-      //       // TODO: for (int id in DB.courses.keys) CourseOverviewItem(id: id, onShowDetails: highlightCourse),
-      //       CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
-      //       CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
-      //       CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
-      //       CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
-      //       CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
-      //       CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
-      //       CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
-      //       CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
-      //       CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
-      //       CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
-      //       CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
-      //       CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
-      //       CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
-      //       CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
-      //       CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
-      //       CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
-      //       CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
-      //       CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
-      //       CourseOverviewItem(id: 0, onShowDetails: highlightCourse),
-      //     ],
-      //   ),
+    return NcView(
+      routes: [
+        NcView.route(
+          title: CourseOverview.gridRoute,
+          content: NcGridView.responsive(
+            minHeight: CourseOverviewItem.height,
+            // maxHeight: CourseOverviewItem.height,
+            minWidth: CourseOverviewItem.minWidth,
+            children: [
+              CourseOverviewItem(id: 01, onShowDetails: highlightCourse),
+              CourseOverviewItem(id: 01, onShowDetails: highlightCourse),
+              CourseOverviewItem(id: 01, onShowDetails: highlightCourse),
+              CourseOverviewItem(id: 01, onShowDetails: highlightCourse),
+              CourseOverviewItem(id: 01, onShowDetails: highlightCourse),
+              CourseOverviewItem(id: 01, onShowDetails: highlightCourse),
+              CourseOverviewItem(id: 01, onShowDetails: highlightCourse),
+              CourseOverviewItem(id: 01, onShowDetails: highlightCourse),
+              CourseOverviewItem(id: 01, onShowDetails: highlightCourse),
+              CourseOverviewItem(id: 01, onShowDetails: highlightCourse),
+              CourseOverviewItem(id: 01, onShowDetails: highlightCourse),
+              CourseOverviewItem(id: 01, onShowDetails: highlightCourse),
+              CourseOverviewItem(id: 01, onShowDetails: highlightCourse),
+            ],
+          ),
+        ),
+        NcView.route(title: CourseOverview.courseHighlightRoute, popRoute: CourseOverview.gridRoute, content: CourseHighlight(id: highlightID)),
+      ],
     );
   }
 
   void highlightCourse(int id) {
-    setState(() {
-      highlightID = id;
-    });
-  }
-
-  void showGrid() {
-    setState(() {
-      highlightID = null;
-    });
+    highlightID = id;
   }
 }

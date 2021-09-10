@@ -6,15 +6,17 @@ import 'package:lb_planner/ui.dart';
 import 'package:lb_planner/ui/widgets/view/svg/notifactions_svg.dart';
 
 class NcView extends StatefulWidget {
-  NcView.route({Key? key, required this.title, this.popRoute, required this.content}) : super(key: key) {
+  NcView.route({Key? key, required this.title, this.popRoute, required this.content, this.customRouteName}) : super(key: key) {
     isRoute = true;
   }
   NcView({Key? key, required this.routes}) : super(key: key) {
     isRoute = false;
-    this._routes = Map.fromIterable(routes, key: (v) => v.title, value: (v) => v);
+    this._routes = Map.fromIterable(routes, key: (v) => v.customRouteName ?? v.title, value: (v) => v);
+    print(_routes);
   }
 
   late final String title;
+  late final String? customRouteName;
   late final Widget content;
   late final String? popRoute;
 
@@ -76,7 +78,7 @@ class _NcViewState extends State<NcView> {
                         widget.popRoute != null
                             ? NcTextButton(
                                 fontSize: NcView.fontSize,
-                                text: widget.title,
+                                text: widget.popRoute ?? widget.title,
                                 onTap: () {
                                   if (widget.popRoute != null) NcView.of(context).route(widget.popRoute!);
                                 },
@@ -93,7 +95,16 @@ class _NcViewState extends State<NcView> {
                   ),
                   NcSpacing.small(),
                   Expanded(
-                    child: widget.content,
+                    child: PageTransitionSwitcher(
+                      transitionBuilder: (child, animationIn, animationOut) => FadeThroughTransition(
+                        fillColor: NcThemes.current.secondaryColor,
+                        animation: animationIn,
+                        secondaryAnimation: animationOut,
+                        child: child,
+                      ),
+                      // duration: Duration(seconds: 2),
+                      child: widget.content,
+                    ),
                   ),
                   NcSpacing.small(),
                 ],
@@ -142,20 +153,9 @@ class _NcViewState extends State<NcView> {
               )
             ],
           )
-        : PageTransitionSwitcher(
-            transitionBuilder: (child, animationIn, animationOut) => FadeThroughTransition(
-              fillColor: NcThemes.current.secondaryColor,
-              animation: animationIn,
-              secondaryAnimation: animationOut,
-              child: child,
-            ),
-            child: _NcViewController(
-              // duration: Duration(seconds: 2),
-
-              // child: routes[_current],
-              child: widget._routes[_current] ?? NcBodyText("Route '$_current' does not exist!"),
-              state: this,
-            ),
+        : _NcViewController(
+            child: widget._routes[_current] ?? NcBodyText("Route '$_current' does not exist!"),
+            state: this,
           );
   }
 

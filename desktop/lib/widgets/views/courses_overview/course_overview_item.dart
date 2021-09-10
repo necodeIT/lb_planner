@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:lb_planner/data.dart';
 import 'package:lb_planner/ui.dart';
 
+import 'course_overview.dart';
+
 class CourseOverviewItem extends StatelessWidget {
   const CourseOverviewItem({Key? key, required this.id, required this.onShowDetails}) : super(key: key);
 
@@ -22,7 +24,10 @@ class CourseOverviewItem extends StatelessWidget {
     var stats = StatusProfile(done: 15, late: 10, uploaded: 5, pending: 20);
 
     return GestureDetector(
-      onTap: () => onShowDetails(id),
+      onTap: () {
+        onShowDetails(id);
+        NcView.of(context).route(CourseOverview.courseHighlightRoute);
+      },
       child: NcContainer(
         label: NcCaptionText(
           "Deutsch",
