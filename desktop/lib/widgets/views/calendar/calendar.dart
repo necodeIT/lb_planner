@@ -20,7 +20,7 @@ class _CalendarViewState extends State<CalendarView> {
 
   @override
   Widget build(BuildContext context) {
-    return NcView(
+    return NcView.route(
       title: "Calendar",
       content: NcContainer.window(
         contentPadding: false,
@@ -44,8 +44,7 @@ class _CalendarViewState extends State<CalendarView> {
                 if (state == CalendarState.Plan)
                   GestureDetector(
                     onTap: () {
-                      showPlaceHolderDialog(
-                          context); // direct assingment no worky worky dunno why
+                      showPlaceHolderDialog(context); // direct assingment no worky worky dunno why
                     },
                     child: Icon(
                       Icons.more_horiz,
@@ -72,8 +71,7 @@ class _CalendarViewState extends State<CalendarView> {
             ),
           ],
         ),
-        body:
-            state == CalendarState.Plan ? CalendarGrid() : NcLoadingIndicator(),
+        body: state == CalendarState.Plan ? CalendarGrid() : NcLoadingIndicator(),
       ),
     );
   }
