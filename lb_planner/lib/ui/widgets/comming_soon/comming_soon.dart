@@ -30,7 +30,7 @@ class NcCommingSoon extends StatelessWidget {
             Expanded(child: NcVectorImage(code: ncCommingSoonSVGs[NcCommingSoonSvgType.values.indexOf(type)])),
             NcSpacing.medium(),
             NcTextButton(
-              text: "Check out our roadmap for more inforamtion",
+              text: "Check out our roadmap for more information",
               trailingIcon: Icon(
                 Icons.arrow_right_alt,
                 color: NcThemes.current.textColor,
