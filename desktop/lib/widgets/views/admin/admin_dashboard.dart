@@ -20,17 +20,17 @@ class AdminDashboard extends StatelessWidget {
           ],
         ),
         NcSpacing.medium(),
-        Row(
-          children: [
-            AdminDashboardItem(icon: , number: "150", headline: "Using 桜-Theme"),
-            NcSpacing.medium(),
-            AdminDashboardItem(icon: Feather.log_out, number: "150", headline: "Using Dark-Theme"),
-            NcSpacing.medium(),
-            AdminDashboardItem(icon: Feather.server, number: "150", headline: "Using Ocean-Theme"),
-          ],
-        ),
-        NcSpacing.medium(),
-        AdminDashboardItem(icon: icon, number: "150", headline: "Using Light-Theme")
+        //   Row(
+        //     children: [
+        //       AdminDashboardItem(icon: , number: "150", headline: "Using 桜-Theme"),
+        //       NcSpacing.medium(),
+        //       AdminDashboardItem(icon: Feather.log_out, number: "150", headline: "Using Dark-Theme"),
+        //       NcSpacing.medium(),
+        //       AdminDashboardItem(icon: Feather.server, number: "150", headline: "Using Ocean-Theme"),
+        //     ],
+        //   ),
+        //   NcSpacing.medium(),
+        //   AdminDashboardItem(icon: icon, number: "150", headline: "Using Light-Theme")
       ],
     );
   }

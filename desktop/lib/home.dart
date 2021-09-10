@@ -1,5 +1,6 @@
 import 'package:animations/animations.dart';
 import 'package:desktop/widgets/views/Admin/admin_login.dart';
+import 'package:desktop/widgets/views/admin/admin.dart';
 import 'package:desktop/widgets/views/calendar/calendar.dart';
 import 'package:desktop/widgets/views/courses_overview/course_overview.dart';
 import 'package:desktop/widgets/views/dashboard/dashboard.dart';
@@ -64,7 +65,7 @@ class _HomeState extends State<Home> {
           calendar: CalendarView(),
           coursesOverwiev: CourseOverview(),
           planner: NcCommingSoon(),
-          admin: AdminLogin(),
+          admin: AdminView(),
           settings: SettingView(),
           onLogout: logout,
         );

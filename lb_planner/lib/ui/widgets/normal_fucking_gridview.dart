@@ -86,6 +86,7 @@ class NcGridView extends StatelessWidget {
                   alignment: alignment,
                   margin: margin,
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       for (int h = 0; h < catgirlsVert; h++)
                         Column(
