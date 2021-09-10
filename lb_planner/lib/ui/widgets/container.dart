@@ -2,34 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:lb_planner/ui.dart';
 
 class NcContainer extends StatelessWidget {
-  NcContainer(
-      {Key? key,
-      this.label,
-      required this.body,
-      this.leadingIcon,
-      this.trailingIcon,
-      this.width,
-      this.height,
-      this.contentPadding = true,
-      this.labelPadding = true})
-      : super(key: key) {
+  NcContainer({Key? key, required this.label, required this.body, this.leadingIcon, this.trailingIcon, this.width, this.height, this.contentPadding = true, this.labelPadding = true}) : super(key: key) {
     window = false;
   }
-  NcContainer.window(
-      {Key? key,
-      required this.body,
-      this.label,
-      this.leadingIcon,
-      this.trailingIcon,
-      this.width,
-      this.height,
-      this.contentPadding = true,
-      this.labelPadding = true})
-      : super(key: key) {
+  NcContainer.window({Key? key, required this.body, required this.label, this.leadingIcon, this.trailingIcon, this.width, this.height, this.contentPadding = true, this.labelPadding = true}) : super(key: key) {
     window = true;
   }
 
-  final Widget? label;
+  final Widget label;
   final Widget body;
   final Widget? leadingIcon;
   final Widget? trailingIcon;
@@ -53,11 +33,7 @@ class NcContainer extends StatelessWidget {
             alignment: Alignment.centerLeft,
             decoration: BoxDecoration(
               color: window ? NcThemes.current.secondaryColor : null,
-              borderRadius: window
-                  ? BorderRadius.only(
-                      topLeft: Radius.circular(ncRadius),
-                      topRight: Radius.circular(ncRadius))
-                  : null,
+              borderRadius: window ? BorderRadius.only(topLeft: Radius.circular(ncRadius), topRight: Radius.circular(ncRadius)) : null,
             ),
             child: leadingIcon == null && trailingIcon == null
                 ? label
@@ -78,10 +54,7 @@ class NcContainer extends StatelessWidget {
           if (contentPadding) NcSpacing.xs(),
           Expanded(
             child: Container(
-              padding: contentPadding
-                  ? EdgeInsets.only(
-                      left: padding, right: padding, bottom: padding)
-                  : EdgeInsets.only(bottom: padding),
+              padding: contentPadding ? EdgeInsets.only(left: padding, right: padding, bottom: padding) : EdgeInsets.only(bottom: padding),
               child: body,
             ),
           ),
