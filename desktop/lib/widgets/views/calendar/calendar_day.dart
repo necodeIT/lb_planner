@@ -8,9 +8,11 @@ class CalenderDayItem extends StatelessWidget {
     Key? key,
     required this.text,
     required this.children,
+    required this.dayModules,
   });
 
   final String text;
+  final String dayModules;
   final List<Widget> children;
 
   @override
@@ -39,7 +41,7 @@ class CalenderDayItem extends StatelessWidget {
             ),
           ),
           NcCaptionText(
-            '01',
+            dayModules,
             fontSize: 20,
             //textAlign: TextAlign.right,
           ),
