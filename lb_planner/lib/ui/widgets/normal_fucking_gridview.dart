@@ -58,7 +58,13 @@ class NcGridView extends StatelessWidget {
               // height -= edgePadding;
 
               catgirlsHoriz = width / catgirlsHoriz < minWidth ? catgirlsHoriz -= (width / catgirlsHoriz / minWidth).ceil() : catgirlsHoriz;
+              catgirlsHoriz = catgirlsHoriz > children.length ? children.length : catgirlsHoriz;
               catgirlsVert = height / catgirlsVert < minHeight ? catgirlsVert -= (height / catgirlsVert / minHeight).ceil() : catgirlsVert;
+              catgirlsVert = children.length == catgirlsHoriz ? 1 : catgirlsVert;
+              print(catgirlsVert);
+              print(width / catgirlsHoriz);
+
+              // print(catgirlsVert);
 
               double itemWidth = width / catgirlsHoriz;
 
@@ -80,45 +86,49 @@ class NcGridView extends StatelessWidget {
 
               catgirlsVert = (children.length / catgirlsHoriz).ceil();
 
-              return SingleChildScrollView(
-                // physics: NcScrollBehavior.physics,
-                child: Container(
-                  alignment: alignment,
-                  margin: margin,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      for (int h = 0; h < catgirlsVert; h++)
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            if (h != 0) generateSpacing(),
-                            Row(
-                              children: [
-                                for (int j = 0; j < catgirlsHoriz; j++)
-                                  Builder(
-                                    builder: (context) {
-                                      i++;
+              return Container(
+                height: size.maxHeight,
+                child: SingleChildScrollView(
+                  // physics: NcScrollBehavior.physics,
+                  child: Container(
+                    alignment: alignment,
+                    margin: margin,
+                    child: Column(
+                      // mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        for (int h = 0; h < catgirlsVert; h++)
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              if (h != 0) generateSpacing(),
+                              Row(
+                                children: [
+                                  for (int j = 0; j < catgirlsHoriz; j++)
+                                    Builder(
+                                      builder: (context) {
+                                        i++;
 
-                                      return i < children.length // checking bounds cause idk flutter is yelling at me
-                                          ? Row(
-                                              children: [
-                                                if (j != 0) generateSpacing(),
-                                                Container(
-                                                  width: itemWidth,
-                                                  height: itemHeight,
-                                                  child: children[i],
-                                                ),
-                                              ],
-                                            )
-                                          : Container();
-                                    },
-                                  )
-                              ],
-                            ),
-                          ],
-                        )
-                    ],
+                                        return i < children.length // checking bounds cause idk flutter is yelling at me
+                                            ? Row(
+                                                children: [
+                                                  if (j != 0) generateSpacing(),
+                                                  Container(
+                                                    width: itemWidth,
+                                                    height: itemHeight,
+                                                    child: children[i],
+                                                  ),
+                                                ],
+                                              )
+                                            : Container();
+                                      },
+                                    )
+                                ],
+                              ),
+                            ],
+                          )
+                      ],
+                    ),
                   ),
                 ),
               );

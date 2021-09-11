@@ -7,14 +7,14 @@ import 'package:desktop/widgets/views/calendar/plan/calendar_item.dart';
 import 'package:flutter/material.dart';
 import 'package:lb_planner/ui.dart';
 
-class ModuleWidget extends StatelessWidget {
-  ModuleWidget({
+class CourseModules extends StatelessWidget {
+  CourseModules({
     Key? key,
     required this.id,
   }) : super(key: key);
 
   final int id;
-  static const double heightTag = 30;
+  static const double tagHeight = 30;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class ModuleWidget extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            height: heightTag,
+            height: tagHeight,
             alignment: Alignment.center,
             //width: double.infinity,
             color: Colors.red,
@@ -33,47 +33,35 @@ class ModuleWidget extends StatelessWidget {
             ),
           ),
           Expanded(
-            flex: 1,
-            child: ModuleDayItem(
-              text: 'text',
+            child: CalendarDayItem(
+              text: "3",
               children: [
-                //CalendarDragItem(id: 01),
-                // CalendarDragItem(id: 01),
-                // CalendarDragItem(id: 01),
-              ],
-            ),
-          ),
-          Expanded(
-            flex: 1,
-            child: ModuleDayItem(
-              text: 'text',
-              children: [
-                ModuleItem(id: 01),
-                ModuleItem(id: 01),
-                ModuleItem(id: 01),
                 ModuleItem(id: 01),
               ],
             ),
           ),
           Expanded(
-            flex: 1,
-            child: ModuleDayItem(
-              text: 'text',
-              children: [],
+            child: CalendarDayItem(
+              text: "3",
+              children: [
+                ModuleItem(id: 01),
+              ],
             ),
           ),
           Expanded(
-            flex: 1,
-            child: ModuleDayItem(
-              text: 'text',
-              children: [],
+            child: CalendarDayItem(
+              text: "3",
+              children: [
+                ModuleItem(id: 01),
+              ],
             ),
           ),
           Expanded(
-            flex: 1,
-            child: ModuleDayItem(
-              text: 'text',
-              children: [],
+            child: CalendarDayItem(
+              text: "3",
+              children: [
+                ModuleItem(id: 01),
+              ],
             ),
           ),
         ],

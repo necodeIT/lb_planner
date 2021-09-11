@@ -3,23 +3,21 @@ import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:lb_planner/ui.dart';
 import 'package:lb_planner/data.dart';
 
-class CalenderDayItem extends StatelessWidget {
-  CalenderDayItem({
+class CalendarDayItem extends StatelessWidget {
+  CalendarDayItem({
     Key? key,
     required this.text,
     required this.children,
-    required this.dayModules,
   });
 
   final String text;
-  final String dayModules;
   final List<Widget> children;
+
+  static const double padding = 5;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      //height: 100, //TODO: Weg löschn
-      //width: 200, //TODO: Weg löschn
       decoration: BoxDecoration(
         border: Border.all(
           color: NcThemes.current.tertiaryColor,
@@ -31,17 +29,12 @@ class CalenderDayItem extends StatelessWidget {
         children: [
           Expanded(
             child: Container(
-              padding: EdgeInsets.only(top: 5, right: 2, left: 2),
-              child: ListView(
-                children: children,
-                // CalendarItem(id: 1),
-                // CalendarItem(id: 1),
-                // CalendarItem(id: 1),
-              ),
+              padding: EdgeInsets.only(top: padding, right: padding, left: padding),
+              child: ListView(children: children),
             ),
           ),
           NcCaptionText(
-            dayModules,
+            text,
             fontSize: 20,
             //textAlign: TextAlign.right,
           ),
