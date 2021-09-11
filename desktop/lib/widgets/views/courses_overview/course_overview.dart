@@ -30,8 +30,9 @@ class _CourseOverviewState extends State<CourseOverview> {
           title: CourseOverview.gridRoute,
           content: NcGridView.responsive(
             minHeight: CourseOverviewItem.height,
-            // maxHeight: CourseOverviewItem.height,
+            maxHeight: CourseOverviewItem.height,
             minWidth: CourseOverviewItem.minWidth,
+            emptyMessage: "You don't have any courses. Go to settings and select some.",
             children: [
               CourseOverviewItem(id: 01, onShowDetails: highlightCourse),
               CourseOverviewItem(id: 01, onShowDetails: highlightCourse),

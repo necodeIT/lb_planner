@@ -14,7 +14,7 @@ export 'vector_image.dart';
 export 'snackbar.dart';
 export 'scroll_behavior.dart';
 export 'comming_soon/comming_soon.dart';
-export 'normal_fucking_gridview.dart';
+export 'grid_view/normal_fucking_gridview.dart';
 export 'view/user_profile.dart';
 export 'view/view.dart';
 export 'comming_soon/svg/types.dart';
