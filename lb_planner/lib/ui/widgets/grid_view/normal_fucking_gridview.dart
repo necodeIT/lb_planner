@@ -145,6 +145,7 @@ class NcGridView extends StatelessWidget {
                 child: Wrap(
                   spacing: spacing,
                   runSpacing: spacing,
+                  children: children,
                 ),
               )
         : LayoutBuilder(
