@@ -57,20 +57,16 @@ class _SidebarState extends State<Sidebar> {
               Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  NcSpacing.small(),
                   NcLogo(
                     height: 45,
                   ),
                   for (int i = 0; i < Sidebar.topEnd; i++) _createElement(i),
-                  // for (int i = 0; i <= Sidebar.topEnd; i++) Text(i.toString()),
                 ],
               ),
               Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   for (int i = Sidebar.topEnd; i < Sidebar.icons.length; i++) _createElement(i),
-                  // for (int i = Sidebar.topEnd; i < widget.views.length - 1; i++) Text(i.toString()),
-                  // SidebarItem(icon: Sidebar.icons.last, isSelected: false, onTap: widget.onLogout),
                   NcSpacing.small(),
                 ],
               )
