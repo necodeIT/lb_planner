@@ -38,7 +38,7 @@ class Sidebar extends StatefulWidget {
 class _SidebarState extends State<Sidebar> {
   int current = 0;
 
-  void setCurrent(int i) {
+  void _setCurrentPage(int i) {
     setState(() {
       current = i;
     });
@@ -61,14 +61,14 @@ class _SidebarState extends State<Sidebar> {
                   NcLogo(
                     height: 45,
                   ),
-                  for (int i = 0; i <= Sidebar.topEnd; i++) SidebarItem(icon: Sidebar.icons[i], isSelected: i == current, onTap: () => setCurrent(i)),
+                  for (int i = 0; i <= Sidebar.topEnd; i++) _createElement(i),
                   // for (int i = 0; i <= Sidebar.topEnd; i++) Text(i.toString()),
                 ],
               ),
               Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  for (int i = Sidebar.topEnd + 1; i < Sidebar.icons.length - 1; i++) SidebarItem(icon: Sidebar.icons[i], isSelected: i == current, onTap: () => setCurrent(i)),
+                  for (int i = Sidebar.topEnd + 1; i < Sidebar.icons.length - 1; i++) _createElement(i),
                   // for (int i = Sidebar.topEnd; i < widget.views.length - 1; i++) Text(i.toString()),
                   SidebarItem(icon: Sidebar.icons.last, isSelected: false, onTap: widget.onLogout),
                   NcSpacing.small(),
@@ -94,4 +94,6 @@ class _SidebarState extends State<Sidebar> {
       ],
     );
   }
+
+  Widget _createElement(int i) => SidebarItem(icon: Sidebar.icons[i], isSelected: i == current, onTap: () => _setCurrentPage(i));
 }
