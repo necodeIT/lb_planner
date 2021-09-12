@@ -2,10 +2,32 @@ import 'package:flutter/material.dart';
 import 'package:lb_planner/ui.dart';
 
 class NcContainer extends StatelessWidget {
-  NcContainer({Key? key, required this.label, required this.body, this.leadingIcon, this.trailingIcon, this.width, this.height, this.contentPadding = true, this.labelPadding = true}) : super(key: key) {
+  NcContainer({
+    Key? key,
+    required this.label,
+    required this.body,
+    this.leadingIcon,
+    this.trailingIcon,
+    this.width,
+    this.height,
+    this.contentPadding = true,
+    this.labelPadding = true,
+    this.contentAlignment = CrossAxisAlignment.center,
+  }) : super(key: key) {
     window = false;
   }
-  NcContainer.window({Key? key, required this.body, required this.label, this.leadingIcon, this.trailingIcon, this.width, this.height, this.contentPadding = true, this.labelPadding = true}) : super(key: key) {
+  NcContainer.window({
+    Key? key,
+    required this.body,
+    required this.label,
+    this.leadingIcon,
+    this.trailingIcon,
+    this.width,
+    this.height,
+    this.contentPadding = true,
+    this.labelPadding = true,
+    this.contentAlignment = CrossAxisAlignment.center,
+  }) : super(key: key) {
     window = true;
   }
 
@@ -15,6 +37,7 @@ class NcContainer extends StatelessWidget {
   final Widget? trailingIcon;
   final double? width;
   final double? height;
+  final CrossAxisAlignment contentAlignment;
   late final bool window;
   final bool contentPadding;
   final bool labelPadding;
@@ -27,6 +50,7 @@ class NcContainer extends StatelessWidget {
       width: width,
       height: height,
       child: Column(
+        crossAxisAlignment: contentAlignment,
         children: [
           Container(
             padding: labelPadding ? EdgeInsets.all(padding) : null,
