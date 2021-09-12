@@ -16,7 +16,7 @@ class Sidebar extends StatefulWidget {
   final Widget settings;
   final Function() onLogout;
 
-  static const int topEnd = 3;
+  static const int topEnd = 4;
   static final List<IconData> icons = [
     FontAwesome5Solid.bars,
     Icons.date_range,
@@ -61,16 +61,16 @@ class _SidebarState extends State<Sidebar> {
                   NcLogo(
                     height: 45,
                   ),
-                  for (int i = 0; i <= Sidebar.topEnd; i++) _createElement(i),
+                  for (int i = 0; i < Sidebar.topEnd; i++) _createElement(i),
                   // for (int i = 0; i <= Sidebar.topEnd; i++) Text(i.toString()),
                 ],
               ),
               Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  for (int i = Sidebar.topEnd + 1; i < Sidebar.icons.length - 1; i++) _createElement(i),
+                  for (int i = Sidebar.topEnd; i < Sidebar.icons.length; i++) _createElement(i),
                   // for (int i = Sidebar.topEnd; i < widget.views.length - 1; i++) Text(i.toString()),
-                  SidebarItem(icon: Sidebar.icons.last, isSelected: false, onTap: widget.onLogout),
+                  // SidebarItem(icon: Sidebar.icons.last, isSelected: false, onTap: widget.onLogout),
                   NcSpacing.small(),
                 ],
               )
@@ -95,5 +95,7 @@ class _SidebarState extends State<Sidebar> {
     );
   }
 
-  Widget _createElement(int i) => SidebarItem(icon: Sidebar.icons[i], isSelected: i == current, onTap: () => _setCurrentPage(i));
+  Widget _createElement(int i) {
+    return SidebarItem(icon: Sidebar.icons[i], isSelected: i == current, onTap: () => i == Sidebar.icons.length - 1 ? _setCurrentPage(i) : widget.onLogout);
+  }
 }
