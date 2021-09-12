@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:lb_planner/data.dart';
 import 'package:lb_planner/ui.dart';
 import 'package:window_size/window_size.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,6 +19,8 @@ void main() {
 }
 
 final app = MaterialApp(
+  localizationsDelegates: AppLocalizations.localizationsDelegates,
+  supportedLocales: AppLocalizations.supportedLocales,
   home: App(),
   title: "LB Planner",
   scrollBehavior: NcScrollBehavior(),
@@ -34,8 +37,7 @@ class _AppState extends State<App> {
   @override
   void initState() {
     super.initState();
-    NcThemes.onCurrentThemeChange = () =>
-        setState(() => User.current.settings.theme = NcThemes.current.name);
+    NcThemes.onCurrentThemeChange = () => setState(() => User.current.settings.theme = NcThemes.current.name);
 
     Guard.init(context);
 
@@ -46,7 +48,8 @@ class _AppState extends State<App> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: NcThemes.current.secondaryColor,
-      body: Home(),
+      // body: Home(),
+      body: NcBodyText(AppLocalizations.of(context)!.helloWorld),
     );
   }
 }
