@@ -15,25 +15,35 @@ void main() {
     setWindowMinSize(const Size(1550.0, 850.0));
     setWindowMaxSize(Size.infinite);
   }
-  runApp(app);
+  runApp(App());
 }
 
-final app = MaterialApp(
-  localizationsDelegates: AppLocalizations.localizationsDelegates,
-  supportedLocales: AppLocalizations.supportedLocales,
-  home: App(),
-  title: "LB Planner",
-  scrollBehavior: NcScrollBehavior(),
-);
+// final app = MaterialApp(
+//   localizationsDelegates: AppLocalizations.localizationsDelegates,
+//   supportedLocales: AppLocalizations.supportedLocales,
+//   home: App(),
+//   title: "LB Planner",
+//   scrollBehavior: NcScrollBehavior(),
+// );
 
 class App extends StatefulWidget {
   App({Key? key}) : super(key: key);
 
   @override
   _AppState createState() => _AppState();
+
+  static _AppState of(BuildContext context) => context.findAncestorStateOfType<_AppState>()!;
 }
 
 class _AppState extends State<App> {
+  Locale _locale = AppLocalizations.supportedLocales.last;
+
+  void setLocale(Locale value) {
+    setState(() {
+      _locale = value;
+    });
+  }
+
   @override
   void initState() {
     super.initState();
@@ -46,10 +56,13 @@ class _AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: NcThemes.current.secondaryColor,
-      // body: Home(),
-      body: NcBodyText(AppLocalizations.of(context)!.helloWorld),
+    return MaterialApp(
+      locale: _locale,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+      home: Home(),
+      title: "LB Planner",
+      scrollBehavior: NcScrollBehavior(),
     );
   }
 }

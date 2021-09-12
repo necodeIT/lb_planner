@@ -1,4 +1,5 @@
 import 'package:animations/animations.dart';
+import 'package:desktop/main.dart';
 import 'package:desktop/widgets/views/Admin/admin_login.dart';
 import 'package:desktop/widgets/views/admin/admin.dart';
 import 'package:desktop/widgets/views/calendar/calendar.dart';
@@ -10,6 +11,7 @@ import 'package:desktop/widgets/views/settings/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:lb_planner/data.dart';
 import 'package:lb_planner/ui.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'widgets/sidebar/sidebar.dart';
 
@@ -74,15 +76,30 @@ class _HomeState extends State<Home> {
         child = NcLoadingIndicator();
     }
 
-    return PageTransitionSwitcher(
-      // duration: Duration(seconds: 2),
-      transitionBuilder: (child, animationIn, animationOut) => FadeThroughTransition(
-        fillColor: NcThemes.current.secondaryColor,
-        animation: animationIn,
-        secondaryAnimation: animationOut,
-        child: child,
+    return Scaffold(
+      backgroundColor: NcThemes.current.secondaryColor,
+      // body: Home(),
+      body: Column(
+        children: [
+          NcBodyText(AppLocalizations.of(context)!.helloWorld),
+          NcButton(
+            text: "sdasd",
+            onTap: () {
+              App.of(context).setLocale(AppLocalizations.supportedLocales.first);
+            },
+          ),
+        ],
       ),
-      child: child,
+      // body: PageTransitionSwitcher(
+      //   // duration: Duration(seconds: 2),
+      //   transitionBuilder: (child, animationIn, animationOut) => FadeThroughTransition(
+      //     fillColor: NcThemes.current.secondaryColor,
+      //     animation: animationIn,
+      //     secondaryAnimation: animationOut,
+      //     child: child,
+      //   ),
+      //   child: child,
+      // ),
     );
   }
 }
