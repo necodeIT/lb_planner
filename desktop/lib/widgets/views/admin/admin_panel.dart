@@ -1,3 +1,4 @@
+import 'package:desktop/widgets/views/admin/admin_dashboard.dart';
 import 'package:desktop/widgets/views/admin/svg/database.dart';
 import 'package:desktop/widgets/views/admin/svg/feedback.dart';
 import 'package:desktop/widgets/views/admin/svg/stats.dart';
@@ -20,12 +21,17 @@ class AdminPanel extends StatelessWidget {
       minWidth: AdminPanel.width,
       maxHeight: AdminPanel.height,
       children: [
-        NcContainer(
-          height: AdminPanel.height,
-          width: AdminPanel.width,
-          label: NcTitleText("Stats", fontSize: AdminPanel.fontSize),
-          leadingIcon: Icon(Icons.query_stats, size: AdminPanel.fontSize, color: NcThemes.current.textColor),
-          body: NcVectorImage(code: stats_svg),
+        GestureDetector(
+          onTap: () {
+            NcView.of(context).route(AdminStats.name);
+          },
+          child: NcContainer(
+            height: AdminPanel.height,
+            width: AdminPanel.width,
+            label: NcTitleText("Stats", fontSize: AdminPanel.fontSize),
+            leadingIcon: Icon(Icons.query_stats, size: AdminPanel.fontSize, color: NcThemes.current.textColor),
+            body: NcVectorImage(code: stats_svg),
+          ),
         ),
         NcContainer(
           height: AdminPanel.height,
