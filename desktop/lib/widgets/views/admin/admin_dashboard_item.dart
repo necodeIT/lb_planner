@@ -14,24 +14,22 @@ class AdminDashboardItem extends StatelessWidget {
   static const double headlineFontSize = 10;
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: NcContainer(
-        label: SizedBox.shrink(),
-        labelPadding: false,
-        body: Row(
-          children: [
-            Icon(icon, size: numberFontSize),
-            NcSpacing.small(),
-            Column(
-              children: [
-                // TODO: Anzahl ausgeben
-                NcBodyText(number, fontSize: numberFontSize),
-                NcSpacing.xs(),
-                NcBodyText(headline, fontSize: headlineFontSize),
-              ],
-            ),
-          ],
-        ),
+    return NcContainer(
+      label: SizedBox.shrink(),
+      labelPadding: false,
+      body: Row(
+        children: [
+          Icon(icon, size: numberFontSize),
+          NcSpacing.small(),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // TODO: Anzahl ausgeben
+              NcBodyText(number, fontSize: numberFontSize),
+              NcBodyText(headline, fontSize: headlineFontSize),
+            ],
+          ),
+        ],
       ),
     );
   }

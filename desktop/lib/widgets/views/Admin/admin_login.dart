@@ -8,7 +8,7 @@ class LoginRoute extends StatelessWidget {
   LoginRoute({Key? key}) : super(key: key);
 
   String password = "";
-  static const name = "AdminLogin";
+  static const name = "Admin Login";
 
   @override
   Widget build(BuildContext context) {
