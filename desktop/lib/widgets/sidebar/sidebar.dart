@@ -96,6 +96,6 @@ class _SidebarState extends State<Sidebar> {
   }
 
   Widget _createElement(int i) {
-    return SidebarItem(icon: Sidebar.icons[i], isSelected: i == current, onTap: () => i == Sidebar.icons.length - 1 ? _setCurrentPage(i) : widget.onLogout);
+    return SidebarItem(icon: Sidebar.icons[i], isSelected: i == current, onTap: i == Sidebar.icons.length - 1 ? widget.onLogout : () => _setCurrentPage(i));
   }
 }
