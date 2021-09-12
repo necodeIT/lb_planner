@@ -85,6 +85,7 @@ class SettingsRoute extends StatelessWidget {
                     Expanded(
                       flex: 3,
                       child: NcContainer(
+                        contentAlignment: CrossAxisAlignment.start,
                         label: NcCaptionText(
                           "Themes",
                           fontSize: Dashboard.titleSize,
