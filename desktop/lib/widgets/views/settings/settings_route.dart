@@ -71,7 +71,7 @@ class SettingsRoute extends StatelessWidget {
                                 // TODO: Check for updates
                               },
                             ),
-                            NcSpacing.xs(),
+                            NcSpacing.small(),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [

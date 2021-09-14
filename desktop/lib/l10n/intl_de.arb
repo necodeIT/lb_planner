@@ -1,6 +1,6 @@
 {
     "settings_language": "Sprache",
-    "someThingWentWrong": "Etwas ist schiefgelaufen!",
-    "sendReport": "Bericht Senden",
-    "ingore": "Ignorieren"
+    "guard_someThingWentWrong": "Etwas ist schiefgelaufen!",
+    "guard_sendReport": "Bericht Senden",
+    "guard_ingore": "Ignorieren"
 }

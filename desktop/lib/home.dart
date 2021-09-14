@@ -62,7 +62,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    Guard.setLabelMessages(ignore: S.current.ingore, ohNo: S.current.someThingWentWrong, sendReport: S.current.sendReport);
+    Guard.setLabelMessages(ignore: S.current.guard_ingore, ohNo: S.current.guard_someThingWentWrong, sendReport: S.current.guard_sendReport);
     Widget child;
 
     switch (state) {
@@ -91,20 +91,7 @@ class _HomeState extends State<Home> {
 
     return Scaffold(
       backgroundColor: NcThemes.current.secondaryColor,
-      // body: Home(),
-      // body: Column(
-      //   children: [
-      //     NcBodyText(S.of(context).helloWorld),
-      //     NcButton(
-      //       text: "sdasd",
-      //       onTap: () {
-      //         App.of(context).setLocale(Intl.getCurrentLocale() == AppLocalizations.supportedLocales.last.languageCode ? AppLocalizations.supportedLocales.first : AppLocalizations.supportedLocales.last);
-      //       },
-      //     ),
-      //   ],
-      // ),
       body: PageTransitionSwitcher(
-        // duration: Duration(seconds: 2),
         transitionBuilder: (child, animationIn, animationOut) => FadeThroughTransition(
           fillColor: NcThemes.current.secondaryColor,
           animation: animationIn,

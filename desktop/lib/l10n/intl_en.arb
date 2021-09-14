@@ -1,6 +1,6 @@
 {
-    "someThingWentWrong": "Something Went Wrong!",
-    "sendReport": "Send Report",
-    "ingore": "Ingore",
+    "guard_someThingWentWrong": "Something Went Wrong!",
+    "guard_sendReport": "Send Report",
+    "guard_ingore": "Ingore",
     "settings_language": "Language"
 }

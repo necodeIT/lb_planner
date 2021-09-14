@@ -51,30 +51,30 @@ class S {
   }
 
   /// `Something Went Wrong!`
-  String get someThingWentWrong {
+  String get guard_someThingWentWrong {
     return Intl.message(
       'Something Went Wrong!',
-      name: 'someThingWentWrong',
+      name: 'guard_someThingWentWrong',
       desc: '',
       args: [],
     );
   }
 
   /// `Send Report`
-  String get sendReport {
+  String get guard_sendReport {
     return Intl.message(
       'Send Report',
-      name: 'sendReport',
+      name: 'guard_sendReport',
       desc: '',
       args: [],
     );
   }
 
   /// `Ingore`
-  String get ingore {
+  String get guard_ingore {
     return Intl.message(
       'Ingore',
-      name: 'ingore',
+      name: 'guard_ingore',
       desc: '',
       args: [],
     );

@@ -2,21 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:lb_planner/ui.dart';
 
 class NcDropdown extends StatefulWidget {
-  const NcDropdown(
-      {Key? key,
-      required this.value,
-      required this.items,
-      this.icon,
-      this.fontSize,
-      required this.onValueChanged})
-      : super(key: key);
+  const NcDropdown({Key? key, required this.value, required this.items, this.icon, this.fontSize, required this.onValueChanged, this.height = defaultHeight}) : super(key: key);
   final int value;
   final List<String> items;
   final Widget? icon;
   final double? fontSize;
+  final double height;
   final Function(int) onValueChanged;
 
   static const double padding = 10;
+  static const double defaultHeight = 40;
 
   @override
   _NcDropdownState createState() => _NcDropdownState();
@@ -28,20 +23,16 @@ class _NcDropdownState extends State<NcDropdown> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 40,
+      height: widget.height,
       padding: EdgeInsets.symmetric(horizontal: NcDropdown.padding),
-      decoration: BoxDecoration(
-          color: NcThemes.current.secondaryColor,
-          borderRadius: BorderRadius.circular(ncRadius)),
+      decoration: BoxDecoration(color: NcThemes.current.secondaryColor, borderRadius: BorderRadius.circular(ncRadius)),
       child: DropdownButton<String>(
         focusColor: NcThemes.current.secondaryColor,
         value: widget.items[current],
-        icon: widget.icon ??
-            Icon(Icons.arrow_drop_down, color: NcThemes.current.textColor),
+        icon: widget.icon ?? Icon(Icons.arrow_drop_down, color: NcThemes.current.textColor),
         underline: SizedBox(),
         onChanged: (String? value) {
-          setState(() =>
-              current = value != null ? widget.items.indexOf(value) : current);
+          setState(() => current = value != null ? widget.items.indexOf(value) : current);
           widget.onValueChanged(current);
         },
         items: widget.items.map<DropdownMenuItem<String>>((String value) {

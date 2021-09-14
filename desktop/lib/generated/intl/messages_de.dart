@@ -21,10 +21,11 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "ingore": MessageLookupByLibrary.simpleMessage("Ignorieren"),
-        "sendReport": MessageLookupByLibrary.simpleMessage("Bericht Senden"),
-        "settings_language": MessageLookupByLibrary.simpleMessage("Sprache"),
-        "someThingWentWrong":
-            MessageLookupByLibrary.simpleMessage("Etwas ist schiefgelaufen!")
+        "guard_ingore": MessageLookupByLibrary.simpleMessage("Ignorieren"),
+        "guard_sendReport":
+            MessageLookupByLibrary.simpleMessage("Bericht Senden"),
+        "guard_someThingWentWrong":
+            MessageLookupByLibrary.simpleMessage("Etwas ist schiefgelaufen!"),
+        "settings_language": MessageLookupByLibrary.simpleMessage("Sprache")
       };
 }
