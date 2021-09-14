@@ -50,10 +50,10 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `Something Went Wrong!`
+  /// `Something went wrong!`
   String get guard_someThingWentWrong {
     return Intl.message(
-      'Something Went Wrong!',
+      'Something went wrong!',
       name: 'guard_someThingWentWrong',
       desc: '',
       args: [],
