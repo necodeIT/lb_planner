@@ -25,7 +25,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "guard_sendReport":
             MessageLookupByLibrary.simpleMessage("Bericht Senden"),
         "guard_someThingWentWrong":
-            MessageLookupByLibrary.simpleMessage("Etwas ist schiefgelaufen!"),
+            MessageLookupByLibrary.simpleMessage("Etwas ist schief gelaufen!"),
         "settings_language": MessageLookupByLibrary.simpleMessage("Sprache")
       };
 }
