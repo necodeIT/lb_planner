@@ -1,5 +1,7 @@
 import 'package:desktop/dialogs/confirm_clear_cache.dart';
 import 'package:desktop/dialogs/confirm_delete_profile.dart';
+import 'package:desktop/generated/l10n.dart';
+import 'package:desktop/main.dart';
 import 'package:desktop/version.dart';
 import 'package:desktop/widgets/course_selection/course_selection.dart';
 import 'package:desktop/widgets/views/dashboard/dashboard.dart';
@@ -7,7 +9,9 @@ import 'package:desktop/widgets/views/settings/general.dart';
 import 'package:desktop/widgets/views/settings/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:intl/intl.dart';
 import 'package:lb_planner/ui.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'feedback.dart';
 
@@ -66,6 +70,21 @@ class SettingsRoute extends StatelessWidget {
                                 showDeleteProfileDialog(context);
                                 // TODO: Check for updates
                               },
+                            ),
+                            NcSpacing.xs(),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                NcCaptionText(
+                                  S.of(context).settings_language,
+                                  fontSize: SettingsGeneralItem.defaultFontSize,
+                                ),
+                                NcDropdown(
+                                  value: AppLocalizations.supportedLocales.indexOf(AppLocalizations.supportedLocales.where((e) => e.languageCode == Intl.getCurrentLocale()).first),
+                                  items: AppLocalizations.supportedLocales.map((e) => e.languageCode.toUpperCase()).toList(),
+                                  onValueChanged: (index) => App.of(context).setLocale(AppLocalizations.supportedLocales[index]),
+                                )
+                              ],
                             ),
                             NcSpacing.small(),
                             SettingsGeneralItem(

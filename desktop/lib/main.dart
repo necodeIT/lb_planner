@@ -1,7 +1,9 @@
 import 'dart:io';
+import 'package:desktop/generated/l10n.dart';
 import 'package:desktop/home.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:lb_planner/data.dart';
 import 'package:lb_planner/ui.dart';
 import 'package:window_size/window_size.dart';
@@ -36,29 +38,16 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  Locale _locale = AppLocalizations.supportedLocales.last;
-
   void setLocale(Locale value) {
     setState(() {
-      _locale = value;
+      S.load(value);
     });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    NcThemes.onCurrentThemeChange = () => setState(() => User.current.settings.theme = NcThemes.current.name);
-
-    Guard.init(context);
-
-    Guard.checkForRecentCrash(context);
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      locale: _locale,
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      localizationsDelegates: [S.delegate, ...AppLocalizations.localizationsDelegates],
       supportedLocales: AppLocalizations.supportedLocales,
       home: Home(),
       title: "LB Planner",

@@ -21,7 +21,6 @@ environment:
   sdk: ">=2.12.0 <3.0.0"
   flutter: "2.2.3"
 
-
 dependencies:
   animations: ^2.0.1
   cupertino_icons: ^1.0.2
@@ -90,3 +89,5 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+flutter_intl:
+  enabled: true

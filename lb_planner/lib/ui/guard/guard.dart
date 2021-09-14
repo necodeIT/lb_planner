@@ -24,14 +24,25 @@ class Guard {
   static const badBoys = ["EXCEPTION CAUGHT BY RENDERING LIBRARY", "EXCEPTION CAUGHT BY WIDGETS LIBRAR"];
 
   static const noInfo = 'No information proivided.';
-  static const ingore = "Ignore";
-  static const sendReport = "Send Report";
+  static const defaultIngore = "Ignore";
+  static const defaultSendReport = "Send Report";
+  static const defaultOhNo = "Something went wrong!";
+
+  static String _ingore = defaultIngore;
+  static String _sendReport = defaultSendReport;
+  static String _ohNo = defaultOhNo;
 
   static List<ErrorCacheEntry> _errorCache = List.empty(growable: true);
 
   static void init(BuildContext context) {
     _setErrorWidgetBuilder();
     _setFlutterErrorHandler(context);
+  }
+
+  static void setLabelMessages({String ignore = defaultIngore, String sendReport = defaultSendReport, String ohNo = defaultOhNo}) {
+    _ingore = ignore;
+    _sendReport = sendReport;
+    _ohNo = ohNo;
   }
 
   static _pop(BuildContext context) => Navigator.of(context).pop();
@@ -52,7 +63,7 @@ class Guard {
     report(context, exception.toString(), ErrorCacheEntry(exception.toString(), stack.toString()));
   }
 
-  static report(BuildContext context, String message, ErrorCacheEntry error, {Function()? onReportSent, String title = "Something went wrong!"}) {
+  static report(BuildContext context, String message, ErrorCacheEntry error, {Function()? onReportSent}) {
     _blockErrors();
 
     final skipReport = _errorCache.contains(error);
@@ -62,7 +73,7 @@ class Guard {
     if (skipReport) {
       return showNcDialogOK(
         context,
-        title: title,
+        title: _ohNo,
         body: SingleChildScrollView(
           child: NcBodyText(
             message,
@@ -73,12 +84,12 @@ class Guard {
           _enableErrors();
           _pop(context);
         },
-        confirmText: ingore,
+        confirmText: _ingore,
       );
     }
     showNcDialog(
       context,
-      title: title,
+      title: _ohNo,
       body: SingleChildScrollView(
         child: NcBodyText(
           message,
@@ -96,8 +107,8 @@ class Guard {
         _pop(context);
         _enableErrors();
       },
-      cancelText: ingore,
-      confirmText: sendReport,
+      cancelText: _ingore,
+      confirmText: _sendReport,
       buttonWidth: 130,
     );
   }
@@ -111,7 +122,7 @@ class Guard {
   }
 
   static checkForRecentCrash(BuildContext context) {
-    print("Guard.checkForRecentCrash(BuildContext context) is not fully implemented yet!");
+    print("Guard.checkForRecentCrash(BuildContext context) is not implemented yet!");
     // SharedPreferences.getInstance().then(
     //   (prefs) {
     //     var crash = prefs.getString(crashKey);
@@ -121,7 +132,7 @@ class Guard {
   }
 
   static handleFlutterError(BuildContext context, FlutterErrorDetails details) {
-    if (!kReleaseMode) return FlutterError.dumpErrorToConsole(details);
+    // if (!kReleaseMode) return FlutterError.dumpErrorToConsole(details);
 
     var error = ErrorCacheEntry(details.exception.toString(), details.stack.toString());
 
@@ -130,10 +141,6 @@ class Guard {
     String message = "Name: '${details.context != null ? details.context!.name ?? noInfo : noInfo}'\n---\nException: '${details.exception}'\n---\nStack: ${details.stack}\n---\nContext: ${details.context}";
 
     report(context, message, error);
-
-    // if (kReleaseMode) {
-    //   SharedPreferences.getInstance().then((prefs) => prefs.setString(crashKey, message));
-    // }
   }
 
   static _setFlutterErrorHandler(BuildContext context) {
