@@ -24,7 +24,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "guard_ingore": MessageLookupByLibrary.simpleMessage("Ingore"),
         "guard_sendReport": MessageLookupByLibrary.simpleMessage("Send Report"),
         "guard_someThingWentWrong":
-            MessageLookupByLibrary.simpleMessage("Something Went Wrong!"),
+            MessageLookupByLibrary.simpleMessage("Something went wrong!"),
         "settings_language": MessageLookupByLibrary.simpleMessage("Language")
       };
 }
