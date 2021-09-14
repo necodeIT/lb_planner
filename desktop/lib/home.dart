@@ -79,27 +79,27 @@ class _HomeState extends State<Home> {
     return Scaffold(
       backgroundColor: NcThemes.current.secondaryColor,
       // body: Home(),
-      body: Column(
-        children: [
-          NcBodyText(AppLocalizations.of(context)!.helloWorld),
-          NcButton(
-            text: "sdasd",
-            onTap: () {
-              App.of(context).setLocale(AppLocalizations.supportedLocales.first);
-            },
-          ),
-        ],
-      ),
-      // body: PageTransitionSwitcher(
-      //   // duration: Duration(seconds: 2),
-      //   transitionBuilder: (child, animationIn, animationOut) => FadeThroughTransition(
-      //     fillColor: NcThemes.current.secondaryColor,
-      //     animation: animationIn,
-      //     secondaryAnimation: animationOut,
-      //     child: child,
-      //   ),
-      //   child: child,
+      // body: Column(
+      //   children: [
+      //     NcBodyText(AppLocalizations.of(context)!.helloWorld),
+      //     NcButton(
+      //       text: "sdasd",
+      //       onTap: () {
+      //         App.of(context).setLocale(AppLocalizations.supportedLocales.first);
+      //       },
+      //     ),
+      //   ],
       // ),
+      body: PageTransitionSwitcher(
+        // duration: Duration(seconds: 2),
+        transitionBuilder: (child, animationIn, animationOut) => FadeThroughTransition(
+          fillColor: NcThemes.current.secondaryColor,
+          animation: animationIn,
+          secondaryAnimation: animationOut,
+          child: child,
+        ),
+        child: child,
+      ),
     );
   }
 }
