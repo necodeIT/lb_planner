@@ -21,6 +21,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "calendar_title": MessageLookupByLibrary.simpleMessage("Calendar"),
+        "courseOverview_title":
+            MessageLookupByLibrary.simpleMessage("Course Overview"),
         "dashboard_dashboard":
             MessageLookupByLibrary.simpleMessage("Dashboard"),
         "dashboard_exams": MessageLookupByLibrary.simpleMessage("Exams"),
@@ -43,6 +46,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "guard_sendReport": MessageLookupByLibrary.simpleMessage("Send Report"),
         "guard_someThingWentWrong":
             MessageLookupByLibrary.simpleMessage("Something went wrong!"),
+        "login_login": MessageLookupByLibrary.simpleMessage("LOGIN"),
+        "login_password": MessageLookupByLibrary.simpleMessage("Password"),
+        "login_username": MessageLookupByLibrary.simpleMessage("Username"),
+        "selectCourses_continue":
+            MessageLookupByLibrary.simpleMessage("Continue"),
+        "selectCourses_title":
+            MessageLookupByLibrary.simpleMessage("Select courses"),
         "settings_clearCache":
             MessageLookupByLibrary.simpleMessage("Clear Cache"),
         "settings_credits": MessageLookupByLibrary.simpleMessage("Credits"),

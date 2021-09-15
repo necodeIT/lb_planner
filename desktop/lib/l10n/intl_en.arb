@@ -19,5 +19,12 @@
   "dashboard_noUpcommingExamsThisMonth": "No upcomming exams this month!",
   "dashboard_exams": "Exams",
   "dashboard_lbPlannerTba": "LB Planner (TBA)",
-  "settings_title": "Settings"
+  "settings_title": "Settings",
+  "courseOverview_title": "Course Overview",
+  "calendar_title": "Calendar",
+  "selectCourses_title": "Select courses",
+  "selectCourses_continue": "Continue",
+  "login_username": "Username",
+  "login_password": "Password",
+  "login_login": "LOGIN"
 }

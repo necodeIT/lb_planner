@@ -1,12 +1,9 @@
+import 'package:desktop/generated/l10n.dart';
 import 'package:desktop/widgets/course_selection/course_selection.dart';
 import 'package:desktop/widgets/views/select_courses/svg/svg.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:lb_planner/ui.dart';
-import 'package:lb_planner/ui/themes/theme.dart';
-import 'package:lb_planner/ui/widgets/spacing.dart';
-import 'package:lb_planner/ui/widgets/text/text.dart';
-import 'package:lb_planner/ui/widgets/vector_image.dart';
 
 class SelectCoursesView extends StatelessWidget {
   const SelectCoursesView({Key? key, required this.onSubmit}) : super(key: key);
@@ -27,7 +24,7 @@ class SelectCoursesView extends StatelessWidget {
           top: 20,
           left: 20,
           child: NcCaptionText(
-            "Select courses",
+            S.of(context).selectCourses_title,
             fontSize: fontSize,
           ),
         ),
@@ -53,7 +50,7 @@ class SelectCoursesView extends StatelessWidget {
                   bottomButton: Container(
                     alignment: Alignment.centerRight,
                     child: NcTextButton(
-                      text: "Submit",
+                      text: S.of(context).selectCourses_continue,
                       fontSize: fontSize,
                       trailingIcon: Icon(
                         Feather.arrow_right_circle,

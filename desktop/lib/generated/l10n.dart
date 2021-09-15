@@ -259,6 +259,76 @@ class S {
       args: [],
     );
   }
+
+  /// `Course Overview`
+  String get courseOverview_title {
+    return Intl.message(
+      'Course Overview',
+      name: 'courseOverview_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Calendar`
+  String get calendar_title {
+    return Intl.message(
+      'Calendar',
+      name: 'calendar_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select courses`
+  String get selectCourses_title {
+    return Intl.message(
+      'Select courses',
+      name: 'selectCourses_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Continue`
+  String get selectCourses_continue {
+    return Intl.message(
+      'Continue',
+      name: 'selectCourses_continue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Username`
+  String get login_username {
+    return Intl.message(
+      'Username',
+      name: 'login_username',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password`
+  String get login_password {
+    return Intl.message(
+      'Password',
+      name: 'login_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `LOGIN`
+  String get login_login {
+    return Intl.message(
+      'LOGIN',
+      name: 'login_login',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

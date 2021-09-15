@@ -1,3 +1,4 @@
+import 'package:desktop/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:lb_planner/ui.dart';
 import 'modules/route.dart';
@@ -24,12 +25,12 @@ class CalendarView extends StatelessWidget {
     return NcView(
       routes: [
         NcView.route(
-          title: "Calendar",
+          title: S.of(context).calendar_title,
           customRouteName: PlanRoute.name,
           content: PlanRoute(),
         ),
         NcView.route(
-          title: "Calendar",
+          title: S.of(context).calendar_title,
           customRouteName: OverviewRoute.name,
           content: OverviewRoute(),
         ),

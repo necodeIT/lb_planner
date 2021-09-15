@@ -19,5 +19,12 @@
   "dashboard_noUpcommingExamsThisMonth": "Keine Schularbeiten diesen Monat!",
   "dashboard_exams": "Schularbeiten",
   "dashboard_lbPlannerTba": "LB Planner (TBA)",
-  "settings_title": "Einstellungen"
+  "settings_title": "Einstellungen",
+  "courseOverview_title": "Kursübersicht",
+  "calendar_title": "Kalender",
+  "selectCourses_title": "Kurse auswählen",
+  "selectCourses_continue": "Weiter",
+  "login_username": "Benutzername",
+  "login_password": "Passwort",
+  "login_login": "ANMELDEN"
 }

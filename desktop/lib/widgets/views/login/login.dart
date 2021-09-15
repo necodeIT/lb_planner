@@ -1,3 +1,4 @@
+import 'package:desktop/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:lb_planner/ui.dart';
@@ -48,7 +49,7 @@ class Login extends StatelessWidget {
                 NcMaterialInputField(
                   autoFocus: true,
                   onValueChanged: (value) => username = value,
-                  placeholder: 'Username',
+                  placeholder: S.of(context).login_username,
                   prefixIcon: Icon(
                     FontAwesome5Solid.user,
                     color: NcThemes.current.textColor,
@@ -58,7 +59,7 @@ class Login extends StatelessWidget {
                 NcMaterialInputField(
                   obscureText: true,
                   onValueChanged: (value) => password = value,
-                  placeholder: 'Password',
+                  placeholder: S.of(context).login_password,
                   prefixIcon: Icon(
                     FontAwesome5Solid.lock,
                     color: NcThemes.current.textColor,
@@ -66,7 +67,7 @@ class Login extends StatelessWidget {
                 ),
                 NcSpacing.large(),
                 NcButton(
-                  text: "LOGIN",
+                  text: S.of(context).login_login,
                   onTap: () {
                     MoodleAPI.login(username, password)
                       ..then(
