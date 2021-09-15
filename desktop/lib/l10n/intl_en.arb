@@ -18,5 +18,6 @@
   "dashboard_timetableTba": "Timetable (TBA)",
   "dashboard_noUpcommingExamsThisMonth": "No upcomming exams this month!",
   "dashboard_exams": "Exams",
-  "dashboard_lbPlannerTba": "LB Planner (TBA)"
+  "dashboard_lbPlannerTba": "LB Planner (TBA)",
+  "settings_title": "Settings"
 }

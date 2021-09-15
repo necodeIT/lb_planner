@@ -18,5 +18,6 @@
   "dashboard_timetableTba": "Stundenplan (TBA)",
   "dashboard_noUpcommingExamsThisMonth": "Keine Schularbeiten diesen Monat!",
   "dashboard_exams": "Schularbeiten",
-  "dashboard_lbPlannerTba": "LB Planner (TBA)"
+  "dashboard_lbPlannerTba": "LB Planner (TBA)",
+  "settings_title": "Einstellungen"
 }

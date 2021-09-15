@@ -14,11 +14,10 @@ import 'package:lb_planner/ui.dart';
 import 'package:lb_planner/ui/widgets/grid_view/gridTest.dart';
 
 import 'feedback.dart';
+import 'settings.dart';
 
 class SettingsRoute extends StatelessWidget {
   const SettingsRoute({Key? key}) : super(key: key);
-
-  static const name = "Settings";
 
   @override
   Widget build(BuildContext context) {
@@ -81,8 +80,7 @@ class SettingsRoute extends StatelessWidget {
                                 ),
                                 NcDropdown(
                                   height: 30,
-                                  value: S.delegate.supportedLocales
-                                      .indexOf(S.delegate.supportedLocales.where((e) => e.languageCode == Intl.getCurrentLocale()).first),
+                                  value: S.delegate.supportedLocales.indexOf(S.delegate.supportedLocales.where((e) => e.languageCode == Intl.getCurrentLocale()).first),
                                   items: S.delegate.supportedLocales.map((e) => e.languageCode.toUpperCase()).toList(),
                                   onValueChanged: (index) => App.of(context).setLocale(S.delegate.supportedLocales[index]),
                                 )
@@ -94,7 +92,7 @@ class SettingsRoute extends StatelessWidget {
                               icon: Icons.info_outline,
                               // onTap: view.route("settings"),
                               onTap: () {
-                                guard(context, () => NcView.of(context).route("Credits"));
+                                guard(context, () => NcView.of(context).route(SettingView.creditsRoute));
                                 // Navigator.of(context)
                               },
                             ),

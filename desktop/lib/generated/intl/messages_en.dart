@@ -52,6 +52,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "settings_general": MessageLookupByLibrary.simpleMessage("General"),
         "settings_language": MessageLookupByLibrary.simpleMessage("Language"),
         "settings_themes": MessageLookupByLibrary.simpleMessage("Themes"),
+        "settings_title": MessageLookupByLibrary.simpleMessage("Settings"),
         "settings_upToDate":
             MessageLookupByLibrary.simpleMessage("You already are up to date!")
       };

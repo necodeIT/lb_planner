@@ -78,7 +78,7 @@ class _NcViewState extends State<NcView> {
                         widget.popRoute != null
                             ? NcTextButton(
                                 fontSize: NcView.fontSize,
-                                text: widget.popRoute ?? widget.title,
+                                text: widget.title,
                                 onTap: () {
                                   if (widget.popRoute != null) NcView.of(context).route(widget.popRoute!);
                                 },
