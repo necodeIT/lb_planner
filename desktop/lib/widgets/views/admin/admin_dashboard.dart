@@ -24,6 +24,34 @@ class AdminStats extends StatelessWidget {
           ),
         ),
         NcSpacing.medium(),
+        Expanded(child: Row(
+          children: [
+            NcContainer(
+              label: SizedBox.shrink(),
+              labelPadding: false,
+              body: Column(
+                children: [
+                  Row(
+                    children: [
+                      Icon(FontAwesome5Solid.lightbulb, size: 20),
+                      NcSpacing.small(),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          // TODO: Anzahl ausgeben
+                          NcBodyText("150", fontSize: 20),
+                          NcBodyText("Suggestions", fontSize: 10),
+                        ],
+                      )
+                    ]
+                  ),
+                ],
+              )
+              )
+          ],
+          )
+        ),
+        NcSpacing.medium(),
         Expanded(
           child: NcGridView.responsive(
             minHeight: 80,
