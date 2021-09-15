@@ -7,5 +7,16 @@
   "settings_upToDate": "You already are up to date!",
   "settings_clearCache": "Clear Cache",
   "settings_deleteProfile": "Delete Profile",
-  "settings_credits": "Credits"
+  "settings_credits": "Credits",
+  "settings_feedback": "Feedback",
+  "settings_general": "General",
+  "dashboard_dashboard": "Dashboard",
+  "dashboard_nothingPlannedForToday": "Nothing planned for today!",
+  "dashboard_todaysTasks": "Today's Tasks",
+  "dashboard_holidaysTba": "Holidays (TBA)",
+  "dashboard_statusOverview": "Status Overview",
+  "dashboard_timetableTba": "Timetable (TBA)",
+  "dashboard_noUpcommingExamsThisMonth": "No upcomming exams this month!",
+  "dashboard_exams": "Exams",
+  "dashboard_lbPlannerTba": "LB Planner (TBA)"
 }

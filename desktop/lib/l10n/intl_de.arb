@@ -4,8 +4,19 @@
   "guard_sendReport": "Bericht Senden",
   "guard_ingore": "Ignorieren",
   "settings_themes": "Themes",
-  "settings_upToDate": "You already are up to date!",
-  "settings_clearCache": "Clear Cache",
-  "settings_deleteProfile": "Delete Profile",
-  "settings_credits": "Credits"
+  "settings_upToDate": "Du hast bereits die neueste Version!",
+  "settings_clearCache": "Cache leeren",
+  "settings_deleteProfile": "Profil löschen",
+  "settings_credits": "Credits",
+  "settings_feedback": "Feedback",
+  "settings_general": "Generell",
+  "dashboard_dashboard": "Dashboard",
+  "dashboard_nothingPlannedForToday": "Für heute nichts geplant!",
+  "dashboard_todaysTasks": "Geplante Aufgaben",
+  "dashboard_holidaysTba": "Ferien (TBA)",
+  "dashboard_statusOverview": "Abgabe Übersicht",
+  "dashboard_timetableTba": "Stundenplan (TBA)",
+  "dashboard_noUpcommingExamsThisMonth": "Keine Schularbeiten diesen Monat!",
+  "dashboard_exams": "Schularbeiten",
+  "dashboard_lbPlannerTba": "LB Planner (TBA)"
 }

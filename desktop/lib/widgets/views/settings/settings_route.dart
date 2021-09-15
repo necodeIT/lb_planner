@@ -11,11 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:intl/intl.dart';
 import 'package:lb_planner/ui.dart';
-<<<<<<< Updated upstream
-=======
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:lb_planner/ui/widgets/grid_view/gridTest.dart';
->>>>>>> Stashed changes
 
 import 'feedback.dart';
 
@@ -38,7 +34,7 @@ class SettingsRoute extends StatelessWidget {
                       flex: 2,
                       child: NcContainer(
                         label: NcCaptionText(
-                          "General",
+                          S.of(context).settings_general,
                           fontSize: Dashboard.titleSize,
                         ),
                         body: ListView(
@@ -84,17 +80,11 @@ class SettingsRoute extends StatelessWidget {
                                   fontSize: SettingsGeneralItem.defaultFontSize,
                                 ),
                                 NcDropdown(
-<<<<<<< Updated upstream
-                                  value: S.delegate.supportedLocales.indexOf(S.delegate.supportedLocales.where((e) => e.languageCode == Intl.getCurrentLocale()).first),
+                                  height: 30,
+                                  value: S.delegate.supportedLocales
+                                      .indexOf(S.delegate.supportedLocales.where((e) => e.languageCode == Intl.getCurrentLocale()).first),
                                   items: S.delegate.supportedLocales.map((e) => e.languageCode.toUpperCase()).toList(),
                                   onValueChanged: (index) => App.of(context).setLocale(S.delegate.supportedLocales[index]),
-=======
-                                  height: 30,
-                                  value: AppLocalizations.supportedLocales
-                                      .indexOf(AppLocalizations.supportedLocales.where((e) => e.languageCode == Intl.getCurrentLocale()).first),
-                                  items: AppLocalizations.supportedLocales.map((e) => e.languageCode.toUpperCase()).toList(),
-                                  onValueChanged: (index) => App.of(context).setLocale(AppLocalizations.supportedLocales[index]),
->>>>>>> Stashed changes
                                 )
                               ],
                             ),
@@ -146,7 +136,7 @@ class SettingsRoute extends StatelessWidget {
         Expanded(
           child: NcContainer(
             label: NcCaptionText(
-              "Feedback",
+              S.of(context).settings_feedback,
               fontSize: Dashboard.titleSize,
             ),
             body: SettingsFeedback(),

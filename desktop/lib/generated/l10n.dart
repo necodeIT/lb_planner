@@ -139,6 +139,116 @@ class S {
       args: [],
     );
   }
+
+  /// `Feedback`
+  String get settings_feedback {
+    return Intl.message(
+      'Feedback',
+      name: 'settings_feedback',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `General`
+  String get settings_general {
+    return Intl.message(
+      'General',
+      name: 'settings_general',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dashboard`
+  String get dashboard_dashboard {
+    return Intl.message(
+      'Dashboard',
+      name: 'dashboard_dashboard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nothing planned for today!`
+  String get dashboard_nothingPlannedForToday {
+    return Intl.message(
+      'Nothing planned for today!',
+      name: 'dashboard_nothingPlannedForToday',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Today's Tasks`
+  String get dashboard_todaysTasks {
+    return Intl.message(
+      'Today\'s Tasks',
+      name: 'dashboard_todaysTasks',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Holidays (TBA)`
+  String get dashboard_holidaysTba {
+    return Intl.message(
+      'Holidays (TBA)',
+      name: 'dashboard_holidaysTba',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Status Overview`
+  String get dashboard_statusOverview {
+    return Intl.message(
+      'Status Overview',
+      name: 'dashboard_statusOverview',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Timetable (TBA)`
+  String get dashboard_timetableTba {
+    return Intl.message(
+      'Timetable (TBA)',
+      name: 'dashboard_timetableTba',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No upcomming exams this month!`
+  String get dashboard_noUpcommingExamsThisMonth {
+    return Intl.message(
+      'No upcomming exams this month!',
+      name: 'dashboard_noUpcommingExamsThisMonth',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exams`
+  String get dashboard_exams {
+    return Intl.message(
+      'Exams',
+      name: 'dashboard_exams',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `LB Planner (TBA)`
+  String get dashboard_lbPlannerTba {
+    return Intl.message(
+      'LB Planner (TBA)',
+      name: 'dashboard_lbPlannerTba',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
