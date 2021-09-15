@@ -1,7 +1,6 @@
 import 'package:animations/animations.dart';
 import 'package:desktop/generated/l10n.dart';
-import 'package:desktop/main.dart';
-import 'package:desktop/widgets/views/Admin/admin_login.dart';
+
 import 'package:desktop/widgets/views/admin/admin.dart';
 import 'package:desktop/widgets/views/calendar/calendar.dart';
 import 'package:desktop/widgets/views/courses_overview/course_overview.dart';
@@ -10,10 +9,8 @@ import 'package:desktop/widgets/views/login/login.dart';
 import 'package:desktop/widgets/views/select_courses/select_courses.dart';
 import 'package:desktop/widgets/views/settings/settings.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:lb_planner/data.dart';
 import 'package:lb_planner/ui.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'widgets/sidebar/sidebar.dart';
 

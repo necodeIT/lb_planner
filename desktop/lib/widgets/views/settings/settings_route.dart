@@ -11,7 +11,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:intl/intl.dart';
 import 'package:lb_planner/ui.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'feedback.dart';
 
@@ -80,9 +79,9 @@ class SettingsRoute extends StatelessWidget {
                                   fontSize: SettingsGeneralItem.defaultFontSize,
                                 ),
                                 NcDropdown(
-                                  value: AppLocalizations.supportedLocales.indexOf(AppLocalizations.supportedLocales.where((e) => e.languageCode == Intl.getCurrentLocale()).first),
-                                  items: AppLocalizations.supportedLocales.map((e) => e.languageCode.toUpperCase()).toList(),
-                                  onValueChanged: (index) => App.of(context).setLocale(AppLocalizations.supportedLocales[index]),
+                                  value: S.delegate.supportedLocales.indexOf(S.delegate.supportedLocales.where((e) => e.languageCode == Intl.getCurrentLocale()).first),
+                                  items: S.delegate.supportedLocales.map((e) => e.languageCode.toUpperCase()).toList(),
+                                  onValueChanged: (index) => App.of(context).setLocale(S.delegate.supportedLocales[index]),
                                 )
                               ],
                             ),

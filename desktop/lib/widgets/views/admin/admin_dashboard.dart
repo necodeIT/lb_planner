@@ -24,15 +24,15 @@ class AdminStats extends StatelessWidget {
           ),
         ),
         NcSpacing.medium(),
-        Expanded(child: Row(
+        Expanded(
+            child: Row(
           children: [
             NcContainer(
-              label: SizedBox.shrink(),
-              labelPadding: false,
-              body: Column(
-                children: [
-                  Row(
-                    children: [
+                label: SizedBox.shrink(),
+                labelPadding: false,
+                body: Column(
+                  children: [
+                    Row(children: [
                       Icon(FontAwesome5Solid.lightbulb, size: 20),
                       NcSpacing.small(),
                       Column(
@@ -42,22 +42,18 @@ class AdminStats extends StatelessWidget {
                           NcBodyText("150", fontSize: 20),
                           NcBodyText("Suggestions", fontSize: 10),
                         ],
-                      )
+                      ),
                       NcSpacing.medium(),
-
-                    ]
-                  ),
-                ],
-              )
-              )
+                    ]),
+                  ],
+                ))
           ],
-          )
-        ),
+        )),
         NcSpacing.medium(),
         Expanded(
           child: NcGridView.responsive(
             minHeight: 80,
-            margin: EdgeInsets.zero ,
+            margin: EdgeInsets.zero,
             minWidth: 300,
             maxHeight: 80,
             children: [

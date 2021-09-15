@@ -3,11 +3,10 @@ import 'package:desktop/generated/l10n.dart';
 import 'package:desktop/home.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:lb_planner/data.dart';
 import 'package:lb_planner/ui.dart';
 import 'package:window_size/window_size.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -47,8 +46,13 @@ class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      localizationsDelegates: [S.delegate, ...AppLocalizations.localizationsDelegates],
-      supportedLocales: AppLocalizations.supportedLocales,
+      localizationsDelegates: [
+        S.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: S.delegate.supportedLocales,
       home: Home(),
       title: "LB Planner",
       scrollBehavior: NcScrollBehavior(),
