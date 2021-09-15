@@ -1,9 +1,10 @@
 import 'package:desktop/widgets/views/calendar/calendar_day.dart';
 import 'package:desktop/widgets/views/calendar/plan/calendar_drag_item.dart';
 import 'package:flutter/material.dart';
+import 'package:lb_planner/data.dart';
 import 'package:lb_planner/ui.dart';
 
-class PlanWidget extends StatelessWidget {
+class PlanWidget extends StatefulWidget {
   PlanWidget({
     Key? key,
     required this.day,
@@ -12,6 +13,11 @@ class PlanWidget extends StatelessWidget {
   final String day;
 
   @override
+  State<PlanWidget> createState() => _PlanWidgetState();
+}
+
+class _PlanWidgetState extends State<PlanWidget> {
+  @override
   Widget build(BuildContext context) {
     return Expanded(
       child: Column(
@@ -19,7 +25,7 @@ class PlanWidget extends StatelessWidget {
           Expanded(
             flex: 0,
             child: NcCaptionText(
-              day,
+              widget.day,
               fontSize: 20,
             ),
           ),
@@ -27,6 +33,7 @@ class PlanWidget extends StatelessWidget {
             flex: 1,
             child: CalendarDayItem(
               text: '01',
+              onItemDroped: (id) => User.current.plan.moduleDates[id] = DateTime.now(),
               children: [
                 CalendarDragItem(id: 01),
                 CalendarDragItem(id: 01),

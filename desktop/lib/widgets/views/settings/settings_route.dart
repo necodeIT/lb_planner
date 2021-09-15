@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:intl/intl.dart';
 import 'package:lb_planner/ui.dart';
+import 'package:lb_planner/ui/widgets/grid_view/gridTest.dart';
 
 import 'feedback.dart';
 
@@ -33,7 +34,7 @@ class SettingsRoute extends StatelessWidget {
                       flex: 2,
                       child: NcContainer(
                         label: NcCaptionText(
-                          "General",
+                          S.of(context).settings_general,
                           fontSize: Dashboard.titleSize,
                         ),
                         body: ListView(
@@ -49,13 +50,13 @@ class SettingsRoute extends StatelessWidget {
                                     Icons.update,
                                     color: NcThemes.current.textColor,
                                   ),
-                                  message: "You already are up to date!",
+                                  message: S.of(context).settings_upToDate,
                                 );
                               },
                             ),
                             NcSpacing.small(),
                             SettingsGeneralItem(
-                              text: "Clear Cache",
+                              text: S.of(context).settings_clearCache,
                               icon: Icons.arrow_forward_ios,
                               onTap: () {
                                 showConfirmClearCache(context);
@@ -63,7 +64,7 @@ class SettingsRoute extends StatelessWidget {
                             ),
                             NcSpacing.small(),
                             SettingsGeneralItem(
-                              text: "Delete Profile",
+                              text: S.of(context).settings_deleteProfile,
                               icon: Feather.trash_2,
                               onTap: () {
                                 showDeleteProfileDialog(context);
@@ -79,7 +80,9 @@ class SettingsRoute extends StatelessWidget {
                                   fontSize: SettingsGeneralItem.defaultFontSize,
                                 ),
                                 NcDropdown(
-                                  value: S.delegate.supportedLocales.indexOf(S.delegate.supportedLocales.where((e) => e.languageCode == Intl.getCurrentLocale()).first),
+                                  height: 30,
+                                  value: S.delegate.supportedLocales
+                                      .indexOf(S.delegate.supportedLocales.where((e) => e.languageCode == Intl.getCurrentLocale()).first),
                                   items: S.delegate.supportedLocales.map((e) => e.languageCode.toUpperCase()).toList(),
                                   onValueChanged: (index) => App.of(context).setLocale(S.delegate.supportedLocales[index]),
                                 )
@@ -87,7 +90,7 @@ class SettingsRoute extends StatelessWidget {
                             ),
                             NcSpacing.small(),
                             SettingsGeneralItem(
-                              text: "Credits",
+                              text: S.of(context).settings_credits,
                               icon: Icons.info_outline,
                               // onTap: view.route("settings"),
                               onTap: () {
@@ -105,7 +108,7 @@ class SettingsRoute extends StatelessWidget {
                       child: NcContainer(
                         contentAlignment: CrossAxisAlignment.start,
                         label: NcCaptionText(
-                          "Themes",
+                          S.of(context).settings_themes,
                           fontSize: Dashboard.titleSize,
                         ),
                         body: NcGridView(
@@ -115,6 +118,7 @@ class SettingsRoute extends StatelessWidget {
                             for (var theme in NcThemes.all.keys) ThemeItem(theme: theme),
                           ],
                         ),
+                        //body: Nc2GridView(),
                       ),
                     ),
                   ],
@@ -132,7 +136,7 @@ class SettingsRoute extends StatelessWidget {
         Expanded(
           child: NcContainer(
             label: NcCaptionText(
-              "Feedback",
+              S.of(context).settings_feedback,
               fontSize: Dashboard.titleSize,
             ),
             body: SettingsFeedback(),

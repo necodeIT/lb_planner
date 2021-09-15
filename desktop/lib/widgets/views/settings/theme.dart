@@ -26,6 +26,7 @@ class _ThemeItemState extends State<ThemeItem> {
         child: Column(
           children: [
             Container(
+              //margin: EdgeInsets.all(8),
               height: ThemeItem.size,
               width: ThemeItem.size,
               decoration: BoxDecoration(

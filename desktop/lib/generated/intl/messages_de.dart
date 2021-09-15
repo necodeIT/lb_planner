@@ -21,11 +21,40 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "dashboard_dashboard":
+            MessageLookupByLibrary.simpleMessage("Dashboard"),
+        "dashboard_exams":
+            MessageLookupByLibrary.simpleMessage("Schularbeiten"),
+        "dashboard_holidaysTba":
+            MessageLookupByLibrary.simpleMessage("Ferien (TBA)"),
+        "dashboard_lbPlannerTba":
+            MessageLookupByLibrary.simpleMessage("LB Planner (TBA)"),
+        "dashboard_noUpcommingExamsThisMonth":
+            MessageLookupByLibrary.simpleMessage(
+                "Keine Schularbeiten diesen Monat!"),
+        "dashboard_nothingPlannedForToday":
+            MessageLookupByLibrary.simpleMessage("Für heute nichts geplant!"),
+        "dashboard_statusOverview":
+            MessageLookupByLibrary.simpleMessage("Abgabe Übersicht"),
+        "dashboard_timetableTba":
+            MessageLookupByLibrary.simpleMessage("Stundenplan (TBA)"),
+        "dashboard_todaysTasks":
+            MessageLookupByLibrary.simpleMessage("Geplante Aufgaben"),
         "guard_ingore": MessageLookupByLibrary.simpleMessage("Ignorieren"),
         "guard_sendReport":
             MessageLookupByLibrary.simpleMessage("Bericht Senden"),
         "guard_someThingWentWrong":
             MessageLookupByLibrary.simpleMessage("Etwas ist schief gelaufen!"),
-        "settings_language": MessageLookupByLibrary.simpleMessage("Sprache")
+        "settings_clearCache":
+            MessageLookupByLibrary.simpleMessage("Cache leeren"),
+        "settings_credits": MessageLookupByLibrary.simpleMessage("Credits"),
+        "settings_deleteProfile":
+            MessageLookupByLibrary.simpleMessage("Profil löschen"),
+        "settings_feedback": MessageLookupByLibrary.simpleMessage("Feedback"),
+        "settings_general": MessageLookupByLibrary.simpleMessage("Generell"),
+        "settings_language": MessageLookupByLibrary.simpleMessage("Sprache"),
+        "settings_themes": MessageLookupByLibrary.simpleMessage("Themes"),
+        "settings_upToDate": MessageLookupByLibrary.simpleMessage(
+            "Du hast bereits die neueste Version!")
       };
 }

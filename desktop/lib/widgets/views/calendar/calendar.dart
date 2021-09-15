@@ -1,13 +1,7 @@
-import 'package:desktop/dialogs/edit_course_dialog.dart';
-import 'package:desktop/dialogs/not_implemented_dialog.dart';
-import 'package:desktop/widgets/views/calendar/calendar_switch.dart';
-import 'package:desktop/widgets/views/calendar/modules/module_grid.dart';
-import 'package:desktop/widgets/views/calendar/modules/route.dart';
-import 'package:desktop/widgets/views/calendar/plan/plan.dart';
-import 'package:desktop/widgets/views/calendar/plan/route.dart';
-import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flutter/material.dart';
 import 'package:lb_planner/ui.dart';
+import 'modules/route.dart';
+import 'plan/route.dart';
 
 class CalendarView extends StatelessWidget {
   const CalendarView({Key? key}) : super(key: key);

@@ -1,3 +1,4 @@
+import 'package:desktop/generated/l10n.dart';
 import 'package:desktop/widgets/views/dashboard/exams.dart';
 import 'package:desktop/widgets/views/dashboard/status_overview/status_overview.dart';
 import 'package:desktop/widgets/views/dashboard/svg/catgirl.dart';
@@ -6,6 +7,7 @@ import 'package:desktop/widgets/views/dashboard/todays_task.dart';
 import 'package:flutter/material.dart';
 import 'package:lb_planner/data.dart';
 import 'package:lb_planner/ui.dart';
+import 'package:intl/intl.dart';
 
 class Dashboard extends StatelessWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -19,15 +21,19 @@ class Dashboard extends StatelessWidget {
     List<int> exams = User.current.getUpcommingExams();
     var now = DateTime.now();
 
-    bool hasModulesForToday = User.current.plan.moduleDates.keys.any((id) => (User.current.plan.moduleDates[id]!.year == now.year && User.current.plan.moduleDates[id]!.month == now.month && User.current.plan.moduleDates[id]!.day == now.day));
+    bool hasModulesForToday = User.current.plan.moduleDates.keys.any((id) => (User.current.plan.moduleDates[id]!.year == now.year &&
+        User.current.plan.moduleDates[id]!.month == now.month &&
+        User.current.plan.moduleDates[id]!.day == now.day));
 
-    bool doneForToday = User.current.plan.moduleDates.keys
-        .any((id) => (User.current.plan.moduleDates[id]!.year == now.year && User.current.plan.moduleDates[id]!.month == now.month && User.current.plan.moduleDates[id]!.day == now.day && DB.modules[id]!.status != ModuleStatus.Pending));
+    bool doneForToday = User.current.plan.moduleDates.keys.any((id) => (User.current.plan.moduleDates[id]!.year == now.year &&
+        User.current.plan.moduleDates[id]!.month == now.month &&
+        User.current.plan.moduleDates[id]!.day == now.day &&
+        DB.modules[id]!.status != ModuleStatus.Pending));
 
     return NcView(
       routes: [
         NcView.route(
-          title: "Dashboard",
+          title: S.of(context).dashboard_dashboard,
           content: Row(
             children: [
               Expanded(
@@ -41,7 +47,9 @@ class Dashboard extends StatelessWidget {
                                 ? ListView(
                                     children: [
                                       for (int id in User.current.plan.moduleDates.keys)
-                                        if (User.current.plan.moduleDates[id]!.year == now.year && User.current.plan.moduleDates[id]!.month == now.month && User.current.plan.moduleDates[id]!.day == now.day)
+                                        if (User.current.plan.moduleDates[id]!.year == now.year &&
+                                            User.current.plan.moduleDates[id]!.month == now.month &&
+                                            User.current.plan.moduleDates[id]!.day == now.day)
                                           DashboardTodaysTasksItem(id: id, margin: id != User.current.plan.moduleDates.keys.last)
 
                                       // DashboardTodaysTasksItem(id: 0),
@@ -68,11 +76,11 @@ class Dashboard extends StatelessWidget {
                                 children: [
                                   Expanded(child: NcVectorImage(code: todays_tasks_yay)),
                                   NcSpacing.small(),
-                                  NcBodyText("Nothing planned for today!"),
+                                  NcBodyText(S.of(context).dashboard_nothingPlannedForToday),
                                 ],
                               ),
                         label: NcCaptionText(
-                          "Today's Tasks",
+                          S.of(context).dashboard_todaysTasks,
                           fontSize: titleSize,
                         ),
                       ),
@@ -84,7 +92,7 @@ class Dashboard extends StatelessWidget {
                           type: NcCommingSoonSvgType.Three,
                         ),
                         label: NcCaptionText(
-                          "Holidays (TBA)",
+                          S.of(context).dashboard_holidaysTba,
                           fontSize: titleSize,
                         ),
                       ),
@@ -101,7 +109,7 @@ class Dashboard extends StatelessWidget {
                       child: NcContainer(
                         body: StatusOverview(stats: stats),
                         label: NcCaptionText(
-                          "Status Overview",
+                          S.of(context).dashboard_statusOverview,
                           fontSize: titleSize,
                         ),
                         trailingIcon: Row(
@@ -143,7 +151,7 @@ class Dashboard extends StatelessWidget {
                       child: NcContainer(
                         body: NcCommingSoon(),
                         label: NcCaptionText(
-                          "Timetable (TBA)",
+                          S.of(context).dashboard_timetableTba,
                           fontSize: titleSize,
                         ),
                       ),
@@ -187,11 +195,11 @@ class Dashboard extends StatelessWidget {
                                 children: [
                                   Expanded(child: NcVectorImage(code: exams_yay)),
                                   NcSpacing.small(),
-                                  NcBodyText("No upcomming exams this month!"),
+                                  NcBodyText(S.of(context).dashboard_noUpcommingExamsThisMonth),
                                 ],
                               ),
                         label: NcCaptionText(
-                          "Exams",
+                          S.of(context).dashboard_exams,
                           fontSize: titleSize,
                         ),
                       ),
@@ -201,7 +209,7 @@ class Dashboard extends StatelessWidget {
                       child: NcContainer(
                         body: NcCommingSoon(type: NcCommingSoonSvgType.Two),
                         label: NcCaptionText(
-                          "LB Planner (TBA)",
+                          S.of(context).dashboard_lbPlannerTba,
                           fontSize: titleSize,
                         ),
                       ),
