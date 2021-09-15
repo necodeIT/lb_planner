@@ -43,6 +43,8 @@ class AdminStats extends StatelessWidget {
                           NcBodyText("Suggestions", fontSize: 10),
                         ],
                       )
+                      NcSpacing.medium(),
+
                     ]
                   ),
                 ],
@@ -55,6 +57,7 @@ class AdminStats extends StatelessWidget {
         Expanded(
           child: NcGridView.responsive(
             minHeight: 80,
+            margin: EdgeInsets.zero ,
             minWidth: 300,
             maxHeight: 80,
             children: [
