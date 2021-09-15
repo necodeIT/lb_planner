@@ -89,6 +89,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Themes`
+  String get settings_themes {
+    return Intl.message(
+      'Themes',
+      name: 'settings_themes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You already are up to date!`
+  String get settings_upToDate {
+    return Intl.message(
+      'You already are up to date!',
+      name: 'settings_upToDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Clear Cache`
+  String get settings_clearCache {
+    return Intl.message(
+      'Clear Cache',
+      name: 'settings_clearCache',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete Profile`
+  String get settings_deleteProfile {
+    return Intl.message(
+      'Delete Profile',
+      name: 'settings_deleteProfile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Credits`
+  String get settings_credits {
+    return Intl.message(
+      'Credits',
+      name: 'settings_credits',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

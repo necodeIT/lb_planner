@@ -1,6 +1,11 @@
 {
-    "guard_someThingWentWrong": "Something went wrong!",
-    "guard_sendReport": "Send Report",
-    "guard_ingore": "Ingore",
-    "settings_language": "Language"
+  "guard_someThingWentWrong": "Something went wrong!",
+  "guard_sendReport": "Send Report",
+  "guard_ingore": "Ingore",
+  "settings_language": "Language",
+  "settings_themes": "Themes",
+  "settings_upToDate": "You already are up to date!",
+  "settings_clearCache": "Clear Cache",
+  "settings_deleteProfile": "Delete Profile",
+  "settings_credits": "Credits"
 }

@@ -26,6 +26,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Bericht Senden"),
         "guard_someThingWentWrong":
             MessageLookupByLibrary.simpleMessage("Etwas ist schief gelaufen!"),
-        "settings_language": MessageLookupByLibrary.simpleMessage("Sprache")
+        "settings_clearCache":
+            MessageLookupByLibrary.simpleMessage("Clear Cache"),
+        "settings_credits": MessageLookupByLibrary.simpleMessage("Credits"),
+        "settings_deleteProfile":
+            MessageLookupByLibrary.simpleMessage("Delete Profile"),
+        "settings_language": MessageLookupByLibrary.simpleMessage("Sprache"),
+        "settings_themes": MessageLookupByLibrary.simpleMessage("Themes"),
+        "settings_upToDate":
+            MessageLookupByLibrary.simpleMessage("You already are up to date!")
       };
 }
