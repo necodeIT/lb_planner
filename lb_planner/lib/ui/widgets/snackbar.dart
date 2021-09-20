@@ -16,7 +16,7 @@ class NcSnackBar {
               padding: EdgeInsets.all(10),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(ncRadius),
-                color: NcThemes.current.tertiaryColor,
+                color: NcThemes.current.secondaryColor,
                 boxShadow: ncShadow,
               ),
               alignment: Alignment.centerRight,
