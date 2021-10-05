@@ -64,6 +64,23 @@ class Login extends StatelessWidget {
                     FontAwesome5Solid.lock,
                     color: NcThemes.current.textColor,
                   ),
+                  onSubmit: (_) {
+                    MoodleAPI.login(username, password)
+                      ..then(
+                        (response) {
+                          if (response.isError)
+                            return NcSnackBar.showBottomRightMessage(
+                              context,
+                              message: response.errorMessage,
+                              prefixIcon: Icon(
+                                Icons.error,
+                                color: NcThemes.current.lateColor,
+                              ),
+                            );
+                          onLoginSuccess(response.value);
+                        },
+                      );
+                  },
                 ),
                 NcSpacing.large(),
                 NcButton(
@@ -81,7 +98,6 @@ class Login extends StatelessWidget {
                                 color: NcThemes.current.lateColor,
                               ),
                             );
-
                           onLoginSuccess(response.value);
                         },
                       );
