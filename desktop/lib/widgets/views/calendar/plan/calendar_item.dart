@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lb_planner/ui.dart';
 
 class CalendarItem extends StatelessWidget {
-  CalendarItem({Key? key, required this.id, this.height = 35})
-      : super(key: key);
+  CalendarItem({Key? key, required this.id, this.height = 35}) : super(key: key);
 
   final int id;
   final double? height;
@@ -30,9 +29,8 @@ class CalendarItem extends StatelessWidget {
             backgroundColor: NcThemes.current.accentColor,
             //width: 40,
           ),
-          Text(
+          NcBodyText(
             'Hallo',
-            style: NcBodyText.baseStyle,
           ),
           // TODO: Container(
           //     width: 23,

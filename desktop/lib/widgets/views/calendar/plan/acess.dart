@@ -25,9 +25,8 @@ class CalenderAccess extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
+          NcBodyText(
             'Hallo',
-            style: NcBodyText.baseStyle,
           ),
           User.current.plan.access[id] == PlanAccess.Owner
               ? Icon(

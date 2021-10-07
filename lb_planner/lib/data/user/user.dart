@@ -2,8 +2,7 @@ import 'package:lb_planner/data.dart';
 import 'package:lb_planner/ui.dart';
 
 class User {
-  User(this.id, this.token, this.name, this.plan, this.settings,
-      [this.role = UserPermissions.Student]) {
+  User(this.id, this.token, this.name, this.plan, this.settings, [this.role = UserPermissions.Student]) {
     email = "$name@$emailSubfix";
     isDummy = false;
   }
@@ -11,11 +10,11 @@ class User {
   User.dummy([UserPermissions permissions = UserPermissions.Admin]) {
     id = 0;
     token = Token(privateToken: "", token: "");
-    name = "Tbeck";
+    name = "tbeck";
     email = "";
     role = permissions;
     plan = Plan({}, {});
-    settings = Settings(NcThemes.sakura.name, {});
+    settings = Settings("", {});
     isDummy = true;
   }
 
@@ -36,9 +35,7 @@ class User {
     var exams = List<int>.empty(growable: true);
 
     DB.modules.forEach((key, value) {
-      if (value.type == ModuleType.Test &&
-          value.deadline.month == now.month &&
-          value.deadline.isBefore(now.add(Duration(days: 1)))) exams.add(key);
+      if (value.type == ModuleType.Test && value.deadline.month == now.month && value.deadline.isBefore(now.add(Duration(days: 1)))) exams.add(key);
     });
 
     return exams;

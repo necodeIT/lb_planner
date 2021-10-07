@@ -161,7 +161,7 @@ class _NcViewState extends State<NcView> {
 
   // Here it is!
   double _popupOffset() {
-    final TextPainter textPainter = TextPainter(text: TextSpan(text: User.current.name, style: NcCaptionText.style(fontSize: NcUserProfile.nameSize)), maxLines: 1, textDirection: TextDirection.ltr)..layout(minWidth: 0, maxWidth: double.infinity);
+    final TextPainter textPainter = TextPainter(text: TextSpan(text: User.current.name, style: NcBaseText.style(fontSize: NcUserProfile.nameSize)), maxLines: 1, textDirection: TextDirection.ltr)..layout(minWidth: 0, maxWidth: double.infinity);
     return textPainter.size.width + NcUserProfile.bellSize + NcUserProfile.ppWidth + NcSpacing.xsSpacing;
   }
 }

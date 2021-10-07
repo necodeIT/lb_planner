@@ -4,8 +4,7 @@ import 'package:flutter/rendering.dart';
 import 'package:lb_planner/ui.dart';
 
 class CalendarDragItem extends StatelessWidget {
-  CalendarDragItem({Key? key, required this.id, this.height = 35})
-      : super(key: key);
+  CalendarDragItem({Key? key, required this.id, this.height = 35}) : super(key: key);
 
   final int id;
   final double? height;
@@ -45,9 +44,8 @@ class CalendarDragItem extends StatelessWidget {
                 backgroundColor: NcThemes.current.accentColor,
                 //width: 40,
               ),
-              Text(
+              NcBodyText(
                 'Hallo',
-                style: NcBodyText.baseStyle,
               ),
               // TODO: Container(
               //     width: 23,

@@ -9,10 +9,10 @@ import 'package:lb_planner/ui.dart';
 import 'package:window_size/window_size.dart';
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  NcThemes.current = NcThemes.all[User.current.settings.theme] ?? NcThemes.dark;
-  // NcThemes.current = NcThemes.light;
-  if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
+  NcThemes.current = NcThemes.all[User.current.settings.theme] ?? NcThemes.light;
+
+  if (!kIsWeb && (Platform.isWindows || Platform.isLinux || Platform.isMacOS)) {
+    WidgetsFlutterBinding.ensureInitialized();
     setWindowMinSize(const Size(1550.0, 850.0));
     setWindowMaxSize(Size.infinite);
   }
@@ -37,11 +37,7 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  void setLocale(Locale value) {
-    setState(() {
-      S.load(value);
-    });
-  }
+  void setLocale(Locale value) => setState(() => S.load(value));
 
   @override
   Widget build(BuildContext context) {

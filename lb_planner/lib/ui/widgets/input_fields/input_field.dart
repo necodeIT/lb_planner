@@ -64,7 +64,7 @@ class NcInputField extends StatelessWidget {
       child: TextField(
         maxLines: maxLines,
         obscureText: obscureText,
-        style: NcBodyText.baseStyle,
+        style: NcBaseText.style(),
         onChanged: onValueChanged,
         keyboardType: type,
         cursorColor: NcThemes.current.accentColor,
@@ -83,7 +83,7 @@ class NcInputField extends StatelessWidget {
               style: BorderStyle.none,
             ),
           ),
-          hintStyle: NcBodyText.baseStyle,
+          hintStyle: NcBaseText.style(),
           //hintStyle: TextStyle(color: NcThemes.current.textColor),
 
           hintText: placeholder,

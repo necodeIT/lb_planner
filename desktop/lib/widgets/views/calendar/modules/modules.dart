@@ -24,9 +24,8 @@ class ModuleItem extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            'Hallo',
-            style: NcBodyText.baseStyle,
+          NcBodyText(
+            "hallo",
           ),
           // Container(
           //     width: 23,

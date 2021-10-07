@@ -10,7 +10,7 @@ class CourseStatsChart extends StatelessWidget {
 
   final double? height;
   final StatusProfile stats;
-  static double get adjustValue => NcSpacing.smallSpacing + (NcBodyText.baseStyle.height ?? 19); // dont ask flutter wants it so
+  static double get adjustValue => NcSpacing.smallSpacing + 19; // dont ask flutter wants it so
 
   @override
   Widget build(BuildContext context) {

@@ -37,7 +37,7 @@ class NcUserProfile extends StatelessWidget {
                     User.current.role.toString().indexOf('.') + 1,
                   ),
               style: TextStyle(
-                fontWeight: NcBodyText.baseStyle.fontWeight,
+                fontWeight: NcBaseText.style().fontWeight,
                 color: NcThemes.current.accentColor,
                 fontSize: 15,
               ),
