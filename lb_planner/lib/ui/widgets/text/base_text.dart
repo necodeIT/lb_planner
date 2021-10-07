@@ -14,7 +14,7 @@ class NcBaseText extends StatelessWidget {
   final FontWeight fontWeight;
 
   static TextStyle style({double? fontSize = 20, FontWeight fontWeight = FontWeight.normal, buttonText = false}) {
-    return TextStyle(fontWeight: FontWeight.bold, fontSize: fontSize, color: buttonText ? NcThemes.current.buttonTextColor : NcThemes.current.textColor);
+    return TextStyle(fontWeight: fontWeight, fontSize: fontSize, color: buttonText ? NcThemes.current.buttonTextColor : NcThemes.current.textColor);
   }
 
   static TextSelectionThemeData webData() {
