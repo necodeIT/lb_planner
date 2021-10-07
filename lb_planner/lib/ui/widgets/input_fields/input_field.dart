@@ -4,34 +4,14 @@ import 'package:lb_planner/ui.dart';
 
 // ignore: camel_case_types
 class NcInputField extends StatelessWidget {
-  NcInputField({
-    Key? key,
-    this.prefixIcon,
-    this.placeholder,
-    this.width,
-    this.onValueChanged,
-    this.suffixIcon,
-    this.primary = false,
-    this.obscureText = false,
-  }) : super(key: key) {
+  NcInputField({Key? key, this.prefixIcon, this.placeholder, this.width, this.onValueChanged, this.suffixIcon, this.primary = false, this.obscureText = false, this.onSubmit}) : super(key: key) {
     height = NcMaterialInputField.height;
     this.maxLines = 1;
     type = TextInputType.text;
     multiline = false;
   }
 
-  NcInputField.multiline({
-    Key? key,
-    this.prefixIcon,
-    this.placeholder,
-    this.width,
-    this.onValueChanged,
-    this.suffixIcon,
-    this.primary = false,
-    this.obscureText = false,
-    this.maxLines = 1,
-    this.height,
-  }) : super(key: key) {
+  NcInputField.multiline({Key? key, this.prefixIcon, this.placeholder, this.width, this.onValueChanged, this.suffixIcon, this.primary = false, this.obscureText = false, this.maxLines = 1, this.height, this.onSubmit}) : super(key: key) {
     type = TextInputType.multiline;
     multiline = true;
   }
@@ -42,6 +22,8 @@ class NcInputField extends StatelessWidget {
   final bool obscureText;
   final bool? primary;
   final double? width;
+  final Function(String)? onSubmit;
+
   final Function(String)? onValueChanged;
 
   late final double? height;
@@ -62,6 +44,7 @@ class NcInputField extends StatelessWidget {
             )
           : null,
       child: TextField(
+        onSubmitted: onSubmit,
         maxLines: maxLines,
         obscureText: obscureText,
         style: NcBaseText.style(),
