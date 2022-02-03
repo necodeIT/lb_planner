@@ -17,5 +17,6 @@
 defined('MOODLE_INTERNAL') or die();
 
 $plugin->component = 'local_lbplanner';
-$plugin->version = 2020081803;
+$plugin->release = 'Alpha v.0.0.1';
+$plugin->version = 2021020300;
 
