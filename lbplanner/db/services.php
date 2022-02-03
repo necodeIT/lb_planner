@@ -16,6 +16,26 @@
 
 defined('MOODLE_INTERNAL') or die();
 
-$plugin->component = 'local_lbplanner';
-$plugin->version = 2020081803;
+$functions = array(
+    'local_lbplanner_test_catgirl' => array(
+        'classname' => 'local_lbplanner\catgirl',
+        'methodname' => 'test_catgirl',
+        'classpath' => 'local/lbplanner/catgirl.php',
+        'description' => 'Test the catgirl function',
+        'type' => 'read',
+        'ajax' => true,
+    ),
+);
+
+$services = array(
+    'LB Planner API' => array(
+        'functions' => array(
+            'local_lbplanner_test_catgirl',
+        ),
+        'restrictedusers' => 0,
+        'enabled' => 1,
+    ),
+);
+
+
 
