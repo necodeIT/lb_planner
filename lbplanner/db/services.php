@@ -17,11 +17,27 @@
 defined('MOODLE_INTERNAL') or die();
 
 $functions = array(
-    'local_lbplanner_test_catgirl' => array(
+    'local_lbplanner_set_catgirl' => array(
         'classname' => 'local_lbplanner\catgirl',
-        'methodname' => 'test_catgirl',
+        'methodname' => 'set_catgirl',
         'classpath' => 'local/lbplanner/catgirl.php',
-        'description' => 'Test the catgirl function',
+        'description' => 'Create a new catgirl',
+        'type' => 'read',
+        'ajax' => true,
+    ),
+    'local_lbplanner_get_catgirl' => array(
+        'classname' => 'local_lbplanner\catgirl',
+        'methodname' => 'get_catgirl',
+        'classpath' => 'local/lbplanner/catgirl.php',
+        'description' => 'Get a catgirl with the given id',
+        'type' => 'read',
+        'ajax' => true,
+    ),
+    'local_lbplanner_add_catgirl' => array(
+        'classname' => 'local_lbplanner\catgirl',
+        'methodname' => 'add_catgirl',
+        'classpath' => 'local/lbplanner/catgirl.php',
+        'description' => 'Modify a catgirl',
         'type' => 'read',
         'ajax' => true,
     ),
@@ -30,7 +46,9 @@ $functions = array(
 $services = array(
     'LB Planner API' => array(
         'functions' => array(
-            'local_lbplanner_test_catgirl',
+            'local_lbplanner_set_catgirl',
+            'local_lbplanner_get_catgirl',
+            'local_lbplanner_add_catgirl',
         ),
         'restrictedusers' => 0,
         'enabled' => 1,
