@@ -42,6 +42,7 @@ class user_register_user extends external_api {
         // TODO: Check if token is allowed to register this user.
         // TODO: Check if the user is already registered.
         // TODO: Auto determin & assign role to user.
+        // TODO: Create a new plan for the user.
 
         return array();
     }

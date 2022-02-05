@@ -22,36 +22,39 @@ use external_multiple_structure;
 use external_single_structure;
 use external_value;
 
-class modules_get_all_modules extends external_api {
-    public static function get_all_modules_parameters() {
+class plan_get_plan extends external_api {
+    public static function get_plan_parameters() {
         return new external_function_parameters(array(
             'userid' => new external_value(PARAM_INT, 'The id of the user'),
         ));
     }
 
-    public static function get_all_modules($userid) {
+    public static function get_plan($userid) {
         global $DB;
         global $USER;
 
-        $params = self::validate_parameters(self::get_all_modules_parameters(), array('userid' => $userid));
+        $params = self::validate_parameters(self::get_plan_parameters(), array('userid' => $userid));
 
         // TODO: Check if token is allowed to access this function.
-        // TODO: Get all moduels of the current year.
 
         return array();
     }
 
-    public static function get_all_modules_returns() {
-        return new external_multiple_structure(
-            new external_single_structure(
-                array(
-                    'moduleid' => new external_value(PARAM_INT, 'The id of the module'),
-                    'name' => new external_value(PARAM_TEXT, 'The name of the module'),
-                    'courseid' => new external_value(PARAM_INT, 'The id of the course'),
-                    'status' => new external_value(PARAM_INT, 'The status of the module'),
-                    'type' => new external_value(PARAM_INT, 'The type of the module'),
-                    'url' => new external_value(PARAM_TEXT, 'The url of the module in moodle'),
-                    'deadline' => new external_value(PARAM_INT, 'The deadline of the module set by the teacher'),
+    public static function get_plan_returns() {
+        return new external_single_structure(
+            array(
+                'name' => new external_value(PARAM_TEXT, 'The name of the plan'),
+                'planid' => new external_value(PARAM_INT, 'The id of the plan'),
+                'deadlines' => new external_multiple_structure(
+                    new external_single_structure(
+                        array(
+                            'userid' => new external_value(PARAM_INT, 'The id of the user'),
+                            'planid' => new external_value(PARAM_INT, 'The id of the user'),
+                            'moduleid' => new external_value(PARAM_INT, 'The id of the user'),
+                            'deadlinestart' => new external_value(PARAM_INT, 'The id of the user'),
+                            'deadlineend' => new external_value(PARAM_INT, 'The id of the user'),
+                        )
+                    )
                 )
             )
         );

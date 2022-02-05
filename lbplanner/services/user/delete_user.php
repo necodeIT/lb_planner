@@ -41,6 +41,9 @@ class user_delete_user extends external_api {
         $params = self::validate_parameters(self::delete_user_parameters(), array('userid' => $userid));
 
         // TODO: Check if the token is allowed to delete this user.
+        // TODO: Remove user from a plan if user is not the owner.
+        // TODO: Delete plan of the user.
+        // TODO: Clear all courses from the user.
 
         return array('message' => 'User deleted successfully');
     }
