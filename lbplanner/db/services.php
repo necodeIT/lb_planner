@@ -14,10 +14,11 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
+
 defined('MOODLE_INTERNAL') or die();
 
 $functions = array(
-    'local_lbplanner_set_catgirl' => array(
+        'local_lbplanner_set_catgirl' => array(
         'classname' => 'local_lbplanner\catgirl',
         'methodname' => 'set_catgirl',
         'classpath' => 'local/lbplanner/catgirl.php',
@@ -54,6 +55,3 @@ $services = array(
         'enabled' => 1,
     ),
 );
-
-
-

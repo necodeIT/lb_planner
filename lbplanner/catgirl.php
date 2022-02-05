@@ -116,12 +116,11 @@ class catgirl extends external_api {
 
     public static function get_catgirl_returns() {
         return new external_single_structure(
-        array(
-            'name' => new external_value(PARAM_TEXT, 'The name of the catgirl'),
-            'age' => new external_value(PARAM_INT, 'The age of the catgirl'),
-            'id' => new external_value(PARAM_INT, 'The id of the catgirl'),
-        )
+            array(
+                'name' => new external_value(PARAM_TEXT, 'The name of the catgirl'),
+                'age' => new external_value(PARAM_INT, 'The age of the catgirl'),
+                'id' => new external_value(PARAM_INT, 'The id of the catgirl'),
+            )
         );
     }
-
 }

@@ -1,67 +1,77 @@
 <XMLDB xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" PATH="local/lbplanner/db" VERSION="20220204" COMMENT="XMLDB file for Moodle local/lbplanner" xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd">
-<TABLES>
-<TABLE NAME="local_lbplanner_users" COMMENT="Al the relevant data connected to a user.">
-<FIELDS>
-<FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
-<FIELD NAME="userid" TYPE="int" LENGTH="20" NOTNULL="true" SEQUENCE="false" COMMENT="User ID assigned from moodle."/>
-<FIELD NAME="theme" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="The name of the theme the user has selected in the app."/>
-<FIELD NAME="language" TYPE="char" LENGTH="2" NOTNULL="true" DEFAULT="en" SEQUENCE="false" COMMENT="Language the user has selected in the app."/>
-<FIELD NAME="role" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="The role the user has in the app. {Student, Teacher, Admin, Catgirl}"/>
-</FIELDS>
-<KEYS>
-<KEY NAME="primary" TYPE="primary" FIELDS="id"/>
-<KEY NAME="userid" TYPE="unique" FIELDS="userid"/>
-</KEYS>
-</TABLE>
-<TABLE NAME="local_lbplanner_courses" COMMENT="Default comment for the table, please edit me">
-<FIELDS>
-<FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
-<FIELD NAME="courseid" TYPE="int" LENGTH="20" NOTNULL="true" SEQUENCE="false" COMMENT="Course ID assigned from moodle."/>
-<FIELD NAME="userid" TYPE="int" LENGTH="20" NOTNULL="true" SEQUENCE="false" COMMENT="The id of the user for whom this course's settings are for."/>
-<FIELD NAME="shortname" TYPE="char" LENGTH="5" NOTNULL="true" SEQUENCE="false" COMMENT="The short name for this course the user has chosen."/>
-<FIELD NAME="color" TYPE="char" LENGTH="7" NOTNULL="true" SEQUENCE="false" COMMENT="The color of the course the user wants to display the in in the UI."/>
-<FIELD NAME="enabled" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Whether the user has enabled (1) the course for planning or not (0)."/>
-</FIELDS>
-<KEYS>
-<KEY NAME="primary" TYPE="primary" FIELDS="id"/>
-<KEY NAME="userid" TYPE="foreign" FIELDS="userid" REFTABLE="local_lbplanner_users" REFFIELDS="userid"/>
-<KEY NAME="courseid" TYPE="unique" FIELDS="courseid"/>
-</KEYS>
-</TABLE>
-<TABLE NAME="local_lbplanner_plans" COMMENT="Default comment for the table, please edit me">
-<FIELDS>
-<FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
-<FIELD NAME="name" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
-</FIELDS>
-<KEYS>
-<KEY NAME="primary" TYPE="primary" FIELDS="id"/>
-</KEYS>
-</TABLE>
-<TABLE NAME="local_lbplanner_plan_access" COMMENT="Default comment for the table, please edit me">
-<FIELDS>
-<FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
-<FIELD NAME="userid" TYPE="int" LENGTH="20" NOTNULL="true" SEQUENCE="false"/>
-<FIELD NAME="planid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
-<FIELD NAME="accestype" TYPE="int" LENGTH="1" NOTNULL="true" SEQUENCE="false"/>
-</FIELDS>
-<KEYS>
-<KEY NAME="primary" TYPE="primary" FIELDS="id"/>
-<KEY NAME="planid" TYPE="foreign" FIELDS="planid" REFTABLE="local_lbplanner_plans" REFFIELDS="id"/>
-<KEY NAME="userid" TYPE="foreign" FIELDS="userid" REFTABLE="local_lbplanner_users" REFFIELDS="userid"/>
-</KEYS>
-</TABLE>
-<TABLE NAME="local_lbplanner_deadlines" COMMENT="Default comment for the table, please edit me">
-<FIELDS>
-<FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
-<FIELD NAME="planid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
-<FIELD NAME="startdate" TYPE="int" LENGTH="20" NOTNULL="true" SEQUENCE="false"/>
-<FIELD NAME="enddate" TYPE="int" LENGTH="20" NOTNULL="false" SEQUENCE="false"/>
-<FIELD NAME="moduleid" TYPE="int" LENGTH="20" NOTNULL="true" SEQUENCE="false"/>
-</FIELDS>
-<KEYS>
-<KEY NAME="primary" TYPE="primary" FIELDS="id"/>
-<KEY NAME="planid" TYPE="foreign" FIELDS="planid" REFTABLE="local_lbplanner_plans" REFFIELDS="id"/>
-</KEYS>
-</TABLE>
-</TABLES>
+    <TABLES>
+        <TABLE NAME="local_lbplanner_users" COMMENT="Al the relevant data connected to a user.">
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+                <FIELD NAME="userid" TYPE="int" LENGTH="20" NOTNULL="true" SEQUENCE="false" COMMENT="User ID assigned from moodle."/>
+                <FIELD NAME="theme" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="The name of the theme the user has selected in the app."/>
+                <FIELD NAME="language" TYPE="char" LENGTH="2" NOTNULL="true" DEFAULT="en" SEQUENCE="false" COMMENT="Language the user has selected in the app."/>
+                <FIELD NAME="role" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="The role the user has in the app. {Student, Teacher, Admin, Catgirl}"/>
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+                <KEY NAME="userid" TYPE="unique" FIELDS="userid"/>
+            </KEYS>
+        </TABLE>
+        <TABLE NAME="local_lbplanner_courses" COMMENT="Default comment for the table, please edit me">
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+                <FIELD NAME="courseid" TYPE="int" LENGTH="20" NOTNULL="true" SEQUENCE="false" COMMENT="Course ID assigned from moodle."/>
+                <FIELD NAME="userid" TYPE="int" LENGTH="20" NOTNULL="true" SEQUENCE="false" COMMENT="The id of the user for whom this course's settings are for."/>
+                <FIELD NAME="shortname" TYPE="char" LENGTH="5" NOTNULL="true" SEQUENCE="false" COMMENT="The short name for this course the user has chosen."/>
+                <FIELD NAME="color" TYPE="char" LENGTH="7" NOTNULL="true" SEQUENCE="false" COMMENT="The color of the course the user wants to display the in in the UI."/>
+                <FIELD NAME="enabled" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Whether the user has enabled (1) the course for planning or not (0)."/>
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+                <KEY NAME="userid" TYPE="foreign" FIELDS="userid" REFTABLE="local_lbplanner_users" REFFIELDS="userid"/>
+                <KEY NAME="courseid" TYPE="unique" FIELDS="courseid"/>
+            </KEYS>
+        </TABLE>
+        <TABLE NAME="local_lbplanner_plans" COMMENT="Default comment for the table, please edit me">
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+                <FIELD NAME="name" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+            </KEYS>
+        </TABLE>
+        <TABLE NAME="local_lbplanner_plan_access" COMMENT="Default comment for the table, please edit me">
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+                <FIELD NAME="userid" TYPE="int" LENGTH="20" NOTNULL="true" SEQUENCE="false"/>
+                <FIELD NAME="planid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+                <FIELD NAME="accestype" TYPE="int" LENGTH="1" NOTNULL="true" SEQUENCE="false"/>
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+                <KEY NAME="planid" TYPE="foreign" FIELDS="planid" REFTABLE="local_lbplanner_plans" REFFIELDS="id"/>
+                <KEY NAME="userid" TYPE="foreign" FIELDS="userid" REFTABLE="local_lbplanner_users" REFFIELDS="userid"/>
+            </KEYS>
+        </TABLE>
+        <TABLE NAME="local_lbplanner_deadlines" COMMENT="Default comment for the table, please edit me">
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+                <FIELD NAME="planid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+                <FIELD NAME="startdate" TYPE="int" LENGTH="20" NOTNULL="true" SEQUENCE="false"/>
+                <FIELD NAME="enddate" TYPE="int" LENGTH="20" NOTNULL="false" SEQUENCE="false"/>
+                <FIELD NAME="moduleid" TYPE="int" LENGTH="20" NOTNULL="true" SEQUENCE="false"/>
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+                <KEY NAME="planid" TYPE="foreign" FIELDS="planid" REFTABLE="local_lbplanner_plans" REFFIELDS="id"/>
+            </KEYS>
+        </TABLE>
+        <TABLE NAME="local_lbplanner_catgirls" COMMENT="Default comment for the table, please edit me">
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+                <FIELD NAME="name" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+                <FIELD NAME="age" TYPE="int" LENGTH="20" NOTNULL="true" SEQUENCE="false"/>
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+            </KEYS>
+        </TABLE>
+    </TABLES>
 </XMLDB>
