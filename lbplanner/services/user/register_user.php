@@ -21,7 +21,7 @@ use external_function_parameters;
 use external_single_structure;
 use external_value;
 
-class user_register_user extends external_api {
+class local_lbplanner_services_user_register_user extends external_api {
     public static function register_user_parameters() {
         return new external_function_parameters(array(
             'userid' => new external_value(PARAM_INT, 'The id of the user to register', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),

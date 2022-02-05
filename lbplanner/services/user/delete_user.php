@@ -21,7 +21,7 @@ use external_function_parameters;
 use external_single_structure;
 use external_value;
 
-class local_lbplanner_services_delete_user extends external_api {
+class local_lbplanner_services_user_delete_user extends external_api {
     public static function delete_user_parameters() {
         return new external_function_parameters(array(
             'userid' => new external_value(
