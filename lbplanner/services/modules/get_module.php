@@ -21,7 +21,7 @@ use external_function_parameters;
 use external_single_structure;
 use external_value;
 
-class moudle_get_module extends external_api {
+class moudles_get_module extends external_api {
     public static function get_module_parameters() {
         return new external_function_parameters(array(
             'moduleid' => new external_value(PARAM_INT, 'The id of the module'),

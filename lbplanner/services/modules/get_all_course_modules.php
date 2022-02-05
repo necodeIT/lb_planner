@@ -21,7 +21,7 @@ use external_function_parameters;
 use external_single_structure;
 use external_value;
 
-class get_all_course_modules extends external_api {
+class modules_get_all_course_modules extends external_api {
     public static function get_all_course_modules_parameters() {
         return new external_function_parameters(array(
             'courseid' => new external_value(PARAM_INT, 'The id of the course'),
@@ -33,7 +33,10 @@ class get_all_course_modules extends external_api {
         global $DB;
         global $USER;
 
-        $params = self::validate_parameters(self::get_all_course_modules_parameters(), array('courseid' => $courseid, 'userid' => $userid));
+        $params = self::validate_parameters(
+            self::get_all_course_modules_parameters(),
+            array('courseid' => $courseid, 'userid' => $userid)
+        );
 
         // TODO: Check if token is allowed to access this function.
 
