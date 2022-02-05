@@ -18,28 +18,49 @@
 defined('MOODLE_INTERNAL') or die();
 
 $functions = array(
-        'local_lbplanner_set_catgirl' => array(
-        'classname' => 'local_lbplanner\catgirl',
-        'methodname' => 'set_catgirl',
-        'classpath' => 'local/lbplanner/catgirl.php',
-        'description' => 'Create a new catgirl',
+    'local_lbplanner_services_user_get_user' => array(
+        'classname' => 'local_lbplanner_services_user_get_user',
+        'methodname' => 'get_user',
+        'classpath' => 'local/lbplanner/services/user/get_user.php',
+        'description' => 'Get the data for a user',
         'type' => 'read',
+        'capabilities' => '',
         'ajax' => true,
     ),
-    'local_lbplanner_get_catgirl' => array(
-        'classname' => 'local_lbplanner\catgirl',
-        'methodname' => 'get_catgirl',
-        'classpath' => 'local/lbplanner/catgirl.php',
-        'description' => 'Get a catgirl with the given id',
+    'local_lbplanner_services_user_register_user' => array(
+        'classname' => 'local_lbplanner_services_user_register_user',
+        'methodname' => 'register_user',
+        'classpath' => 'local/lbplanner/services/user/register_user.php',
+        'description' => 'Register a new user',
         'type' => 'read',
+        'capabilities' => '',
         'ajax' => true,
     ),
-    'local_lbplanner_add_catgirl' => array(
-        'classname' => 'local_lbplanner\catgirl',
-        'methodname' => 'add_catgirl',
-        'classpath' => 'local/lbplanner/catgirl.php',
-        'description' => 'Modify a catgirl',
+    'local_lbplanner_services_user_update_user' => array(
+        'classname' => 'local_lbplanner_services_user_update_user',
+        'methodname' => 'update_user',
+        'classpath' => 'local/lbplanner/services/user/update_user.php',
+        'description' => 'Update the data for a user',
         'type' => 'read',
+        'capabilities' => '',
+        'ajax' => true,
+    ),
+    'local_lbplanner_services_user_delete_user' => array(
+        'classname' => 'local_lbplanner_services_user_delete_user',
+        'methodname' => 'delete_user',
+        'classpath' => 'local/lbplanner/services/user/delete_user.php',
+        'description' => 'Delete a user',
+        'type' => 'read',
+        'capabilities' => '',
+        'ajax' => true,
+    ),
+    'local_lbplanner_services_user_refresh_permissions' => array(
+        'classname' => 'local_lbplanner_services_user_refresh_permissions',
+        'methodname' => 'refresh_permissions',
+        'classpath' => 'local/lbplanner/services/user/refresh_permissions.php',
+        'description' => 'Recheck the permissions for a user',
+        'type' => 'read',
+        'capabilities' => '',
         'ajax' => true,
     ),
 );
@@ -47,11 +68,13 @@ $functions = array(
 $services = array(
     'LB Planner API' => array(
         'functions' => array(
-            'local_lbplanner_set_catgirl',
-            'local_lbplanner_get_catgirl',
-            'local_lbplanner_add_catgirl',
+            'local_lbplanner_services_user_get_user',
+            'local_lbplanner_services_user_register_user',
+            'local_lbplanner_services_user_update_user',
+            'local_lbplanner_services_user_delete_user',
+            'local_lbplanner_services_user_refresh_permissions',
         ),
-        'restrictedusers' => 0,
-        'enabled' => 1,
     ),
+    'restrictedusers' => 0,
+    'enabled' => 1,
 );

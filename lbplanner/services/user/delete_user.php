@@ -1,5 +1,5 @@
 <?php
-// This file is part of the LB Planner plugin.
+// This file is part of local_lbplanner.
 //
 // Moodle is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -14,33 +14,39 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-namespace local_lbplanner_user;
+namespace local_lbplanner_services;
 
 use external_api;
 use external_function_parameters;
 use external_single_structure;
 use external_value;
 
-class user_get_user_info extends external_api {
-    public static function function_name_parameters() {
+class local_lbplanner_services_delete_user extends external_api {
+    public static function delete_user_parameters() {
         return new external_function_parameters(array(
-            'userid' => new external_value(PARAM_INT, 'The user id'),
+            'userid' => new external_value(
+                PARAM_INT,
+                'The id of the user to get the data for',
+                VALUE_REQUIRED,
+                null,
+                NULL_NOT_ALLOWED
+            ),
         ));
     }
 
-    public static function get_user_info($userid) {
+    public static function delete_user($userid) {
         global $DB;
 
-        $params = self::validate_parameters(self::function_name_parameters(), array('userid' => $userid));
+        $params = self::validate_parameters(self::delete_user_parameters(), array('userid' => $userid));
 
-        $user = $DB->get_record('user', array('id' => $params['userid']));
+        // TODO: Check if the token is allowed to delete this user.
 
-        return array();
+        return array('message' => 'User deleted successfully');
     }
 
-    public static function function_name_returns() {
+    public static function delete_user_returns() {
         return new external_single_structure(
-            array(returns)
+            array('message' => new external_value(PARAM_TEXT, 'The message to return to the user'))
         );
     }
 }

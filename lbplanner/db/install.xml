@@ -63,15 +63,5 @@
                 <KEY NAME="planid" TYPE="foreign" FIELDS="planid" REFTABLE="local_lbplanner_plans" REFFIELDS="id"/>
             </KEYS>
         </TABLE>
-        <TABLE NAME="local_lbplanner_catgirls" COMMENT="Default comment for the table, please edit me">
-            <FIELDS>
-                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
-                <FIELD NAME="name" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
-                <FIELD NAME="age" TYPE="int" LENGTH="20" NOTNULL="true" SEQUENCE="false"/>
-            </FIELDS>
-            <KEYS>
-                <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
-            </KEYS>
-        </TABLE>
     </TABLES>
 </XMLDB>
