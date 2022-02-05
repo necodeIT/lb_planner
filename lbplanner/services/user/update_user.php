@@ -21,7 +21,7 @@ use external_function_parameters;
 use external_single_structure;
 use external_value;
 
-class local_lbplanner_services_user_update_user extends external_api {
+class user_update_user extends external_api {
     public static function update_user_parameters() {
         return new external_function_parameters(array(
             'userid' => new external_value(PARAM_INT, 'The id of the user to register', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
@@ -32,6 +32,7 @@ class local_lbplanner_services_user_update_user extends external_api {
 
     public static function update_user($userid, $lang, $theme) {
         global $DB;
+        global $USER;
 
         $params = self::validate_parameters(
             self::update_user_parameters(),

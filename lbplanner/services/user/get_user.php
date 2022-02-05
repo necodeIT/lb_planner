@@ -21,7 +21,7 @@ use external_function_parameters;
 use external_single_structure;
 use external_value;
 
-class local_lbplanner_services_user_get_user extends external_api {
+class user_get_user extends external_api {
     public static function get_user_parameters() {
         return new external_function_parameters(array(
             'userid' => new external_value(
@@ -38,34 +38,24 @@ class local_lbplanner_services_user_get_user extends external_api {
         global $DB;
         global $USER;
 
-        // $params = self::validate_parameters(self::get_user_parameters(), array($userid));
+        $params = self::validate_parameters(self::get_user_parameters(), array($userid));
 
         // TODO: Check if the user is allowed to get the data for this userid.
-
-        return array('userid' => $USER->id);
     }
 
     public static function get_user_returns() {
         return new external_single_structure(
             array(
                 'userid' => new external_value(PARAM_INT, 'The id of the user'),
+                'username' => new external_value(PARAM_TEXT, 'The username of the user'),
+                'firstname' => new external_value(PARAM_TEXT, 'The firstname of the user'),
+                'lastname' => new external_value(PARAM_TEXT, 'The lastname of the user'),
+                'role' => new external_value(PARAM_INT, 'The role of the user'),
+                'theme' => new external_value(PARAM_TEXT, 'The theme the user has selected'),
+                'lang' => new external_value(PARAM_TEXT, 'The language the user has selected'),
+                'moodleid' => new external_value(PARAM_INT, 'The id of the user in Moodle'),
+                'profileimageurl' => new external_value(PARAM_URL, 'The url of the profile image'),
             )
         );
     }
-
-    // public static function get_user_returns() {
-    // return new external_single_structure(
-    // array(
-    // 'userid' => new external_value(PARAM_INT, 'The id of the user'),
-    // 'username' => new external_value(PARAM_TEXT, 'The username of the user'),
-    // 'firstname' => new external_value(PARAM_TEXT, 'The firstname of the user'),
-    // 'lastname' => new external_value(PARAM_TEXT, 'The lastname of the user'),
-    // 'role' => new external_value(PARAM_INT, 'The role of the user'),
-    // 'theme' => new external_value(PARAM_TEXT, 'The theme the user has selected'),
-    // 'lang' => new external_value(PARAM_TEXT, 'The language the user has selected'),
-    // 'moodleid' => new external_value(PARAM_INT, 'The id of the user in Moodle'),
-    // 'profileimageurl' => new external_value(PARAM_URL, 'The url of the profile image'),
-    // )
-    // );
-    // }
 }

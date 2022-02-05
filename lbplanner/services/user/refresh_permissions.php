@@ -21,7 +21,7 @@ use external_function_parameters;
 use external_single_structure;
 use external_value;
 
-class local_lbplanner_services_user_refresh_permissions extends external_api {
+class user_refresh_permissions extends external_api {
     public static function refresh_permissions_parameters() {
         return new external_function_parameters(array(
             'userid' => new external_value(
@@ -36,6 +36,7 @@ class local_lbplanner_services_user_refresh_permissions extends external_api {
 
     public static function refresh_permissions($userid) {
         global $DB;
+        global $USER;
 
         $params = self::validate_parameters(self::refresh_permissions_parameters(), array('userid' => $userid));
 
