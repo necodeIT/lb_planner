@@ -63,6 +63,7 @@ $functions = array(
         'capabilities' => '',
         'ajax' => true,
     ),
+
 );
 
 $services = array(

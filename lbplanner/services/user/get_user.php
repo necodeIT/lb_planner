@@ -41,6 +41,8 @@ class user_get_user extends external_api {
         $params = self::validate_parameters(self::get_user_parameters(), array($userid));
 
         // TODO: Check if the user is allowed to get the data for this userid.
+
+        return array();
     }
 
     public static function get_user_returns() {
@@ -53,7 +55,6 @@ class user_get_user extends external_api {
                 'role' => new external_value(PARAM_INT, 'The role of the user'),
                 'theme' => new external_value(PARAM_TEXT, 'The theme the user has selected'),
                 'lang' => new external_value(PARAM_TEXT, 'The language the user has selected'),
-                'moodleid' => new external_value(PARAM_INT, 'The id of the user in Moodle'),
                 'profileimageurl' => new external_value(PARAM_URL, 'The url of the profile image'),
             )
         );
