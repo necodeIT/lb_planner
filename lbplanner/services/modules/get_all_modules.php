@@ -50,6 +50,7 @@ class modules_get_all_modules extends external_api {
                     'status' => new external_value(PARAM_INT, 'The status of the module'),
                     'type' => new external_value(PARAM_INT, 'The type of the module'),
                     'url' => new external_value(PARAM_TEXT, 'The url of the module in moodle'),
+                    'deadline' => new external_value(PARAM_INT, 'The deadline of the module set by the teacher'),
                 )
             )
         );
