@@ -1,5 +1,5 @@
 <?php
-// This file is part of the local_lbplanner.
+// This file is part of local_lbplanner.
 //
 // Moodle is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -14,15 +14,13 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-namespace local_lbplanner\helpers;
+namespace local_lbplanner;
 
-class notifications_helper {
-    const TABLE = 'local_lbplanner_notfications';
+use core_calendar\local\event\forms\create;
+use local_lbplanner\helpers\user_helper;
 
-    const STATUS_READ = 1;
-    const STATUS_UNREAD = 0;
-
-    const TRIGGER_INVITE = 0;
-    const TRIGGER_INVITE_ACCEPTED = 1;
-    const TRIGGER_INVITE_DECLINED = 2;
+function xmldb_local_lbplanner_install() {
+    create_role('LB Planner Admin', user_helper::ROLE_ADMIN, 'Administrator of the LB Planner app');
+    create_role('LB Planner Manager', user_helper::ROLE_MANAGER, 'Manager of the LB Planner app');
+    create_role('LB Planner Teacher', user_helper::ROLE_TEACHER, 'Has access for the teacher tools of the LB Planner app');
 }
