@@ -54,15 +54,6 @@ $functions = array(
         'capabilities' => '',
         'ajax' => true,
     ),
-    'local_lbplanner_user_delete_user' => array(
-        'classname' => 'local_lbplanner_services\user_delete_user',
-        'methodname' => 'delete_user',
-        'classpath' => 'local/lbplanner/services/user/delete_user.php',
-        'description' => 'Delete a user',
-        'type' => 'write',
-        'capabilities' => '',
-        'ajax' => true,
-    ),
     'local_lbplanner_course_get_course' => array(
         'classname' => 'local_lbplanner_services\course_get_course',
         'methodname' => 'get_course',
@@ -261,7 +252,6 @@ $services = array(
             'local_lbplanner_user_get_all_users',
             'local_lbplanner_user_register_user',
             'local_lbplanner_user_update_user',
-            'local_lbplanner_user_delete_user',
             'local_lbplanner_course_get_all_courses',
             'local_lbplanner_course_get_course',
             'local_lbplanner_course_update_course',
