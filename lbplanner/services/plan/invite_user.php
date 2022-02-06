@@ -24,14 +24,14 @@ use external_value;
 class plan_invite_user extends external_api {
     public static function leave_plan_parameters() {
         return new external_function_parameters(array(
-            'owneruserid' => new external_value(
+            'inviterid' => new external_value(
                 PARAM_INT,
                 'The id of the Owner of the plan',
                 VALUE_REQUIRED,
                 null,
                 NULL_NOT_ALLOWED
             ),
-            'inviteuserid' => new external_value(
+            'inviteeid' => new external_value(
                 PARAM_INT,
                 'The id of the user who gets invited',
                 VALUE_REQUIRED,
@@ -48,13 +48,13 @@ class plan_invite_user extends external_api {
         ));
     }
 
-    public static function invite_user($owneruserid, $inviteuserid , $planid) {
+    public static function invite_user($inviterid, $inviteuserid , $planid) {
         global $DB;
         global $USER;
 
         $params = self::validate_parameters(
             self::leave_plan_parameters(),
-            array('userid' => $owneruserid, 'inviteuserid' => $inviteuserid, 'planid' => $planid)
+            array('userid' => $inviterid, 'inviteeid' => $inviteuserid, 'planid' => $planid)
         );
 
         // TODO: Check if the token is from the same User as the UserId.
@@ -67,8 +67,8 @@ class plan_invite_user extends external_api {
     public static function invite_user_returns() {
         return new external_single_structure(
             array(
-                'owneruserid' => new external_value(PARAM_INT, 'The id of the owner user'),
-                'inviteuserid' => new external_value(PARAM_INT, 'The id of the invited user'),
+                'inviterid' => new external_value(PARAM_INT, 'The id of the owner user'),
+                'inviteeid' => new external_value(PARAM_INT, 'The id of the invited user'),
                 'planid' => new external_value(PARAM_INT, 'The id of the plan'),
                 'status' => new external_value(PARAM_INT, 'The Status of the invitation'),
                 'timestamp' => new external_value(PARAM_INT, 'The time when the invitation was send'),
