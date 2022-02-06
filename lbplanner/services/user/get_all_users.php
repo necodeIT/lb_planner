@@ -34,11 +34,11 @@ class user_get_all_users extends external_api {
         global $DB;
         global $USER;
 
-        $params = self::validate_parameters(self::get_all_users_parameters(), array('userid' => $userid));
+        self::validate_parameters(self::get_all_users_parameters(), array('userid' => $userid));
 
         // Check if token is allowed to access this function.
 
-        if (!user_helper::check_access($params['userid'])) {
+        if (!user_helper::check_access($userid)) {
             throw new \moodle_exception('Access denied');
         }
 

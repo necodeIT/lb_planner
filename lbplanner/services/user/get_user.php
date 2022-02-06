@@ -38,18 +38,18 @@ class user_get_user extends external_api {
     public static function get_user($userid) {
         global $DB;
 
-        $params = self::validate_parameters(self::get_user_parameters(), array('userid' => $userid));
+        self::validate_parameters(self::get_user_parameters(), array('userid' => $userid));
 
         if (!user_helper::check_user_exists($userid)) {
             throw new \moodle_exception('User does not exist');
         }
 
-        $user = $DB->get_record(user_helper::table(), array('userid' => $params['userid']), '*' , MUST_EXIST);
+        $user = user_helper::get_user($userid);
 
         $mdluser = user_helper::get_mdl_user_info($user->userid);
 
         // Check if the user is allowed to get the data for this userid.
-        if (user_helper::check_access($params['userid'])) {
+        if (user_helper::check_access($userid)) {
             return array(
                 'userid' => $user->userid,
                 'username' => $mdluser->username,

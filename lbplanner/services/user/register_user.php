@@ -36,12 +36,12 @@ class user_register_user extends external_api {
         global $DB;
         global $USER;
 
-        $params = self::validate_parameters(
+        self::validate_parameters(
             self::register_user_parameters(),
             array('userid' => $userid, 'lang' => $lang, 'theme' => $theme)
         );
 
-        if (!user_helper::check_access($params['userid'])) {
+        if (!user_helper::check_access($userid)) {
             throw new \moodle_exception('Access denied');
         }
 
@@ -51,16 +51,16 @@ class user_register_user extends external_api {
         }
 
         $user = new \stdClass();
-        $user->userid = $params['userid'];
-        $user->language = $params['lang'];
-        $user->theme = $params['theme'];
-        $user->role = user_helper::determin_user_role($params['userid']);
+        $user->userid = $userid;
+        $user->language = $lang;
+        $user->theme = $theme;
+        $user->role = user_helper::determin_user_role($userid);
 
         $DB->insert_record(user_helper::table(), $user);
 
         // TODO: Create a new plan for the user.
 
-        $mdluser = user_helper::get_mdl_user_info($params['userid']);
+        $mdluser = user_helper::get_mdl_user_info($userid);
 
         $plan = new \stdClass();
         $plan->name = 'Plan for ' . $mdluser->firstname;
@@ -69,7 +69,7 @@ class user_register_user extends external_api {
         $planid = $DB->insert_record('local_lbplanner_plans', $plan);
 
         $planaccess = new \stdClass();
-        $planaccess->userid = $params['userid'];
+        $planaccess->userid = $userid;
         $planaccess->accestype = 0;
         $planaccess->planid = $planid;
 
