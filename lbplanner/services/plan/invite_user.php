@@ -22,6 +22,7 @@ use external_single_structure;
 use external_value;
 use local_lbplanner\helpers\user_helper;
 use local_lbplanner\helpers\plan_helper;
+use local_lbplanner\helpers\notifications_helper;
 
 
 class plan_invite_user extends external_api {
@@ -80,6 +81,8 @@ class plan_invite_user extends external_api {
             throw new \moodle_exception('User is already invited');
         }
 
+        // Save the invite.
+
         $invite = new \stdClass();
         $invite->planid = $planid;
         $invite->inviterid = $inviterid;
@@ -88,6 +91,18 @@ class plan_invite_user extends external_api {
         $invite->status = 0;
 
         $DB->insert_record(plan_helper::INVITES_TABLE, $invite);
+
+        // Create new notification for the invitee.
+
+        $planname = $DB->get_record(plan_helper::TABLE, array('id' => $planid), 'name', MUST_EXIST);
+
+        $notification = new \stdClass();
+        $notification->userid = $inviteeid;
+        $notification->status = notifications_helper::STATUS_UNREAD;
+        $notification->trigger = notifications_helper::TYPE_INVITE;
+        $notification->info = $planname;
+
+        $DB->insert_record(notifications_helper::TABLE, $notification);
 
         return array(
             'inviterid' => $inviterid,
