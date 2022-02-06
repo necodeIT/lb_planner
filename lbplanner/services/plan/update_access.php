@@ -53,18 +53,27 @@ class plan_update_access extends external_api {
 
     public static function update_access($userid, $planid, $accesstype) {
         global $DB;
+        global $USER;
 
         self::validate_parameters(
             self::update_access_parameters(),
             array('userid' => $userid, 'planid' => $planid, 'accesstype' => $accesstype)
         );
 
-        if (!user_helper::check_access($userid)) {
+        if (!plan_helper::check_edit_permissions($USER->id, $planid)) {
             throw new \moodle_exception('Access denied');
         }
 
-        if ($userid != plan_helper::get_owner($planid)) {
-            throw new \moodle_exception('Access denied');
+        if ($userid == $USER->id) {
+            throw new \moodle_exception('Cannot change own permissions');
+        }
+
+        if (plan_helper::get_owner($planid) == $userid) {
+            throw new \moodle_exception('Cannot change permissions for the plan owner');
+        }
+
+        if ($accesstype == plan_helper::ACCESS_TYPE_OWNER) {
+            throw new \moodle_exception('Cannot change permissions to owner');
         }
 
         $access = $DB->get_record(plan_helper::ACCESS_TABLE, array('planid' => $planid, 'userid' => $userid), '*', MUST_EXIST);

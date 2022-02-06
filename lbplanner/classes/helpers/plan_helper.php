@@ -53,4 +53,10 @@ class plan_helper {
         $access = $DB->get_field(self::ACCESS_TABLE, 'accesstype', array('planid' => $planid, 'userid' => $userid));
         return $access;
     }
+
+    public static function check_edit_permissions(int $userid, int $planid):bool {
+        $access = self::get_access_type($planid, $userid);
+
+        return $access != self::ACCESS_TYPE_READ;
+    }
 }

@@ -23,6 +23,7 @@ use external_single_structure;
 use external_value;
 use local_lbplanner\helpers\plan_helper;
 use local_lbplanner\helpers\user_helper;
+use Phpml\Helper\Optimizer\MP;
 
 class plan_get_plan extends external_api {
     public static function get_plan_parameters() {
@@ -50,7 +51,7 @@ class plan_get_plan extends external_api {
 
         $plan = $DB->get_record(plan_helper::TABLE, array('id' => $planid));
 
-        $dbdeadlines = $DB->get_records(plan_helper::DEADLINES_TABLE, array('planid' => $planid));
+        $dbdeadlines = $DB->get_records(plan_helper::DEADLINES_TABLE, array('planid' => $planid), '*', MUST_EXIST);
 
         $deadlines = array();
 

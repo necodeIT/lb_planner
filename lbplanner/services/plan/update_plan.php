@@ -21,6 +21,8 @@ use external_function_parameters;
 use external_single_structure;
 use external_value;
 use external_multiple_structure;
+use local_lbplanner\helpers\plan_helper;
+use local_lbplanner\helpers\user_helper;
 
 class plan_update_plan extends external_api {
     public static function update_plan_parameters() {
@@ -58,16 +60,44 @@ class plan_update_plan extends external_api {
 
     public static function update_plan($userid, $planid, $planname, $enableek) {
         global $DB;
-        global $USER;
 
         $params = self::validate_parameters(
             self::update_plan_parameters(),
             array('userid' => $userid, 'planid' => $planid, 'planname' => $planname, 'enableek' => $enableek)
         );
 
-        // TODO: Check if the token is from the same User as the UserId.
-        // TODO: Check if the planname is valid.
-        // TODO: Change the planname from the Plan ID.
+        if (!plan_helper::check_edit_permissions($userid, $userid)) {
+            throw new \Exception('Access denied');
+        }
+
+        $planid = plan_helper::get_plan_id($userid);
+
+        $plan = $DB->get_record(plan_helper::TABLE, array('id' => $planid), '*', MUST_EXIST);
+        $plan->name = $planname;
+        $plan->enableek = $enableek;
+
+        $DB->update_record(plan_helper::TABLE, $plan);
+
+        $dbdeadlines = $DB->get_records(plan_helper::DEADLINES_TABLE, array('planid' => $planid));
+
+        $deadlines = array();
+
+        foreach ($dbdeadlines as $dbdeadline) {
+            $deadlines[] = array(
+                'planid' => $dbdeadline->planid,
+                'startdate' => $dbdeadline->startdate,
+                'enddate' => $dbdeadline->enddate,
+                'timeend' => $dbdeadline->timeend,
+                'moduleid' => $dbdeadline->id,
+            );
+        }
+
+        return array(
+            'name' => $plan->name,
+            'planid' => $planid,
+            'enableek' => $plan->enableek,
+            'deadlines' => $deadlines,
+        );
 
         return array();
     }
