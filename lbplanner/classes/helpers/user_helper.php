@@ -19,26 +19,22 @@ namespace local_lbplanner\helpers;
 use moodle_url;
 use stdClass;
 
-define('LB_PLANNER_ADMIN', 'lbpa');
-define('LB_PLANNER_MANAGER', 'lbpm');
-define('LB_PLANNER_TEACHER', 'lbpt');
-define('LB_PLANNER_STUDENT', 'lbps');
-
-define(
-    'LB_PLANNER_ROLE_ENUMS' ,
-    [
-        LB_PLANNER_ADMIN => 0,
-        LB_PLANNER_MANAGER => 1,
-        LB_PLANNER_TEACHER => 2,
-        LB_PLANNER_STUDENT => 3
-    ]
-);
-
 class user_helper {
 
-    public static function table():string {
-        return 'local_lbplanner_users';
-    }
+    const ROLE_ADMIN = 'lbpa';
+    const ROLE_MANAGER = 'lbpm';
+    const ROLE_TEACHER = 'lbpt';
+    const ROLE_STUDENT = 'lbps';
+
+    const ROLE_ENUMS = [
+        self::ROLE_ADMIN => 0,
+        self::ROLE_MANAGER => 1,
+        self::ROLE_TEACHER => 2,
+        self::ROLE_STUDENT => 3
+    ];
+
+    const TABLE = 'local_lbplanner_users';
+
 
     public static function check_access(int $userid):bool {
         global $USER;
@@ -62,23 +58,23 @@ class user_helper {
         global $DB;
 
         $mdluser = $DB->get_record('user', array('id' => $userid), '*', MUST_EXIST);
-        $adminid = $DB->get_field('role', 'id', array('shortname' => LB_PLANNER_ADMIN));
-        $managerid = $DB->get_field('role', 'id', array('shortname' => LB_PLANNER_MANAGER));
-        $teacherid = $DB->get_field('role', 'id', array('shortname' => LB_PLANNER_TEACHER));
-        $studentid = $DB->get_field('role', 'id', array('shortname' => LB_PLANNER_STUDENT));
+        $adminid = $DB->get_field('role', 'id', array('shortname' => self::ROLE_ADMIN));
+        $managerid = $DB->get_field('role', 'id', array('shortname' => self::ROLE_MANAGER));
+        $teacherid = $DB->get_field('role', 'id', array('shortname' => self::ROLE_TEACHER));
+        $studentid = $DB->get_field('role', 'id', array('shortname' => self::ROLE_STUDENT));
 
         $isadmin = $DB->record_exists('role_assignments', array('userid' => $userid, 'roleid' => $adminid));
         $ismanager = $DB->record_exists('role_assignments', array('userid' => $userid, 'roleid' => $managerid));
         $isteacher = $DB->record_exists('role_assignments', array('userid' => $userid, 'roleid' => $teacherid));
 
         if ($isadmin) {
-            return LB_PLANNER_ROLE_ENUMS[LB_PLANNER_ADMIN];
+            return self::ROLE_ENUMS[self::ROLE_ADMIN];
         } else if ($ismanager) {
-            return LB_PLANNER_ROLE_ENUMS[LB_PLANNER_MANAGER];
+            return self::ROLE_ENUMS[self::ROLE_MANAGER];
         } else if ($isteacher) {
-            return LB_PLANNER_ROLE_ENUMS[LB_PLANNER_TEACHER];
+            return self::ROLE_ENUMS[self::ROLE_TEACHER];
         } else {
-            return LB_PLANNER_ROLE_ENUMS[LB_PLANNER_STUDENT];
+            return self::ROLE_ENUMS[self::ROLE_STUDENT];
         }
     }
 
@@ -89,7 +85,7 @@ class user_helper {
 
     public static function get_user(int $userid): stdClass {
         global $DB;
-        return $DB->get_record(self::table(), array('userid' => $userid), '*', MUST_EXIST);
+        return $DB->get_record(self::TABLE, array('userid' => $userid), '*', MUST_EXIST);
     }
 
 }

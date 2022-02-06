@@ -16,43 +16,41 @@
 
 namespace local_lbplanner\helpers;
 
-define('PLAN_ACCESS_OWNER', 0);
-define('PLAN_ACCESS_WRITE', 1);
-define('PLAN_ACCESS_READ', 2);
-
 class plan_helper {
-    public static function table():string {
-        return 'local_lbplanner_plans';
-    }
+    const ACCESS_TYPE_OWNER = 0;
+    const ACCESS_TYPE_WRITE = 1;
+    const ACCESS_TYPE_READ = 2;
 
-    public static function access_table():string {
-        return 'local_lbplanner_plan_access';
-    }
-    public static function deadline_table():string {
-        return 'local_lbplanner_deadlines';
-    }
+    const TABLE = 'local_lbplanner_plans';
+    const ACCESS_TABLE = 'local_lbplanner_plan_access';
+    const DEADLINES_TABLE = 'local_lbplanner_plan_deadlines';
 
     public static function get_plan_members(int $planid):array {
         global $DB;
-        $members = $DB->get_fieldset_select(self::access_table(), 'userid', array('planid' => $planid));
+        $members = $DB->get_fieldset_select(self::TABLE, 'userid', array('planid' => $planid));
         return $members;
     }
 
     public static function get_owner(int $planid):int {
         global $DB;
-        $owner = $DB->get_field(self::access_table(), 'userid', array('planid' => $planid, 'accesstype' => PLAN_ACCESS_OWNER));
+
+        $owner = $DB->get_field(
+            self::ACCESS_TABLE,
+            'userid', array('planid' => $planid, 'accesstype' => self::ACCESS_TYPE_OWNER)
+        );
+
         return $owner;
     }
 
     public static function get_plan_id(int $userid):int {
         global $DB;
-        $planid = $DB->get_field(self::access_table(), 'planid', array('userid' => $userid));
+        $planid = $DB->get_field(self::ACCESS_TABLE, 'planid', array('userid' => $userid));
         return $planid;
     }
 
     public static function get_access_type(int $planid, int $userid):int {
         global $DB;
-        $access = $DB->get_field(self::access_table(), 'accesstype', array('planid' => $planid, 'userid' => $userid));
+        $access = $DB->get_field(self::ACCESS_TABLE, 'accesstype', array('planid' => $planid, 'userid' => $userid));
         return $access;
     }
 

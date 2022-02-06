@@ -25,13 +25,13 @@ use local_lbplanner\helpers\user_helper;
 class user_get_user extends external_api {
     public static function get_user_parameters() {
         return new external_function_parameters(array(
-            'userid' => new external_value(
-                PARAM_INT,
-                'The id of the user to get the data for',
-                VALUE_REQUIRED,
-                null,
-                NULL_NOT_ALLOWED
-            ),
+        'userid' => new external_value(
+            PARAM_INT,
+            'The id of the user to get the data for',
+            VALUE_REQUIRED,
+            null,
+            NULL_NOT_ALLOWED
+        ),
         ));
     }
 
@@ -51,43 +51,41 @@ class user_get_user extends external_api {
         // Check if the user is allowed to get the data for this userid.
         if (user_helper::check_access($userid)) {
             return array(
-                'userid' => $user->userid,
-                'username' => $mdluser->username,
-                'firstname' => $mdluser->firstname,
-                'lastname' => $mdluser->lastname,
-                'role' => $user->role,
-                'theme' => $user->theme,
-                'lang' => $user->language,
-                'profileimageurl' => $mdluser->profileimageurl,
+            'userid' => $user->userid,
+            'username' => $mdluser->username,
+            'firstname' => $mdluser->firstname,
+            'lastname' => $mdluser->lastname,
+            'role' => $user->role,
+            'theme' => $user->theme,
+            'lang' => $user->language,
+            'profileimageurl' => $mdluser->profileimageurl,
             );
-        } else {
-            return array(
-                'userid' => $user->userid,
-                'username' => $user->username,
-                'firstname' => $mdluser->firstname,
-                'lastname' => $mdluser->lastname,
-                'role' => null,
-                'theme' => null,
-                'lang' => null,
-                'profileimageurl' => $mdluser->profileimageurl,
-            );
+
         }
 
-        return array();
+        return array(
+            'userid' => $user->userid,
+            'username' => $user->username,
+            'firstname' => $mdluser->firstname,
+            'lastname' => $mdluser->lastname,
+            'role' => null,
+            'theme' => null,
+            'lang' => null,
+            'profileimageurl' => $mdluser->profileimageurl,
+        );
     }
-
     public static function get_user_returns() {
         return new external_single_structure(
-            array(
-                'userid' => new external_value(PARAM_INT, 'The id of the user'),
-                'username' => new external_value(PARAM_TEXT, 'The username of the user'),
-                'firstname' => new external_value(PARAM_TEXT, 'The firstname of the user'),
-                'lastname' => new external_value(PARAM_TEXT, 'The lastname of the user'),
-                'role' => new external_value(PARAM_INT, 'The role of the user'),
-                'theme' => new external_value(PARAM_TEXT, 'The theme the user has selected'),
-                'lang' => new external_value(PARAM_TEXT, 'The language the user has selected'),
-                'profileimageurl' => new external_value(PARAM_URL, 'The url of the profile image'),
-            )
+        array(
+            'userid' => new external_value(PARAM_INT, 'The id of the user'),
+            'username' => new external_value(PARAM_TEXT, 'The username of the user'),
+            'firstname' => new external_value(PARAM_TEXT, 'The firstname of the user'),
+            'lastname' => new external_value(PARAM_TEXT, 'The lastname of the user'),
+            'role' => new external_value(PARAM_INT, 'The role of the user'),
+            'theme' => new external_value(PARAM_TEXT, 'The theme the user has selected'),
+            'lang' => new external_value(PARAM_TEXT, 'The language the user has selected'),
+            'profileimageurl' => new external_value(PARAM_URL, 'The url of the profile image'),
+        )
         );
     }
 }

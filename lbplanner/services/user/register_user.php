@@ -57,7 +57,7 @@ class user_register_user extends external_api {
         $user->theme = $theme;
         $user->role = user_helper::determin_user_role($userid);
 
-        $DB->insert_record(user_helper::table(), $user);
+        $DB->insert_record(user_helper::TABLE, $user);
 
         // TODO: Create a new plan for the user.
 
@@ -67,14 +67,14 @@ class user_register_user extends external_api {
         $plan->name = 'Plan for ' . $mdluser->firstname;
         $plan->enableek = 0;
 
-        $planid = $DB->insert_record(plan_helper::table(), $plan);
+        $planid = $DB->insert_record(plan_helper::TABLE, $plan);
 
         $planaccess = new \stdClass();
         $planaccess->userid = $userid;
         $planaccess->accestype = 0;
         $planaccess->planid = $planid;
 
-        $DB->insert_record(plan_helper::access_table(), $planaccess);
+        $DB->insert_record(plan_helper::ACCESS_TABLE, $planaccess);
 
         return array(
             'userid' => $user->userid,

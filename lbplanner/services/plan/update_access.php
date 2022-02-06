@@ -67,10 +67,10 @@ class plan_update_access extends external_api {
             throw new \moodle_exception('Access denied');
         }
 
-        $access = $DB->get_record(plan_helper::access_table(), array('planid' => $planid, 'userid' => $userid), '*', MUST_EXIST);
+        $access = $DB->get_record(plan_helper::ACCESS_TABLE, array('planid' => $planid, 'userid' => $userid), '*', MUST_EXIST);
         $access->accesstype = $accesstype;
 
-        $DB->update_record(plan_helper::access_table(), $access);
+        $DB->update_record(plan_helper::ACCESS_TABLE, $access);
 
         return array(
             'userid' => $userid,

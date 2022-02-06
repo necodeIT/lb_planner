@@ -83,6 +83,10 @@ class plan_add_deadline extends external_api {
             throw new \moodle_exception('Access denied');
         }
 
+        if (plan_helper::get_access_type($userid, $planid) == plan_helper::ACCESS_TYPE_READ) {
+            throw new \moodle_exception('Access denied');
+        }
+
         $deadline = new \stdClass();
 
         $deadline->userid = $userid;
@@ -91,7 +95,7 @@ class plan_add_deadline extends external_api {
         $deadline->deadlinestart = $deadlinestart;
         $deadline->deadlineend = $deadlineend;
 
-        $DB->insert_record(plan_helper::deadline_table(), $deadline);
+        $DB->insert_record(plan_helper::DEADLINES_TABLE, $deadline);
 
         return array();
     }

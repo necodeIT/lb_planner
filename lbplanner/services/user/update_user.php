@@ -54,7 +54,7 @@ class user_update_user extends external_api {
         $user->language = $lang;
         $user->theme = $theme;
 
-        $DB->update_record(user_helper::table(), $user, false);
+        $DB->update_record(plan_helper::TABLE, $user, false);
 
         return array();
     }

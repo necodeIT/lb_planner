@@ -53,11 +53,11 @@ class plan_clear_plan extends external_api {
             throw new \moodle_exception('Access denied');
         }
 
-        if (plan_helper::get_access_type($planid, $userid) == PLAN_ACCESS_READ) {
+        if (plan_helper::get_access_type($planid, $userid) == plan_helper::ACCESS_TYPE_READ) {
             throw new \moodle_exception('Access denied');
         }
 
-        $DB->delete_records(plan_helper::deadline_table(), array('userid' => $userid, 'planid' => $planid ));
+        $DB->delete_records(plan_helper::DEADLINES_TABLE, array('userid' => $userid, 'planid' => $planid ));
 
         return array('message' => 'Sucessfull');
     }

@@ -42,7 +42,7 @@ class user_get_all_users extends external_api {
             throw new \moodle_exception('Access denied');
         }
 
-        $users = $DB->get_records(user_helper::table());
+        $users = $DB->get_records(user_helper::TABLE);
 
         $result = array();
 
