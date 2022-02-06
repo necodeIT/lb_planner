@@ -59,8 +59,7 @@ class plan_get_plan extends external_api {
                 'planid' => $dbdeadline->planid,
                 'startdate' => $dbdeadline->startdate,
                 'enddate' => $dbdeadline->enddate,
-                'timeend' => $dbdeadline->timeend,
-                'moduleid' => $dbdeadline->id,
+                'moduleid' => $dbdeadline->moduleid,
             );
         }
 
@@ -81,7 +80,6 @@ class plan_get_plan extends external_api {
                 'deadlines' => new external_multiple_structure(
                     new external_single_structure(
                         array(
-                            'userid' => new external_value(PARAM_INT, 'The id of the user'),
                             'planid' => new external_value(PARAM_INT, 'The id of the plan'),
                             'moduleid' => new external_value(PARAM_INT, 'The id of the module'),
                             'deadlinestart' => new external_value(PARAM_INT, 'The start of the deadline'),
