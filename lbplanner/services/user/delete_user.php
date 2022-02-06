@@ -40,6 +40,8 @@ class user_delete_user extends external_api {
 
         $params = self::validate_parameters(self::delete_user_parameters(), array('userid' => $userid));
 
+        $user = $DB->get_record('local_lbplanner_users', array('userid' => $params['userid']), '*' , MUST_EXIST)
+
         // TODO: Check if the token is allowed to delete this user.
         // TODO: Remove user from a plan if user is not the owner.
         // TODO: Delete plan of the user.

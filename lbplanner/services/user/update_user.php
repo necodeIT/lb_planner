@@ -49,8 +49,13 @@ class user_update_user extends external_api {
         }
         // Look if User-Id is in the DB.
 
-        $DB->update_record(user_helper::table(), $dataobject, $bulk = false)
-        // Change Language and Theme in the DB.
+        $user = $DB->get_record(user_helper::table(), array('userid' => $params['userid']), '*' , MUST_EXIST);
+
+        $user->language = $lang;
+        $user->theme = $theme;
+
+        $DB->update_record(user_helper::table(), $user, false);
+
         return array();
     }
 
