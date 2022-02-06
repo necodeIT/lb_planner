@@ -247,6 +247,8 @@ $services = array(
             'local_lbplanner_plan_get_deadline',
             'local_lbplanner_plan_get_plan',
             'local_lbplanner_plan_invite_user',
+            'local_lbplanner_plan_update_invite',
+            'local_lbplanner_plan_get_invites',
             'local_lbplanner_plan_leave_plan',
             'local_lbplanner_plan_remove_user',
             'local_lbplanner_plan_update_deadline',

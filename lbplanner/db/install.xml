@@ -28,7 +28,7 @@
                 <KEY NAME="courseid" TYPE="unique" FIELDS="courseid"/>
             </KEYS>
         </TABLE>
-        <TABLE NAME="local_lbplanner_plan_invites">
+        <TABLE NAME="local_lbplanner_plan_invites" COMMENT="Default comment for the table, please edit me">
             <FIELDS>
                 <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
                 <FIELD NAME="planid" TYPE="int" LENGTH="20" NOTNULL="true" SEQUENCE="false" COMMENT="The id of the plan the user is inviting to."/>

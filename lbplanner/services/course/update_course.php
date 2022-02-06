@@ -21,7 +21,7 @@ use external_function_parameters;
 use external_single_structure;
 use external_value;
 
-class courses_update_course extends external_api {
+class course_update_course extends external_api {
     public static function update_course_parameters() {
         return new external_function_parameters(array(
             'courseid' => new external_value(PARAM_INT, 'The id of the course', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
