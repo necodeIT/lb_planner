@@ -3,7 +3,7 @@
         <TABLE NAME="local_lbplanner_users" COMMENT="Al the relevant data connected to a user.">
             <FIELDS>
                 <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
-                <FIELD NAME="userid" TYPE="int" LENGTH="20" NOTNULL="true" SEQUENCE="false" COMMENT="User ID assigned from moodle."/>
+                <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="User ID assigned from moodle."/>
                 <FIELD NAME="theme" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="The name of the theme the user has selected in the app."/>
                 <FIELD NAME="language" TYPE="char" LENGTH="2" NOTNULL="true" DEFAULT="en" SEQUENCE="false" COMMENT="Language the user has selected in the app."/>
                 <FIELD NAME="role" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="The role the user has in the app. {Student, Teacher, Admin, Catgirl}"/>
@@ -16,8 +16,8 @@
         <TABLE NAME="local_lbplanner_courses" COMMENT="Default comment for the table, please edit me">
             <FIELDS>
                 <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
-                <FIELD NAME="courseid" TYPE="int" LENGTH="20" NOTNULL="true" SEQUENCE="false" COMMENT="Course ID assigned from moodle."/>
-                <FIELD NAME="userid" TYPE="int" LENGTH="20" NOTNULL="true" SEQUENCE="false" COMMENT="The id of the user for whom this course's settings are for."/>
+                <FIELD NAME="courseid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Course ID assigned from moodle."/>
+                <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="The id of the user for whom this course's settings are for."/>
                 <FIELD NAME="shortname" TYPE="char" LENGTH="5" NOTNULL="true" SEQUENCE="false" COMMENT="The short name for this course the user has chosen."/>
                 <FIELD NAME="color" TYPE="char" LENGTH="7" NOTNULL="true" SEQUENCE="false" COMMENT="The color of the course the user wants to display the in in the UI."/>
                 <FIELD NAME="enabled" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Whether the user has enabled (1) the course for planning or not (0)."/>
@@ -28,13 +28,26 @@
                 <KEY NAME="courseid" TYPE="unique" FIELDS="courseid"/>
             </KEYS>
         </TABLE>
+        <TABLE NAME="local_lbplanner_notfications" COMMENT="Default comment for the table, please edit me">
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+                <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="The id of the user for whom this notification is for."/>
+                <FIELD NAME="info" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="Additional information about the notification"/>
+                <FIELD NAME="status" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Whether the notification has been read or not."/>
+                <FIELD NAME="trigger" TYPE="int" LENGTH="1" NOTNULL="true" SEQUENCE="false" COMMENT="The type of event that triggered the notifcation" />
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+                <KEY NAME="userid" TYPE="foreign" FIELDS="userid" REFTABLE="local_lbplanner_users" REFFIELDS="userid"/>
+            </KEYS>
+        </TABLE>
         <TABLE NAME="local_lbplanner_plan_invites" COMMENT="Default comment for the table, please edit me">
             <FIELDS>
                 <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
-                <FIELD NAME="planid" TYPE="int" LENGTH="20" NOTNULL="true" SEQUENCE="false" COMMENT="The id of the plan the user is inviting to."/>
-                <FIELD NAME="invitee" TYPE="int" LENGTH="20" NOTNULL="true" SEQUENCE="false" COMMENT="The id of the user being invited."/>
-                <FIELD NAME="timestamp" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="The time the invitee was invited."/>
-                <FIELD NAME="inviter" TYPE="int" LENGTH="20" NOTNULL="true" SEQUENCE="false" COMMENT="The id of the user who sent the invite."/>
+                <FIELD NAME="planid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="The id of the plan the user is inviting to."/>
+                <FIELD NAME="invitee" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="The id of the user being invited."/>
+                <FIELD NAME="timestamp" TYPE="int" LENGTH="20" NOTNULL="true" SEQUENCE="false" COMMENT="The time the invitee was invited."/>
+                <FIELD NAME="inviter" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="The id of the user who sent the invite."/>
                 <FIELD NAME="status" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="The status of the invite. {0: Pending, 1: Accepted, 2: Declined}"/>
             </FIELDS>
             <KEYS>
@@ -57,7 +70,7 @@
         <TABLE NAME="local_lbplanner_plan_access" COMMENT="Default comment for the table, please edit me">
             <FIELDS>
                 <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
-                <FIELD NAME="userid" TYPE="int" LENGTH="20" NOTNULL="true" SEQUENCE="false"/>
+                <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
                 <FIELD NAME="planid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
                 <FIELD NAME="accestype" TYPE="int" LENGTH="1" NOTNULL="true" SEQUENCE="false"/>
             </FIELDS>
@@ -73,7 +86,7 @@
                 <FIELD NAME="planid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
                 <FIELD NAME="startdate" TYPE="int" LENGTH="20" NOTNULL="true" SEQUENCE="false"/>
                 <FIELD NAME="enddate" TYPE="int" LENGTH="20" NOTNULL="false" SEQUENCE="false"/>
-                <FIELD NAME="moduleid" TYPE="int" LENGTH="20" NOTNULL="true" SEQUENCE="false"/>
+                <FIELD NAME="moduleid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
             </FIELDS>
             <KEYS>
                 <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
