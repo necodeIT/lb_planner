@@ -51,6 +51,7 @@ class plan_get_plan extends external_api {
             array(
                 'name' => new external_value(PARAM_TEXT, 'The name of the plan'),
                 'planid' => new external_value(PARAM_INT, 'The id of the plan'),
+                'enableek' => new external_value(PARAM_BOOL, 'If the plan is enabled for ek'),
                 'deadlines' => new external_multiple_structure(
                     new external_single_structure(
                         array(
