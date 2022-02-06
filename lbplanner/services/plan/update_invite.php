@@ -20,29 +20,57 @@ use external_api;
 use external_function_parameters;
 use external_single_structure;
 use external_value;
+use local_lbplanner\helpers\user_helper;
+use local_lbplanner\helpers\plan_helper;
+use local_lbplanner\helpers\notifications_helper;
 
 class plan_update_invite extends external_api {
     public static function update_invite_parameters() {
         return new external_function_parameters(array(
             'planid' => new external_value(PARAM_INT, 'The id of the plan', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
-            'inviterid' => new external_value(PARAM_INT, 'The id of the user', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
             'inviteeid' => new external_value(PARAM_INT, 'The id of the invited user', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
             'status' => new external_value(PARAM_INT, 'The status of the invite', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
         ));
     }
 
-    public static function update_invite($planid, $inviterid, $inviteeid, $status) {
+    public static function update_invite($planid, $inviteeid, $status) {
         global $DB;
         global $USER;
 
         $params = self::validate_parameters(self::update_invite_parameters(), array(
             'planid' => $planid,
-            'inviterid' => $inviterid,
             'inviteeid' => $inviteeid,
             'status' => $status,
         ));
 
-        // TODO: Check if token is allowed to access this function.
+        if (!user_helper::check_access($inviteeid)) {
+            throw new \moodle_exception('Access denied');
+        }
+
+        $invite = $DB->get_record(plan_helper::INVITES_TABLE,
+        array(
+            'planid' => $planid,
+            'inviteeid' => $inviteeid,
+            'status' => plan_helper::INVITE_PENDING),
+            '*',
+            MUST_EXIST
+        );
+
+        $invite->status = $status;
+
+        $DB->update_record(plan_helper::INVITES_TABLE, $invite);
+
+        $trigger = $status == plan_helper::INVITE_ACCEPTED ?
+            notifications_helper::TRIGGER_INVITE_ACCEPTED
+            : notifications_helper::TRIGGER_INVITE_DECLINED;
+
+        $notification = new \stdClass();
+        $notification->userid = $invite->inviterid;
+        $notification->status = notifications_helper::STATUS_UNREAD;
+        $notification->trigger = $trigger;
+        $notification->info = $USER->username;
+
+        $DB->insert_record(notifications_helper::TABLE, $notification);
 
         return array();
     }

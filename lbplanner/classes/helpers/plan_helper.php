@@ -21,6 +21,10 @@ class plan_helper {
     const ACCESS_TYPE_WRITE = 1;
     const ACCESS_TYPE_READ = 2;
 
+    const INVITE_PENDING = 0;
+    const INVITE_ACCEPTED = 1;
+    const INVITE_DECLINED = 2;
+
     const TABLE = 'local_lbplanner_plans';
     const ACCESS_TABLE = 'local_lbplanner_plan_access';
     const DEADLINES_TABLE = 'local_lbplanner_plan_deadlines';

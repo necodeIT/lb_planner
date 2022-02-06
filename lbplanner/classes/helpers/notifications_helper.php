@@ -26,5 +26,5 @@ class notifications_helper {
 
     const TRIGGER_INVITE = 0;
     const TRIGGER_INVITE_ACCEPTED = 1;
-    const TRIGGER_INVITE_DECLINED = 1;
+    const TRIGGER_INVITE_DECLINED = 2;
 }

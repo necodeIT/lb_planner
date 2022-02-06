@@ -45,9 +45,9 @@
             <FIELDS>
                 <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
                 <FIELD NAME="planid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="The id of the plan the user is inviting to."/>
-                <FIELD NAME="invitee" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="The id of the user being invited."/>
+                <FIELD NAME="inviteeid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="The id of the user being invited."/>
                 <FIELD NAME="timestamp" TYPE="int" LENGTH="20" NOTNULL="true" SEQUENCE="false" COMMENT="The time the invitee was invited."/>
-                <FIELD NAME="inviter" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="The id of the user who sent the invite."/>
+                <FIELD NAME="inviterid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="The id of the user who sent the invite."/>
                 <FIELD NAME="status" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="The status of the invite. {0: Pending, 1: Accepted, 2: Declined}"/>
             </FIELDS>
             <KEYS>
