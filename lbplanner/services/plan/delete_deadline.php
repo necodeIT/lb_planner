@@ -52,7 +52,6 @@ class plan_delete_deadline extends external_api {
 
     public static function delete_deadline($userid, $planid, $moduleid) {
         global $DB;
-        global $USER;
 
         self::validate_parameters(
             self::delete_deadline_parameters(),
@@ -68,7 +67,7 @@ class plan_delete_deadline extends external_api {
         }
 
         $DB->delete_records(
-            plan_helper::deadline_table(),
+            plan_helper::DEADLINES_TABLE,
             array(
                 'userid' => $userid,
                 'planid' => $planid ,
