@@ -99,7 +99,7 @@ class plan_invite_user extends external_api {
         $notification = new \stdClass();
         $notification->userid = $inviteeid;
         $notification->status = notifications_helper::STATUS_UNREAD;
-        $notification->trigger = notifications_helper::TYPE_INVITE;
+        $notification->trigger = notifications_helper::TRIGGER_INVITE;
         $notification->info = $planname;
 
         $DB->insert_record(notifications_helper::TABLE, $notification);

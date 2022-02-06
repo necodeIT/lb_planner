@@ -24,6 +24,7 @@ class notifications_helper {
     const STATUS_READ = 1;
     const STATUS_UNREAD = 0;
 
-    const TYPE_INVITE = 0;
-    const TYPE_INVITE_ACCEPTED = 1;
+    const TRIGGER_INVITE = 0;
+    const TRIGGER_INVITE_ACCEPTED = 1;
+    const TRIGGER_INVITE_DECLINED = 1;
 }
