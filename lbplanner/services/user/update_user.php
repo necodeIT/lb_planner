@@ -20,6 +20,7 @@ use external_api;
 use external_function_parameters;
 use external_single_structure;
 use external_value;
+use local_lbplanner\helpers\user_helper;
 
 class user_update_user extends external_api {
     public static function update_user_parameters() {
@@ -36,11 +37,20 @@ class user_update_user extends external_api {
 
         $params = self::validate_parameters(
             self::update_user_parameters(),
-            array('userid' => $userid, 'lang' => $lang, 'theme' => $theme
-        ));
+            array('userid' => $userid, 'lang' => $lang, 'theme' => $theme)
+        );
 
-        // TODO: Check if the token has permission to update the user.
+        if (!user_helper::check_access($params['userid'])) {
+            throw new \moodle_exception('Access denied');
+        }
 
+        if (!user_helper::check_user_exists($userid)) {
+            throw new \moodle_exception('User does not exist');
+        }
+        // Look if User-Id is in the DB.
+
+        $DB->update_record(user_helper::table(), $dataobject, $bulk = false)
+        // Change Language and Theme in the DB.
         return array();
     }
 

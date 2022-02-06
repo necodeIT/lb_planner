@@ -16,6 +16,7 @@
 
 namespace local_lbplanner\helpers;
 
+use core_reportbuilder\local\filters\text;
 use moodle_url;
 use stdClass;
 
@@ -34,9 +35,12 @@ define(
     ]
 );
 
-
-
 class user_helper {
+
+    public static function table():string {
+        return 'local_lbplanner_users';
+    }
+
     public static function check_access(int $userid):bool {
         global $USER;
         return $USER->id == $userid;
@@ -55,7 +59,7 @@ class user_helper {
         return $mdluser;
     }
 
-    public static function determin_user_role($userid) : int {
+    public static function determin_user_role(int $userid) : int {
         global $DB;
 
         $mdluser = $DB->get_record('user', array('id' => $userid), '*', MUST_EXIST);
@@ -78,6 +82,9 @@ class user_helper {
             return LB_PLANNER_ROLE_ENUMS[LB_PLANNER_STUDENT];
         }
     }
-
+    public static function check_user_exists(int $userid): bool {
+        global $DB;
+        return $DB->record_exists('local_lbplanner_users', array('userid' => $userid));
+    }
 
 }

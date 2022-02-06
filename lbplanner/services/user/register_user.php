@@ -46,7 +46,7 @@ class user_register_user extends external_api {
         }
 
         // Check if the user is already registered.
-        if ($DB->record_exists('local_lbplanner_users', array('userid' => $params['userid']))) {
+        if (user_helper::check_user_exists($userid)) {
             throw new \moodle_exception('User already registered');
         }
 

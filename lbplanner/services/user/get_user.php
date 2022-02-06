@@ -40,6 +40,10 @@ class user_get_user extends external_api {
 
         $params = self::validate_parameters(self::get_user_parameters(), array('userid' => $userid));
 
+        if (!user_helper::check_user_exists($userid)) {
+            throw new \moodle_exception('User does not exist');
+        }
+
         $user = $DB->get_record('local_lbplanner_users', array('userid' => $params['userid']), '*' , MUST_EXIST);
 
         $mdluser = user_helper::get_mdl_user_info($user->userid);
