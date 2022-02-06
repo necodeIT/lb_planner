@@ -20,6 +20,8 @@ use external_api;
 use external_function_parameters;
 use external_single_structure;
 use external_value;
+use local_lbplanner\helpers\user_helper;
+
 
 class user_register_user extends external_api {
     public static function register_user_parameters() {
@@ -39,12 +41,50 @@ class user_register_user extends external_api {
             array('userid' => $userid, 'lang' => $lang, 'theme' => $theme)
         );
 
-        // TODO: Check if token is allowed to register this user.
-        // TODO: Check if the user is already registered.
-        // TODO: Auto determin & assign role to user.
+        if (!user_helper::check_access($params['userid'])) {
+            throw new \moodle_exception('Access denied');
+        }
+
+        // Check if the user is already registered.
+        if ($DB->record_exists('local_lbplanner_users', array('userid' => $params['userid']))) {
+            throw new \moodle_exception('User already registered');
+        }
+
+        $user = new \stdClass();
+        $user->userid = $params['userid'];
+        $user->language = $params['lang'];
+        $user->theme = $params['theme'];
+        $user->role = user_helper::determin_user_role($params['userid']);
+
+        $DB->insert_record('local_lbplanner_users', $user);
+
         // TODO: Create a new plan for the user.
 
-        return array();
+        $mdluser = user_helper::get_mdl_user_info($params['userid']);
+
+        $plan = new \stdClass();
+        $plan->name = 'Plan for ' . $mdluser->firstname;
+        $plan->enableek = 0;
+
+        $planid = $DB->insert_record('local_lbplanner_plans', $plan);
+
+        $planaccess = new \stdClass();
+        $planaccess->userid = $params['userid'];
+        $planaccess->accestype = 0;
+        $planaccess->planid = $planid;
+
+        $DB->insert_record('local_lbplanner_plan_access', $planaccess);
+
+        return array(
+            'userid' => $user->userid,
+            'username' => $mdluser->username,
+            'firstname' => $mdluser->firstname,
+            'lastname' => $mdluser->lastname,
+            'role' => $user->role,
+            'theme' => $user->theme,
+            'lang' => $user->language,
+            'profileimageurl' => $mdluser->profileimageurl,
+        );
     }
 
     public static function register_user_returns() {

@@ -20,6 +20,7 @@ use external_api;
 use external_function_parameters;
 use external_single_structure;
 use external_value;
+use local_lbplanner\helpers\user_helper;
 
 class user_get_user extends external_api {
     public static function get_user_parameters() {
@@ -38,9 +39,36 @@ class user_get_user extends external_api {
         global $DB;
         global $USER;
 
-        $params = self::validate_parameters(self::get_user_parameters(), array($userid));
+        $params = self::validate_parameters(self::get_user_parameters(), array('userid' => $userid));
+
+        $user = $DB->get_record('local_lbplanner_users', array('userid' => $params['userid']), '*' , MUST_EXIST);
+
+        $mdluser = user_helper::get_mdl_user_info($user->userid);
 
         // TODO: Check if the user is allowed to get the data for this userid.
+        if (user_helper::check_access($params['userid'])) {
+            return array(
+                'userid' => $user->userid,
+                'username' => $mdluser->username,
+                'firstname' => $mdluser->firstname,
+                'lastname' => $mdluser->lastname,
+                'role' => $user->role,
+                'theme' => $user->theme,
+                'lang' => $user->language,
+                'profileimageurl' => $mdluser->profileimageurl,
+            );
+        } else {
+            return array(
+                'userid' => $user->userid,
+                'username' => $user->username,
+                'firstname' => $mdluser->firstname,
+                'lastname' => $mdluser->lastname,
+                'role' => null,
+                'theme' => null,
+                'lang' => null,
+                'profileimageurl' => $mdluser->profileimageurl,
+            );
+        }
 
         return array();
     }
