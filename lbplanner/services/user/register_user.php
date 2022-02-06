@@ -21,6 +21,7 @@ use external_function_parameters;
 use external_single_structure;
 use external_value;
 use local_lbplanner\helpers\user_helper;
+use local_lbplanner\helpers\plan_helper;
 
 
 class user_register_user extends external_api {
@@ -66,14 +67,14 @@ class user_register_user extends external_api {
         $plan->name = 'Plan for ' . $mdluser->firstname;
         $plan->enableek = 0;
 
-        $planid = $DB->insert_record('local_lbplanner_plans', $plan);
+        $planid = $DB->insert_record(plan_helper::table(), $plan);
 
         $planaccess = new \stdClass();
         $planaccess->userid = $userid;
         $planaccess->accestype = 0;
         $planaccess->planid = $planid;
 
-        $DB->insert_record('local_lbplanner_plan_access', $planaccess);
+        $DB->insert_record(plan_helper::access_table(), $planaccess);
 
         return array(
             'userid' => $user->userid,
