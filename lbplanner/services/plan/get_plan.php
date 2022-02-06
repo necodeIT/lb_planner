@@ -23,7 +23,6 @@ use external_single_structure;
 use external_value;
 use local_lbplanner\helpers\plan_helper;
 use local_lbplanner\helpers\user_helper;
-use Phpml\Helper\Optimizer\MP;
 
 class plan_get_plan extends external_api {
     public static function get_plan_parameters() {
