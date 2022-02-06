@@ -24,12 +24,18 @@ use external_value;
 class courses_update_course extends external_api {
     public static function update_course_parameters() {
         return new external_function_parameters(array(
-            'courseid' => new external_value(PARAM_INT, 'The id of the course'),
-            'color' => new external_value(PARAM_TEXT, 'The color of the course'),
-            'name' => new external_value(PARAM_TEXT, 'The name of the course'),
-            'shortname' => new external_value(PARAM_TEXT, 'The shortname of the course'),
-            'enabled' => new external_value(PARAM_BOOL, 'Whether the course is enabled or not'),
-            'userid' => new external_value(PARAM_INT, 'The id of the user'),
+            'courseid' => new external_value(PARAM_INT, 'The id of the course', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
+            'color' => new external_value(PARAM_TEXT, 'The color of the course', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
+            'name' => new external_value(PARAM_TEXT, 'The name of the course', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
+            'shortname' => new external_value(PARAM_TEXT, 'The shortname of the course', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
+            'enabled' => new external_value(
+                PARAM_BOOL,
+                'Whether the course is enabled or not',
+                VALUE_REQUIRED,
+                null,
+                NULL_NOT_ALLOWED
+            ),
+            'userid' => new external_value(PARAM_INT, 'The id of the user', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
         ));
     }
 

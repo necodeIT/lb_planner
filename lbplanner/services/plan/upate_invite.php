@@ -21,50 +21,33 @@ use external_function_parameters;
 use external_single_structure;
 use external_value;
 
-class plan_invite_user extends external_api {
-    public static function leave_plan_parameters() {
+class plan_update_invite extends external_api {
+    public static function update_invite_parameters() {
         return new external_function_parameters(array(
-            'inviterid' => new external_value(
-                PARAM_INT,
-                'The id of the Owner of the plan',
-                VALUE_REQUIRED,
-                null,
-                NULL_NOT_ALLOWED
-            ),
-            'inviteeid' => new external_value(
-                PARAM_INT,
-                'The id of the user who gets invited',
-                VALUE_REQUIRED,
-                null,
-                NULL_NOT_ALLOWED
-            ),
-            'planid' => new external_value(
-                PARAM_INT,
-                'The id of the plan',
-                VALUE_REQUIRED,
-                null,
-                NULL_NOT_ALLOWED
-            ),
+            'planid' => new external_value(PARAM_INT, 'The id of the plan', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
+            'inviterid' => new external_value(PARAM_INT, 'The id of the user', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
+            'inviteeid' => new external_value(PARAM_INT, 'The id of the invited user', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
+            'status' => new external_value(PARAM_INT, 'The status of the invite', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
         ));
     }
 
-    public static function invite_user($inviterid, $inviteuserid , $planid) {
+    public static function update_invite($planid, $inviterid, $inviteeid, $status) {
         global $DB;
         global $USER;
 
-        $params = self::validate_parameters(
-            self::leave_plan_parameters(),
-            array('userid' => $inviterid, 'inviteeid' => $inviteuserid, 'planid' => $planid)
-        );
+        $params = self::validate_parameters(self::update_invite_parameters(), array(
+            'planid' => $planid,
+            'inviterid' => $inviterid,
+            'inviteeid' => $inviteeid,
+            'status' => $status,
+        ));
 
-        // TODO: Check if the token is from the same User as the UserId.
-        // TODO: Check if Invited User is Valid.
-        // TODO: Add Owner/Invitation/Time/Status/PlanId to the Invitation DB.
+        // TODO: Check if token is allowed to access this function.
 
         return array();
     }
 
-    public static function invite_user_returns() {
+    public static function update_invite_returns() {
         return new external_single_structure(
             array(
                 'inviterid' => new external_value(PARAM_INT, 'The id of the owner user'),

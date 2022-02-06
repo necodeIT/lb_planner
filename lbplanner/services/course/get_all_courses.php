@@ -25,7 +25,13 @@ use external_value;
 class courses_get_all_courses extends external_api {
     public static function get_all_courses_parameters() {
         return new external_function_parameters(array(
-            'userid' => new external_value(PARAM_INT, 'The id of the user to get the courses for'),
+            'userid' => new external_value(
+                PARAM_INT,
+                'The id of the user to get the courses for',
+                VALUE_REQUIRED,
+                null,
+                NULL_NOT_ALLOWED
+            ),
         ));
     }
 

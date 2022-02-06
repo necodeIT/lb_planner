@@ -25,7 +25,7 @@ use external_value;
 class modules_get_all_modules extends external_api {
     public static function get_all_modules_parameters() {
         return new external_function_parameters(array(
-            'userid' => new external_value(PARAM_INT, 'The id of the user'),
+            'userid' => new external_value(PARAM_INT, 'The id of the user', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
         ));
     }
 

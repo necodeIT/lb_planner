@@ -21,34 +21,33 @@ use external_function_parameters;
 use external_single_structure;
 use external_value;
 
-class courses_get_course extends external_api {
-    public static function get_course_parameters() {
+class plan_remove_user extends external_api {
+    public static function remove_user_parameters() {
         return new external_function_parameters(array(
-            'courseid' => new external_value(PARAM_INT, 'The id of the course', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
             'userid' => new external_value(PARAM_INT, 'The id of the user', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
+            'removeuserid' => new external_value(PARAM_INT, 'The id of the user to remove', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
+            'planid' => new external_value(PARAM_INT, 'The id of the plan', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
         ));
     }
 
-    public static function get_course($courseid, $userid) {
+    public static function remove_user($userid, $removeuserid, $planid) {
         global $DB;
         global $USER;
 
-        $params = self::validate_parameters(self::get_course_parameters(), array('courseid' => $courseid, 'userid' => $userid));
+        $params = self::validate_parameters(
+            self::remove_user_parameters(),
+            array('userid' => $userid, 'removeuserid' => $removeuserid, 'planid' => $planid)
+        );
 
-        // TODO: Check if the token is allowed to get this course.
+        // TODO: Check if token is allowed to access this function.
 
         return array();
     }
 
-    public static function get_course_returns() {
+    public static function remove_user_returns() {
         return new external_single_structure(
             array(
-                'courseid' => new external_value(PARAM_INT, 'The id of the course'),
-                'color' => new external_value(PARAM_TEXT, 'The color of the course'),
-                'name' => new external_value(PARAM_TEXT, 'The name of the course'),
-                'shortname' => new external_value(PARAM_TEXT, 'The shortname of the course'),
-                'enabled' => new external_value(PARAM_BOOL, 'Whether the course is enabled or not'),
-                'userid' => new external_value(PARAM_INT, 'The id of the user'),
+                'message' => new external_value(PARAM_BOOL, 'The message to show to the user'),
             )
         );
     }

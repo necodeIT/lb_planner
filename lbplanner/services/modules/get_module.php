@@ -24,8 +24,8 @@ use external_value;
 class moudles_get_module extends external_api {
     public static function get_module_parameters() {
         return new external_function_parameters(array(
-            'moduleid' => new external_value(PARAM_INT, 'The id of the module'),
-            'userid' => new external_value(PARAM_INT, 'The id of the user'),
+            'moduleid' => new external_value(PARAM_INT, 'The id of the module', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
+            'userid' => new external_value(PARAM_INT, 'The id of the user', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
         ));
     }
 

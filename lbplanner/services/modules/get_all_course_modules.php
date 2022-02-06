@@ -24,8 +24,8 @@ use external_value;
 class modules_get_all_course_modules extends external_api {
     public static function get_all_course_modules_parameters() {
         return new external_function_parameters(array(
-            'courseid' => new external_value(PARAM_INT, 'The id of the course'),
-            'userid' => new external_value(PARAM_INT, 'The id of the user'),
+            'courseid' => new external_value(PARAM_INT, 'The id of the course', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
+            'userid' => new external_value(PARAM_INT, 'The id of the user', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
         ));
     }
 
