@@ -56,7 +56,7 @@ class user_register_user extends external_api {
         $user->theme = $params['theme'];
         $user->role = user_helper::determin_user_role($params['userid']);
 
-        $DB->insert_record('local_lbplanner_users', $user);
+        $DB->insert_record(user_helper::table(), $user);
 
         // TODO: Create a new plan for the user.
 

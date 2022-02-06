@@ -82,9 +82,15 @@ class user_helper {
             return LB_PLANNER_ROLE_ENUMS[LB_PLANNER_STUDENT];
         }
     }
+
     public static function check_user_exists(int $userid): bool {
         global $DB;
         return $DB->record_exists('local_lbplanner_users', array('userid' => $userid));
+    }
+
+    public static function get_user(int $userid): stdClass {
+        global $DB;
+        return $DB->get_record(self::table(), array('userid' => $userid), '*', MUST_EXIST);
     }
 
 }

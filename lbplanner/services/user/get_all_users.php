@@ -42,7 +42,7 @@ class user_get_all_users extends external_api {
             throw new \moodle_exception('Access denied');
         }
 
-        $users = $DB->get_records('local_lbplanner_users');
+        $users = $DB->get_records(user_helper::table());
 
         $result = array();
 
@@ -53,9 +53,6 @@ class user_get_all_users extends external_api {
                 'username' => $mdluser->username,
                 'firstname' => $mdluser->firstname,
                 'lastname' => $mdluser->lastname,
-                'role' => null,
-                'theme' => null,
-                'lang' => null,
                 'profileimageurl' => $mdluser->profileimageurl,
             );
         }
