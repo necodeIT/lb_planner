@@ -28,6 +28,9 @@ class plan_helper {
     public static function access_table():string {
         return 'local_lbplanner_plan_access';
     }
+    public static function deadline_table():string {
+        return 'local_lbplanner_deadlines';
+    }
 
     public static function get_plan_members(int $planid):array {
         global $DB;

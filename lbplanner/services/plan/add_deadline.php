@@ -20,6 +20,9 @@ use external_api;
 use external_function_parameters;
 use external_single_structure;
 use external_value;
+use local_lbplanner\helpers\user_helper;
+use local_lbplanner\helpers\plan_helper;
+
 
 class plan_add_deadline extends external_api {
     public static function add_deadline_parameters() {
@@ -64,9 +67,8 @@ class plan_add_deadline extends external_api {
 
     public static function add_deadline($userid, $planid, $moduleid, $deadlinestart, $deadlineend) {
         global $DB;
-        global $USER;
 
-        $params = self::validate_parameters(
+        self::validate_parameters(
             self::add_deadline_parameters(),
             array(
                 'userid' => $userid,
@@ -77,8 +79,19 @@ class plan_add_deadline extends external_api {
             )
         );
 
-        // TODO: Check if the token is from the same User as the UserId.
-        // TODO: Add the Deadline to the DB.
+        if (!user_helper::check_access($userid)) {
+            throw new \moodle_exception('Access denied');
+        }
+
+        $deadline = new \stdClass();
+
+        $deadline->userid = $userid;
+        $deadline->planid = $planid;
+        $deadline->moduleid = $moduleid;
+        $deadline->deadlinestart = $deadlinestart;
+        $deadline->deadlineend = $deadlineend;
+
+        $DB->insert_record(plan_helper::deadline_table(), $deadline);
 
         return array();
     }

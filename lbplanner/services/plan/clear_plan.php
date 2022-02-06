@@ -20,6 +20,8 @@ use external_api;
 use external_function_parameters;
 use external_single_structure;
 use external_value;
+use local_lbplanner\helpers\plan_helper;
+use local_lbplanner\helpers\user_helper;
 
 class plan_clear_plan extends external_api {
     public static function clear_plan_parameters() {
@@ -47,16 +49,22 @@ class plan_clear_plan extends external_api {
 
         $params = self::validate_parameters(self::clear_plan_parameters(), array('userid' => $userid, 'planid' => $planid));
 
-        // TODO: Check if the token is from the same User as the UserId.
-        // TODO: Check if User is the Owner of the Plan
-        // TODO: clear the content in the Plan with the specified planID.
+        if (!user_helper::check_access($userid)) {
+            throw new \moodle_exception('Access denied');
+        }
+
+        if (plan_helper::get_access_type($planid, $userid) == PLAN_ACCESS_READ) {
+            throw new \moodle_exception('Access denied');
+        }
+
+        $DB->delete_records(plan_helper::deadline_table(), array('userid' => $userid, 'planid' => $planid ));
 
         return array('message' => 'Sucessfull');
     }
 
     public static function clear_plan_returns() {
         return new external_single_structure(
-            array('message' => new external_value(PARAM_TEXT, 'Sucessfull'))
+            array('message' => new external_value(PARAM_TEXT, 'Gives back if the clearing was succesfull'))
         );
     }
 }
