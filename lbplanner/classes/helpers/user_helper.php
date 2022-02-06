@@ -16,7 +16,6 @@
 
 namespace local_lbplanner\helpers;
 
-use core_reportbuilder\local\filters\text;
 use moodle_url;
 use stdClass;
 
