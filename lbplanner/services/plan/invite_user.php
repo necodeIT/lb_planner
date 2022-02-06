@@ -22,7 +22,7 @@ use external_single_structure;
 use external_value;
 
 class plan_invite_user extends external_api {
-    public static function leave_plan_parameters() {
+    public static function invite_user_parameters() {
         return new external_function_parameters(array(
             'inviterid' => new external_value(
                 PARAM_INT,
@@ -53,7 +53,7 @@ class plan_invite_user extends external_api {
         global $USER;
 
         $params = self::validate_parameters(
-            self::leave_plan_parameters(),
+            self::invite_user_parameters(),
             array('userid' => $inviterid, 'inviteeid' => $inviteuserid, 'planid' => $planid)
         );
 
