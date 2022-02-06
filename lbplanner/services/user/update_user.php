@@ -40,7 +40,7 @@ class user_update_user extends external_api {
             array('userid' => $userid, 'lang' => $lang, 'theme' => $theme)
         );
 
-        if (!user_helper::check_access($params['userid'])) {
+        if (!user_helper::check_access($userid)) {
             throw new \moodle_exception('Access denied');
         }
 

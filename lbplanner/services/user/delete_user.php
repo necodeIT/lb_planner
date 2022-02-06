@@ -20,6 +20,7 @@ use external_api;
 use external_function_parameters;
 use external_single_structure;
 use external_value;
+use local_lbplanner\helpers\user_helper;
 
 class user_delete_user extends external_api {
     public static function delete_user_parameters() {
@@ -38,11 +39,20 @@ class user_delete_user extends external_api {
         global $DB;
         global $USER;
 
-        $params = self::validate_parameters(self::delete_user_parameters(), array('userid' => $userid));
+        self::validate_parameters(self::delete_user_parameters(), array('userid' => $userid));
 
-        $user = $DB->get_record('local_lbplanner_users', array('userid' => $params['userid']), '*' , MUST_EXIST)
+        if (!user_helper::check_access($userid)) {
+            throw new \moodle_exception('Access denied');
+        }
 
-        // TODO: Check if the token is allowed to delete this user.
+        if (!user_helper::check_user_exists($userid)) {
+            throw new \moodle_exception('User does not exist');
+        }
+
+        $user = user_helper::get_user($userid);
+
+        $planid = DB->
+
         // TODO: Remove user from a plan if user is not the owner.
         // TODO: Delete plan of the user.
         // TODO: Clear all courses from the user.
