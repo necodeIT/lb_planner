@@ -20,68 +20,64 @@ use external_api;
 use external_function_parameters;
 use external_single_structure;
 use external_value;
-use external_multiple_structure;
 
-class plan_update_plan extends external_api {
-    public static function update_plan_parameters() {
+class get_deadline_plan extends external_api {
+    public static function get_deadline_parameters() {
         return new external_function_parameters(array(
             'userid' => new external_value(
                 PARAM_INT,
-                'The id of the user to get the data for',
+                'The id of the user',
                 VALUE_REQUIRED,
                 null,
                 NULL_NOT_ALLOWED
             ),
             'planid' => new external_value(
                 PARAM_INT,
-                'The id of the plan',
+                'The ID of the Plan',
                 VALUE_REQUIRED,
                 null,
                 NULL_NOT_ALLOWED
             ),
-            'planname' => new external_value(
-                PARAM_TEXT,
-                'The Name of the Plan',
+            'moduleid' => new external_value(
+                PARAM_INT,
+                'The ID of the Module',
                 VALUE_REQUIRED,
                 null,
                 NULL_NOT_ALLOWED
             ),
-        ));
+            )
+        );
+
     }
 
-    public static function update_plan($userid, $planid, $planname) {
+    public static function get_deadline($userid, $planid, $moduleid) {
         global $DB;
         global $USER;
 
         $params = self::validate_parameters(
-            self::update_plan_parameters(),
-            array('userid' => $userid, 'planid' => $planid, 'planname' => $planname)
+            self::get_deadline_parameters(),
+            array(
+                'userid' => $userid,
+                'planid' => $planid,
+                'moduleid' => $moduleid,
+            )
         );
 
-        // TODO: Check if the token is from the same User as the UserId.
-        // TODO: Check if the planname is valid.
-        // TODO: Change the planname from the Plan ID.
+        // TODO: Check if token is allowed to access this function.
+        // TODO: Check if the Module has costom deadlines.
 
         return array();
     }
 
-    public static function update_plan_returns() {
+    public static function get_deadline_returns() {
         return new external_single_structure(
             array(
-                'name' => new external_value(PARAM_TEXT, 'The name of the plan'),
+                'userid' => new external_value(PARAM_INT, 'The id of the user'),
                 'planid' => new external_value(PARAM_INT, 'The id of the plan'),
-                'deadlines' => new external_multiple_structure(
-                    new external_single_structure(
-                        array(
-                            'userid' => new external_value(PARAM_INT, 'The id of the user'),
-                            'planid' => new external_value(PARAM_INT, 'The id of the user'),
-                            'moduleid' => new external_value(PARAM_INT, 'The id of the user'),
-                            'deadlinestart' => new external_value(PARAM_INT, 'The id of the user'),
-                            'deadlineend' => new external_value(PARAM_INT, 'The id of the user'),
-                        )
-                    )
+                'moduleid' => new external_value(PARAM_INT, 'The id of the module'),
+                'deadlinestart' => new external_value(PARAM_INT, 'The start of the deadline'),
+                'deadlineend' => new external_value(PARAM_INT, 'The end of the deadline')
                 )
-            )
         );
     }
 }

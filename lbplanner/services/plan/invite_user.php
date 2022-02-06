@@ -61,12 +61,18 @@ class plan_invite_user extends external_api {
         // TODO: Check if Invited User is Valid.
         // TODO: Add Owner/Invitation/Time/Status/PlanId to the Invitation DB.
 
-        return array('message' => 'Sucessfull');
+        return array();
     }
 
     public static function invite_user_returns() {
         return new external_single_structure(
-            array('message' => new external_value(PARAM_TEXT, 'Sucessfull'))
+            array(
+                'owneruserid' => new external_value(PARAM_INT, 'The id of the owner user'),
+                'inviteuserid' => new external_value(PARAM_INT, 'The id of the invited user'),
+                'planid' => new external_value(PARAM_INT, 'The id of the plan'),
+                'status' => new external_value(PARAM_INT, 'The Status of the invitation'),
+                'timestamp' => new external_value(PARAM_INT, 'The time when the invitation was send'),
+                )
         );
     }
 }

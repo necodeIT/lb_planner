@@ -25,7 +25,13 @@ use external_value;
 class plan_get_plan extends external_api {
     public static function get_plan_parameters() {
         return new external_function_parameters(array(
-            'userid' => new external_value(PARAM_INT, 'The id of the user'),
+            'userid' => new external_value(
+                PARAM_INT,
+                'The id of the user',
+                VALUE_REQUIRED,
+                null,
+                NULL_NOT_ALLOWED
+            ),
         ));
     }
 
@@ -49,10 +55,10 @@ class plan_get_plan extends external_api {
                     new external_single_structure(
                         array(
                             'userid' => new external_value(PARAM_INT, 'The id of the user'),
-                            'planid' => new external_value(PARAM_INT, 'The id of the user'),
-                            'moduleid' => new external_value(PARAM_INT, 'The id of the user'),
-                            'deadlinestart' => new external_value(PARAM_INT, 'The id of the user'),
-                            'deadlineend' => new external_value(PARAM_INT, 'The id of the user'),
+                            'planid' => new external_value(PARAM_INT, 'The id of the plan'),
+                            'moduleid' => new external_value(PARAM_INT, 'The id of the module'),
+                            'deadlinestart' => new external_value(PARAM_INT, 'The start of the deadline'),
+                            'deadlineend' => new external_value(PARAM_INT, 'The end of the deadline')
                         )
                     )
                 )
