@@ -20,6 +20,8 @@ use external_api;
 use external_function_parameters;
 use external_single_structure;
 use external_value;
+use local_lbplanner\helpers\plan_helper;
+use local_lbplanner\helpers\user_helper;
 
 class plan_delete_deadline extends external_api {
     public static function delete_deadline_parameters() {
@@ -52,7 +54,7 @@ class plan_delete_deadline extends external_api {
         global $DB;
         global $USER;
 
-        $params = self::validate_parameters(
+        self::validate_parameters(
             self::delete_deadline_parameters(),
             array(
                 'userid' => $userid,
@@ -61,15 +63,25 @@ class plan_delete_deadline extends external_api {
             )
         );
 
-        // TODO: Check if the token is from the same User as the UserId.
-        // TODO: Change the Deadline on the DB.
+        if (!user_helper::check_access($userid)) {
+            throw new \moodle_exception('Access denied');
+        }
 
-        return array();
+        $DB->delete_records(
+            plan_helper::deadline_table(),
+            array(
+                'userid' => $userid,
+                'planid' => $planid ,
+                'moduleid' => $moduleid
+            )
+        );
+
+        return array('message' => 'Sucessfull');
     }
 
     public static function delete_deadline_returns() {
         return new external_single_structure(
-            array('message' => new external_value(PARAM_TEXT, 'Sucessfull'))
+            array('message' => new external_value(PARAM_TEXT, 'Gives back if the clearing was succesfull'))
         );
     }
 }
