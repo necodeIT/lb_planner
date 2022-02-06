@@ -37,7 +37,6 @@ class user_get_user extends external_api {
 
     public static function get_user($userid) {
         global $DB;
-        global $USER;
 
         $params = self::validate_parameters(self::get_user_parameters(), array('userid' => $userid));
 
@@ -45,7 +44,7 @@ class user_get_user extends external_api {
 
         $mdluser = user_helper::get_mdl_user_info($user->userid);
 
-        // TODO: Check if the user is allowed to get the data for this userid.
+        // Check if the user is allowed to get the data for this userid.
         if (user_helper::check_access($params['userid'])) {
             return array(
                 'userid' => $user->userid,

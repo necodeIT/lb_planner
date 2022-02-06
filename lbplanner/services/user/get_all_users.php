@@ -21,6 +21,7 @@ use external_function_parameters;
 use external_multiple_structure;
 use external_single_structure;
 use external_value;
+use local_lbplanner\helpers\user_helper;
 
 class user_get_all_users extends external_api {
     public static function get_all_users_parameters() {
@@ -35,9 +36,31 @@ class user_get_all_users extends external_api {
 
         $params = self::validate_parameters(self::get_all_users_parameters(), array('userid' => $userid));
 
-        // TODO: Check if token is allowed to access this function.
+        // Check if token is allowed to access this function.
 
-        return array();
+        if (!user_helper::check_access($params['userid'])) {
+            throw new \moodle_exception('Access denied');
+        }
+
+        $users = $DB->get_records('local_lbplanner_users');
+
+        $result = array();
+
+        foreach ($users as $user) {
+            $mdluser = user_helper::get_mdl_user_info($user->userid);
+            $result[] = array(
+                'userid' => $user->userid,
+                'username' => $mdluser->username,
+                'firstname' => $mdluser->firstname,
+                'lastname' => $mdluser->lastname,
+                'role' => null,
+                'theme' => null,
+                'lang' => null,
+                'profileimageurl' => $mdluser->profileimageurl,
+            );
+        }
+
+        return $result;
     }
 
     public static function get_all_users_returns() {

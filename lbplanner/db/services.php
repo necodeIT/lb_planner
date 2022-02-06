@@ -27,6 +27,15 @@ $functions = array(
         'capabilities' => '',
         'ajax' => true,
     ),
+    'local_lbplanner_user_get_all_users' => array(
+        'classname' => 'local_lbplanner_services\user_get_all_users',
+        'methodname' => 'get_all_users',
+        'classpath' => 'local/lbplanner/services/user/get_all_users.php',
+        'description' => 'Get all users',
+        'type' => 'read',
+        'capabilities' => '',
+        'ajax' => true,
+    ),
     'local_lbplanner_user_register_user' => array(
         'classname' => 'local_lbplanner_services\user_register_user',
         'methodname' => 'register_user',
@@ -249,6 +258,7 @@ $services = array(
     'LB Planner API' => array(
         'functions' => array(
             'local_lbplanner_user_get_user',
+            'local_lbplanner_user_get_all_users',
             'local_lbplanner_user_register_user',
             'local_lbplanner_user_update_user',
             'local_lbplanner_user_delete_user',
