@@ -24,6 +24,7 @@ class plan_helper {
     const TABLE = 'local_lbplanner_plans';
     const ACCESS_TABLE = 'local_lbplanner_plan_access';
     const DEADLINES_TABLE = 'local_lbplanner_plan_deadlines';
+    const INVITES_TABLE = 'local_lbplanner_plan_invites';
 
     public static function get_plan_members(int $planid):array {
         global $DB;

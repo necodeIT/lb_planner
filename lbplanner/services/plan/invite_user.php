@@ -20,6 +20,9 @@ use external_api;
 use external_function_parameters;
 use external_single_structure;
 use external_value;
+use local_lbplanner\helpers\user_helper;
+use local_lbplanner\helpers\plan_helper;
+
 
 class plan_invite_user extends external_api {
     public static function invite_user_parameters() {
@@ -48,20 +51,51 @@ class plan_invite_user extends external_api {
         ));
     }
 
-    public static function invite_user($inviterid, $inviteuserid , $planid) {
+    public static function invite_user($inviterid, $inviteeid , $planid) {
         global $DB;
         global $USER;
 
         $params = self::validate_parameters(
             self::invite_user_parameters(),
-            array('userid' => $inviterid, 'inviteeid' => $inviteuserid, 'planid' => $planid)
+            array('inviterid' => $inviterid, 'inviteeid' => $inviteeid, 'planid' => $planid)
         );
 
-        // TODO: Check if the token is from the same User as the UserId.
-        // TODO: Check if Invited User is Valid.
-        // TODO: Add Owner/Invitation/Time/Status/PlanId to the Invitation DB.
+        if (!user_helper::check_access($inviterid)) {
+            throw new \moodle_exception('Access denied');
+        }
 
-        return array();
+        if (!plan_helper::get_access_type($planid, $inviterid) != plan_helper::ACCESS_TYPE_OWNER) {
+            throw new \moodle_exception('Access denied');
+        }
+
+        if ($inviterid == $inviteeid) {
+            throw new \moodle_exception('Cannot invite yourself');
+        }
+
+        if (plan_helper::get_plan_id($inviteeid) == $planid) {
+            throw new \moodle_exception('Cannot invite user who is already a member');
+        }
+
+        if ($DB->record_exists(plan_helper::INVITES_TABLE, array('inviteeid' => $inviteeid, 'planid' => $planid))) {
+            throw new \moodle_exception('User is already invited');
+        }
+
+        $invite = new \stdClass();
+        $invite->planid = $planid;
+        $invite->inviterid = $inviterid;
+        $invite->inviteeid = $inviteeid;
+        $invite->timestamp = time();
+        $invite->status = 0;
+
+        $DB->insert_record(plan_helper::INVITES_TABLE, $invite);
+
+        return array(
+            'inviterid' => $inviterid,
+            'inviteeid' => $inviteeid,
+            'planid' => $planid,
+            'timestamp' => $invite->timestamp,
+            'status' => $invite->status
+        );
     }
 
     public static function invite_user_returns() {
@@ -70,7 +104,7 @@ class plan_invite_user extends external_api {
                 'inviterid' => new external_value(PARAM_INT, 'The id of the owner user'),
                 'inviteeid' => new external_value(PARAM_INT, 'The id of the invited user'),
                 'planid' => new external_value(PARAM_INT, 'The id of the plan'),
-                'status' => new external_value(PARAM_INT, 'The Status of the invitation'),
+                'status' => new external_value(PARAM_INT, 'The status of the invitation'),
                 'timestamp' => new external_value(PARAM_INT, 'The time when the invitation was send'),
             )
         );
