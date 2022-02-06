@@ -45,9 +45,8 @@ class plan_clear_plan extends external_api {
 
     public static function clear_plan($userid, $planid) {
         global $DB;
-        global $USER;
 
-        $params = self::validate_parameters(self::clear_plan_parameters(), array('userid' => $userid, 'planid' => $planid));
+        self::validate_parameters(self::clear_plan_parameters(), array('userid' => $userid, 'planid' => $planid));
 
         if (!user_helper::check_access($userid)) {
             throw new \moodle_exception('Access denied');
