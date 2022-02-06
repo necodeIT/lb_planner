@@ -46,16 +46,23 @@ class plan_update_plan extends external_api {
                 null,
                 NULL_NOT_ALLOWED
             ),
+            'enableek' => new external_value(
+                PARAM_BOOL,
+                'If the plan is enabled for ek',
+                VALUE_REQUIRED,
+                null,
+                NULL_NOT_ALLOWED
+            ),
         ));
     }
 
-    public static function update_plan($userid, $planid, $planname) {
+    public static function update_plan($userid, $planid, $planname, $enableek) {
         global $DB;
         global $USER;
 
         $params = self::validate_parameters(
             self::update_plan_parameters(),
-            array('userid' => $userid, 'planid' => $planid, 'planname' => $planname)
+            array('userid' => $userid, 'planid' => $planid, 'planname' => $planname, 'enableek' => $enableek)
         );
 
         // TODO: Check if the token is from the same User as the UserId.
@@ -70,6 +77,7 @@ class plan_update_plan extends external_api {
             array(
                 'name' => new external_value(PARAM_TEXT, 'The name of the plan'),
                 'planid' => new external_value(PARAM_INT, 'The id of the plan'),
+                'enableek' => new external_value(PARAM_BOOL, 'If the plan is enabled for ek'),
                 'deadlines' => new external_multiple_structure(
                     new external_single_structure(
                         array(
