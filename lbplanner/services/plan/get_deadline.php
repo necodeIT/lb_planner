@@ -21,7 +21,7 @@ use external_function_parameters;
 use external_single_structure;
 use external_value;
 
-class get_deadline_plan extends external_api {
+class plan_get_deadline extends external_api {
     public static function get_deadline_parameters() {
         return new external_function_parameters(array(
             'userid' => new external_value(
