@@ -21,6 +21,8 @@ use external_function_parameters;
 use external_multiple_structure;
 use external_single_structure;
 use external_value;
+use local_lbplanner\helpers\plan_helper;
+use local_lbplanner\helpers\user_helper;
 
 class plan_get_plan extends external_api {
     public static function get_plan_parameters() {
@@ -37,13 +39,37 @@ class plan_get_plan extends external_api {
 
     public static function get_plan($userid) {
         global $DB;
-        global $USER;
 
-        $params = self::validate_parameters(self::get_plan_parameters(), array('userid' => $userid));
+        self::validate_parameters(self::get_plan_parameters(), array('userid' => $userid));
 
-        // TODO: Check if token is allowed to access this function.
+        if (!user_helper::check_access($userid)) {
+            throw new \Exception('Access denied');
+        }
 
-        return array();
+        $planid = plan_helper::get_plan_id($userid);
+
+        $plan = $DB->get_record(plan_helper::TABLE, array('id' => $planid));
+
+        $dbdeadlines = $DB->get_records(plan_helper::DEADLINES_TABLE, array('planid' => $planid));
+
+        $deadlines = array();
+
+        foreach ($dbdeadlines as $dbdeadline) {
+            $deadlines[] = array(
+                'planid' => $dbdeadline->planid,
+                'startdate' => $dbdeadline->startdate,
+                'enddate' => $dbdeadline->enddate,
+                'timeend' => $dbdeadline->timeend,
+                'moduleid' => $dbdeadline->id,
+            );
+        }
+
+        return array(
+            'name' => $plan->name,
+            'planid' => $planid,
+            'enableek' => $plan->enableek,
+            'deadlines' => $deadlines,
+        );
     }
 
     public static function get_plan_returns() {

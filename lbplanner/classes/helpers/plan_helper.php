@@ -53,5 +53,4 @@ class plan_helper {
         $access = $DB->get_field(self::ACCESS_TABLE, 'accesstype', array('planid' => $planid, 'userid' => $userid));
         return $access;
     }
-
 }
