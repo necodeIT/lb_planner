@@ -94,7 +94,7 @@ class plan_invite_user extends external_api {
 
         // Create new notification for the invitee.
 
-        $planname = $DB->get_record(plan_helper::TABLE, array('id' => $planid), 'name', MUST_EXIST);
+        $planname = $DB->get_field(plan_helper::TABLE, 'name', array('id' => $planid), MUST_EXIST);
 
         $notification = new \stdClass();
         $notification->userid = $inviteeid;
