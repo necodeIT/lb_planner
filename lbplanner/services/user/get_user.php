@@ -55,7 +55,7 @@ class user_get_user extends external_api {
             'username' => $mdluser->username,
             'firstname' => $mdluser->firstname,
             'lastname' => $mdluser->lastname,
-            'role' => $user->role,
+            'role' => user_helper::determin_user_role($userid),
             'theme' => $user->theme,
             'lang' => $user->language,
             'profileimageurl' => $mdluser->profileimageurl,

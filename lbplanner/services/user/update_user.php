@@ -35,7 +35,7 @@ class user_update_user extends external_api {
         global $DB;
         global $USER;
 
-        $params = self::validate_parameters(
+        self::validate_parameters(
             self::update_user_parameters(),
             array('userid' => $userid, 'lang' => $lang, 'theme' => $theme)
         );
@@ -47,6 +47,7 @@ class user_update_user extends external_api {
         if (!user_helper::check_user_exists($userid)) {
             throw new \moodle_exception('User does not exist');
         }
+
         // Look if User-Id is in the DB.
 
         $user = user_helper::get_user($userid);
@@ -54,9 +55,20 @@ class user_update_user extends external_api {
         $user->language = $lang;
         $user->theme = $theme;
 
-        $DB->update_record(plan_helper::TABLE, $user, false);
+        $DB->update_record(user_helper::TABLE, $user, false);
 
-        return array();
+        $mdluser = user_helper::get_mdl_user_info($userid);
+
+        return array(
+            'userid' => $userid,
+            'lang' => $lang,
+            'theme' => $theme,
+            'role' => user_helper::determin_user_role($userid),
+            'username' => $mdluser->username,
+            'firstname' => $mdluser->firstname,
+            'lastname' => $mdluser->lastname,
+            'profileimageurl' => $mdluser->profileimageurl,
+        );
     }
 
     public static function update_user_returns() {
