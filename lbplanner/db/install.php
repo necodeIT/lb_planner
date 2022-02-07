@@ -17,7 +17,17 @@
 use local_lbplanner\helpers\user_helper;
 
 function xmldb_local_lbplanner_install() {
-    create_role('LB Planner Admin', user_helper::ROLE_ADMIN, 'Administrator of the LB Planner app');
-    create_role('LB Planner Manager', user_helper::ROLE_MANAGER, 'Manager of the LB Planner app');
-    create_role('LB Planner Teacher', user_helper::ROLE_TEACHER, 'Has access for the teacher tools of the LB Planner app');
+    $adminid = create_role('LB Planner Admin', user_helper::ROLE_ADMIN, 'Administrator of the LB Planner app');
+    $managerid = create_role('LB Planner Manager', user_helper::ROLE_MANAGER, 'Manager of the LB Planner app');
+
+    $teacherid = create_role(
+        'LB Planner Teacher',
+        user_helper::ROLE_TEACHER,
+        'Has access for the teacher tools of the LB Planner app'
+    );
+
+    set_role_contextlevels($adminid, array(CONTEXT_SYSTEM));
+    set_role_contextlevels($managerid, array(CONTEXT_SYSTEM));
+    set_role_contextlevels($teacherid, array(CONTEXT_SYSTEM));
 }
+

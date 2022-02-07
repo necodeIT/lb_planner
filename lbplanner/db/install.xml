@@ -27,13 +27,13 @@
                 <KEY NAME="courseid" TYPE="unique" FIELDS="courseid"/>
             </KEYS>
         </TABLE>
-        <TABLE NAME="local_lbplanner_notfications" COMMENT="Default comment for the table, please edit me">
+        <TABLE NAME="local_lbplanner_notification" COMMENT="Default comment for the table, please edit me">
             <FIELDS>
                 <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
                 <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="The id of the user for whom this notification is for."/>
                 <FIELD NAME="info" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="Additional information about the notification"/>
                 <FIELD NAME="status" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Whether the notification has been read or not."/>
-                <FIELD NAME="trigger" TYPE="int" LENGTH="1" NOTNULL="true" SEQUENCE="false" COMMENT="The type of event that triggered the notifcation" />
+                <FIELD NAME="type" TYPE="int" LENGTH="1" NOTNULL="true" SEQUENCE="false" COMMENT="The type of event that triggered the notifcation" />
             </FIELDS>
             <KEYS>
                 <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
@@ -71,7 +71,7 @@
                 <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
                 <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
                 <FIELD NAME="planid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
-                <FIELD NAME="accestype" TYPE="int" LENGTH="1" NOTNULL="true" SEQUENCE="false"/>
+                <FIELD NAME="accesstype" TYPE="int" LENGTH="1" NOTNULL="true" SEQUENCE="false"/>
             </FIELDS>
             <KEYS>
                 <KEY NAME="primary" TYPE="primary" FIELDS="id"/>

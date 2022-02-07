@@ -17,7 +17,7 @@
 namespace local_lbplanner\helpers;
 
 class notifications_helper {
-    const TABLE = 'local_lbplanner_notfications';
+    const TABLE = 'local_lbplanner_notification';
 
     const STATUS_READ = 1;
     const STATUS_UNREAD = 0;

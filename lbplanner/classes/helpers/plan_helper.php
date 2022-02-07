@@ -20,6 +20,10 @@ class plan_helper {
     const ACCESS_TYPE_OWNER = 0;
     const ACCESS_TYPE_WRITE = 1;
     const ACCESS_TYPE_READ = 2;
+    const ACCESS_TYPE_NONE = -1;
+
+    const EK_DISABLED = 0;
+    const EK_ENABLED = 1;
 
     const INVITE_PENDING = 0;
     const INVITE_ACCEPTED = 1;
@@ -55,8 +59,12 @@ class plan_helper {
 
     public static function get_access_type(int $planid, int $userid):int {
         global $DB;
-        $access = $DB->get_field(self::ACCESS_TABLE, 'accesstype', array('planid' => $planid, 'userid' => $userid));
-        return $access;
+
+        if ($DB->record_exists(self::ACCESS_TABLE, array('planid' => $planid, 'userid' => $userid))) {
+            return $DB->get_field(self::ACCESS_TABLE, 'accesstype', array('planid' => $planid, 'userid' => $userid));
+        } else {
+            return self::ACCESS_TYPE_NONE;
+        }
     }
 
     public static function check_edit_permissions(int $userid, int $planid):bool {

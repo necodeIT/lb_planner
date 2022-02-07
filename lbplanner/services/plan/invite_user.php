@@ -65,7 +65,7 @@ class plan_invite_user extends external_api {
             throw new \moodle_exception('Access denied');
         }
 
-        if (!plan_helper::get_access_type($planid, $inviterid) != plan_helper::ACCESS_TYPE_OWNER) {
+        if (plan_helper::get_access_type($planid, $inviterid) != plan_helper::ACCESS_TYPE_OWNER) {
             throw new \moodle_exception('Access denied');
         }
 
@@ -99,7 +99,7 @@ class plan_invite_user extends external_api {
         $notification = new \stdClass();
         $notification->userid = $inviteeid;
         $notification->status = notifications_helper::STATUS_UNREAD;
-        $notification->trigger = notifications_helper::TRIGGER_INVITE;
+        $notification->type = notifications_helper::TRIGGER_INVITE;
         $notification->info = $planname;
 
         $DB->insert_record(notifications_helper::TABLE, $notification);

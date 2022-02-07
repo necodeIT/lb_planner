@@ -64,13 +64,13 @@ class user_register_user extends external_api {
 
         $plan = new \stdClass();
         $plan->name = 'Plan for ' . $mdluser->firstname;
-        $plan->enableek = 0;
+        $plan->enableek = plan_helper::EK_DISABLED;
 
         $planid = $DB->insert_record(plan_helper::TABLE, $plan);
 
         $planaccess = new \stdClass();
         $planaccess->userid = $userid;
-        $planaccess->accestype = 0;
+        $planaccess->accesstype = plan_helper::ACCESS_TYPE_OWNER;
         $planaccess->planid = $planid;
 
         $DB->insert_record(plan_helper::ACCESS_TABLE, $planaccess);
