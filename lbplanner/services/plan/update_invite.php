@@ -37,7 +37,7 @@ class plan_update_invite extends external_api {
         global $DB;
         global $USER;
 
-        $params = self::validate_parameters(self::update_invite_parameters(), array(
+        self::validate_parameters(self::update_invite_parameters(), array(
             'planid' => $planid,
             'inviteeid' => $inviteeid,
             'status' => $status,

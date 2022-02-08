@@ -43,9 +43,8 @@ class plan_leave_plan extends external_api {
 
     public static function leave_plan($userid, $planid) {
         global $DB;
-        global $USER;
 
-        $params = self::validate_parameters(self::leave_plan_parameters(), array('userid' => $userid, 'planid' => $planid));
+        self::validate_parameters(self::leave_plan_parameters(), array('userid' => $userid, 'planid' => $planid));
 
         // TODO: Check if the token is from the same User as the UserId.
         // TODO: Check if User is part of the Plan from the Plan ID.

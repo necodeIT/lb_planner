@@ -19,7 +19,6 @@ namespace local_lbplanner_services;
 use external_api;
 use external_function_parameters;
 use external_value;
-use local_lbplanner\helpers\user_helper;
 use local_lbplanner\helpers\plan_helper;
 
 class plan_remove_user extends external_api {
@@ -33,9 +32,8 @@ class plan_remove_user extends external_api {
 
     public static function remove_user($userid, $removeuserid, $planid) {
         global $DB;
-        global $USER;
 
-        $params = self::validate_parameters(
+        self::validate_parameters(
             self::remove_user_parameters(),
             array('userid' => $userid, 'removeuserid' => $removeuserid, 'planid' => $planid)
         );

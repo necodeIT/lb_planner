@@ -16,7 +16,6 @@
 
 namespace local_lbplanner_services;
 
-use block_recentlyaccesseditems\external;
 use external_api;
 use external_function_parameters;
 use external_single_structure;
@@ -40,7 +39,6 @@ class plan_get_invites extends external_api {
 
     public static function get_invites($userid) {
         global $DB;
-        global $USER;
 
         self::validate_parameters(
             self::get_invites_parameters(),

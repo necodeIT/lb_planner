@@ -32,7 +32,6 @@ class user_get_all_users extends external_api {
 
     public static function get_all_users($userid) {
         global $DB;
-        global $USER;
 
         self::validate_parameters(self::get_all_users_parameters(), array('userid' => $userid));
 

@@ -20,7 +20,6 @@ use external_api;
 use external_function_parameters;
 use external_single_structure;
 use external_value;
-use local_lbplanner\helpers\user_helper;
 use local_lbplanner\helpers\plan_helper;
 use local_lbplanner\helpers\notifications_helper;
 
@@ -54,9 +53,8 @@ class plan_invite_user extends external_api {
 
     public static function invite_user($inviterid, $inviteeid , $planid) {
         global $DB;
-        global $USER;
 
-        $params = self::validate_parameters(
+        self::validate_parameters(
             self::invite_user_parameters(),
             array('inviterid' => $inviterid, 'inviteeid' => $inviteeid, 'planid' => $planid)
         );

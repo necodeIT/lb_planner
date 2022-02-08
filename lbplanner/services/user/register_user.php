@@ -35,7 +35,6 @@ class user_register_user extends external_api {
 
     public static function register_user($userid, $lang, $theme) {
         global $DB;
-        global $USER;
 
         self::validate_parameters(
             self::register_user_parameters(),

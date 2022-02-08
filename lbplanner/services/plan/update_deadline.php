@@ -65,9 +65,8 @@ class plan_update_deadline extends external_api {
 
     public static function update_deadline($userid, $planid, $moduleid, $deadlinestart, $deadlineend) {
         global $DB;
-        global $USER;
 
-        $params = self::validate_parameters(
+        self::validate_parameters(
             self::update_deadline_parameters(),
             array(
                 'userid' => $userid,

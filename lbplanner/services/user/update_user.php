@@ -34,7 +34,6 @@ class user_update_user extends external_api {
 
     public static function update_user($userid, $lang, $theme) {
         global $DB;
-        global $USER;
 
         self::validate_parameters(
             self::update_user_parameters(),

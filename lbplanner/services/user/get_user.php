@@ -37,8 +37,6 @@ class user_get_user extends external_api {
     }
 
     public static function get_user($userid) {
-        global $DB;
-
         self::validate_parameters(self::get_user_parameters(), array('userid' => $userid));
 
         if (!user_helper::check_user_exists($userid)) {
