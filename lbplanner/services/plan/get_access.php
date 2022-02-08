@@ -51,7 +51,7 @@ class plan_get_access extends external_api {
         }
 
         return array(
-            'accesstype' => plan_helper::get_access_type($userid, $planid),
+            'accesstype' => plan_helper::get_access_type($planid, $userid),
             'planid' => $planid,
             'userid' => $userid,
         );

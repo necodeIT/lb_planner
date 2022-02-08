@@ -39,7 +39,7 @@ class course_get_all_courses extends external_api {
         global $DB;
         global $USER;
 
-        $params = self::validate_parameters(self::get_all_courses_parameters(), array('userid' => $userid));
+        self::validate_parameters(self::get_all_courses_parameters(), array('userid' => $userid));
 
         // TODO: Check if the user is allowed to get the data for this userid.
         // TODO: Get all courses of the current year.

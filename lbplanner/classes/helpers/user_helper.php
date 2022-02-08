@@ -61,7 +61,6 @@ class user_helper {
         $adminid = $DB->get_field('role', 'id', array('shortname' => self::ROLE_ADMIN));
         $managerid = $DB->get_field('role', 'id', array('shortname' => self::ROLE_MANAGER));
         $teacherid = $DB->get_field('role', 'id', array('shortname' => self::ROLE_TEACHER));
-        $studentid = $DB->get_field('role', 'id', array('shortname' => self::ROLE_STUDENT));
 
         $isadmin = $DB->record_exists('role_assignments', array('userid' => $userid, 'roleid' => $adminid));
         $ismanager = $DB->record_exists('role_assignments', array('userid' => $userid, 'roleid' => $managerid));

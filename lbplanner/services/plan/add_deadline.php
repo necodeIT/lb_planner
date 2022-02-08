@@ -83,7 +83,7 @@ class plan_add_deadline extends external_api {
             throw new \moodle_exception('Access denied');
         }
 
-        if (plan_helper::get_access_type($userid, $planid) == plan_helper::ACCESS_TYPE_READ) {
+        if (!plan_helper::check_edit_permissions($planid, $userid)) {
             throw new \moodle_exception('Access denied');
         }
 

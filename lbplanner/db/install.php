@@ -17,17 +17,54 @@
 use local_lbplanner\helpers\user_helper;
 
 function xmldb_local_lbplanner_install() {
-    $adminid = create_role('LB Planner Admin', user_helper::ROLE_ADMIN, 'Administrator of the LB Planner app');
-    $managerid = create_role('LB Planner Manager', user_helper::ROLE_MANAGER, 'Manager of the LB Planner app');
+    global $DB;
 
-    $teacherid = create_role(
-        'LB Planner Teacher',
-        user_helper::ROLE_TEACHER,
-        'Has access for the teacher tools of the LB Planner app'
-    );
+    $admins = array();
+    $managers = array();
+    $teachers = array();
+
+    if ($DB->record_exists('role', array('shortname' => user_helper::ROLE_ADMIN))) {
+        $adminid = $DB->get_field('role', 'id', array('shortname' => user_helper::ROLE_ADMIN));
+        $admins = $DB->get_records('role_assignments', array('roleid' => $adminid));
+
+        $DB->delete_records('role', array('shortname' => user_helper::ROLE_ADMIN, 'id' => $adminid));
+        $DB->delete_records('role_assignments', array('roleid' => $adminid));
+    }
+
+    if ($DB->record_exists('role', array('shortname' => user_helper::ROLE_MANAGER))) {
+        $managerid = $DB->get_field('role', 'id', array('shortname' => user_helper::ROLE_MANAGER));
+        $managers = $DB->get_records('role_assignments', array('roleid' => $managerid));
+
+        $DB->delete_records('role', array('shortname' => user_helper::ROLE_MANAGER, 'id' => $managerid));
+        $DB->delete_records('role_assignments', array('roleid' => $managerid));
+    }
+
+    if ($DB->record_exists('role', array('shortname' => user_helper::ROLE_TEACHER))) {
+        $teacherid = $DB->get_field('role', 'id', array('shortname' => user_helper::ROLE_TEACHER));
+        $teachers = $DB->get_records('role_assignments', array('roleid' => $teacherid));
+
+        $DB->delete_records('role', array('shortname' => user_helper::ROLE_TEACHER, 'id' => $teacherid));
+        $DB->delete_records('role_assignments', array('roleid' => $teacherid));
+    }
+
+    $adminid = create_role('LB Planner Admin', user_helper::ROLE_ADMIN, 'Administrator access to the LB Planner app');
+    $managerid = create_role('LB Planner Manager', user_helper::ROLE_MANAGER, 'Manager access to the LB Planner app');
+    $teacherid = create_role('LB Planner Teacher', user_helper::ROLE_TEACHER, 'Teacher access to the LB Planner app');
 
     set_role_contextlevels($adminid, array(CONTEXT_SYSTEM));
     set_role_contextlevels($managerid, array(CONTEXT_SYSTEM));
     set_role_contextlevels($teacherid, array(CONTEXT_SYSTEM));
+
+    foreach ($admins as $admin) {
+        role_assign($adminid, $admin->userid, $admin->contextid);
+    }
+
+    foreach ($managers as $manager) {
+        role_assign($managerid, $manager->userid, $manager->contextid);
+    }
+
+    foreach ($teachers as $teacher) {
+        role_assign($teacherid, $teacher->userid, $teacher->contextid);
+    }
 }
 

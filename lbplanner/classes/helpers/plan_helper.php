@@ -31,7 +31,7 @@ class plan_helper {
 
     const TABLE = 'local_lbplanner_plans';
     const ACCESS_TABLE = 'local_lbplanner_plan_access';
-    const DEADLINES_TABLE = 'local_lbplanner_plan_deadlines';
+    const DEADLINES_TABLE = 'local_lbplanner_deadlines';
     const INVITES_TABLE = 'local_lbplanner_plan_invites';
 
     public static function get_plan_members(int $planid):array {
@@ -67,9 +67,9 @@ class plan_helper {
         }
     }
 
-    public static function check_edit_permissions(int $userid, int $planid):bool {
+    public static function check_edit_permissions(int $planid, int $userid):bool {
         $access = self::get_access_type($planid, $userid);
 
-        return $access != self::ACCESS_TYPE_READ;
+        return $access == self::ACCESS_TYPE_OWNER || $access == self::ACCESS_TYPE_WRITE;
     }
 }
