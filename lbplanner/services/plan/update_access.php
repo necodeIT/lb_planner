@@ -72,7 +72,7 @@ class plan_update_access extends external_api {
             throw new \moodle_exception('Cannot change permissions for the plan owner');
         }
 
-        if ($accesstype == plan_helper::ACCESS_TYPE_OWNER) {
+        if ($accesstype != plan_helper::ACCESS_TYPE_OWNER) {
             throw new \moodle_exception('Cannot change permissions to owner');
         }
 

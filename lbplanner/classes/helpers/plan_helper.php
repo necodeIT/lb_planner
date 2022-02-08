@@ -127,7 +127,6 @@ class plan_helper {
                 'deadlines' => new external_multiple_structure(
                     new external_single_structure(
                         array(
-                            'userid' => new external_value(PARAM_INT, 'The id of the user'),
                             'planid' => new external_value(PARAM_INT, 'The id of the user'),
                             'moduleid' => new external_value(PARAM_INT, 'The id of the user'),
                             'deadlinestart' => new external_value(PARAM_INT, 'The id of the user'),
