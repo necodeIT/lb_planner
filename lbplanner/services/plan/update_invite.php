@@ -72,6 +72,9 @@ class plan_update_invite extends external_api {
 
         $DB->insert_record(notifications_helper::TABLE, $notification);
 
+        // TODO: send notification to the inviter
+        // TODO: Change plan access and delete old plan if inivite is accepted.
+
         return array();
     }
 
