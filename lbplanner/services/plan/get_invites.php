@@ -40,7 +40,7 @@ class plan_get_invites extends external_api {
         global $DB;
         global $USER;
 
-        $params = self::validate_parameters(
+        self::validate_parameters(
             self::get_invites_parameters(),
             array('userid' => $userid)
         );
