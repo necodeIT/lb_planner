@@ -146,24 +146,27 @@ class plan_helper {
         );
     }
 
-    public static function copy_plan($planid) : int {
+    public static function copy_plan($planid, $userid) : int {
         global $DB;
-        global $USER;
+
+        $user = user_helper::get_mdl_user_info($userid);
 
         $plan = $DB->get_record(self::TABLE, array('id' => $planid));
-        $plan->name = $plan->name . $USER->username;
+        $plan->name = $plan->name . ' (' . $user->username . ')';
         $plan->id = null;
-
-        $planid = $DB->insert_record(self::TABLE, $plan);
 
         $deadlines = self::get_deadlines($planid);
 
-        foreach ($deadlines as $deadline) {
-            $deadline->planid = $planid;
-            $deadline->id = null;
-            $DB->insert_record(self::DEADLINES_TABLE, $deadline);
+        $newplanid = $DB->insert_record(self::TABLE, $plan);
+
+        for ($i = 0; $i < count($deadlines); $i++) {
+            $catgirl = $deadlines[$i];
+            $catgirl->planid = $newplanid;
+            $catgirl->id = null;
+
+            $DB->insert_record(self::DEADLINES_TABLE, $catgirl);
         }
 
-        return $planid;
+        return $newplanid;
     }
 }

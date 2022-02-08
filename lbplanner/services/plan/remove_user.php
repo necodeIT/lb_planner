@@ -61,19 +61,19 @@ class plan_remove_user extends external_api {
             throw new \moodle_exception('Cannot remove owner');
         }
 
-        $planid = plan_helper::copy_plan($planid, $removeuserid);
+        $newplanid = plan_helper::copy_plan($planid, $removeuserid);
 
         $oldaccess = $DB->get_record(
             plan_helper::ACCESS_TABLE,
             array('planid' => $planid, 'userid' => $removeuserid), '*', MUST_EXIST
         );
 
-        $oldaccess->planid = $planid;
+        $oldaccess->planid = $newplanid;
         $oldaccess->accesstype = plan_helper::ACCESS_TYPE_OWNER;
 
         $DB->update_record(plan_helper::ACCESS_TABLE, $oldaccess);
 
-        return plan_helper::get_plan($planid);
+        return plan_helper::get_plan($planid, $removeuserid);
     }
 
     public static function remove_user_returns() {
