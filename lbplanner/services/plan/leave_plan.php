@@ -46,6 +46,14 @@ class plan_leave_plan extends external_api {
 
         self::validate_parameters(self::leave_plan_parameters(), array('userid' => $userid, 'planid' => $planid));
 
+        if (plan_helper::get_access_type($userid, $planid) == plan_helper::ACCESS_TYPE_OWNER) {
+            throw new \moodle_exception('Owner cannot leave his plan');
+        }
+
+        if (plan_helper::get_access_type($userid, $planid) == plan_helper::ACCESS_TYPE_NONE) {
+            throw new \moodle_exception('User is not a member of this plan');
+        }
+
         // TODO: Check if the token is from the same User as the UserId.
         // TODO: Check if User is part of the Plan from the Plan ID.
         // TODO: copy the Plan for the User and Delete User from the Current Plan ID.
