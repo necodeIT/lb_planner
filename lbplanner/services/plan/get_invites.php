@@ -22,6 +22,8 @@ use external_function_parameters;
 use external_single_structure;
 use external_multiple_structure;
 use external_value;
+use local_lbplanner\helpers\user_helper;
+use local_lbplanner\helpers\plan_helper;
 
 class plan_get_invites extends external_api {
     public static function get_invites_parameters() {
@@ -45,11 +47,36 @@ class plan_get_invites extends external_api {
             array('userid' => $userid)
         );
 
-        // TODO: Check if the token is from the same User as the UserId.
-        // TODO: Check if user has been invited.
-        // TODO: Check if user has invited somone.
+        if (!user_helper::check_access($userid)) {
+            throw new \moodle_exception('Access denied');
+        }
 
-        return array();
+        $invitesreceived = $DB->get_records(plan_helper::INVITES_TABLE, array('inviteeid' => $userid));
+        $invitessent = $DB->get_records(plan_helper::INVITES_TABLE, array('inviterid' => $userid));
+
+        $invites = array();
+
+        foreach ($invitesreceived as $invite) {
+            $invites[] = array(
+                'inviterid' => $invite->inviterid,
+                'inviteeid' => $invite->inviteeid,
+                'planid' => $invite->planid,
+                'status' => $invite->status,
+                'timestamp' => $invite->timestamp,
+            );
+        }
+
+        foreach ($invitessent as $invitesent) {
+            $invites[] = array(
+                'inviterid' => $invitesent->inviterid,
+                'inviteeid' => $invitesent->inviteeid,
+                'planid' => $invitesent->planid,
+                'status' => $invitesent->status,
+                'timestamp' => $invitesent->timestamp,
+            );
+        }
+
+        return $invites;
     }
 
     public static function get_invites_returns() {
@@ -61,7 +88,7 @@ class plan_get_invites extends external_api {
                     'planid' => new external_value(PARAM_INT, 'The id of the plan'),
                     'status' => new external_value(PARAM_INT, 'The Status of the invitation'),
                     'timestamp' => new external_value(PARAM_INT, 'The time when the invitation was send'),
-                    )
+                )
             )
         );
     }

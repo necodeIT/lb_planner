@@ -48,53 +48,57 @@ class plan_update_access extends external_api {
                 null,
                 NULL_NOT_ALLOWED
             ),
+            'memberid' => new external_value(
+                PARAM_INT,
+                'The id of the member',
+                VALUE_REQUIRED,
+                null,
+                NULL_NOT_ALLOWED
+            ),
         ));
     }
 
-    public static function update_access($userid, $planid, $accesstype) {
+    public static function update_access($userid, $planid, $accesstype, $memberid) {
         global $DB;
-        global $USER;
 
         self::validate_parameters(
             self::update_access_parameters(),
-            array('userid' => $userid, 'planid' => $planid, 'accesstype' => $accesstype)
+            array('userid' => $userid, 'planid' => $planid, 'accesstype' => $accesstype, 'memberid' => $memberid)
         );
 
-        if (!plan_helper::check_edit_permissions($USER->id, $planid)) {
+        if (!user_helper::check_access($userid)) {
             throw new \moodle_exception('Access denied');
         }
 
-        if ($userid == $USER->id) {
+        if (plan_helper::get_owner($planid) != $userid) {
+            throw new \moodle_exception('Access denied');
+        }
+
+        if ($accesstype < 0 || $accesstype > 2) {
+            throw new \moodle_exception('Access type not valid');
+        }
+
+        if ($userid == $memberid) {
             throw new \moodle_exception('Cannot change own permissions');
         }
 
-        if (plan_helper::get_owner($planid) == $userid) {
+        if (plan_helper::get_owner($planid) == $memberid) {
             throw new \moodle_exception('Cannot change permissions for the plan owner');
         }
 
-        if ($accesstype != plan_helper::ACCESS_TYPE_OWNER) {
+        if ($accesstype == plan_helper::ACCESS_TYPE_OWNER) {
             throw new \moodle_exception('Cannot change permissions to owner');
         }
 
-        $access = $DB->get_record(plan_helper::ACCESS_TABLE, array('planid' => $planid, 'userid' => $userid), '*', MUST_EXIST);
+        $access = $DB->get_record(plan_helper::ACCESS_TABLE, array('planid' => $planid, 'userid' => $memberid), '*', MUST_EXIST);
         $access->accesstype = $accesstype;
 
         $DB->update_record(plan_helper::ACCESS_TABLE, $access);
 
-        return array(
-            'userid' => $userid,
-            'planid' => $planid,
-            'accesstype' => $accesstype,
-        );
+        return plan_helper::get_plan($planid);
     }
 
     public static function update_access_returns() {
-        return new external_single_structure(
-            array(
-                'accesstype' => new external_value(PARAM_INT, 'The type of access the user has to the plan'),
-                'planid' => new external_value(PARAM_INT, 'The id of the plan'),
-                'userid' => new external_value(PARAM_INT, 'The id of the plan'),
-            )
-        );
+        return plan_helper::plan_structure();
     }
 }
