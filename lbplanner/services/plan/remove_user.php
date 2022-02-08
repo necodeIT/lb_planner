@@ -20,6 +20,7 @@ use external_api;
 use external_function_parameters;
 use external_value;
 use local_lbplanner\helpers\plan_helper;
+use local_lbplanner\helpers\user_helper;
 
 class plan_remove_user extends external_api {
     public static function remove_user_parameters() {
@@ -38,7 +39,39 @@ class plan_remove_user extends external_api {
             array('userid' => $userid, 'removeuserid' => $removeuserid, 'planid' => $planid)
         );
 
-        // TODO: Check if token is allowed to access this function.
+        // Check if token is allowed to access this function.
+
+        if (!user_helper::check_access($userid)) {
+            throw new \moodle_exception('Access denied');
+        }
+
+        if (plan_helper::get_owner($planid) != $userid) {
+            throw new \moodle_exception('Access denied');
+        }
+
+        if (plan_helper::get_plan_id($removeuserid) != $planid) {
+            throw new \moodle_exception('Cannot remove user from other plan');
+        }
+
+        if ($userid == $removeuserid) {
+            throw new \moodle_exception('Cannot remove yourself');
+        }
+
+        if (plan_helper::get_access_type($removeuserid, $planid) == plan_helper::ACCESS_TYPE_OWNER) {
+            throw new \moodle_exception('Cannot remove owner');
+        }
+
+        $planid = plan_helper::copy_plan($planid, $removeuserid);
+
+        $oldaccess = $DB->get_record(
+            plan_helper::ACCESS_TABLE,
+            array('planid' => $planid, 'userid' => $removeuserid), '*', MUST_EXIST
+        );
+
+        $oldaccess->planid = $planid;
+        $oldaccess->accesstype = plan_helper::ACCESS_TYPE_OWNER;
+
+        $DB->update_record(plan_helper::ACCESS_TABLE, $oldaccess);
 
         return plan_helper::get_plan($planid);
     }
