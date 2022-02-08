@@ -18,9 +18,7 @@ namespace local_lbplanner_services;
 
 use external_api;
 use external_function_parameters;
-use external_single_structure;
 use external_value;
-use external_multiple_structure;
 use local_lbplanner\helpers\user_helper;
 use local_lbplanner\helpers\plan_helper;
 
@@ -80,8 +78,22 @@ class plan_update_deadline extends external_api {
             )
         );
 
-        // TODO: Check if the token is from the same User as the UserId.
-        // TODO: Change the Deadline on the DB.
+        if (!user_helper::check_access($userid)) {
+            throw new \moodle_exception('Access denied');
+        }
+        if (!plan_helper::check_edit_permissions($planid, $userid)) {
+            throw new \moodle_exception('Access denied');
+        }
+
+        if (!$DB->record_exists(plan_helper::DEADLINES_TABLE, array('moduleid' => $moduleid, 'planid' => $planid))) {
+            throw new \moodle_exception('Deadline doesnt exists');
+        }
+        $deadline = $DB->get_record(plan_helper::DEADLINES_TABLE, array('moduleid' => $moduleid, 'planid' => $planid));
+
+        $deadline->deadlinestart = $deadlinestart;
+        $deadline->deadlineend = $deadlineend;
+
+        $DB->update_record(plan_helper::DEADLINES_TABLE, $deadline);
 
         return plan_helper::get_plan($planid);
 
