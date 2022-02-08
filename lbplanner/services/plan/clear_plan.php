@@ -19,6 +19,7 @@ namespace local_lbplanner_services;
 use external_api;
 use external_function_parameters;
 use external_single_structure;
+use external_multiple_structure;
 use external_value;
 use local_lbplanner\helpers\plan_helper;
 use local_lbplanner\helpers\user_helper;
@@ -48,18 +49,22 @@ class plan_clear_plan extends external_api {
 
         self::validate_parameters(self::clear_plan_parameters(), array('userid' => $userid, 'planid' => $planid));
 
-        if (!plan_helper::check_edit_permissions($userid, $userid)) {
+        if (!user_helper::check_access($userid)) {
+            throw new \moodle_exception('Access denied');
+        }
+
+        if (!plan_helper::check_edit_permissions($planid, $userid)) {
             throw new \Exception('Access denied');
         }
 
-        $DB->delete_records(plan_helper::DEADLINES_TABLE, array('userid' => $userid, 'planid' => $planid ));
+        $DB->delete_records(plan_helper::DEADLINES_TABLE, array('planid' => $planid ));
 
-        return array('message' => 'Sucessfull');
+        $plan = $DB->get_record(plan_helper::TABLE, array('id' => $planid));
+
+        return plan_helper::get_plan($planid);
     }
 
     public static function clear_plan_returns() {
-        return new external_single_structure(
-            array('message' => new external_value(PARAM_TEXT, 'Gives back if the clearing was succesfull'))
-        );
+        return plan_helper::plan_structure();
     }
 }

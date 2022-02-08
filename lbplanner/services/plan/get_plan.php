@@ -50,44 +50,10 @@ class plan_get_plan extends external_api {
 
         $plan = $DB->get_record(plan_helper::TABLE, array('id' => $planid));
 
-        $dbdeadlines = $DB->get_records(plan_helper::DEADLINES_TABLE, array('planid' => $planid), '*', MUST_EXIST);
-
-        $deadlines = array();
-
-        foreach ($dbdeadlines as $dbdeadline) {
-            $deadlines[] = array(
-                'planid' => $dbdeadline->planid,
-                'startdate' => $dbdeadline->startdate,
-                'enddate' => $dbdeadline->enddate,
-                'moduleid' => $dbdeadline->moduleid,
-            );
-        }
-
-        return array(
-            'name' => $plan->name,
-            'planid' => $planid,
-            'enableek' => $plan->enableek,
-            'deadlines' => $deadlines,
-        );
+        return plan_helper::get_plan($planid);
     }
 
     public static function get_plan_returns() {
-        return new external_single_structure(
-            array(
-                'name' => new external_value(PARAM_TEXT, 'The name of the plan'),
-                'planid' => new external_value(PARAM_INT, 'The id of the plan'),
-                'enableek' => new external_value(PARAM_BOOL, 'If the plan is enabled for ek'),
-                'deadlines' => new external_multiple_structure(
-                    new external_single_structure(
-                        array(
-                            'planid' => new external_value(PARAM_INT, 'The id of the plan'),
-                            'moduleid' => new external_value(PARAM_INT, 'The id of the module'),
-                            'deadlinestart' => new external_value(PARAM_INT, 'The start of the deadline'),
-                            'deadlineend' => new external_value(PARAM_INT, 'The end of the deadline')
-                        )
-                    )
-                )
-            )
-        );
+        return plan_helper::plan_structure();
     }
 }

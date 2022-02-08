@@ -16,6 +16,10 @@
 
 namespace local_lbplanner\helpers;
 
+use external_single_structure;
+use external_value;
+use external_multiple_structure;
+
 class plan_helper {
     const ACCESS_TYPE_OWNER = 0;
     const ACCESS_TYPE_WRITE = 1;
@@ -36,7 +40,7 @@ class plan_helper {
 
     public static function get_plan_members(int $planid):array {
         global $DB;
-        $members = $DB->get_fieldset_select(self::TABLE, 'userid', array('planid' => $planid));
+        $members = $DB->get_records(self::ACCESS_TABLE, array('planid' => $planid));
         return $members;
     }
 
@@ -71,5 +75,75 @@ class plan_helper {
         $access = self::get_access_type($planid, $userid);
 
         return $access == self::ACCESS_TYPE_OWNER || $access == self::ACCESS_TYPE_WRITE;
+    }
+
+    public static function get_deadlines(int $planid): array {
+        global $DB;
+
+        $dbdeadlines = $DB->get_records(self::DEADLINES_TABLE, array('planid' => $planid));
+
+        $deadlines = array();
+
+        foreach ($dbdeadlines as $dbdeadline) {
+            $deadlines[] = array(
+                'planid' => $dbdeadline->planid,
+                'deadlinestart' => $dbdeadline->deadlinestart,
+                'deadlineend' => $dbdeadline->deadlineend,
+                'moduleid' => $dbdeadline->moduleid,
+            );
+        }
+
+        return $deadlines;
+    }
+
+    public static function get_plan(int $planid) : array {
+        global $DB;
+
+        $plan = $DB->get_record(self::TABLE, array('id' => $planid));
+        $members = array();
+
+        foreach (self::get_plan_members($planid) as $member) {
+            $members[] = array(
+                'userid' => $member->userid,
+                'accesstype' => $member->accesstype,
+            );
+        }
+
+        return array(
+            'name' => $plan->name,
+            'planid' => $planid,
+            'enableek' => $plan->enableek,
+            'deadlines' => self::get_deadlines($planid),
+            'members' => $members,
+        );
+    }
+
+    public static function plan_structure() : external_single_structure {
+        return new external_single_structure(
+            array(
+                'name' => new external_value(PARAM_TEXT, 'The name of the plan'),
+                'planid' => new external_value(PARAM_INT, 'The id of the plan'),
+                'enableek' => new external_value(PARAM_BOOL, 'If the plan is enabled for ek'),
+                'deadlines' => new external_multiple_structure(
+                    new external_single_structure(
+                        array(
+                            'userid' => new external_value(PARAM_INT, 'The id of the user'),
+                            'planid' => new external_value(PARAM_INT, 'The id of the user'),
+                            'moduleid' => new external_value(PARAM_INT, 'The id of the user'),
+                            'deadlinestart' => new external_value(PARAM_INT, 'The id of the user'),
+                            'deadlineend' => new external_value(PARAM_INT, 'The id of the user'),
+                        )
+                    )
+                ),
+                'members' => new external_multiple_structure(
+                    new external_single_structure(
+                        array(
+                            'userid' => new external_value(PARAM_INT, 'The id of the user'),
+                            'accesstype' => new external_value(PARAM_TEXT, 'The role of the user'),
+                        )
+                    )
+                ),
+            )
+        );
     }
 }

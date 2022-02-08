@@ -20,6 +20,7 @@ use external_api;
 use external_function_parameters;
 use external_single_structure;
 use external_value;
+use local_lbplanner\helpers\plan_helper;
 use local_lbplanner\helpers\user_helper;
 
 class user_get_user extends external_api {
@@ -51,14 +52,15 @@ class user_get_user extends external_api {
         // Check if the user is allowed to get the data for this userid.
         if (user_helper::check_access($userid)) {
             return array(
-            'userid' => $user->userid,
-            'username' => $mdluser->username,
-            'firstname' => $mdluser->firstname,
-            'lastname' => $mdluser->lastname,
-            'role' => user_helper::determin_user_role($userid),
-            'theme' => $user->theme,
-            'lang' => $user->language,
-            'profileimageurl' => $mdluser->profileimageurl,
+                'userid' => $user->userid,
+                'username' => $mdluser->username,
+                'firstname' => $mdluser->firstname,
+                'lastname' => $mdluser->lastname,
+                'role' => user_helper::determin_user_role($userid),
+                'theme' => $user->theme,
+                'lang' => $user->language,
+                'profileimageurl' => $mdluser->profileimageurl,
+                'planid' => plan_helper::get_plan_id($userid),
             );
 
         }
@@ -72,20 +74,22 @@ class user_get_user extends external_api {
             'theme' => null,
             'lang' => null,
             'profileimageurl' => $mdluser->profileimageurl,
+            'planid' => null,
         );
     }
     public static function get_user_returns() {
         return new external_single_structure(
-        array(
-            'userid' => new external_value(PARAM_INT, 'The id of the user'),
-            'username' => new external_value(PARAM_TEXT, 'The username of the user'),
-            'firstname' => new external_value(PARAM_TEXT, 'The firstname of the user'),
-            'lastname' => new external_value(PARAM_TEXT, 'The lastname of the user'),
-            'role' => new external_value(PARAM_INT, 'The role of the user'),
-            'theme' => new external_value(PARAM_TEXT, 'The theme the user has selected'),
-            'lang' => new external_value(PARAM_TEXT, 'The language the user has selected'),
-            'profileimageurl' => new external_value(PARAM_URL, 'The url of the profile image'),
-        )
+            array(
+                'userid' => new external_value(PARAM_INT, 'The id of the user'),
+                'username' => new external_value(PARAM_TEXT, 'The username of the user'),
+                'firstname' => new external_value(PARAM_TEXT, 'The firstname of the user'),
+                'lastname' => new external_value(PARAM_TEXT, 'The lastname of the user'),
+                'role' => new external_value(PARAM_INT, 'The role of the user'),
+                'theme' => new external_value(PARAM_TEXT, 'The theme the user has selected'),
+                'lang' => new external_value(PARAM_TEXT, 'The language the user has selected'),
+                'profileimageurl' => new external_value(PARAM_URL, 'The url of the profile image'),
+                'planid' => new external_value(PARAM_INT, 'The id of the plan the user is assigned to'),
+            )
         );
     }
 }

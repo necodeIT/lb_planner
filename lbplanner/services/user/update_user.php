@@ -21,6 +21,7 @@ use external_function_parameters;
 use external_single_structure;
 use external_value;
 use local_lbplanner\helpers\user_helper;
+use local_lbplanner\helpers\plan_helper;
 
 class user_update_user extends external_api {
     public static function update_user_parameters() {
@@ -68,6 +69,7 @@ class user_update_user extends external_api {
             'firstname' => $mdluser->firstname,
             'lastname' => $mdluser->lastname,
             'profileimageurl' => $mdluser->profileimageurl,
+            'planid' => plan_helper::get_plan_id($userid),
         );
     }
 
@@ -82,6 +84,7 @@ class user_update_user extends external_api {
                 'theme' => new external_value(PARAM_TEXT, 'The theme the user has selected'),
                 'lang' => new external_value(PARAM_TEXT, 'The language the user has selected'),
                 'profileimageurl' => new external_value(PARAM_URL, 'The url of the profile image'),
+                'planid' => new external_value(PARAM_INT, 'The id of the plan the user is assigned to'),
             )
         );
     }

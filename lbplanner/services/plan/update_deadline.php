@@ -20,6 +20,9 @@ use external_api;
 use external_function_parameters;
 use external_single_structure;
 use external_value;
+use external_multiple_structure;
+use local_lbplanner\helpers\user_helper;
+use local_lbplanner\helpers\plan_helper;
 
 class plan_update_deadline extends external_api {
     public static function update_deadline_parameters() {
@@ -80,18 +83,11 @@ class plan_update_deadline extends external_api {
         // TODO: Check if the token is from the same User as the UserId.
         // TODO: Change the Deadline on the DB.
 
-        return array();
+        return plan_helper::get_plan($planid);
+
     }
 
     public static function update_deadline_returns() {
-        return new external_single_structure(
-            array(
-                'userid' => new external_value(PARAM_INT, 'The id of the user'),
-                'planid' => new external_value(PARAM_INT, 'The id of the plan'),
-                'moduleid' => new external_value(PARAM_INT, 'The id of the module'),
-                'deadlinestart' => new external_value(PARAM_INT, 'The start of the deadline'),
-                'deadlineend' => new external_value(PARAM_INT, 'The end of the deadline')
-            )
-        );
+        return plan_helper::plan_structure();
     }
 }

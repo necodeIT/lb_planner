@@ -19,6 +19,7 @@ namespace local_lbplanner_services;
 use external_api;
 use external_function_parameters;
 use external_single_structure;
+use external_multiple_structure;
 use external_value;
 use local_lbplanner\helpers\user_helper;
 use local_lbplanner\helpers\plan_helper;
@@ -87,9 +88,12 @@ class plan_add_deadline extends external_api {
             throw new \moodle_exception('Access denied');
         }
 
+        if ($DB->record_exists(plan_helper::DEADLINES_TABLE, array('moduleid' => $moduleid, 'planid' => $planid))) {
+            throw new \moodle_exception('Deadline already exists');
+        }
+
         $deadline = new \stdClass();
 
-        $deadline->userid = $userid;
         $deadline->planid = $planid;
         $deadline->moduleid = $moduleid;
         $deadline->deadlinestart = $deadlinestart;
@@ -97,18 +101,12 @@ class plan_add_deadline extends external_api {
 
         $DB->insert_record(plan_helper::DEADLINES_TABLE, $deadline);
 
-        return array();
+        $plan = $DB->get_record(plan_helper::TABLE, array('id' => $planid));
+
+        return plan_helper::get_plan($planid);
     }
 
     public static function add_deadline_returns() {
-        return new external_single_structure(
-            array(
-                'userid' => new external_value(PARAM_INT, 'The id of the user'),
-                'planid' => new external_value(PARAM_INT, 'The id of the plan'),
-                'moduleid' => new external_value(PARAM_INT, 'The id of the module'),
-                'deadlinestart' => new external_value(PARAM_INT, 'The start of the deadline'),
-                'deadlineend' => new external_value(PARAM_INT, 'The end of the deadline')
-            )
-        );
+        return plan_helper::plan_structure();
     }
 }

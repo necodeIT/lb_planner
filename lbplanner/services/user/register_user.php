@@ -84,6 +84,7 @@ class user_register_user extends external_api {
             'theme' => $user->theme,
             'lang' => $user->language,
             'profileimageurl' => $mdluser->profileimageurl,
+            'planid' => $planid,
         );
     }
 
@@ -98,6 +99,7 @@ class user_register_user extends external_api {
                 'theme' => new external_value(PARAM_TEXT, 'The theme the user has selected'),
                 'lang' => new external_value(PARAM_TEXT, 'The language the user has selected'),
                 'profileimageurl' => new external_value(PARAM_URL, 'The url of the profile image'),
+                'planid' => new external_value(PARAM_INT, 'The id of the plan the user is assigned to'),
             )
         );
     }

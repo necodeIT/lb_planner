@@ -18,8 +18,8 @@ namespace local_lbplanner_services;
 
 use external_api;
 use external_function_parameters;
-use external_single_structure;
 use external_value;
+use local_lbplanner\helpers\plan_helper;
 
 class plan_leave_plan extends external_api {
     public static function leave_plan_parameters() {
@@ -51,12 +51,10 @@ class plan_leave_plan extends external_api {
         // TODO: Check if User is part of the Plan from the Plan ID.
         // TODO: copy the Plan for the User and Delete User from the Current Plan ID.
 
-        return array('message' => 'Sucessfull');
+        return plan_helper::get_plan($planid);
     }
 
     public static function leave_plan_returns() {
-        return new external_single_structure(
-            array('message' => new external_value(PARAM_TEXT, 'Sucessfull'))
-        );
+        return plan_helper::plan_structure();
     }
 }

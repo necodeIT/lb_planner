@@ -61,7 +61,7 @@ class plan_update_plan extends external_api {
     public static function update_plan($userid, $planid, $planname, $enableek) {
         global $DB;
 
-        $params = self::validate_parameters(
+        self::validate_parameters(
             self::update_plan_parameters(),
             array('userid' => $userid, 'planid' => $planid, 'planname' => $planname, 'enableek' => $enableek)
         );
@@ -78,48 +78,10 @@ class plan_update_plan extends external_api {
 
         $DB->update_record(plan_helper::TABLE, $plan);
 
-        $dbdeadlines = $DB->get_records(plan_helper::DEADLINES_TABLE, array('planid' => $planid));
-
-        $deadlines = array();
-
-        foreach ($dbdeadlines as $dbdeadline) {
-            $deadlines[] = array(
-                'planid' => $dbdeadline->planid,
-                'startdate' => $dbdeadline->startdate,
-                'enddate' => $dbdeadline->enddate,
-                'timeend' => $dbdeadline->timeend,
-                'moduleid' => $dbdeadline->id,
-            );
-        }
-
-        return array(
-            'name' => $plan->name,
-            'planid' => $planid,
-            'enableek' => $plan->enableek,
-            'deadlines' => $deadlines,
-        );
-
-        return array();
+        return plan_helper::get_plan($planid);
     }
 
     public static function update_plan_returns() {
-        return new external_single_structure(
-            array(
-                'name' => new external_value(PARAM_TEXT, 'The name of the plan'),
-                'planid' => new external_value(PARAM_INT, 'The id of the plan'),
-                'enableek' => new external_value(PARAM_BOOL, 'If the plan is enabled for ek'),
-                'deadlines' => new external_multiple_structure(
-                    new external_single_structure(
-                        array(
-                            'userid' => new external_value(PARAM_INT, 'The id of the user'),
-                            'planid' => new external_value(PARAM_INT, 'The id of the user'),
-                            'moduleid' => new external_value(PARAM_INT, 'The id of the user'),
-                            'deadlinestart' => new external_value(PARAM_INT, 'The id of the user'),
-                            'deadlineend' => new external_value(PARAM_INT, 'The id of the user'),
-                        )
-                    )
-                )
-            )
-        );
+        return plan_helper::plan_structure();
     }
 }

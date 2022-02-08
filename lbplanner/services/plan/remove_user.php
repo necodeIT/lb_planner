@@ -18,8 +18,9 @@ namespace local_lbplanner_services;
 
 use external_api;
 use external_function_parameters;
-use external_single_structure;
 use external_value;
+use local_lbplanner\helpers\user_helper;
+use local_lbplanner\helpers\plan_helper;
 
 class plan_remove_user extends external_api {
     public static function remove_user_parameters() {
@@ -41,14 +42,10 @@ class plan_remove_user extends external_api {
 
         // TODO: Check if token is allowed to access this function.
 
-        return array();
+        return plan_helper::get_plan($planid);
     }
 
     public static function remove_user_returns() {
-        return new external_single_structure(
-            array(
-                'message' => new external_value(PARAM_BOOL, 'The message to show to the user'),
-            )
-        );
+        return plan_helper::plan_structure();
     }
 }
