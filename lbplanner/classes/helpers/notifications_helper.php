@@ -25,4 +25,10 @@ class notifications_helper {
     const TRIGGER_INVITE = 0;
     const TRIGGER_INVITE_ACCEPTED = 1;
     const TRIGGER_INVITE_DECLINED = 2;
+    const TRIGGER_PLAN_LEFT = 3;
+    const TRIGGER_PLAN_REMOVED = 4;
+
+    public static function notify_user( int $userid, string $info,int $type ): int{
+
+    }
 }

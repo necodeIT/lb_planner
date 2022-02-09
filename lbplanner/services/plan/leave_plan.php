@@ -58,12 +58,21 @@ class plan_leave_plan extends external_api {
             throw new \moodle_exception('User is not a member of this plan');
         }
 
-        $copyplanid = plan_helper::copy_plan($planid);
+        $newplanid = plan_helper::copy_plan($planid, $userid);
 
-            $DB->delete_records(plan_helper::ACCESS_TABLE, array('userid' => $userid, 'planid' => $planid));
-            $DB->insert_record(plan_helper::ACCESS_TABLE, array('userid' => $userid, 'planid' => $copyplanid, 'accesstype' => 0));
+        $oldaccess = $DB->get_record(
+            plan_helper::ACCESS_TABLE,
+            array('planid' => $planid, 'userid' => $userid), '*', MUST_EXIST
+        );
 
-            return plan_helper::get_plan($copyplanid);
+        $oldaccess->planid = $newplanid;
+        $oldaccess->accesstype = plan_helper::ACCESS_TYPE_OWNER;
+
+        $DB->update_record(plan_helper::ACCESS_TABLE, $oldaccess);
+
+
+
+        return plan_helper::get_plan($planid, $userid);
     }
     public static function leave_plan_returns() {
         return plan_helper::plan_structure();
