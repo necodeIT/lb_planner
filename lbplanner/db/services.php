@@ -225,15 +225,6 @@ $functions = array(
         'capabilities' => '',
         'ajax' => true,
     ),
-    'local_lbplanner_notifications_get_notification' => array(
-        'classname' => 'local_lbplanner_services\notifications_get_notification',
-        'methodname' => 'get_notification',
-        'classpath' => 'local/lbplanner/services/notifications/get_notification.php',
-        'description' => 'Get the notification of the given user and id',
-        'type' => 'read',
-        'capabilities' => '',
-        'ajax' => true,
-    ),
     'local_lbplanner_notifications_get_all_notifications' => array(
         'classname' => 'local_lbplanner_services\notifications_get_all_notifications',
         'methodname' => 'get_all_notifications',
@@ -278,7 +269,6 @@ $services = array(
             'local_lbplanner_plan_remove_user',
             'local_lbplanner_plan_update_deadline',
             'local_lbplanner_plan_update_plan',
-            'local_lbplanner_notifications_get_notification',
             'local_lbplanner_notifications_get_all_notifications',
             'local_lbplanner_notifications_update_notification',
             'local_lbplanner_plan_get_access',
