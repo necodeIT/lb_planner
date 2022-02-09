@@ -159,14 +159,12 @@ class plan_helper {
 
         $newplanid = $DB->insert_record(self::TABLE, $plan);
 
-        for ($i = 0; $i < count($deadlines); $i++) {
-            $catgirl = $deadlines[$i];
+        foreach ($deadlines as &$deadline) {
+            $catgirl = $deadline;
             $catgirl->planid = $newplanid;
             $catgirl->id = null;
-
             $DB->insert_record(self::DEADLINES_TABLE, $catgirl);
         }
-
         return $newplanid;
     }
 }
