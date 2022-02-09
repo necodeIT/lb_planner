@@ -21,6 +21,7 @@ use external_function_parameters;
 use external_single_structure;
 use external_value;
 use local_lbplanner\helpers\plan_helper;
+use local_lbplanner\helpers\user_helper;
 use local_lbplanner\helpers\notifications_helper;
 
 
@@ -79,8 +80,14 @@ class plan_invite_user extends external_api {
             throw new \moodle_exception('User is already invited');
         }
 
-        // Save the invite.
+        $invitee = user_helper::get_mdl_user_info($inviteeid);
+        $inviter = user_helper::get_mdl_user_info($inviterid);
 
+        if ($invitee->address != $inviter->address) {
+            throw new \moodle_exception('Cannot invite user who is not in the same class');
+        }
+
+        // Save the invite.
         $invite = new \stdClass();
         $invite->planid = $planid;
         $invite->inviterid = $inviterid;
@@ -90,17 +97,12 @@ class plan_invite_user extends external_api {
 
         $DB->insert_record(plan_helper::INVITES_TABLE, $invite);
 
-        // Create new notification for the invitee.
-
-        $planname = $DB->get_field(plan_helper::TABLE, 'name', array('id' => $planid), MUST_EXIST);
-
-        $notification = new \stdClass();
-        $notification->userid = $inviteeid;
-        $notification->status = notifications_helper::STATUS_UNREAD;
-        $notification->type = notifications_helper::TRIGGER_INVITE;
-        $notification->info = $planname;
-
-        $DB->insert_record(notifications_helper::TABLE, $notification);
+        // Notifiy the invitee that he/she/it/they/xier/* has been invited.
+        notifications_helper::notify_user(
+            $inviteeid,
+            user_helper::get_complete_name($inviteeid),
+            notifications_helper::TRIGGER_INVITE
+        );
 
         return array(
             'inviterid' => $inviterid,

@@ -27,8 +27,20 @@ class notifications_helper {
     const TRIGGER_INVITE_DECLINED = 2;
     const TRIGGER_PLAN_LEFT = 3;
     const TRIGGER_PLAN_REMOVED = 4;
+    const TRIGGER_USER_REGISTERED = 5;
 
-    public static function notify_user( int $userid, string $info,int $type ): int{
+    public static function notify_user( int $userid, string $info, int $type ): int {
+        global $DB;
 
+        $notification = new \stdClass();
+        $notification->userid = $userid;
+        $notification->info = $info;
+        $notification->type = $type;
+        $notification->status = self::STATUS_UNREAD;
+        $notification->timestamp = time();
+
+        $id = $DB->insert_record(self::TABLE, $notification);
+
+        return $id;
     }
 }

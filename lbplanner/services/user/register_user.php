@@ -22,6 +22,7 @@ use external_single_structure;
 use external_value;
 use local_lbplanner\helpers\user_helper;
 use local_lbplanner\helpers\plan_helper;
+use local_lbplanner\helpers\notifications_helper;
 
 
 class user_register_user extends external_api {
@@ -73,6 +74,8 @@ class user_register_user extends external_api {
         $planaccess->planid = $planid;
 
         $DB->insert_record(plan_helper::ACCESS_TABLE, $planaccess);
+
+        notifications_helper::notify_user($userid, '', notifications_helper::TRIGGER_USER_REGISTERED);
 
         return array(
             'userid' => $user->userid,

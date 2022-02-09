@@ -21,7 +21,7 @@ use external_function_parameters;
 use external_value;
 use local_lbplanner\helpers\plan_helper;
 use local_lbplanner\helpers\user_helper;
-use local_lbplanner\helpers\notification_helper;
+use local_lbplanner\helpers\notifications_helper;
 
 class plan_leave_plan extends external_api {
     public static function leave_plan_parameters() {
@@ -71,7 +71,13 @@ class plan_leave_plan extends external_api {
 
         $DB->update_record(plan_helper::ACCESS_TABLE, $oldaccess);
 
-        $notificationid = notification_helper::notify_user(plan_helper::get_owner($planid), $userid, notification_helper::TRIGGER_PLAN_LEFT);
+        // Notify plan owner that user has left his plan.
+
+        notifications_helper::notify_user(
+            plan_helper::get_owner($planid),
+            user_helper::get_complete_name($userid),
+            notifications_helper::TRIGGER_PLAN_LEFT
+        );
 
         return plan_helper::get_plan($planid, $userid);
     }

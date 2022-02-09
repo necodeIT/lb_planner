@@ -160,6 +160,7 @@ class plan_helper {
         $newplanid = $DB->insert_record(self::TABLE, $plan);
 
         // Had to do it with insert and then update because the Variable didnt change in the Loop.
+        // I don't know why. It just works, so dont touch it 🚧.
         foreach ($deadlines as $deadline) {
             $id = $DB->insert_record(self::DEADLINES_TABLE, $deadline);
             $DB->update_record(self::DEADLINES_TABLE, array('id' => $id, 'planid' => $newplanid));

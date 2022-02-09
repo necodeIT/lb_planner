@@ -87,4 +87,10 @@ class user_helper {
         return $DB->get_record(self::TABLE, array('userid' => $userid), '*', MUST_EXIST);
     }
 
+    public static function get_complete_name(int $userid): string {
+        $user = self::get_mdl_user_info($userid);
+
+        return $user->firstname . ' ' . $user->lastname;
+    }
+
 }

@@ -64,13 +64,7 @@ class plan_update_invite extends external_api {
             notifications_helper::TRIGGER_INVITE_ACCEPTED
             : notifications_helper::TRIGGER_INVITE_DECLINED;
 
-        $notification = new \stdClass();
-        $notification->userid = $invite->inviterid;
-        $notification->status = notifications_helper::STATUS_UNREAD;
-        $notification->trigger = $trigger;
-        $notification->info = $USER->username;
-
-        $DB->insert_record(notifications_helper::TABLE, $notification);
+        notifications_helper::notify_user($invite->inviterid, user_helper::get_complete_name($invite->invteeid) , $trigger);
 
         // TODO: send notification to the inviter
         // TODO: Change plan access and delete old plan if inivite is accepted.
