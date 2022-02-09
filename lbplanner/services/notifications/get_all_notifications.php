@@ -21,6 +21,8 @@ use external_function_parameters;
 use external_multiple_structure;
 use external_single_structure;
 use external_value;
+use local_lbplanner\helpers\user_helper;
+use local_lbplanner\helpers\notifications_helper;
 
 class notifications_get_all_notifications extends external_api {
     public static function get_all_notifications_parameters() {
@@ -31,13 +33,27 @@ class notifications_get_all_notifications extends external_api {
 
     public static function get_all_notifications($userid) {
         global $DB;
-        global $USER;
 
-        $params = self::validate_parameters(self::get_all_notifications_parameters(), array('userid' => $userid));
+        self::validate_parameters(self::get_all_notifications_parameters(), array('userid' => $userid));
 
-        // TODO: Check if token is allowed to access this function.
+        if (!user_helper::check_access($userid)) {
+            throw new \moodle_exception('Access denied');
+        }
 
-        return array();
+        $dbnotifications = $DB->get_records(notifications_helper::TABLE, array('userid' => $userid));
+
+        $notifications = array();
+
+        foreach ($dbnotifications as $dbnotification) {
+            $notifications[] = array(
+                'status' => $dbnotification->status,
+                'type' => $dbnotification->type,
+                'info' => $dbnotification->info,
+                'userid' => $dbnotification->userid,
+                'notificationid' => $dbnotification->notificationid,
+            );
+        }
+        return $notifications;
     }
 
     public static function get_all_notifications_returns() {
@@ -45,7 +61,7 @@ class notifications_get_all_notifications extends external_api {
             new external_single_structure(
                 array(
                     'status' => new external_value(PARAM_INT, 'The status of the notification {0: unread, 1: read}'),
-                    'trigger' => new external_value(PARAM_INT, 'The type of the event that triggered the notification'),
+                    'type' => new external_value(PARAM_INT, 'The type of the event that triggered the notification'),
                     'info' => new external_value(PARAM_TEXT, 'Additional information about the notification'),
                     'userid' => new external_value(PARAM_INT, 'The ID of the user for whom the notification is for'),
                     'notificationid' => new external_value(PARAM_INT, 'The ID of the notification'),
