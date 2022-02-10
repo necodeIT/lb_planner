@@ -78,7 +78,9 @@ class plan_update_invite extends external_api {
             if (plan_helper::get_owner($oldplanid) == $userid) {
 
                 foreach (plan_helper::get_plan_members($oldplanid) as $member) {
-                    plan_leave_plan::leave_plan($member->userid, $oldplanid);
+                    if ($member->userid != $userid) {
+                        plan_leave_plan::leave_plan($member->userid, $oldplanid);
+                    }
                 }
 
                 plan_clear_plan::clear_plan($userid, $oldplanid);
