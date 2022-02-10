@@ -26,13 +26,13 @@ use local_lbplanner\helpers\user_helper;
 class user_get_user extends external_api {
     public static function get_user_parameters() {
         return new external_function_parameters(array(
-        'userid' => new external_value(
-            PARAM_INT,
-            'The id of the user to get the data for',
-            VALUE_REQUIRED,
-            null,
-            NULL_NOT_ALLOWED
-        ),
+            'userid' => new external_value(
+                PARAM_INT,
+                'The id of the user to get the data for',
+                VALUE_REQUIRED,
+                null,
+                NULL_NOT_ALLOWED
+            ),
         ));
     }
 
