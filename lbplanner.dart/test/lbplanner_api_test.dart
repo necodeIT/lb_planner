@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:dart_lbplanner_api/dart_lbplanner_api.dart';
+import 'package:lbplanner_api/lbplanner_api.dart';
 
 void main() {
   test('adds one to input values', () {
