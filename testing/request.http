@@ -1,7 +1,0 @@
-
-###
-GET {{baseUrl}}?{{adminToken}}&{{remove_user}}&userid={{adminuserid}}&planid=1&removeuserid=104
-
-###
-
-GET {{baseUrl}}?{{adminToken}}&{{add_deadline}}&userid={{adminuserid}}&planid=1&moduleid=3&deadlinestart=187&deadlineend=187
