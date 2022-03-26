@@ -20,30 +20,93 @@ use external_single_structure;
 use external_value;
 use external_multiple_structure;
 
+/**
+ * Provides helper methods for any tables related with the planning function of the app.
+ */
 class plan_helper {
+    /**
+     * Enum value for the plan owner.
+     */
     const ACCESS_TYPE_OWNER = 0;
+
+    /**
+     * Enum value for plan members with write access to the plan.
+     */
     const ACCESS_TYPE_WRITE = 1;
+
+    /**
+     * Enum value for plan members with read access to the plan.
+     */
     const ACCESS_TYPE_READ = 2;
+
+    /**
+     * Enum value for plan members with no access to the plan.
+     */
     const ACCESS_TYPE_NONE = -1;
 
+    /**
+     * Boolean value for ek-modules disabled.
+     */
     const EK_DISABLED = 0;
+
+    /**
+     * Boolean value for ek-modules enabled.
+     */
     const EK_ENABLED = 1;
 
+    /**
+     * Enum value for invites: The invite is pending and has not been accepted yet.
+     */
     const INVITE_PENDING = 0;
+
+    /**
+     * Enum value for invites: The invite has been accepted.
+     */
     const INVITE_ACCEPTED = 1;
+
+    /**
+     * Enum value for invites: The invite has been declined.
+     */
     const INVITE_DECLINED = 2;
 
+    /**
+     * local_lbplanner_plans table.
+     */
     const TABLE = 'local_lbplanner_plans';
+
+    /**
+     * local_lbplanner_plan_access table.
+     */
     const ACCESS_TABLE = 'local_lbplanner_plan_access';
+
+    /**
+     * local_lbplanner_deadlines table.
+     */
     const DEADLINES_TABLE = 'local_lbplanner_deadlines';
+
+    /**
+     * local_lbplanner_plan_invites table.
+     */
     const INVITES_TABLE = 'local_lbplanner_plan_invites';
 
+    /**
+     * Returns a list of user id's that are members of the plan.
+     *
+     * @param integer $planid The id of the plan.
+     * @return array An array of user id's.
+     */
     public static function get_plan_members(int $planid):array {
         global $DB;
         $members = $DB->get_records(self::ACCESS_TABLE, array('planid' => $planid));
         return $members;
     }
 
+    /**
+     * Returns the user id of the owner of the plan.
+     *
+     * @param integer $planid The id of the plan.
+     * @return integer The user id of the owner.
+     */
     public static function get_owner(int $planid):int {
         global $DB;
 
@@ -55,12 +118,25 @@ class plan_helper {
         return $owner;
     }
 
+    /**
+     * Returns the id of the plan that the given user is a member of.
+     *
+     * @param integer $userid The id of the user.
+     * @return integer The id of the plan the given user is a member of.
+     */
     public static function get_plan_id(int $userid):int {
         global $DB;
         $planid = $DB->get_field(self::ACCESS_TABLE, 'planid', array('userid' => $userid));
         return $planid;
     }
 
+    /**
+     * Returns the access type of the given user for the given plan.
+     *
+     * @param integer $planid The id of the plan.
+     * @param integer $userid The id of the user.
+     * @return integer The access type of the given user for the given plan.
+     */
     public static function get_access_type(int $planid, int $userid):int {
         global $DB;
 
@@ -71,12 +147,25 @@ class plan_helper {
         }
     }
 
+    /**
+     * Checks if the given user has editing permissions for the given plan.
+     *
+     * @param integer $planid The id of the plan.
+     * @param integer $userid The id of the user.
+     * @return boolean True if the given user has editing permissions for the given plan.
+     */
     public static function check_edit_permissions(int $planid, int $userid):bool {
         $access = self::get_access_type($planid, $userid);
 
         return $access == self::ACCESS_TYPE_OWNER || $access == self::ACCESS_TYPE_WRITE;
     }
 
+    /**
+     * Returns a list of all deadlines for the given plan.
+     *
+     * @param integer $planid The id of the plan.
+     * @return array A list of all deadlines for the given plan.
+     */
     public static function get_deadlines(int $planid): array {
         global $DB;
 
@@ -96,6 +185,12 @@ class plan_helper {
         return $deadlines;
     }
 
+    /**
+     * Retrieves all the information available about the given plan.
+     *
+     * @param integer $planid The id of the plan.
+     * @return array An array containing all the information available about the given plan.
+     */
     public static function get_plan(int $planid) : array {
         global $DB;
 
@@ -118,6 +213,11 @@ class plan_helper {
         );
     }
 
+    /**
+     * The default external_multiple_structure for _returns functions of plan related api services.
+     *
+     * @return external_single_structure The structure.
+     */
     public static function plan_structure() : external_single_structure {
         return new external_single_structure(
             array(
@@ -146,7 +246,14 @@ class plan_helper {
         );
     }
 
-    public static function copy_plan($planid, $userid) : int {
+    /**
+     * Copies the given plan to the given user.
+     *
+     * @param integer $planid The id of the plan.
+     * @param integer $userid The id of the user.
+     * @return integer The id of the new copy of the plan.
+     */
+    public static function copy_plan(int $planid, int $userid) : int {
         global $DB;
 
         $user = user_helper::get_mdl_user_info($userid);
@@ -168,3 +275,4 @@ class plan_helper {
         return $newplanid;
     }
 }
+
