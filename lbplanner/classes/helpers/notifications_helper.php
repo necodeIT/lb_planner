@@ -16,17 +16,53 @@
 
 namespace local_lbplanner\helpers;
 
+/**
+ * Provides helper methods for notification related stuff.
+ */
 class notifications_helper {
+    /**
+     * Name of the notifications table.
+     */
     const TABLE = 'local_lbplanner_notification';
 
+    /**
+     * Enum value for a read notification.
+     */
     const STATUS_READ = 1;
+
+    /**
+     * Enum value for a unread notification.
+     */
     const STATUS_UNREAD = 0;
 
+    /**
+     * Enum value for a notification triggered by an invitation.
+     */
     const TRIGGER_INVITE = 0;
+
+    /**
+     * Enum value for a notification triggered by an acceptation of an invitation.
+     */
     const TRIGGER_INVITE_ACCEPTED = 1;
+
+    /**
+     * Enum value for a notification triggered by a rejection of an invitation.
+     */
     const TRIGGER_INVITE_DECLINED = 2;
+
+    /**
+     * Enum value for a notification triggered by a user leaving a plan.
+     */
     const TRIGGER_PLAN_LEFT = 3;
+
+    /**
+     * Enum value for a notification triggered by a user being removed from a plan.
+     */
     const TRIGGER_PLAN_REMOVED = 4;
+
+    /**
+     * Enum value for a notification triggered by a new user.
+     */
     const TRIGGER_USER_REGISTERED = 5;
 
     public static function notify_user( int $userid, string $info, int $type ): int {
