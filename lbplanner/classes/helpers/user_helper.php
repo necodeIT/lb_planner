@@ -19,13 +19,34 @@ namespace local_lbplanner\helpers;
 use moodle_url;
 use stdClass;
 
+/**
+ * Provides helper methods for user related stuff.
+ */
 class user_helper {
 
+    /**
+     * Shortname of the admin role.
+     */
     const ROLE_ADMIN = 'lbpa';
+
+    /**
+     * Shortname of the manager role.
+     */
     const ROLE_MANAGER = 'lbpm';
+
+    /**
+     * Shortname of the teacher role.
+     */
     const ROLE_TEACHER = 'lbpt';
+
+    /**
+     * Shortname of the student role.
+     */
     const ROLE_STUDENT = 'lbps';
 
+    /**
+     * Maps role shortnames to their corresponding enum value.
+     */
     const ROLE_ENUMS = [
         self::ROLE_ADMIN => 0,
         self::ROLE_MANAGER => 1,
@@ -33,14 +54,34 @@ class user_helper {
         self::ROLE_STUDENT => 3
     ];
 
+    /**
+     * Name of the user database
+     */
     const TABLE = 'local_lbplanner_users';
 
-
+    /**
+     * Checks if the current user has access to the given user id.
+     *
+     * @param int $userid The id of the user to check access for.
+     * @return bool True if the current user has access to the given user id, false otherwise.
+     */
     public static function check_access(int $userid):bool {
         global $USER;
         return $USER->id == $userid;
     }
 
+    /**
+     * Retrieves the user with the given id.
+     * ```php
+     * $mdluser->username // The username of the user.
+     * $mdluser->firstname // The firstname of the user.
+     * $mdluser->lastname // The lastname of the user.
+     * $mdluser->profileimageurl // The profile image url of the user.
+     * ```
+     *
+     * @param integer $userid The id of the user to retrieve.
+     * @return stdClass The user with the given id.
+     */
     public static function get_mdl_user_info(int $userid):stdClass {
         global $DB;
         $user = $DB->get_record('user', array('id' => $userid), '*', MUST_EXIST);
@@ -54,10 +95,15 @@ class user_helper {
         return $mdluser;
     }
 
+    /**
+     * Returns the role enum value for the given username.
+     *
+     * @param integer $userid The id of the user to retrieve the role for.
+     * @return integer The enum value of the role.
+     */
     public static function determin_user_role(int $userid) : int {
         global $DB;
 
-        $mdluser = $DB->get_record('user', array('id' => $userid), '*', MUST_EXIST);
         $adminid = $DB->get_field('role', 'id', array('shortname' => self::ROLE_ADMIN));
         $managerid = $DB->get_field('role', 'id', array('shortname' => self::ROLE_MANAGER));
         $teacherid = $DB->get_field('role', 'id', array('shortname' => self::ROLE_TEACHER));
@@ -77,16 +123,41 @@ class user_helper {
         }
     }
 
+    /**
+     * Checks if the given user exists in the database.
+     *
+     * @param integer $userid The id of the user to check.
+     * @return boolean True if the user exists, false otherwise.
+     */
     public static function check_user_exists(int $userid): bool {
         global $DB;
         return $DB->record_exists('local_lbplanner_users', array('userid' => $userid));
     }
 
+    /**
+     * Retrieves the user with the given id.
+     * The returned object contains the following properties:
+     * ```php
+     * $user->id // The lbplanner id of the user.
+     * $user->userid // The moodle id of the user.
+     * $user->theme // The name of the theme the user has set for the app.
+     * $user->language // The language the user has set for the app.
+     * ```
+     *
+     * @param integer $userid The id of the user to retrieve.
+     * @return stdClass The user with the given id.
+     */
     public static function get_user(int $userid): stdClass {
         global $DB;
         return $DB->get_record(self::TABLE, array('userid' => $userid), '*', MUST_EXIST);
     }
 
+    /**
+     * Retrieves the full name of the user with the given id.
+     *
+     * @param integer $userid The id of the user to retrieve the full name for.
+     * @return string The full name of the user with the given id.
+     */
     public static function get_complete_name(int $userid): string {
         $user = self::get_mdl_user_info($userid);
 

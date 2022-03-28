@@ -65,6 +65,14 @@ class notifications_helper {
      */
     const TRIGGER_USER_REGISTERED = 5;
 
+    /**
+     * Notifies the given user about the given event, with the given info.
+     *
+     * @param integer $userid The user to notify.
+     * @param string $info Additional information as stringified json.
+     * @param integer $type The type of notification.
+     * @return integer The id of the notification.
+     */
     public static function notify_user( int $userid, string $info, int $type ): int {
         global $DB;
 

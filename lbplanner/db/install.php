@@ -23,6 +23,7 @@ function xmldb_local_lbplanner_install() {
     $managers = array();
     $teachers = array();
 
+    // Get all users with admin role and delete the role.
     if ($DB->record_exists('role', array('shortname' => user_helper::ROLE_ADMIN))) {
         $adminid = $DB->get_field('role', 'id', array('shortname' => user_helper::ROLE_ADMIN));
         $admins = $DB->get_records('role_assignments', array('roleid' => $adminid));
@@ -31,6 +32,7 @@ function xmldb_local_lbplanner_install() {
         $DB->delete_records('role_assignments', array('roleid' => $adminid));
     }
 
+    // Get all users with manager role and delete the role.
     if ($DB->record_exists('role', array('shortname' => user_helper::ROLE_MANAGER))) {
         $managerid = $DB->get_field('role', 'id', array('shortname' => user_helper::ROLE_MANAGER));
         $managers = $DB->get_records('role_assignments', array('roleid' => $managerid));
@@ -39,6 +41,7 @@ function xmldb_local_lbplanner_install() {
         $DB->delete_records('role_assignments', array('roleid' => $managerid));
     }
 
+    // Get all users with teacher role and delete the role.
     if ($DB->record_exists('role', array('shortname' => user_helper::ROLE_TEACHER))) {
         $teacherid = $DB->get_field('role', 'id', array('shortname' => user_helper::ROLE_TEACHER));
         $teachers = $DB->get_records('role_assignments', array('roleid' => $teacherid));
@@ -47,6 +50,7 @@ function xmldb_local_lbplanner_install() {
         $DB->delete_records('role_assignments', array('roleid' => $teacherid));
     }
 
+    // Create all roles.
     $adminid = create_role('LB Planner Admin', user_helper::ROLE_ADMIN, 'Administrator access to the LB Planner app');
     $managerid = create_role('LB Planner Manager', user_helper::ROLE_MANAGER, 'Manager access to the LB Planner app');
     $teacherid = create_role('LB Planner Teacher', user_helper::ROLE_TEACHER, 'Teacher access to the LB Planner app');
@@ -55,14 +59,17 @@ function xmldb_local_lbplanner_install() {
     set_role_contextlevels($managerid, array(CONTEXT_SYSTEM));
     set_role_contextlevels($teacherid, array(CONTEXT_SYSTEM));
 
+    // Reassign all users with admin role.
     foreach ($admins as $admin) {
         role_assign($adminid, $admin->userid, $admin->contextid);
     }
 
+    // Reassign all users with manager role.
     foreach ($managers as $manager) {
         role_assign($managerid, $manager->userid, $manager->contextid);
     }
 
+    // Reassign all users with teacher role.
     foreach ($teachers as $teacher) {
         role_assign($teacherid, $teacher->userid, $teacher->contextid);
     }
