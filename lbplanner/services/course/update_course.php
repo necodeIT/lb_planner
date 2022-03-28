@@ -21,6 +21,9 @@ use external_function_parameters;
 use external_single_structure;
 use external_value;
 
+/**
+ * Update the data for a course.
+ */
 class course_update_course extends external_api {
     public static function update_course_parameters() {
         return new external_function_parameters(array(

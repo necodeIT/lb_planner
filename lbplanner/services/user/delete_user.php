@@ -22,6 +22,9 @@ use external_single_structure;
 use external_value;
 use local_lbplanner\helpers\user_helper;
 
+/**
+ * Removes all user data stored by the lbplanner app
+ */
 class user_delete_user extends external_api {
     public static function delete_user_parameters() {
         return new external_function_parameters(array(
@@ -46,15 +49,15 @@ class user_delete_user extends external_api {
             throw new \moodle_exception('Access denied');
         }
 
-        $user = $DB->get_record(user_helper::table(), array('userid' => $params['userid']));
+        $user = $DB->get_record(user_helper::TABLE, array('userid' => $params['userid']));
         // TODO: Remove user from a plan if user is not the owner.
 
         // TODO: Delete plan of the user.
         // TODO: Clear all courses from the user.
 
-        $DB->delete_records(user_helper::table(), array('userid' => $params['userid']));
+        $DB->delete_records(user_helper::TABLE, array('userid' => $params['userid']));
 
-        return array('message' => 'User deleted successfully');
+        return array('message' => 'User deleted successfully (TODO)');
     }
 
     public static function delete_user_returns() {

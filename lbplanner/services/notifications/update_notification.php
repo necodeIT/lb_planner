@@ -23,6 +23,9 @@ use external_value;
 use local_lbplanner\helpers\user_helper;
 use local_lbplanner\helpers\notifications_helper;
 
+/**
+ * Update the notification status of the given user and id.
+ */
 class notifications_update_notification extends external_api {
     public static function update_notification_parameters() {
         return new external_function_parameters(array(

@@ -24,7 +24,9 @@ use local_lbplanner\helpers\plan_helper;
 use local_lbplanner\helpers\user_helper;
 use local_lbplanner\helpers\notifications_helper;
 
-
+/**
+ * Invite a user to the plan.
+ */
 class plan_invite_user extends external_api {
     public static function invite_user_parameters() {
         return new external_function_parameters(array(

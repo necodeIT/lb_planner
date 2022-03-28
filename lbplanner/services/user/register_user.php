@@ -24,7 +24,9 @@ use local_lbplanner\helpers\user_helper;
 use local_lbplanner\helpers\plan_helper;
 use local_lbplanner\helpers\notifications_helper;
 
-
+/**
+ * Register a new user in the lbplanner app.
+ */
 class user_register_user extends external_api {
     public static function register_user_parameters() {
         return new external_function_parameters(array(

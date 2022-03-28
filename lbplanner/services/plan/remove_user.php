@@ -22,6 +22,9 @@ use external_value;
 use local_lbplanner\helpers\plan_helper;
 use local_lbplanner\helpers\user_helper;
 
+/**
+ * Remove a user from the plan.
+ */
 class plan_remove_user extends external_api {
     public static function remove_user_parameters() {
         return new external_function_parameters(array(

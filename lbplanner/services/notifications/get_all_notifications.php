@@ -24,6 +24,9 @@ use external_value;
 use local_lbplanner\helpers\user_helper;
 use local_lbplanner\helpers\notifications_helper;
 
+/**
+ * Get all the notifications of the given user.
+ */
 class notifications_get_all_notifications extends external_api {
     public static function get_all_notifications_parameters() {
         return new external_function_parameters(array(

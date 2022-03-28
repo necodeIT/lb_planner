@@ -22,6 +22,9 @@ use external_value;
 use local_lbplanner\helpers\plan_helper;
 use local_lbplanner\helpers\user_helper;
 
+/**
+ * Delete a deadline from the plan.
+ */
 class plan_delete_deadline extends external_api {
     public static function delete_deadline_parameters() {
         return new external_function_parameters(array(

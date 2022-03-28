@@ -23,6 +23,9 @@ use external_value;
 use local_lbplanner\helpers\plan_helper;
 use local_lbplanner\helpers\user_helper;
 
+/**
+ * Get the data for a user.
+ */
 class user_get_user extends external_api {
     public static function get_user_parameters() {
         return new external_function_parameters(array(

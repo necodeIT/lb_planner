@@ -23,6 +23,9 @@ use local_lbplanner\helpers\plan_helper;
 use local_lbplanner\helpers\user_helper;
 use local_lbplanner\helpers\notifications_helper;
 
+/**
+ * Leave the plan of the given user.
+ */
 class plan_leave_plan extends external_api {
     public static function leave_plan_parameters() {
         return new external_function_parameters(array(

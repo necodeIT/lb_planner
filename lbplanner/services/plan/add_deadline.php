@@ -22,7 +22,9 @@ use external_value;
 use local_lbplanner\helpers\user_helper;
 use local_lbplanner\helpers\plan_helper;
 
-
+/**
+ * Add a deadline to the plan.
+ */
 class plan_add_deadline extends external_api {
     public static function add_deadline_parameters() {
         return new external_function_parameters(array(

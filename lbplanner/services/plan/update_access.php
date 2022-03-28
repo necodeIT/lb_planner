@@ -22,7 +22,9 @@ use external_value;
 use local_lbplanner\helpers\plan_helper;
 use local_lbplanner\helpers\user_helper;
 
-
+/**
+ * Update the access of the plan.
+ */
 class plan_update_access extends external_api {
     public static function update_access_parameters() {
         return new external_function_parameters(array(

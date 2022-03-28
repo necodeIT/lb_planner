@@ -23,6 +23,9 @@ use external_value;
 use local_lbplanner\helpers\plan_helper;
 use local_lbplanner\helpers\user_helper;
 
+/**
+ * Get the access type to the plan.
+ */
 class plan_get_access extends external_api {
     public static function get_access_parameters() {
         return new external_function_parameters(array(

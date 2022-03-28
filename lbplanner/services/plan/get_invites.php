@@ -24,6 +24,9 @@ use external_value;
 use local_lbplanner\helpers\user_helper;
 use local_lbplanner\helpers\plan_helper;
 
+/**
+ * Get all the invites of the given user.
+ */
 class plan_get_invites extends external_api {
     public static function get_invites_parameters() {
         return new external_function_parameters(array(

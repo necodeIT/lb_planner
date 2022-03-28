@@ -23,6 +23,9 @@ use external_single_structure;
 use external_value;
 use local_lbplanner\helpers\user_helper;
 
+/**
+ * Gets all users registered by the lbplanner app.
+ */
 class user_get_all_users extends external_api {
     public static function get_all_users_parameters() {
         return new external_function_parameters(array(

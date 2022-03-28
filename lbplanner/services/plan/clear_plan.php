@@ -22,6 +22,9 @@ use external_value;
 use local_lbplanner\helpers\plan_helper;
 use local_lbplanner\helpers\user_helper;
 
+/**
+ * Clear the plan for the given user.
+ */
 class plan_clear_plan extends external_api {
     public static function clear_plan_parameters() {
         return new external_function_parameters(array(

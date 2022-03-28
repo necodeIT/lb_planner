@@ -22,6 +22,9 @@ use external_multiple_structure;
 use external_single_structure;
 use external_value;
 
+/**
+ * Get all the courses of the current year.
+ */
 class course_get_all_courses extends external_api {
     public static function get_all_courses_parameters() {
         return new external_function_parameters(array(

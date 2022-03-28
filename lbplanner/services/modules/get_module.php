@@ -21,6 +21,9 @@ use external_function_parameters;
 use external_single_structure;
 use external_value;
 
+/**
+ * Get the data for a module.
+ */
 class modules_get_module extends external_api {
     public static function get_module_parameters() {
         return new external_function_parameters(array(

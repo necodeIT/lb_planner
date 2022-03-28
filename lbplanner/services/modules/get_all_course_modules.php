@@ -21,6 +21,9 @@ use external_function_parameters;
 use external_single_structure;
 use external_value;
 
+/**
+ * Get all the modules of the given course.
+ */
 class modules_get_all_course_modules extends external_api {
     public static function get_all_course_modules_parameters() {
         return new external_function_parameters(array(

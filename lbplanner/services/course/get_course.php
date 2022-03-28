@@ -21,6 +21,9 @@ use external_function_parameters;
 use external_single_structure;
 use external_value;
 
+/**
+ * Get the data for a course.
+ */
 class course_get_course extends external_api {
     public static function get_course_parameters() {
         return new external_function_parameters(array(
