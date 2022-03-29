@@ -15,6 +15,7 @@ _$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
       language: $enumDecode(_$LanguagesEnumMap, json['language']),
       theme: json['theme'] as String,
       accessLevel: $enumDecode(_$AccessLevelsEnumMap, json['accessLevel']),
+      planId: json['planId'] as int,
       isEmpty: json['isEmpty'] as bool? ?? false,
     );
 
@@ -27,6 +28,7 @@ Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
       'language': _$LanguagesEnumMap[instance.language],
       'theme': instance.theme,
       'accessLevel': _$AccessLevelsEnumMap[instance.accessLevel],
+      'planId': instance.planId,
       'isEmpty': instance.isEmpty,
     };
 

@@ -34,6 +34,9 @@ class User with _$User {
     /// The access level of the user
     required AccessLevels accessLevel,
 
+    /// The id of the plan the user is currently a member of
+    required int planId,
+
     /// If this is set to true the this user contains no useful data
     @Default(false) bool isEmpty,
   }) = _User;
@@ -56,4 +59,5 @@ User _EmptyUser() => User(
       theme: "",
       accessLevel: AccessLevels.student,
       isEmpty: true,
+      planId: -1,
     );

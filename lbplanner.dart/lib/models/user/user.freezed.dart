@@ -31,6 +31,7 @@ class _$UserTearOff {
       required Languages language,
       required String theme,
       required AccessLevels accessLevel,
+      required int planId,
       bool isEmpty = false}) {
     return _User(
       id: id,
@@ -41,6 +42,7 @@ class _$UserTearOff {
       language: language,
       theme: theme,
       accessLevel: accessLevel,
+      planId: planId,
       isEmpty: isEmpty,
     );
   }
@@ -79,6 +81,9 @@ mixin _$User {
   /// The access level of the user
   AccessLevels get accessLevel => throw _privateConstructorUsedError;
 
+  /// The id of the plan the user is currently a member of
+  int get planId => throw _privateConstructorUsedError;
+
   /// If this is set to true the this user contains no useful data
   bool get isEmpty => throw _privateConstructorUsedError;
 
@@ -100,6 +105,7 @@ abstract class $UserCopyWith<$Res> {
       Languages language,
       String theme,
       AccessLevels accessLevel,
+      int planId,
       bool isEmpty});
 }
 
@@ -121,6 +127,7 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object? language = freezed,
     Object? theme = freezed,
     Object? accessLevel = freezed,
+    Object? planId = freezed,
     Object? isEmpty = freezed,
   }) {
     return _then(_value.copyWith(
@@ -156,6 +163,10 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _value.accessLevel
           : accessLevel // ignore: cast_nullable_to_non_nullable
               as AccessLevels,
+      planId: planId == freezed
+          ? _value.planId
+          : planId // ignore: cast_nullable_to_non_nullable
+              as int,
       isEmpty: isEmpty == freezed
           ? _value.isEmpty
           : isEmpty // ignore: cast_nullable_to_non_nullable
@@ -178,6 +189,7 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       Languages language,
       String theme,
       AccessLevels accessLevel,
+      int planId,
       bool isEmpty});
 }
 
@@ -200,6 +212,7 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     Object? language = freezed,
     Object? theme = freezed,
     Object? accessLevel = freezed,
+    Object? planId = freezed,
     Object? isEmpty = freezed,
   }) {
     return _then(_User(
@@ -235,6 +248,10 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
           ? _value.accessLevel
           : accessLevel // ignore: cast_nullable_to_non_nullable
               as AccessLevels,
+      planId: planId == freezed
+          ? _value.planId
+          : planId // ignore: cast_nullable_to_non_nullable
+              as int,
       isEmpty: isEmpty == freezed
           ? _value.isEmpty
           : isEmpty // ignore: cast_nullable_to_non_nullable
@@ -255,6 +272,7 @@ class _$_User implements _User {
       required this.language,
       required this.theme,
       required this.accessLevel,
+      required this.planId,
       this.isEmpty = false});
 
   factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
@@ -291,6 +309,10 @@ class _$_User implements _User {
 
   /// The access level of the user
   final AccessLevels accessLevel;
+  @override
+
+  /// The id of the plan the user is currently a member of
+  final int planId;
   @JsonKey()
   @override
 
@@ -299,7 +321,7 @@ class _$_User implements _User {
 
   @override
   String toString() {
-    return 'User(id: $id, username: $username, firstname: $firstname, lastname: $lastname, avatar: $avatar, language: $language, theme: $theme, accessLevel: $accessLevel, isEmpty: $isEmpty)';
+    return 'User(id: $id, username: $username, firstname: $firstname, lastname: $lastname, avatar: $avatar, language: $language, theme: $theme, accessLevel: $accessLevel, planId: $planId, isEmpty: $isEmpty)';
   }
 
   @override
@@ -316,6 +338,7 @@ class _$_User implements _User {
             const DeepCollectionEquality().equals(other.theme, theme) &&
             const DeepCollectionEquality()
                 .equals(other.accessLevel, accessLevel) &&
+            const DeepCollectionEquality().equals(other.planId, planId) &&
             const DeepCollectionEquality().equals(other.isEmpty, isEmpty));
   }
 
@@ -330,6 +353,7 @@ class _$_User implements _User {
       const DeepCollectionEquality().hash(language),
       const DeepCollectionEquality().hash(theme),
       const DeepCollectionEquality().hash(accessLevel),
+      const DeepCollectionEquality().hash(planId),
       const DeepCollectionEquality().hash(isEmpty));
 
   @JsonKey(ignore: true)
@@ -353,6 +377,7 @@ abstract class _User implements User {
       required Languages language,
       required String theme,
       required AccessLevels accessLevel,
+      required int planId,
       bool isEmpty}) = _$_User;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
@@ -389,6 +414,10 @@ abstract class _User implements User {
 
   /// The access level of the user
   AccessLevels get accessLevel;
+  @override
+
+  /// The id of the plan the user is currently a member of
+  int get planId;
   @override
 
   /// If this is set to true the this user contains no useful data
