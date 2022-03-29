@@ -6,7 +6,7 @@ extension UserMappingExtensions on Map<String, dynamic> {
   Map<String, dynamic> mapUser() {
     var body = Map.of(this);
     body["language"] = this["lang"];
-    body["accessLevel"] = AccessLevels.values[this["role"]].toString().split(".").last;
+    body["accessLevel"] = AccessLevels.values[this["role"]].name;
     body["id"] = this["userid"];
     body["avatar"] = this["profileimageurl"];
     body["planId"] = this["planid"];
