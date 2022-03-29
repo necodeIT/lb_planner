@@ -20,6 +20,8 @@ use external_api;
 use external_function_parameters;
 use external_single_structure;
 use external_value;
+use local_lbplanner\helpers\user_helper;
+use local_lbplanner\helpers\course_helper;
 
 /**
  * Get the data for a course.
@@ -34,11 +36,16 @@ class course_get_course extends external_api {
 
     public static function get_course($courseid, $userid) {
         global $DB;
-        global $USER;
 
-        $params = self::validate_parameters(self::get_course_parameters(), array('courseid' => $courseid, 'userid' => $userid));
+        self::validate_parameters(self::get_course_parameters(), array('courseid' => $courseid, 'userid' => $userid));
 
-        // TODO: Check if the token is allowed to get this course.
+        if (!user_helper::check_access($userid)) {
+            throw new \moodle_exception('Access denied');
+        }
+
+        if (!course_helper::check_access($courseid, $userid)) {
+            throw new \moodle_exception('Access denied');
+        }
 
         return array();
     }
