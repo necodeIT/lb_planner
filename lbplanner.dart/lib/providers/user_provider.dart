@@ -4,4 +4,6 @@ part of lbplanner_api;
 class UserProvider extends StateNotifier<User> {
   /// Provides the current user
   UserProvider() : super(User.empty());
+
+  // TODO: Implement [UserProvider]
 }
