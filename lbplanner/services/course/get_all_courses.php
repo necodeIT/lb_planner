@@ -21,6 +21,7 @@ use external_function_parameters;
 use external_multiple_structure;
 use external_single_structure;
 use external_value;
+use local_lbplanner\helpers\user_helper;
 
 /**
  * Get all the courses of the current year.
@@ -45,6 +46,10 @@ class course_get_all_courses extends external_api {
         self::validate_parameters(self::get_all_courses_parameters(), array('userid' => $userid));
 
         // TODO: Check if the user is allowed to get the data for this userid.
+
+        if (!user_helper::check_access($userid)) {
+            throw new \moodle_exception('Access denied');
+        }
         // TODO: Get all courses of the current year.
 
         return array();
