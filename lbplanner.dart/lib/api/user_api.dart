@@ -13,15 +13,17 @@ class UserApi {
     User? user;
 
     if (response.succeeded) {
-      user = User.fromJson(response.body.renamed);
+      user = User.fromJson(response.body.mapUser());
     }
 
     return ApiResponse(response.response, user);
   }
 }
 
-extension on Map<String, dynamic> {
-  Map<String, dynamic> get renamed {
+/// Provides utilities to remap parameters as the moodle api and the models have different names for their parameters.
+extension UserMappingExtensions on Map<String, dynamic> {
+  /// Maps paramters from to fit [User.fromJson].
+  Map<String, dynamic> mapUser() {
     var body = Map.of(this);
     body["language"] = this["lang"];
     body["accessLevel"] = AccessLevels.values[this["role"]].toString().split(".").last;
