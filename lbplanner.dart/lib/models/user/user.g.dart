@@ -7,23 +7,27 @@ part of 'user.dart';
 // **************************************************************************
 
 _$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
+      id: json['id'] as int,
       username: json['username'] as String,
       firstname: json['firstname'] as String,
       lastname: json['lastname'] as String,
-      avatar: Uri.parse(json['avatar'] as String),
+      avatar: json['avatar'] as String,
       language: $enumDecode(_$LanguagesEnumMap, json['language']),
       theme: json['theme'] as String,
       accessLevel: $enumDecode(_$AccessLevelsEnumMap, json['accessLevel']),
+      isEmpty: json['isEmpty'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
+      'id': instance.id,
       'username': instance.username,
       'firstname': instance.firstname,
       'lastname': instance.lastname,
-      'avatar': instance.avatar.toString(),
+      'avatar': instance.avatar,
       'language': _$LanguagesEnumMap[instance.language],
       'theme': instance.theme,
       'accessLevel': _$AccessLevelsEnumMap[instance.accessLevel],
+      'isEmpty': instance.isEmpty,
     };
 
 const _$LanguagesEnumMap = {

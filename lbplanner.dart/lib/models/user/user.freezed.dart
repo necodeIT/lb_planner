@@ -23,14 +23,17 @@ class _$UserTearOff {
   const _$UserTearOff();
 
   _User call(
-      {required String username,
+      {required int id,
+      required String username,
       required String firstname,
       required String lastname,
-      required Uri avatar,
+      required String avatar,
       required Languages language,
       required String theme,
-      required AccessLevels accessLevel}) {
+      required AccessLevels accessLevel,
+      bool isEmpty = false}) {
     return _User(
+      id: id,
       username: username,
       firstname: firstname,
       lastname: lastname,
@@ -38,6 +41,7 @@ class _$UserTearOff {
       language: language,
       theme: theme,
       accessLevel: accessLevel,
+      isEmpty: isEmpty,
     );
   }
 
@@ -51,13 +55,32 @@ const $User = _$UserTearOff();
 
 /// @nodoc
 mixin _$User {
+  /// ID of the user
+  int get id => throw _privateConstructorUsedError;
+
+  /// Name of the user
   String get username => throw _privateConstructorUsedError;
+
+  /// User's first name
   String get firstname => throw _privateConstructorUsedError;
+
+  /// Lastname of the user
   String get lastname => throw _privateConstructorUsedError;
-  Uri get avatar => throw _privateConstructorUsedError;
+
+  /// Url to the users moodle profile picture
+  String get avatar => throw _privateConstructorUsedError;
+
+  /// the language the user has selected
   Languages get language => throw _privateConstructorUsedError;
+
+  /// The theme the user has selected
   String get theme => throw _privateConstructorUsedError;
+
+  /// The access level of the user
   AccessLevels get accessLevel => throw _privateConstructorUsedError;
+
+  /// If this is set to true the this user contains no useful data
+  bool get isEmpty => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -69,13 +92,15 @@ abstract class $UserCopyWith<$Res> {
   factory $UserCopyWith(User value, $Res Function(User) then) =
       _$UserCopyWithImpl<$Res>;
   $Res call(
-      {String username,
+      {int id,
+      String username,
       String firstname,
       String lastname,
-      Uri avatar,
+      String avatar,
       Languages language,
       String theme,
-      AccessLevels accessLevel});
+      AccessLevels accessLevel,
+      bool isEmpty});
 }
 
 /// @nodoc
@@ -88,6 +113,7 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? username = freezed,
     Object? firstname = freezed,
     Object? lastname = freezed,
@@ -95,8 +121,13 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object? language = freezed,
     Object? theme = freezed,
     Object? accessLevel = freezed,
+    Object? isEmpty = freezed,
   }) {
     return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       username: username == freezed
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
@@ -112,7 +143,7 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
       avatar: avatar == freezed
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
-              as Uri,
+              as String,
       language: language == freezed
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
@@ -125,6 +156,10 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _value.accessLevel
           : accessLevel // ignore: cast_nullable_to_non_nullable
               as AccessLevels,
+      isEmpty: isEmpty == freezed
+          ? _value.isEmpty
+          : isEmpty // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -135,13 +170,15 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       __$UserCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String username,
+      {int id,
+      String username,
       String firstname,
       String lastname,
-      Uri avatar,
+      String avatar,
       Languages language,
       String theme,
-      AccessLevels accessLevel});
+      AccessLevels accessLevel,
+      bool isEmpty});
 }
 
 /// @nodoc
@@ -155,6 +192,7 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? username = freezed,
     Object? firstname = freezed,
     Object? lastname = freezed,
@@ -162,8 +200,13 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     Object? language = freezed,
     Object? theme = freezed,
     Object? accessLevel = freezed,
+    Object? isEmpty = freezed,
   }) {
     return _then(_User(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       username: username == freezed
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
@@ -179,7 +222,7 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
       avatar: avatar == freezed
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
-              as Uri,
+              as String,
       language: language == freezed
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
@@ -192,6 +235,10 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
           ? _value.accessLevel
           : accessLevel // ignore: cast_nullable_to_non_nullable
               as AccessLevels,
+      isEmpty: isEmpty == freezed
+          ? _value.isEmpty
+          : isEmpty // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -200,34 +247,59 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_User implements _User {
   const _$_User(
-      {required this.username,
+      {required this.id,
+      required this.username,
       required this.firstname,
       required this.lastname,
       required this.avatar,
       required this.language,
       required this.theme,
-      required this.accessLevel});
+      required this.accessLevel,
+      this.isEmpty = false});
 
   factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
 
   @override
+
+  /// ID of the user
+  final int id;
+  @override
+
+  /// Name of the user
   final String username;
   @override
+
+  /// User's first name
   final String firstname;
   @override
+
+  /// Lastname of the user
   final String lastname;
   @override
-  final Uri avatar;
+
+  /// Url to the users moodle profile picture
+  final String avatar;
   @override
+
+  /// the language the user has selected
   final Languages language;
   @override
+
+  /// The theme the user has selected
   final String theme;
   @override
+
+  /// The access level of the user
   final AccessLevels accessLevel;
+  @JsonKey()
+  @override
+
+  /// If this is set to true the this user contains no useful data
+  final bool isEmpty;
 
   @override
   String toString() {
-    return 'User(username: $username, firstname: $firstname, lastname: $lastname, avatar: $avatar, language: $language, theme: $theme, accessLevel: $accessLevel)';
+    return 'User(id: $id, username: $username, firstname: $firstname, lastname: $lastname, avatar: $avatar, language: $language, theme: $theme, accessLevel: $accessLevel, isEmpty: $isEmpty)';
   }
 
   @override
@@ -235,6 +307,7 @@ class _$_User implements _User {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _User &&
+            const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.username, username) &&
             const DeepCollectionEquality().equals(other.firstname, firstname) &&
             const DeepCollectionEquality().equals(other.lastname, lastname) &&
@@ -242,19 +315,22 @@ class _$_User implements _User {
             const DeepCollectionEquality().equals(other.language, language) &&
             const DeepCollectionEquality().equals(other.theme, theme) &&
             const DeepCollectionEquality()
-                .equals(other.accessLevel, accessLevel));
+                .equals(other.accessLevel, accessLevel) &&
+            const DeepCollectionEquality().equals(other.isEmpty, isEmpty));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(username),
       const DeepCollectionEquality().hash(firstname),
       const DeepCollectionEquality().hash(lastname),
       const DeepCollectionEquality().hash(avatar),
       const DeepCollectionEquality().hash(language),
       const DeepCollectionEquality().hash(theme),
-      const DeepCollectionEquality().hash(accessLevel));
+      const DeepCollectionEquality().hash(accessLevel),
+      const DeepCollectionEquality().hash(isEmpty));
 
   @JsonKey(ignore: true)
   @override
@@ -269,30 +345,54 @@ class _$_User implements _User {
 
 abstract class _User implements User {
   const factory _User(
-      {required String username,
+      {required int id,
+      required String username,
       required String firstname,
       required String lastname,
-      required Uri avatar,
+      required String avatar,
       required Languages language,
       required String theme,
-      required AccessLevels accessLevel}) = _$_User;
+      required AccessLevels accessLevel,
+      bool isEmpty}) = _$_User;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
 
   @override
+
+  /// ID of the user
+  int get id;
+  @override
+
+  /// Name of the user
   String get username;
   @override
+
+  /// User's first name
   String get firstname;
   @override
+
+  /// Lastname of the user
   String get lastname;
   @override
-  Uri get avatar;
+
+  /// Url to the users moodle profile picture
+  String get avatar;
   @override
+
+  /// the language the user has selected
   Languages get language;
   @override
+
+  /// The theme the user has selected
   String get theme;
   @override
+
+  /// The access level of the user
   AccessLevels get accessLevel;
+  @override
+
+  /// If this is set to true the this user contains no useful data
+  bool get isEmpty;
   @override
   @JsonKey(ignore: true)
   _$UserCopyWith<_User> get copyWith => throw _privateConstructorUsedError;

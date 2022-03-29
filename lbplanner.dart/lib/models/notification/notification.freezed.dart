@@ -45,9 +45,16 @@ const $Notification = _$NotificationTearOff();
 
 /// @nodoc
 mixin _$Notification {
+  /// ID of the notification
   int get id => throw _privateConstructorUsedError;
+
+  /// The payload of the notification
   Map<String, dynamic> get payload => throw _privateConstructorUsedError;
+
+  /// The type of the notification
   NotifactionTypes get type => throw _privateConstructorUsedError;
+
+  /// The status of the notification
   NotificationStatus get status => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -169,12 +176,20 @@ class _$_Notification with DiagnosticableTreeMixin implements _Notification {
       _$$_NotificationFromJson(json);
 
   @override
+
+  /// ID of the notification
   final int id;
   @override
+
+  /// The payload of the notification
   final Map<String, dynamic> payload;
   @override
+
+  /// The type of the notification
   final NotifactionTypes type;
   @override
+
+  /// The status of the notification
   final NotificationStatus status;
 
   @override
@@ -234,12 +249,20 @@ abstract class _Notification implements Notification {
       _$_Notification.fromJson;
 
   @override
+
+  /// ID of the notification
   int get id;
   @override
+
+  /// The payload of the notification
   Map<String, dynamic> get payload;
   @override
+
+  /// The type of the notification
   NotifactionTypes get type;
   @override
+
+  /// The status of the notification
   NotificationStatus get status;
   @override
   @JsonKey(ignore: true)

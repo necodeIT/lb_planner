@@ -11,9 +11,16 @@ part 'notification.g.dart';
 class Notification with _$Notification {
   /// Notification model
   const factory Notification({
+    /// ID of the notification
     required int id,
+
+    /// The payload of the notification
     required Map<String, dynamic> payload,
+
+    /// The type of the notification
     required NotifactionTypes type,
+
+    /// The status of the notification
     required NotificationStatus status,
   }) = _Notification;
 
