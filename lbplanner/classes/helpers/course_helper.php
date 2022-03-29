@@ -17,11 +17,11 @@
 namespace local_lbplanner\helpers;
 
 
-class course_helper{
+class course_helper {
 
     /**
-    *  Name of the Enrol Table 
-    */
+     *  Name of the Enrol Table
+     */
     const ENROL_TABLE = 'mdl_enrol';
 
     /**
@@ -35,23 +35,20 @@ class course_helper{
     const COURSE_TABLE = 'mdl_course';
 
     const CATEGORY_TABLE = 'mdl_course_categories';
-    
 
-    public static function get_enrollments(int $userid){
+
+    public static function get_enrollments(int $userid) {
         global $DB;
         return $DB->get_fieldset_sql('SELECT enrolid FROM ' . self::USER_ENROL_TABLE . ' WHERE userid= ' . $userid);
     }
-    
-    public static function get_current_year(){
-        return strval(intval(date('Y'))+1);
+
+    public static function get_current_year() {
+        return strval(intval(date('Y')) + 1);
     }
-    
-    public static function get_current_category(){
+
+    public static function get_current_category() {
         global $DB;
-        // check if category year contains the categogry name
+        // Check if category year contains the categogry name.
         return $DB->get_record_sql('SELECT id FROM ' . self::CATEGORY_TABLE . ' WHERE name LIKE "' . self::get_current_year() . '%"');
     }
-
-
-    
 }
