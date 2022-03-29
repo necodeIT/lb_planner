@@ -32,7 +32,8 @@ class _$UserTearOff {
       required String theme,
       required AccessLevels accessLevel,
       required int planId,
-      bool isEmpty = false}) {
+      bool isEmpty = false,
+      bool restriced = false}) {
     return _User(
       id: id,
       username: username,
@@ -44,6 +45,7 @@ class _$UserTearOff {
       accessLevel: accessLevel,
       planId: planId,
       isEmpty: isEmpty,
+      restriced: restriced,
     );
   }
 
@@ -87,6 +89,9 @@ mixin _$User {
   /// If this is set to true the this user contains no useful data
   bool get isEmpty => throw _privateConstructorUsedError;
 
+  /// If this is true, only restricted information is available about this user
+  bool get restriced => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $UserCopyWith<User> get copyWith => throw _privateConstructorUsedError;
@@ -106,7 +111,8 @@ abstract class $UserCopyWith<$Res> {
       String theme,
       AccessLevels accessLevel,
       int planId,
-      bool isEmpty});
+      bool isEmpty,
+      bool restriced});
 }
 
 /// @nodoc
@@ -129,6 +135,7 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object? accessLevel = freezed,
     Object? planId = freezed,
     Object? isEmpty = freezed,
+    Object? restriced = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -171,6 +178,10 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _value.isEmpty
           : isEmpty // ignore: cast_nullable_to_non_nullable
               as bool,
+      restriced: restriced == freezed
+          ? _value.restriced
+          : restriced // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -190,7 +201,8 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       String theme,
       AccessLevels accessLevel,
       int planId,
-      bool isEmpty});
+      bool isEmpty,
+      bool restriced});
 }
 
 /// @nodoc
@@ -214,6 +226,7 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     Object? accessLevel = freezed,
     Object? planId = freezed,
     Object? isEmpty = freezed,
+    Object? restriced = freezed,
   }) {
     return _then(_User(
       id: id == freezed
@@ -256,6 +269,10 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
           ? _value.isEmpty
           : isEmpty // ignore: cast_nullable_to_non_nullable
               as bool,
+      restriced: restriced == freezed
+          ? _value.restriced
+          : restriced // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -273,7 +290,8 @@ class _$_User implements _User {
       required this.theme,
       required this.accessLevel,
       required this.planId,
-      this.isEmpty = false});
+      this.isEmpty = false,
+      this.restriced = false});
 
   factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
 
@@ -318,10 +336,15 @@ class _$_User implements _User {
 
   /// If this is set to true the this user contains no useful data
   final bool isEmpty;
+  @JsonKey()
+  @override
+
+  /// If this is true, only restricted information is available about this user
+  final bool restriced;
 
   @override
   String toString() {
-    return 'User(id: $id, username: $username, firstname: $firstname, lastname: $lastname, avatar: $avatar, language: $language, theme: $theme, accessLevel: $accessLevel, planId: $planId, isEmpty: $isEmpty)';
+    return 'User(id: $id, username: $username, firstname: $firstname, lastname: $lastname, avatar: $avatar, language: $language, theme: $theme, accessLevel: $accessLevel, planId: $planId, isEmpty: $isEmpty, restriced: $restriced)';
   }
 
   @override
@@ -339,7 +362,8 @@ class _$_User implements _User {
             const DeepCollectionEquality()
                 .equals(other.accessLevel, accessLevel) &&
             const DeepCollectionEquality().equals(other.planId, planId) &&
-            const DeepCollectionEquality().equals(other.isEmpty, isEmpty));
+            const DeepCollectionEquality().equals(other.isEmpty, isEmpty) &&
+            const DeepCollectionEquality().equals(other.restriced, restriced));
   }
 
   @override
@@ -354,7 +378,8 @@ class _$_User implements _User {
       const DeepCollectionEquality().hash(theme),
       const DeepCollectionEquality().hash(accessLevel),
       const DeepCollectionEquality().hash(planId),
-      const DeepCollectionEquality().hash(isEmpty));
+      const DeepCollectionEquality().hash(isEmpty),
+      const DeepCollectionEquality().hash(restriced));
 
   @JsonKey(ignore: true)
   @override
@@ -378,7 +403,8 @@ abstract class _User implements User {
       required String theme,
       required AccessLevels accessLevel,
       required int planId,
-      bool isEmpty}) = _$_User;
+      bool isEmpty,
+      bool restriced}) = _$_User;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
 
@@ -422,6 +448,10 @@ abstract class _User implements User {
 
   /// If this is set to true the this user contains no useful data
   bool get isEmpty;
+  @override
+
+  /// If this is true, only restricted information is available about this user
+  bool get restriced;
   @override
   @JsonKey(ignore: true)
   _$UserCopyWith<_User> get copyWith => throw _privateConstructorUsedError;

@@ -39,6 +39,9 @@ class User with _$User {
 
     /// If this is set to true the this user contains no useful data
     @Default(false) bool isEmpty,
+
+    /// If this is true, only restricted information is available about this user
+    @Default(false) bool restriced,
   }) = _User;
 
   /// Empty [User] with [isEmpty] set to true.
