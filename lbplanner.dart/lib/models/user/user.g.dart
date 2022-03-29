@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of lbplanner_api;
+part of 'user.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator

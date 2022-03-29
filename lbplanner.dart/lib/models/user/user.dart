@@ -1,4 +1,8 @@
-part of lbplanner_api;
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:lbplanner_api/lbplanner_api.dart';
+
+part 'user.freezed.dart';
+part 'user.g.dart';
 
 @freezed
 

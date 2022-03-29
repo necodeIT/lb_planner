@@ -1,9 +1,9 @@
 library lbplanner_api;
 
-import 'package:freezed_annotation/freezed_annotation.dart';
+export 'models/user/user.dart';
+export 'models/notification/notification.dart';
 
-part 'models/user/user.dart';
 part 'models/languages.dart';
 part 'models/access_levels.dart';
-part 'models/user/user.freezed.dart';
-part 'models/user/user.g.dart';
+part 'models/notification_types.dart';
+part 'models/notification_status.dart';

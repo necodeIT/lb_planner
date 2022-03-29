@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of lbplanner_api;
+part of 'user.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -22,7 +22,14 @@ User _$UserFromJson(Map<String, dynamic> json) {
 class _$UserTearOff {
   const _$UserTearOff();
 
-  _User call({required String username, required String firstname, required String lastname, required Uri avatar, required Languages language, required String theme, required AccessLevels accessLevel}) {
+  _User call(
+      {required String username,
+      required String firstname,
+      required String lastname,
+      required Uri avatar,
+      required Languages language,
+      required String theme,
+      required AccessLevels accessLevel}) {
     return _User(
       username: username,
       firstname: firstname,
@@ -59,8 +66,16 @@ mixin _$User {
 
 /// @nodoc
 abstract class $UserCopyWith<$Res> {
-  factory $UserCopyWith(User value, $Res Function(User) then) = _$UserCopyWithImpl<$Res>;
-  $Res call({String username, String firstname, String lastname, Uri avatar, Languages language, String theme, AccessLevels accessLevel});
+  factory $UserCopyWith(User value, $Res Function(User) then) =
+      _$UserCopyWithImpl<$Res>;
+  $Res call(
+      {String username,
+      String firstname,
+      String lastname,
+      Uri avatar,
+      Languages language,
+      String theme,
+      AccessLevels accessLevel});
 }
 
 /// @nodoc
@@ -116,14 +131,24 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
 
 /// @nodoc
 abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
-  factory _$UserCopyWith(_User value, $Res Function(_User) then) = __$UserCopyWithImpl<$Res>;
+  factory _$UserCopyWith(_User value, $Res Function(_User) then) =
+      __$UserCopyWithImpl<$Res>;
   @override
-  $Res call({String username, String firstname, String lastname, Uri avatar, Languages language, String theme, AccessLevels accessLevel});
+  $Res call(
+      {String username,
+      String firstname,
+      String lastname,
+      Uri avatar,
+      Languages language,
+      String theme,
+      AccessLevels accessLevel});
 }
 
 /// @nodoc
-class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res> implements _$UserCopyWith<$Res> {
-  __$UserCopyWithImpl(_User _value, $Res Function(_User) _then) : super(_value, (v) => _then(v as _User));
+class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
+    implements _$UserCopyWith<$Res> {
+  __$UserCopyWithImpl(_User _value, $Res Function(_User) _then)
+      : super(_value, (v) => _then(v as _User));
 
   @override
   _User get _value => super._value as _User;
@@ -174,7 +199,14 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res> implements _$Us
 /// @nodoc
 @JsonSerializable()
 class _$_User implements _User {
-  const _$_User({required this.username, required this.firstname, required this.lastname, required this.avatar, required this.language, required this.theme, required this.accessLevel});
+  const _$_User(
+      {required this.username,
+      required this.firstname,
+      required this.lastname,
+      required this.avatar,
+      required this.language,
+      required this.theme,
+      required this.accessLevel});
 
   factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
 
@@ -209,16 +241,25 @@ class _$_User implements _User {
             const DeepCollectionEquality().equals(other.avatar, avatar) &&
             const DeepCollectionEquality().equals(other.language, language) &&
             const DeepCollectionEquality().equals(other.theme, theme) &&
-            const DeepCollectionEquality().equals(other.accessLevel, accessLevel));
+            const DeepCollectionEquality()
+                .equals(other.accessLevel, accessLevel));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, const DeepCollectionEquality().hash(username), const DeepCollectionEquality().hash(firstname), const DeepCollectionEquality().hash(lastname), const DeepCollectionEquality().hash(avatar),
-      const DeepCollectionEquality().hash(language), const DeepCollectionEquality().hash(theme), const DeepCollectionEquality().hash(accessLevel));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(username),
+      const DeepCollectionEquality().hash(firstname),
+      const DeepCollectionEquality().hash(lastname),
+      const DeepCollectionEquality().hash(avatar),
+      const DeepCollectionEquality().hash(language),
+      const DeepCollectionEquality().hash(theme),
+      const DeepCollectionEquality().hash(accessLevel));
 
   @JsonKey(ignore: true)
   @override
-  _$UserCopyWith<_User> get copyWith => __$UserCopyWithImpl<_User>(this, _$identity);
+  _$UserCopyWith<_User> get copyWith =>
+      __$UserCopyWithImpl<_User>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -227,7 +268,14 @@ class _$_User implements _User {
 }
 
 abstract class _User implements User {
-  const factory _User({required String username, required String firstname, required String lastname, required Uri avatar, required Languages language, required String theme, required AccessLevels accessLevel}) = _$_User;
+  const factory _User(
+      {required String username,
+      required String firstname,
+      required String lastname,
+      required Uri avatar,
+      required Languages language,
+      required String theme,
+      required AccessLevels accessLevel}) = _$_User;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
 

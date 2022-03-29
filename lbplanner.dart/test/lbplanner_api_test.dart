@@ -12,6 +12,5 @@ void main() {
       theme: "Test",
       accessLevel: AccessLevels.admin,
     );
-    print(user);
   });
 }
