@@ -22,6 +22,7 @@ use external_multiple_structure;
 use external_single_structure;
 use external_value;
 use local_lbplanner\helpers\user_helper;
+use local_lbplanner\helpers\course_helper;
 
 /**
  * Get all the courses of the current year.
@@ -41,18 +42,32 @@ class course_get_all_courses extends external_api {
 
     public static function get_all_courses($userid) {
         global $DB;
-        global $USER;
 
         self::validate_parameters(self::get_all_courses_parameters(), array('userid' => $userid));
-
-        // TODO: Check if the user is allowed to get the data for this userid.
 
         if (!user_helper::check_access($userid)) {
             throw new \moodle_exception('Access denied');
         }
-        // TODO: Get all courses of the current year.
 
-        return array();
+        $enrollmentids = course_helper::get_enrollments($userid);
+
+        foreach ($enrollmentids as $enrollmentid) {
+                $courses[] = $DB->get_record(course_helper::ENROL_TABLE, array('id' => $enrollmentid), 'courseid', MUST_EXIST);
+        }
+
+        foreach ($courses as $course) {
+            $courseid = $course->courseid;
+            $DB->insert_record(course_helper::LBPLANNER_COURSE_TABLE, array(
+                'courseid' => $courseid,
+                'color' => course_helper::COLORS[array_rand(course_helper::COLORS)],
+                'name' => course_helper::get_course($courseid)->fullname,
+                'shortname' => course_helper::get_course($courseid)->shortname,
+                'enabled' => 0,
+                'userid' => $userid,
+            ));
+        }
+
+        return $courses();
     }
 
     public static function get_all_courses_returns() {
