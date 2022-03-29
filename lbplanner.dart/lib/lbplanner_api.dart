@@ -25,3 +25,4 @@ part 'providers/user_provider.dart';
 part 'api/api.dart';
 part 'api/api_response.dart';
 part 'api/user_api.dart';
+part 'api/utils/map_extensions.dart';
