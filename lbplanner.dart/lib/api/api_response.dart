@@ -15,19 +15,19 @@ class RawApiResponse {
   }
 
   /// Whether the response was successful.
-  bool get succeeded => response.statusCode >= 200 && response.statusCode < 300 && _body["exception"] == null;
+  bool get succeeded => response.statusCode >= 200 && response.statusCode < 300 && _body["exception"] == null && _body["error"] == null;
 
   /// Wheter the response failed.
   bool get failed => !succeeded;
 
   /// The response body as a map.
-  Map<String, dynamic> get body => _body;
+  Map<String, dynamic> get body => Map.unmodifiable(_body);
 
-  /// Retrieves the value of the given [key] from the response body.
+  /// Retrieves the value of the given [key] from the response [body].
   operator [](String key) => body[key];
 
   /// Error message of the response.
-  String get errorMessage => failed ? body["message"] : "";
+  String get errorMessage => failed ? _body["message"] ?? _body["error"] ?? "" : "";
 }
 
 /// Response from the API.

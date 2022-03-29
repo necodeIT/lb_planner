@@ -8,11 +8,14 @@ class Api {
   /// The format the api should use.
   static const format = "json";
 
+  /// The service short name of the API
+  static const service = "lpa";
+
   /// Client used to communicate with the API
   static final Client client = Client();
 
   /// Sends a request to the API.
-  /// - [functionname] The name of the function to call
+  /// - [functionName] The name of the function to call
   /// - [params] The parameters to pass to the function
   /// - [token] The token to use for authentication
   static Future<RawApiResponse> makeRequest({required String functionName, required String token, Map<String, dynamic>? params}) async {
@@ -23,6 +26,23 @@ class Api {
     if (params != null) {
       url += "&" + params.entries.map((e) => "${e.key}=${e.value}").join("&");
     }
+
+    var response = await client.get(Uri.parse(url));
+
+    var result = RawApiResponse(response);
+
+    log("Response: ${response.statusCode}${result.failed ? ", Message: '${result.errorMessage}'" : ""}", result.succeeded ? LogTypes.success : LogTypes.error, "API");
+
+    return result;
+  }
+
+  /// Requests a token for the given [username] and [password].
+  static Future<RawApiResponse> requestToken(String password, String username) async {
+    log("Requesting token ...", LogTypes.tracking, "API");
+
+    var encodedPassword = Uri.encodeComponent(password);
+
+    var url = "https://projekte.tgm.ac.at/moodledev/login/token.php?username=$username&service=$service&moodlewsrestformat=$format&password=$encodedPassword";
 
     var response = await client.get(Uri.parse(url));
 

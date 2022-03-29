@@ -13,4 +13,7 @@ enum AccessLevels {
 
   /// Student role
   student,
+
+  /// Restricted information available
+  restricted
 }

@@ -8,6 +8,8 @@ part 'user.g.dart';
 
 /// User model
 class User with _$User {
+  const User._();
+
   /// User model
   const factory User({
     /// ID of the user
@@ -26,27 +28,27 @@ class User with _$User {
     required String avatar,
 
     /// the language the user has selected
-    required Languages language,
+    @Default(Languages.restricted) Languages language,
 
     /// The theme the user has selected
-    required String theme,
+    @Default("") String theme,
 
     /// The access level of the user
-    required AccessLevels accessLevel,
+    @Default(AccessLevels.restricted) AccessLevels accessLevel,
 
     /// The id of the plan the user is currently a member of
-    required int planId,
+    @Default(-1) int planId,
 
     /// If this is set to true the this user contains no useful data
     @Default(false) bool isEmpty,
-
-    /// If this is true, only restricted information is available about this user
-    @Default(false) bool restriced,
   }) = _User;
 
   /// Empty [User] with [isEmpty] set to true.
   /// This is used to indicate that the user is not logged in and contains no valuable information other than that.
   factory User.empty() => _EmptyUser();
+
+  /// If this is true, only restricted information is available about this user
+  bool get restricted => accessLevel == AccessLevels.restricted;
 
   /// User model from json
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
@@ -60,7 +62,7 @@ User _EmptyUser() => User(
       avatar: "",
       language: Languages.en,
       theme: "",
-      accessLevel: AccessLevels.student,
+      accessLevel: AccessLevels.restricted,
       isEmpty: true,
       planId: -1,
     );

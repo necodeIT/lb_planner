@@ -28,12 +28,11 @@ class _$UserTearOff {
       required String firstname,
       required String lastname,
       required String avatar,
-      required Languages language,
-      required String theme,
-      required AccessLevels accessLevel,
-      required int planId,
-      bool isEmpty = false,
-      bool restriced = false}) {
+      Languages language = Languages.restricted,
+      String theme = "",
+      AccessLevels accessLevel = AccessLevels.restricted,
+      int planId = -1,
+      bool isEmpty = false}) {
     return _User(
       id: id,
       username: username,
@@ -45,7 +44,6 @@ class _$UserTearOff {
       accessLevel: accessLevel,
       planId: planId,
       isEmpty: isEmpty,
-      restriced: restriced,
     );
   }
 
@@ -89,9 +87,6 @@ mixin _$User {
   /// If this is set to true the this user contains no useful data
   bool get isEmpty => throw _privateConstructorUsedError;
 
-  /// If this is true, only restricted information is available about this user
-  bool get restriced => throw _privateConstructorUsedError;
-
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $UserCopyWith<User> get copyWith => throw _privateConstructorUsedError;
@@ -99,20 +94,8 @@ mixin _$User {
 
 /// @nodoc
 abstract class $UserCopyWith<$Res> {
-  factory $UserCopyWith(User value, $Res Function(User) then) =
-      _$UserCopyWithImpl<$Res>;
-  $Res call(
-      {int id,
-      String username,
-      String firstname,
-      String lastname,
-      String avatar,
-      Languages language,
-      String theme,
-      AccessLevels accessLevel,
-      int planId,
-      bool isEmpty,
-      bool restriced});
+  factory $UserCopyWith(User value, $Res Function(User) then) = _$UserCopyWithImpl<$Res>;
+  $Res call({int id, String username, String firstname, String lastname, String avatar, Languages language, String theme, AccessLevels accessLevel, int planId, bool isEmpty});
 }
 
 /// @nodoc
@@ -135,7 +118,6 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object? accessLevel = freezed,
     Object? planId = freezed,
     Object? isEmpty = freezed,
-    Object? restriced = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -178,38 +160,20 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _value.isEmpty
           : isEmpty // ignore: cast_nullable_to_non_nullable
               as bool,
-      restriced: restriced == freezed
-          ? _value.restriced
-          : restriced // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
 
 /// @nodoc
 abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
-  factory _$UserCopyWith(_User value, $Res Function(_User) then) =
-      __$UserCopyWithImpl<$Res>;
+  factory _$UserCopyWith(_User value, $Res Function(_User) then) = __$UserCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {int id,
-      String username,
-      String firstname,
-      String lastname,
-      String avatar,
-      Languages language,
-      String theme,
-      AccessLevels accessLevel,
-      int planId,
-      bool isEmpty,
-      bool restriced});
+  $Res call({int id, String username, String firstname, String lastname, String avatar, Languages language, String theme, AccessLevels accessLevel, int planId, bool isEmpty});
 }
 
 /// @nodoc
-class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
-    implements _$UserCopyWith<$Res> {
-  __$UserCopyWithImpl(_User _value, $Res Function(_User) _then)
-      : super(_value, (v) => _then(v as _User));
+class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res> implements _$UserCopyWith<$Res> {
+  __$UserCopyWithImpl(_User _value, $Res Function(_User) _then) : super(_value, (v) => _then(v as _User));
 
   @override
   _User get _value => super._value as _User;
@@ -226,7 +190,6 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     Object? accessLevel = freezed,
     Object? planId = freezed,
     Object? isEmpty = freezed,
-    Object? restriced = freezed,
   }) {
     return _then(_User(
       id: id == freezed
@@ -269,29 +232,25 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
           ? _value.isEmpty
           : isEmpty // ignore: cast_nullable_to_non_nullable
               as bool,
-      restriced: restriced == freezed
-          ? _value.restriced
-          : restriced // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_User implements _User {
+class _$_User extends _User {
   const _$_User(
       {required this.id,
       required this.username,
       required this.firstname,
       required this.lastname,
       required this.avatar,
-      required this.language,
-      required this.theme,
-      required this.accessLevel,
-      required this.planId,
-      this.isEmpty = false,
-      this.restriced = false});
+      this.language = Languages.restricted,
+      this.theme = "",
+      this.accessLevel = AccessLevels.restricted,
+      this.planId = -1,
+      this.isEmpty = false})
+      : super._();
 
   factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
 
@@ -315,18 +274,22 @@ class _$_User implements _User {
 
   /// Url to the users moodle profile picture
   final String avatar;
+  @JsonKey()
   @override
 
   /// the language the user has selected
   final Languages language;
+  @JsonKey()
   @override
 
   /// The theme the user has selected
   final String theme;
+  @JsonKey()
   @override
 
   /// The access level of the user
   final AccessLevels accessLevel;
+  @JsonKey()
   @override
 
   /// The id of the plan the user is currently a member of
@@ -336,15 +299,10 @@ class _$_User implements _User {
 
   /// If this is set to true the this user contains no useful data
   final bool isEmpty;
-  @JsonKey()
-  @override
-
-  /// If this is true, only restricted information is available about this user
-  final bool restriced;
 
   @override
   String toString() {
-    return 'User(id: $id, username: $username, firstname: $firstname, lastname: $lastname, avatar: $avatar, language: $language, theme: $theme, accessLevel: $accessLevel, planId: $planId, isEmpty: $isEmpty, restriced: $restriced)';
+    return 'User(id: $id, username: $username, firstname: $firstname, lastname: $lastname, avatar: $avatar, language: $language, theme: $theme, accessLevel: $accessLevel, planId: $planId, isEmpty: $isEmpty)';
   }
 
   @override
@@ -359,11 +317,9 @@ class _$_User implements _User {
             const DeepCollectionEquality().equals(other.avatar, avatar) &&
             const DeepCollectionEquality().equals(other.language, language) &&
             const DeepCollectionEquality().equals(other.theme, theme) &&
-            const DeepCollectionEquality()
-                .equals(other.accessLevel, accessLevel) &&
+            const DeepCollectionEquality().equals(other.accessLevel, accessLevel) &&
             const DeepCollectionEquality().equals(other.planId, planId) &&
-            const DeepCollectionEquality().equals(other.isEmpty, isEmpty) &&
-            const DeepCollectionEquality().equals(other.restriced, restriced));
+            const DeepCollectionEquality().equals(other.isEmpty, isEmpty));
   }
 
   @override
@@ -378,13 +334,11 @@ class _$_User implements _User {
       const DeepCollectionEquality().hash(theme),
       const DeepCollectionEquality().hash(accessLevel),
       const DeepCollectionEquality().hash(planId),
-      const DeepCollectionEquality().hash(isEmpty),
-      const DeepCollectionEquality().hash(restriced));
+      const DeepCollectionEquality().hash(isEmpty));
 
   @JsonKey(ignore: true)
   @override
-  _$UserCopyWith<_User> get copyWith =>
-      __$UserCopyWithImpl<_User>(this, _$identity);
+  _$UserCopyWith<_User> get copyWith => __$UserCopyWithImpl<_User>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -392,19 +346,9 @@ class _$_User implements _User {
   }
 }
 
-abstract class _User implements User {
-  const factory _User(
-      {required int id,
-      required String username,
-      required String firstname,
-      required String lastname,
-      required String avatar,
-      required Languages language,
-      required String theme,
-      required AccessLevels accessLevel,
-      required int planId,
-      bool isEmpty,
-      bool restriced}) = _$_User;
+abstract class _User extends User {
+  const factory _User({required int id, required String username, required String firstname, required String lastname, required String avatar, Languages language, String theme, AccessLevels accessLevel, int planId, bool isEmpty}) = _$_User;
+  const _User._() : super._();
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
 
@@ -448,10 +392,6 @@ abstract class _User implements User {
 
   /// If this is set to true the this user contains no useful data
   bool get isEmpty;
-  @override
-
-  /// If this is true, only restricted information is available about this user
-  bool get restriced;
   @override
   @JsonKey(ignore: true)
   _$UserCopyWith<_User> get copyWith => throw _privateConstructorUsedError;
