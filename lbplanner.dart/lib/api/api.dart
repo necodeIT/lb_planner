@@ -18,7 +18,7 @@ class Api {
   static Future<RawApiResponse> makeRequest({required String functionName, required String token, Map<String, dynamic>? params}) async {
     var url = "$apiEndpoint?moodlewsrestformat=$format&wstoken=$token&wsfunction=$functionName";
 
-    log("Calling $functionName($params) ...", LogTypes.tracking);
+    log("Calling $functionName($params) ...", LogTypes.tracking, "API");
 
     if (params != null) {
       url += "&" + params.entries.map((e) => "${e.key}=${e.value}").join("&");
@@ -28,8 +28,7 @@ class Api {
 
     var result = RawApiResponse(response);
 
-    log("Response: ${response.statusCode}", result.succeeded ? LogTypes.success : LogTypes.error);
-    if (result.failed) log("Response body: ${result.body}", LogTypes.debug);
+    log("Response: ${response.statusCode}${result.failed ? ", Message: '${result.errorMessage}'" : ""}", result.succeeded ? LogTypes.success : LogTypes.error, "API");
 
     return result;
   }
