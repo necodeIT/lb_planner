@@ -1,7 +1,9 @@
 library lbplanner_api;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'models/user/user.dart';
+part 'models/languages.dart';
+part 'models/access_levels.dart';
+part 'models/user/user.freezed.dart';
+part 'models/user/user.g.dart';

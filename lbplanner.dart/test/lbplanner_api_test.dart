@@ -1,12 +1,17 @@
 import 'package:flutter_test/flutter_test.dart';
-
 import 'package:lbplanner_api/lbplanner_api.dart';
 
 void main() {
-  test('adds one to input values', () {
-    final calculator = Calculator();
-    expect(calculator.addOne(2), 3);
-    expect(calculator.addOne(-7), -6);
-    expect(calculator.addOne(0), 1);
+  test("Create user", () {
+    User user = User(
+      username: "usernamsdase",
+      firstname: "firstname",
+      lastname: "lastname",
+      avatar: Uri.parse("https://i.kym-cdn.com/entries/icons/mobile/000/017/595/catgirlheader.jpg"),
+      language: Languages.en,
+      theme: "Test",
+      accessLevel: AccessLevels.admin,
+    );
+    print(user);
   });
 }
