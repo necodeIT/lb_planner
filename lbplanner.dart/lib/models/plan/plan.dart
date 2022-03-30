@@ -24,6 +24,9 @@ class Plan with _$Plan {
     /// Planmembers of the plan
     required Map<int, PlanAccessTypes> members,
 
+    /// Wheter the plan has modules of type [ModuleTypes.ek] enabled
+    required bool enableEk,
+
     /// The invites of the plan
     @Default([]) List<PlanInvite> invites,
   }) = _Plan;
