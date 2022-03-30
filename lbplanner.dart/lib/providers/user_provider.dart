@@ -18,8 +18,8 @@ class UserProvider extends StateNotifier<User> {
 
   //   var id = await UserApi.getUserId(moodleToken);
 
-  //   var user = await UserApi.getUser(token, 0);
+  //   if (id.failed) return RawApiResponse(id.response);
 
-  //   return true;
+  //   var user = await UserApi.getUser(token, id.value!);
   // }
 }

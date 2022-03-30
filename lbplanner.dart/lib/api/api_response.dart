@@ -1,5 +1,8 @@
 part of lbplanner_api;
 
+/// Name of the key used to access a list.
+const kApiListContent = "content";
+
 /// Wrapper for [Response].
 /// Provides utilities to handle errors and parse the response body.
 class RawApiResponse {
@@ -8,10 +11,27 @@ class RawApiResponse {
 
   late final Map<String, dynamic> _body;
 
+  /// Whether the payload is a list.
+  /// If this is true you have to access the list using [kApiListContent].
+  ///
+  /// Example:
+  /// ```dart
+  /// var list = response[kApiListContent];
+  /// ````
+  late final bool isList;
+
   /// Wrapper for the given [response].
   /// Provides utilities to handle errors and parse the response body.
   RawApiResponse(this.response) {
-    _body = jsonDecode(response.body);
+    var payload = jsonDecode(response.body);
+
+    isList = payload.runtimeType == List;
+
+    if (isList) {
+      _body = {kApiListContent: payload};
+    } else {
+      _body = payload;
+    }
   }
 
   /// Whether the response was successful.
