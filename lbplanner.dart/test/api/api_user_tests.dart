@@ -15,15 +15,15 @@ void runApiUserTests() {
   });
 
   test("Register User", () async {
-    var response = await UserApi.registerUser(kToken, kUserId, "en", kUserTheme);
+    var response = await UserApi.registerUser(kToken, kUserId, kLanguage.name, kUserTheme);
 
     if (response.succeeded) {
       assert(response.value != null);
       assert(response.value!.id == kUserId);
       assert(response.value!.username == kUsername);
-      assert(response.value!.accessLevel == AccessLevels.admin);
+      assert(response.value!.accessLevel == kAccessLevel);
       assert(response.value!.avatar == kAvatar);
-      assert(response.value!.language == Languages.en);
+      assert(response.value!.language == kLanguage);
       assert(response.value!.theme == kUserTheme);
       assert(response.value!.planId == kPlanId);
       assert(response.value!.firstname == kFirstname);
@@ -50,9 +50,9 @@ void runApiUserTests() {
     assert(response.value != null);
     assert(response.value!.id == kUserId);
     assert(response.value!.username == kUsername);
-    assert(response.value!.accessLevel == AccessLevels.admin);
+    assert(response.value!.accessLevel == kAccessLevel);
     assert(response.value!.avatar == kAvatar);
-    assert(response.value!.language == Languages.en);
+    assert(response.value!.language == kLanguage);
     assert(response.value!.theme == kUserTheme);
     assert(response.value!.planId == kPlanId);
     assert(response.value!.firstname == kFirstname);
