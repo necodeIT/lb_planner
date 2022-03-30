@@ -6,20 +6,31 @@ class UserProvider extends StateNotifier<User> {
   UserProvider() : super(User.empty());
 
   /// Performs a login request with the given [username] and [password]
-  // Future<RawApiResponse> login(String username, String password) async {
-  //   var lpa = await UserApi.login(username, password);
-  //   var moodleMobileApp = await Api.requestToken(password, username, ApiServices.moodle_mobile_app);
+  Future<RawApiResponse> login(String username, String password, {required Languages language, required String theme}) async {
+    var lpa = await UserApi.login(username, password);
+    var moodleMobileApp = await Api.requestToken(password, username, ApiServices.moodle_mobile_app);
 
-  //   if (lpa.failed) return RawApiResponse(lpa.response);
-  //   if (moodleMobileApp.failed) return moodleMobileApp;
+    if (lpa.failed) return RawApiResponse(lpa.response);
+    if (moodleMobileApp.failed) return moodleMobileApp;
 
-  //   var token = lpa.value!;
-  //   var moodleToken = moodleMobileApp["token"]!;
+    var token = lpa.value!;
+    var moodleToken = moodleMobileApp["token"]!;
 
-  //   var id = await UserApi.getUserId(moodleToken);
+    var id = await UserApi.getUserId(moodleToken);
 
-  //   if (id.failed) return RawApiResponse(id.response);
+    if (id.failed) return RawApiResponse(id.response);
 
-  //   var user = await UserApi.getUser(token, id.value!);
-  // }
+    var user = await UserApi.getUser(token, id.value!);
+
+    if (user.succeeded) {
+      state = user.value!;
+      return RawApiResponse(user.response);
+    }
+
+    var register = await UserApi.registerUser(token, id.value!, language.name, theme);
+
+    if (register.succeeded) state = register.value!;
+
+    return RawApiResponse(register.response);
+  }
 }
