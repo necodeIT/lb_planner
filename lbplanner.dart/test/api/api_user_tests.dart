@@ -35,15 +35,15 @@ void runApiUserTests() {
     }
   });
 
-  test("Get user invalid token", () async {
-    var response = await UserApi.getUser("invalid token", kUserId);
+  test("Get user invalid id", () async {
+    var response = await UserApi.getUser(kToken, -1);
 
     assert(response.failed);
     assert(response.value == null);
-    assert(response.errorMessage == "Invalid token - token not found");
+    assert(response.errorMessage == "error/User does not exist");
   });
 
-  test("Get user valid token", () async {
+  test("Get user valid id", () async {
     var response = await UserApi.getUser(kToken, kUserId);
 
     assert(response.succeeded);

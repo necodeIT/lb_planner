@@ -1,5 +1,9 @@
+import 'package:flutter_test/flutter_test.dart';
+
 import 'tests.dart';
 
 void main() {
-  runApiUserTests();
+  group("API tests", runApiTests);
+
+  group("User API tests", runApiUserTests);
 }
