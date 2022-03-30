@@ -3,9 +3,9 @@ library lbplanner_api;
 export 'models/user/user.dart';
 export 'models/notification/notification.dart';
 export 'models/module/module.dart';
-
+export 'models/invite/invite.dart';
+export 'models/plan/plan.dart';
 // Dart imports:
-import 'dart:collection';
 import 'dart:convert';
 
 // Package imports:
@@ -17,6 +17,8 @@ import 'package:riverpod/riverpod.dart';
 import 'models/user/user.dart';
 import 'models/notification/notification.dart';
 import 'models/module/module.dart';
+import 'models/invite/invite.dart';
+import 'models/plan/plan.dart';
 
 // Models
 
@@ -27,6 +29,8 @@ part 'models/notification/notification_status.dart';
 part 'models/module/module_grades.dart';
 part 'models/module/module_types.dart';
 part 'models/module/module_status.dart';
+part 'models/plan/plan_access_types.dart';
+part 'models/invite/invite_status.dart';
 
 // Providers
 
