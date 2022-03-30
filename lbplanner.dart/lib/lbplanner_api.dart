@@ -21,7 +21,7 @@ import 'models/module/module.dart';
 // Models
 
 part 'models/languages.dart';
-part 'models/user/access_levels.dart';
+part 'models/user/user_access_levels.dart';
 part 'models/notification/notification_types.dart';
 part 'models/notification/notification_status.dart';
 part 'models/module/module_grades.dart';

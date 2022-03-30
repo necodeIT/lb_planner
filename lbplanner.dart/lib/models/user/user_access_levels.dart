@@ -1,7 +1,7 @@
 part of lbplanner_api;
 
 /// Contains any possible roles a user can have
-enum AccessLevels {
+enum UserAccessLevels {
   /// Admin role
   admin,
 

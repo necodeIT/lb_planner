@@ -40,7 +40,7 @@ class User with _$User {
     @Default("") String theme,
 
     /// The access level of the user
-    @Default(AccessLevels.restricted) AccessLevels accessLevel,
+    @Default(UserAccessLevels.restricted) UserAccessLevels accessLevel,
 
     /// The id of the plan the user is currently a member of
     @Default(-1) int planId,
@@ -54,7 +54,7 @@ class User with _$User {
   factory User.empty() => _EmptyUser();
 
   /// If this is true, only restricted information is available about this user
-  bool get restricted => accessLevel == AccessLevels.restricted;
+  bool get restricted => accessLevel == UserAccessLevels.restricted;
 
   /// User model from json
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
@@ -68,7 +68,7 @@ User _EmptyUser() => User(
       avatar: "",
       language: Languages.en,
       theme: "",
-      accessLevel: AccessLevels.restricted,
+      accessLevel: UserAccessLevels.restricted,
       isEmpty: true,
       planId: -1,
     );

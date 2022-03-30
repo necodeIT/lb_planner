@@ -12,13 +12,10 @@ _$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
       firstname: json['firstname'] as String,
       lastname: json['lastname'] as String,
       avatar: json['avatar'] as String,
-      language: $enumDecodeNullable(_$LanguagesEnumMap, json['language']) ??
-          Languages.restricted,
+      language: $enumDecodeNullable(_$LanguagesEnumMap, json['language']) ?? Languages.restricted,
       token: json['token'] as String? ?? '',
       theme: json['theme'] as String? ?? "",
-      accessLevel:
-          $enumDecodeNullable(_$AccessLevelsEnumMap, json['accessLevel']) ??
-              AccessLevels.restricted,
+      accessLevel: $enumDecodeNullable(_$AccessLevelsEnumMap, json['accessLevel']) ?? UserAccessLevels.restricted,
       planId: json['planId'] as int? ?? -1,
       isEmpty: json['isEmpty'] as bool? ?? false,
     );
@@ -43,9 +40,9 @@ const _$LanguagesEnumMap = {
 };
 
 const _$AccessLevelsEnumMap = {
-  AccessLevels.admin: 'admin',
-  AccessLevels.moderator: 'moderator',
-  AccessLevels.teacher: 'teacher',
-  AccessLevels.student: 'student',
-  AccessLevels.restricted: 'restricted',
+  UserAccessLevels.admin: 'admin',
+  UserAccessLevels.moderator: 'moderator',
+  UserAccessLevels.teacher: 'teacher',
+  UserAccessLevels.student: 'student',
+  UserAccessLevels.restricted: 'restricted',
 };
