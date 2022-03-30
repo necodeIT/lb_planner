@@ -15,19 +15,19 @@ void runApiUserTests() {
   });
 
   test("Register User", () async {
-    var response = await UserApi.registerUser(kToken, kUserId, "en", "light");
+    var response = await UserApi.registerUser(kToken, kUserId, "en", kUserTheme);
 
     if (response.succeeded) {
       assert(response.value != null);
       assert(response.value!.id == kUserId);
-      assert(response.value!.username == "admin");
+      assert(response.value!.username == kUsername);
       assert(response.value!.accessLevel == AccessLevels.admin);
-      assert(response.value!.avatar == "https://projekte.tgm.ac.at/moodledev/user/pix.php/2/f1.jpg");
+      assert(response.value!.avatar == kAvatar);
       assert(response.value!.language == Languages.en);
-      assert(response.value!.theme == "light");
-      assert(response.value!.planId == 1);
-      assert(response.value!.firstname == "Admin");
-      assert(response.value!.lastname == "User");
+      assert(response.value!.theme == kUserTheme);
+      assert(response.value!.planId == kPlanId);
+      assert(response.value!.firstname == kFirstname);
+      assert(response.value!.lastname == kLastname);
     } else {
       assert(response.failed);
       assert(response.value == null);
@@ -36,7 +36,7 @@ void runApiUserTests() {
   });
 
   test("Get user invalid id", () async {
-    var response = await UserApi.getUser(kToken, -1);
+    var response = await UserApi.getUser(kToken, -kUserId);
 
     assert(response.failed);
     assert(response.value == null);
@@ -49,13 +49,13 @@ void runApiUserTests() {
     assert(response.succeeded);
     assert(response.value != null);
     assert(response.value!.id == kUserId);
-    assert(response.value!.username == "admin");
+    assert(response.value!.username == kUsername);
     assert(response.value!.accessLevel == AccessLevels.admin);
-    assert(response.value!.avatar == "https://projekte.tgm.ac.at/moodledev/user/pix.php/2/f1.jpg");
+    assert(response.value!.avatar == kAvatar);
     assert(response.value!.language == Languages.en);
-    assert(response.value!.theme == "light");
-    assert(response.value!.planId == 1);
-    assert(response.value!.firstname == "Admin");
-    assert(response.value!.lastname == "User");
+    assert(response.value!.theme == kUserTheme);
+    assert(response.value!.planId == kPlanId);
+    assert(response.value!.firstname == kFirstname);
+    assert(response.value!.lastname == kLastname);
   });
 }
