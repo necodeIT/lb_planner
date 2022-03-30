@@ -25,7 +25,7 @@ class Plan with _$Plan {
     required Map<int, PlanAccessTypes> members,
 
     /// The invites of the plan
-    required List<PlanInvite> invites,
+    @Default([]) List<PlanInvite> invites,
   }) = _Plan;
 
   /// Plan model from json
