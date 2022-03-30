@@ -28,6 +28,9 @@ class UserProvider extends StateNotifier<User> {
     var user = await UserApi.getUser(token, id.value!);
 
     if (user.succeeded) {
+      assert(!user.value!.restricted);
+      assert(!user.value!.isEmpty);
+
       state = user.value!;
       return RawApiResponse(user.response);
     }
