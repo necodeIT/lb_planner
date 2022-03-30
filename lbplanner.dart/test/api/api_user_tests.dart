@@ -15,7 +15,8 @@ void runApiUserTests() {
   });
 
   test("Register User", () async {
-    var response = await UserApi.registerUser(kToken, kUserId, kLanguage.name, kUserTheme);
+    var response =
+        await UserApi.registerUser(kToken, kUserId, kLanguage.name, kUserTheme);
 
     if (response.succeeded) {
       assert(response.value != null);
@@ -57,5 +58,13 @@ void runApiUserTests() {
     assert(response.value!.planId == kPlanId);
     assert(response.value!.firstname == kFirstname);
     assert(response.value!.lastname == kLastname);
+  });
+
+  test("Get all Users", () async {
+    var response = await UserApi.getAllUsers(kToken, kUserId);
+
+    assert(response.succeeded);
+    assert(response.value != null);
+    assert(response.value!.isNotEmpty);
   });
 }
