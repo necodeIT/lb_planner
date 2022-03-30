@@ -4,6 +4,7 @@ export 'models/user/user.dart';
 export 'models/notification/notification.dart';
 
 // Dart imports:
+import 'dart:collection';
 import 'dart:convert';
 
 // Package imports:
