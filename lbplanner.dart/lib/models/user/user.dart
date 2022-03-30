@@ -33,6 +33,9 @@ class User with _$User {
     /// the language the user has selected
     @Default(Languages.restricted) Languages language,
 
+    /// The access token of the user to access the api
+    @Default('') String token,
+
     /// The theme the user has selected
     @Default("") String theme,
 

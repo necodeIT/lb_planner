@@ -8,9 +8,6 @@ class Api {
   /// The format the api should use.
   static const format = "json";
 
-  /// The service short name of the API
-  static const service = "lpa";
-
   /// Client used to communicate with the API
   static final Client client = Client();
 
@@ -36,13 +33,13 @@ class Api {
     return result;
   }
 
-  /// Requests a token for the given [username] and [password].
-  static Future<RawApiResponse> requestToken(String password, String username) async {
+  /// Requests a token for the given [service] with the given [username] and [password].
+  static Future<RawApiResponse> requestToken(String password, String username, ApiServices service) async {
     log("Requesting token ...", LogTypes.tracking, "API");
 
     var encodedPassword = Uri.encodeComponent(password);
 
-    var url = "https://projekte.tgm.ac.at/moodledev/login/token.php?username=$username&service=$service&moodlewsrestformat=$format&password=$encodedPassword";
+    var url = "https://projekte.tgm.ac.at/moodledev/login/token.php?username=$username&service=${service.name}&moodlewsrestformat=$format&password=$encodedPassword";
 
     var response = await client.get(Uri.parse(url));
 

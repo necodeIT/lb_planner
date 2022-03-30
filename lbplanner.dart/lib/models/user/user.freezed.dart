@@ -29,6 +29,7 @@ class _$UserTearOff {
       required String lastname,
       required String avatar,
       Languages language = Languages.restricted,
+      String token = '',
       String theme = "",
       AccessLevels accessLevel = AccessLevels.restricted,
       int planId = -1,
@@ -40,6 +41,7 @@ class _$UserTearOff {
       lastname: lastname,
       avatar: avatar,
       language: language,
+      token: token,
       theme: theme,
       accessLevel: accessLevel,
       planId: planId,
@@ -75,6 +77,9 @@ mixin _$User {
   /// the language the user has selected
   Languages get language => throw _privateConstructorUsedError;
 
+  /// The access token of the user to access the api
+  String get token => throw _privateConstructorUsedError;
+
   /// The theme the user has selected
   String get theme => throw _privateConstructorUsedError;
 
@@ -94,8 +99,20 @@ mixin _$User {
 
 /// @nodoc
 abstract class $UserCopyWith<$Res> {
-  factory $UserCopyWith(User value, $Res Function(User) then) = _$UserCopyWithImpl<$Res>;
-  $Res call({int id, String username, String firstname, String lastname, String avatar, Languages language, String theme, AccessLevels accessLevel, int planId, bool isEmpty});
+  factory $UserCopyWith(User value, $Res Function(User) then) =
+      _$UserCopyWithImpl<$Res>;
+  $Res call(
+      {int id,
+      String username,
+      String firstname,
+      String lastname,
+      String avatar,
+      Languages language,
+      String token,
+      String theme,
+      AccessLevels accessLevel,
+      int planId,
+      bool isEmpty});
 }
 
 /// @nodoc
@@ -114,6 +131,7 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object? lastname = freezed,
     Object? avatar = freezed,
     Object? language = freezed,
+    Object? token = freezed,
     Object? theme = freezed,
     Object? accessLevel = freezed,
     Object? planId = freezed,
@@ -144,6 +162,10 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
               as Languages,
+      token: token == freezed
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as String,
       theme: theme == freezed
           ? _value.theme
           : theme // ignore: cast_nullable_to_non_nullable
@@ -166,14 +188,28 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
 
 /// @nodoc
 abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
-  factory _$UserCopyWith(_User value, $Res Function(_User) then) = __$UserCopyWithImpl<$Res>;
+  factory _$UserCopyWith(_User value, $Res Function(_User) then) =
+      __$UserCopyWithImpl<$Res>;
   @override
-  $Res call({int id, String username, String firstname, String lastname, String avatar, Languages language, String theme, AccessLevels accessLevel, int planId, bool isEmpty});
+  $Res call(
+      {int id,
+      String username,
+      String firstname,
+      String lastname,
+      String avatar,
+      Languages language,
+      String token,
+      String theme,
+      AccessLevels accessLevel,
+      int planId,
+      bool isEmpty});
 }
 
 /// @nodoc
-class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res> implements _$UserCopyWith<$Res> {
-  __$UserCopyWithImpl(_User _value, $Res Function(_User) _then) : super(_value, (v) => _then(v as _User));
+class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
+    implements _$UserCopyWith<$Res> {
+  __$UserCopyWithImpl(_User _value, $Res Function(_User) _then)
+      : super(_value, (v) => _then(v as _User));
 
   @override
   _User get _value => super._value as _User;
@@ -186,6 +222,7 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res> implements _$Us
     Object? lastname = freezed,
     Object? avatar = freezed,
     Object? language = freezed,
+    Object? token = freezed,
     Object? theme = freezed,
     Object? accessLevel = freezed,
     Object? planId = freezed,
@@ -216,6 +253,10 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res> implements _$Us
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
               as Languages,
+      token: token == freezed
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as String,
       theme: theme == freezed
           ? _value.theme
           : theme // ignore: cast_nullable_to_non_nullable
@@ -246,6 +287,7 @@ class _$_User extends _User {
       required this.lastname,
       required this.avatar,
       this.language = Languages.restricted,
+      this.token = '',
       this.theme = "",
       this.accessLevel = AccessLevels.restricted,
       this.planId = -1,
@@ -282,6 +324,11 @@ class _$_User extends _User {
   @JsonKey()
   @override
 
+  /// The access token of the user to access the api
+  final String token;
+  @JsonKey()
+  @override
+
   /// The theme the user has selected
   final String theme;
   @JsonKey()
@@ -302,7 +349,7 @@ class _$_User extends _User {
 
   @override
   String toString() {
-    return 'User(id: $id, username: $username, firstname: $firstname, lastname: $lastname, avatar: $avatar, language: $language, theme: $theme, accessLevel: $accessLevel, planId: $planId, isEmpty: $isEmpty)';
+    return 'User(id: $id, username: $username, firstname: $firstname, lastname: $lastname, avatar: $avatar, language: $language, token: $token, theme: $theme, accessLevel: $accessLevel, planId: $planId, isEmpty: $isEmpty)';
   }
 
   @override
@@ -316,8 +363,10 @@ class _$_User extends _User {
             const DeepCollectionEquality().equals(other.lastname, lastname) &&
             const DeepCollectionEquality().equals(other.avatar, avatar) &&
             const DeepCollectionEquality().equals(other.language, language) &&
+            const DeepCollectionEquality().equals(other.token, token) &&
             const DeepCollectionEquality().equals(other.theme, theme) &&
-            const DeepCollectionEquality().equals(other.accessLevel, accessLevel) &&
+            const DeepCollectionEquality()
+                .equals(other.accessLevel, accessLevel) &&
             const DeepCollectionEquality().equals(other.planId, planId) &&
             const DeepCollectionEquality().equals(other.isEmpty, isEmpty));
   }
@@ -331,6 +380,7 @@ class _$_User extends _User {
       const DeepCollectionEquality().hash(lastname),
       const DeepCollectionEquality().hash(avatar),
       const DeepCollectionEquality().hash(language),
+      const DeepCollectionEquality().hash(token),
       const DeepCollectionEquality().hash(theme),
       const DeepCollectionEquality().hash(accessLevel),
       const DeepCollectionEquality().hash(planId),
@@ -338,7 +388,8 @@ class _$_User extends _User {
 
   @JsonKey(ignore: true)
   @override
-  _$UserCopyWith<_User> get copyWith => __$UserCopyWithImpl<_User>(this, _$identity);
+  _$UserCopyWith<_User> get copyWith =>
+      __$UserCopyWithImpl<_User>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -347,7 +398,18 @@ class _$_User extends _User {
 }
 
 abstract class _User extends User {
-  const factory _User({required int id, required String username, required String firstname, required String lastname, required String avatar, Languages language, String theme, AccessLevels accessLevel, int planId, bool isEmpty}) = _$_User;
+  const factory _User(
+      {required int id,
+      required String username,
+      required String firstname,
+      required String lastname,
+      required String avatar,
+      Languages language,
+      String token,
+      String theme,
+      AccessLevels accessLevel,
+      int planId,
+      bool isEmpty}) = _$_User;
   const _User._() : super._();
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
@@ -376,6 +438,10 @@ abstract class _User extends User {
 
   /// the language the user has selected
   Languages get language;
+  @override
+
+  /// The access token of the user to access the api
+  String get token;
   @override
 
   /// The theme the user has selected
