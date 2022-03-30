@@ -18,9 +18,9 @@ import 'models/user/user.dart';
 // Models
 
 part 'models/languages.dart';
-part 'models/access_levels.dart';
-part 'models/notification_types.dart';
-part 'models/notification_status.dart';
+part 'models/user/access_levels.dart';
+part 'models/notification/notification_types.dart';
+part 'models/notification/notification_status.dart';
 
 // Providers
 
