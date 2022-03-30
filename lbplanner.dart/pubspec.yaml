@@ -13,13 +13,14 @@ dependencies:
     sdk: flutter
   freezed_annotation: any
   http: ^0.13.4
+  import_sorter: ^4.6.0
   json_annotation: ^4.4.0
-  riverpod: ^1.0.3
   nekolib_utils:
     git:
       url: https://github.com/necodeIT/nekolib.git
       ref: flutter
       path: utils
+  riverpod: ^1.0.3
 
 dev_dependencies:
   build_runner: any
