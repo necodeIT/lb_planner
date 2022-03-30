@@ -38,4 +38,9 @@ class UserProvider extends StateNotifier<User> {
 
     return RawApiResponse(register.response);
   }
+
+  /// Logs out the current user.
+  void logout() {
+    state = User.empty();
+  }
 }
