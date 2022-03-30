@@ -24,6 +24,11 @@ Map<String, dynamic> _$$_NotificationToJson(_$_Notification instance) =>
 
 const _$NotifactionTypesEnumMap = {
   NotifactionTypes.invite: 'invite',
+  NotifactionTypes.inviteAccepted: 'inviteAccepted',
+  NotifactionTypes.inviteDeclined: 'inviteDeclined',
+  NotifactionTypes.planLeft: 'planLeft',
+  NotifactionTypes.planRemoved: 'planRemoved',
+  NotifactionTypes.userRegistered: 'userRegistered',
 };
 
 const _$NotificationStatusEnumMap = {

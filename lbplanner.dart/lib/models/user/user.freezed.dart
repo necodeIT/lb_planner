@@ -99,8 +99,20 @@ mixin _$User {
 
 /// @nodoc
 abstract class $UserCopyWith<$Res> {
-  factory $UserCopyWith(User value, $Res Function(User) then) = _$UserCopyWithImpl<$Res>;
-  $Res call({int id, String username, String firstname, String lastname, String avatar, Languages language, String token, String theme, UserAccessLevels accessLevel, int planId, bool isEmpty});
+  factory $UserCopyWith(User value, $Res Function(User) then) =
+      _$UserCopyWithImpl<$Res>;
+  $Res call(
+      {int id,
+      String username,
+      String firstname,
+      String lastname,
+      String avatar,
+      Languages language,
+      String token,
+      String theme,
+      UserAccessLevels accessLevel,
+      int planId,
+      bool isEmpty});
 }
 
 /// @nodoc
@@ -176,14 +188,28 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
 
 /// @nodoc
 abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
-  factory _$UserCopyWith(_User value, $Res Function(_User) then) = __$UserCopyWithImpl<$Res>;
+  factory _$UserCopyWith(_User value, $Res Function(_User) then) =
+      __$UserCopyWithImpl<$Res>;
   @override
-  $Res call({int id, String username, String firstname, String lastname, String avatar, Languages language, String token, String theme, UserAccessLevels accessLevel, int planId, bool isEmpty});
+  $Res call(
+      {int id,
+      String username,
+      String firstname,
+      String lastname,
+      String avatar,
+      Languages language,
+      String token,
+      String theme,
+      UserAccessLevels accessLevel,
+      int planId,
+      bool isEmpty});
 }
 
 /// @nodoc
-class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res> implements _$UserCopyWith<$Res> {
-  __$UserCopyWithImpl(_User _value, $Res Function(_User) _then) : super(_value, (v) => _then(v as _User));
+class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
+    implements _$UserCopyWith<$Res> {
+  __$UserCopyWithImpl(_User _value, $Res Function(_User) _then)
+      : super(_value, (v) => _then(v as _User));
 
   @override
   _User get _value => super._value as _User;
@@ -339,7 +365,8 @@ class _$_User extends _User {
             const DeepCollectionEquality().equals(other.language, language) &&
             const DeepCollectionEquality().equals(other.token, token) &&
             const DeepCollectionEquality().equals(other.theme, theme) &&
-            const DeepCollectionEquality().equals(other.accessLevel, accessLevel) &&
+            const DeepCollectionEquality()
+                .equals(other.accessLevel, accessLevel) &&
             const DeepCollectionEquality().equals(other.planId, planId) &&
             const DeepCollectionEquality().equals(other.isEmpty, isEmpty));
   }
@@ -361,7 +388,8 @@ class _$_User extends _User {
 
   @JsonKey(ignore: true)
   @override
-  _$UserCopyWith<_User> get copyWith => __$UserCopyWithImpl<_User>(this, _$identity);
+  _$UserCopyWith<_User> get copyWith =>
+      __$UserCopyWithImpl<_User>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -370,8 +398,18 @@ class _$_User extends _User {
 }
 
 abstract class _User extends User {
-  const factory _User({required int id, required String username, required String firstname, required String lastname, required String avatar, Languages language, String token, String theme, UserAccessLevels accessLevel, int planId, bool isEmpty}) =
-      _$_User;
+  const factory _User(
+      {required int id,
+      required String username,
+      required String firstname,
+      required String lastname,
+      required String avatar,
+      Languages language,
+      String token,
+      String theme,
+      UserAccessLevels accessLevel,
+      int planId,
+      bool isEmpty}) = _$_User;
   const _User._() : super._();
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;

@@ -12,10 +12,13 @@ _$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
       firstname: json['firstname'] as String,
       lastname: json['lastname'] as String,
       avatar: json['avatar'] as String,
-      language: $enumDecodeNullable(_$LanguagesEnumMap, json['language']) ?? Languages.restricted,
+      language: $enumDecodeNullable(_$LanguagesEnumMap, json['language']) ??
+          Languages.restricted,
       token: json['token'] as String? ?? '',
       theme: json['theme'] as String? ?? "",
-      accessLevel: $enumDecodeNullable(_$AccessLevelsEnumMap, json['accessLevel']) ?? UserAccessLevels.restricted,
+      accessLevel:
+          $enumDecodeNullable(_$UserAccessLevelsEnumMap, json['accessLevel']) ??
+              UserAccessLevels.restricted,
       planId: json['planId'] as int? ?? -1,
       isEmpty: json['isEmpty'] as bool? ?? false,
     );
@@ -29,7 +32,7 @@ Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
       'language': _$LanguagesEnumMap[instance.language],
       'token': instance.token,
       'theme': instance.theme,
-      'accessLevel': _$AccessLevelsEnumMap[instance.accessLevel],
+      'accessLevel': _$UserAccessLevelsEnumMap[instance.accessLevel],
       'planId': instance.planId,
       'isEmpty': instance.isEmpty,
     };
@@ -39,7 +42,7 @@ const _$LanguagesEnumMap = {
   Languages.restricted: 'restricted',
 };
 
-const _$AccessLevelsEnumMap = {
+const _$UserAccessLevelsEnumMap = {
   UserAccessLevels.admin: 'admin',
   UserAccessLevels.moderator: 'moderator',
   UserAccessLevels.teacher: 'teacher',
