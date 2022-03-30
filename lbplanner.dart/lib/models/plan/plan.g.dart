@@ -14,9 +14,10 @@ _$_Plan _$$_PlanFromJson(Map<String, dynamic> json) => _$_Plan(
         (k, e) =>
             MapEntry(int.parse(k), $enumDecode(_$PlanAccessTypesEnumMap, e)),
       ),
-      invites: (json['invites'] as List<dynamic>)
-          .map((e) => PlanInvite.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      invites: (json['invites'] as List<dynamic>?)
+              ?.map((e) => PlanInvite.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$$_PlanToJson(_$_Plan instance) => <String, dynamic>{

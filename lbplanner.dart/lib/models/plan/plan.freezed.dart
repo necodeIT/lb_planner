@@ -27,7 +27,7 @@ class _$PlanTearOff {
       required String name,
       required String description,
       required Map<int, PlanAccessTypes> members,
-      required List<PlanInvite> invites}) {
+      List<PlanInvite> invites = const []}) {
     return _Plan(
       id: id,
       name: name,
@@ -183,7 +183,7 @@ class _$_Plan extends _Plan {
       required this.name,
       required this.description,
       required this.members,
-      required this.invites})
+      this.invites = const []})
       : super._();
 
   factory _$_Plan.fromJson(Map<String, dynamic> json) => _$$_PlanFromJson(json);
@@ -204,6 +204,7 @@ class _$_Plan extends _Plan {
 
   /// Planmembers of the plan
   final Map<int, PlanAccessTypes> members;
+  @JsonKey()
   @override
 
   /// The invites of the plan
@@ -253,7 +254,7 @@ abstract class _Plan extends Plan {
       required String name,
       required String description,
       required Map<int, PlanAccessTypes> members,
-      required List<PlanInvite> invites}) = _$_Plan;
+      List<PlanInvite> invites}) = _$_Plan;
   const _Plan._() : super._();
 
   factory _Plan.fromJson(Map<String, dynamic> json) = _$_Plan.fromJson;
