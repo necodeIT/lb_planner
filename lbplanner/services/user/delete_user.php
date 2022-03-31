@@ -42,20 +42,20 @@ class user_delete_user extends external_api {
         global $DB;
         global $USER;
 
-        $params = self::validate_parameters(self::delete_user_parameters(), array('userid' => $userid));
+        self::validate_parameters(self::delete_user_parameters(), array('userid' => $userid));
 
         // TODO: Check if the token is allowed to delete this user.
-        if (!user_helper::check_access($params['userid'])) {
+        if (!user_helper::check_access($userid)) {
             throw new \moodle_exception('Access denied');
         }
 
-        $user = $DB->get_record(user_helper::TABLE, array('userid' => $params['userid']));
+        $user = $DB->get_record(user_helper::TABLE, array('userid' => $userid));
         // TODO: Remove user from a plan if user is not the owner.
 
         // TODO: Delete plan of the user.
         // TODO: Clear all courses from the user.
 
-        $DB->delete_records(user_helper::TABLE, array('userid' => $params['userid']));
+        $DB->delete_records(user_helper::TABLE, array('userid' => $userid));
 
         return array('message' => 'User deleted successfully (TODO)');
     }
