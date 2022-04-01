@@ -13,7 +13,6 @@ dependencies:
     sdk: flutter
   freezed_annotation: any
   http: ^0.13.4
-  import_sorter: ^4.6.0
   json_annotation: ^4.4.0
   nekolib_utils:
     git:
@@ -23,6 +22,7 @@ dependencies:
   riverpod: ^1.0.3
 
 dev_dependencies:
+  import_sorter: ^4.6.0
   build_runner: any
   flutter_lints: ^1.0.0
   flutter_test:

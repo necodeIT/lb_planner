@@ -18,7 +18,7 @@ class Api {
   static Future<RawApiResponse> makeRequest({required String functionName, required String token, Map<String, dynamic>? params}) async {
     var url = "$apiEndpoint?moodlewsrestformat=$format&wstoken=$token&wsfunction=$functionName";
 
-    log("Calling $functionName($params) ...", LogTypes.tracking, "API");
+    log("Calling $functionName($params) ...", LogTypes.tracking);
 
     if (params != null) {
       url += "&" + params.entries.map((e) => "${e.key}=${e.value}").join("&");
@@ -28,14 +28,14 @@ class Api {
 
     var result = RawApiResponse(response);
 
-    log("Response: ${response.statusCode}${result.failed ? ", Message: '${result.errorMessage}'" : ""}", result.succeeded ? LogTypes.success : LogTypes.error, "API");
+    log("Response: ${response.statusCode}${result.failed ? ", Message: '${result.errorMessage}'" : ""}", result.succeeded ? LogTypes.success : LogTypes.error);
 
     return result;
   }
 
   /// Requests a token for the given [service] with the given [username] and [password].
   static Future<RawApiResponse> requestToken(String password, String username, ApiServices service) async {
-    log("Requesting token ...", LogTypes.tracking, "API");
+    log("Requesting token ...", LogTypes.tracking);
 
     var encodedPassword = Uri.encodeComponent(password);
 
@@ -45,7 +45,7 @@ class Api {
 
     var result = RawApiResponse(response);
 
-    log("Response: ${response.statusCode}${result.failed ? ", Message: '${result.errorMessage}'" : ""}", result.succeeded ? LogTypes.success : LogTypes.error, "API");
+    log("Response: ${response.statusCode}${result.failed ? ", Message: '${result.errorMessage}'" : ""}", result.succeeded ? LogTypes.success : LogTypes.error);
 
     return result;
   }

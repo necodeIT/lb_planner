@@ -5,6 +5,7 @@ export 'models/notification/notification.dart';
 export 'models/module/module.dart';
 export 'models/invite/invite.dart';
 export 'models/plan/plan.dart';
+
 // Dart imports:
 import 'dart:convert';
 
@@ -15,10 +16,6 @@ import 'package:riverpod/riverpod.dart';
 
 // Project imports:
 import 'models/user/user.dart';
-import 'models/notification/notification.dart';
-import 'models/module/module.dart';
-import 'models/invite/invite.dart';
-import 'models/plan/plan.dart';
 
 // Models
 

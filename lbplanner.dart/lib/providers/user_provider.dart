@@ -12,6 +12,8 @@ class UserProvider extends StateNotifier<User> {
   /// If the user is successfully logged in, the [User] is updated.
   /// If the user was not registered, the user will be automatically registered.
   Future<RawApiResponse> login(String username, String password, {required Languages language, required String theme}) async {
+    log("Trying to login user", LogTypes.tracking);
+
     var lpa = await UserApi.login(username, password);
     var moodleMobileApp = await Api.requestToken(password, username, ApiServices.moodle_mobile_app);
 
@@ -31,19 +33,26 @@ class UserProvider extends StateNotifier<User> {
       assert(!user.value!.restricted);
       assert(!user.value!.isEmpty);
 
+      log("Logged in successfully", LogTypes.success);
+
       state = user.value!;
       return RawApiResponse(user.response);
     }
 
+    log("Registering user...", LogTypes.tracking);
+
     var register = await UserApi.registerUser(token, id.value!, language.name, theme);
 
     if (register.succeeded) state = register.value!;
+
+    log("Registered user successfully", LogTypes.success);
 
     return RawApiResponse(register.response);
   }
 
   /// Logs out the current user.
   void logout() {
+    log("Logging out user", LogTypes.tracking);
     state = User.empty();
   }
 }

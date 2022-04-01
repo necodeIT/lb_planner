@@ -1,4 +1,7 @@
+// Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+// Project imports:
 import 'package:lbplanner_api/lbplanner_api.dart';
 
 part 'invite.freezed.dart';
