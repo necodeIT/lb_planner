@@ -53,7 +53,7 @@ class notifications_get_all_notifications extends external_api {
                 'type' => $dbnotification->type,
                 'info' => $dbnotification->info,
                 'userid' => $dbnotification->userid,
-                'notificationid' => $dbnotification->notificationid,
+                'notificationid' => $dbnotification->id,
             );
         }
         return $notifications;
