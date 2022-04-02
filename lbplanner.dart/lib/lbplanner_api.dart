@@ -15,6 +15,7 @@ import 'package:nekolib_utils/log.dart';
 import 'package:riverpod/riverpod.dart';
 
 // Project imports:
+import 'models/notification/notification.dart';
 import 'models/user/user.dart';
 
 // Models
@@ -40,3 +41,4 @@ part 'api/api_response.dart';
 part 'api/user_api.dart';
 part 'api/utils/map_extensions.dart';
 part 'api/api_services.dart';
+part 'api/notifications_api.dart';
