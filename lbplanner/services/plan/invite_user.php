@@ -106,7 +106,7 @@ class plan_invite_user extends external_api {
         // Notifiy the invitee that he/she/it/they/xier/* has been invited.
         notifications_helper::notify_user(
             $inviteeid,
-            user_helper::get_complete_name($inviteeid),
+            json_encode(array("inviteer"=>invierid)),
             notifications_helper::TRIGGER_INVITE
         );
 
