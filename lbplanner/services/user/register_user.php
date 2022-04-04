@@ -60,8 +60,6 @@ class user_register_user extends external_api {
 
         $DB->insert_record(user_helper::TABLE, $user);
 
-        // TODO: Create a new plan for the user.
-
         $mdluser = user_helper::get_mdl_user_info($userid);
 
         $plan = new \stdClass();

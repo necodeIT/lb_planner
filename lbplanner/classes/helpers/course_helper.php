@@ -56,7 +56,7 @@ class course_helper {
 
     public static function get_current_category() {
         global $DB;
-        // Check if category year contains the categogry name.
+        // TODO: Check current year!
         return $DB->get_record_sql(
             'SELECT id FROM ' . self::CATEGORY_TABLE . ' WHERE name LIKE "' . self::get_current_year() . '%"'
         );
@@ -73,5 +73,4 @@ class course_helper {
         }
         return false;
     }
-
 }
