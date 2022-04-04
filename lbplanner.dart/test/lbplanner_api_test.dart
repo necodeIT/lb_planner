@@ -7,7 +7,7 @@ import 'tests.dart';
 void main() {
   group("Notifications Api tests", runNotificationsApiTests);
 
-  // group("API tests", runApiTests);
+  group("API tests", runApiTests);
 
-  // group("User API tests", runApiUserTests);
+  group("User API tests", runApiUserTests);
 }
