@@ -131,7 +131,7 @@ class user_helper {
      */
     public static function check_user_exists(int $userid): bool {
         global $DB;
-        return $DB->record_exists('local_lbplanner_users', array('userid' => $userid));
+        return $DB->record_exists(self::TABLE, array('userid' => $userid));
     }
 
     /**

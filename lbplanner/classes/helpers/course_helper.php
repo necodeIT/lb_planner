@@ -24,24 +24,24 @@ class course_helper {
     /**
      *  Name of the Enrol Table
      */
-    const ENROL_TABLE = 'mdl_enrol';
+    const ENROL_TABLE = 'enrol';
 
     /**
      * Name of the User Enroll Table
      */
-    const USER_ENROL_TABLE = 'mdl_user_enrolments';
+    const USER_ENROL_TABLE = 'user_enrolments';
 
     /**
      * Name of the Course Table
      */
-    const COURSE_TABLE = 'mdl_course';
+    const COURSE_TABLE = 'course';
 
     /**
      * Name of the Category Table
      */
-    const CATEGORY_TABLE = 'mdl_course_categories';
+    const CATEGORY_TABLE = 'course_categories';
 
-    const LBPLANNER_COURSE_TABLE = 'mdl_local_lbplanner_courses';
+    const LBPLANNER_COURSE_TABLE = 'local_lbplanner_courses';
 
     const COLORS = array('#F50057', '#536DFE', '#F9A826', '#00BFA6', '#9B59B6', '#37BBCA', '#E67E22');
 
