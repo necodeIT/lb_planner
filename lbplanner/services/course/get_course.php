@@ -47,7 +47,7 @@ class course_get_course extends external_api {
             throw new \moodle_exception('Access denied');
         }
 
-        return array();
+        return course_helper::get_course($courseid);
     }
 
     public static function get_course_returns() {

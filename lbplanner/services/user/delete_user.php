@@ -49,6 +49,10 @@ class user_delete_user extends external_api {
         if (!user_helper::check_access($userid)) {
             throw new \moodle_exception('Access denied');
         }
+        // Check if User is in user table.
+        if (!$DB->record_exists(user_helper::TABLE, array('userid' => $userid))) {
+            throw new \moodle_exception('Access denied');
+        }
 
         $planid = plan_helper::get_plan_id($userid);
 

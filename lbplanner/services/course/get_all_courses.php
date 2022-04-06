@@ -57,12 +57,15 @@ class course_get_all_courses extends external_api {
 
         foreach ($courses as $course) {
             $courseid = $course->courseid;
+            if ($DB->record_exists(course_helper::LBPLANNER_COURSE_TABLE, array('courseid' => $courseid, 'userid' => $userid))) {
+                continue;
+            }
             $DB->insert_record(course_helper::LBPLANNER_COURSE_TABLE, array(
                 'courseid' => $courseid,
                 'color' => course_helper::COLORS[array_rand(course_helper::COLORS)],
                 'name' => course_helper::get_course($courseid)->fullname,
                 'shortname' => course_helper::get_course($courseid)->shortname,
-                'enabled' => 0,
+                'enabled' => course_helper::DISABLED_COURSE,
                 'userid' => $userid,
             ));
         }

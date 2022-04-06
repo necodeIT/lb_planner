@@ -45,6 +45,9 @@ class course_helper {
 
     const COLORS = array('#F50057', '#536DFE', '#F9A826', '#00BFA6', '#9B59B6', '#37BBCA', '#E67E22');
 
+    const DISABLED_COURSE = 0;
+    const ENABLED_COURSE = 1;
+
     public static function get_enrollments(int $userid) {
         global $DB;
         return $DB->get_fieldset_sql('SELECT enrolid FROM ' . self::USER_ENROL_TABLE . ' WHERE userid= ' . $userid);
