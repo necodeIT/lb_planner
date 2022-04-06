@@ -67,7 +67,7 @@ class notifications_update_notification extends external_api {
             'type' => $notification->type,
             'info' => $notification->info,
             'userid' => $notification->userid,
-            'notificationid' => $notification->notificationid,
+            'notificationid' => $notification->id,
         );
     }
 
