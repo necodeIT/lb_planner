@@ -35,4 +35,11 @@ extension UserMappingExtensions on Map<String, dynamic> {
 
     return body;
   }
+
+  /// Maps parameters to fit [Plan.fromJson]
+  Map<String, dynamic> mapPlan() {
+    // todo: map parameters
+
+    return this;
+  }
 }

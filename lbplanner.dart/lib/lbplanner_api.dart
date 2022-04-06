@@ -10,12 +10,14 @@ export 'models/plan/plan.dart';
 import 'dart:convert';
 
 // Package imports:
+import 'package:http/http.dart' as http;
 import 'package:nekolib_utils/log.dart';
 import 'package:riverpod/riverpod.dart';
 
 // Project imports:
 import 'models/notification/notification.dart';
 import 'models/user/user.dart';
+import 'models/plan/plan.dart';
 
 // Models
 
@@ -43,6 +45,7 @@ part 'api/utils/map_extensions.dart';
 part 'api/utils/response.dart';
 part 'api/api_services.dart';
 part 'api/notifications_api.dart';
+part 'api/plan_api.dart';
 
 /// The rate with which the api refreshes underlying data
 const kApiRefreshRate = Duration(seconds: 5);
