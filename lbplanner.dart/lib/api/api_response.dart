@@ -7,7 +7,7 @@ const kApiListContent = "content";
 /// Provides utilities to handle errors and parse the response body.
 class RawApiResponse {
   /// The response.
-  final Response response;
+  final http.Response response;
 
   late final Map<String, dynamic> _body;
 
@@ -61,7 +61,7 @@ class ApiResponse<T> extends RawApiResponse {
   /// Response from the API.
   /// Provides utilities to handle errors and parse the response body.
   /// Also contains the parsed response body.
-  ApiResponse(Response response, this.value) : super(response) {
+  ApiResponse(http.Response response, this.value) : super(response) {
     if (succeeded) {
       assert(value != null, "If the response was successful, the value must not be null.");
     }

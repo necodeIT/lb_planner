@@ -1,7 +1,7 @@
 part of lbplanner_api;
 
 /// Provides the current user
-final userProvider = Provider((ref) => UserProvider());
+final userProvider = StateNotifierProvider<UserProvider, User>((ref) => UserProvider());
 
 /// Provides the current user
 class UserProvider extends StateNotifier<User> {
@@ -17,7 +17,7 @@ class UserProvider extends StateNotifier<User> {
     var lpa = await UserApi.login(username, password);
     var moodleMobileApp = await Api.requestToken(password, username, ApiServices.moodle_mobile_app);
 
-    if (lpa.failed) return RawApiResponse(lpa.response);
+    if (lpa.failed) return lpa;
     if (moodleMobileApp.failed) return moodleMobileApp;
 
     var token = lpa.value!;
@@ -25,7 +25,7 @@ class UserProvider extends StateNotifier<User> {
 
     var id = await UserApi.getUserId(moodleToken);
 
-    if (id.failed) return RawApiResponse(id.response);
+    if (id.failed) return id;
 
     var user = await UserApi.getUser(token, id.value!);
 
@@ -36,7 +36,7 @@ class UserProvider extends StateNotifier<User> {
       log("Logged in successfully", LogTypes.success);
 
       state = user.value!;
-      return RawApiResponse(user.response);
+      return user;
     }
 
     log("Registering user...", LogTypes.tracking);
@@ -47,7 +47,7 @@ class UserProvider extends StateNotifier<User> {
 
     log("Registered user successfully", LogTypes.success);
 
-    return RawApiResponse(register.response);
+    return register;
   }
 
   /// Logs out the current user.

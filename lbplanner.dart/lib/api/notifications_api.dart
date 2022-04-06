@@ -26,4 +26,23 @@ class NotificationsApi {
 
     return ApiResponse(response.response, notifications);
   }
+
+  /// Updates the notification with the given [notificationId] to the given [status].
+  static Future<ApiResponse<Notification>> updateNotificationStatus(String token, int userId, int notificationId, NotificationStatus status) async {
+    var response = await Api.makeRequest(
+      functionName: "local_lbplanner_notifications_update_notification",
+      token: token,
+      params: {
+        "notificationid": notificationId,
+        "status": status.index,
+        "userid": userId,
+      },
+    );
+
+    Notification? notification;
+
+    if (response.succeeded) notification = Notification.fromJson(response.body.mapNotification());
+
+    return ApiResponse(response.response, notification);
+  }
 }

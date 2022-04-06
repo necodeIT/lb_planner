@@ -9,7 +9,7 @@ class Api {
   static const format = "json";
 
   /// Client used to communicate with the API
-  static final Client client = Client();
+  static final http.Client client = http.Client();
 
   /// Sends a request to the API.
   /// - [functionName] The name of the function to call
