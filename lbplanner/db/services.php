@@ -180,7 +180,7 @@ $functions = array(
         'capabilities' => '',
         'ajax' => true,
     ),
-    'user_delete_user' => array(
+    'local_lbplanner_user_delete_user' => array(
         'classname' => 'local_lbplanner_services\user_delete_user',
         'methodname' => 'delete_user',
         'classpath' => 'local/lbplanner/services/user/delete_user.php',
@@ -282,6 +282,7 @@ $services = array(
             'local_lbplanner_notifications_update_notification',
             'local_lbplanner_plan_get_access',
             'local_lbplanner_plan_update_access',
+            'local_lbplanner_user_delete_user'
         ),
         'restrictedusers' => 0,
         'enabled' => 1,
