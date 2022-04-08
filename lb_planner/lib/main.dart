@@ -4,6 +4,7 @@ import 'package:lb_planner/widgets.dart';
 import 'package:nekolib_ui/core.dart';
 
 void main() {
+  setTheme(sakuraTheme);
   runThemedApp(
     appBuilder: App.builder,
     title: 'LB Planner',
