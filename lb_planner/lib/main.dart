@@ -40,19 +40,10 @@ class Test extends StatefulWidget {
 }
 
 class TestState extends State<Test> {
-  bool _test = false;
+  final bool _test = false;
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: NcCheckbox(
-        value: _test,
-        onChanged: (value) => setState(
-          () {
-            _test = value;
-          },
-        ),
-      ),
-    );
+    return Center(child: NcTextButton(text: "sdasdad"));
   }
 }

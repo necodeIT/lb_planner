@@ -4,7 +4,7 @@ part of lbplanner_widgets;
 class NcButton extends StatelessWidget {
   /// A button that can be used to trigger an action.
   NcButton({Key? key, this.text, this.child, this.onPressed, this.color}) : super(key: key) {
-    assert(text != null || child != null);
+    assert(text != null || child != null, "Either text or child must be provided.");
   }
 
   /// The text to display inside the button if not set [child] will be used instead.

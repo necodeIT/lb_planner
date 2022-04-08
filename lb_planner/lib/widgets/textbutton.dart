@@ -3,9 +3,7 @@ part of lbplanner_widgets;
 /// The [NcTextButton] widget is a button that displays clickable text and an icon.
 class NcTextButton extends StatelessWidget {
   /// The [NcTextButton] widget is a button that displays clickable text and an icon.
-  NcTextButton({Key? key, required this.text, this.onPressed, this.leadingIcon, this.trailingIcon}) : super(key: key) {
-    assert(leadingIcon != null || trailingIcon != null);
-  }
+  const NcTextButton({Key? key, required this.text, this.onPressed, this.leadingIcon, this.trailingIcon}) : super(key: key);
 
   /// The text the button displays.
   final String text;
