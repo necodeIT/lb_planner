@@ -1,66 +1,47 @@
 import 'package:flutter/material.dart';
+import 'package:lb_planner/app_icon.dart';
+import 'package:nekolib_ui/core.dart';
 
 void main() {
-  runApp(const App());
+  runThemedApp(
+    appBuilder: App.builder,
+    title: 'LB Planner',
+    appIcon: kAppIcon,
+  );
 }
 
+/// Main app widget.
 class App extends StatelessWidget {
+  /// Main app widget.
   const App({Key? key}) : super(key: key);
+
+  /// Builder for convinience.
+  static App builder(context) => App();
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+      debugShowCheckedModeBanner: false,
+      home: Container(
+        color: secondaryColor,
+        child: Center(
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              primary: accentColor,
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+            onPressed: () {
+              if (NcThemes.current == sakuraTheme) {
+                setTheme(darkTheme);
+              } else {
+                setTheme(sakuraTheme);
+              }
+            },
+            child: NcTitleText(
+              "Click me",
+              buttonText: true,
             ),
-          ],
+          ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
       ),
     );
   }
