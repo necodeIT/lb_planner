@@ -11,6 +11,7 @@ class NcCheckbox extends StatelessWidget {
   /// Called when the value of the checkbox changes.
   final ValueChanged<bool>? onChanged;
 
+  /// The scale of the checkbox.
   final double scale;
 
   /// Width used for the border.
