@@ -20,8 +20,12 @@ class NcTextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
+      style: TextButton.styleFrom(
+        primary: accentColor,
+      ),
       onPressed: onPressed,
       child: Row(
+        mainAxisSize: MainAxisSize.min,
         children: [
           if (leadingIcon != null) Icon(leadingIcon, color: textColor),
           if (leadingIcon != null) NcSpacing.small(),
