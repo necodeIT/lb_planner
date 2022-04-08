@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lb_planner/app_icon.dart';
+import 'package:lb_planner/widgets.dart';
 import 'package:nekolib_ui/core.dart';
 
 void main() {
@@ -22,25 +23,33 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Container(
-        color: secondaryColor,
-        child: Center(
-          child: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              primary: accentColor,
-            ),
-            onPressed: () {
-              if (NcThemes.current == sakuraTheme) {
-                setTheme(darkTheme);
-              } else {
-                setTheme(sakuraTheme);
-              }
-            },
-            child: NcTitleText(
-              "Click me",
-              buttonText: true,
-            ),
-          ),
+      home: Scaffold(
+        backgroundColor: secondaryColor,
+        body: Test(),
+      ),
+    );
+  }
+}
+
+class Test extends StatefulWidget {
+  const Test({Key? key}) : super(key: key);
+
+  @override
+  State<Test> createState() => TestState();
+}
+
+class TestState extends State<Test> {
+  bool _test = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: NcCheckbox(
+        value: _test,
+        onChanged: (value) => setState(
+          () {
+            _test = value;
+          },
         ),
       ),
     );

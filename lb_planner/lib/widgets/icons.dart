@@ -1,4 +1,4 @@
-part of lbplanner_icons;
+part of lbplanner_widgets;
 
 /// Flutter icons FluentIcons
 /// Copyright (C) 2022 by original authors @ fluttericon.com, fontello.com
