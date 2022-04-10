@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localized_locales/flutter_localized_locales.dart';
 import 'package:lb_planner/app_icon.dart';
 import 'package:lb_planner/widgets.dart';
 import 'package:nekolib_ui/core.dart';
@@ -13,6 +14,7 @@ void main() {
     appBuilder: App.builder,
     title: 'LB Planner',
     appIcon: kAppIcon,
+    minSize: Size(1200, 700),
   );
 }
 
@@ -27,6 +29,11 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      localizationsDelegates: const [
+        LocaleNamesLocalizationsDelegate(),
+        ...AppLocalizations.localizationsDelegates,
+      ],
+      supportedLocales: AppLocalizations.supportedLocales,
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: secondaryColor,
@@ -69,7 +76,7 @@ class TestState extends State<Test> {
         // ),
         child: NcButton(
           onPressed: () {},
-          text: "Catgirl",
+          text: t.login,
         ),
         // child: NcCheckbox(value: _test, onChanged: (value) => setState(() => _test = value)),
       ),
