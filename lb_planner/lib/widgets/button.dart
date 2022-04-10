@@ -32,6 +32,9 @@ class NcButton extends StatelessWidget {
       ),
       style: ElevatedButton.styleFrom(
         primary: color ?? accentColor,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(kRadius),
+        ),
       ),
       onPressed: onPressed,
     );

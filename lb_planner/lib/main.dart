@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:lb_planner/app_icon.dart';
 import 'package:lb_planner/widgets.dart';
 import 'package:nekolib_ui/core.dart';
+import 'package:nekolib_utils/log.dart';
 
 void main() {
-  setTheme(sakuraTheme);
+  setTheme(darkTheme);
+
+  Logger.init(autoSave: false);
+
   runThemedApp(
     appBuilder: App.builder,
     title: 'LB Planner',
@@ -40,10 +44,35 @@ class Test extends StatefulWidget {
 }
 
 class TestState extends State<Test> {
+  // String _test = "Test";
   final bool _test = false;
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: NcTextButton(text: "sdasdad"));
+    return Center(
+      child: Container(
+        padding: EdgeInsets.all(16),
+        color: primaryColor,
+        // child: NcDropdown<String>(
+        //   value: _test,
+        //   items: const [
+        //     DropdownMenuItem(
+        //       child: Text('Test'),
+        //       value: 'Test',
+        //     ),
+        //     DropdownMenuItem(
+        //       child: Text('Test2'),
+        //       value: 'Test2',
+        //     ),
+        //   ],
+        //   onChanged: (value) => setState(() => _test = value!),
+        // ),
+        child: NcButton(
+          onPressed: () {},
+          text: "Catgirl",
+        ),
+        // child: NcCheckbox(value: _test, onChanged: (value) => setState(() => _test = value)),
+      ),
+    );
   }
 }

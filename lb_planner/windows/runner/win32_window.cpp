@@ -120,8 +120,8 @@ bool Win32Window::CreateAndShow(const std::wstring &title,
                                 const Size &size)
 {
 
-  HANDLE hMutexHandle = CreateMutex(NULL, TRUE, L"necodeIT.appname.mutext");
-  HWND handle = FindWindowA(NULL, "App Name");
+  HANDLE hMutexHandle = CreateMutex(NULL, TRUE, L"necodeIT.lb_planner.mutext");
+  HWND handle = FindWindowA(NULL, "LB Planner");
 
   hMutexHandle; // This line is required to supress "local variable is initialized but not referenced" error/warning.
 
