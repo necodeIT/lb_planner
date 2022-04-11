@@ -1,3 +1,5 @@
+part of lbplanner_widgets;
+
 /// The svg code of the icon for the app.
 const kAppIcon = '''
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="158" height="158" viewBox="0 0 158 158">

@@ -1,12 +1,12 @@
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localized_locales/flutter_localized_locales.dart';
-import 'package:lb_planner/app_icon.dart';
 import 'package:lb_planner/widgets.dart';
 import 'package:nekolib_ui/core.dart';
 import 'package:nekolib_utils/log.dart';
 
 void main() {
-  setTheme(darkTheme);
+  setTheme(sakuraTheme);
 
   Logger.init(autoSave: false);
 
@@ -29,6 +29,24 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        cardTheme: CardTheme(
+          color: primaryColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(kRadius),
+          ),
+        ),
+        hoverColor: accentColor.withOpacity(.7),
+        splashColor: accentColor,
+        cardColor: primaryColor,
+        primaryColor: errorColor,
+        brightness: brightness,
+        textSelectionTheme: TextSelectionThemeData(
+          cursorColor: accentColor,
+          selectionColor: accentColor.withOpacity(.7),
+          selectionHandleColor: accentColor,
+        ),
+      ),
       localizationsDelegates: const [
         LocaleNamesLocalizationsDelegate(),
         ...AppLocalizations.localizationsDelegates,
@@ -85,7 +103,10 @@ class TestState extends State<Test> {
         //   color: accentColor,
         //   text: 'AM',
         // ),
-        child: LpLogo(),
+        // child: LpLogo(),
+        child: LpTextField(
+          prefixIcon: FluentIcons.search_24_regular,
+        ),
         // child: NcCheckbox(value: _test, onChanged: (value) => setState(() => _test = value)),
       ),
     );
