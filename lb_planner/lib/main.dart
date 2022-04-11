@@ -30,6 +30,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
+        // todo: theme ToolbarOtpions
         cardTheme: CardTheme(
           color: primaryColor,
           shape: RoundedRectangleBorder(
