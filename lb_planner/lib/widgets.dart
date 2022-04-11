@@ -14,6 +14,7 @@ part 'widgets/textbutton.dart';
 part "widgets/checkbox.dart";
 part 'widgets/dropdown.dart';
 part 'widgets/localized_widget.dart';
+part 'widgets/tag.dart';
 
 /// Radius for all rounded rectangles.
 const double kRadius = 5;

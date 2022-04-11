@@ -1,4 +1,3 @@
-import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localized_locales/flutter_localized_locales.dart';
 import 'package:lb_planner/app_icon.dart';
@@ -75,12 +74,16 @@ class TestState extends State<Test> {
         //   ],
         //   onChanged: (value) => setState(() => _test = value!),
         // ),
-        child: LpButton.icon(
-          icon: FluentIcons.arrow_circle_right_24_regular,
-          color: errorColor,
-          trailing: true,
-          onPressed: () {},
-          text: t.login,
+        // child: LpButton.icon(
+        //   icon: FluentIcons.arrow_circle_right_24_regular,
+        //   color: errorColor,
+        //   trailing: true,
+        //   onPressed: () {},
+        //   text: t.login,
+        // ),
+        child: LpTag(
+          color: accentColor,
+          text: 'AM',
         ),
         // child: NcCheckbox(value: _test, onChanged: (value) => setState(() => _test = value)),
       ),
