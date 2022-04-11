@@ -1,9 +1,9 @@
 part of lbplanner_widgets;
 
 /// A button that can be used to trigger an action.
-class NcButton extends StatelessWidget {
+class LpButton extends StatelessWidget {
   /// A button that can be used to trigger an action.
-  NcButton({Key? key, this.text, this.child, this.onPressed, this.color}) : super(key: key) {
+  LpButton({Key? key, this.text, this.child, this.onPressed, this.color}) : super(key: key) {
     assert(text != null || child != null, "Either text or child must be provided.");
     icon = null;
     trailing = null;
@@ -11,7 +11,7 @@ class NcButton extends StatelessWidget {
   }
 
   /// A button that can be used to trigger an action with icons.
-  NcButton.icon({Key? key, this.text, this.child, this.onPressed, this.color, required this.icon, this.size = MainAxisSize.min, this.trailing = false}) : super(key: key) {
+  LpButton.icon({Key? key, this.text, this.child, this.onPressed, this.color, required this.icon, this.size = MainAxisSize.min, this.trailing = false}) : super(key: key) {
     assert(text != null || child != null, "Either text or child must be provided.");
     assert(icon != null, "Icon must be provided.");
     assert(size != null, "Size must be provided.");
@@ -39,7 +39,7 @@ class NcButton extends StatelessWidget {
   /// Whether [icon] should be at the end or at the beginning.
   late final bool? trailing;
 
-  /// Size of [NcButton.icon].
+  /// Size of [LpButton.icon].
   static const double iconSize = 19;
 
   @override

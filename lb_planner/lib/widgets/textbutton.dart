@@ -1,9 +1,9 @@
 part of lbplanner_widgets;
 
-/// The [NcTextButton] widget is a button that displays clickable text and an icon.
-class NcTextButton extends StatelessWidget {
-  /// The [NcTextButton] widget is a button that displays clickable text and an icon.
-  const NcTextButton({Key? key, required this.text, this.onPressed, this.leadingIcon, this.trailingIcon}) : super(key: key);
+/// The [LpTextButton] widget is a button that displays clickable text and an icon.
+class LpTextButton extends StatelessWidget {
+  /// The [LpTextButton] widget is a button that displays clickable text and an icon.
+  const LpTextButton({Key? key, required this.text, this.onPressed, this.leadingIcon, this.trailingIcon}) : super(key: key);
 
   /// The text the button displays.
   final String text;

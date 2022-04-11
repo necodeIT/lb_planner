@@ -75,7 +75,7 @@ class TestState extends State<Test> {
         //   ],
         //   onChanged: (value) => setState(() => _test = value!),
         // ),
-        child: NcButton.icon(
+        child: LpButton.icon(
           icon: FluentIcons.arrow_circle_right_24_regular,
           color: errorColor,
           trailing: true,

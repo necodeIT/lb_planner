@@ -1,9 +1,9 @@
 part of lbplanner_widgets;
 
 /// Themed [CheckBox] widget.
-class NcCheckbox extends StatelessWidget {
+class LpCheckbox extends StatelessWidget {
   /// Themed [CheckBox] widget.
-  const NcCheckbox({Key? key, required this.value, this.onChanged, this.scale = 1}) : super(key: key);
+  const LpCheckbox({Key? key, required this.value, this.onChanged, this.scale = 1}) : super(key: key);
 
   /// The current value of the checkbox.
   final bool value;
