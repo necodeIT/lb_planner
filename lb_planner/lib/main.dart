@@ -81,10 +81,11 @@ class TestState extends State<Test> {
         //   onPressed: () {},
         //   text: t.login,
         // ),
-        child: LpTag(
-          color: accentColor,
-          text: 'AM',
-        ),
+        // child: LpTag(
+        //   color: accentColor,
+        //   text: 'AM',
+        // ),
+        child: LpLogo(),
         // child: NcCheckbox(value: _test, onChanged: (value) => setState(() => _test = value)),
       ),
     );
