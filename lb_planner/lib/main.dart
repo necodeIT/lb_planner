@@ -6,7 +6,7 @@ import 'package:nekolib_ui/core.dart';
 import 'package:nekolib_utils/log.dart';
 
 void main() {
-  setTheme(sakuraTheme);
+  setTheme(darkTheme);
 
   Logger.init(autoSave: false);
 
