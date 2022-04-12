@@ -67,14 +67,12 @@ class course_update_course extends external_api {
             throw new \moodle_exception('Access denied');
         }
 
-        // !fixme: not catgirl approved.
-
-        $course = course_helper::get_course($courseid);
+        $course = course_helper::get_lbplanner_course($courseid);
         $course->color = $color;
         $course->name = $name;
         $course->shortname = $shortname;
         $course->enabled = $enabled;
-        $DB->update_record(course_helper::COURSE_TABLE, $course);
+        $DB->update_record(course_helper::LBPLANNER_COURSE_TABLE, $course);
 
         return $course;
     }

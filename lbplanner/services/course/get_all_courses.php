@@ -71,8 +71,8 @@ class course_get_all_courses extends external_api {
             $catgirl = array(
                 'courseid' => $courseid,
                 'color' => course_helper::COLORS[array_rand(course_helper::COLORS)],
-                'name' => course_helper::get_course($courseid)->fullname,
-                'shortname' => course_helper::get_course($courseid)->shortname,
+                'name' => course_helper::get_mdl_course($courseid)->fullname,
+                'shortname' => course_helper::get_mdl_course($courseid)->shortname,
                 'enabled' => course_helper::DISABLED_COURSE,
                 'userid' => $userid,
             );

@@ -81,15 +81,26 @@ class course_helper {
         );
     }
     /**
-     * Get all courses of the current year.
+     * Get course from mdl DB
      *
      * @param int $courseid
      * @return stdClass course
      */
-    public static function get_course($courseid) : stdClass {
+    public static function get_mdl_course($courseid) : stdClass {
         global $DB;
         return $DB->get_record(self::COURSE_TABLE, array('id' => $courseid));
     }
+    /**
+     * Get course from lbpanner DB
+     *
+     * @param int $courseid
+     * @return stdClass course
+     */
+    public static function get_lbplanner_course($courseid) : stdClass {
+        global $DB;
+        return $DB->get_record(self::LBPLANNER_COURSE_TABLE, array('courseid' => $courseid));
+    }
+
     /**
      * Check if the user is enrolled in the course
      *
