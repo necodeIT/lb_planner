@@ -18,6 +18,13 @@ part 'widgets/logo.dart';
 part 'widgets/app_icon.dart';
 part 'widgets/text_field.dart';
 part 'widgets/icon.dart';
+part 'widgets/animated_fade_out_in.dart';
 
 /// Radius for all rounded rectangles.
 const double kRadius = 5;
+
+/// Fast animation duration.
+const kFastAnimationDuration = Duration(milliseconds: 100);
+
+/// Faster animation duration.
+const kFasterAnimationDuration = Duration(milliseconds: 50);

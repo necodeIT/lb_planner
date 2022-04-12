@@ -36,7 +36,7 @@ class SidebarItem extends StatelessWidget {
         Navigator.pushNamed(context, route);
       },
       builder: (context, hover) => AnimatedContainer(
-        duration: const Duration(milliseconds: 100),
+        duration: kFastAnimationDuration,
         curve: Curves.ease,
         width: size,
         height: size,
