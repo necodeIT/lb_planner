@@ -14,13 +14,25 @@ class Sidebar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ConditionalWrapper(
-      condition: currentRoute != LoginRoute.routeName,
+      condition: !isLogin,
       wrapper: (context, child) {
         return Row(
           children: [
             Container(
               width: width,
-              color: primaryColor,
+              decoration: BoxDecoration(
+                color: primaryColor,
+                boxShadow: [
+                  /// Scuffed fixing so that the shadow does not overlap the [WindowHandle].
+                  BoxShadow(offset: Offset(0, 3.0), blurRadius: 3.0, spreadRadius: -2.0, color: _kKeyUmbraOpacity),
+                  BoxShadow(offset: Offset(0, 3.0), blurRadius: 4.0, color: _kKeyPenumbraOpacity),
+                  BoxShadow(offset: Offset(0, 1.0), blurRadius: 8.0, color: _kAmbientShadowOpacity),
+                  BoxShadow(color: primaryColor, offset: Offset(0, -8)),
+                  BoxShadow(color: primaryColor, offset: Offset(0, 16)),
+                  BoxShadow(color: primaryColor, offset: Offset(-16, -8)),
+                  BoxShadow(color: primaryColor, offset: Offset(-16, 16)),
+                ],
+              ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -39,19 +51,25 @@ class Sidebar extends StatelessWidget {
                   ),
                   Column(
                     children: [
-                      SidebarItem(
-                        icon: Icons.settings,
-                        route: "",
-                      ),
+                      Consumer(builder: (context, ref, _) {
+                        var user = ref.read(userProvider.notifier);
+                        return SidebarItem(
+                          icon: FluentIcons.sign_out_24_filled,
+                          route: LoginRoute.routeName,
+                          onTap: user.logout,
+                        );
+                      }),
                       NcSpacing.medium(),
                     ],
                   )
                 ],
               ),
             ),
+            NcSpacing.xl(),
             Expanded(
               child: child,
             ),
+            NcSpacing.xl(),
           ],
         );
       },
@@ -68,3 +86,7 @@ final Map<String, WidgetBuilder> kRoutes = {
 
 /// Observes navigation events.
 final RouteObserver<ModalRoute<void>> kRouteObserver = RouteObserver<ModalRoute<void>>();
+
+const Color _kKeyUmbraOpacity = Color(0x33000000); // alpha = 0.2
+const Color _kKeyPenumbraOpacity = Color(0x24000000); // alpha = 0.14
+const Color _kAmbientShadowOpacity = Color(0x1F000000); // alpha = 0.12

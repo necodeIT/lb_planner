@@ -13,14 +13,18 @@ class RouteWrapper extends StatelessWidget {
   /// The current route that was pushed.
   static String get currentRoute => _currentRoute;
 
+  /// Whether the current route is [LoginRoute.routeName].
+  static bool get isLogin => _currentRoute == LoginRoute.routeName;
+
   /// Generates a route.
   static PageRouteBuilder gnerateRoute(RouteSettings settings) {
     _currentRoute = settings.name ?? '';
     return PageRouteBuilder(
       settings: settings,
-      pageBuilder: (context, animation, secondaryAnimation) => kRoutes[settings.name]?.call(context) ?? Container(color: errorColor),
+      pageBuilder: (context, animation, secondaryAnimation) => Center(child: kRoutes[settings.name]?.call(context) ?? NcTitleText("404")),
       transitionsBuilder: (context, animation, secondaryAnimation, child) => RouteWrapper(
-        child: FadeThroughTransition(
+        child: SharedAxisTransition(
+          transitionType: SharedAxisTransitionType.vertical,
           animation: animation,
           secondaryAnimation: secondaryAnimation,
           child: child,
@@ -34,10 +38,13 @@ class RouteWrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: secondaryColor,
-      body: Sidebar(child: child),
+      body: Sidebar(
+        child: ConditionalWrapper(
+          condition: !isLogin,
+          wrapper: RouteTitle.builder,
+          child: child,
+        ),
+      ),
     );
   }
 }
-
-/// The current route that was pushed.
-String get currentRoute => RouteWrapper.currentRoute;

@@ -8,14 +8,14 @@ import 'package:nekolib_ui/core.dart';
 import 'package:nekolib_utils/log.dart';
 
 void main() {
-  setTheme(lightTheme);
+  setTheme(oceanTheme);
 
   Logger.init(autoSave: false);
 
   runThemedApp(
     appBuilder: App.builder,
     title: 'LB Planner',
-    appIcon: kAppIcon,
+    appIcon: LpLogo.svg,
     minSize: Size(1200, 700),
     windowHandleColor: () => primaryColor,
   );

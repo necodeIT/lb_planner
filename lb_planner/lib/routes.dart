@@ -19,3 +19,6 @@ part 'routes/route/route.dart';
 part 'routes/route/sidebar.dart';
 part 'routes/login/login_form.dart';
 part 'routes/route/sidebar_item.dart';
+part 'routes/route/user_profile.dart';
+part 'routes/route/utils.dart';
+part 'routes/route/route_title.dart';

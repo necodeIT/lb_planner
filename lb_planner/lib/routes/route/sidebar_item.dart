@@ -3,13 +3,16 @@ part of lbplanner_routes;
 /// Navigation button for the sidebar.
 class SidebarItem extends StatelessWidget {
   /// Navigation button for the sidebar.
-  const SidebarItem({Key? key, required this.icon, required this.route}) : super(key: key);
+  const SidebarItem({Key? key, required this.icon, required this.route, this.onTap}) : super(key: key);
 
   /// The icon to display
   final IconData icon;
 
   /// Whether the item is selected
   final String route;
+
+  /// Called when the item is tapped.
+  final VoidCallback? onTap;
 
   /// The size of the icon.
   static const double iconSize = 20;
@@ -25,9 +28,13 @@ class SidebarItem extends StatelessWidget {
     var value = currentRoute == route;
 
     return HoverBuilder(
-      onTap: () => Navigator.pushNamed(context, route),
+      onTap: () {
+        onTap?.call();
+        Navigator.pushNamed(context, route);
+      },
       builder: (context, hover) => AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
+        duration: const Duration(milliseconds: 100),
+        curve: Curves.ease,
         width: size,
         height: size,
         decoration: BoxDecoration(

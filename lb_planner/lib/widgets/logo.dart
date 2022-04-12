@@ -1,10 +1,14 @@
 part of lbplanner_widgets;
 
+/// Svg logo of the app.
 class LpLogo extends StatelessWidget {
+  /// Svg logo of the app.
   const LpLogo({Key? key, this.size, this.alignment = Alignment.center}) : super(key: key);
 
+  /// The size of the logo.
   final double? size;
 
+  /// The alignment of the logo.
   final Alignment alignment;
 
   /// The svg code of the logo

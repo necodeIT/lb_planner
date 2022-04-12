@@ -92,6 +92,7 @@ class LpTextField extends StatelessWidget {
         helperStyle: NcBaseText.style(color: textColor, fontSize: feedbackFontSize),
         enabledBorder: border(textColor),
         disabledBorder: border(tertiaryColor),
+        focusedErrorBorder: border(errorColor),
         errorText: errorText,
         helperText: helperText,
         enabled: enabled,
