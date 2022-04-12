@@ -9,7 +9,7 @@ class LoginRoute extends StatefulWidget {
   static const String routeName = '/login';
 
   /// The padding of the login form.
-  static const formPadding = 100.0;
+  static const formPadding = 150.0;
 
   /// Padding of the version text.
   static const versionPadding = 20.0;
