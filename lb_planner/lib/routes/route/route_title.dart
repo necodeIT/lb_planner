@@ -29,7 +29,7 @@ class RouteTitle extends StatelessWidget {
             UserProfile(),
           ],
         ),
-        NcSpacing.xs(),
+        NcSpacing.small(),
         Expanded(child: child),
         NcSpacing.medium(),
       ],

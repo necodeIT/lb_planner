@@ -25,7 +25,7 @@ class LpDropdown<T> extends StatelessWidget {
       onChanged: onChanged,
       dropdownColor: color ?? primaryColor,
       style: TextStyle(color: textColor),
-      icon: Icon(FluentIcons.chevron_down_12_filled, color: textColor),
+      icon: Icon(Icons.arrow_downward, color: textColor),
       borderRadius: BorderRadius.circular(kRadius),
       underline: SizedBox.shrink(),
       focusColor: Colors.transparent,

@@ -71,7 +71,6 @@ class _LoginFormState extends State<LoginForm> {
                 LpLogo(size: LoginRoute.logoSize),
                 NcSpacing.xl(),
                 LpTextField(
-                  prefixIcon: FluentIcons.person_24_filled,
                   controller: _userNameController,
                   placeholder: t.username,
                   errorText: errorMessage,
@@ -79,7 +78,6 @@ class _LoginFormState extends State<LoginForm> {
                 ),
                 NcSpacing.large(),
                 LpTextField(
-                  prefixIcon: Icons.lock,
                   focusNode: _pwFocusNode,
                   controller: _passwordController,
                   obscureText: !_showPassword,

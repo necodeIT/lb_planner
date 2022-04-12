@@ -39,10 +39,6 @@ class Sidebar extends StatelessWidget {
                   Column(
                     children: [
                       NcSpacing.small(),
-                      LpLogo(
-                        size: SidebarItem.size,
-                      ),
-                      NcSpacing.small(),
                       SidebarItem(
                         icon: Icons.settings,
                         route: DashboardRoute.routeName,
@@ -54,7 +50,7 @@ class Sidebar extends StatelessWidget {
                       Consumer(builder: (context, ref, _) {
                         var user = ref.read(userProvider.notifier);
                         return SidebarItem(
-                          icon: FluentIcons.sign_out_24_filled,
+                          icon: Icons.logout,
                           route: LoginRoute.routeName,
                           onTap: user.logout,
                         );

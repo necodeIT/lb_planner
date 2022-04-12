@@ -10,8 +10,49 @@ class DashboardRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: successColor,
+    var filler = Container(
+      decoration: BoxDecoration(
+        color: primaryColor,
+        borderRadius: BorderRadius.circular(kRadius),
+        boxShadow: kElevationToShadow[4],
+      ),
+      child: Center(child: NcTitleText("Test")),
+      width: double.infinity,
+    );
+    return Row(
+      children: [
+        Expanded(
+          child: Column(
+            children: [
+              Expanded(flex: 1, child: filler),
+              NcSpacing.medium(),
+              Expanded(child: filler),
+            ],
+          ),
+        ),
+        NcSpacing.medium(),
+        Expanded(
+          flex: 2,
+          child: Column(
+            children: [
+              Expanded(child: filler),
+              NcSpacing.medium(),
+              Expanded(flex: 3, child: filler),
+            ],
+          ),
+        ),
+        NcSpacing.medium(),
+        Expanded(
+          flex: 1,
+          child: Column(
+            children: [
+              Expanded(child: filler),
+              NcSpacing.medium(),
+              Expanded(child: filler),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
