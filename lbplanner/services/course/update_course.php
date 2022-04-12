@@ -20,6 +20,8 @@ use external_api;
 use external_function_parameters;
 use external_single_structure;
 use external_value;
+use local_lbplanner\helpers\user_helper;
+use local_lbplanner\helpers\course_helper;
 
 /**
  * Update the data for a course.
@@ -46,7 +48,7 @@ class course_update_course extends external_api {
         global $DB;
         global $USER;
 
-        $params = self::validate_parameters(
+        self::validate_parameters(
             self::update_course_parameters(),
             array(
                 'courseid' => $courseid,
@@ -57,8 +59,21 @@ class course_update_course extends external_api {
                 'userid' => $userid
             )
         );
+        if (!user_helper::check_access($userid)) {
+            throw new \moodle_exception('Access denied');
+        }
 
-        return array();
+        if (!course_helper::check_access($courseid, $userid)) {
+            throw new \moodle_exception('Access denied');
+        }
+        $course = course_helper::get_course($courseid);
+        $course->color = $color;
+        $course->name = $name;
+        $course->shortname = $shortname;
+        $course->enabled = $enabled;
+        $DB->update_record(course_helper::COURSE_TABLE, $course);
+
+        return $course;
     }
 
     public static function update_course_returns() {

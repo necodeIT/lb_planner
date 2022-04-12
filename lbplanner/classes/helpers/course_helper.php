@@ -48,26 +48,51 @@ class course_helper {
     const DISABLED_COURSE = 0;
     const ENABLED_COURSE = 1;
 
+    /**
+     * Get all the courses of the user
+     */
     public static function get_enrollments(int $userid) {
         global $DB;
         return $DB->get_fieldset_sql('SELECT enrolid FROM ' . self::USER_ENROL_TABLE . ' WHERE userid= ' . $userid);
     }
 
+    /**
+     * Get the current year
+     *
+     * @return the current year the last 2 digits (20(20))
+     */
     public static function get_current_year() {
-        return strval(intval(substr(date('Y'), 2)) + 1);
+        return substr(date('Y'), 2);
     }
-
+    /**
+     * Get the current category id
+     *
+     * @return int id of the current category
+     */
     public static function get_current_category() {
         global $DB;
-        // TODO: Check current year!
+
         return $DB->get_record_sql(
-            'SELECT id FROM ' . self::CATEGORY_TABLE . ' WHERE name LIKE "' . self::get_current_year() . '%"'
+            'SELECT id FROM ' . self::CATEGORY_TABLE . ' WHERE name LIKE "%' . self::get_current_year() . '%"'
         );
     }
+    /**
+     * Get all courses of the current year.
+     *
+     * @param int $courseid
+     * @return array course
+     */
     public static function get_course($courseid) {
         global $DB;
         return $DB->get_record(self::COURSE_TABLE, array('id' => $courseid));
     }
+    /**
+     * Check if the user is enrolled in the course
+     *
+     * @param int $courseid
+     * @param int $userid
+     * @return bool true if the user is enrolled
+     */
     public static function check_access($courseid, $userid) {
         global $DB;
         $enrolmentid = $DB->get_field(self::ENROL_TABLE, 'id', array('courseid' => $courseid));
