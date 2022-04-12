@@ -41,7 +41,11 @@ class modules_get_all_course_modules extends external_api {
             array('courseid' => $courseid, 'userid' => $userid)
         );
 
-        // TODO: Check if token is allowed to access this function.
+        // TODO: Get all the modules of the given course.
+
+        // TODO: call get_module::get_module() for each module.
+
+        // TODO: return the appropriate data.
 
         return array();
     }

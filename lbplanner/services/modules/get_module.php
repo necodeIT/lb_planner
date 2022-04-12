@@ -34,11 +34,14 @@ class modules_get_module extends external_api {
 
     public static function get_module($moduleid, $userid) {
         global $DB;
-        global $USER;
 
-        $params = self::validate_parameters(self::get_module_parameters(), array('moduleid' => $moduleid, 'userid' => $userid));
+        self::validate_parameters(self::get_module_parameters(), array('moduleid' => $moduleid, 'userid' => $userid));
 
-        // TODO: Check if token is allowed to access this function.
+        // Todo: get module data.
+
+        // Todo: check if there are any submissions or feedbacks for this module.
+
+        // Todo: return the appropriate data.
 
         return array();
     }
