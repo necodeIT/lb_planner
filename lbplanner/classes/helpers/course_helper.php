@@ -16,6 +16,7 @@
 
 namespace local_lbplanner\helpers;
 
+use stdClass;
 
 class course_helper {
 
@@ -50,8 +51,11 @@ class course_helper {
 
     /**
      * Get all the courses of the user
+     * @param int userid
+     *
+     * @return array
      */
-    public static function get_enrollments(int $userid) {
+    public static function get_enrollments(int $userid) : array {
         global $DB;
         return $DB->get_fieldset_sql('SELECT enrolid FROM ' . self::USER_ENROL_TABLE . ' WHERE userid= ' . $userid);
     }
@@ -59,9 +63,9 @@ class course_helper {
     /**
      * Get the current year
      *
-     * @return the current year the last 2 digits (20(20))
+     * @return string the current year the last 2 digits (20(20))
      */
-    public static function get_current_year() {
+    public static function get_current_year() : string {
         return substr(date('Y'), 2);
     }
     /**
@@ -69,7 +73,7 @@ class course_helper {
      *
      * @return int id of the current category
      */
-    public static function get_current_category() {
+    public static function get_current_category() : int {
         global $DB;
 
         return $DB->get_record_sql(
@@ -80,9 +84,9 @@ class course_helper {
      * Get all courses of the current year.
      *
      * @param int $courseid
-     * @return array course
+     * @return stdClass course
      */
-    public static function get_course($courseid) {
+    public static function get_course($courseid) : stdClass {
         global $DB;
         return $DB->get_record(self::COURSE_TABLE, array('id' => $courseid));
     }
@@ -93,7 +97,7 @@ class course_helper {
      * @param int $userid
      * @return bool true if the user is enrolled
      */
-    public static function check_access($courseid, $userid) {
+    public static function check_access($courseid, $userid) : bool {
         global $DB;
         $enrolmentid = $DB->get_field(self::ENROL_TABLE, 'id', array('courseid' => $courseid));
         if ($DB->record_exists(self::USER_ENROL_TABLE, array('enrolid' => $enrolmentid, 'userid' => $userid))) {
