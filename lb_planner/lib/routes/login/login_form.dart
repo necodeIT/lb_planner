@@ -72,7 +72,7 @@ class _LoginFormState extends State<LoginForm> {
                 NcSpacing.xl(),
                 LpTextField(
                   controller: _userNameController,
-                  placeholder: t.login_password,
+                  placeholder: t.login_username,
                   errorText: errorMessage,
                   onSubmitted: (_) => _pwFocusNode.requestFocus(),
                 ),

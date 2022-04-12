@@ -2,8 +2,10 @@ library lbplanner_widgets;
 
 export 'package:flutter_gen/gen_l10n/l10n.dart';
 
+import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:lb_planner/assets.dart';
 import 'package:nekolib_ui/core.dart';
 import 'package:nekolib_ui/utils.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -19,6 +21,7 @@ part 'widgets/app_icon.dart';
 part 'widgets/text_field.dart';
 part 'widgets/icon.dart';
 part 'widgets/animated_fade_out_in.dart';
+part 'widgets/loading_indicator.dart';
 
 /// Radius for all rounded rectangles.
 const double kRadius = 5;

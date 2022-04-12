@@ -19,6 +19,9 @@ class RouteWrapper extends StatelessWidget {
   /// Generates a route.
   static PageRouteBuilder gnerateRoute(RouteSettings settings) {
     _currentRoute = settings.name ?? '';
+
+    log("Navigating to '$currentRoute'", LogTypes.tracking);
+
     return PageRouteBuilder(
       settings: settings,
       pageBuilder: (context, animation, secondaryAnimation) => Center(child: kRoutes[settings.name]?.call(context) ?? NcTitleText("404")),

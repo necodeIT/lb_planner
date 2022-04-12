@@ -46,8 +46,7 @@ class Sidebar extends StatelessWidget {
                       NcSpacing.small(),
                       SidebarItem(
                         icon: Icons.calendar_month_rounded,
-                        route: "/calendar/plan",
-                        routes: const ["/calendar/plan", "/calendar/modules"],
+                        route: CalendarPlanRoute.routeName,
                       ),
                     ],
                   ),
@@ -55,7 +54,7 @@ class Sidebar extends StatelessWidget {
                     children: [
                       SidebarItem(
                         icon: Icons.settings,
-                        route: "/settings",
+                        route: SettingsRoute.routeName,
                       ),
                       NcSpacing.small(),
                       Consumer(builder: (context, ref, _) {
@@ -89,6 +88,8 @@ class Sidebar extends StatelessWidget {
 final Map<String, WidgetBuilder> kRoutes = {
   LoginRoute.routeName: (context) => LoginRoute(),
   DashboardRoute.routeName: (context) => DashboardRoute(),
+  CalendarPlanRoute.routeName: (context) => CalendarPlanRoute(),
+  SettingsRoute.routeName: (context) => SettingsRoute(),
 };
 
 /// Observes navigation events.

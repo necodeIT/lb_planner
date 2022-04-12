@@ -11,6 +11,7 @@ import 'package:lbplanner_api/lbplanner_api.dart';
 import 'package:nekolib_ui/core.dart';
 import 'package:nekolib_ui/utils.dart';
 import 'package:nekolib_utils/extensions.dart';
+import 'package:nekolib_utils/log.dart';
 
 part 'routes/login/login.dart';
 part 'routes/login/background.dart';
@@ -22,3 +23,5 @@ part 'routes/route/sidebar_item.dart';
 part 'routes/route/user_profile.dart';
 part 'routes/route/utils.dart';
 part 'routes/route/route_title.dart';
+part 'routes/calendar/calendar_plan.dart';
+part 'routes/settings/settings.dart';
