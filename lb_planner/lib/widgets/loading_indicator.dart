@@ -1,5 +1,3 @@
-// ignore_for_file: unused_element
-
 part of lbplanner_widgets;
 
 /// Progress indicator.
@@ -48,22 +46,24 @@ class LpProgressindicator extends StatelessWidget {
   Widget build(BuildContext context) {
     var color = this.color ?? accentColor;
     return ConditionalWrapper(
-      condition: size != null,
-      wrapper: (context, child) => SizedBox(
-        width: size,
-        height: type.isLinear ? null : size,
-        child: child,
-      ),
-      child: ConditionalWidget(
-        condition: type.isLinear,
-        trueWidget: (context) => LinearProgressIndicator(
-          value: progress,
-          backgroundColor: backgroundColor,
-          color: color,
-          minHeight: thickness,
+      condition: type.isPenguin || type.isCircular,
+      wrapper: (context, child) => Center(child: child),
+      child: ConditionalWrapper(
+        condition: size != null,
+        wrapper: (context, child) => SizedBox(
+          width: size,
+          height: type.isLinear ? null : size,
+          child: child,
         ),
-        falseWidget: (context) => Center(
-          child: ConditionalWidget(
+        child: ConditionalWidget(
+          condition: type.isLinear,
+          trueWidget: (context) => LinearProgressIndicator(
+            value: progress,
+            backgroundColor: backgroundColor,
+            color: color,
+            minHeight: thickness,
+          ),
+          falseWidget: (context) => ConditionalWidget(
             condition: type.isCircular,
             trueWidget: (context) => CircularProgressIndicator(
               color: color,

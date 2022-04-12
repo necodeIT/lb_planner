@@ -103,19 +103,12 @@ class _LoginFormState extends State<LoginForm> {
                       builder: (context, snapshot) => LpButton(
                         onPressed: () {},
                         child: SizedBox(
-                          width: LoginForm.width,
-                          child: Center(
-                            child: SizedBox(
-                              width: 15,
-                              height: 15,
-                              child: CircularProgressIndicator(
-                                strokeWidth: 2,
-                                color: buttonTextColor,
-                                backgroundColor: Colors.transparent,
-                              ),
-                            ),
-                          ),
-                        ),
+                            width: LoginForm.width,
+                            child: LpProgressindicator.circular(
+                              thickness: 2,
+                              size: 15,
+                              color: buttonTextColor,
+                            )),
                       ),
                     ),
                     child: LpButton(
