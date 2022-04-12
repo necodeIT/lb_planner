@@ -66,6 +66,9 @@ class course_update_course extends external_api {
         if (!course_helper::check_access($courseid, $userid)) {
             throw new \moodle_exception('Access denied');
         }
+
+        // !fixme: not catgirl approved.
+
         $course = course_helper::get_course($courseid);
         $course->color = $color;
         $course->name = $name;

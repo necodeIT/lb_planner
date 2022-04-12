@@ -39,6 +39,10 @@ class course_get_course extends external_api {
 
         self::validate_parameters(self::get_course_parameters(), array('courseid' => $courseid, 'userid' => $userid));
 
+        if (!$DB->record_exists('course', array('id' => $courseid))) {
+            throw new \moodle_exception('Course not found');
+        }
+
         if (!user_helper::check_access($userid)) {
             throw new \moodle_exception('Access denied');
         }
@@ -47,7 +51,7 @@ class course_get_course extends external_api {
             throw new \moodle_exception('Access denied');
         }
 
-        return $DB->get_record(course_helper::LBPLANNER_COURSE_TABLE, array('id' => $courseid));
+        return $DB->get_record(course_helper::LBPLANNER_COURSE_TABLE, array('courseid' => $courseid), '*', MUST_EXIST);
     }
 
     public static function get_course_returns() {
