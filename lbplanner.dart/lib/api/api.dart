@@ -35,7 +35,7 @@ class Api {
 
   /// Requests a token for the given [service] with the given [username] and [password].
   static Future<RawApiResponse> requestToken(String password, String username, ApiServices service) async {
-    log("Requesting token ...", LogTypes.tracking);
+    log("Requesting token for ${service.name}...", LogTypes.tracking);
 
     var encodedPassword = Uri.encodeComponent(password);
 
