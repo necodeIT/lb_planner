@@ -1,5 +1,6 @@
 library lbplanner_routes;
 
+import 'package:animations/animations.dart';
 import 'package:enum_to_string/enum_to_string.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
@@ -17,3 +18,4 @@ part 'routes/dashboard/dashboard.dart';
 part 'routes/route/route.dart';
 part 'routes/route/sidebar.dart';
 part 'routes/login/login_form.dart';
+part 'routes/route/sidebar_item.dart';

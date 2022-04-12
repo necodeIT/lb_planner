@@ -1,6 +1,8 @@
 part of lbplanner_routes;
 
+/// Login form.
 class LoginForm extends StatefulWidget {
+  /// Login form.
   const LoginForm({Key? key}) : super(key: key);
 
   /// The width of the login form.
@@ -16,6 +18,14 @@ class _LoginFormState extends State<LoginForm> {
   bool _showPassword = false;
   RawApiResponse? _loginResponse;
   Future<RawApiResponse>? _loginFuture;
+  final FocusNode _pwFocusNode = FocusNode();
+
+  @override
+  void dispose() {
+    _pwFocusNode.dispose();
+
+    super.dispose();
+  }
 
   _togglePassword() {
     setState(() {
@@ -65,14 +75,17 @@ class _LoginFormState extends State<LoginForm> {
                   controller: _userNameController,
                   placeholder: t.username,
                   errorText: errorMessage,
+                  onSubmitted: (_) => _pwFocusNode.requestFocus(),
                 ),
                 NcSpacing.large(),
                 LpTextField(
                   prefixIcon: Icons.lock,
+                  focusNode: _pwFocusNode,
                   controller: _passwordController,
                   obscureText: !_showPassword,
                   placeholder: t.password,
                   errorText: errorMessage,
+                  onSubmitted: (_) => _login(ref.read(userProvider.notifier)),
                   suffix: IconButton(
                     icon: LpIcon(
                       _showPassword ? Icons.visibility_off : Icons.visibility,

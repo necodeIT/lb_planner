@@ -27,6 +27,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  animations: ^2.0.2
   bitsdojo_window: ^0.1.1+1
   cupertino_icons: ^1.0.2
   enum_to_string: ^2.0.1

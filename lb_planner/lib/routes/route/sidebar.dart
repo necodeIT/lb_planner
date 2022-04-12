@@ -8,12 +8,13 @@ class Sidebar extends StatelessWidget {
   /// The current route.
   final Widget child;
 
-  static const double width = 50;
+  /// The width of the sidebar.
+  static const double width = 60;
 
   @override
   Widget build(BuildContext context) {
     return ConditionalWrapper(
-      condition: false,
+      condition: currentRoute != LoginRoute.routeName,
       wrapper: (context, child) {
         return Row(
           children: [
@@ -25,15 +26,23 @@ class Sidebar extends StatelessWidget {
                 children: [
                   Column(
                     children: [
-                      NcSpacing.medium(),
+                      NcSpacing.small(),
                       LpLogo(
-                        size: 20,
+                        size: SidebarItem.size,
+                      ),
+                      NcSpacing.small(),
+                      SidebarItem(
+                        icon: Icons.settings,
+                        route: DashboardRoute.routeName,
                       ),
                     ],
                   ),
                   Column(
                     children: [
-                      LpIcon(Icons.tab),
+                      SidebarItem(
+                        icon: Icons.settings,
+                        route: "",
+                      ),
                       NcSpacing.medium(),
                     ],
                   )
@@ -57,4 +66,5 @@ final Map<String, WidgetBuilder> kRoutes = {
   DashboardRoute.routeName: (context) => DashboardRoute(),
 };
 
+/// Observes navigation events.
 final RouteObserver<ModalRoute<void>> kRouteObserver = RouteObserver<ModalRoute<void>>();

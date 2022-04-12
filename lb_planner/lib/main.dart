@@ -17,6 +17,7 @@ void main() {
     title: 'LB Planner',
     appIcon: kAppIcon,
     minSize: Size(1200, 700),
+    windowHandleColor: () => primaryColor,
   );
 }
 
@@ -65,8 +66,9 @@ class App extends StatelessWidget {
             supportedLocales: AppLocalizations.supportedLocales,
             debugShowCheckedModeBanner: false,
             initialRoute: user.restricted ? LoginRoute.routeName : DashboardRoute.routeName,
-            builder: RouteWrapper.wrap,
-            routes: kRoutes,
+            // builder: RouteWrapper.wrap,
+            // routes: kRoutes,
+            onGenerateRoute: RouteWrapper.gnerateRoute,
           );
         },
       ),
