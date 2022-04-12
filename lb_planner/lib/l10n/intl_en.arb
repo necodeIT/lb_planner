@@ -1,3 +1,6 @@
 {
-  "login": "Login"
+  "invalidUsernameOrPassword": "Invalid username or password",
+  "login": "LOGIN",
+  "password": "Password",
+  "username": "Username"
 }

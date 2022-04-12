@@ -18,6 +18,7 @@ class LpTextField extends StatelessWidget {
     this.onSubmitted,
     this.obscureText = false,
     this.autoFocus = false,
+    this.fontSize = 20,
   }) : super(key: key);
 
   /// The controller of the [TextField].
@@ -59,6 +60,9 @@ class LpTextField extends StatelessWidget {
   /// Whether the [TextField] should auto focus.
   final bool autoFocus;
 
+  /// The font size of the [TextField].
+  final double fontSize;
+
   /// Font size of any feedback text like errorText
   static const double feedbackFontSize = 15;
 
@@ -77,11 +81,11 @@ class LpTextField extends StatelessWidget {
       toolbarOptions: ToolbarOptions(copy: true, cut: true, paste: true, selectAll: true),
       decoration: InputDecoration(
         prefix: prefix,
-        prefixIcon: prefixIcon != null ? LpIcon(prefixIcon) : null,
+        prefixIcon: prefixIcon != null ? LpIcon(prefixIcon, size: fontSize) : null,
         suffix: suffix,
-        suffixIcon: suffixIcon != null ? LpIcon(suffixIcon) : null,
+        suffixIcon: suffixIcon != null ? LpIcon(suffixIcon, size: fontSize) : null,
         hintText: placeholder,
-        hintStyle: NcBaseText.style(color: tertiaryColor),
+        hintStyle: NcBaseText.style(fontSize: fontSize),
         border: border(accentColor),
         errorBorder: border(errorColor),
         errorStyle: NcBaseText.style(color: errorColor, fontSize: feedbackFontSize),
@@ -93,7 +97,7 @@ class LpTextField extends StatelessWidget {
         enabled: enabled,
         focusedBorder: border(accentColor),
       ),
-      style: NcBaseText.style(),
+      style: NcBaseText.style(fontSize: fontSize),
       controller: controller,
       focusNode: focusNode,
     );

@@ -29,6 +29,7 @@ environment:
 dependencies:
   bitsdojo_window: ^0.1.1+1
   cupertino_icons: ^1.0.2
+  enum_to_string: ^2.0.1
   fluentui_system_icons: ^1.1.163
   flutter:
     sdk: flutter
