@@ -15,9 +15,11 @@ class UserProvider extends StateNotifier<User> {
     log("Trying to login user", LogTypes.tracking);
 
     var lpa = await UserApi.login(username, password);
-    var moodleMobileApp = await Api.requestToken(password, username, ApiServices.moodle_mobile_app);
-
+    
     if (lpa.failed) return lpa;
+    
+    var moodleMobileApp = await Api.requestToken(password, username, ApiServices.moodle_mobile_app);
+    
     if (moodleMobileApp.failed) return moodleMobileApp;
 
     var token = lpa.value!;
