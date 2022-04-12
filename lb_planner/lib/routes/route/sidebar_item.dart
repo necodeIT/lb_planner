@@ -3,13 +3,16 @@ part of lbplanner_routes;
 /// Navigation button for the sidebar.
 class SidebarItem extends StatelessWidget {
   /// Navigation button for the sidebar.
-  const SidebarItem({Key? key, required this.icon, required this.route, this.onTap}) : super(key: key);
+  const SidebarItem({Key? key, required this.icon, required this.route, this.onTap, this.routes = const []}) : super(key: key);
 
   /// The icon to display
   final IconData icon;
 
   /// Whether the item is selected
   final String route;
+
+  /// Routes that also actiavte the sidebar item.
+  final List<String> routes;
 
   /// Called when the item is tapped.
   final VoidCallback? onTap;
@@ -25,7 +28,7 @@ class SidebarItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var value = currentRoute == route;
+    var value = currentRoute == route || routes.contains(currentRoute);
 
     return HoverBuilder(
       onTap: () {

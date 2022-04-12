@@ -40,13 +40,24 @@ class Sidebar extends StatelessWidget {
                     children: [
                       NcSpacing.small(),
                       SidebarItem(
-                        icon: Icons.settings,
+                        icon: FontAwesome.bars,
                         route: DashboardRoute.routeName,
+                      ),
+                      NcSpacing.small(),
+                      SidebarItem(
+                        icon: Icons.calendar_month_rounded,
+                        route: "/calendar/plan",
+                        routes: const ["/calendar/plan", "/calendar/modules"],
                       ),
                     ],
                   ),
                   Column(
                     children: [
+                      SidebarItem(
+                        icon: Icons.settings,
+                        route: "/settings",
+                      ),
+                      NcSpacing.small(),
                       Consumer(builder: (context, ref, _) {
                         var user = ref.read(userProvider.notifier);
                         return SidebarItem(
