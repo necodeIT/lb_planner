@@ -34,12 +34,14 @@ class modules_get_all_modules extends external_api {
 
     public static function get_all_modules($userid) {
         global $DB;
-        global $USER;
 
-        $params = self::validate_parameters(self::get_all_modules_parameters(), array('userid' => $userid));
+        self::validate_parameters(self::get_all_modules_parameters(), array('userid' => $userid));
 
-        // TODO: Check if token is allowed to access this function.
         // TODO: Get all moduels of the current year.
+
+        // TODO: call get_module::get_module() for each module.
+
+        // TODO: return the appropriate data.
 
         return array();
     }
