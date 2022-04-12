@@ -1,6 +1,8 @@
 {
-  "invalidUsernameOrPassword": "Invalid username or password",
-  "login": "LOGIN",
-  "password": "Password",
-  "username": "Username"
+  "dashboard_routeName": "Dashboard",
+  "login_invalidUsernameOrPassword": "Invalid username or password",
+  "login_login": "LOGIN",
+  "login_password": "Password",
+  "login_username": "Username",
+  "plan_routeName": "Plan"
 }

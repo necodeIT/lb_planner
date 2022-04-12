@@ -60,7 +60,7 @@ class _LoginFormState extends State<LoginForm> {
   Widget build(BuildContext context) {
     return Consumer(
       builder: (context, ref, _) {
-        var errorMessage = _loginResponse?.failed ?? false ? t.invalidUsernameOrPassword : null;
+        var errorMessage = _loginResponse?.failed ?? false ? t.login_invalidUsernameOrPassword : null;
 
         return ConstrainedBox(
           constraints: BoxConstraints(maxWidth: LoginForm.width),
@@ -72,7 +72,7 @@ class _LoginFormState extends State<LoginForm> {
                 NcSpacing.xl(),
                 LpTextField(
                   controller: _userNameController,
-                  placeholder: t.username,
+                  placeholder: t.login_password,
                   errorText: errorMessage,
                   onSubmitted: (_) => _pwFocusNode.requestFocus(),
                 ),
@@ -81,7 +81,7 @@ class _LoginFormState extends State<LoginForm> {
                   focusNode: _pwFocusNode,
                   controller: _passwordController,
                   obscureText: !_showPassword,
-                  placeholder: t.password,
+                  placeholder: t.login_password,
                   errorText: errorMessage,
                   onSubmitted: (_) => _login(ref.read(userProvider.notifier)),
                   suffix: IconButton(
@@ -119,7 +119,7 @@ class _LoginFormState extends State<LoginForm> {
                       ),
                     ),
                     child: LpButton(
-                      text: t.login,
+                      text: t.login_login,
                       onPressed: () => _login(ref.read(userProvider.notifier)),
                     ),
                   ),

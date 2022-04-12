@@ -23,7 +23,7 @@ class RouteTitle extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             NcTitleText(
-              currentRoute.humanReadableRouteName,
+              currentRoute.toHumanReadableRouteName(context),
               fontSize: titleSize,
             ),
             UserProfile(),
