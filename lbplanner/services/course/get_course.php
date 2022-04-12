@@ -47,7 +47,7 @@ class course_get_course extends external_api {
             throw new \moodle_exception('Access denied');
         }
 
-        return course_helper::get_course($courseid);
+        return $DB->get_record(course_helper::LBPLANNER_COURSE_TABLE, array('id' => $courseid));
     }
 
     public static function get_course_returns() {
