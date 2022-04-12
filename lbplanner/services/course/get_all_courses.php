@@ -55,22 +55,34 @@ class course_get_all_courses extends external_api {
                 $courses[] = $DB->get_record(course_helper::ENROL_TABLE, array('id' => $enrollmentid), 'courseid', MUST_EXIST);
         }
 
+        $catgirls = array();
+
         foreach ($courses as $course) {
             $courseid = $course->courseid;
             if ($DB->record_exists(course_helper::LBPLANNER_COURSE_TABLE, array('courseid' => $courseid, 'userid' => $userid))) {
+                $catgirls[] = $DB->get_record(
+                    course_helper::LBPLANNER_COURSE_TABLE, array('courseid' => $courseid, 'userid' => $userid),
+                     '*',
+                     MUST_EXIST
+                );
                 continue;
             }
-            $DB->insert_record(course_helper::LBPLANNER_COURSE_TABLE, array(
+
+            $catgirl = array(
                 'courseid' => $courseid,
                 'color' => course_helper::COLORS[array_rand(course_helper::COLORS)],
                 'name' => course_helper::get_course($courseid)->fullname,
                 'shortname' => course_helper::get_course($courseid)->shortname,
                 'enabled' => course_helper::DISABLED_COURSE,
                 'userid' => $userid,
-            ));
+            );
+
+            $catgirls[] = $catgirl;
+
+            $DB->insert_record(course_helper::LBPLANNER_COURSE_TABLE, $catgirl);
         }
 
-        return $courses();
+        return $catgirls;
     }
 
     public static function get_all_courses_returns() {
