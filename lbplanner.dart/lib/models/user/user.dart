@@ -55,6 +55,9 @@ class User with _$User {
 
   /// If this is true, only restricted information is available about this user
   bool get restricted => accessLevel == UserAccessLevels.restricted;
+  
+  /// The full name of the user, consiting out of the [firstname] and the [lastname]
+  String get fullname => "$firstname $lastname";
 
   /// User model from json
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
