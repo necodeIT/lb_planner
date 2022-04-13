@@ -38,13 +38,14 @@ class modules_get_all_modules extends external_api {
 
         self::validate_parameters(self::get_all_modules_parameters(), array('userid' => $userid));
 
-        // TODO: Get all moduels of the current year.
+        $modules = array();
 
-        // TODO: call get_module::get_module() for each module.
+        $courses = course_get_all_courses::get_all_courses($userid);
+        foreach ($courses as $course) {
+            $modules = array_merge(modules_get_all_course_modules::get_all_course_modules($course['id'], $userid), $modules);
+        }
 
-        // TODO: return the appropriate data.
-
-        return array();
+        return $modules;
     }
 
     public static function get_all_modules_returns() {
