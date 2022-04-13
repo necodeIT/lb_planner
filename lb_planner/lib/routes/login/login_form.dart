@@ -35,6 +35,7 @@ class _LoginFormState extends State<LoginForm> {
 
   _login(UserProvider user) async {
     setState(() {
+      _loginResponse = null;
       _loginFuture = user.login(
         _userNameController.text.trimNewLineAndWhitespace(),
         _passwordController.text.trimNewLineAndWhitespace(),
