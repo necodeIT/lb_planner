@@ -1,3 +1,5 @@
 moodle
 *.zip
 lbplanner.dart/test/env.dart
+lbplanner.dart/.flutter-plugins-dependencies
+lbplanner.dart/.flutter-plugins
