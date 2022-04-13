@@ -46,7 +46,6 @@ class course_update_course extends external_api {
 
     public static function update_course($courseid, $color, $name, $shortname, $enabled, $userid) {
         global $DB;
-        global $USER;
 
         self::validate_parameters(
             self::update_course_parameters(),
@@ -59,6 +58,7 @@ class course_update_course extends external_api {
                 'userid' => $userid
             )
         );
+
         if (!user_helper::check_access($userid)) {
             throw new \moodle_exception('Access denied');
         }

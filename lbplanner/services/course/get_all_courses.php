@@ -55,6 +55,7 @@ class course_get_all_courses extends external_api {
                 $courses[] = $DB->get_record(course_helper::ENROL_TABLE, array('id' => $enrollmentid), 'courseid', MUST_EXIST);
         }
 
+        // Check this out: https://www.youtube.com/watch?v=z3Pzfi476HI .
         $catgirls = array();
 
         foreach ($courses as $course) {
@@ -62,12 +63,13 @@ class course_get_all_courses extends external_api {
             if ($DB->record_exists(course_helper::LBPLANNER_COURSE_TABLE, array('courseid' => $courseid, 'userid' => $userid))) {
                 $catgirls[] = $DB->get_record(
                     course_helper::LBPLANNER_COURSE_TABLE, array('courseid' => $courseid, 'userid' => $userid),
-                     '*',
-                     MUST_EXIST
+                    '*',
+                    MUST_EXIST
                 );
                 continue;
             }
 
+            // Check this out: https://youtu.be/dQw4w9WgXcQ .
             $catgirl = array(
                 'courseid' => $courseid,
                 'color' => course_helper::COLORS[array_rand(course_helper::COLORS)],
