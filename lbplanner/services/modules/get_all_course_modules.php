@@ -22,6 +22,8 @@ use external_multiple_structure;
 use external_single_structure;
 use external_value;
 use local_lbplanner\helpers\modules_helper;
+use local_lbplanner\helpers\user_helper;
+use local_lbplanner_services\modules_get_module;
 
 /**
  * Get all the modules of the given course.
@@ -36,20 +38,23 @@ class modules_get_all_course_modules extends external_api {
 
     public static function get_all_course_modules($courseid, $userid) {
         global $DB;
-        global $USER;
 
         self::validate_parameters(
             self::get_all_course_modules_parameters(),
             array('courseid' => $courseid, 'userid' => $userid)
         );
 
-        // TODO: Get all the modules of the given course.
+        user_helper::assert_access($userid);
 
-        // TODO: call get_module::get_module() for each module.
+        $mdlmodules = $DB->get_records(modules_helper::ASSIGN_TABLE, array('course' => $courseid));
 
-        // TODO: return the appropriate data.
+        $modules = array();
 
-        return array();
+        foreach ($mdlmodules as $mdlmodule) {
+            $modules[] = modules_get_module::get_module($mdlmodule->id, $userid);
+        }
+
+        return $modules;
     }
 
     public static function get_all_course_modules_returns() {
