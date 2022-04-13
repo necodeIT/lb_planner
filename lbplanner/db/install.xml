@@ -1,6 +1,6 @@
 <XMLDB xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" PATH="local/lbplanner/db" VERSION="20220204" COMMENT="XMLDB file for Moodle local/lbplanner" xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd">
     <TABLES>
-        <TABLE NAME="local_lbplanner_users" COMMENT="Al the relevant data connected to a user.">
+        <TABLE NAME="local_lbplanner_users" COMMENT="Table for User-Content for the LBPLANNER App">
             <FIELDS>
                 <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
                 <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="User ID assigned from moodle."/>
@@ -12,7 +12,7 @@
                 <KEY NAME="userid" TYPE="unique" FIELDS="userid"/>
             </KEYS>
         </TABLE>
-        <TABLE NAME="local_lbplanner_courses" COMMENT="Default comment for the table, please edit me">
+        <TABLE NAME="local_lbplanner_courses" COMMENT="Table for Course-Content for the LBPLANNER App">
             <FIELDS>
                 <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
                 <FIELD NAME="courseid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Course ID assigned from moodle."/>
@@ -27,7 +27,7 @@
                 <KEY NAME="courseid" TYPE="unique" FIELDS="courseid"/>
             </KEYS>
         </TABLE>
-        <TABLE NAME="local_lbplanner_notification" COMMENT="Default comment for the table, please edit me">
+        <TABLE NAME="local_lbplanner_notification" COMMENT="Table for Notifications for the LBPLANNER App">
             <FIELDS>
                 <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
                 <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="The id of the user for whom this notification is for."/>
@@ -41,7 +41,7 @@
                 <KEY NAME="userid" TYPE="foreign" FIELDS="userid" REFTABLE="local_lbplanner_users" REFFIELDS="userid"/>
             </KEYS>
         </TABLE>
-        <TABLE NAME="local_lbplanner_plan_invites" COMMENT="Default comment for the table, please edit me">
+        <TABLE NAME="local_lbplanner_plan_invites" COMMENT="Table for Invites for the LBPLANNER Appme">
             <FIELDS>
                 <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
                 <FIELD NAME="planid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="The id of the plan the user is inviting to."/>
@@ -57,7 +57,7 @@
                 <KEY NAME="inviter" TYPE="foreign" FIELDS="inviterid" REFTABLE="local_lbplanner_users" REFFIELDS="userid"/>
             </KEYS>
         </TABLE>
-        <TABLE NAME="local_lbplanner_plans" COMMENT="Default comment for the table, please edit me">
+        <TABLE NAME="local_lbplanner_plans" COMMENT="Table for Plans for the LBPLANNER App">
             <FIELDS>
                 <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
                 <FIELD NAME="name" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
@@ -67,7 +67,7 @@
                 <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
             </KEYS>
         </TABLE>
-        <TABLE NAME="local_lbplanner_plan_access" COMMENT="Default comment for the table, please edit me">
+        <TABLE NAME="local_lbplanner_plan_access" COMMENT="Table for Access for the plans for the LBPLANNER App">
             <FIELDS>
                 <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
                 <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
@@ -80,7 +80,7 @@
                 <KEY NAME="userid" TYPE="foreign" FIELDS="userid" REFTABLE="local_lbplanner_users" REFFIELDS="userid"/>
             </KEYS>
         </TABLE>
-        <TABLE NAME="local_lbplanner_deadlines" COMMENT="Default comment for the table, please edit me">
+        <TABLE NAME="local_lbplanner_deadlines" COMMENT="Table for Deadlines for the LBPLANNER App">
             <FIELDS>
                 <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
                 <FIELD NAME="planid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
@@ -91,6 +91,19 @@
             <KEYS>
                 <KEY NAME="id" TYPE="primary" FIELDS="id"/>
                 <KEY NAME="planid" TYPE="foreign" FIELDS="planid" REFTABLE="local_lbplanner_plans" REFFIELDS="id"/>
+            </KEYS>
+        </TABLE>
+        <TABLE NAME="local_lbplanner_feedback" COMMENT="Table for Feedback for the LBPLANNER App">
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+                <FIELD NAME="content" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+                <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+                <FIELD NAME="notes" TYPE="text" NOTNULL="false" SEQUENCE="false"/>
+                <FIELD NAME="type" TYPE="int" LENGTH="1" NOTNULL="false" SEQUENCE="false"/>
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+                <KEY NAME="userid" TYPE="foreign" FIELDS="userid" REFTABLE="local_lbplanner_users" REFFIELDS="userid"/>
             </KEYS>
         </TABLE>
     </TABLES>

@@ -18,43 +18,37 @@ namespace local_lbplanner_services;
 
 use external_api;
 use external_function_parameters;
-use external_multiple_structure;
-use external_single_structure;
 use external_value;
-use local_lbplanner\helpers\modules_helper;
+use local_lbplanner\helpers\user_helper;
+use local_lbplanner\helpers\feedback_helper;
 
 /**
- * Get all the modules of the given course.
+ * Get feedback from the database.
  */
-class modules_get_all_course_modules extends external_api {
-    public static function get_all_course_modules_parameters() {
+class feedback_get_feedback extends external_api {
+    public static function get_feedback_parameters() {
         return new external_function_parameters(array(
-            'courseid' => new external_value(PARAM_INT, 'The id of the course', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
+            'feedbackid' => new external_value(PARAM_INT, 'The id of the course', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
             'userid' => new external_value(PARAM_INT, 'The id of the user', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
         ));
     }
 
-    public static function get_all_course_modules($courseid, $userid) {
+    public static function get_feedback($feedbackid, $userid) {
         global $DB;
-        global $USER;
 
         self::validate_parameters(
-            self::get_all_course_modules_parameters(),
-            array('courseid' => $courseid, 'userid' => $userid)
+            self::get_feedback_parameters(),
+            array('feedbackid' => $feedbackid, 'userid' => $userid)
         );
 
-        // TODO: Get all the modules of the given course.
+        user_helper::assert_access($userid);
 
-        // TODO: call get_module::get_module() for each module.
+        feedback_helper::assert_access($userid);
 
-        // TODO: return the appropriate data.
-
-        return array();
+        return feedback_helper::get_feedback($feedbackid);
     }
 
-    public static function get_all_course_modules_returns() {
-        return new external_multiple_structure(
-            modules_helper::structure(),
-        );
+    public static function get_feedback_returns() {
+        return feedback_helper::structure();
     }
 }

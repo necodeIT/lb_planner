@@ -17,44 +17,41 @@
 namespace local_lbplanner_services;
 
 use external_api;
-use external_function_parameters;
 use external_multiple_structure;
-use external_single_structure;
+use external_function_parameters;
 use external_value;
-use local_lbplanner\helpers\modules_helper;
+use local_lbplanner\helpers\user_helper;
+use local_lbplanner\helpers\feedback_helper;
 
 /**
- * Get all the modules of the given course.
+ * Deletes feedback from the database.
  */
-class modules_get_all_course_modules extends external_api {
-    public static function get_all_course_modules_parameters() {
+class feedback_delete_feedback extends external_api {
+    public static function delete_feedback_parameters() {
         return new external_function_parameters(array(
-            'courseid' => new external_value(PARAM_INT, 'The id of the course', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
             'userid' => new external_value(PARAM_INT, 'The id of the user', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
+            'feedbackid' => new external_value(PARAM_INT, 'The id of the course', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
         ));
     }
 
-    public static function get_all_course_modules($courseid, $userid) {
+    public static function delete_feedback($userid, $feedbackid) {
         global $DB;
-        global $USER;
 
         self::validate_parameters(
-            self::get_all_course_modules_parameters(),
-            array('courseid' => $courseid, 'userid' => $userid)
+            self::delete_feedback_parameters(),
+            array('userid' => $userid , 'feedbackid' => $feedbackid)
         );
 
-        // TODO: Get all the modules of the given course.
+        user_helper::assert_access($userid);
 
-        // TODO: call get_module::get_module() for each module.
-
-        // TODO: return the appropriate data.
-
-        return array();
+        feedback_helper::assert_access($userid);
+        $DB->delete_record(feedback_helper::LBPLANNER_FEEDBACK_TABLE, array('id' => $feedbackid));
+        return feedback_get_all_feedbacks::get_all_feedbacks($userid);
     }
 
-    public static function get_all_course_modules_returns() {
+    public static function delete_feedback_returns() {
         return new external_multiple_structure(
-            modules_helper::structure(),
+            feedback_helper::structure(),
         );
     }
 }

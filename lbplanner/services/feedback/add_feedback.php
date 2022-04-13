@@ -18,43 +18,42 @@ namespace local_lbplanner_services;
 
 use external_api;
 use external_function_parameters;
-use external_multiple_structure;
-use external_single_structure;
 use external_value;
-use local_lbplanner\helpers\modules_helper;
+use local_lbplanner\helpers\user_helper;
+use local_lbplanner\helpers\feedback_helper;
 
 /**
- * Get all the modules of the given course.
+ * Add feedback to the database.
  */
-class modules_get_all_course_modules extends external_api {
-    public static function get_all_course_modules_parameters() {
+class feedback_add_feedback extends external_api {
+    public static function add_feedback_parameters() {
         return new external_function_parameters(array(
-            'courseid' => new external_value(PARAM_INT, 'The id of the course', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
+            'content' => new external_value(PARAM_TEXT, 'The id of the course', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
             'userid' => new external_value(PARAM_INT, 'The id of the user', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
+            'type' => new external_value(PARAM_TEXT, 'The id of the user', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
         ));
     }
 
-    public static function get_all_course_modules($courseid, $userid) {
+    public static function add_feedback($content, $userid, $type) {
         global $DB;
-        global $USER;
 
         self::validate_parameters(
-            self::get_all_course_modules_parameters(),
-            array('courseid' => $courseid, 'userid' => $userid)
+            self::add_feedback_parameters(),
+            array('content' => $content, 'userid' => $userid, 'type' => $type)
         );
 
-        // TODO: Get all the modules of the given course.
+        user_helper::assert_access($userid);
 
-        // TODO: call get_module::get_module() for each module.
+        $id = $DB->insert_record(feedback_helper::LBPLANNER_FEEDBACK_TABLE, array(
+            'content' => $content,
+            'userid' => $userid,
+            'type' => $type,
+        ));
 
-        // TODO: return the appropriate data.
-
-        return array();
+        return feedback_helper::get_feedback($id);
     }
 
-    public static function get_all_course_modules_returns() {
-        return new external_multiple_structure(
-            modules_helper::structure(),
-        );
+    public static function add_feedback_returns() {
+        return feedback_helper::structure();
     }
 }

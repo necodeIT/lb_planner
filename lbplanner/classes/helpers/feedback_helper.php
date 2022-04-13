@@ -1,0 +1,69 @@
+<?php
+// This file is part of the local_lbplanner.
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
+namespace local_lbplanner\helpers;
+
+use external_function_parameters;
+use external_single_structure;
+use external_value;
+use stdClass;
+use local_lbplanner\helpers\user_helper;
+
+class feedback_helper {
+
+    const LBPLANNER_FEEDBACK_TABLE = 'local_lbplanner_feedback';
+
+    /**
+     * The return structure of a feedback.
+     *
+     * @return external_single_structure The structure of a module.
+     */
+    public static function structure() : external_single_structure {
+        return new external_single_structure(
+            array(
+                'content' => new external_value(PARAM_TEXT, 'Content of the feedback'),
+                'userid' => new external_value(PARAM_INT, 'The id of the user'),
+                'type' => new external_value(PARAM_TEXT, 'The Type of the feedback'),
+                'notes' => new external_value(PARAM_TEXT, 'Notes of the feedback'),
+                'id' => new external_value(PARAM_INT, 'The id of the feedback'),
+            )
+        );
+    }
+    /**
+     * Gives back the feedback of the given feedbackid
+     *
+     * @param integer $feedbackid The id of the feedback
+     * @return stdClass The feedback
+     */
+    public static function get_feedback(int $feedbackid) : stdClass {
+        global $DB;
+        return $DB->get_record(self::LBPLANNER_FEEDBACK_TABLE, ['id' => $feedbackid]);
+    }
+    /**
+     * Checks if the user has access to feedback
+     *
+     * @param integer $userid The id of the user
+     * @return void Throws an exception if the user has no access
+     */
+    public static function assert_access(int $userid) {
+        $role = user_helper::determin_user_role($userid);
+        if (user_helper::ROLE_ENUMS[user_helper::ROLE_ADMIN] != $role &&
+            user_helper::ROLE_ENUMS[user_helper::ROLE_MANAGER] != $role
+            ) {
+            throw new \moodle_exception('Access denied');
+        }
+    }
+}
