@@ -22,7 +22,18 @@ class UserProfile extends StatelessWidget {
       return Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          LpIcon(Icons.notifications_outlined),
+          CustomPopupMenu(
+            showArrow: false,
+            verticalMargin: 0,
+            position: PreferredPosition.bottom,
+            child: LpIcon(Icons.notifications_outlined),
+            menuBuilder: () => Container(
+              color: errorColor,
+              width: 300,
+              height: 300,
+            ),
+            pressType: PressType.singleClick,
+          ),
           NcSpacing.small(),
           ClipOval(
             child: Image.network(

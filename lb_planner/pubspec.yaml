@@ -30,6 +30,7 @@ dependencies:
   animations: ^2.0.2
   bitsdojo_window: ^0.1.1+1
   cupertino_icons: ^1.0.2
+  custom_pop_up_menu: ^1.2.3+1
   enum_to_string: ^2.0.1
   flare_flutter: ^3.0.2
   flutter:
