@@ -46,9 +46,8 @@ class user_delete_user extends external_api {
         global $DB;
         self::validate_parameters(self::delete_user_parameters(), array('userid' => $userid));
 
-        if (!user_helper::check_access($userid)) {
-            throw new \moodle_exception('Access denied');
-        }
+        user_helper::assert_access($userid);
+
         // Check if User is in user table.
         if (!$DB->record_exists(user_helper::TABLE, array('userid' => $userid))) {
             throw new \moodle_exception('Access denied');

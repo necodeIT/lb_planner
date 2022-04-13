@@ -60,6 +60,7 @@ class user_helper {
     const TABLE = 'local_lbplanner_users';
 
     /**
+     * @deprecated Use user_helper::assert_access() instead
      * Checks if the current user has access to the given user id.
      *
      * @param int $userid The id of the user to check access for.
@@ -93,6 +94,21 @@ class user_helper {
         $mdluser->profileimageurl = strval(new moodle_url('/user/pix.php/'.$user->id.'/f1.jpg'));
 
         return $mdluser;
+    }
+
+    /**
+     * Checks if the current user has access to the given user id.
+     * Throws an exception if the current user does not have access.
+     *
+     * @param int $userid The id of the user to check access for.
+     * @return void
+     */
+    public static function assert_access(int $userid) {
+        global $USER;
+        ;
+        if ($USER->id != $userid) {
+            throw new \moodle_exception('Access denied');
+        }
     }
 
     /**
