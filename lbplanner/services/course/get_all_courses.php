@@ -52,7 +52,7 @@ class course_get_all_courses extends external_api {
         $enrollmentids = course_helper::get_enrollments($userid);
 
         foreach ($enrollmentids as $enrollmentid) {
-                $courses[] = $DB->get_record(course_helper::ENROL_TABLE, array('id' => $enrollmentid), 'courseid', MUST_EXIST);
+            $courses[] = $DB->get_record(course_helper::ENROL_TABLE, array('id' => $enrollmentid->enrolid), 'courseid', MUST_EXIST);
         }
 
         // Check this out: https://www.youtube.com/watch?v=z3Pzfi476HI .
@@ -61,11 +61,13 @@ class course_get_all_courses extends external_api {
         foreach ($courses as $course) {
             $courseid = $course->courseid;
             if ($DB->record_exists(course_helper::LBPLANNER_COURSE_TABLE, array('courseid' => $courseid, 'userid' => $userid))) {
-                $catgirls[] = $DB->get_record(
+                $catgirl = $DB->get_record(
                     course_helper::LBPLANNER_COURSE_TABLE, array('courseid' => $courseid, 'userid' => $userid),
                     '*',
                     MUST_EXIST
                 );
+                $catgirl->name = course_helper::get_fullname($courseid);
+                $catgirls[] = $catgirl;
                 continue;
             }
 
@@ -73,15 +75,15 @@ class course_get_all_courses extends external_api {
             $catgirl = array(
                 'courseid' => $courseid,
                 'color' => course_helper::COLORS[array_rand(course_helper::COLORS)],
-                'name' => course_helper::get_mdl_course($courseid)->fullname,
-                'shortname' => course_helper::get_mdl_course($courseid)->shortname,
+                'shortname' => strtoupper(substr(course_helper::get_mdl_course($courseid)->shortname, 0, 5)),
                 'enabled' => course_helper::DISABLED_COURSE,
                 'userid' => $userid,
             );
+            $DB->insert_record(course_helper::LBPLANNER_COURSE_TABLE, $catgirl);
+
+            $catgirl['name'] = course_helper::get_fullname($courseid);
 
             $catgirls[] = $catgirl;
-
-            $DB->insert_record(course_helper::LBPLANNER_COURSE_TABLE, $catgirl);
         }
 
         return $catgirls;

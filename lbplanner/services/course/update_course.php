@@ -66,8 +66,12 @@ class course_update_course extends external_api {
         if (!course_helper::check_access($courseid, $userid)) {
             throw new \moodle_exception('Access denied');
         }
-
         $course = course_helper::get_lbplanner_course($courseid);
+
+        if ($course->shortname > 5) {
+            throw new \moodle_exception('Shortname is too long');
+        }
+
         $course->color = $color;
         $course->name = $name;
         $course->shortname = $shortname;

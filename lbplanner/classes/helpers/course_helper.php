@@ -53,11 +53,11 @@ class course_helper {
      * Get all the courses of the user
      * @param int userid
      *
-     * @return array
+     * @return
      */
-    public static function get_enrollments(int $userid) : array {
+    public static function get_enrollments(int $userid) {
         global $DB;
-        return $DB->get_fieldset_sql('SELECT enrolid FROM ' . self::USER_ENROL_TABLE . ' WHERE userid= ' . $userid);
+        return $DB->get_records(self::USER_ENROL_TABLE, array ('userid' => $userid));
     }
 
     /**
@@ -84,7 +84,7 @@ class course_helper {
      * Get course from mdl DB
      *
      * @param int $courseid
-     * @return stdClass course
+     * @return stdClass course from moodle
      */
     public static function get_mdl_course($courseid) : stdClass {
         global $DB;
@@ -94,7 +94,7 @@ class course_helper {
      * Get course from lbpanner DB
      *
      * @param int $courseid
-     * @return stdClass course
+     * @return stdClass course from lbplanner
      */
     public static function get_lbplanner_course($courseid) : stdClass {
         global $DB;
@@ -115,5 +115,15 @@ class course_helper {
             return true;
         }
         return false;
+    }
+    /**
+     * gets the fullname from a course
+     *
+     * @param int $courseid
+     * @return string the fullname of the course
+     */
+    public static function get_fullname($courseid) {
+        global $DB;
+        return $DB->get_record(self::COURSE_TABLE, array('id' => $courseid), '*', MUST_EXIST)->fullname;
     }
 }
