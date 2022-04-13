@@ -45,10 +45,10 @@ class modules_get_module extends external_api {
             throw new \moodle_exception('Module not found');
         }
 
-        // Todo: get module data.
+        // Get module data.
         $module = $DB->get_record(modules_helper::ASSIGN_TABLE, array('id' => $moduleid));
 
-        // Todo: check if there are any submissions or feedbacks for this module.
+        // Check if there are any submissions or feedbacks for this module.
 
         $submitted = false;
 
@@ -97,7 +97,7 @@ class modules_get_module extends external_api {
 
         $status = modules_helper::map_status($submitted, $done, $late);
 
-        // Todo: return the appropriate data.
+        // Return the appropriate data.
 
         return    array(
             'moduleid' => $moduleid,
