@@ -51,7 +51,7 @@ class user_get_user extends external_api {
         $mdluser = user_helper::get_mdl_user_info($user->userid);
 
         // Check if the user is allowed to get the data for this userid.
-        if (user_helper::check_access($userid)) {
+        user_helper::assert_access($userid);
             return array(
                 'userid' => $user->userid,
                 'username' => $mdluser->username,
@@ -64,9 +64,7 @@ class user_get_user extends external_api {
                 'planid' => plan_helper::get_plan_id($userid),
             );
 
-        }
-
-        return array(
+            return array(
             'userid' => $user->userid,
             'username' => $user->username,
             'firstname' => $mdluser->firstname,
@@ -76,7 +74,7 @@ class user_get_user extends external_api {
             'lang' => null,
             'profileimageurl' => $mdluser->profileimageurl,
             'planid' => null,
-        );
+            );
     }
     public static function get_user_returns() {
         return new external_single_structure(

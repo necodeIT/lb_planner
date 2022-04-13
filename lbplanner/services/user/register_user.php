@@ -44,11 +44,8 @@ class user_register_user extends external_api {
             array('userid' => $userid, 'lang' => $lang, 'theme' => $theme)
         );
 
-        if (!user_helper::check_access($userid)) {
-            throw new \moodle_exception('Access denied');
-        }
+        user_helper::assert_access($userid);
 
-        // Check if the user is already registered.
         if (user_helper::check_user_exists($userid)) {
             throw new \moodle_exception('User already registered');
         }

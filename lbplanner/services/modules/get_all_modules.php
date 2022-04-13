@@ -19,7 +19,8 @@ namespace local_lbplanner_services;
 use external_api;
 use external_function_parameters;
 use external_multiple_structure;
-use external_single_structure;
+use local_lbplanner_services\course_get_all_courses;
+use local_lbplanner_services\modules_get_all_course_modules;
 use external_value;
 use local_lbplanner\helpers\modules_helper;
 
