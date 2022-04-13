@@ -18,8 +18,10 @@ namespace local_lbplanner_services;
 
 use external_api;
 use external_function_parameters;
-use external_single_structure;
 use external_value;
+use local_lbplanner\helpers\modules_helper;
+use local_lbplanner\helpers\plan_helper;
+use local_lbplanner\helpers\user_helper;
 
 /**
  * Get the data for a module.
@@ -37,26 +39,79 @@ class modules_get_module extends external_api {
 
         self::validate_parameters(self::get_module_parameters(), array('moduleid' => $moduleid, 'userid' => $userid));
 
+        user_helper::assert_access($userid);
+
+        if (!$DB->record_exists(modules_helper::ASSIGN_TABLE, array('id' => $moduleid))) {
+            throw new \moodle_exception('Module not found');
+        }
+
         // Todo: get module data.
+        $module = $DB->get_record(modules_helper::ASSIGN_TABLE, array('id' => $moduleid));
 
         // Todo: check if there are any submissions or feedbacks for this module.
 
+        $submitted = false;
+
+        if ($DB->record_exists(modules_helper::SUBMISSIONS_TABLE, array('assignment' => $moduleid, 'userid' => $userid))) {
+            $submission = $DB->get_record(
+                modules_helper::SUBMISSIONS_TABLE,
+                array('assignment' => $moduleid, 'userid' => $userid)
+            );
+
+            $submitted = strval($submission->status) == modules_helper::SUBMISSION_STATUS_SUBMITTED;
+        }
+
+        $done = false;
+        $grade = null;
+
+        if ($DB->record_exists(modules_helper::GRADES_TABLE, array('assignment' => $moduleid, 'userid' => $userid))) {
+            $moduleboundaries = $DB->get_record(modules_helper::GRADE_ITEMS_TABLE, array('iteminstance' => $moduleid));
+
+            $mdlgrades = $DB->get_records(
+                modules_helper::GRADES_TABLE,
+                array('assignment' => $moduleid, 'userid' => $userid)
+            );
+
+            $mdlgrade = end($mdlgrades);
+
+            if ($mdlgrade->grade > 0) {
+                $done = true;
+
+                $grade  = modules_helper::determin_uinified_grade(
+                $mdlgrade->grade, $moduleboundaries->grademax,
+                $moduleboundaries->grademin,
+                $moduleboundaries->gradepass
+                );
+
+                $done = $grade != modules_helper::GRADE_RIP;
+            }
+        }
+
+        $late = false;
+        $planid = plan_helper::get_plan_id($userid);
+
+        if ($DB->record_exists(plan_helper::DEADLINES_TABLE, array('planid' => $planid, 'moduleid' => $moduleid))) {
+            $deadline = $DB->get_record(plan_helper::DEADLINES_TABLE, array('planid' => $planid, 'moduleid' => $moduleid));
+            $late = $deadline->deadlineend < time() && !$done;
+        }
+
+        $status = modules_helper::map_status($submitted, $done, $late);
+
         // Todo: return the appropriate data.
 
-        return array();
+        return    array(
+            'moduleid' => $moduleid,
+            'name' => $module->name,
+            'courseid' => $module->course,
+            'status' => $status,
+            'type' => modules_helper::determin_type($module->name),
+            'url' => modules_helper::get_module_url($moduleid, $module->course),
+            'grade' => $grade,
+            'deadline' => $module->duedate,
+        );
     }
 
     public static function get_module_returns() {
-        return new external_single_structure(
-            array(
-                'moduleid' => new external_value(PARAM_INT, 'The id of the module'),
-                'name' => new external_value(PARAM_TEXT, 'The name of the module'),
-                'courseid' => new external_value(PARAM_INT, 'The id of the course'),
-                'status' => new external_value(PARAM_INT, 'The status of the module'),
-                'type' => new external_value(PARAM_INT, 'The type of the module'),
-                'url' => new external_value(PARAM_TEXT, 'The url of the module in moodle'),
-                'deadline' => new external_value(PARAM_INT, 'The deadline of the module set by the teacher'),
-            )
-        );
+        return modules_helper::structure();
     }
 }

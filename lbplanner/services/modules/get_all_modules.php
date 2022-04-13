@@ -21,6 +21,7 @@ use external_function_parameters;
 use external_multiple_structure;
 use external_single_structure;
 use external_value;
+use local_lbplanner\helpers\modules_helper;
 
 /**
  * Get all the modules of the current year.
@@ -48,17 +49,7 @@ class modules_get_all_modules extends external_api {
 
     public static function get_all_modules_returns() {
         return new external_multiple_structure(
-            new external_single_structure(
-                array(
-                    'moduleid' => new external_value(PARAM_INT, 'The id of the module'),
-                    'name' => new external_value(PARAM_TEXT, 'The name of the module'),
-                    'courseid' => new external_value(PARAM_INT, 'The id of the course'),
-                    'status' => new external_value(PARAM_INT, 'The status of the module'),
-                    'type' => new external_value(PARAM_INT, 'The type of the module'),
-                    'url' => new external_value(PARAM_TEXT, 'The url of the module in moodle'),
-                    'deadline' => new external_value(PARAM_INT, 'The deadline of the module set by the teacher'),
-                )
-            )
+            modules_helper::structure(),
         );
     }
 }
