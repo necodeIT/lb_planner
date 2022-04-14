@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
 import 'package:lbplanner_api/lbplanner_api.dart';
+import 'package:lbplanner_api/models/deadline/deadline.dart';
 
 part 'plan.freezed.dart';
 part 'plan.g.dart';
@@ -25,7 +26,14 @@ class Plan with _$Plan {
     required String description,
 
     /// Planmembers of the plan
+    /// Key: user id
+    /// Value: [PlanAccessTypes]
     required Map<int, PlanAccessTypes> members,
+
+    /// The deadlines this plan has.
+    /// Key: Module id
+    /// Value: [Deadline]
+    required Map<int, Deadline> deadlines,
 
     /// Wheter the plan has modules of type [ModuleTypes.ek] enabled
     required bool enableEk,

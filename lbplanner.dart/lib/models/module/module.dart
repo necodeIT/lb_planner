@@ -10,42 +10,35 @@ part 'module.g.dart';
 @freezed
 
 /// Module model
-class Module with _$Module{
+class Module with _$Module {
   const Module._();
 
   /// Module model
   const factory Module({
     /// The id of the module.
-     required int id,
+    required int id,
 
     /// The name of the module.
-     required String name,
-     
+    required String name,
+
     /// The url of the module.
-     required String url,
+    required String url,
 
-    /// The start date of the module.
-     required DateTime startDate,
+    /// The deadline of the module.
+    @Default(null) DateTime? deadline,
 
-     /// The end date of the module.
-     required DateTime endDate,
+    /// If the module is hidden or not.
+    @Default(false) bool hidden,
 
-     /// The deadline of the module.
-     required DateTime deadline,
+    /// The grade of the module.
+    @Default(null) ModuleGrades? grade,
 
-      /// If the module is hidden or not.
-     required bool hidden,
+    /// The type of the module.
+    required ModuleTypes type,
 
-      /// The grade of the module.
-     required ModuleGrades grade,
-
-     /// The type of the module.
-     required ModuleTypes type,
-
-     /// The status of the module.
-     required ModuleStatus status,
-
-  })= _Module;
+    /// The status of the module.
+    required ModuleStatus status,
+  }) = _Module;
 
   /// Module model from json
   factory Module.fromJson(Map<String, dynamic> json) => _$ModuleFromJson(json);

@@ -6,21 +6,23 @@ part of 'notification.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Notification _$$_NotificationFromJson(Map<String, dynamic> json) => _$_Notification(
+_$_Notification _$$_NotificationFromJson(Map<String, dynamic> json) =>
+    _$_Notification(
       id: json['id'] as int,
       payload: json['payload'] as Map<String, dynamic>,
-      type: $enumDecode(_$NotifactionTypesEnumMap, json['type']),
+      type: $enumDecode(_$NotificationTypesEnumMap, json['type']),
       status: $enumDecode(_$NotificationStatusEnumMap, json['status']),
     );
 
-Map<String, dynamic> _$$_NotificationToJson(_$_Notification instance) => <String, dynamic>{
+Map<String, dynamic> _$$_NotificationToJson(_$_Notification instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'payload': instance.payload,
-      'type': _$NotifactionTypesEnumMap[instance.type],
+      'type': _$NotificationTypesEnumMap[instance.type],
       'status': _$NotificationStatusEnumMap[instance.status],
     };
 
-const _$NotifactionTypesEnumMap = {
+const _$NotificationTypesEnumMap = {
   NotificationTypes.invite: 'invite',
   NotificationTypes.inviteAccepted: 'inviteAccepted',
   NotificationTypes.inviteDeclined: 'inviteDeclined',

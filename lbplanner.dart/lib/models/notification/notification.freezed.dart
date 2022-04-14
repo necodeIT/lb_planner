@@ -22,7 +22,11 @@ Notification _$NotificationFromJson(Map<String, dynamic> json) {
 class _$NotificationTearOff {
   const _$NotificationTearOff();
 
-  _Notification call({required int id, required Map<String, dynamic> payload, required NotificationTypes type, required NotificationStatus status}) {
+  _Notification call(
+      {required int id,
+      required Map<String, dynamic> payload,
+      required NotificationTypes type,
+      required NotificationStatus status}) {
     return _Notification(
       id: id,
       payload: payload,
@@ -55,13 +59,20 @@ mixin _$Notification {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $NotificationCopyWith<Notification> get copyWith => throw _privateConstructorUsedError;
+  $NotificationCopyWith<Notification> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $NotificationCopyWith<$Res> {
-  factory $NotificationCopyWith(Notification value, $Res Function(Notification) then) = _$NotificationCopyWithImpl<$Res>;
-  $Res call({int id, Map<String, dynamic> payload, NotificationTypes type, NotificationStatus status});
+  factory $NotificationCopyWith(
+          Notification value, $Res Function(Notification) then) =
+      _$NotificationCopyWithImpl<$Res>;
+  $Res call(
+      {int id,
+      Map<String, dynamic> payload,
+      NotificationTypes type,
+      NotificationStatus status});
 }
 
 /// @nodoc
@@ -101,15 +112,25 @@ class _$NotificationCopyWithImpl<$Res> implements $NotificationCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$NotificationCopyWith<$Res> implements $NotificationCopyWith<$Res> {
-  factory _$NotificationCopyWith(_Notification value, $Res Function(_Notification) then) = __$NotificationCopyWithImpl<$Res>;
+abstract class _$NotificationCopyWith<$Res>
+    implements $NotificationCopyWith<$Res> {
+  factory _$NotificationCopyWith(
+          _Notification value, $Res Function(_Notification) then) =
+      __$NotificationCopyWithImpl<$Res>;
   @override
-  $Res call({int id, Map<String, dynamic> payload, NotificationTypes type, NotificationStatus status});
+  $Res call(
+      {int id,
+      Map<String, dynamic> payload,
+      NotificationTypes type,
+      NotificationStatus status});
 }
 
 /// @nodoc
-class __$NotificationCopyWithImpl<$Res> extends _$NotificationCopyWithImpl<$Res> implements _$NotificationCopyWith<$Res> {
-  __$NotificationCopyWithImpl(_Notification _value, $Res Function(_Notification) _then) : super(_value, (v) => _then(v as _Notification));
+class __$NotificationCopyWithImpl<$Res> extends _$NotificationCopyWithImpl<$Res>
+    implements _$NotificationCopyWith<$Res> {
+  __$NotificationCopyWithImpl(
+      _Notification _value, $Res Function(_Notification) _then)
+      : super(_value, (v) => _then(v as _Notification));
 
   @override
   _Notification get _value => super._value as _Notification;
@@ -145,9 +166,14 @@ class __$NotificationCopyWithImpl<$Res> extends _$NotificationCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Notification with DiagnosticableTreeMixin implements _Notification {
-  const _$_Notification({required this.id, required this.payload, required this.type, required this.status});
+  const _$_Notification(
+      {required this.id,
+      required this.payload,
+      required this.type,
+      required this.status});
 
-  factory _$_Notification.fromJson(Map<String, dynamic> json) => _$$_NotificationFromJson(json);
+  factory _$_Notification.fromJson(Map<String, dynamic> json) =>
+      _$$_NotificationFromJson(json);
 
   @override
 
@@ -194,11 +220,17 @@ class _$_Notification with DiagnosticableTreeMixin implements _Notification {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, const DeepCollectionEquality().hash(id), const DeepCollectionEquality().hash(payload), const DeepCollectionEquality().hash(type), const DeepCollectionEquality().hash(status));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(payload),
+      const DeepCollectionEquality().hash(type),
+      const DeepCollectionEquality().hash(status));
 
   @JsonKey(ignore: true)
   @override
-  _$NotificationCopyWith<_Notification> get copyWith => __$NotificationCopyWithImpl<_Notification>(this, _$identity);
+  _$NotificationCopyWith<_Notification> get copyWith =>
+      __$NotificationCopyWithImpl<_Notification>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -207,9 +239,14 @@ class _$_Notification with DiagnosticableTreeMixin implements _Notification {
 }
 
 abstract class _Notification implements Notification {
-  const factory _Notification({required int id, required Map<String, dynamic> payload, required NotificationTypes type, required NotificationStatus status}) = _$_Notification;
+  const factory _Notification(
+      {required int id,
+      required Map<String, dynamic> payload,
+      required NotificationTypes type,
+      required NotificationStatus status}) = _$_Notification;
 
-  factory _Notification.fromJson(Map<String, dynamic> json) = _$_Notification.fromJson;
+  factory _Notification.fromJson(Map<String, dynamic> json) =
+      _$_Notification.fromJson;
 
   @override
 
@@ -229,5 +266,6 @@ abstract class _Notification implements Notification {
   NotificationStatus get status;
   @override
   @JsonKey(ignore: true)
-  _$NotificationCopyWith<_Notification> get copyWith => throw _privateConstructorUsedError;
+  _$NotificationCopyWith<_Notification> get copyWith =>
+      throw _privateConstructorUsedError;
 }

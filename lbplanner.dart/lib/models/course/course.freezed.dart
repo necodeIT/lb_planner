@@ -27,15 +27,13 @@ class _$CourseTearOff {
       required String name,
       required String shortName,
       required String colorCode,
-      required bool enabled,
-      List<Module> modules = const []}) {
+      required bool enabled}) {
     return _Course(
       id: id,
       name: name,
       shortName: shortName,
       colorCode: colorCode,
       enabled: enabled,
-      modules: modules,
     );
   }
 
@@ -64,9 +62,6 @@ mixin _$Course {
   /// If the course is enabled or not.
   bool get enabled => throw _privateConstructorUsedError;
 
-  /// The modules of the course.
-  List<Module> get modules => throw _privateConstructorUsedError;
-
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $CourseCopyWith<Course> get copyWith => throw _privateConstructorUsedError;
@@ -77,12 +72,7 @@ abstract class $CourseCopyWith<$Res> {
   factory $CourseCopyWith(Course value, $Res Function(Course) then) =
       _$CourseCopyWithImpl<$Res>;
   $Res call(
-      {int id,
-      String name,
-      String shortName,
-      String colorCode,
-      bool enabled,
-      List<Module> modules});
+      {int id, String name, String shortName, String colorCode, bool enabled});
 }
 
 /// @nodoc
@@ -100,7 +90,6 @@ class _$CourseCopyWithImpl<$Res> implements $CourseCopyWith<$Res> {
     Object? shortName = freezed,
     Object? colorCode = freezed,
     Object? enabled = freezed,
-    Object? modules = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -123,10 +112,6 @@ class _$CourseCopyWithImpl<$Res> implements $CourseCopyWith<$Res> {
           ? _value.enabled
           : enabled // ignore: cast_nullable_to_non_nullable
               as bool,
-      modules: modules == freezed
-          ? _value.modules
-          : modules // ignore: cast_nullable_to_non_nullable
-              as List<Module>,
     ));
   }
 }
@@ -137,12 +122,7 @@ abstract class _$CourseCopyWith<$Res> implements $CourseCopyWith<$Res> {
       __$CourseCopyWithImpl<$Res>;
   @override
   $Res call(
-      {int id,
-      String name,
-      String shortName,
-      String colorCode,
-      bool enabled,
-      List<Module> modules});
+      {int id, String name, String shortName, String colorCode, bool enabled});
 }
 
 /// @nodoc
@@ -161,7 +141,6 @@ class __$CourseCopyWithImpl<$Res> extends _$CourseCopyWithImpl<$Res>
     Object? shortName = freezed,
     Object? colorCode = freezed,
     Object? enabled = freezed,
-    Object? modules = freezed,
   }) {
     return _then(_Course(
       id: id == freezed
@@ -184,10 +163,6 @@ class __$CourseCopyWithImpl<$Res> extends _$CourseCopyWithImpl<$Res>
           ? _value.enabled
           : enabled // ignore: cast_nullable_to_non_nullable
               as bool,
-      modules: modules == freezed
-          ? _value.modules
-          : modules // ignore: cast_nullable_to_non_nullable
-              as List<Module>,
     ));
   }
 }
@@ -200,8 +175,7 @@ class _$_Course extends _Course {
       required this.name,
       required this.shortName,
       required this.colorCode,
-      required this.enabled,
-      this.modules = const []})
+      required this.enabled})
       : super._();
 
   factory _$_Course.fromJson(Map<String, dynamic> json) =>
@@ -227,15 +201,10 @@ class _$_Course extends _Course {
 
   /// If the course is enabled or not.
   final bool enabled;
-  @JsonKey()
-  @override
-
-  /// The modules of the course.
-  final List<Module> modules;
 
   @override
   String toString() {
-    return 'Course(id: $id, name: $name, shortName: $shortName, colorCode: $colorCode, enabled: $enabled, modules: $modules)';
+    return 'Course(id: $id, name: $name, shortName: $shortName, colorCode: $colorCode, enabled: $enabled)';
   }
 
   @override
@@ -247,8 +216,7 @@ class _$_Course extends _Course {
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.shortName, shortName) &&
             const DeepCollectionEquality().equals(other.colorCode, colorCode) &&
-            const DeepCollectionEquality().equals(other.enabled, enabled) &&
-            const DeepCollectionEquality().equals(other.modules, modules));
+            const DeepCollectionEquality().equals(other.enabled, enabled));
   }
 
   @override
@@ -258,8 +226,7 @@ class _$_Course extends _Course {
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(shortName),
       const DeepCollectionEquality().hash(colorCode),
-      const DeepCollectionEquality().hash(enabled),
-      const DeepCollectionEquality().hash(modules));
+      const DeepCollectionEquality().hash(enabled));
 
   @JsonKey(ignore: true)
   @override
@@ -278,8 +245,7 @@ abstract class _Course extends Course {
       required String name,
       required String shortName,
       required String colorCode,
-      required bool enabled,
-      List<Module> modules}) = _$_Course;
+      required bool enabled}) = _$_Course;
   const _Course._() : super._();
 
   factory _Course.fromJson(Map<String, dynamic> json) = _$_Course.fromJson;
@@ -304,10 +270,6 @@ abstract class _Course extends Course {
 
   /// If the course is enabled or not.
   bool get enabled;
-  @override
-
-  /// The modules of the course.
-  List<Module> get modules;
   @override
   @JsonKey(ignore: true)
   _$CourseCopyWith<_Course> get copyWith => throw _privateConstructorUsedError;

@@ -12,10 +12,6 @@ _$_Course _$$_CourseFromJson(Map<String, dynamic> json) => _$_Course(
       shortName: json['shortName'] as String,
       colorCode: json['colorCode'] as String,
       enabled: json['enabled'] as bool,
-      modules: (json['modules'] as List<dynamic>?)
-              ?.map((e) => Module.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [],
     );
 
 Map<String, dynamic> _$$_CourseToJson(_$_Course instance) => <String, dynamic>{
@@ -24,5 +20,4 @@ Map<String, dynamic> _$$_CourseToJson(_$_Course instance) => <String, dynamic>{
       'shortName': instance.shortName,
       'colorCode': instance.colorCode,
       'enabled': instance.enabled,
-      'modules': instance.modules,
     };

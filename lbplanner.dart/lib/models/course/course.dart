@@ -6,9 +6,6 @@ import 'dart:ui';
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-// Project imports:
-import 'package:lbplanner_api/lbplanner_api.dart';
-
 part 'course.freezed.dart';
 part 'course.g.dart';
 
@@ -34,9 +31,6 @@ class Course with _$Course {
 
     /// If the course is enabled or not.
     required bool enabled,
-
-    /// The modules of the course.
-    @Default([]) List<Module> modules,
   }) = _Course;
 
   /// The color of the course.

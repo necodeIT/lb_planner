@@ -27,6 +27,7 @@ class _$PlanTearOff {
       required String name,
       required String description,
       required Map<int, PlanAccessTypes> members,
+      required Map<int, Deadline> deadlines,
       required bool enableEk,
       List<PlanInvite> invites = const []}) {
     return _Plan(
@@ -34,6 +35,7 @@ class _$PlanTearOff {
       name: name,
       description: description,
       members: members,
+      deadlines: deadlines,
       enableEk: enableEk,
       invites: invites,
     );
@@ -59,7 +61,14 @@ mixin _$Plan {
   String get description => throw _privateConstructorUsedError;
 
   /// Planmembers of the plan
+  /// Key: user id
+  /// Value: [PlanAccessTypes]
   Map<int, PlanAccessTypes> get members => throw _privateConstructorUsedError;
+
+  /// The deadlines this plan has.
+  /// Key: Module id
+  /// Value: [Deadline]
+  Map<int, Deadline> get deadlines => throw _privateConstructorUsedError;
 
   /// Wheter the plan has modules of type [ModuleTypes.ek] enabled
   bool get enableEk => throw _privateConstructorUsedError;
@@ -81,6 +90,7 @@ abstract class $PlanCopyWith<$Res> {
       String name,
       String description,
       Map<int, PlanAccessTypes> members,
+      Map<int, Deadline> deadlines,
       bool enableEk,
       List<PlanInvite> invites});
 }
@@ -99,6 +109,7 @@ class _$PlanCopyWithImpl<$Res> implements $PlanCopyWith<$Res> {
     Object? name = freezed,
     Object? description = freezed,
     Object? members = freezed,
+    Object? deadlines = freezed,
     Object? enableEk = freezed,
     Object? invites = freezed,
   }) {
@@ -119,6 +130,10 @@ class _$PlanCopyWithImpl<$Res> implements $PlanCopyWith<$Res> {
           ? _value.members
           : members // ignore: cast_nullable_to_non_nullable
               as Map<int, PlanAccessTypes>,
+      deadlines: deadlines == freezed
+          ? _value.deadlines
+          : deadlines // ignore: cast_nullable_to_non_nullable
+              as Map<int, Deadline>,
       enableEk: enableEk == freezed
           ? _value.enableEk
           : enableEk // ignore: cast_nullable_to_non_nullable
@@ -141,6 +156,7 @@ abstract class _$PlanCopyWith<$Res> implements $PlanCopyWith<$Res> {
       String name,
       String description,
       Map<int, PlanAccessTypes> members,
+      Map<int, Deadline> deadlines,
       bool enableEk,
       List<PlanInvite> invites});
 }
@@ -160,6 +176,7 @@ class __$PlanCopyWithImpl<$Res> extends _$PlanCopyWithImpl<$Res>
     Object? name = freezed,
     Object? description = freezed,
     Object? members = freezed,
+    Object? deadlines = freezed,
     Object? enableEk = freezed,
     Object? invites = freezed,
   }) {
@@ -180,6 +197,10 @@ class __$PlanCopyWithImpl<$Res> extends _$PlanCopyWithImpl<$Res>
           ? _value.members
           : members // ignore: cast_nullable_to_non_nullable
               as Map<int, PlanAccessTypes>,
+      deadlines: deadlines == freezed
+          ? _value.deadlines
+          : deadlines // ignore: cast_nullable_to_non_nullable
+              as Map<int, Deadline>,
       enableEk: enableEk == freezed
           ? _value.enableEk
           : enableEk // ignore: cast_nullable_to_non_nullable
@@ -200,6 +221,7 @@ class _$_Plan extends _Plan {
       required this.name,
       required this.description,
       required this.members,
+      required this.deadlines,
       required this.enableEk,
       this.invites = const []})
       : super._();
@@ -221,7 +243,15 @@ class _$_Plan extends _Plan {
   @override
 
   /// Planmembers of the plan
+  /// Key: user id
+  /// Value: [PlanAccessTypes]
   final Map<int, PlanAccessTypes> members;
+  @override
+
+  /// The deadlines this plan has.
+  /// Key: Module id
+  /// Value: [Deadline]
+  final Map<int, Deadline> deadlines;
   @override
 
   /// Wheter the plan has modules of type [ModuleTypes.ek] enabled
@@ -234,7 +264,7 @@ class _$_Plan extends _Plan {
 
   @override
   String toString() {
-    return 'Plan(id: $id, name: $name, description: $description, members: $members, enableEk: $enableEk, invites: $invites)';
+    return 'Plan(id: $id, name: $name, description: $description, members: $members, deadlines: $deadlines, enableEk: $enableEk, invites: $invites)';
   }
 
   @override
@@ -247,6 +277,7 @@ class _$_Plan extends _Plan {
             const DeepCollectionEquality()
                 .equals(other.description, description) &&
             const DeepCollectionEquality().equals(other.members, members) &&
+            const DeepCollectionEquality().equals(other.deadlines, deadlines) &&
             const DeepCollectionEquality().equals(other.enableEk, enableEk) &&
             const DeepCollectionEquality().equals(other.invites, invites));
   }
@@ -258,6 +289,7 @@ class _$_Plan extends _Plan {
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(description),
       const DeepCollectionEquality().hash(members),
+      const DeepCollectionEquality().hash(deadlines),
       const DeepCollectionEquality().hash(enableEk),
       const DeepCollectionEquality().hash(invites));
 
@@ -278,6 +310,7 @@ abstract class _Plan extends Plan {
       required String name,
       required String description,
       required Map<int, PlanAccessTypes> members,
+      required Map<int, Deadline> deadlines,
       required bool enableEk,
       List<PlanInvite> invites}) = _$_Plan;
   const _Plan._() : super._();
@@ -299,7 +332,15 @@ abstract class _Plan extends Plan {
   @override
 
   /// Planmembers of the plan
+  /// Key: user id
+  /// Value: [PlanAccessTypes]
   Map<int, PlanAccessTypes> get members;
+  @override
+
+  /// The deadlines this plan has.
+  /// Key: Module id
+  /// Value: [Deadline]
+  Map<int, Deadline> get deadlines;
   @override
 
   /// Wheter the plan has modules of type [ModuleTypes.ek] enabled

@@ -26,19 +26,15 @@ class _$ModuleTearOff {
       {required int id,
       required String name,
       required String url,
-      required DateTime startDate,
-      required DateTime endDate,
-      required DateTime deadline,
-      required bool hidden,
-      required ModuleGrades grade,
+      DateTime? deadline = null,
+      bool hidden = false,
+      ModuleGrades? grade = null,
       required ModuleTypes type,
       required ModuleStatus status}) {
     return _Module(
       id: id,
       name: name,
       url: url,
-      startDate: startDate,
-      endDate: endDate,
       deadline: deadline,
       hidden: hidden,
       grade: grade,
@@ -66,20 +62,14 @@ mixin _$Module {
   /// The url of the module.
   String get url => throw _privateConstructorUsedError;
 
-  /// The start date of the module.
-  DateTime get startDate => throw _privateConstructorUsedError;
-
-  /// The end date of the module.
-  DateTime get endDate => throw _privateConstructorUsedError;
-
   /// The deadline of the module.
-  DateTime get deadline => throw _privateConstructorUsedError;
+  DateTime? get deadline => throw _privateConstructorUsedError;
 
   /// If the module is hidden or not.
   bool get hidden => throw _privateConstructorUsedError;
 
   /// The grade of the module.
-  ModuleGrades get grade => throw _privateConstructorUsedError;
+  ModuleGrades? get grade => throw _privateConstructorUsedError;
 
   /// The type of the module.
   ModuleTypes get type => throw _privateConstructorUsedError;
@@ -100,11 +90,9 @@ abstract class $ModuleCopyWith<$Res> {
       {int id,
       String name,
       String url,
-      DateTime startDate,
-      DateTime endDate,
-      DateTime deadline,
+      DateTime? deadline,
       bool hidden,
-      ModuleGrades grade,
+      ModuleGrades? grade,
       ModuleTypes type,
       ModuleStatus status});
 }
@@ -122,8 +110,6 @@ class _$ModuleCopyWithImpl<$Res> implements $ModuleCopyWith<$Res> {
     Object? id = freezed,
     Object? name = freezed,
     Object? url = freezed,
-    Object? startDate = freezed,
-    Object? endDate = freezed,
     Object? deadline = freezed,
     Object? hidden = freezed,
     Object? grade = freezed,
@@ -143,18 +129,10 @@ class _$ModuleCopyWithImpl<$Res> implements $ModuleCopyWith<$Res> {
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String,
-      startDate: startDate == freezed
-          ? _value.startDate
-          : startDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      endDate: endDate == freezed
-          ? _value.endDate
-          : endDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
       deadline: deadline == freezed
           ? _value.deadline
           : deadline // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       hidden: hidden == freezed
           ? _value.hidden
           : hidden // ignore: cast_nullable_to_non_nullable
@@ -162,7 +140,7 @@ class _$ModuleCopyWithImpl<$Res> implements $ModuleCopyWith<$Res> {
       grade: grade == freezed
           ? _value.grade
           : grade // ignore: cast_nullable_to_non_nullable
-              as ModuleGrades,
+              as ModuleGrades?,
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -184,11 +162,9 @@ abstract class _$ModuleCopyWith<$Res> implements $ModuleCopyWith<$Res> {
       {int id,
       String name,
       String url,
-      DateTime startDate,
-      DateTime endDate,
-      DateTime deadline,
+      DateTime? deadline,
       bool hidden,
-      ModuleGrades grade,
+      ModuleGrades? grade,
       ModuleTypes type,
       ModuleStatus status});
 }
@@ -207,8 +183,6 @@ class __$ModuleCopyWithImpl<$Res> extends _$ModuleCopyWithImpl<$Res>
     Object? id = freezed,
     Object? name = freezed,
     Object? url = freezed,
-    Object? startDate = freezed,
-    Object? endDate = freezed,
     Object? deadline = freezed,
     Object? hidden = freezed,
     Object? grade = freezed,
@@ -228,18 +202,10 @@ class __$ModuleCopyWithImpl<$Res> extends _$ModuleCopyWithImpl<$Res>
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String,
-      startDate: startDate == freezed
-          ? _value.startDate
-          : startDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      endDate: endDate == freezed
-          ? _value.endDate
-          : endDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
       deadline: deadline == freezed
           ? _value.deadline
           : deadline // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       hidden: hidden == freezed
           ? _value.hidden
           : hidden // ignore: cast_nullable_to_non_nullable
@@ -247,7 +213,7 @@ class __$ModuleCopyWithImpl<$Res> extends _$ModuleCopyWithImpl<$Res>
       grade: grade == freezed
           ? _value.grade
           : grade // ignore: cast_nullable_to_non_nullable
-              as ModuleGrades,
+              as ModuleGrades?,
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -267,11 +233,9 @@ class _$_Module extends _Module {
       {required this.id,
       required this.name,
       required this.url,
-      required this.startDate,
-      required this.endDate,
-      required this.deadline,
-      required this.hidden,
-      required this.grade,
+      this.deadline = null,
+      this.hidden = false,
+      this.grade = null,
       required this.type,
       required this.status})
       : super._();
@@ -291,26 +255,21 @@ class _$_Module extends _Module {
 
   /// The url of the module.
   final String url;
-  @override
-
-  /// The start date of the module.
-  final DateTime startDate;
-  @override
-
-  /// The end date of the module.
-  final DateTime endDate;
+  @JsonKey()
   @override
 
   /// The deadline of the module.
-  final DateTime deadline;
+  final DateTime? deadline;
+  @JsonKey()
   @override
 
   /// If the module is hidden or not.
   final bool hidden;
+  @JsonKey()
   @override
 
   /// The grade of the module.
-  final ModuleGrades grade;
+  final ModuleGrades? grade;
   @override
 
   /// The type of the module.
@@ -322,7 +281,7 @@ class _$_Module extends _Module {
 
   @override
   String toString() {
-    return 'Module(id: $id, name: $name, url: $url, startDate: $startDate, endDate: $endDate, deadline: $deadline, hidden: $hidden, grade: $grade, type: $type, status: $status)';
+    return 'Module(id: $id, name: $name, url: $url, deadline: $deadline, hidden: $hidden, grade: $grade, type: $type, status: $status)';
   }
 
   @override
@@ -333,8 +292,6 @@ class _$_Module extends _Module {
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.url, url) &&
-            const DeepCollectionEquality().equals(other.startDate, startDate) &&
-            const DeepCollectionEquality().equals(other.endDate, endDate) &&
             const DeepCollectionEquality().equals(other.deadline, deadline) &&
             const DeepCollectionEquality().equals(other.hidden, hidden) &&
             const DeepCollectionEquality().equals(other.grade, grade) &&
@@ -348,8 +305,6 @@ class _$_Module extends _Module {
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(url),
-      const DeepCollectionEquality().hash(startDate),
-      const DeepCollectionEquality().hash(endDate),
       const DeepCollectionEquality().hash(deadline),
       const DeepCollectionEquality().hash(hidden),
       const DeepCollectionEquality().hash(grade),
@@ -372,11 +327,9 @@ abstract class _Module extends Module {
       {required int id,
       required String name,
       required String url,
-      required DateTime startDate,
-      required DateTime endDate,
-      required DateTime deadline,
-      required bool hidden,
-      required ModuleGrades grade,
+      DateTime? deadline,
+      bool hidden,
+      ModuleGrades? grade,
       required ModuleTypes type,
       required ModuleStatus status}) = _$_Module;
   const _Module._() : super._();
@@ -397,16 +350,8 @@ abstract class _Module extends Module {
   String get url;
   @override
 
-  /// The start date of the module.
-  DateTime get startDate;
-  @override
-
-  /// The end date of the module.
-  DateTime get endDate;
-  @override
-
   /// The deadline of the module.
-  DateTime get deadline;
+  DateTime? get deadline;
   @override
 
   /// If the module is hidden or not.
@@ -414,7 +359,7 @@ abstract class _Module extends Module {
   @override
 
   /// The grade of the module.
-  ModuleGrades get grade;
+  ModuleGrades? get grade;
   @override
 
   /// The type of the module.
