@@ -30,7 +30,7 @@ class feedback_add_feedback extends external_api {
         return new external_function_parameters(array(
             'content' => new external_value(PARAM_TEXT, 'The id of the course', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
             'userid' => new external_value(PARAM_INT, 'The id of the user', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
-            'type' => new external_value(PARAM_TEXT, 'The id of the user', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
+            'type' => new external_value(PARAM_INT, 'The id of the user', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
         ));
     }
 
@@ -48,6 +48,7 @@ class feedback_add_feedback extends external_api {
             'content' => $content,
             'userid' => $userid,
             'type' => $type,
+            'status' => feedback_helper::STATUS_UNREAD,
         ));
 
         return feedback_helper::get_feedback($id);

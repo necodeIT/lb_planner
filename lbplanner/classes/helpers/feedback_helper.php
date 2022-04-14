@@ -24,6 +24,11 @@ use local_lbplanner\helpers\user_helper;
 
 class feedback_helper {
 
+    const STATUS_UNREAD = 0;
+
+    const STATUS_READ = 1;
+
+
     const LBPLANNER_FEEDBACK_TABLE = 'local_lbplanner_feedback';
 
     /**
@@ -36,9 +41,10 @@ class feedback_helper {
             array(
                 'content' => new external_value(PARAM_TEXT, 'Content of the feedback'),
                 'userid' => new external_value(PARAM_INT, 'The id of the user'),
-                'type' => new external_value(PARAM_TEXT, 'The Type of the feedback'),
+                'type' => new external_value(PARAM_INT, 'The Type of the feedback'),
                 'notes' => new external_value(PARAM_TEXT, 'Notes of the feedback'),
                 'id' => new external_value(PARAM_INT, 'The id of the feedback'),
+                'status' => new external_value(PARAM_INT, 'The status of the feedback'),
             )
         );
     }
@@ -65,5 +71,9 @@ class feedback_helper {
             ) {
             throw new \moodle_exception('Access denied');
         }
+    }
+    public static function get_all_feedbacks(int $userid) : array {
+        global $DB;
+        return $DB->get_records(self::LBPLANNER_FEEDBACK_TABLE);
     }
 }

@@ -19,6 +19,7 @@ namespace local_lbplanner_services;
 use external_api;
 use external_function_parameters;
 use external_value;
+use gradereport_singleview\local\ui\feedback;
 use local_lbplanner\helpers\user_helper;
 use local_lbplanner\helpers\feedback_helper;
 
@@ -31,23 +32,33 @@ class feedback_update_feedback extends external_api {
             'userid' => new external_value(PARAM_INT, 'The id of the user', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
             'feedbackid' => new external_value(PARAM_INT, 'The id of the course', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
             'notes' => new external_value(PARAM_TEXT, 'The notes of the feedback', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
+            'status' => new external_value(PARAM_INT, 'The status of the feedback', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
         ));
     }
 
-    public static function update_feedback($userid, $feedbackid, $notes) {
+    public static function update_feedback($userid, $feedbackid, $notes, $status) {
         global $DB;
 
         self::validate_parameters(
             self::update_feedback_parameters(),
-            array('userid' => $userid , 'feedbackid' => $feedbackid, 'notes' => $notes)
+            array('userid' => $userid , 'feedbackid' => $feedbackid, 'notes' => $notes, 'status' => $status)
         );
 
         user_helper::assert_access($userid);
 
+        if (!$DB->record_exists(feedback_helper::LBPLANNER_FEEDBACK_TABLE, array('id' => $feedbackid))) {
+            throw new \moodle_exception('feedback_not_found');
+        }
         feedback_helper::assert_access($userid);
-        $feedback = $DB->get_record(feedback_helper::LBPLANNER_FEEDBACK_TABLE, array('id' => $feedbackid));
+        $feedback = $DB->get_record(feedback_helper::LBPLANNER_FEEDBACK_TABLE, array('id' => $feedbackid), '*', MUST_EXIST);
         $feedback->notes = $notes;
+        if ($status > 1 || $status < 0) {
+            throw new \moodle_exception('Invalid status');
+        }
+        $feedback->status = $status;
+
         $DB->update_record(feedback_helper::LBPLANNER_FEEDBACK_TABLE, $feedback);
+
         return $feedback;
     }
 

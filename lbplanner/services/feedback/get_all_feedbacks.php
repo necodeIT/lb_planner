@@ -45,7 +45,7 @@ class feedback_get_all_feedbacks extends external_api {
 
         feedback_helper::assert_access($userid);
 
-        return $DB->get_records(feedback_helper::LBPLANNER_FEEDBACK_TABLE);
+        return feedback_helper::get_all_feedbacks($userid);
     }
 
     public static function get_all_feedbacks_returns() {

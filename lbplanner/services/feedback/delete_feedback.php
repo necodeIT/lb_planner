@@ -44,9 +44,14 @@ class feedback_delete_feedback extends external_api {
 
         user_helper::assert_access($userid);
 
+        if (!$DB->record_exists(feedback_helper::LBPLANNER_FEEDBACK_TABLE, array('id' => $feedbackid))) {
+            throw new \moodle_exception('feedback_not_found');
+        }
+
         feedback_helper::assert_access($userid);
-        $DB->delete_record(feedback_helper::LBPLANNER_FEEDBACK_TABLE, array('id' => $feedbackid));
-        return feedback_get_all_feedbacks::get_all_feedbacks($userid);
+        $DB->delete_records(feedback_helper::LBPLANNER_FEEDBACK_TABLE, array('id' => $feedbackid));
+
+        return feedback_helper::get_all_feedbacks($userid);
     }
 
     public static function delete_feedback_returns() {
