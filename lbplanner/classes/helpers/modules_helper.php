@@ -301,20 +301,20 @@ class modules_helper {
             $late = $deadline->deadlineend < time() && !$done;
         }
 
-            $status = self::map_status($submitted, $done, $late);
+        $status = self::map_status($submitted, $done, $late);
 
-            // Return the appropriate data.
+        // Return the appropriate data.
 
-            return array(
-                'moduleid' => $moduleid,
-                'name' => $module->name,
-                'courseid' => $module->course,
-                'status' => $status,
-                'type' => self::determin_type($module->name),
-                'url' => self::get_module_url($moduleid, $module->course),
-                'grade' => $grade,
-                'deadline' => $module->duedate,
-            );
+        return array(
+            'moduleid' => $moduleid,
+            'name' => $module->name,
+            'courseid' => $module->course,
+            'status' => $status,
+            'type' => self::determin_type($module->name),
+            'url' => self::get_module_url($moduleid, $module->course),
+            'grade' => $grade,
+            'deadline' => $module->duedate > 0 ? $module->duedate : null,
+        );
     }
 
     /**
