@@ -24,7 +24,6 @@ use external_value;
 use local_lbplanner\helpers\user_helper;
 use local_lbplanner\helpers\plan_helper;
 use local_lbplanner\helpers\course_helper;
-use local_lbplanner_services\plan_remove_user;
 
 /**
  * Removes all user data stored by the lbplanner app
@@ -59,11 +58,7 @@ class user_delete_user extends external_api {
             if (plan_helper::get_plan_members($planid) > 1) {
                 foreach (plan_helper::get_plan_members($planid) as $member) {
                     if ($member->userid != $userid) {
-                        try {
-                            plan_remove_user::remove_user($userid, $planid, $member->userid);
-                        } catch (\moodle_exception $th) {
-                            throw $th;
-                        }
+                        plan_helper::remove_user($planid, $userid, $member->userid);
                     }
                 }
             }

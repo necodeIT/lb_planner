@@ -51,7 +51,7 @@ class course_helper {
 
     /**
      * Get all the courses of the user
-     * @param int userid
+     * @param int userid The id of the user
      *
      * @return
      */
@@ -83,7 +83,7 @@ class course_helper {
     /**
      * Get course from mdl DB
      *
-     * @param int $courseid
+     * @param int $courseid id of the course
      * @return stdClass course from moodle
      */
     public static function get_mdl_course($courseid) : stdClass {
@@ -93,7 +93,7 @@ class course_helper {
     /**
      * Get course from lbpanner DB
      *
-     * @param int $courseid
+     * @param int $courseid id of the course in lbplanner
      * @return stdClass course from lbplanner
      */
     public static function get_lbplanner_course($courseid) : stdClass {
@@ -104,8 +104,8 @@ class course_helper {
     /**
      * Check if the user is enrolled in the course
      *
-     * @param int $courseid
-     * @param int $userid
+     * @param int $courseid course id
+     * @param int $userid user id
      * @return bool true if the user is enrolled
      */
     public static function check_access($courseid, $userid) : bool {
@@ -119,13 +119,19 @@ class course_helper {
     /**
      * gets the fullname from a course
      *
-     * @param int $courseid
+     * @param int $courseid the course id
      * @return string the fullname of the course
      */
     public static function get_fullname($courseid) {
         global $DB;
         return $DB->get_record(self::COURSE_TABLE, array('id' => $courseid), '*', MUST_EXIST)->fullname;
     }
+    /**
+     * Get all the courses from the user
+     *
+     * @param int $userid the userid
+     * @return array courses
+     */
     public static function get_all_courses(int $userid): array {
         global $DB;
         $enrollmentids = self::get_enrollments($userid);

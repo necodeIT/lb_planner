@@ -274,5 +274,45 @@ class plan_helper {
         }
         return $newplanid;
     }
+    /**
+     * Removes the user from the given plan.
+     *
+     * @param integer $planid the plan id.
+     * @param integer $userid the user id.
+     * @param integer $removeuserid the user id to remove.
+     * @return array An array containing the new id of the plan
+     */
+    public static function remove_user(int $planid, int $userid, int $removeuserid) : array {
+        global $DB;
+        if (self::get_owner($planid) != $userid) {
+            throw new \moodle_exception('Access denied');
+        }
+
+        if (self::get_plan_id($removeuserid) != $planid) {
+            throw new \moodle_exception('Cannot remove user from other plan');
+        }
+
+        if ($userid == $removeuserid) {
+            throw new \moodle_exception('Cannot remove yourself');
+        }
+
+        if (self::get_access_type($removeuserid, $planid) == self::ACCESS_TYPE_OWNER) {
+            throw new \moodle_exception('Cannot remove owner');
+        }
+
+        $newplanid = self::copy_plan($planid, $removeuserid);
+
+        $oldaccess = $DB->get_record(
+            self::ACCESS_TABLE,
+            array('planid' => $planid, 'userid' => $removeuserid), '*', MUST_EXIST
+        );
+
+        $oldaccess->planid = $newplanid;
+        $oldaccess->accesstype = self::ACCESS_TYPE_OWNER;
+
+        $DB->update_record(self::ACCESS_TABLE, $oldaccess);
+
+        return self::get_plan($planid, $removeuserid);
+    }
 }
 
