@@ -168,7 +168,7 @@ class course_helper {
 
             $catgirl['name'] = self::get_fullname($courseid);
 
-            $catgirls[] = $catgirl;
+            $catgirls[] = (object)  $catgirl;
         }
 
         return $catgirls;
