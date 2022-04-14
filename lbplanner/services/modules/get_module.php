@@ -45,70 +45,7 @@ class modules_get_module extends external_api {
             throw new \moodle_exception('Module not found');
         }
 
-        // Get module data.
-        $module = $DB->get_record(modules_helper::ASSIGN_TABLE, array('id' => $moduleid));
-
-        // Check if there are any submissions or feedbacks for this module.
-
-        $submitted = false;
-
-        if ($DB->record_exists(modules_helper::SUBMISSIONS_TABLE, array('assignment' => $moduleid, 'userid' => $userid))) {
-            $submission = $DB->get_record(
-                modules_helper::SUBMISSIONS_TABLE,
-                array('assignment' => $moduleid, 'userid' => $userid)
-            );
-
-            $submitted = strval($submission->status) == modules_helper::SUBMISSION_STATUS_SUBMITTED;
-        }
-
-        $done = false;
-        $grade = null;
-
-        if ($DB->record_exists(modules_helper::GRADES_TABLE, array('assignment' => $moduleid, 'userid' => $userid))) {
-            $moduleboundaries = $DB->get_record(modules_helper::GRADE_ITEMS_TABLE, array('iteminstance' => $moduleid));
-
-            $mdlgrades = $DB->get_records(
-                modules_helper::GRADES_TABLE,
-                array('assignment' => $moduleid, 'userid' => $userid)
-            );
-
-            $mdlgrade = end($mdlgrades);
-
-            if ($mdlgrade->grade > 0) {
-                $done = true;
-
-                $grade  = modules_helper::determin_uinified_grade(
-                $mdlgrade->grade, $moduleboundaries->grademax,
-                $moduleboundaries->grademin,
-                $moduleboundaries->gradepass
-                );
-
-                $done = $grade != modules_helper::GRADE_RIP;
-            }
-        }
-
-        $late = false;
-        $planid = plan_helper::get_plan_id($userid);
-
-        if ($DB->record_exists(plan_helper::DEADLINES_TABLE, array('planid' => $planid, 'moduleid' => $moduleid))) {
-            $deadline = $DB->get_record(plan_helper::DEADLINES_TABLE, array('planid' => $planid, 'moduleid' => $moduleid));
-            $late = $deadline->deadlineend < time() && !$done;
-        }
-
-        $status = modules_helper::map_status($submitted, $done, $late);
-
-        // Return the appropriate data.
-
-        return    array(
-            'moduleid' => $moduleid,
-            'name' => $module->name,
-            'courseid' => $module->course,
-            'status' => $status,
-            'type' => modules_helper::determin_type($module->name),
-            'url' => modules_helper::get_module_url($moduleid, $module->course),
-            'grade' => $grade,
-            'deadline' => $module->duedate,
-        );
+        return modules_helper::get_module($moduleid, $userid);
     }
 
     public static function get_module_returns() {

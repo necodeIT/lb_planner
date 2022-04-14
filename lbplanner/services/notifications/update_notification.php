@@ -49,9 +49,7 @@ class notifications_update_notification extends external_api {
             array('userid' => $userid, 'status' => $status, 'notificationid' => $notificationid)
         );
 
-        if (!user_helper::check_access($userid)) {
-            throw new \moodle_exception('Access denied');
-        }
+        user_helper::assert_access($userid);
 
         if (!$DB->record_exists(notifications_helper::TABLE, array('id' => $notificationid))) {
             throw new \moodle_exception('Notification does not exist');

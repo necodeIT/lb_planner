@@ -45,9 +45,7 @@ class plan_update_invite extends external_api {
         'status' => $status,
         ));
 
-        if (!user_helper::check_access($userid)) {
-            throw new \moodle_exception('Access denied');
-        }
+        user_helper::assert_access($userid);
 
         if ($status != plan_helper::INVITE_ACCEPTED && $status != plan_helper::INVITE_DECLINED) {
             throw new \moodle_exception('Invalid status');

@@ -67,9 +67,7 @@ class plan_update_access extends external_api {
             array('userid' => $userid, 'planid' => $planid, 'accesstype' => $accesstype, 'memberid' => $memberid)
         );
 
-        if (!user_helper::check_access($userid)) {
-            throw new \moodle_exception('Access denied');
-        }
+        user_helper::assert_access($userid);
 
         if (plan_helper::get_owner($planid) != $userid) {
             throw new \moodle_exception('Access denied');

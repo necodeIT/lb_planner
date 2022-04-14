@@ -64,9 +64,7 @@ class plan_delete_deadline extends external_api {
             )
         );
 
-        if (!user_helper::check_access($userid)) {
-            throw new \moodle_exception('Access denied');
-        }
+        user_helper::assert_access($userid);
 
         if (!plan_helper::check_edit_permissions($planid, $userid)) {
             throw new \Exception('Access denied');

@@ -62,9 +62,7 @@ class plan_invite_user extends external_api {
             array('inviterid' => $inviterid, 'inviteeid' => $inviteeid, 'planid' => $planid)
         );
 
-        if (!user_helper::check_access($inviterid)) {
-            throw new \moodle_exception('Access denied');
-        }
+        user_helper::assert_access($inviterid);
 
         if (plan_helper::get_owner($planid) != $inviterid) {
             throw new \moodle_exception('Access denied');
@@ -106,7 +104,7 @@ class plan_invite_user extends external_api {
         // Notifiy the invitee that he/she/it/they/xier/* has been invited.
         notifications_helper::notify_user(
             $inviteeid,
-            json_encode(array("inviterid"=>$inviterid)),
+            json_encode(array("inviterid" => $inviterid)),
             notifications_helper::TRIGGER_INVITE
         );
 

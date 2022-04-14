@@ -67,9 +67,7 @@ class plan_update_plan extends external_api {
             array('userid' => $userid, 'planid' => $planid, 'planname' => $planname, 'enableek' => $enableek)
         );
 
-        if (!user_helper::check_access($userid)) {
-            throw new \moodle_exception('Access denied');
-        }
+        user_helper::assert_access($userid);
 
         if (!plan_helper::check_edit_permissions($planid, $userid)) {
             throw new \Exception('Access denied');

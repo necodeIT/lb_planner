@@ -19,10 +19,10 @@ namespace local_lbplanner_services;
 use external_api;
 use external_function_parameters;
 use external_multiple_structure;
-use local_lbplanner_services\course_get_all_courses;
-use local_lbplanner_services\modules_get_all_course_modules;
 use external_value;
+use local_lbplanner\helpers\course_helper;
 use local_lbplanner\helpers\modules_helper;
+use local_lbplanner\helpers\user_helper;
 
 /**
  * Get all the modules of the current year.
@@ -39,11 +39,14 @@ class modules_get_all_modules extends external_api {
 
         self::validate_parameters(self::get_all_modules_parameters(), array('userid' => $userid));
 
+        user_helper::assert_access($userid);
+
         $modules = array();
 
-        $courses = course_get_all_courses::get_all_courses($userid);
+        $courses = course_helper::get_all_courses($userid);
+
         foreach ($courses as $course) {
-            $modules = array_merge(modules_get_all_course_modules::get_all_course_modules($course['id'], $userid), $modules);
+            $modules = array_merge(modules_helper::get_all_course_modules($course['id'], $userid), $modules);
         }
 
         return $modules;

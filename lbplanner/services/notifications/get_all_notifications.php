@@ -39,9 +39,7 @@ class notifications_get_all_notifications extends external_api {
 
         self::validate_parameters(self::get_all_notifications_parameters(), array('userid' => $userid));
 
-        if (!user_helper::check_access($userid)) {
-            throw new \moodle_exception('Access denied');
-        }
+        user_helper::assert_access($userid);
 
         $dbnotifications = $DB->get_records(notifications_helper::TABLE, array('userid' => $userid));
 
