@@ -126,4 +126,45 @@ class course_helper {
         global $DB;
         return $DB->get_record(self::COURSE_TABLE, array('id' => $courseid), '*', MUST_EXIST)->fullname;
     }
+    public static function get_all_courses(int $userid): array {
+        global $DB;
+        $enrollmentids = self::get_enrollments($userid);
+
+        foreach ($enrollmentids as $enrollmentid) {
+            $courses[] = $DB->get_record(self::ENROL_TABLE, array('id' => $enrollmentid->enrolid), 'courseid', MUST_EXIST);
+        }
+
+        // Check this out: https://www.youtube.com/watch?v=z3Pzfi476HI .
+        $catgirls = array();
+
+        foreach ($courses as $course) {
+            $courseid = $course->courseid;
+            if ($DB->record_exists(self::LBPLANNER_COURSE_TABLE, array('courseid' => $courseid, 'userid' => $userid))) {
+                $catgirl = $DB->get_record(
+                    self::LBPLANNER_COURSE_TABLE, array('courseid' => $courseid, 'userid' => $userid),
+                    '*',
+                    MUST_EXIST
+                );
+                $catgirl->name = self::get_fullname($courseid);
+                $catgirls[] = $catgirl;
+                continue;
+            }
+
+            // Check this out: https://youtu.be/dQw4w9WgXcQ .
+            $catgirl = array(
+                'courseid' => $courseid,
+                'color' => self::COLORS[array_rand(self::COLORS)],
+                'shortname' => strtoupper(substr(self::get_mdl_course($courseid)->shortname, 0, 5)),
+                'enabled' => self::DISABLED_COURSE,
+                'userid' => $userid,
+            );
+            $DB->insert_record(self::LBPLANNER_COURSE_TABLE, $catgirl);
+
+            $catgirl['name'] = self::get_fullname($courseid);
+
+            $catgirls[] = $catgirl;
+        }
+
+        return $catgirls;
+    }
 }

@@ -45,48 +45,9 @@ class course_get_all_courses extends external_api {
 
         self::validate_parameters(self::get_all_courses_parameters(), array('userid' => $userid));
 
-        if (!user_helper::check_access($userid)) {
-            throw new \moodle_exception('Access denied');
-        }
+        user_helper::assert_access($userid);
 
-        $enrollmentids = course_helper::get_enrollments($userid);
-
-        foreach ($enrollmentids as $enrollmentid) {
-            $courses[] = $DB->get_record(course_helper::ENROL_TABLE, array('id' => $enrollmentid->enrolid), 'courseid', MUST_EXIST);
-        }
-
-        // Check this out: https://www.youtube.com/watch?v=z3Pzfi476HI .
-        $catgirls = array();
-
-        foreach ($courses as $course) {
-            $courseid = $course->courseid;
-            if ($DB->record_exists(course_helper::LBPLANNER_COURSE_TABLE, array('courseid' => $courseid, 'userid' => $userid))) {
-                $catgirl = $DB->get_record(
-                    course_helper::LBPLANNER_COURSE_TABLE, array('courseid' => $courseid, 'userid' => $userid),
-                    '*',
-                    MUST_EXIST
-                );
-                $catgirl->name = course_helper::get_fullname($courseid);
-                $catgirls[] = $catgirl;
-                continue;
-            }
-
-            // Check this out: https://youtu.be/dQw4w9WgXcQ .
-            $catgirl = array(
-                'courseid' => $courseid,
-                'color' => course_helper::COLORS[array_rand(course_helper::COLORS)],
-                'shortname' => strtoupper(substr(course_helper::get_mdl_course($courseid)->shortname, 0, 5)),
-                'enabled' => course_helper::DISABLED_COURSE,
-                'userid' => $userid,
-            );
-            $DB->insert_record(course_helper::LBPLANNER_COURSE_TABLE, $catgirl);
-
-            $catgirl['name'] = course_helper::get_fullname($courseid);
-
-            $catgirls[] = $catgirl;
-        }
-
-        return $catgirls;
+        return course_helper::get_all_courses($userid);
     }
 
     public static function get_all_courses_returns() {
