@@ -156,8 +156,7 @@ class modules_helper {
             return self::GRADE_RIP;
         }
 
-        // $maxgrade = $maxgrade - $mingrade;
-        $grade = $grade - $mingrade;
+        $maxgrade = $maxgrade - $mingrade;
 
         $p = $grade / $maxgrade;
 
@@ -240,5 +239,102 @@ class modules_helper {
         );
 
         return strval(new moodle_url('/mod/assign/view.php?id='.$view->id));
+    }
+
+    /**
+     * Retrieves a module of the given id for the given user.
+     *
+     * @param integer $moduleid The id of the module.
+     * @param integer $userid The id of the user.
+     * @return array The module.
+     */
+    public static function get_module(int $moduleid, int $userid) : array {
+        global $DB;
+
+            // Get module data.
+            $module = $DB->get_record(self::ASSIGN_TABLE, array('id' => $moduleid));
+
+            // Check if there are any submissions or feedbacks for this module.
+
+            $submitted = false;
+
+        if ($DB->record_exists(self::SUBMISSIONS_TABLE, array('assignment' => $moduleid, 'userid' => $userid))) {
+            $submission = $DB->get_record(
+                self::SUBMISSIONS_TABLE,
+                array('assignment' => $moduleid, 'userid' => $userid)
+            );
+
+            $submitted = strval($submission->status) == self::SUBMISSION_STATUS_SUBMITTED;
+        }
+
+            $done = false;
+            $grade = null;
+
+        if ($DB->record_exists(self::GRADES_TABLE, array('assignment' => $moduleid, 'userid' => $userid))) {
+            $moduleboundaries = $DB->get_record(self::GRADE_ITEMS_TABLE, array('iteminstance' => $moduleid));
+
+            $mdlgrades = $DB->get_records(
+                self::GRADES_TABLE,
+                array('assignment' => $moduleid, 'userid' => $userid)
+            );
+
+            $mdlgrade = end($mdlgrades);
+
+            if ($mdlgrade->grade > 0) {
+                $done = true;
+
+                $grade  = self::determin_uinified_grade(
+                $mdlgrade->grade, $moduleboundaries->grademax,
+                $moduleboundaries->grademin,
+                $moduleboundaries->gradepass
+                );
+
+                $done = $grade != self::GRADE_RIP;
+            }
+        }
+
+            $late = false;
+            $planid = plan_helper::get_plan_id($userid);
+
+        if ($DB->record_exists(plan_helper::DEADLINES_TABLE, array('planid' => $planid, 'moduleid' => $moduleid))) {
+            $deadline = $DB->get_record(plan_helper::DEADLINES_TABLE, array('planid' => $planid, 'moduleid' => $moduleid));
+            $late = $deadline->deadlineend < time() && !$done;
+        }
+
+            $status = self::map_status($submitted, $done, $late);
+
+            // Return the appropriate data.
+
+            return array(
+                'moduleid' => $moduleid,
+                'name' => $module->name,
+                'courseid' => $module->course,
+                'status' => $status,
+                'type' => self::determin_type($module->name),
+                'url' => self::get_module_url($moduleid, $module->course),
+                'grade' => $grade,
+                'deadline' => $module->duedate,
+            );
+    }
+
+    /**
+     * Reteruns all modules for the given course id.
+     *
+     * @param integer $courseid The id of the course.
+     * @param integer $userid The id of the user.
+     * @return array The modules.
+     */
+    public static function get_all_course_modules(int $courseid, int $userid) : array {
+        global $DB;
+
+        $mdlmodules = $DB->get_records(self::ASSIGN_TABLE, array('course' => $courseid));
+
+        $modules = array();
+
+        foreach ($mdlmodules as $mdlmodule) {
+            $modules[] = self::get_module($mdlmodule->id, $userid);
+        }
+
+        return $modules;
     }
 }
