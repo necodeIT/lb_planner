@@ -46,7 +46,7 @@ class modules_get_all_modules extends external_api {
         $courses = course_helper::get_all_courses($userid);
 
         foreach ($courses as $course) {
-            $modules = array_merge(modules_helper::get_all_course_modules($course['id'], $userid), $modules);
+            $modules = array_merge(modules_helper::get_all_course_modules($course['courseid'], $userid), $modules);
         }
 
         return $modules;
