@@ -157,18 +157,19 @@ class course_helper {
             }
 
             // Check this out: https://youtu.be/dQw4w9WgXcQ .
-            $catgirl = array(
+            $catgirl = (object) array(
                 'courseid' => $courseid,
                 'color' => self::COLORS[array_rand(self::COLORS)],
                 'shortname' => strtoupper(substr(self::get_mdl_course($courseid)->shortname, 0, 5)),
                 'enabled' => self::DISABLED_COURSE,
                 'userid' => $userid,
             );
+
             $DB->insert_record(self::LBPLANNER_COURSE_TABLE, $catgirl);
 
-            $catgirl['name'] = self::get_fullname($courseid);
+            $catgirl->name = self::get_fullname($courseid);
 
-            $catgirls[] = (object)  $catgirl;
+            $catgirls[] = $catgirl;
         }
 
         return $catgirls;
