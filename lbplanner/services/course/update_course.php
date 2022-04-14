@@ -59,9 +59,7 @@ class course_update_course extends external_api {
             )
         );
 
-        if (!user_helper::check_access($userid)) {
-            throw new \moodle_exception('Access denied');
-        }
+        user_helper::assert_access($userid);
 
         if (!course_helper::check_access($courseid, $userid)) {
             throw new \moodle_exception('Access denied');

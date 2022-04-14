@@ -51,9 +51,8 @@ class plan_leave_plan extends external_api {
 
         self::validate_parameters(self::leave_plan_parameters(), array('userid' => $userid, 'planid' => $planid));
 
-        if (!user_helper::check_access($userid)) {
-            throw new \moodle_exception('Access denied');
-        }
+        user_helper::assert_access($userid);
+
         if (plan_helper::get_access_type($userid, $planid) == plan_helper::ACCESS_TYPE_OWNER) {
             throw new \moodle_exception('Owner cannot leave his plan');
         }

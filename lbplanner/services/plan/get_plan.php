@@ -43,9 +43,7 @@ class plan_get_plan extends external_api {
 
         self::validate_parameters(self::get_plan_parameters(), array('userid' => $userid));
 
-        if (!user_helper::check_access($userid)) {
-            throw new \Exception('Access denied');
-        }
+        user_helper::assert_access($userid);
 
         $planid = plan_helper::get_plan_id($userid);
 

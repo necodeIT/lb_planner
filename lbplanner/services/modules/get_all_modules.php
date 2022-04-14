@@ -22,6 +22,7 @@ use external_multiple_structure;
 use external_value;
 use local_lbplanner\helpers\course_helper;
 use local_lbplanner\helpers\modules_helper;
+use local_lbplanner\helpers\user_helper;
 
 /**
  * Get all the modules of the current year.
@@ -37,6 +38,8 @@ class modules_get_all_modules extends external_api {
         global $DB;
 
         self::validate_parameters(self::get_all_modules_parameters(), array('userid' => $userid));
+
+        user_helper::assert_access($userid);
 
         $modules = array();
 

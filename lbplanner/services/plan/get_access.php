@@ -49,9 +49,7 @@ class plan_get_access extends external_api {
     public static function get_access($userid, $planid) {
         self::validate_parameters(self::get_access_parameters(), array('userid' => $userid, 'planid' => $planid));
 
-        if (!user_helper::check_access($userid)) {
-            throw new \moodle_exception('Access denied');
-        }
+        user_helper::assert_access($userid);
 
         return array(
             'accesstype' => plan_helper::get_access_type($planid, $userid),

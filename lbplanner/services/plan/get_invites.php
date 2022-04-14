@@ -48,9 +48,7 @@ class plan_get_invites extends external_api {
             array('userid' => $userid)
         );
 
-        if (!user_helper::check_access($userid)) {
-            throw new \moodle_exception('Access denied');
-        }
+        user_helper::assert_access($userid);
 
         $invitesreceived = $DB->get_records(plan_helper::INVITES_TABLE, array('inviteeid' => $userid));
         $invitessent = $DB->get_records(plan_helper::INVITES_TABLE, array('inviterid' => $userid));

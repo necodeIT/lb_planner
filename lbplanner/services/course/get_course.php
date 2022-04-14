@@ -43,9 +43,7 @@ class course_get_course extends external_api {
             throw new \moodle_exception('Course not found');
         }
 
-        if (!user_helper::check_access($userid)) {
-            throw new \moodle_exception('Access denied');
-        }
+        user_helper::assert_access($userid);
 
         if (!course_helper::check_access($courseid, $userid)) {
             throw new \moodle_exception('Access denied');
