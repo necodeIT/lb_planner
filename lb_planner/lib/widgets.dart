@@ -23,6 +23,7 @@ part 'widgets/icon.dart';
 part 'widgets/animated_fade_out_in.dart';
 part 'widgets/loading_indicator.dart';
 part 'widgets/dialog.dart';
+part 'widgets/container.dart';
 
 /// Radius for all rounded rectangles.
 const double kRadius = 5;
