@@ -18,7 +18,7 @@ _$_Plan _$$_PlanFromJson(Map<String, dynamic> json) => _$_Plan(
         (k, e) => MapEntry(
             int.parse(k), Deadline.fromJson(e as Map<String, dynamic>)),
       ),
-      enableEk: json['enableEk'] as bool,
+      ekEnabled: json['ekEnabled'] as bool,
       invites: (json['invites'] as List<dynamic>?)
               ?.map((e) => PlanInvite.fromJson(e as Map<String, dynamic>))
               .toList() ??
@@ -32,7 +32,7 @@ Map<String, dynamic> _$$_PlanToJson(_$_Plan instance) => <String, dynamic>{
       'members': instance.members
           .map((k, e) => MapEntry(k.toString(), _$PlanAccessTypesEnumMap[e])),
       'deadlines': instance.deadlines.map((k, e) => MapEntry(k.toString(), e)),
-      'enableEk': instance.enableEk,
+      'ekEnabled': instance.ekEnabled,
       'invites': instance.invites,
     };
 

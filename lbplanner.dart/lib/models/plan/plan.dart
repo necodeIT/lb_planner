@@ -35,7 +35,7 @@ class Plan with _$Plan {
     required Map<int, Deadline> deadlines,
 
     /// Wheter the plan has modules of type [ModuleTypes.ek] enabled
-    required bool enableEk,
+    required bool ekEnabled,
 
     /// The invites of the plan
     @Default([]) List<PlanInvite> invites,
