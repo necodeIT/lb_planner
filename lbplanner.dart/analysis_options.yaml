@@ -32,4 +32,4 @@ linter:
 # https://dart.dev/guides/language/analysis-options
 
 analyzer:
-  exclude: [build/**, lib/**.freezed.dart, lib/**.g.dart]
+  exclude: [lib/**.freezed.dart, lib/**.g.dart]
