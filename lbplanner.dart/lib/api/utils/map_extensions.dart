@@ -42,4 +42,40 @@ extension UserMappingExtensions on Map<String, dynamic> {
 
     return this;
   }
+
+  /// Maps parameters to fit [Module.fromJson]
+  Map<String, dynamic> mapModule() {
+    var body = Map.of(this);
+
+    body["id"] = this["moduleid"];
+
+    int gradeIndex = this["grade"] ?? -1;
+    body["grade"] = gradeIndex.isNegative ? null : ModuleGrades.values[gradeIndex].name;
+
+    int typeIndex = this["type"];
+    body["type"] = ModuleTypes.values[typeIndex].name;
+
+    int statusIndex = this["status"];
+    body["status"] = ModuleStatus.values[statusIndex].name;
+
+    int unixDeadline = this["deadline"];
+    body["deadline"] = DateTime.fromMillisecondsSinceEpoch(unixDeadline * 1000);
+
+    return body;
+  }
+
+  /// Maps parameters to fit [Feedback.fromJson]
+  Map<String, dynamic> mapFeedback() {
+    var body = Map.of(this);
+
+    int typeIndex = this["type"];
+    body["type"] = FeedbackTypes.values[typeIndex].name;
+
+    int statusIndex = this["status"];
+    body["status"] = FeedbackStatus.values[statusIndex].name;
+
+    body["userId"] = this["userid"];
+
+    return body;
+  }
 }

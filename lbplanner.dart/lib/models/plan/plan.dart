@@ -3,7 +3,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
 import 'package:lbplanner_api/lbplanner_api.dart';
-import 'package:lbplanner_api/models/deadline/deadline.dart';
 
 part 'plan.freezed.dart';
 part 'plan.g.dart';

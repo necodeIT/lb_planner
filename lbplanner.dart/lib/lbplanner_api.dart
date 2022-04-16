@@ -5,6 +5,10 @@ export 'models/notification/notification.dart';
 export 'models/module/module.dart';
 export 'models/invite/invite.dart';
 export 'models/plan/plan.dart';
+export 'models/course/course.dart';
+export 'models/statistics/statistics.dart';
+export 'models/feedback/feedback.dart';
+export 'models/deadline/deadline.dart';
 
 // Dart imports:
 import 'dart:convert';
@@ -48,6 +52,8 @@ part 'api/utils/response.dart';
 part 'api/api_services.dart';
 part 'api/notifications_api.dart';
 part 'api/plan_api.dart';
+part 'api/feedback_api.dart';
+part 'api/modules_api.dart';
 
 /// The rate with which the api refreshes underlying data
 const kApiRefreshRate = Duration(seconds: 5);
