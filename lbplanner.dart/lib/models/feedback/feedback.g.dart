@@ -11,6 +11,7 @@ _$_Feedback _$$_FeedbackFromJson(Map<String, dynamic> json) => _$_Feedback(
       userId: json['userId'] as int,
       content: json['content'] as String,
       notes: json['notes'] as String? ?? null,
+      logs: json['logs'] as String? ?? null,
       type: $enumDecode(_$FeedbackTypesEnumMap, json['type']),
       status: $enumDecode(_$FeedbackStatusEnumMap, json['status']),
     );
@@ -21,6 +22,7 @@ Map<String, dynamic> _$$_FeedbackToJson(_$_Feedback instance) =>
       'userId': instance.userId,
       'content': instance.content,
       'notes': instance.notes,
+      'logs': instance.logs,
       'type': _$FeedbackTypesEnumMap[instance.type],
       'status': _$FeedbackStatusEnumMap[instance.status],
     };

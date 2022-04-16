@@ -14,6 +14,7 @@ class Feedback with _$Feedback {
   const Feedback._();
 
   /// Feedback model
+  @Assert("type != FeedbackTypes.bug || logs != null", 'Logs must be provided if the feedback is of type bug.')
   const factory Feedback({
     /// ID of the feedback
     required int id,
@@ -26,6 +27,9 @@ class Feedback with _$Feedback {
 
     /// Notes admins may add to the feedback.
     @Default(null) String? notes,
+
+    /// The logs provided if the feedback is of type [FeedbackTypes.bug].
+    @Default(null) String? logs,
 
     /// The type of the feedback.
     required FeedbackTypes type,

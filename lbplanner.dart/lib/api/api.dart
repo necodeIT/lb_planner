@@ -2,8 +2,11 @@ part of lbplanner_api;
 
 /// Provides basic methods to communicate with the moodle API
 class Api {
+  /// The root url of the server.
+  static const serverRoot = "https://projekte.tgm.ac.at/moodledev";
+
   /// The base URL of the API
-  static const apiEndpoint = "https://projekte.tgm.ac.at/moodledev/webservice/rest/server.php";
+  static const apiEndpoint = "$serverRoot/webservice/rest/server.php";
 
   /// The format the api should use.
   static const format = "json";
@@ -28,7 +31,7 @@ class Api {
 
     var result = RawApiResponse(response);
 
-    log("Response: ${response.statusCode}${result.failed ? ", Message: '${result.errorMessage}'" : ""}", result.succeeded ? LogTypes.success : LogTypes.error);
+    _logResponse(result);
 
     return result;
   }
@@ -39,14 +42,18 @@ class Api {
 
     var encodedPassword = Uri.encodeComponent(password);
 
-    var url = "https://projekte.tgm.ac.at/moodledev/login/token.php?username=$username&service=${service.name}&moodlewsrestformat=$format&password=$encodedPassword";
+    var url = "$serverRoot/login/token.php?username=$username&service=${service.name}&moodlewsrestformat=$format&password=$encodedPassword";
 
     var response = await client.get(Uri.parse(url));
 
     var result = RawApiResponse(response);
 
-    log("Response: ${response.statusCode}${result.failed ? ", Message: '${result.errorMessage}'" : ""}", result.succeeded ? LogTypes.success : LogTypes.error);
+    _logResponse(result);
 
     return result;
+  }
+
+  static void _logResponse(RawApiResponse response) {
+    log("Response: ${response.response.statusCode}${response.failed ? ", Message: '${response.errorMessage}'" : ""}", response.succeeded ? LogTypes.success : LogTypes.error);
   }
 }
