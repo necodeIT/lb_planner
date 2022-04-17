@@ -33,6 +33,8 @@ class Api {
 
     _logResponse(result);
 
+    if (result.failed) onError?.call(result);
+
     return result;
   }
 
@@ -56,4 +58,7 @@ class Api {
   static void _logResponse(RawApiResponse response) {
     log("Response: ${response.response.statusCode}${response.failed ? ", Message: '${response.errorMessage}'" : ""}", response.succeeded ? LogTypes.success : LogTypes.error);
   }
+
+  /// Callback called when an API call reults in an error.
+  static void Function(RawApiResponse response)? onError;
 }
