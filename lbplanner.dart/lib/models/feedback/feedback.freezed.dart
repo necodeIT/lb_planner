@@ -26,7 +26,7 @@ class _$FeedbackTearOff {
       {required int id,
       required int userId,
       required String content,
-      String? notes = null,
+      String? comment = null,
       String? logs = null,
       required FeedbackTypes type,
       required FeedbackStatus status}) {
@@ -34,7 +34,7 @@ class _$FeedbackTearOff {
       id: id,
       userId: userId,
       content: content,
-      notes: notes,
+      comment: comment,
       logs: logs,
       type: type,
       status: status,
@@ -61,7 +61,7 @@ mixin _$Feedback {
   String get content => throw _privateConstructorUsedError;
 
   /// Notes admins may add to the feedback.
-  String? get notes => throw _privateConstructorUsedError;
+  String? get comment => throw _privateConstructorUsedError;
 
   /// The logs provided if the feedback is of type [FeedbackTypes.bug].
   String? get logs => throw _privateConstructorUsedError;
@@ -86,7 +86,7 @@ abstract class $FeedbackCopyWith<$Res> {
       {int id,
       int userId,
       String content,
-      String? notes,
+      String? comment,
       String? logs,
       FeedbackTypes type,
       FeedbackStatus status});
@@ -105,7 +105,7 @@ class _$FeedbackCopyWithImpl<$Res> implements $FeedbackCopyWith<$Res> {
     Object? id = freezed,
     Object? userId = freezed,
     Object? content = freezed,
-    Object? notes = freezed,
+    Object? comment = freezed,
     Object? logs = freezed,
     Object? type = freezed,
     Object? status = freezed,
@@ -123,9 +123,9 @@ class _$FeedbackCopyWithImpl<$Res> implements $FeedbackCopyWith<$Res> {
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
               as String,
-      notes: notes == freezed
-          ? _value.notes
-          : notes // ignore: cast_nullable_to_non_nullable
+      comment: comment == freezed
+          ? _value.comment
+          : comment // ignore: cast_nullable_to_non_nullable
               as String?,
       logs: logs == freezed
           ? _value.logs
@@ -152,7 +152,7 @@ abstract class _$FeedbackCopyWith<$Res> implements $FeedbackCopyWith<$Res> {
       {int id,
       int userId,
       String content,
-      String? notes,
+      String? comment,
       String? logs,
       FeedbackTypes type,
       FeedbackStatus status});
@@ -172,7 +172,7 @@ class __$FeedbackCopyWithImpl<$Res> extends _$FeedbackCopyWithImpl<$Res>
     Object? id = freezed,
     Object? userId = freezed,
     Object? content = freezed,
-    Object? notes = freezed,
+    Object? comment = freezed,
     Object? logs = freezed,
     Object? type = freezed,
     Object? status = freezed,
@@ -190,9 +190,9 @@ class __$FeedbackCopyWithImpl<$Res> extends _$FeedbackCopyWithImpl<$Res>
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
               as String,
-      notes: notes == freezed
-          ? _value.notes
-          : notes // ignore: cast_nullable_to_non_nullable
+      comment: comment == freezed
+          ? _value.comment
+          : comment // ignore: cast_nullable_to_non_nullable
               as String?,
       logs: logs == freezed
           ? _value.logs
@@ -217,7 +217,7 @@ class _$_Feedback extends _Feedback {
       {required this.id,
       required this.userId,
       required this.content,
-      this.notes = null,
+      this.comment = null,
       this.logs = null,
       required this.type,
       required this.status})
@@ -244,7 +244,7 @@ class _$_Feedback extends _Feedback {
   @override
 
   /// Notes admins may add to the feedback.
-  final String? notes;
+  final String? comment;
   @JsonKey()
   @override
 
@@ -261,7 +261,7 @@ class _$_Feedback extends _Feedback {
 
   @override
   String toString() {
-    return 'Feedback(id: $id, userId: $userId, content: $content, notes: $notes, logs: $logs, type: $type, status: $status)';
+    return 'Feedback(id: $id, userId: $userId, content: $content, comment: $comment, logs: $logs, type: $type, status: $status)';
   }
 
   @override
@@ -272,7 +272,7 @@ class _$_Feedback extends _Feedback {
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.userId, userId) &&
             const DeepCollectionEquality().equals(other.content, content) &&
-            const DeepCollectionEquality().equals(other.notes, notes) &&
+            const DeepCollectionEquality().equals(other.comment, comment) &&
             const DeepCollectionEquality().equals(other.logs, logs) &&
             const DeepCollectionEquality().equals(other.type, type) &&
             const DeepCollectionEquality().equals(other.status, status));
@@ -284,7 +284,7 @@ class _$_Feedback extends _Feedback {
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(userId),
       const DeepCollectionEquality().hash(content),
-      const DeepCollectionEquality().hash(notes),
+      const DeepCollectionEquality().hash(comment),
       const DeepCollectionEquality().hash(logs),
       const DeepCollectionEquality().hash(type),
       const DeepCollectionEquality().hash(status));
@@ -305,7 +305,7 @@ abstract class _Feedback extends Feedback {
       {required int id,
       required int userId,
       required String content,
-      String? notes,
+      String? comment,
       String? logs,
       required FeedbackTypes type,
       required FeedbackStatus status}) = _$_Feedback;
@@ -328,7 +328,7 @@ abstract class _Feedback extends Feedback {
   @override
 
   /// Notes admins may add to the feedback.
-  String? get notes;
+  String? get comment;
   @override
 
   /// The logs provided if the feedback is of type [FeedbackTypes.bug].

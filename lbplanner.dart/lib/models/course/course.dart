@@ -24,7 +24,7 @@ class Course with _$Course {
     required String name,
 
     /// The short name of the course.
-    required String shortName,
+    required String shortname,
 
     /// The color of the course.
     required String colorCode,

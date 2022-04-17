@@ -24,4 +24,34 @@ class FeedbackProvider extends StateNotifier<Map<int, Feedback>> {
 
     return response;
   }
+
+  /// Updates the [status] of the feedback with the given [id]
+  Future<RawApiResponse> updateFeedbackStatus(int id, FeedbackStatus status) async {
+    assertId(id);
+
+    var oldFeedback = state[id];
+
+    var updatedFeedback = oldFeedback!.copyWith(status: status);
+
+    var response = await FeedbackApi.updateFeedback(user.token, user.id, updatedFeedback);
+
+    if (response.succeeded) updateValue(id, response.value!);
+
+    return response;
+  }
+
+  /// Updates the [comment] of the feedback with the given [id]
+  Future<RawApiResponse> updateFeedbackComment(int id, String comment) async {
+    assertId(id);
+
+    var oldFeedback = state[id];
+
+    var updatedFeedback = oldFeedback!.copyWith(comment: comment);
+
+    var response = await FeedbackApi.updateFeedback(user.token, user.id, updatedFeedback);
+
+    if (response.succeeded) updateValue(id, response.value!);
+
+    return response;
+  }
 }

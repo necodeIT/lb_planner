@@ -27,7 +27,7 @@ class NotificationsProvider extends StateNotifier<List<Notification>> {
   Future<RawApiResponse> markAllAsRead() async {
     for (var notification in state) {
       if (notification.status == NotificationStatus.unread) {
-        var response = await NotificationsApi.updateNotificationStatus(user.token, user.id, notification.id, NotificationStatus.read);
+        var response = await NotificationsApi.updateNotificationStatus(user.token, user.id, notification.copyWith(status: NotificationStatus.read));
 
         if (response.failed) return response;
       }

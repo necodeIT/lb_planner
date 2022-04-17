@@ -12,6 +12,7 @@ export 'models/deadline/deadline.dart';
 
 // Dart imports:
 import 'dart:convert';
+import 'dart:ui';
 
 // Package imports:
 import 'package:http/http.dart' as http;
@@ -51,15 +52,22 @@ part 'providers/feedback_provider.dart';
 // Api
 
 part 'api/api.dart';
-part 'api/api_response.dart';
+part 'models/api/api_response.dart';
 part 'api/user_api.dart';
-part 'api/utils/map_extensions.dart';
-part 'api/utils/response.dart';
-part 'api/api_services.dart';
+part 'models/api/api_services.dart';
 part 'api/notifications_api.dart';
 part 'api/plan_api.dart';
 part 'api/feedback_api.dart';
 part 'api/modules_api.dart';
+part 'api/courses_api.dart';
+
+// Utils
+
+part 'utils/map_extensions.dart';
+part 'utils/color_extensions.dart';
+part 'utils/bool_extensions.dart';
+part 'utils/response.dart';
+part 'utils/provider_utils.dart';
 
 /// The rate with which the api refreshes underlying data
 const kApiRefreshRate = Duration(seconds: 5);

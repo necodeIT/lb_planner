@@ -25,13 +25,13 @@ class _$CourseTearOff {
   _Course call(
       {required int id,
       required String name,
-      required String shortName,
+      required String shortname,
       required String colorCode,
       required bool enabled}) {
     return _Course(
       id: id,
       name: name,
-      shortName: shortName,
+      shortname: shortname,
       colorCode: colorCode,
       enabled: enabled,
     );
@@ -54,7 +54,7 @@ mixin _$Course {
   String get name => throw _privateConstructorUsedError;
 
   /// The short name of the course.
-  String get shortName => throw _privateConstructorUsedError;
+  String get shortname => throw _privateConstructorUsedError;
 
   /// The color of the course.
   String get colorCode => throw _privateConstructorUsedError;
@@ -72,7 +72,7 @@ abstract class $CourseCopyWith<$Res> {
   factory $CourseCopyWith(Course value, $Res Function(Course) then) =
       _$CourseCopyWithImpl<$Res>;
   $Res call(
-      {int id, String name, String shortName, String colorCode, bool enabled});
+      {int id, String name, String shortname, String colorCode, bool enabled});
 }
 
 /// @nodoc
@@ -87,7 +87,7 @@ class _$CourseCopyWithImpl<$Res> implements $CourseCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
-    Object? shortName = freezed,
+    Object? shortname = freezed,
     Object? colorCode = freezed,
     Object? enabled = freezed,
   }) {
@@ -100,9 +100,9 @@ class _$CourseCopyWithImpl<$Res> implements $CourseCopyWith<$Res> {
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      shortName: shortName == freezed
-          ? _value.shortName
-          : shortName // ignore: cast_nullable_to_non_nullable
+      shortname: shortname == freezed
+          ? _value.shortname
+          : shortname // ignore: cast_nullable_to_non_nullable
               as String,
       colorCode: colorCode == freezed
           ? _value.colorCode
@@ -122,7 +122,7 @@ abstract class _$CourseCopyWith<$Res> implements $CourseCopyWith<$Res> {
       __$CourseCopyWithImpl<$Res>;
   @override
   $Res call(
-      {int id, String name, String shortName, String colorCode, bool enabled});
+      {int id, String name, String shortname, String colorCode, bool enabled});
 }
 
 /// @nodoc
@@ -138,7 +138,7 @@ class __$CourseCopyWithImpl<$Res> extends _$CourseCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
-    Object? shortName = freezed,
+    Object? shortname = freezed,
     Object? colorCode = freezed,
     Object? enabled = freezed,
   }) {
@@ -151,9 +151,9 @@ class __$CourseCopyWithImpl<$Res> extends _$CourseCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      shortName: shortName == freezed
-          ? _value.shortName
-          : shortName // ignore: cast_nullable_to_non_nullable
+      shortname: shortname == freezed
+          ? _value.shortname
+          : shortname // ignore: cast_nullable_to_non_nullable
               as String,
       colorCode: colorCode == freezed
           ? _value.colorCode
@@ -173,7 +173,7 @@ class _$_Course extends _Course {
   const _$_Course(
       {required this.id,
       required this.name,
-      required this.shortName,
+      required this.shortname,
       required this.colorCode,
       required this.enabled})
       : super._();
@@ -192,7 +192,7 @@ class _$_Course extends _Course {
   @override
 
   /// The short name of the course.
-  final String shortName;
+  final String shortname;
   @override
 
   /// The color of the course.
@@ -204,7 +204,7 @@ class _$_Course extends _Course {
 
   @override
   String toString() {
-    return 'Course(id: $id, name: $name, shortName: $shortName, colorCode: $colorCode, enabled: $enabled)';
+    return 'Course(id: $id, name: $name, shortname: $shortname, colorCode: $colorCode, enabled: $enabled)';
   }
 
   @override
@@ -214,7 +214,7 @@ class _$_Course extends _Course {
             other is _Course &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.shortName, shortName) &&
+            const DeepCollectionEquality().equals(other.shortname, shortname) &&
             const DeepCollectionEquality().equals(other.colorCode, colorCode) &&
             const DeepCollectionEquality().equals(other.enabled, enabled));
   }
@@ -224,7 +224,7 @@ class _$_Course extends _Course {
       runtimeType,
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(shortName),
+      const DeepCollectionEquality().hash(shortname),
       const DeepCollectionEquality().hash(colorCode),
       const DeepCollectionEquality().hash(enabled));
 
@@ -243,7 +243,7 @@ abstract class _Course extends Course {
   const factory _Course(
       {required int id,
       required String name,
-      required String shortName,
+      required String shortname,
       required String colorCode,
       required bool enabled}) = _$_Course;
   const _Course._() : super._();
@@ -261,7 +261,7 @@ abstract class _Course extends Course {
   @override
 
   /// The short name of the course.
-  String get shortName;
+  String get shortname;
   @override
 
   /// The color of the course.

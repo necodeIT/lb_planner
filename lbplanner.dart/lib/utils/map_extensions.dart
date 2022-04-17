@@ -75,6 +75,17 @@ extension UserMappingExtensions on Map<String, dynamic> {
     body["status"] = FeedbackStatus.values[statusIndex].name;
 
     body["userId"] = this["userid"];
+    body["comment"] = this["notes"];
+
+    return body;
+  }
+
+  /// Maps parameters to fit [Course.fromJson]
+  Map<String, dynamic> mapCourse() {
+    var body = Map.of(this);
+
+    body["id"] = this["courseid"];
+    body["color"] = ColorUtils.fromHexCode(this["color"]);
 
     return body;
   }

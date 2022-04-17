@@ -28,14 +28,15 @@ class FeedbackApi {
   }
 
   /// Submits the given [feedback] to the database.
-  static Future<ApiResponse<Feedback>> addFeedback(String token, int userId, int type, String content) async {
+  static Future<ApiResponse<Feedback>> submitFeedback(String token, int userId, Feedback data) async {
     var response = await Api.makeRequest(
-      functionName: "local_lbplanner_feedback_add_feedback",
+      functionName: "local_lbplanner_feedback_submit_feedback",
       token: token,
       params: {
         "userid": userId,
-        "type": type,
-        "content": content,
+        "type": data.type,
+        "content": data.content,
+        "logs": data.logs,
       },
     );
 
@@ -47,15 +48,15 @@ class FeedbackApi {
   }
 
   /// Updates the feedback with the given [feedbackId] to the given [status].
-  static Future<ApiResponse<Feedback>> updateFeedbackStatus(String token, int userId, int feedbackId, FeedbackStatus status, String? notes) async {
+  static Future<ApiResponse<Feedback>> updateFeedback(String token, int userId, Feedback data) async {
     var response = await Api.makeRequest(
       functionName: "local_lbplanner_feedback_update_feedback",
       token: token,
       params: {
-        "feedbackid": feedbackId,
-        "status": status.index,
+        "feedbackid": data.id,
+        "status": data.status.index,
         "userid": userId,
-        "notes": notes,
+        "notes": data.comment,
       },
     );
 
