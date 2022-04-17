@@ -3,6 +3,9 @@ part of lbplanner_api;
 /// Provides the current user
 final userProvider = StateNotifierProvider<UserProvider, User>((ref) => UserProvider());
 
+/// Controller for the user.
+final userController = userProvider.notifier;
+
 /// Provides the current user
 class UserProvider extends StateNotifier<User> {
   /// Provides the current user
@@ -15,11 +18,11 @@ class UserProvider extends StateNotifier<User> {
     log("Trying to login user", LogTypes.tracking);
 
     var lpa = await UserApi.login(username, password);
-    
+
     if (lpa.failed) return lpa;
-    
+
     var moodleMobileApp = await Api.requestToken(password, username, ApiServices.moodle_mobile_app);
-    
+
     if (moodleMobileApp.failed) return moodleMobileApp;
 
     var token = lpa.value!;

@@ -3,6 +3,9 @@ part of lbplanner_api;
 /// Provides notifications for the current user
 final notificationsProvider = StateNotifierProvider<NotificationsProvider, List<Notification>>((ref) => NotificationsProvider(ref.watch(userProvider)));
 
+/// Controller for the notifications.p
+final notificationsController = notificationsProvider.notifier;
+
 /// Provides notifications for the current user
 class NotificationsProvider extends StateNotifier<List<Notification>> {
   /// The user to get the notifications for

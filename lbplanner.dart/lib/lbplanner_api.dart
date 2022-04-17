@@ -19,6 +19,7 @@ import 'package:nekolib_utils/log.dart';
 import 'package:riverpod/riverpod.dart';
 
 // Project imports:
+import 'models/course/course.dart';
 import 'models/feedback/feedback.dart';
 import 'models/module/module.dart';
 import 'models/notification/notification.dart';
@@ -43,6 +44,9 @@ part 'models/feedback/feedback_status.dart';
 
 part 'providers/user_provider.dart';
 part 'providers/notifications_provider.dart';
+part 'providers/modules_provider.dart';
+part 'providers/courses_provider.dart';
+part 'providers/feedback_provider.dart';
 
 // Api
 
