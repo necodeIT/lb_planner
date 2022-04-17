@@ -1,3 +1,4 @@
+/// This library contains the API, models and providers needed for the [LB Planner application](https://github.com/necodeIT/lb_planner/tree/app-stable).
 library lbplanner_api;
 
 export 'models/user/user.dart';
