@@ -19,6 +19,8 @@ import 'package:nekolib_utils/log.dart';
 import 'package:riverpod/riverpod.dart';
 
 // Project imports:
+import 'models/feedback/feedback.dart';
+import 'models/module/module.dart';
 import 'models/notification/notification.dart';
 import 'models/plan/plan.dart';
 import 'models/user/user.dart';
