@@ -25,13 +25,13 @@ class Module with _$Module {
     required String url,
 
     /// The deadline of the module.
-    @Default(null) DateTime? deadline,
+    DateTime? deadline,
 
     /// If the module is hidden or not.
     @Default(false) bool hidden,
 
     /// The grade of the module.
-    @Default(null) ModuleGrades? grade,
+    ModuleGrades? grade,
 
     /// The type of the module.
     required ModuleTypes type,

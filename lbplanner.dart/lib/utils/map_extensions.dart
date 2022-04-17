@@ -1,7 +1,7 @@
 part of lbplanner_api;
 
 /// Provides utilities to remap parameters as the moodle api and the models have different names for their parameters.
-extension UserMappingExtensions on Map<String, dynamic> {
+extension ModelMappingExtensions on Map<String, dynamic> {
   /// Maps paramters to fit [User.fromJson].
   Map<String, dynamic> mapUser(String token) {
     var body = Map.of(this);
@@ -23,12 +23,13 @@ extension UserMappingExtensions on Map<String, dynamic> {
   Map<String, dynamic> mapNotification() {
     var body = Map.of(this);
 
-    var payload = this["info"] ?? "{}";
+    var payload = (this["info"] ?? "") as String;
+
     var type = this["type"];
     var status = this["status"];
     var id = this["notificationid"];
 
-    body["payload"] = jsonDecode(payload);
+    body["payload"] = jsonDecode(payload.isEmpty ? '{}' : payload);
     body["type"] = NotificationTypes.values[type].name;
     body["status"] = NotificationStatus.values[status].name;
     body["id"] = id;

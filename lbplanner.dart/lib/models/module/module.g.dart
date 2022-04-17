@@ -12,9 +12,9 @@ _$_Module _$$_ModuleFromJson(Map<String, dynamic> json) => _$_Module(
       url: json['url'] as String,
       deadline: json['deadline'] == null
           ? null
-          : DateTime.parse(json['deadline'] as String) ?? null,
+          : DateTime.parse(json['deadline'] as String),
       hidden: json['hidden'] as bool? ?? false,
-      grade: $enumDecodeNullable(_$ModuleGradesEnumMap, json['grade']) ?? null,
+      grade: $enumDecodeNullable(_$ModuleGradesEnumMap, json['grade']),
       type: $enumDecode(_$ModuleTypesEnumMap, json['type']),
       status: $enumDecode(_$ModuleStatusEnumMap, json['status']),
     );

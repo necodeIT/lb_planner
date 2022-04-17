@@ -26,9 +26,9 @@ class _$ModuleTearOff {
       {required int id,
       required String name,
       required String url,
-      DateTime? deadline = null,
+      DateTime? deadline,
       bool hidden = false,
-      ModuleGrades? grade = null,
+      ModuleGrades? grade,
       required ModuleTypes type,
       required ModuleStatus status}) {
     return _Module(
@@ -233,9 +233,9 @@ class _$_Module extends _Module {
       {required this.id,
       required this.name,
       required this.url,
-      this.deadline = null,
+      this.deadline,
       this.hidden = false,
-      this.grade = null,
+      this.grade,
       required this.type,
       required this.status})
       : super._();
@@ -255,7 +255,6 @@ class _$_Module extends _Module {
 
   /// The url of the module.
   final String url;
-  @JsonKey()
   @override
 
   /// The deadline of the module.
@@ -265,7 +264,6 @@ class _$_Module extends _Module {
 
   /// If the module is hidden or not.
   final bool hidden;
-  @JsonKey()
   @override
 
   /// The grade of the module.
