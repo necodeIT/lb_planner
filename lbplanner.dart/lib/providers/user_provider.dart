@@ -26,7 +26,7 @@ class UserProvider extends StateNotifier<User> {
     if (moodleMobileApp.failed) return moodleMobileApp;
 
     var token = lpa.value!;
-    var moodleToken = moodleMobileApp["token"]!;
+    var moodleToken = moodleMobileApp.value!;
 
     var id = await UserApi.getUserId(moodleToken);
 

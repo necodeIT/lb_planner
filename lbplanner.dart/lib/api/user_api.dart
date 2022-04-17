@@ -93,11 +93,7 @@ class UserApi {
   }
 
   /// Requests a token for the given [username] and [password].
-  static Future<ApiResponse<String>> login(String username, String password) async {
-    var response = await Api.requestToken(password, username, ApiServices.lpa);
-
-    return ApiResponse(response.response, response["token"]);
-  }
+  static Future<ApiResponse<String>> login(String username, String password) => Api.requestToken(password, username, ApiServices.lpa);
 
   /// Retrieves the user id with the given [token].
   /// The token must have access to the [ApiServices.moodle_mobile_app] service.

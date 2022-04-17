@@ -39,7 +39,7 @@ class Api {
   }
 
   /// Requests a token for the given [service] with the given [username] and [password].
-  static Future<RawApiResponse> requestToken(String password, String username, ApiServices service) async {
+  static Future<ApiResponse<String>> requestToken(String password, String username, ApiServices service) async {
     log("Requesting token for ${service.name}...", LogTypes.tracking);
 
     var encodedPassword = Uri.encodeComponent(password);
@@ -48,7 +48,9 @@ class Api {
 
     var response = await client.get(Uri.parse(url));
 
-    var result = RawApiResponse(response);
+    var json = jsonDecode(response.body);
+
+    var result = ApiResponse<String>(response, json["token"]);
 
     _logResponse(result);
 
