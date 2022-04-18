@@ -4,5 +4,9 @@
   "login_login": "LOGIN",
   "login_password": "Password",
   "login_username": "Username",
-  "plan_routeName": "Plan"
+  "plan_routeName": "Plan",
+  "dialog_confirm": "Confirm",
+  "dialog_cancel": "Cancel",
+  "alertDialog_confirm": "OK"
+
 }

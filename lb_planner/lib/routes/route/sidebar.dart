@@ -48,6 +48,11 @@ class Sidebar extends StatelessWidget {
                         icon: Icons.calendar_month_rounded,
                         route: CalendarPlanRoute.routeName,
                       ),
+                      NcSpacing.small(),
+                      SidebarItem(
+                        icon: Icons.edit,
+                        route: TestRoute.routeName,
+                      ),
                     ],
                   ),
                   Column(
@@ -89,6 +94,7 @@ final Map<String, WidgetBuilder> kRoutes = {
   LoginRoute.routeName: (context) => LoginRoute(),
   DashboardRoute.routeName: (context) => DashboardRoute(),
   CalendarPlanRoute.routeName: (context) => CalendarPlanRoute(),
+  TestRoute.routeName: (context) => TestRoute(),
   SettingsRoute.routeName: (context) => SettingsRoute(),
 };
 

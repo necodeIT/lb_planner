@@ -26,3 +26,4 @@ part 'routes/route/utils.dart';
 part 'routes/route/route_title.dart';
 part 'routes/calendar/calendar_plan.dart';
 part 'routes/settings/settings.dart';
+part 'routes/test/test.dart';

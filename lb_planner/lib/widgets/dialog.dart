@@ -1,14 +1,14 @@
 part of lbplanner_widgets;
 
-/// Themed [AlertDialog] widget.
+/// Themed [Dialog] widget.
 class LpDialog extends StatelessWidget {
-  /// Themed [AlertDialog] widget.
-  LpDialog({Key? key, this.title = "", required this.body, this.confirmText = "Confirm", this.cancelText = "Cancel", required this.onConfirm, this.onCancel}) : super(key: key) {
+  /// Themed ConfirmDialog widget.
+  LpDialog.confirm({Key? key, required this.title, required this.body, this.confirmText, this.cancelText, required this.onConfirm, this.onCancel}) : super(key: key) {
     confirmOnly = false;
   }
 
   /// Themed [AlertDialog] widget with just one button.
-  LpDialog.ok({Key? key, required this.title, required this.body, this.onConfirm, this.confirmText = "OK"}) : super(key: key) {
+  LpDialog.alert({Key? key, required this.title, required this.body, this.onConfirm, this.confirmText}) : super(key: key) {
     confirmOnly = true;
   }
 
@@ -19,7 +19,7 @@ class LpDialog extends StatelessWidget {
   final Widget body;
 
   /// The text of the confirm button.
-  final String confirmText;
+  final String? confirmText;
 
   /// The text of the cancel button.
   late final String? cancelText;
@@ -61,9 +61,22 @@ class LpDialog extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            if (!confirmOnly) LpButton(text: cancelText ?? "", onPressed: onCancel ?? Navigator.of(context).pop),
+            if (!confirmOnly)
+              LpButton(
+                text: cancelText ?? context.t.dialog_cancel,
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  onCancel?.call();
+                },
+              ),
             NcSpacing.medium(),
-            LpButton(text: confirmText, onPressed: onConfirm ?? Navigator.of(context).pop),
+            LpButton(
+              text: confirmText ?? (confirmOnly ? context.t.alertDialog_confirm : context.t.dialog_confirm),
+              onPressed: () {
+                Navigator.of(context).pop();
+                onConfirm?.call();
+              },
+            ),
           ],
         )
       ],
@@ -73,4 +86,59 @@ class LpDialog extends StatelessWidget {
       ),
     );
   }
+}
+
+/// /// Themed ConfirmDialog widget.
+void lpShowConfirmDialog(BuildContext context, {required String title, required Widget body, String? confirmText, String? cancelText, Function()? onConfirm, Function()? onCancel}) {
+  showGeneralDialog(
+    context: context,
+    barrierDismissible: false,
+    transitionDuration: Duration(milliseconds: 200),
+    transitionBuilder: (context, animation, secondaryAnimation, child) {
+      return shrinkAnimation(animation, secondaryAnimation, child);
+    },
+    pageBuilder: (animation, secondaryAnimation, child) {
+      return LpDialog.confirm(
+        title: title,
+        body: body,
+        confirmText: confirmText,
+        cancelText: cancelText,
+        onConfirm: onConfirm,
+        onCancel: onCancel,
+      );
+    },
+  );
+}
+
+/// Themed [AlertDialog] widget.
+void lpShowAlertDialog(BuildContext context, {required String title, required Widget body, String confirmText = "Confirm", Function()? onConfirm}) {
+  showGeneralDialog(
+    context: context,
+    barrierDismissible: false,
+    transitionDuration: Duration(milliseconds: 200),
+    transitionBuilder: (context, animation, secondaryAnimation, child) {
+      return shrinkAnimation(animation, secondaryAnimation, child);
+    },
+    pageBuilder: (animation, secondaryAnimation, child) {
+      return LpDialog.alert(
+        title: title,
+        body: body,
+        confirmText: confirmText,
+        onConfirm: onConfirm,
+      );
+    },
+  );
+}
+
+/// Shrinkanimation for the dialogs.
+shrinkAnimation(Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
+  return ScaleTransition(
+    child: child,
+    scale: Tween<double>(end: 1.0, begin: 0.0).animate(
+      CurvedAnimation(
+        parent: animation,
+        curve: Interval(0.0, 0.5, curve: Curves.linear),
+      ),
+    ),
+  );
 }
