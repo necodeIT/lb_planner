@@ -27,10 +27,15 @@ class UserProfile extends StatelessWidget {
           UserNotifications(),
           NcSpacing.small(),
           ClipOval(
-            child: Image.network(
-              user.avatar,
+            child: CachedNetworkImage(
+              imageUrl: user.avatar,
               width: imgSize,
               height: imgSize,
+              placeholder: (_, __) => LpProgressindicator.circular(),
+              errorWidget: (_, __, ___) => LpIcon(
+                Icons.account_circle,
+                size: imgSize,
+              ),
             ),
           ),
           NcSpacing.small(),
