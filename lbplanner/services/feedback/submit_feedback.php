@@ -50,7 +50,7 @@ class feedback_submit_feedback extends external_api {
             'userid' => $userid,
             'type' => $type,
             'status' => feedback_helper::STATUS_UNREAD,
-            'timecreated' => time(),
+            'timestamp' => time(),
             'logs' => $logs,
         ));
 
