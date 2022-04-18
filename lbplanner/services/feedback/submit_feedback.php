@@ -28,19 +28,19 @@ use local_lbplanner\helpers\feedback_helper;
 class feedback_submit_feedback extends external_api {
     public static function submit_feedback_parameters() {
         return new external_function_parameters(array(
-            'content' => new external_value(PARAM_TEXT, 'The id of the course', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
             'userid' => new external_value(PARAM_INT, 'The id of the user', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
-            'type' => new external_value(PARAM_INT, 'The id of the user', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
-            'logs' => new external_value(PARAM_TEXT, 'The id of the user', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
+            'type' => new external_value(PARAM_INT, 'The type ', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
+            'content' => new external_value(PARAM_TEXT, 'The content of the feedback', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
+            'logs' => new external_value(PARAM_TEXT, 'The logs of the feedback', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
         ));
     }
 
-    public static function submit_feedback($content, $userid, $type, $logs) {
+    public static function submit_feedback($userid, $type, $content, $logs) {
         global $DB;
 
         self::validate_parameters(
             self::submit_feedback_parameters(),
-            array('content' => $content, 'userid' => $userid, 'type' => $type, 'logs' => $logs)
+            array('userid' => $userid, 'type' => $type, 'content' => $content, 'logs' => $logs)
         );
 
         user_helper::assert_access($userid);
