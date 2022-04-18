@@ -12,10 +12,12 @@ class NotificationsProvider extends StateNotifier<List<Notification>> {
   final User user;
 
   /// Provides notifications for the current user
-  NotificationsProvider(this.user) : super(<Notification>[]);
+  NotificationsProvider(this.user) : super(<Notification>[]){
+    fetchNotifications();
+  }
 
   /// Gets the notifications for the current user
-  Future<RawApiResponse> getAllNotifications() async {
+  Future<RawApiResponse> fetchNotifications() async {
     var response = await NotificationsApi.getAllNotifications(user.token, user.id);
 
     if (response.succeeded) state = response.value!;
