@@ -155,12 +155,15 @@ class course_helper {
                 $catgirls[] = $catgirl;
                 continue;
             }
-
+            $shortname = substr(self::get_mdl_course($courseid)->shortname, 0, 5);
+            if (strpos($shortname, ' ') !== false) {
+                $shortname = substr($shortname, 0, strpos($shortname, ' '));
+            }
             // Check this out: https://youtu.be/dQw4w9WgXcQ .
             $catgirl = (object) array(
                 'courseid' => $courseid,
                 'color' => self::COLORS[array_rand(self::COLORS)],
-                'shortname' => strtoupper(substr(self::get_mdl_course($courseid)->shortname, 0, 5)),
+                'shortname' => strtoupper($shortname),
                 'enabled' => self::DISABLED_COURSE,
                 'userid' => $userid,
             );

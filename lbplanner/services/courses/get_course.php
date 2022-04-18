@@ -46,7 +46,7 @@ class courses_get_course extends external_api {
         user_helper::assert_access($userid);
 
         if (!course_helper::check_access($courseid, $userid)) {
-            throw new \moodle_exception('Access denied');
+            throw new \moodle_exception('Not Enrolled in course');
         }
 
         $course = $DB->get_record(course_helper::LBPLANNER_COURSE_TABLE, array('courseid' => $courseid), '*', MUST_EXIST);
