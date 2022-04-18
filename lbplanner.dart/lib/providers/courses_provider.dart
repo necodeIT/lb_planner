@@ -58,12 +58,12 @@ class CoursesProvider extends StateNotifier<Map<int, Course>> {
 
   /// Updates the [color] of the course with the given [id]
 
-  Future<RawApiResponse> updateCourseColor(int id, String color) async {
+  Future<RawApiResponse> updateCourseColor(int id, Color color) async {
     assertId(id);
 
     var oldCourse = state[id];
 
-    var updatedCourse = oldCourse!.copyWith(colorCode: color);
+    var updatedCourse = oldCourse!.copyWith(colorCode: color.hexCode);
 
     var response = await CoursesApi.updateCourse(user.token, user.id, updatedCourse);
 
