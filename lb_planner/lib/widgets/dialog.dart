@@ -122,7 +122,7 @@ void lpShowConfirmDialog(BuildContext context, {required String title, required 
 }
 
 /// Themed [AlertDialog] widget.
-void lpShowAlertDialog(BuildContext context, {required String title, required Widget body, String confirmText = "Confirm", Function()? onConfirm}) {
+void lpShowAlertDialog(BuildContext context, {required String title, required Widget body, String? confirmText, Function()? onConfirm}) {
   showGeneralDialog(
     context: context,
     barrierDismissible: false,
