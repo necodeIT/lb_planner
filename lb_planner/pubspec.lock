@@ -22,6 +22,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.8.2"
+  badges:
+    dependency: "direct main"
+    description:
+      name: badges
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.2"
   bitsdojo_window:
     dependency: "direct main"
     description:
@@ -155,13 +162,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.4"
-  custom_pop_up_menu:
-    dependency: "direct main"
-    description:
-      name: custom_pop_up_menu
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.2.3+1"
   dbus:
     dependency: transitive
     description:
@@ -327,7 +327,7 @@ packages:
     description:
       path: "lbplanner.dart"
       ref: "lbplanner.dart"
-      resolved-ref: a42133e15f076a8a650f36e1554625c8d8a1c571
+      resolved-ref: f22404793c6b1e54cfd3c647cba4946a115c0dd8
       url: "https://github.com/necodeIT/lb_planner.git"
     source: git
     version: "0.0.1"
@@ -364,7 +364,7 @@ packages:
     description:
       path: ui
       ref: flutter
-      resolved-ref: b0293a950a77ed76ec786ae3d7b59d6d0fab124f
+      resolved-ref: f0fc1da6c36dc08c308a0f215fe00e6e0fc0259c
       url: "https://github.com/necodeIT/nekolib.git"
     source: git
     version: "0.0.1"
@@ -373,7 +373,7 @@ packages:
     description:
       path: utils
       ref: flutter
-      resolved-ref: b0293a950a77ed76ec786ae3d7b59d6d0fab124f
+      resolved-ref: f0fc1da6c36dc08c308a0f215fe00e6e0fc0259c
       url: "https://github.com/necodeIT/nekolib.git"
     source: git
     version: "0.0.1"

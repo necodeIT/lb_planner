@@ -1,7 +1,7 @@
 library lbplanner_routes;
 
 import 'package:animations/animations.dart';
-import 'package:custom_pop_up_menu/custom_pop_up_menu.dart';
+import 'package:badges/badges.dart';
 import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -18,12 +18,14 @@ part 'routes/login/login.dart';
 part 'routes/login/background.dart';
 part 'routes/dashboard/dashboard.dart';
 part 'routes/route/route.dart';
-part 'routes/route/sidebar.dart';
+part 'routes/route/sidebar/sidebar.dart';
 part 'routes/login/login_form.dart';
-part 'routes/route/sidebar_item.dart';
-part 'routes/route/user_profile.dart';
+part 'routes/route/sidebar/sidebar_item.dart';
+part 'routes/route/user/user_profile.dart';
 part 'routes/route/utils.dart';
 part 'routes/route/route_title.dart';
 part 'routes/calendar/calendar_plan.dart';
 part 'routes/settings/settings.dart';
 part 'routes/test/test.dart';
+part 'routes/route/user/user_notifications.dart';
+part 'routes/route/user/user_notifications_popup.dart';

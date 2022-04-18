@@ -62,14 +62,16 @@ class Sidebar extends StatelessWidget {
                         route: SettingsRoute.routeName,
                       ),
                       NcSpacing.small(),
-                      Consumer(builder: (context, ref, _) {
-                        var user = ref.read(userProvider.notifier);
-                        return SidebarItem(
-                          icon: Icons.logout,
-                          route: LoginRoute.routeName,
-                          onTap: user.logout,
-                        );
-                      }),
+                      Consumer(
+                        builder: (context, ref, _) {
+                          var user = ref.read(userProvider.notifier);
+                          return SidebarItem(
+                            icon: Icons.logout,
+                            route: LoginRoute.routeName,
+                            onTap: user.logout,
+                          );
+                        },
+                      ),
                       NcSpacing.medium(),
                     ],
                   )

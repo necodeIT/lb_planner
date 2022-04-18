@@ -16,24 +16,15 @@ class UserProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var _key = GlobalKey();
     return Consumer(builder: (context, ref, _) {
       var user = ref.read(userProvider);
 
       return Row(
+        key: _key,
         mainAxisSize: MainAxisSize.min,
         children: [
-          CustomPopupMenu(
-            showArrow: false,
-            verticalMargin: 0,
-            position: PreferredPosition.bottom,
-            child: LpIcon(Icons.notifications_outlined),
-            menuBuilder: () => Container(
-              color: errorColor,
-              width: 300,
-              height: 300,
-            ),
-            pressType: PressType.singleClick,
-          ),
+          UserNotifications(),
           NcSpacing.small(),
           ClipOval(
             child: Image.network(

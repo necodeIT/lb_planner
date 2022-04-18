@@ -24,6 +24,7 @@ part 'widgets/animated_fade_out_in.dart';
 part 'widgets/loading_indicator.dart';
 part 'widgets/dialog.dart';
 part 'widgets/container.dart';
+part 'widgets/popup.dart';
 
 /// Radius for all rounded rectangles.
 const double kRadius = 5;
@@ -33,3 +34,9 @@ const kFastAnimationDuration = Duration(milliseconds: 100);
 
 /// Faster animation duration.
 const kFasterAnimationDuration = Duration(milliseconds: 50);
+
+/// Slow animation duration.
+const kSlowAnimationDuration = Duration(milliseconds: 500);
+
+/// Animation curve for all animations.
+const Curve kAnimationCurve = Curves.easeOutCubic;
