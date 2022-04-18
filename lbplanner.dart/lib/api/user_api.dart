@@ -8,6 +8,7 @@ class UserApi {
       functionName: "local_lbplanner_user_get_user",
       token: token,
       params: {"userid": userId},
+      reportError: false,
     );
 
     User? user;

@@ -18,7 +18,7 @@ class Api {
   /// - [functionName] The name of the function to call
   /// - [params] The parameters to pass to the function
   /// - [token] The token to use for authentication
-  static Future<RawApiResponse> makeRequest({required String functionName, required String token, Map<String, dynamic>? params}) async {
+  static Future<RawApiResponse> makeRequest({required String functionName, required String token, Map<String, dynamic>? params, bool reportError = true}) async {
     var url = "$apiEndpoint?moodlewsrestformat=$format&wstoken=$token&wsfunction=$functionName";
 
     log("Calling $functionName(${params ?? ''}) ...", LogTypes.tracking);
@@ -33,7 +33,7 @@ class Api {
 
     _logResponse(result);
 
-    if (result.failed) onError?.call(result);
+    if (result.failed && reportError) onError?.call(result);
 
     return result;
   }
