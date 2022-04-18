@@ -42,6 +42,12 @@ class LpDialog extends StatelessWidget {
   /// The height factor of the body in the dialog.
   static const double heightFactor = .8;
 
+  /// The font size of the buttons in the dialog.
+  static const double btnFontSize = 16;
+
+  /// The padding of the buttons in the dialog.
+  static const double btnPadding = 14;
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -64,6 +70,9 @@ class LpDialog extends StatelessWidget {
             if (!confirmOnly)
               LpButton(
                 text: cancelText ?? context.t.dialog_cancel,
+                fontSize: btnFontSize,
+                padding: btnPadding,
+                color: errorColor,
                 onPressed: () {
                   Navigator.of(context).pop();
                   onCancel?.call();
@@ -72,6 +81,8 @@ class LpDialog extends StatelessWidget {
             NcSpacing.medium(),
             LpButton(
               text: confirmText ?? (confirmOnly ? context.t.alertDialog_confirm : context.t.dialog_confirm),
+              fontSize: btnFontSize,
+              padding: btnPadding,
               onPressed: () {
                 Navigator.of(context).pop();
                 onConfirm?.call();
