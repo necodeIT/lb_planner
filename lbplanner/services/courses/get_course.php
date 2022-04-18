@@ -24,62 +24,37 @@ use local_lbplanner\helpers\user_helper;
 use local_lbplanner\helpers\course_helper;
 
 /**
- * Update the data for a course.
+ * Get the data for a course.
  */
-class course_update_course extends external_api {
-    public static function update_course_parameters() {
+class courses_get_course extends external_api {
+    public static function get_course_parameters() {
         return new external_function_parameters(array(
             'courseid' => new external_value(PARAM_INT, 'The id of the course', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
-            'color' => new external_value(PARAM_TEXT, 'The color of the course', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
-            'name' => new external_value(PARAM_TEXT, 'The name of the course', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
-            'shortname' => new external_value(PARAM_TEXT, 'The shortname of the course', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
-            'enabled' => new external_value(
-                PARAM_BOOL,
-                'Whether the course is enabled or not',
-                VALUE_REQUIRED,
-                null,
-                NULL_NOT_ALLOWED
-            ),
             'userid' => new external_value(PARAM_INT, 'The id of the user', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
         ));
     }
 
-    public static function update_course($courseid, $color, $name, $shortname, $enabled, $userid) {
+    public static function get_course($courseid, $userid) {
         global $DB;
 
-        self::validate_parameters(
-            self::update_course_parameters(),
-            array(
-                'courseid' => $courseid,
-                'color' => $color,
-                'name' => $name,
-                'shortname' => $shortname,
-                'enabled' => $enabled,
-                'userid' => $userid
-            )
-        );
+        self::validate_parameters(self::get_course_parameters(), array('courseid' => $courseid, 'userid' => $userid));
+
+        if (!$DB->record_exists('course', array('id' => $courseid))) {
+            throw new \moodle_exception('Course not found');
+        }
 
         user_helper::assert_access($userid);
 
         if (!course_helper::check_access($courseid, $userid)) {
             throw new \moodle_exception('Access denied');
         }
-        $course = course_helper::get_lbplanner_course($courseid);
 
-        if ($course->shortname > 5) {
-            throw new \moodle_exception('Shortname is too long');
-        }
-
-        $course->color = $color;
-        $course->name = $name;
-        $course->shortname = $shortname;
-        $course->enabled = $enabled;
-        $DB->update_record(course_helper::LBPLANNER_COURSE_TABLE, $course);
-
+        $course = $DB->get_record(course_helper::LBPLANNER_COURSE_TABLE, array('courseid' => $courseid), '*', MUST_EXIST);
+        $course->name = course_helper::get_fullname($course->courseid);
         return $course;
     }
 
-    public static function update_course_returns() {
+    public static function get_course_returns() {
         return new external_single_structure(
             array(
                 'courseid' => new external_value(PARAM_INT, 'The id of the course'),

@@ -45,6 +45,10 @@ class feedback_helper {
                 'notes' => new external_value(PARAM_TEXT, 'Notes of the feedback'),
                 'id' => new external_value(PARAM_INT, 'The id of the feedback'),
                 'status' => new external_value(PARAM_INT, 'The status of the feedback'),
+                'timecreated' => new external_value(PARAM_INT, 'The time when the feedback was created'),
+                'lastmodified' => new external_value(PARAM_INT, 'The time when the feedback was last modified'),
+                'lastmodifiedby' => new external_value(PARAM_INT, 'The id of the user who last modified the feedback'),
+                'logs' => new external_value(PARAM_TEXT, 'The logs of the feedback'),
             )
         );
     }
@@ -72,7 +76,7 @@ class feedback_helper {
             throw new \moodle_exception('Access denied');
         }
     }
-    public static function get_all_feedbacks(int $userid) : array {
+    public static function get_all_feedbacks() : array {
         global $DB;
         return $DB->get_records(self::LBPLANNER_FEEDBACK_TABLE);
     }

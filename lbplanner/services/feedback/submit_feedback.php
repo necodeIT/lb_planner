@@ -25,21 +25,22 @@ use local_lbplanner\helpers\feedback_helper;
 /**
  * Add feedback to the database.
  */
-class feedback_add_feedback extends external_api {
-    public static function add_feedback_parameters() {
+class feedback_submit_feedback extends external_api {
+    public static function submit_feedback_parameters() {
         return new external_function_parameters(array(
             'content' => new external_value(PARAM_TEXT, 'The id of the course', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
             'userid' => new external_value(PARAM_INT, 'The id of the user', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
             'type' => new external_value(PARAM_INT, 'The id of the user', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
+            'logs' => new external_value(PARAM_TEXT, 'The id of the user', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
         ));
     }
 
-    public static function add_feedback($content, $userid, $type) {
+    public static function submit_feedback($content, $userid, $type, $logs) {
         global $DB;
 
         self::validate_parameters(
-            self::add_feedback_parameters(),
-            array('content' => $content, 'userid' => $userid, 'type' => $type)
+            self::submit_feedback_parameters(),
+            array('content' => $content, 'userid' => $userid, 'type' => $type, 'logs' => $logs)
         );
 
         user_helper::assert_access($userid);
@@ -49,12 +50,14 @@ class feedback_add_feedback extends external_api {
             'userid' => $userid,
             'type' => $type,
             'status' => feedback_helper::STATUS_UNREAD,
+            'timecreated' => time(),
+            'logs' => $logs,
         ));
 
         return feedback_helper::get_feedback($id);
     }
 
-    public static function add_feedback_returns() {
+    public static function submit_feedback_returns() {
         return feedback_helper::structure();
     }
 }

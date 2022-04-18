@@ -31,7 +31,7 @@ class feedback_update_feedback extends external_api {
         return new external_function_parameters(array(
             'userid' => new external_value(PARAM_INT, 'The id of the user', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
             'feedbackid' => new external_value(PARAM_INT, 'The id of the course', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
-            'notes' => new external_value(PARAM_TEXT, 'The notes of the feedback', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
+            'notes' => new external_value(PARAM_TEXT, 'The notes of the feedback', VALUE_REQUIRED, null, NULL_ALLOWED),
             'status' => new external_value(PARAM_INT, 'The status of the feedback', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
         ));
     }
@@ -56,6 +56,8 @@ class feedback_update_feedback extends external_api {
             throw new \moodle_exception('Invalid status');
         }
         $feedback->status = $status;
+        $feedback->lastmodified = time();
+        $feedback->lastmodifiedby = $userid;
 
         $DB->update_record(feedback_helper::LBPLANNER_FEEDBACK_TABLE, $feedback);
 

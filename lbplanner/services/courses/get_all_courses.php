@@ -27,7 +27,7 @@ use local_lbplanner\helpers\course_helper;
 /**
  * Get all the courses of the current year.
  */
-class course_get_all_courses extends external_api {
+class courses_get_all_courses extends external_api {
     public static function get_all_courses_parameters() {
         return new external_function_parameters(array(
             'userid' => new external_value(
