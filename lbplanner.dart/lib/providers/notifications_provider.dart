@@ -35,6 +35,6 @@ class NotificationsProvider extends StateNotifier<List<Notification>> {
       }
     }
 
-    return getAllNotifications();
+    return fetchNotifications();
   }
 }
