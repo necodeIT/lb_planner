@@ -3,7 +3,15 @@ part of lbplanner_widgets;
 /// A button that can be used to trigger an action.
 class LpButton extends StatelessWidget {
   /// A button that can be used to trigger an action.
-  LpButton({Key? key, this.text, this.child, this.onPressed, this.color, this.fontSize}) : super(key: key) {
+  LpButton({
+    Key? key,
+    this.text,
+    this.child,
+    this.onPressed,
+    this.color,
+    this.fontSize = defaultFontSize,
+    this.padding = NcSpacing.smallSpacing,
+  }) : super(key: key) {
     assert(text != null || child != null, "Either text or child must be provided.");
     icon = null;
     trailing = null;
@@ -11,7 +19,18 @@ class LpButton extends StatelessWidget {
   }
 
   /// A button that can be used to trigger an action with icons.
-  LpButton.icon({Key? key, this.text, this.child, this.onPressed, this.color, required this.icon, this.size = MainAxisSize.min, this.trailing = false, this.fontSize}) : super(key: key) {
+  LpButton.icon({
+    Key? key,
+    this.text,
+    this.child,
+    this.onPressed,
+    this.color,
+    required this.icon,
+    this.size = MainAxisSize.min,
+    this.trailing = false,
+    this.fontSize = defaultFontSize,
+    this.padding = NcSpacing.smallSpacing,
+  }) : super(key: key) {
     assert(text != null || child != null, "Either text or child must be provided.");
     assert(icon != null, "Icon must be provided.");
     assert(size != null, "Size must be provided.");
@@ -28,7 +47,10 @@ class LpButton extends StatelessWidget {
   final VoidCallback? onPressed;
 
   /// The font size to use if [text] is set.
-  final double? fontSize;
+  final double fontSize;
+
+  /// The padding to use.
+  final double padding;
 
   /// The color of the button if not set [accentColor] will be used instead.
   final Color? color;
@@ -44,6 +66,9 @@ class LpButton extends StatelessWidget {
 
   /// Size of [LpButton.icon].
   static const double iconSize = 19;
+
+  /// The default [fontSize] to use.
+  static const double defaultFontSize = 13;
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +97,7 @@ class LpButton extends StatelessWidget {
         ),
       ),
       style: ElevatedButton.styleFrom(
-        padding: const EdgeInsets.all(NcSpacing.smallSpacing),
+        padding: EdgeInsets.all(padding),
         primary: color ?? accentColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(kRadius),
