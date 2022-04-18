@@ -58,7 +58,7 @@ class Api {
   }
 
   static void _logResponse(RawApiResponse response) {
-    log("Response: ${response.response.statusCode}${response.failed ? ", Message: '${response.errorMessage}'" : ""}", response.succeeded ? LogTypes.success : LogTypes.error);
+    log("Response: ${response.response.statusCode}${response.failed ? ", Message: '${response.errorMessage}'" : ""}", response.succeeded ? LogTypes.success : LogTypes.error, 1);
   }
 
   /// Callback called when an API call reults in an error.
