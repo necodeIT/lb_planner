@@ -3,7 +3,7 @@ part of lbplanner_widgets;
 /// A button that can be used to trigger an action.
 class LpButton extends StatelessWidget {
   /// A button that can be used to trigger an action.
-  LpButton({Key? key, this.text, this.child, this.onPressed, this.color}) : super(key: key) {
+  LpButton({Key? key, this.text, this.child, this.onPressed, this.color, this.fontSize}) : super(key: key) {
     assert(text != null || child != null, "Either text or child must be provided.");
     icon = null;
     trailing = null;
@@ -11,7 +11,7 @@ class LpButton extends StatelessWidget {
   }
 
   /// A button that can be used to trigger an action with icons.
-  LpButton.icon({Key? key, this.text, this.child, this.onPressed, this.color, required this.icon, this.size = MainAxisSize.min, this.trailing = false}) : super(key: key) {
+  LpButton.icon({Key? key, this.text, this.child, this.onPressed, this.color, required this.icon, this.size = MainAxisSize.min, this.trailing = false, this.fontSize}) : super(key: key) {
     assert(text != null || child != null, "Either text or child must be provided.");
     assert(icon != null, "Icon must be provided.");
     assert(size != null, "Size must be provided.");
@@ -26,6 +26,9 @@ class LpButton extends StatelessWidget {
 
   /// The action to trigger when the button is pressed.
   final VoidCallback? onPressed;
+
+  /// The font size to use if [text] is set.
+  final double? fontSize;
 
   /// The color of the button if not set [accentColor] will be used instead.
   final Color? color;
@@ -63,11 +66,13 @@ class LpButton extends StatelessWidget {
           trueWidget: (context) => NcTitleText(
             text!,
             buttonText: true,
+            fontSize: fontSize,
           ),
           falseWidget: (context) => child!,
         ),
       ),
       style: ElevatedButton.styleFrom(
+        padding: const EdgeInsets.all(NcSpacing.smallSpacing),
         primary: color ?? accentColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(kRadius),

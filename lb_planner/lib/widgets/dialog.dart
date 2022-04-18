@@ -88,12 +88,12 @@ class LpDialog extends StatelessWidget {
   }
 }
 
-/// /// Themed ConfirmDialog widget.
+/// Themed ConfirmDialog widget.
 void lpShowConfirmDialog(BuildContext context, {required String title, required Widget body, String? confirmText, String? cancelText, Function()? onConfirm, Function()? onCancel}) {
   showGeneralDialog(
     context: context,
     barrierDismissible: false,
-    transitionDuration: Duration(milliseconds: 200),
+    transitionDuration: kFastAnimationDuration,
     transitionBuilder: (context, animation, secondaryAnimation, child) {
       return shrinkAnimation(animation, secondaryAnimation, child);
     },
@@ -115,7 +115,7 @@ void lpShowAlertDialog(BuildContext context, {required String title, required Wi
   showGeneralDialog(
     context: context,
     barrierDismissible: false,
-    transitionDuration: Duration(milliseconds: 200),
+    transitionDuration: kFastAnimationDuration,
     transitionBuilder: (context, animation, secondaryAnimation, child) {
       return shrinkAnimation(animation, secondaryAnimation, child);
     },
@@ -134,10 +134,10 @@ void lpShowAlertDialog(BuildContext context, {required String title, required Wi
 shrinkAnimation(Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
   return ScaleTransition(
     child: child,
-    scale: Tween<double>(end: 1.0, begin: 0.0).animate(
+    scale: Tween<double>(begin: 1, end: 0.85).animate(
       CurvedAnimation(
         parent: animation,
-        curve: Interval(0.0, 0.5, curve: Curves.linear),
+        curve: Interval(0.0, 0.5, curve: kDialogAnimationCurve),
       ),
     ),
   );
