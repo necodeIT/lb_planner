@@ -11,6 +11,12 @@ class Api {
   /// The format the api should use.
   static const format = "json";
 
+  /// Content-Type for post requests.
+  static const postFormat = "application/x-www-form-urlencoded";
+
+  /// The headers for a post request.
+  static const postHeaders = {"Content-Type": postFormat};
+
   /// Client used to communicate with the API
   static final http.Client client = http.Client();
 
@@ -18,7 +24,9 @@ class Api {
   /// - [functionName] The name of the function to call
   /// - [params] The parameters to pass to the function
   /// - [token] The token to use for authentication
-  static Future<RawApiResponse> makeRequest({required String functionName, required String token, Map<String, dynamic>? params, bool reportError = true}) async {
+  /// - [body] If this is set the request will be a POST request with the given body
+  /// - [reportError] Whether to report errors using [onError]
+  static Future<RawApiResponse> makeRequest({required String functionName, required String token, Map<String, dynamic>? params, Map<String, dynamic>? body, bool reportError = true}) async {
     var url = "$apiEndpoint?moodlewsrestformat=$format&wstoken=$token&wsfunction=$functionName";
 
     log("Calling $functionName(${params ?? ''}) ...", LogTypes.tracking);
@@ -27,7 +35,9 @@ class Api {
       url += "&" + params.entries.map((e) => "${e.key}=${e.value}").join("&");
     }
 
-    var response = await client.get(Uri.parse(url));
+    var uri = Uri.parse(url);
+
+    var response = body != null ? await client.post(uri, body: body, headers: postHeaders) : await client.get(uri);
 
     var result = RawApiResponse(response);
 

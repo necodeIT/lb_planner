@@ -35,6 +35,8 @@ class FeedbackApi {
       params: {
         "userid": userId,
         "type": data.type,
+      },
+      body: {
         "content": data.content,
         "logs": data.logs,
       },
@@ -56,6 +58,8 @@ class FeedbackApi {
         "feedbackid": data.id,
         "status": data.status.index,
         "userid": userId,
+      },
+      body: {
         "notes": data.comment,
       },
     );
