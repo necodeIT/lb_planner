@@ -23,9 +23,7 @@ class DashboardStatusOverview extends LocalizedWidget {
             DashboardStatusOverviewBarLabel(color: neutralColor, count: stats.pendingModules),
           ],
         ),
-        child: Center(
-          child: NcBodyText(stats.totalModules.toString()),
-        ),
+        child: DashboardStatusOverviewChart(),
       );
     });
   }
