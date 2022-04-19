@@ -8,27 +8,23 @@ class DashboardStatusOverview extends LocalizedWidget {
   @override
   Widget create(context, t) {
     return Consumer(builder: (context, ref, _) {
-      var lateModules = 0;
-      var modules = 0;
-      var uploadedModules = 0;
-      var doneModules = 0;
-      var pendingModules = 0;
+      var stats = ref.watch(statisticsProvider);
 
       return LpContainer(
         title: t.dashboard_statusOverview,
         trailing: Row(
           children: [
-            DashboardStatusOverviewBarLabel(color: successColor, count: doneModules),
+            DashboardStatusOverviewBarLabel(color: successColor, count: stats.completedModules),
             NcSpacing.xs(),
-            DashboardStatusOverviewBarLabel(color: warningColor, count: uploadedModules),
+            DashboardStatusOverviewBarLabel(color: warningColor, count: stats.uploadedModules),
             NcSpacing.xs(),
-            DashboardStatusOverviewBarLabel(color: errorColor, count: lateModules),
+            DashboardStatusOverviewBarLabel(color: errorColor, count: stats.lateModules),
             NcSpacing.xs(),
-            DashboardStatusOverviewBarLabel(color: neutralColor, count: pendingModules),
+            DashboardStatusOverviewBarLabel(color: neutralColor, count: stats.pendingModules),
           ],
         ),
         child: Center(
-          child: NcBodyText("Catgirl"),
+          child: NcBodyText(stats.totalModules.toString()),
         ),
       );
     });
