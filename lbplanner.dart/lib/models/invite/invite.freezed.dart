@@ -25,8 +25,8 @@ class _$PlanInviteTearOff {
   _PlanInvite call(
       {required int id,
       required int planId,
-      required User invitee,
-      required User inviter,
+      required int invitee,
+      required int inviter,
       required PlanInviteStatus status}) {
     return _PlanInvite(
       id: id,
@@ -53,11 +53,11 @@ mixin _$PlanInvite {
   /// The name of the plan
   int get planId => throw _privateConstructorUsedError;
 
-  /// The user invited to join the plan
-  User get invitee => throw _privateConstructorUsedError;
+  /// The id of the user invited to join the plan
+  int get invitee => throw _privateConstructorUsedError;
 
-  /// The user who invited the [invitee]
-  User get inviter => throw _privateConstructorUsedError;
+  /// The id of the user who invited the [invitee]
+  int get inviter => throw _privateConstructorUsedError;
 
   /// The status of the invite
   PlanInviteStatus get status => throw _privateConstructorUsedError;
@@ -74,14 +74,7 @@ abstract class $PlanInviteCopyWith<$Res> {
           PlanInvite value, $Res Function(PlanInvite) then) =
       _$PlanInviteCopyWithImpl<$Res>;
   $Res call(
-      {int id,
-      int planId,
-      User invitee,
-      User inviter,
-      PlanInviteStatus status});
-
-  $UserCopyWith<$Res> get invitee;
-  $UserCopyWith<$Res> get inviter;
+      {int id, int planId, int invitee, int inviter, PlanInviteStatus status});
 }
 
 /// @nodoc
@@ -112,30 +105,16 @@ class _$PlanInviteCopyWithImpl<$Res> implements $PlanInviteCopyWith<$Res> {
       invitee: invitee == freezed
           ? _value.invitee
           : invitee // ignore: cast_nullable_to_non_nullable
-              as User,
+              as int,
       inviter: inviter == freezed
           ? _value.inviter
           : inviter // ignore: cast_nullable_to_non_nullable
-              as User,
+              as int,
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as PlanInviteStatus,
     ));
-  }
-
-  @override
-  $UserCopyWith<$Res> get invitee {
-    return $UserCopyWith<$Res>(_value.invitee, (value) {
-      return _then(_value.copyWith(invitee: value));
-    });
-  }
-
-  @override
-  $UserCopyWith<$Res> get inviter {
-    return $UserCopyWith<$Res>(_value.inviter, (value) {
-      return _then(_value.copyWith(inviter: value));
-    });
   }
 }
 
@@ -146,16 +125,7 @@ abstract class _$PlanInviteCopyWith<$Res> implements $PlanInviteCopyWith<$Res> {
       __$PlanInviteCopyWithImpl<$Res>;
   @override
   $Res call(
-      {int id,
-      int planId,
-      User invitee,
-      User inviter,
-      PlanInviteStatus status});
-
-  @override
-  $UserCopyWith<$Res> get invitee;
-  @override
-  $UserCopyWith<$Res> get inviter;
+      {int id, int planId, int invitee, int inviter, PlanInviteStatus status});
 }
 
 /// @nodoc
@@ -188,11 +158,11 @@ class __$PlanInviteCopyWithImpl<$Res> extends _$PlanInviteCopyWithImpl<$Res>
       invitee: invitee == freezed
           ? _value.invitee
           : invitee // ignore: cast_nullable_to_non_nullable
-              as User,
+              as int,
       inviter: inviter == freezed
           ? _value.inviter
           : inviter // ignore: cast_nullable_to_non_nullable
-              as User,
+              as int,
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -225,12 +195,12 @@ class _$_PlanInvite extends _PlanInvite {
   final int planId;
   @override
 
-  /// The user invited to join the plan
-  final User invitee;
+  /// The id of the user invited to join the plan
+  final int invitee;
   @override
 
-  /// The user who invited the [invitee]
-  final User inviter;
+  /// The id of the user who invited the [invitee]
+  final int inviter;
   @override
 
   /// The status of the invite
@@ -277,8 +247,8 @@ abstract class _PlanInvite extends PlanInvite {
   const factory _PlanInvite(
       {required int id,
       required int planId,
-      required User invitee,
-      required User inviter,
+      required int invitee,
+      required int inviter,
       required PlanInviteStatus status}) = _$_PlanInvite;
   const _PlanInvite._() : super._();
 
@@ -295,12 +265,12 @@ abstract class _PlanInvite extends PlanInvite {
   int get planId;
   @override
 
-  /// The user invited to join the plan
-  User get invitee;
+  /// The id of the user invited to join the plan
+  int get invitee;
   @override
 
-  /// The user who invited the [invitee]
-  User get inviter;
+  /// The id of the user who invited the [invitee]
+  int get inviter;
   @override
 
   /// The status of the invite

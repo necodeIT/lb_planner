@@ -17,6 +17,7 @@ _$_Module _$$_ModuleFromJson(Map<String, dynamic> json) => _$_Module(
       grade: $enumDecodeNullable(_$ModuleGradesEnumMap, json['grade']),
       type: $enumDecode(_$ModuleTypesEnumMap, json['type']),
       status: $enumDecode(_$ModuleStatusEnumMap, json['status']),
+      courseId: json['courseId'] as int,
     );
 
 Map<String, dynamic> _$$_ModuleToJson(_$_Module instance) => <String, dynamic>{
@@ -28,6 +29,7 @@ Map<String, dynamic> _$$_ModuleToJson(_$_Module instance) => <String, dynamic>{
       'grade': _$ModuleGradesEnumMap[instance.grade],
       'type': _$ModuleTypesEnumMap[instance.type],
       'status': _$ModuleStatusEnumMap[instance.status],
+      'courseId': instance.courseId,
     };
 
 const _$ModuleGradesEnumMap = {

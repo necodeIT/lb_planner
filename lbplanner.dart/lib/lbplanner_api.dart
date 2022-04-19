@@ -18,6 +18,7 @@ import 'dart:ui';
 // Package imports:
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
+import 'package:lbplanner_api/models/statistics/statistics.dart';
 import 'package:nekolib_utils/log.dart';
 import 'package:riverpod/riverpod.dart';
 
@@ -50,6 +51,7 @@ part 'providers/notifications_provider.dart';
 part 'providers/modules_provider.dart';
 part 'providers/courses_provider.dart';
 part 'providers/feedback_provider.dart';
+part 'providers/statistics_provider.dart';
 
 // Api
 

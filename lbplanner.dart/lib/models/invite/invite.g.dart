@@ -10,8 +10,8 @@ _$_PlanInvite _$$_PlanInviteFromJson(Map<String, dynamic> json) =>
     _$_PlanInvite(
       id: json['id'] as int,
       planId: json['planId'] as int,
-      invitee: User.fromJson(json['invitee'] as Map<String, dynamic>),
-      inviter: User.fromJson(json['inviter'] as Map<String, dynamic>),
+      invitee: json['invitee'] as int,
+      inviter: json['inviter'] as int,
       status: $enumDecode(_$PlanInviteStatusEnumMap, json['status']),
     );
 

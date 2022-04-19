@@ -23,12 +23,12 @@ class _$StatisticsTearOff {
   const _$StatisticsTearOff();
 
   _Statistics call(
-      {required int totalModules,
-      required int lateModules,
-      required int pendingModules,
-      required int completedModules,
-      required int uploadedModules,
-      Map<int, Statistics>? courseStats = null}) {
+      {int totalModules = 0,
+      int lateModules = 0,
+      int pendingModules = 0,
+      int completedModules = 0,
+      int uploadedModules = 0,
+      Map<int, Statistics> courseStats = const []}) {
     return _Statistics(
       totalModules: totalModules,
       lateModules: lateModules,
@@ -67,7 +67,7 @@ mixin _$Statistics {
   /// Statistics for courses.
   /// Key: course id
   /// Value: statistics for the course
-  Map<int, Statistics>? get courseStats => throw _privateConstructorUsedError;
+  Map<int, Statistics> get courseStats => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -86,7 +86,7 @@ abstract class $StatisticsCopyWith<$Res> {
       int pendingModules,
       int completedModules,
       int uploadedModules,
-      Map<int, Statistics>? courseStats});
+      Map<int, Statistics> courseStats});
 }
 
 /// @nodoc
@@ -130,7 +130,7 @@ class _$StatisticsCopyWithImpl<$Res> implements $StatisticsCopyWith<$Res> {
       courseStats: courseStats == freezed
           ? _value.courseStats
           : courseStats // ignore: cast_nullable_to_non_nullable
-              as Map<int, Statistics>?,
+              as Map<int, Statistics>,
     ));
   }
 }
@@ -147,7 +147,7 @@ abstract class _$StatisticsCopyWith<$Res> implements $StatisticsCopyWith<$Res> {
       int pendingModules,
       int completedModules,
       int uploadedModules,
-      Map<int, Statistics>? courseStats});
+      Map<int, Statistics> courseStats});
 }
 
 /// @nodoc
@@ -193,7 +193,7 @@ class __$StatisticsCopyWithImpl<$Res> extends _$StatisticsCopyWithImpl<$Res>
       courseStats: courseStats == freezed
           ? _value.courseStats
           : courseStats // ignore: cast_nullable_to_non_nullable
-              as Map<int, Statistics>?,
+              as Map<int, Statistics>,
     ));
   }
 }
@@ -202,33 +202,38 @@ class __$StatisticsCopyWithImpl<$Res> extends _$StatisticsCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Statistics extends _Statistics {
   const _$_Statistics(
-      {required this.totalModules,
-      required this.lateModules,
-      required this.pendingModules,
-      required this.completedModules,
-      required this.uploadedModules,
-      this.courseStats = null})
+      {this.totalModules = 0,
+      this.lateModules = 0,
+      this.pendingModules = 0,
+      this.completedModules = 0,
+      this.uploadedModules = 0,
+      this.courseStats = const []})
       : super._();
 
   factory _$_Statistics.fromJson(Map<String, dynamic> json) =>
       _$$_StatisticsFromJson(json);
 
+  @JsonKey()
   @override
 
   /// The number of total modules the user has.
   final int totalModules;
+  @JsonKey()
   @override
 
   /// The number of modules that are late.
   final int lateModules;
+  @JsonKey()
   @override
 
   /// The number of modules that are pending.
   final int pendingModules;
+  @JsonKey()
   @override
 
   /// The number of modules the user has completed.
   final int completedModules;
+  @JsonKey()
   @override
 
   /// The number of modules the user has uploaded.
@@ -239,7 +244,7 @@ class _$_Statistics extends _Statistics {
   /// Statistics for courses.
   /// Key: course id
   /// Value: statistics for the course
-  final Map<int, Statistics>? courseStats;
+  final Map<int, Statistics> courseStats;
 
   @override
   String toString() {
@@ -288,12 +293,12 @@ class _$_Statistics extends _Statistics {
 
 abstract class _Statistics extends Statistics {
   const factory _Statistics(
-      {required int totalModules,
-      required int lateModules,
-      required int pendingModules,
-      required int completedModules,
-      required int uploadedModules,
-      Map<int, Statistics>? courseStats}) = _$_Statistics;
+      {int totalModules,
+      int lateModules,
+      int pendingModules,
+      int completedModules,
+      int uploadedModules,
+      Map<int, Statistics> courseStats}) = _$_Statistics;
   const _Statistics._() : super._();
 
   factory _Statistics.fromJson(Map<String, dynamic> json) =
@@ -324,7 +329,7 @@ abstract class _Statistics extends Statistics {
   /// Statistics for courses.
   /// Key: course id
   /// Value: statistics for the course
-  Map<int, Statistics>? get courseStats;
+  Map<int, Statistics> get courseStats;
   @override
   @JsonKey(ignore: true)
   _$StatisticsCopyWith<_Statistics> get copyWith =>

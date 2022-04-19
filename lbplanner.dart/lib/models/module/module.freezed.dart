@@ -30,7 +30,8 @@ class _$ModuleTearOff {
       bool hidden = false,
       ModuleGrades? grade,
       required ModuleTypes type,
-      required ModuleStatus status}) {
+      required ModuleStatus status,
+      required int courseId}) {
     return _Module(
       id: id,
       name: name,
@@ -40,6 +41,7 @@ class _$ModuleTearOff {
       grade: grade,
       type: type,
       status: status,
+      courseId: courseId,
     );
   }
 
@@ -76,6 +78,7 @@ mixin _$Module {
 
   /// The status of the module.
   ModuleStatus get status => throw _privateConstructorUsedError;
+  int get courseId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -94,7 +97,8 @@ abstract class $ModuleCopyWith<$Res> {
       bool hidden,
       ModuleGrades? grade,
       ModuleTypes type,
-      ModuleStatus status});
+      ModuleStatus status,
+      int courseId});
 }
 
 /// @nodoc
@@ -115,6 +119,7 @@ class _$ModuleCopyWithImpl<$Res> implements $ModuleCopyWith<$Res> {
     Object? grade = freezed,
     Object? type = freezed,
     Object? status = freezed,
+    Object? courseId = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -149,6 +154,10 @@ class _$ModuleCopyWithImpl<$Res> implements $ModuleCopyWith<$Res> {
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as ModuleStatus,
+      courseId: courseId == freezed
+          ? _value.courseId
+          : courseId // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -166,7 +175,8 @@ abstract class _$ModuleCopyWith<$Res> implements $ModuleCopyWith<$Res> {
       bool hidden,
       ModuleGrades? grade,
       ModuleTypes type,
-      ModuleStatus status});
+      ModuleStatus status,
+      int courseId});
 }
 
 /// @nodoc
@@ -188,6 +198,7 @@ class __$ModuleCopyWithImpl<$Res> extends _$ModuleCopyWithImpl<$Res>
     Object? grade = freezed,
     Object? type = freezed,
     Object? status = freezed,
+    Object? courseId = freezed,
   }) {
     return _then(_Module(
       id: id == freezed
@@ -222,6 +233,10 @@ class __$ModuleCopyWithImpl<$Res> extends _$ModuleCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as ModuleStatus,
+      courseId: courseId == freezed
+          ? _value.courseId
+          : courseId // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -237,7 +252,8 @@ class _$_Module extends _Module {
       this.hidden = false,
       this.grade,
       required this.type,
-      required this.status})
+      required this.status,
+      required this.courseId})
       : super._();
 
   factory _$_Module.fromJson(Map<String, dynamic> json) =>
@@ -276,10 +292,12 @@ class _$_Module extends _Module {
 
   /// The status of the module.
   final ModuleStatus status;
+  @override
+  final int courseId;
 
   @override
   String toString() {
-    return 'Module(id: $id, name: $name, url: $url, deadline: $deadline, hidden: $hidden, grade: $grade, type: $type, status: $status)';
+    return 'Module(id: $id, name: $name, url: $url, deadline: $deadline, hidden: $hidden, grade: $grade, type: $type, status: $status, courseId: $courseId)';
   }
 
   @override
@@ -294,7 +312,8 @@ class _$_Module extends _Module {
             const DeepCollectionEquality().equals(other.hidden, hidden) &&
             const DeepCollectionEquality().equals(other.grade, grade) &&
             const DeepCollectionEquality().equals(other.type, type) &&
-            const DeepCollectionEquality().equals(other.status, status));
+            const DeepCollectionEquality().equals(other.status, status) &&
+            const DeepCollectionEquality().equals(other.courseId, courseId));
   }
 
   @override
@@ -307,7 +326,8 @@ class _$_Module extends _Module {
       const DeepCollectionEquality().hash(hidden),
       const DeepCollectionEquality().hash(grade),
       const DeepCollectionEquality().hash(type),
-      const DeepCollectionEquality().hash(status));
+      const DeepCollectionEquality().hash(status),
+      const DeepCollectionEquality().hash(courseId));
 
   @JsonKey(ignore: true)
   @override
@@ -329,7 +349,8 @@ abstract class _Module extends Module {
       bool hidden,
       ModuleGrades? grade,
       required ModuleTypes type,
-      required ModuleStatus status}) = _$_Module;
+      required ModuleStatus status,
+      required int courseId}) = _$_Module;
   const _Module._() : super._();
 
   factory _Module.fromJson(Map<String, dynamic> json) = _$_Module.fromJson;
@@ -366,6 +387,8 @@ abstract class _Module extends Module {
 
   /// The status of the module.
   ModuleStatus get status;
+  @override
+  int get courseId;
   @override
   @JsonKey(ignore: true)
   _$ModuleCopyWith<_Module> get copyWith => throw _privateConstructorUsedError;

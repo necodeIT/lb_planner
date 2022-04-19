@@ -14,3 +14,18 @@ enum ModuleStatus {
   /// Module has not been uploaded yet and the deadline is not yet reached.
   pending
 }
+
+/// Module status extensions.
+extension ModuleStatusExtension on ModuleStatus {
+  /// Whether this module status is done.
+  bool get isDone => this == ModuleStatus.done;
+
+  /// Whether this module status is uploaded.
+  bool get isUploaded => this == ModuleStatus.uploaded;
+
+  /// Whether this module status is late.
+  bool get isLate => this == ModuleStatus.late;
+
+  /// Whether this module status is pending.
+  bool get isPending => this == ModuleStatus.pending;
+}

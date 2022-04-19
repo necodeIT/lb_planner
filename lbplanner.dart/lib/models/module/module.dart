@@ -38,6 +38,7 @@ class Module with _$Module {
 
     /// The status of the module.
     required ModuleStatus status,
+    required int courseId,
   }) = _Module;
 
   /// Module model from json

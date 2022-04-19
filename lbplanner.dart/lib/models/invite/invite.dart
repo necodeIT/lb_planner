@@ -21,11 +21,11 @@ class PlanInvite with _$PlanInvite {
     /// The name of the plan
     required int planId,
 
-    /// The user invited to join the plan
-    required User invitee,
+    /// The id of the user invited to join the plan
+    required int invitee,
 
-    /// The user who invited the [invitee]
-    required User inviter,
+    /// The id of the user who invited the [invitee]
+    required int inviter,
 
     /// The status of the invite
     required PlanInviteStatus status,

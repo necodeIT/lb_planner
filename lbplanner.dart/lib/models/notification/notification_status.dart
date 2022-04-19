@@ -8,3 +8,12 @@ enum NotificationStatus {
   /// Notification is read.
   read,
 }
+
+/// Notification status extensions.
+extension NotificationStatusExtension on NotificationStatus {
+  /// Whether this notification status is unread.
+  bool get isUnread => this == NotificationStatus.unread;
+
+  /// Whether this notification status is read.
+  bool get isRead => this == NotificationStatus.read;
+}

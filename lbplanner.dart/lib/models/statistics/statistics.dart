@@ -13,24 +13,24 @@ class Statistics with _$Statistics {
   /// Statistics model.
   const factory Statistics({
     /// The number of total modules the user has.
-    required int totalModules,
+    @Default(0) int totalModules,
 
     /// The number of modules that are late.
-    required int lateModules,
+    @Default(0) int lateModules,
 
     /// The number of modules that are pending.
-    required int pendingModules,
+    @Default(0) int pendingModules,
 
     /// The number of modules the user has completed.
-    required int completedModules,
+    @Default(0) int completedModules,
 
     /// The number of modules the user has uploaded.
-    required int uploadedModules,
+    @Default(0) int uploadedModules,
 
     /// Statistics for courses.
     /// Key: course id
     /// Value: statistics for the course
-    @Default(null) Map<int, Statistics>? courseStats,
+    @Default([]) Map<int, Statistics> courseStats,
   }) = _Statistics;
 
   /// Statistics model from json.
