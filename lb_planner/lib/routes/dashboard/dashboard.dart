@@ -10,21 +10,15 @@ class DashboardRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var filler = Container(
-      decoration: BoxDecoration(
-        color: primaryColor,
-        borderRadius: BorderRadius.circular(kRadius),
-        boxShadow: kElevationToShadow[4],
-      ),
+    var filler = LpContainer(
       child: Center(child: NcTitleText("Test")),
-      width: double.infinity,
     );
     return Row(
       children: [
         Expanded(
           child: Column(
             children: [
-              Expanded(flex: 1, child: filler),
+              Expanded(child: filler),
               NcSpacing.medium(),
               Expanded(child: filler),
             ],
@@ -35,7 +29,10 @@ class DashboardRoute extends StatelessWidget {
           flex: 2,
           child: Column(
             children: [
-              Expanded(child: filler),
+              ConstrainedBox(
+                constraints: BoxConstraints(maxHeight: 125),
+                child: DashboardStatusOverview(),
+              ),
               NcSpacing.medium(),
               Expanded(flex: 3, child: filler),
             ],
@@ -43,7 +40,6 @@ class DashboardRoute extends StatelessWidget {
         ),
         NcSpacing.medium(),
         Expanded(
-          flex: 1,
           child: Column(
             children: [
               Expanded(child: filler),

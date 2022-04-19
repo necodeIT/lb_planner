@@ -21,48 +21,31 @@ class UserNotificationsPopup extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer(builder: (context, ref, _) {
       var notifications = ref.watch(notificationsProvider);
-      return Container(
-        decoration: BoxDecoration(
-          color: primaryColor,
-          borderRadius: BorderRadius.circular(kRadius),
-          boxShadow: kElevationToShadow[4],
+      return LpContainer(
+        trailing: GestureDetector(
+          onTap: close,
+          child: LpIcon(
+            Icons.close,
+            color: errorColor,
+          ),
         ),
-        child: Padding(
-          padding: const EdgeInsets.all(NcSpacing.smallSpacing),
-          child: Column(
+        child: ConditionalWidget(
+          condition: notifications.isNotEmpty,
+          trueWidget: (context) => Column(
             children: [
-              Align(
-                alignment: Alignment.centerRight,
-                child: GestureDetector(
-                  onTap: close,
-                  child: LpIcon(
-                    Icons.close,
-                    color: errorColor,
-                  ),
-                ),
-              ),
-              Expanded(
-                child: ConditionalWidget(
-                  condition: notifications.isNotEmpty,
-                  trueWidget: (context) => Column(
-                    children: [
-                      for (var notification in notifications) ...[
-                        NcSpacing.small(),
-                        NcBodyText(notification.type.toString() + ": " + notification.payload.toString()),
-                      ]
-                    ],
-                  ),
-                  falseWidget: (context) => Column(
-                    children: [
-                      Expanded(child: NcVectorImage(code: no_notifications_svg)),
-                      NcSpacing.small(),
-                      NcBodyText(
-                        context.t.notifications_no_notifications,
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
-                ),
+              for (var notification in notifications) ...[
+                NcSpacing.small(),
+                NcBodyText(notification.type.toString() + ": " + notification.payload.toString()),
+              ]
+            ],
+          ),
+          falseWidget: (context) => Column(
+            children: [
+              Expanded(child: NcVectorImage(code: no_notifications_svg)),
+              NcSpacing.small(),
+              NcBodyText(
+                context.t.notifications_noNotifications,
+                textAlign: TextAlign.center,
               ),
             ],
           ),

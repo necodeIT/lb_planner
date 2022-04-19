@@ -30,3 +30,5 @@ part 'routes/settings/settings.dart';
 part 'routes/test/test.dart';
 part 'routes/route/user/user_notifications.dart';
 part 'routes/route/user/user_notifications_popup.dart';
+part 'routes/dashboard/status_overview/status_overview.dart';
+part 'routes/dashboard/status_overview/bar_label.dart';
