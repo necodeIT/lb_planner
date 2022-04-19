@@ -1,12 +1,20 @@
 part of lbplanner_api;
 
 /// Provides statistics for the current user
+final statisticsProvider = StateNotifierProvider<StatisticsProvider, Statistics>((ref) => StatisticsProvider(ref.watch(modulesProvider).values.toList()));
+
+/// Controller for the statistics.
+final statisticsController = statisticsProvider.notifier;
+
+/// Provides statistics for the current user
 class StatisticsProvider extends StateNotifier<Statistics> {
   /// The modules to analyze.
   final List<Module> modules;
 
   /// Provides statistics for the current user
-  StatisticsProvider(this.modules) : super(Statistics());
+  StatisticsProvider(this.modules) : super(Statistics()) {
+    analyze();
+  }
 
   /// Analyzes the modules and updates the statistics.
   void analyze() {
