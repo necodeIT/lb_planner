@@ -60,7 +60,7 @@ extension ModelMappingExtensions on Map<String, dynamic> {
     body["status"] = ModuleStatus.values[statusIndex].name;
 
     int unixDeadline = this["deadline"];
-    if(unixDeadline != null) body["deadline"] = DateTime.fromMillisecondsSinceEpoch(unixDeadline * 1000);
+    if (unixDeadline != null) body["deadline"] = DateTime.fromMillisecondsSinceEpoch(unixDeadline * 1000);
 
     return body;
   }
@@ -87,6 +87,17 @@ extension ModelMappingExtensions on Map<String, dynamic> {
 
     body["id"] = this["courseid"];
     body["color"] = ColorUtils.fromHexCode(this["color"]);
+
+    return body;
+  }
+
+  /// Maps parameters to fit [Deadline.fromJson]
+  Map<String, dynamic> mapDeadline() {
+    var body = Map.of(this);
+
+    body["moduleId"] = this["moduleid"];
+    body["start"] = DateTime.fromMillisecondsSinceEpoch(this["deadlinestart"] * 1000);
+    body["end"] = DateTime.fromMillisecondsSinceEpoch(this["deadlineend"] * 1000);
 
     return body;
   }

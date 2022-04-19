@@ -29,6 +29,7 @@ import 'models/module/module.dart';
 import 'models/notification/notification.dart';
 import 'models/plan/plan.dart';
 import 'models/user/user.dart';
+import 'models/deadline/deadline.dart';
 
 // Models
 

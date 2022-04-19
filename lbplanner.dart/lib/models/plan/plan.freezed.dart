@@ -28,8 +28,7 @@ class _$PlanTearOff {
       required String description,
       required Map<int, PlanAccessTypes> members,
       required Map<int, Deadline> deadlines,
-      required bool ekEnabled,
-      List<PlanInvite> invites = const []}) {
+      required bool ekEnabled}) {
     return _Plan(
       id: id,
       name: name,
@@ -37,7 +36,6 @@ class _$PlanTearOff {
       members: members,
       deadlines: deadlines,
       ekEnabled: ekEnabled,
-      invites: invites,
     );
   }
 
@@ -73,9 +71,6 @@ mixin _$Plan {
   /// Wheter the plan has modules of type [ModuleTypes.ek] enabled
   bool get ekEnabled => throw _privateConstructorUsedError;
 
-  /// The invites of the plan
-  List<PlanInvite> get invites => throw _privateConstructorUsedError;
-
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $PlanCopyWith<Plan> get copyWith => throw _privateConstructorUsedError;
@@ -91,8 +86,7 @@ abstract class $PlanCopyWith<$Res> {
       String description,
       Map<int, PlanAccessTypes> members,
       Map<int, Deadline> deadlines,
-      bool ekEnabled,
-      List<PlanInvite> invites});
+      bool ekEnabled});
 }
 
 /// @nodoc
@@ -111,7 +105,6 @@ class _$PlanCopyWithImpl<$Res> implements $PlanCopyWith<$Res> {
     Object? members = freezed,
     Object? deadlines = freezed,
     Object? ekEnabled = freezed,
-    Object? invites = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -138,10 +131,6 @@ class _$PlanCopyWithImpl<$Res> implements $PlanCopyWith<$Res> {
           ? _value.ekEnabled
           : ekEnabled // ignore: cast_nullable_to_non_nullable
               as bool,
-      invites: invites == freezed
-          ? _value.invites
-          : invites // ignore: cast_nullable_to_non_nullable
-              as List<PlanInvite>,
     ));
   }
 }
@@ -157,8 +146,7 @@ abstract class _$PlanCopyWith<$Res> implements $PlanCopyWith<$Res> {
       String description,
       Map<int, PlanAccessTypes> members,
       Map<int, Deadline> deadlines,
-      bool ekEnabled,
-      List<PlanInvite> invites});
+      bool ekEnabled});
 }
 
 /// @nodoc
@@ -178,7 +166,6 @@ class __$PlanCopyWithImpl<$Res> extends _$PlanCopyWithImpl<$Res>
     Object? members = freezed,
     Object? deadlines = freezed,
     Object? ekEnabled = freezed,
-    Object? invites = freezed,
   }) {
     return _then(_Plan(
       id: id == freezed
@@ -205,10 +192,6 @@ class __$PlanCopyWithImpl<$Res> extends _$PlanCopyWithImpl<$Res>
           ? _value.ekEnabled
           : ekEnabled // ignore: cast_nullable_to_non_nullable
               as bool,
-      invites: invites == freezed
-          ? _value.invites
-          : invites // ignore: cast_nullable_to_non_nullable
-              as List<PlanInvite>,
     ));
   }
 }
@@ -222,8 +205,7 @@ class _$_Plan extends _Plan {
       required this.description,
       required this.members,
       required this.deadlines,
-      required this.ekEnabled,
-      this.invites = const []})
+      required this.ekEnabled})
       : super._();
 
   factory _$_Plan.fromJson(Map<String, dynamic> json) => _$$_PlanFromJson(json);
@@ -256,15 +238,10 @@ class _$_Plan extends _Plan {
 
   /// Wheter the plan has modules of type [ModuleTypes.ek] enabled
   final bool ekEnabled;
-  @JsonKey()
-  @override
-
-  /// The invites of the plan
-  final List<PlanInvite> invites;
 
   @override
   String toString() {
-    return 'Plan(id: $id, name: $name, description: $description, members: $members, deadlines: $deadlines, ekEnabled: $ekEnabled, invites: $invites)';
+    return 'Plan(id: $id, name: $name, description: $description, members: $members, deadlines: $deadlines, ekEnabled: $ekEnabled)';
   }
 
   @override
@@ -278,8 +255,7 @@ class _$_Plan extends _Plan {
                 .equals(other.description, description) &&
             const DeepCollectionEquality().equals(other.members, members) &&
             const DeepCollectionEquality().equals(other.deadlines, deadlines) &&
-            const DeepCollectionEquality().equals(other.ekEnabled, ekEnabled) &&
-            const DeepCollectionEquality().equals(other.invites, invites));
+            const DeepCollectionEquality().equals(other.ekEnabled, ekEnabled));
   }
 
   @override
@@ -290,8 +266,7 @@ class _$_Plan extends _Plan {
       const DeepCollectionEquality().hash(description),
       const DeepCollectionEquality().hash(members),
       const DeepCollectionEquality().hash(deadlines),
-      const DeepCollectionEquality().hash(ekEnabled),
-      const DeepCollectionEquality().hash(invites));
+      const DeepCollectionEquality().hash(ekEnabled));
 
   @JsonKey(ignore: true)
   @override
@@ -311,8 +286,7 @@ abstract class _Plan extends Plan {
       required String description,
       required Map<int, PlanAccessTypes> members,
       required Map<int, Deadline> deadlines,
-      required bool ekEnabled,
-      List<PlanInvite> invites}) = _$_Plan;
+      required bool ekEnabled}) = _$_Plan;
   const _Plan._() : super._();
 
   factory _Plan.fromJson(Map<String, dynamic> json) = _$_Plan.fromJson;
@@ -345,10 +319,6 @@ abstract class _Plan extends Plan {
 
   /// Wheter the plan has modules of type [ModuleTypes.ek] enabled
   bool get ekEnabled;
-  @override
-
-  /// The invites of the plan
-  List<PlanInvite> get invites;
   @override
   @JsonKey(ignore: true)
   _$PlanCopyWith<_Plan> get copyWith => throw _privateConstructorUsedError;

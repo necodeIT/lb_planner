@@ -27,6 +27,25 @@ class FeedbackApi {
     return ApiResponse(response.response, feedbacks);
   }
 
+  /// Retrieves a specific feedback from the database.
+  static Future<ApiResponse<Feedback>> getFeedback(String token, int feedbackId, int userId) async {
+    var response = await Api.makeRequest(
+      functionName: "local_lbplanner_feedback_get_feedback",
+      token: token,
+      params: {
+        "feedbackid": feedbackId, "userid": userId,
+      },
+    );
+
+    Feedback? feedback;
+
+    if (response.succeeded) feedback= Feedback.fromJson(response.body.mapFeedback());
+
+    return ApiResponse(response.response, feedback);
+  }
+
+
+
   /// Submits the given [feedback] to the database.
   static Future<ApiResponse<Feedback>> submitFeedback(String token, int userId, Feedback data) async {
     var response = await Api.makeRequest(

@@ -12,10 +12,17 @@ class PlanApi {
 
     Plan? plan;
 
+    List<Deadline>? deadlines;
     // todo: get modules from deadlines
 
-    if (response.succeeded) plan = Plan.fromJson(response.body.mapPlan());
-
+    if (response.succeeded) {
+      deadlines = [];
+      for (var deadline in response["daedlines"]) {
+        var deadlineMap = Map<String, dynamic>.of(deadline);
+        deadlines.add(Deadline.fromJson(deadlineMap.mapDeadline()));
+      }
+      plan = Plan.fromJson(response.body.mapPlan());
+    }
     return ApiResponse(response.response, plan);
   }
 }
