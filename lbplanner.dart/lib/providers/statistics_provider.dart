@@ -23,6 +23,11 @@ class StatisticsProvider extends StateNotifier<Statistics> {
 
     for (var module in modules) {
       var course = courseStats[module.courseId] ?? Statistics(totalModules: 0);
+
+      course = course.copyWith(
+        totalModules: course.totalModules + 1,
+      );
+
       switch (module.status) {
         case ModuleStatus.done:
           courseStats[module.courseId] = course.copyWith(completedModules: course.completedModules + 1);

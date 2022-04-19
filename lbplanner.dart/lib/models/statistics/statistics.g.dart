@@ -17,7 +17,7 @@ _$_Statistics _$$_StatisticsFromJson(Map<String, dynamic> json) =>
             (k, e) => MapEntry(
                 int.parse(k), Statistics.fromJson(e as Map<String, dynamic>)),
           ) ??
-          const [],
+          const {},
     );
 
 Map<String, dynamic> _$$_StatisticsToJson(_$_Statistics instance) =>

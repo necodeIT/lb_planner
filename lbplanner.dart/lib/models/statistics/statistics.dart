@@ -30,7 +30,7 @@ class Statistics with _$Statistics {
     /// Statistics for courses.
     /// Key: course id
     /// Value: statistics for the course
-    @Default([]) Map<int, Statistics> courseStats,
+    @Default({}) Map<int, Statistics> courseStats,
   }) = _Statistics;
 
   /// Statistics model from json.

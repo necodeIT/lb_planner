@@ -28,7 +28,7 @@ class _$StatisticsTearOff {
       int pendingModules = 0,
       int completedModules = 0,
       int uploadedModules = 0,
-      Map<int, Statistics> courseStats = const []}) {
+      Map<int, Statistics> courseStats = const {}}) {
     return _Statistics(
       totalModules: totalModules,
       lateModules: lateModules,
@@ -207,7 +207,7 @@ class _$_Statistics extends _Statistics {
       this.pendingModules = 0,
       this.completedModules = 0,
       this.uploadedModules = 0,
-      this.courseStats = const []})
+      this.courseStats = const {}})
       : super._();
 
   factory _$_Statistics.fromJson(Map<String, dynamic> json) =>
