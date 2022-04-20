@@ -24,16 +24,22 @@ class DashboardStatusOverviewChart extends StatelessWidget {
 
             var pendingWidth = width * stats.pendingModules / stats.totalModules;
 
-            return Row(
-              children: [
-                DashboardStatusOverviewBar(width: doneWidth.safeValue, color: successColor),
-                if (doneWidth.isSafeValue) NcSpacing.small(),
-                DashboardStatusOverviewBar(width: uploadedWidth.safeValue, color: warningColor),
-                if (uploadedWidth.isSafeValue) NcSpacing.small(),
-                DashboardStatusOverviewBar(width: lateWidth.safeValue, color: errorColor),
-                if (lateWidth.isSafeValue) NcSpacing.small(),
-                DashboardStatusOverviewBar(width: pendingWidth.safeValue, color: neutralColor),
-              ],
+            return ConditionalWidget(
+              condition: stats.totalModules > 0,
+              trueWidget: (context) => Row(
+                children: [
+                  DashboardStatusOverviewBar(width: doneWidth.safeValue, color: successColor),
+                  if (doneWidth.isSafeValue) NcSpacing.small(),
+                  DashboardStatusOverviewBar(width: uploadedWidth.safeValue, color: warningColor),
+                  if (uploadedWidth.isSafeValue) NcSpacing.small(),
+                  DashboardStatusOverviewBar(width: lateWidth.safeValue, color: errorColor),
+                  if (lateWidth.isSafeValue) NcSpacing.small(),
+                  DashboardStatusOverviewBar(width: pendingWidth.safeValue, color: neutralColor),
+                ],
+              ),
+              falseWidget: (context) => Center(
+                child: NcBodyText(context.t.dashboard_statusOverview_noData),
+              ),
             );
             // return SizedBox.shrink();
           },

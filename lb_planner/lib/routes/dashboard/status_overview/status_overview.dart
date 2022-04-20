@@ -11,7 +11,7 @@ class DashboardStatusOverview extends LocalizedWidget {
       var stats = ref.watch(statisticsProvider);
 
       return LpContainer(
-        title: t.dashboard_statusOverview,
+        title: t.dashboard_statusOverview_title,
         trailing: Row(
           children: [
             DashboardStatusOverviewBarLabel(color: successColor, count: stats.completedModules),

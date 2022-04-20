@@ -1,7 +1,8 @@
 {
   "alertDialog_confirm": "OK",
   "dashboard_routeName": "Dashboard",
-  "dashboard_statusOverview": "Status overview",
+  "dashboard_statusOverview_noData": "No data...",
+  "dashboard_statusOverview_title": "Status overview",
   "dialog_cancel": "Cancel",
   "dialog_confirm": "Confirm",
   "login_invalidUsernameOrPassword": "Invalid username or password",
