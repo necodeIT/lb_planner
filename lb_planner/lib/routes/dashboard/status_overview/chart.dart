@@ -7,44 +7,50 @@ class DashboardStatusOverviewChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) => Consumer(
-        builder: (context, ref, _) {
-          var stats = ref.watch(statisticsProvider);
+    return ConstrainedBox(
+      constraints: BoxConstraints(maxHeight: DashboardStatusOverviewBar.height),
+      child: LayoutBuilder(
+        builder: (context, constraints) => Consumer(
+          builder: (context, ref, _) {
+            var stats = ref.watch(statisticsProvider);
 
-          stats = stats.copyWith(
-            completedModules: 10,
-            uploadedModules: 5,
-            lateModules: 2,
-            pendingModules: 1,
-          );
+            var width = constraints.maxWidth;
 
-          var spacing = 0;
+            var doneWidth = (width * stats.completedModules / stats.totalModules).withSpacing;
 
-          var width = constraints.maxWidth;
+            var uploadedWidth = (width * stats.uploadedModules / stats.totalModules).withSpacing;
 
-          var doneWidth = width * stats.completedModules / stats.totalModules;
+            var lateWidth = (width * stats.lateModules / stats.totalModules).withSpacing;
 
-          var uploadedWidth = width * stats.uploadedModules / stats.totalModules;
+            var pendingWidth = width * stats.pendingModules / stats.totalModules;
 
-          var lateWidth = width * stats.lateModules / stats.totalModules;
-
-          var pendingWidth = width * stats.pendingModules / stats.totalModules;
-
-          // return Row(
-          //   children: [
-          //     DashboardStatusOverviewBar(width: doneWidth, color: successColor),
-          //     NcSpacing.xs(),
-          //     DashboardStatusOverviewBar(width: uploadedWidth, color: warningColor),
-          //     NcSpacing.xs(),
-          //     DashboardStatusOverviewBar(width: lateWidth, color: errorColor),
-          //     NcSpacing.xs(),
-          //     DashboardStatusOverviewBar(width: pendingWidth, color: neutralColor),
-          //   ],
-          // );
-          return SizedBox.shrink();
-        },
+            return Row(
+              children: [
+                DashboardStatusOverviewBar(width: doneWidth.safeValue, color: successColor),
+                if (doneWidth.isSafeValue) NcSpacing.xs(),
+                DashboardStatusOverviewBar(width: uploadedWidth.safeValue, color: warningColor),
+                if (uploadedWidth.isSafeValue) NcSpacing.xs(),
+                DashboardStatusOverviewBar(width: lateWidth.safeValue, color: errorColor),
+                if (lateWidth.isSafeValue) NcSpacing.xs(),
+                DashboardStatusOverviewBar(width: pendingWidth.safeValue, color: neutralColor),
+              ],
+            );
+            // return SizedBox.shrink();
+          },
+        ),
       ),
     );
+  }
+}
+
+extension on double {
+  double get safeValue {
+    return !isSafeValue ? 0 : this;
+  }
+
+  bool get isSafeValue => !isNaN && !isNegative;
+
+  double get withSpacing {
+    return this - NcSpacing.xsSpacing;
   }
 }

@@ -12,7 +12,7 @@ class DashboardStatusOverviewBar extends StatelessWidget {
   final Color color;
 
   /// The height of the bar.
-  static const double height = 20;
+  static const double height = 10;
 
   @override
   Widget build(BuildContext context) {

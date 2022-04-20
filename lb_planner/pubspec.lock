@@ -307,7 +307,7 @@ packages:
       name: freezed_annotation
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0"
+    version: "2.0.1"
   google_fonts:
     dependency: transitive
     description:
@@ -362,7 +362,7 @@ packages:
     description:
       path: "lbplanner.dart"
       ref: "lbplanner.dart"
-      resolved-ref: eb26e5b85dc8e227efa0cf1e358e48e11f327316
+      resolved-ref: "4dfd24b42f28c5a714ec7295d4f9bf2dfe50be4a"
       url: "https://github.com/necodeIT/lb_planner.git"
     source: git
     version: "0.0.1"

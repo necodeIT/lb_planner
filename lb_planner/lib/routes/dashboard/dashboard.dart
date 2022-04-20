@@ -29,11 +29,9 @@ class DashboardRoute extends StatelessWidget {
           flex: 2,
           child: Column(
             children: [
-              Expanded(
-                child: ConstrainedBox(
-                  constraints: BoxConstraints(maxHeight: 125),
-                  child: DashboardStatusOverview(),
-                ),
+              ConstrainedBox(
+                constraints: BoxConstraints(maxHeight: 100),
+                child: DashboardStatusOverview(),
               ),
               NcSpacing.medium(),
               Expanded(flex: 3, child: filler),
