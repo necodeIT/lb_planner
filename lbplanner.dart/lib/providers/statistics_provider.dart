@@ -19,7 +19,7 @@ class StatisticsProvider extends StateNotifier<Statistics> {
   /// Analyzes the modules and updates the statistics.
   void analyze() {
     var stats = Statistics(totalModules: modules.length);
-    var courseStats = stats.courseStats;
+    var courseStats = Map.of(stats.courseStats);
 
     for (var module in modules) {
       var course = courseStats[module.courseId] ?? Statistics(totalModules: 0);
