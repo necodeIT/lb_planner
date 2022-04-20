@@ -54,7 +54,7 @@ class plan_update_invite extends external_api {
         $invite = $DB->get_record(plan_helper::INVITES_TABLE,
         array(
             'planid' => $planid,
-            'userid' => $userid,
+            'inviteeid' => $userid,
             'status' => plan_helper::INVITE_PENDING
         ),
         '*',
@@ -83,8 +83,7 @@ class plan_update_invite extends external_api {
                         plan_leave_plan::leave_plan($member->userid, $oldplanid);
                     }
                 }
-
-                plan_clear_plan::clear_plan($userid, $oldplanid);
+                plan_clear_plan::call_external_function('clear_plan', array ($userid, $oldplanid));
 
                 $DB->delete_records(plan_helper::TABLE, array('id' => $oldplanid));
             }
@@ -103,8 +102,8 @@ class plan_update_invite extends external_api {
             $planaccess->planid = $planid;
 
             $DB->update_record(plan_helper::ACCESS_TABLE, $planaccess);
+            $DB->delete_records(plan_helper::INVITES_TABLE, $invite);
         }
-
         return array(
             'inviterid' => $invite->inviterid,
             'inviteeid' => $invite->inviteeid,
