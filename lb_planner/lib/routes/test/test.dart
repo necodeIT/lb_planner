@@ -24,6 +24,13 @@ class TestRoute extends StatelessWidget {
             lpShowAlertDialog(context, title: "Test", body: NcBodyText("Test"));
           },
         ),
+        NcSpacing.medium(),
+        Consumer(
+          builder: (context, ref, _) => LpButton(
+            text: "Fetch modules",
+            onPressed: ref.read(modulesController).fetchModules,
+          ),
+        ),
       ],
     );
   }

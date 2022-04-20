@@ -22,6 +22,7 @@ class DashboardStatusOverviewBarLabel extends StatelessWidget {
       decoration: BoxDecoration(
         color: color,
         borderRadius: BorderRadius.circular(kRadius),
+        boxShadow: kElevationToShadow[1],
       ),
       child: Center(
         child: NcTitleText(

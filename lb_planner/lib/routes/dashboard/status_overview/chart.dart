@@ -27,11 +27,11 @@ class DashboardStatusOverviewChart extends StatelessWidget {
             return Row(
               children: [
                 DashboardStatusOverviewBar(width: doneWidth.safeValue, color: successColor),
-                if (doneWidth.isSafeValue) NcSpacing.xs(),
+                if (doneWidth.isSafeValue) NcSpacing.small(),
                 DashboardStatusOverviewBar(width: uploadedWidth.safeValue, color: warningColor),
-                if (uploadedWidth.isSafeValue) NcSpacing.xs(),
+                if (uploadedWidth.isSafeValue) NcSpacing.small(),
                 DashboardStatusOverviewBar(width: lateWidth.safeValue, color: errorColor),
-                if (lateWidth.isSafeValue) NcSpacing.xs(),
+                if (lateWidth.isSafeValue) NcSpacing.small(),
                 DashboardStatusOverviewBar(width: pendingWidth.safeValue, color: neutralColor),
               ],
             );
@@ -51,6 +51,6 @@ extension on double {
   bool get isSafeValue => !isNaN && !isNegative;
 
   double get withSpacing {
-    return this - NcSpacing.xsSpacing;
+    return this - NcSpacing.smallSpacing;
   }
 }

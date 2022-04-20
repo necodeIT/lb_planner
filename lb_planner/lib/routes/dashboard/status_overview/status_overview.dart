@@ -15,11 +15,11 @@ class DashboardStatusOverview extends LocalizedWidget {
         trailing: Row(
           children: [
             DashboardStatusOverviewBarLabel(color: successColor, count: stats.completedModules),
-            NcSpacing.xs(),
+            NcSpacing.small(),
             DashboardStatusOverviewBarLabel(color: warningColor, count: stats.uploadedModules),
-            NcSpacing.xs(),
+            NcSpacing.small(),
             DashboardStatusOverviewBarLabel(color: errorColor, count: stats.lateModules),
-            NcSpacing.xs(),
+            NcSpacing.small(),
             DashboardStatusOverviewBarLabel(color: neutralColor, count: stats.pendingModules),
           ],
         ),
