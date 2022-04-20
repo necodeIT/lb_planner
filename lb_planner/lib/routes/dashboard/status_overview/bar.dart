@@ -16,7 +16,9 @@ class DashboardStatusOverviewBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return AnimatedContainer(
+      duration: kNormalAnimationDuration,
+      curve: kAnimationCurve,
       width: width,
       height: height,
       decoration: BoxDecoration(

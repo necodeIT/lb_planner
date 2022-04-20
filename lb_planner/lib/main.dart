@@ -8,7 +8,7 @@ import 'package:nekolib_ui/core.dart';
 import 'package:nekolib_utils/log.dart';
 
 void main() {
-  setTheme(darkTheme);
+  setTheme(oceanTheme);
 
   Logger.init(autoSave: false);
 
