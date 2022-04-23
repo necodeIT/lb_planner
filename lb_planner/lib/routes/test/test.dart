@@ -9,7 +9,7 @@ class TestRoute extends StatelessWidget {
   static const routeName = "/test";
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return ListView(
       children: <Widget>[
         LpButton(
           text: "lpShowConfirmDialog",
@@ -31,6 +31,7 @@ class TestRoute extends StatelessWidget {
             onPressed: ref.read(modulesController).fetchModules,
           ),
         ),
+        NcSpacing.medium(),
       ],
     );
   }

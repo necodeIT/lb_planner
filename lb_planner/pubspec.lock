@@ -243,7 +243,7 @@ packages:
       name: flutter_blurhash
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.6.6"
+    version: "0.6.8"
   flutter_cache_manager:
     dependency: transitive
     description:
@@ -362,7 +362,7 @@ packages:
     description:
       path: "lbplanner.dart"
       ref: "lbplanner.dart"
-      resolved-ref: "4dfd24b42f28c5a714ec7295d4f9bf2dfe50be4a"
+      resolved-ref: "820ec3883ac7983489e234fef7a17182fcfa501e"
       url: "https://github.com/necodeIT/lb_planner.git"
     source: git
     version: "0.0.1"

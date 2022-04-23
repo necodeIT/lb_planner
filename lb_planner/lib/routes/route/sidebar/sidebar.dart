@@ -48,15 +48,16 @@ class Sidebar extends StatelessWidget {
                         icon: Icons.calendar_month_rounded,
                         route: CalendarPlanRoute.routeName,
                       ),
-                      NcSpacing.small(),
-                      SidebarItem(
-                        icon: Icons.edit,
-                        route: TestRoute.routeName,
-                      ),
                     ],
                   ),
                   Column(
                     children: [
+                      if (kDebugMode)
+                        SidebarItem(
+                          icon: FontAwesome.flask,
+                          route: TestRoute.routeName,
+                        ),
+                      if (kDebugMode) NcSpacing.small(),
                       SidebarItem(
                         icon: Icons.settings,
                         route: SettingsRoute.routeName,
@@ -96,8 +97,8 @@ final Map<String, WidgetBuilder> kRoutes = {
   LoginRoute.routeName: (context) => LoginRoute(),
   DashboardRoute.routeName: (context) => DashboardRoute(),
   CalendarPlanRoute.routeName: (context) => CalendarPlanRoute(),
-  TestRoute.routeName: (context) => TestRoute(),
   SettingsRoute.routeName: (context) => SettingsRoute(),
+  if (kDebugMode) TestRoute.routeName: (context) => TestRoute(),
 };
 
 /// Observes navigation events.
