@@ -43,16 +43,24 @@ class _LpPopupState extends State<LpPopup> {
   OverlayEntry? _popup;
   OverlayEntry? _dissmissArea;
   final GlobalKey _key = GlobalKey();
+  bool _isShowing = false;
 
   void close() {
+    if (!_isShowing) return;
+
     _popup?.remove();
     _popup = null;
 
     _dissmissArea?.remove();
     _dissmissArea = null;
+    _isShowing = false;
   }
 
   void show(BuildContext context) {
+    if (_isShowing) return;
+
+    _isShowing = true;
+
     var screen = MediaQuery.of(context).size;
     _popup = OverlayEntry(
       builder: (context) {
@@ -142,7 +150,10 @@ class __PopupAnimatorState extends State<_PopupAnimator> with TickerProviderStat
         return Positioned(
           right: widget.right,
           top: widget.top * value,
-          child: Material(child: child!),
+          child: Material(
+            type: MaterialType.transparency,
+            child: child!,
+          ),
         );
       },
     );

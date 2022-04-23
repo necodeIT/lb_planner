@@ -32,10 +32,12 @@ extension RouteExtensions on String {
     });
 
     // Join/Merge all words back to one String
-    return capitalizedWords.join(' ');
+    return capitalizedWords.join(' ').trim();
   }
 }
 
 Map<String, String Function(BuildContext)> _routeToTitle = {
   DashboardRoute.routeName: (context) => context.t.dashboard_routeName,
+  CalendarPlanRoute.routeName: (context) => context.t.calendar_plan_title,
+  SettingsRoute.routeName: (context) => context.t.settings_title,
 };

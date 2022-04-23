@@ -30,7 +30,7 @@ class _SettingsThemesThemeItemState extends State<SettingsThemesThemeItem> {
   _setTheme(UserProvider controller) async {
     if (widget.theme == NcThemes.current) return;
 
-    throw Exception('Catgirl');
+    // throw Exception('Catgirl');
 
     _themeFuture = null;
 

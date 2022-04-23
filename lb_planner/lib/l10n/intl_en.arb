@@ -1,5 +1,6 @@
 {
   "alertDialog_confirm": "OK",
+  "calendar_plan_title": "Calendar Title",
   "dashboard_routeName": "Dashboard",
   "dashboard_statusOverview_noData": "No data...",
   "dashboard_statusOverview_title": "Status overview",
@@ -14,5 +15,6 @@
   "settings_feedback": "Feedback",
   "settings_general": "General",
   "settings_searchCourses": "Search courses...",
-  "settings_themes": "Themes"
+  "settings_themes": "Themes",
+  "settings_title": "Settings"
 }
