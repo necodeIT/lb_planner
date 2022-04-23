@@ -12,7 +12,7 @@ class DashboardStatusOverviewBarLabel extends StatelessWidget {
   final int count;
 
   /// The label size.
-  static const double size = 20;
+  static const double size = 22;
 
   @override
   Widget build(BuildContext context) {

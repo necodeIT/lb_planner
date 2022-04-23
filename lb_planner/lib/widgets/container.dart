@@ -3,12 +3,12 @@ part of lbplanner_widgets;
 /// Themed [Container] widget.
 class LpContainer extends StatelessWidget {
   /// Themed [Container] widget.
-  LpContainer({Key? key, this.title, this.leading, this.trailing, required this.child, this.width, this.height}) : super(key: key) {
+  LpContainer({Key? key, this.title, this.leading, this.trailing, required this.child, this.width, this.height, this.spacing = false}) : super(key: key) {
     window = false;
   }
 
   /// Themed WindowContainer widget.
-  LpContainer.window({Key? key, this.title, this.leading, this.trailing, required this.child, this.width, this.height}) : super(key: key) {
+  LpContainer.window({Key? key, this.title, this.leading, this.trailing, required this.child, this.width, this.height, this.spacing = false}) : super(key: key) {
     window = true;
   }
 
@@ -33,13 +33,17 @@ class LpContainer extends StatelessWidget {
   /// If true, the container is a window.
   late final bool window;
 
+  /// Spacing between the title and the body.
+  final bool spacing;
+
   /// The font size of the title.
-  static const titleFontSize = 18.0;
+  static const titleFontSize = 19.0;
 
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
       duration: kFastAnimationDuration,
+      curve: kAnimationCurve,
       padding: const EdgeInsets.all(NcSpacing.smallSpacing),
       decoration: BoxDecoration(
         color: primaryColor,
@@ -81,6 +85,7 @@ class LpContainer extends StatelessWidget {
                 ],
               ),
             ),
+            if (spacing) NcSpacing.small(),
             Expanded(child: child),
           ],
         ),

@@ -10,5 +10,9 @@
   "login_password": "Password",
   "login_username": "Username",
   "notifications_noNotifications": "No notifications.",
-  "plan_routeName": "Plan"
+  "plan_routeName": "Plan",
+  "settings_feedback": "Feedback",
+  "settings_general": "General",
+  "settings_searchCourses": "Search courses...",
+  "settings_themes": "Themes"
 }

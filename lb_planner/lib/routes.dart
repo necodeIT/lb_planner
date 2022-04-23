@@ -34,3 +34,5 @@ part 'routes/dashboard/status_overview/status_overview.dart';
 part 'routes/dashboard/status_overview/bar_label.dart';
 part 'routes/dashboard/status_overview/bar.dart';
 part 'routes/dashboard/status_overview/chart.dart';
+part 'routes/settings/themes/themes.dart';
+part 'routes/settings/themes/theme_item.dart';

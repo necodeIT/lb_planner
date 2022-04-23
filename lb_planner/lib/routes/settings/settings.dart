@@ -1,7 +1,7 @@
 part of lbplanner_routes;
 
 /// Settings route.
-class SettingsRoute extends StatelessWidget {
+class SettingsRoute extends LocalizedWidget {
   /// Settings route.
   const SettingsRoute({Key? key}) : super(key: key);
 
@@ -9,7 +9,54 @@ class SettingsRoute extends StatelessWidget {
   static const routeName = "/settings";
 
   @override
-  Widget build(BuildContext context) {
-    return LpProgressindicator.penguin();
+  Widget create(context, t) {
+    var placeholder = Center(child: NcTitleText("Test"));
+    return Row(
+      children: [
+        Expanded(
+          flex: 3,
+          child: Column(
+            children: [
+              Expanded(
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: LpContainer(
+                        title: t.settings_general,
+                        height: double.infinity,
+                        child: placeholder,
+                      ),
+                    ),
+                    NcSpacing.medium(),
+                    Expanded(child: SettingsThemes())
+                  ],
+                ),
+              ),
+              NcSpacing.medium(),
+              Expanded(
+                flex: 2,
+                child: LpContainer(
+                  trailing: Expanded(
+                    child: LpTextField(
+                      placeholder: t.settings_searchCourses,
+                    ),
+                  ),
+                  width: double.infinity,
+                  child: placeholder,
+                ),
+              ),
+            ],
+          ),
+        ),
+        NcSpacing.medium(),
+        Expanded(
+          flex: 2,
+          child: LpContainer(
+            title: t.settings_feedback,
+            child: placeholder,
+          ),
+        ),
+      ],
+    );
   }
 }
