@@ -42,14 +42,14 @@ class UserApi {
   }
 
   ///Update a user in the lbplanner app.
-  static Future<ApiResponse<User>> updateUser(String token, int userId, String lang, String theme) async {
+  static Future<ApiResponse<User>> updateUser(String token, User data) async {
     var response = await Api.makeRequest(
       functionName: "local_lbplanner_user_update_user",
       token: token,
       params: {
-        "userid": userId,
-        "lang": lang,
-        "theme": theme,
+        "userid": data.id,
+        "lang": data.language.name,
+        "theme": data.theme,
       },
     );
 

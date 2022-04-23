@@ -60,4 +60,26 @@ class UserProvider extends StateNotifier<User> {
     log("Logging out user", LogTypes.tracking);
     state = User.empty();
   }
+
+  /// Updates the user's [User.theme] to [theme].
+  Future<RawApiResponse> updateTheme(String theme) async {
+    var response = await UserApi.updateUser(state.token, state.copyWith(theme: theme));
+
+    if (response.succeeded) {
+      state = response.value!;
+    }
+
+    return response;
+  }
+
+  /// Updates the user's [User.language] to [language].
+  Future<RawApiResponse> updateLanguage(Languages language) async {
+    var response = await UserApi.updateUser(state.token, state.copyWith(language: language));
+
+    if (response.succeeded) {
+      state = response.value!;
+    }
+
+    return response;
+  }
 }
