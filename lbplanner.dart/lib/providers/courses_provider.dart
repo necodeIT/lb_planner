@@ -9,10 +9,9 @@ final coursesController = coursesProvider.notifier;
 /// Provides courses for the current user
 class CoursesProvider extends StateNotifier<Map<int, Course>> {
   /// Provides courses for the current user
-  CoursesProvider(this.user) : super({});
-  // CoursesProvider(this.user) : super({}){
-  //   fetchCourses();
-  // }
+  CoursesProvider(this.user) : super({}){
+    fetchCourses();
+  }
 
   /// The user to get the courses for
   final User user;
