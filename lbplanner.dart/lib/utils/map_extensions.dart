@@ -86,7 +86,7 @@ extension ModelMappingExtensions on Map<String, dynamic> {
     var body = Map.of(this);
 
     body["id"] = this["courseid"];
-    body["color"] = ColorUtils.fromHexCode(this["color"]);
+    body["colorCode"] = this["color"];
 
     return body;
   }
