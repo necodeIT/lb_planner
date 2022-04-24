@@ -35,15 +35,7 @@ class SettingsRoute extends LocalizedWidget {
               NcSpacing.medium(),
               Expanded(
                 flex: 2,
-                child: LpContainer(
-                  trailing: Expanded(
-                    child: LpTextField(
-                      placeholder: t.settings_searchCourses,
-                    ),
-                  ),
-                  width: double.infinity,
-                  child: placeholder,
-                ),
+                child: SettingsCourses(),
               ),
             ],
           ),

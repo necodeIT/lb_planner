@@ -37,3 +37,5 @@ part 'routes/dashboard/status_overview/bar.dart';
 part 'routes/dashboard/status_overview/chart.dart';
 part 'routes/settings/themes/themes.dart';
 part 'routes/settings/themes/theme_item.dart';
+part 'routes/settings/courses/courses.dart';
+part 'routes/settings/courses/course_item.dart';
