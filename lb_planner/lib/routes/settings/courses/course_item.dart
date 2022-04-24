@@ -16,6 +16,22 @@ class SettingsCourseItem extends StatefulWidget {
 }
 
 class _SettingsCourseItemState extends State<SettingsCourseItem> {
+  Future<RawApiResponse>? _updateFuture;
+
+  void _enableCourse(bool value, CoursesProvider controller) async {
+    _updateFuture = null;
+
+    setState(() {
+      _updateFuture = controller.enableCourse(widget.courseId, value);
+    });
+
+    await _updateFuture;
+
+    setState(() {
+      _updateFuture = null;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Consumer(
@@ -27,7 +43,7 @@ class _SettingsCourseItemState extends State<SettingsCourseItem> {
           children: [
             LpCheckbox(
               value: course.enabled,
-              onChanged: (value) => controller.enableCourse(widget.courseId, value),
+              onChanged: (value) => _enableCourse(value, controller),
               scale: 1.2,
             ),
             NcSpacing.small(),
@@ -38,10 +54,26 @@ class _SettingsCourseItemState extends State<SettingsCourseItem> {
             ),
             NcSpacing.small(),
             Expanded(
-              child: NcBodyText(
-                course.name,
-                fontSize: 18,
-                textAlign: TextAlign.center,
+              child: ConditionalWrapper(
+                condition: _updateFuture != null,
+                wrapper: (context, child) => FutureBuilder(
+                  future: _updateFuture,
+                  builder: (context, snapshot) => ConditionalWidget(
+                    condition: snapshot.connectionState != ConnectionState.done,
+                    trueWidget: (_) => Padding(
+                      padding: EdgeInsets.all(NcSpacing.smallSpacing),
+                      child: LpProgressindicator(
+                        thickness: 2,
+                      ),
+                    ),
+                    falseWidget: (_) => child,
+                  ),
+                ),
+                child: NcBodyText(
+                  course.name,
+                  fontSize: 18,
+                  textAlign: TextAlign.center,
+                ),
               ),
             ),
             NcSpacing.small(),
