@@ -18,7 +18,8 @@ class CoursesApi {
       courses = [];
 
       for (var course in response.body[kApiListContent]) {
-        courses.add(Course.fromJson(course.mapCourse()));
+        var courseMap = Map.of(course); 
+        courses.add(Course.fromJson(courseMap.mapCourse()));
       }
     }
 
