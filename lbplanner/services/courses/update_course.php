@@ -72,6 +72,8 @@ class courses_update_course extends external_api {
         $course->shortname = $shortname;
         $course->enabled = $enabled;
         $DB->update_record(course_helper::LBPLANNER_COURSE_TABLE, $course);
+        
+        $course->name = course_helper::get_fullname($course->courseid);
 
         return $course;
     }
@@ -81,6 +83,7 @@ class courses_update_course extends external_api {
             array(
                 'courseid' => new external_value(PARAM_INT, 'The id of the course'),
                 'color' => new external_value(PARAM_TEXT, 'The color of the course'),
+                'name' => new external_value(PARAM_TEXT, 'The name of the course'),
                 'shortname' => new external_value(PARAM_TEXT, 'The shortname of the course'),
                 'enabled' => new external_value(PARAM_BOOL, 'Whether the course is enabled or not'),
                 'userid' => new external_value(PARAM_INT, 'The id of the user'),
