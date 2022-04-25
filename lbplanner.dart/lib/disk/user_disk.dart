@@ -35,11 +35,11 @@ class UserDisk {
     var json = await file.readAsString();
 
     try {
-      _data = User.fromJson(jsonDecode(json));
+      var user = User.fromJson(jsonDecode(json));
 
-      var response = await UserApi.getUser(data!.token, data!.id);
+      var response = await UserApi.getUser(user.token, user.id);
 
-      assert(response.succeeded);
+      _data = response.value ?? User.empty();
     } catch (e) {
       _data = User.empty();
     }
