@@ -24,6 +24,10 @@ void main() {
 /// Loads data from disk and returns a [Future] that completes when the data is loaded.
 Future<void> load() async {
   await UserDisk.loadUser();
+
+  if (UserDisk.data != null && !UserDisk.data!.isEmpty) {
+    setTheme(NcThemes.all[UserDisk.data!.theme]!);
+  }
 }
 
 /// Main app widget.

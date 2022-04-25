@@ -53,6 +53,8 @@ class _LoginFormState extends State<LoginForm> {
     }
 
     if (mounted && (_loginResponse?.succeeded ?? false)) {
+      // ignore: invalid_use_of_protected_member
+      setTheme(NcThemes.all[user.state.theme]!);
       Navigator.of(context).pushNamed(DashboardRoute.routeName);
     }
   }
