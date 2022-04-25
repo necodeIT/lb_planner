@@ -43,6 +43,7 @@ class UserProvider extends StateNotifier<User> {
       log("Logged in successfully", LogTypes.success);
 
       state = user.value!;
+      UserDisk.saveUser(state);
       return user;
     }
 
@@ -50,7 +51,10 @@ class UserProvider extends StateNotifier<User> {
 
     var register = await UserApi.registerUser(token, id.value!, language.name, theme);
 
-    if (register.succeeded) state = register.value!;
+    if (register.succeeded) {
+      state = register.value!;
+      UserDisk.saveUser(state);
+    }
 
     log("Registered user successfully", LogTypes.success);
 
@@ -58,9 +62,10 @@ class UserProvider extends StateNotifier<User> {
   }
 
   /// Logs out the current user.
-  void logout() {
+  Future<void> logout() async {
     log("Logging out user", LogTypes.tracking);
     state = User.empty();
+    UserDisk.saveUser(state);
   }
 
   /// Updates the user's [User.theme] to [theme].
@@ -69,6 +74,7 @@ class UserProvider extends StateNotifier<User> {
 
     if (response.succeeded) {
       state = response.value!;
+      UserDisk.saveUser(state);
     }
 
     return response;
@@ -80,6 +86,7 @@ class UserProvider extends StateNotifier<User> {
 
     if (response.succeeded) {
       state = response.value!;
+      UserDisk.saveUser(state);
     }
 
     return response;
