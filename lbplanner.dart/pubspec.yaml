@@ -19,15 +19,16 @@ dependencies:
       url: https://github.com/necodeIT/nekolib.git
       ref: flutter
       path: utils
-  riverpod: ^1.0.3
+  path_provider: ^2.0.9
+  riverpod: any
 
 dev_dependencies:
-  import_sorter: ^4.6.0
   build_runner: any
   flutter_lints: ^1.0.0
   flutter_test:
     sdk: flutter
   freezed: 1.1.1
+  import_sorter: ^4.6.0
   json_serializable: any
 
 # For information on the generic Dart part of this file, see the
@@ -35,6 +36,7 @@ dev_dependencies:
 # The following section is specific to Flutter.
 flutter:
   uses-material-design: true
+
 # To add assets to your package, add an assets section, like this:
 # assets:
 #   - images/a_dot_burr.jpeg

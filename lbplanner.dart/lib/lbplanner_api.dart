@@ -13,6 +13,7 @@ export 'models/deadline/deadline.dart';
 
 // Dart imports:
 import 'dart:convert';
+import 'dart:io';
 import 'dart:ui';
 
 // Package imports:
@@ -20,6 +21,7 @@ import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:lbplanner_api/models/statistics/statistics.dart';
 import 'package:nekolib_utils/log.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:riverpod/riverpod.dart';
 
 // Project imports:
@@ -73,6 +75,11 @@ part 'utils/color_extensions.dart';
 part 'utils/bool_extensions.dart';
 part 'utils/response.dart';
 part 'utils/provider_utils.dart';
+
+// Disk
+
+part 'disk/user_disk.dart';
+part 'disk/disk.dart';
 
 /// The rate with which the api refreshes underlying data
 const kApiRefreshRate = Duration(seconds: 5);
