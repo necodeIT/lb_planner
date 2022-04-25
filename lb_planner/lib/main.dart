@@ -15,8 +15,15 @@ void main() {
     title: 'LB Planner',
     appIcon: LpLogo.svg,
     minSize: Size(1200, 700),
+    onLoad: load,
     windowHandleColor: () => primaryColor,
+    loadingWidgetBuilder: (_) => LpProgressindicator.circular(),
   );
+}
+
+/// Loads data from disk and returns a [Future] that completes when the data is loaded.
+Future<void> load() async {
+  await UserDisk.loadUser();
 }
 
 /// Main app widget.

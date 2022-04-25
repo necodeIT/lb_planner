@@ -314,7 +314,7 @@ packages:
       name: google_fonts
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.3.1"
+    version: "2.3.2"
   graphs:
     dependency: transitive
     description:
@@ -362,7 +362,7 @@ packages:
     description:
       path: "lbplanner.dart"
       ref: "lbplanner.dart"
-      resolved-ref: a0bb593f3097b16d90ecc925df0519af1dc7eb98
+      resolved-ref: e0e22cd553f01d14808b6f2bfa17866fee9c4bf6
       url: "https://github.com/necodeIT/lb_planner.git"
     source: git
     version: "0.0.1"
