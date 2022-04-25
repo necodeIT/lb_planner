@@ -7,8 +7,8 @@ import 'package:lbplanner_api/lbplanner_api.dart';
 import 'package:nekolib_ui/core.dart';
 import 'package:nekolib_utils/log.dart';
 
-void main() {
-  Logger.init(autoSave: false);
+void main() async {
+  Logger.init(autoSave: true, appStoragePath: (await Disk.appDir).path);
 
   runThemedApp(
     appBuilder: App.builder,
