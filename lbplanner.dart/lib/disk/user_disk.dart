@@ -32,9 +32,9 @@ class UserDisk {
   static Future<void> loadUser() async {
     var file = await userFile;
 
-    var json = await file.readAsString();
-
     try {
+      var json = await file.readAsString();
+      
       var user = User.fromJson(jsonDecode(json));
 
       var response = await UserApi.getUser(user.token, user.id);
