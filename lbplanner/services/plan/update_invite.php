@@ -55,11 +55,14 @@ class plan_update_invite extends external_api {
         array(
             'planid' => $planid,
             'inviteeid' => $userid,
-            'status' => plan_helper::INVITE_PENDING
         ),
         '*',
         MUST_EXIST
         );
+
+        if ($invite->status != plan_helper::INVITE_PENDING) {
+            throw new \moodle_exception('Invalid status');
+        }
 
         $invite->status = $status;
 
@@ -69,7 +72,7 @@ class plan_update_invite extends external_api {
         notifications_helper::TRIGGER_INVITE_ACCEPTED
         : notifications_helper::TRIGGER_INVITE_DECLINED;
 
-        notifications_helper::notify_user($invite->inviterid, user_helper::get_complete_name($invite->invteeid) , $trigger);
+        notifications_helper::notify_user($invite->inviterid, user_helper::get_complete_name($userid) , $trigger);
 
         // TODO: Change plan access and delete old plan if inivite is accepted.
 
@@ -83,7 +86,7 @@ class plan_update_invite extends external_api {
                         plan_leave_plan::leave_plan($member->userid, $oldplanid);
                     }
                 }
-                plan_clear_plan::call_external_function('clear_plan', array ($userid, $oldplanid));
+                self::call_external_function('local_lbplanner_plan_clear_plan', array ($userid, $oldplanid));
 
                 $DB->delete_records(plan_helper::TABLE, array('id' => $oldplanid));
             }
@@ -102,7 +105,8 @@ class plan_update_invite extends external_api {
             $planaccess->planid = $planid;
 
             $DB->update_record(plan_helper::ACCESS_TABLE, $planaccess);
-            $DB->delete_records(plan_helper::INVITES_TABLE, $invite);
+
+            $DB->delete_records(plan_helper::INVITES_TABLE, array('id' => $invite->id));
         }
         return array(
             'inviterid' => $invite->inviterid,

@@ -44,7 +44,7 @@ class plan_remove_user extends external_api {
 
         user_helper::assert_access($userid);
 
-        plan_helper::remove_user($planid, $userid, $removeuserid);
+        return plan_helper::remove_user($planid, $userid, $removeuserid);
     }
 
     public static function remove_user_returns() {
