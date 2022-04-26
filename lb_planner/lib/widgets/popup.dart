@@ -12,10 +12,14 @@ class LpPopup extends StatefulWidget {
     this.animationCurve = kAnimationCurve,
     this.backgroundColor = Colors.transparent,
     this.offset = Offset.zero,
+    this.cursor = SystemMouseCursors.click,
   }) : super(key: key);
 
   /// Builds the popup to insert.
   final PopupBuilder popupBuilder;
+
+  /// The cursor to show when [child] is hovered.
+  final MouseCursor cursor;
 
   /// The offset of the popup.
   final Offset offset;
@@ -104,10 +108,13 @@ class _LpPopupState extends State<LpPopup> {
 
   @override
   Widget build(BuildContext context) {
-    return Listener(
-      key: _key,
-      onPointerDown: (event) => show(context),
-      child: widget.child,
+    return MouseRegion(
+      cursor: widget.cursor,
+      child: Listener(
+        key: _key,
+        onPointerDown: (event) => show(context),
+        child: widget.child,
+      ),
     );
   }
 }
