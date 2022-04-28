@@ -39,3 +39,5 @@ part 'routes/settings/themes/themes.dart';
 part 'routes/settings/themes/theme_item.dart';
 part 'routes/settings/courses/courses.dart';
 part 'routes/settings/courses/course_item.dart';
+part 'routes/dashboard/todays_tasks/todays_tasks.dart';
+part 'routes/dashboard/todays_tasks/item.dart';

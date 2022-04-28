@@ -4,6 +4,8 @@
   "dashboard_routeName": "Dashboard",
   "dashboard_statusOverview_noData": "No data...",
   "dashboard_statusOverview_title": "Status overview",
+  "dashboard_todaysTasks_noTasks": "Nothing planned for today!",
+  "dashboard_todaysTasks_title": "Today's tasks",
   "dialog_cancel": "Cancel",
   "dialog_confirm": "Confirm",
   "login_invalidUsernameOrPassword": "Invalid username or password",
