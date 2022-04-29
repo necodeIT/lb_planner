@@ -28,8 +28,13 @@ extension ModelMappingExtensions on Map<String, dynamic> {
     var type = this["type"];
     var status = this["status"];
     var id = this["notificationid"];
-
-    body["payload"] = jsonDecode(payload.isEmpty ? '{}' : payload);
+    
+    try{
+      body["payload"] = jsonDecode(payload.isEmpty ? '{}' : payload);
+    }catch(e){
+      body["payload"] = {"value":payload"}
+    }
+    
     body["type"] = NotificationTypes.values[type].name;
     body["status"] = NotificationStatus.values[status].name;
     body["id"] = id;
