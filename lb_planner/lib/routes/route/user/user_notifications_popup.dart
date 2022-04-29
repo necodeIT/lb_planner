@@ -22,6 +22,7 @@ class UserNotificationsPopup extends StatelessWidget {
     return Consumer(builder: (context, ref, _) {
       var notifications = ref.watch(notificationsProvider);
       return LpContainer(
+        spacing: false,
         trailing: GestureDetector(
           onTap: close,
           child: LpIcon(

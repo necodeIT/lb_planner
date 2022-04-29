@@ -48,6 +48,7 @@ class ModuleWidget extends StatelessWidget {
 
       return ConditionalWidget(
         condition: courses.containsKey(module.courseId),
+        // condition: false,
         trueWidget: (context) {
           var course = courses[module.courseId]!;
 
@@ -98,7 +99,7 @@ class ModuleWidget extends StatelessWidget {
             ),
           ),
           baseColor: secondaryColor,
-          highlightColor: secondaryColor.lighten(0.03),
+          highlightColor: secondaryColor.lighten(0.02),
         ),
       );
     });
