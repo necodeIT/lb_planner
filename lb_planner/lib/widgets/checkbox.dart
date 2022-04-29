@@ -21,15 +21,20 @@ class LpCheckbox extends StatelessWidget {
   Widget build(BuildContext context) {
     return Transform.scale(
       scale: scale,
-      child: Checkbox(
-        value: value,
-        onChanged: (value) => onChanged?.call(value ?? false),
-        activeColor: accentColor,
-        splashRadius: 0,
-        checkColor: buttonTextColor,
-        side: BorderSide(color: accentColor, width: borderWidth),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(kRadius),
+      child: ScaleOnHover(
+        duration: kFastAnimationDuration,
+        scale: onChanged != null ? 1.1 : 1,
+        child: Checkbox(
+          focusColor: accentColor,
+          value: value,
+          onChanged: (value) => onChanged?.call(value ?? false),
+          activeColor: accentColor,
+          splashRadius: 0,
+          checkColor: buttonTextColor,
+          side: BorderSide(color: accentColor, width: borderWidth),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(kRadius),
+          ),
         ),
       ),
     );

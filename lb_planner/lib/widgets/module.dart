@@ -98,7 +98,7 @@ class ModuleWidget extends StatelessWidget {
             ),
           ),
           baseColor: secondaryColor,
-          highlightColor: primaryColor,
+          highlightColor: secondaryColor.lighten(0.03),
         ),
       );
     });
