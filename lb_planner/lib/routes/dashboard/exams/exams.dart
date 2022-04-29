@@ -25,7 +25,6 @@ class DashboardExams extends LocalizedWidget {
       }
 
       return LpContainer(
-        spacing: true,
         title: t.dashboard_exams_title,
         width: double.infinity,
         child: ConditionalWidget(

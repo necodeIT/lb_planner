@@ -9,7 +9,6 @@ class SettingsThemes extends LocalizedWidget {
   Widget create(context, t) {
     return LpContainer(
       title: t.settings_themes,
-      spacing: true,
       height: double.infinity,
       child: Align(
         alignment: Alignment.topLeft,

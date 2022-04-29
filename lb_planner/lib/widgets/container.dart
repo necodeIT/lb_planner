@@ -3,7 +3,7 @@ part of lbplanner_widgets;
 /// Themed [Container] widget.
 class LpContainer extends StatelessWidget {
   /// Themed [Container] widget.
-  LpContainer({Key? key, this.title, this.leading, this.trailing, required this.child, this.width, this.height, this.spacing = false}) : super(key: key) {
+  LpContainer({Key? key, this.title, this.leading, this.trailing, required this.child, this.width, this.height, this.spacing = true}) : super(key: key) {
     window = false;
   }
 
