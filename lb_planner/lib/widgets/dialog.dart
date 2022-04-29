@@ -104,7 +104,7 @@ void lpShowConfirmDialog(BuildContext context, {required String title, required 
   showGeneralDialog(
     context: context,
     barrierDismissible: false,
-    transitionDuration: kFastAnimationDuration,
+    transitionDuration: kNormalAnimationDuration,
     transitionBuilder: (context, animation, secondaryAnimation, child) {
       return shrinkAnimation(animation, secondaryAnimation, child);
     },
@@ -126,7 +126,7 @@ void lpShowAlertDialog(BuildContext context, {required String title, required Wi
   showGeneralDialog(
     context: context,
     barrierDismissible: false,
-    transitionDuration: kFastAnimationDuration,
+    transitionDuration: kNormalAnimationDuration,
     transitionBuilder: (context, animation, secondaryAnimation, child) {
       return shrinkAnimation(animation, secondaryAnimation, child);
     },
