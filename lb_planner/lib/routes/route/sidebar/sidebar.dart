@@ -92,18 +92,6 @@ class Sidebar extends StatelessWidget {
   }
 }
 
-/// All routes the app has
-final Map<String, WidgetBuilder> kRoutes = {
-  LoginRoute.routeName: (context) => LoginRoute(),
-  DashboardRoute.routeName: (context) => DashboardRoute(),
-  CalendarPlanRoute.routeName: (context) => CalendarPlanRoute(),
-  SettingsRoute.routeName: (context) => SettingsRoute(),
-  if (kDebugMode) TestRoute.routeName: (context) => TestRoute(),
-};
-
-/// Observes navigation events.
-final RouteObserver<ModalRoute<void>> kRouteObserver = RouteObserver<ModalRoute<void>>();
-
 const Color _kKeyUmbraOpacity = Color(0x33000000); // alpha = 0.2
 const Color _kKeyPenumbraOpacity = Color(0x24000000); // alpha = 0.14
 const Color _kAmbientShadowOpacity = Color(0x1F000000); // alpha = 0.12
