@@ -16,7 +16,6 @@ class _SettingsCoursesState extends State<SettingsCourses> {
       var courses = ref.watch(coursesProvider);
 
       return LpContainer(
-        spacing: true,
         trailing: Expanded(
           child: LpTextField(
             placeholder: t.settings_searchCourses,

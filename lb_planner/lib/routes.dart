@@ -43,3 +43,15 @@ part 'routes/dashboard/todays_tasks/todays_tasks.dart';
 part 'routes/dashboard/todays_tasks/item.dart';
 part 'routes/dashboard/exams/exams.dart';
 part 'routes/route/user/user_notifications_item.dart';
+
+/// All routes the app has
+final Map<String, WidgetBuilder> kRoutes = {
+  LoginRoute.routeName: (context) => LoginRoute(),
+  DashboardRoute.routeName: (context) => DashboardRoute(),
+  CalendarPlanRoute.routeName: (context) => CalendarPlanRoute(),
+  SettingsRoute.routeName: (context) => SettingsRoute(),
+  if (kDebugMode) TestRoute.routeName: (context) => TestRoute(),
+};
+
+/// Observes navigation events.
+final RouteObserver<ModalRoute<void>> kRouteObserver = RouteObserver<ModalRoute<void>>();
