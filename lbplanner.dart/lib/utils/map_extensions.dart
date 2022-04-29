@@ -32,7 +32,7 @@ extension ModelMappingExtensions on Map<String, dynamic> {
     try{
       body["payload"] = jsonDecode(payload.isEmpty ? '{}' : payload);
     }catch(e){
-      body["payload"] = {"value":payload"}
+      body["payload"] = {"value":payload}
     }
     
     body["type"] = NotificationTypes.values[type].name;
