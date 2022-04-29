@@ -8,8 +8,16 @@ class UserNotifications extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer(
-      builder: (context, ref, child) {
+      builder: (context, ref, _) {
         var notifications = ref.watch(notificationsProvider);
+        var controller = ref.read(notificationsController);
+
+        var child = LpPopup(
+          onShow: () => controller.markAllAsRead(),
+          child: LpIcon(Icons.notifications_outlined),
+          popupBuilder: UserNotificationsPopup.builder,
+          offset: const Offset(-10, 0),
+        );
 
         return ConditionalWrapper(
           condition: notifications.any((notification) => notification.status == NotificationStatus.unread),
@@ -20,14 +28,9 @@ class UserNotifications extends StatelessWidget {
             // animationType: BadgeAnimationType.fade,
             // animationDuration: kFasterAnimationDuration,
           ),
-          child: child!,
+          child: child,
         );
       },
-      child: LpPopup(
-        child: LpIcon(Icons.notifications_outlined),
-        popupBuilder: UserNotificationsPopup.builder,
-        offset: const Offset(-10, 0),
-      ),
     );
   }
 }

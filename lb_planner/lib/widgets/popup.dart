@@ -13,6 +13,8 @@ class LpPopup extends StatefulWidget {
     this.backgroundColor = Colors.transparent,
     this.offset = Offset.zero,
     this.cursor = SystemMouseCursors.click,
+    this.onHide,
+    this.onShow,
   }) : super(key: key);
 
   /// Builds the popup to insert.
@@ -39,6 +41,12 @@ class LpPopup extends StatefulWidget {
   /// The background color of the popup.
   final Color backgroundColor;
 
+  /// Called when the popup is dismissed.
+  final VoidCallback? onHide;
+
+  /// Called when the popup is shown.
+  final VoidCallback? onShow;
+
   @override
   State<LpPopup> createState() => _LpPopupState();
 }
@@ -58,6 +66,8 @@ class _LpPopupState extends State<LpPopup> {
     _dissmissArea?.remove();
     _dissmissArea = null;
     _isShowing = false;
+
+    if (mounted) widget.onHide?.call();
   }
 
   void show(BuildContext context) {
@@ -98,6 +108,8 @@ class _LpPopupState extends State<LpPopup> {
     }
 
     Overlay.of(context)!.insert(_popup!);
+
+    widget.onShow?.call();
   }
 
   @override
@@ -174,4 +186,4 @@ class __PopupAnimatorState extends State<_PopupAnimator> with TickerProviderStat
 }
 
 /// Builds the popup to insert.
-typedef PopupBuilder = Widget Function(BuildContext context, VoidCallback close);
+typedef PopupBuilder = Widget Function(BuildContext context, VoidCallback hide);
