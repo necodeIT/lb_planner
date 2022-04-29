@@ -54,6 +54,8 @@ extension ModelMappingExtensions on Map<String, dynamic> {
     var body = Map.of(this);
 
     body["id"] = this["moduleid"];
+    body["courseId"] = this["courseid"];
+
 
     int gradeIndex = this["grade"] ?? -1;
     body["grade"] = gradeIndex.isNegative ? null : ModuleGrades.values[gradeIndex].name;
