@@ -42,7 +42,7 @@ class DashboardRoute extends StatelessWidget {
         Expanded(
           child: Column(
             children: [
-              Expanded(child: filler),
+              Expanded(child: DashboardExams()),
               NcSpacing.medium(),
               Expanded(child: filler),
             ],

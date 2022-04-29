@@ -1,6 +1,8 @@
 {
   "alertDialog_confirm": "OK",
   "calendar_plan_title": "Calendar Title",
+  "dashboard_exams_noExams": "No upcomming exams...",
+  "dashboard_exams_title": "Exams",
   "dashboard_routeName": "Dashboard",
   "dashboard_statusOverview_noData": "No data...",
   "dashboard_statusOverview_title": "Status overview",

@@ -31,7 +31,7 @@ class UserNotificationsPopup extends StatelessWidget {
         ),
         child: ConditionalWidget(
           condition: notifications.isNotEmpty,
-          trueWidget: (context) => Column(
+          trueWidget: (context) => ListView(
             children: [
               for (var notification in notifications) ...[
                 NcSpacing.small(),
