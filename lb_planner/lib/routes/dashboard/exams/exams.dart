@@ -33,8 +33,8 @@ class DashboardExams extends LocalizedWidget {
           trueWidget: (context) => ListView(
             children: [
               for (var exam in exams) ...[
-                DashboardExamsItem(
-                  examId: exam.id,
+                ModuleWidget.date(
+                  moduleId: exam.id,
                 ),
                 NcSpacing.small(),
               ],
