@@ -107,7 +107,7 @@ class _LoginFormState extends State<LoginForm> {
                         onPressed: () {},
                         child: SizedBox(
                             width: LoginForm.width,
-                            child: LpProgressindicator.circular(
+                            child: LpLoadingIndicator.circular(
                               thickness: 2,
                               size: 15,
                               color: buttonTextColor,

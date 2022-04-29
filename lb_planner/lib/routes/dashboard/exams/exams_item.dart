@@ -19,35 +19,43 @@ class DashboardExamsItem extends StatelessWidget {
     return Consumer(builder: (context, ref, _) {
       var exam = ref.watch(modulesProvider)[examId]!;
 
-      var course = ref.watch(coursesProvider)[exam.courseId]!;
+      var courses = ref.watch(coursesProvider);
 
-      return Container(
-        padding: const EdgeInsets.symmetric(
-          vertical: NcSpacing.xsSpacing,
-          horizontal: NcSpacing.smallSpacing,
-        ),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(kRadius),
-          color: secondaryColor,
-        ),
-        child: Row(
-          children: [
-            LpTag(
-              text: course.shortname,
-              color: course.color,
-              fontSize: tagSize,
+      return ConditionalWidget(
+        condition: courses.containsKey(exam.courseId),
+        trueWidget: (context) {
+          var course = courses[exam.courseId]!;
+
+          return Container(
+            padding: const EdgeInsets.symmetric(
+              vertical: NcSpacing.xsSpacing,
+              horizontal: NcSpacing.smallSpacing,
             ),
-            NcSpacing.small(),
-            Expanded(
-              child: NcBodyText(
-                exam.name,
-                textAlign: TextAlign.center,
-                // fontSize: 14,
-              ),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(kRadius),
+              color: secondaryColor,
             ),
-            NcBodyText(formatter.format(exam.deadline!))
-          ],
-        ),
+            child: Row(
+              children: [
+                LpTag(
+                  text: course.shortname,
+                  color: course.color,
+                  fontSize: tagSize,
+                ),
+                NcSpacing.small(),
+                Expanded(
+                  child: NcBodyText(
+                    exam.name,
+                    textAlign: TextAlign.center,
+                    // fontSize: 14,
+                  ),
+                ),
+                NcBodyText(formatter.format(exam.deadline!))
+              ],
+            ),
+          );
+        },
+        falseWidget: (context) => LpLoadingIndicator(),
       );
     });
   }

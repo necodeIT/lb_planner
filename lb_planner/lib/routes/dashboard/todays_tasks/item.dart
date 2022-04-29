@@ -3,9 +3,10 @@ part of lbplanner_routes;
 /// Item of the todays tasks section of the dashboard.
 class DashboardTodaysTasksItem extends StatelessWidget {
   /// Item of the todays tasks section of the dashboard.
-  const DashboardTodaysTasksItem({Key? key, required this.module}) : super(key: key);
+  const DashboardTodaysTasksItem({Key? key, required this.moduleId}) : super(key: key);
 
-  final Module module;
+  /// The module id.
+  final int moduleId;
 
   @override
   Widget build(BuildContext context) {

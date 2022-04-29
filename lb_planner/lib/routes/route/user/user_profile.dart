@@ -31,7 +31,7 @@ class UserProfile extends StatelessWidget {
               imageUrl: user.avatar,
               width: imgSize,
               height: imgSize,
-              placeholder: (_, __) => LpProgressindicator.circular(),
+              placeholder: (_, __) => LpLoadingIndicator.circular(),
               errorWidget: (_, __, ___) => LpIcon(
                 Icons.account_circle,
                 size: imgSize,

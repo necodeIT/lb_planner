@@ -18,7 +18,7 @@ class DashboardExams extends LocalizedWidget {
         if (module.deadline == null) continue;
 
         var diff = module.deadline!.difference(DateTime.now());
-        print(diff.inDays);
+
         if (diff.inDays.isNegative || diff.inDays > 14) continue;
 
         exams.add(module);

@@ -15,7 +15,7 @@ class DashboardTodaysTasks extends LocalizedWidget {
         child: ListView(
           children: [
             for (var module in modules.values) ...[
-              DashboardTodaysTasksItem(module: module),
+              DashboardTodaysTasksItem(moduleId: module.id),
               NcSpacing.small(),
             ]
           ],

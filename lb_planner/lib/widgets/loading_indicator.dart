@@ -1,19 +1,19 @@
 part of lbplanner_widgets;
 
 /// Progress indicator.
-class LpProgressindicator extends StatelessWidget {
+class LpLoadingIndicator extends StatelessWidget {
   /// Linear progress indicator.
-  LpProgressindicator({Key? key, this.progress, this.color, this.size, this.thickness, this.backgroundColor = Colors.transparent}) : super(key: key) {
+  LpLoadingIndicator({Key? key, this.progress, this.color, this.size, this.thickness, this.backgroundColor = Colors.transparent}) : super(key: key) {
     type = _LpProgressIndicatorTypes.linear;
   }
 
   /// Circular progress indicator.
-  LpProgressindicator.circular({Key? key, this.progress, this.color, this.size, this.thickness, this.backgroundColor = Colors.transparent}) : super(key: key) {
+  LpLoadingIndicator.circular({Key? key, this.progress, this.color, this.size, this.thickness, this.backgroundColor = Colors.transparent}) : super(key: key) {
     type = _LpProgressIndicatorTypes.circular;
   }
 
   /// Circular progress indicator with logo in the middle.
-  LpProgressindicator.penguin({Key? key, this.size}) : super(key: key) {
+  LpLoadingIndicator.penguin({Key? key, this.size}) : super(key: key) {
     type = _LpProgressIndicatorTypes.penguin;
     backgroundColor = Colors.transparent;
     thickness = 0;

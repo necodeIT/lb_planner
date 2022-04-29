@@ -74,7 +74,7 @@ class _SettingsThemesThemeItemState extends State<SettingsThemesThemeItem> {
                 builder: (context, snapshot) => ConditionalWidget(
                   condition: snapshot.connectionState == ConnectionState.done,
                   trueWidget: (context) => child,
-                  falseWidget: (context) => LpProgressindicator.circular(
+                  falseWidget: (context) => LpLoadingIndicator.circular(
                     size: SettingsThemesThemeItem.iconSize,
                     color: widget.theme.accentColor,
                     thickness: 3,

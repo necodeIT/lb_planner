@@ -17,7 +17,7 @@ void main() async {
     minSize: Size(1200, 700),
     onLoad: load,
     windowHandleColor: () => primaryColor,
-    loadingWidgetBuilder: (_) => LpProgressindicator.penguin(),
+    loadingWidgetBuilder: (_) => LpLoadingIndicator.penguin(),
   );
 }
 
