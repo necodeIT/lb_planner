@@ -118,4 +118,17 @@ extension ModelMappingExtensions on Map<String, dynamic> {
 
     return body;
   }
+
+  /// Maps parameters to fit [PlanInvite.fromJson]
+  Map<String, dynamic> mapPlanInvite() {
+    var body = Map.of(this);
+
+    body["invitee"] = this["inviteeid"];
+    body["inviter"] = this["inviterid"];
+    body["planId"] = this["planid"];
+    body["status"] = PlanInviteStatus.values[this["status"]].name;
+    body["timeStamp"] = DateTime.fromMillisecondsSinceEpoch(this["timestamp"] * 1000);
+
+    return body;
+  }
 }

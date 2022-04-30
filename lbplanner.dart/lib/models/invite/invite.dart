@@ -16,7 +16,7 @@ class PlanInvite with _$PlanInvite {
   /// Plan model
   const factory PlanInvite({
     /// ID of the plan
-    required int id,
+    required DateTime timeStamp,
 
     /// The name of the plan
     required int planId,

@@ -23,13 +23,13 @@ class _$PlanInviteTearOff {
   const _$PlanInviteTearOff();
 
   _PlanInvite call(
-      {required int id,
+      {required DateTime timeStamp,
       required int planId,
       required int invitee,
       required int inviter,
       required PlanInviteStatus status}) {
     return _PlanInvite(
-      id: id,
+      timeStamp: timeStamp,
       planId: planId,
       invitee: invitee,
       inviter: inviter,
@@ -48,7 +48,7 @@ const $PlanInvite = _$PlanInviteTearOff();
 /// @nodoc
 mixin _$PlanInvite {
   /// ID of the plan
-  int get id => throw _privateConstructorUsedError;
+  DateTime get timeStamp => throw _privateConstructorUsedError;
 
   /// The name of the plan
   int get planId => throw _privateConstructorUsedError;
@@ -74,7 +74,11 @@ abstract class $PlanInviteCopyWith<$Res> {
           PlanInvite value, $Res Function(PlanInvite) then) =
       _$PlanInviteCopyWithImpl<$Res>;
   $Res call(
-      {int id, int planId, int invitee, int inviter, PlanInviteStatus status});
+      {DateTime timeStamp,
+      int planId,
+      int invitee,
+      int inviter,
+      PlanInviteStatus status});
 }
 
 /// @nodoc
@@ -87,17 +91,17 @@ class _$PlanInviteCopyWithImpl<$Res> implements $PlanInviteCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? id = freezed,
+    Object? timeStamp = freezed,
     Object? planId = freezed,
     Object? invitee = freezed,
     Object? inviter = freezed,
     Object? status = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
+      timeStamp: timeStamp == freezed
+          ? _value.timeStamp
+          : timeStamp // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       planId: planId == freezed
           ? _value.planId
           : planId // ignore: cast_nullable_to_non_nullable
@@ -125,7 +129,11 @@ abstract class _$PlanInviteCopyWith<$Res> implements $PlanInviteCopyWith<$Res> {
       __$PlanInviteCopyWithImpl<$Res>;
   @override
   $Res call(
-      {int id, int planId, int invitee, int inviter, PlanInviteStatus status});
+      {DateTime timeStamp,
+      int planId,
+      int invitee,
+      int inviter,
+      PlanInviteStatus status});
 }
 
 /// @nodoc
@@ -140,17 +148,17 @@ class __$PlanInviteCopyWithImpl<$Res> extends _$PlanInviteCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? id = freezed,
+    Object? timeStamp = freezed,
     Object? planId = freezed,
     Object? invitee = freezed,
     Object? inviter = freezed,
     Object? status = freezed,
   }) {
     return _then(_PlanInvite(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
+      timeStamp: timeStamp == freezed
+          ? _value.timeStamp
+          : timeStamp // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       planId: planId == freezed
           ? _value.planId
           : planId // ignore: cast_nullable_to_non_nullable
@@ -175,7 +183,7 @@ class __$PlanInviteCopyWithImpl<$Res> extends _$PlanInviteCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_PlanInvite extends _PlanInvite {
   const _$_PlanInvite(
-      {required this.id,
+      {required this.timeStamp,
       required this.planId,
       required this.invitee,
       required this.inviter,
@@ -188,7 +196,7 @@ class _$_PlanInvite extends _PlanInvite {
   @override
 
   /// ID of the plan
-  final int id;
+  final DateTime timeStamp;
   @override
 
   /// The name of the plan
@@ -208,7 +216,7 @@ class _$_PlanInvite extends _PlanInvite {
 
   @override
   String toString() {
-    return 'PlanInvite(id: $id, planId: $planId, invitee: $invitee, inviter: $inviter, status: $status)';
+    return 'PlanInvite(timeStamp: $timeStamp, planId: $planId, invitee: $invitee, inviter: $inviter, status: $status)';
   }
 
   @override
@@ -216,7 +224,7 @@ class _$_PlanInvite extends _PlanInvite {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _PlanInvite &&
-            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.timeStamp, timeStamp) &&
             const DeepCollectionEquality().equals(other.planId, planId) &&
             const DeepCollectionEquality().equals(other.invitee, invitee) &&
             const DeepCollectionEquality().equals(other.inviter, inviter) &&
@@ -226,7 +234,7 @@ class _$_PlanInvite extends _PlanInvite {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(timeStamp),
       const DeepCollectionEquality().hash(planId),
       const DeepCollectionEquality().hash(invitee),
       const DeepCollectionEquality().hash(inviter),
@@ -245,7 +253,7 @@ class _$_PlanInvite extends _PlanInvite {
 
 abstract class _PlanInvite extends PlanInvite {
   const factory _PlanInvite(
-      {required int id,
+      {required DateTime timeStamp,
       required int planId,
       required int invitee,
       required int inviter,
@@ -258,7 +266,7 @@ abstract class _PlanInvite extends PlanInvite {
   @override
 
   /// ID of the plan
-  int get id;
+  DateTime get timeStamp;
   @override
 
   /// The name of the plan
