@@ -43,10 +43,7 @@ class SettingsRoute extends LocalizedWidget {
         NcSpacing.medium(),
         Expanded(
           flex: 2,
-          child: LpContainer(
-            title: t.settings_feedback,
-            child: placeholder,
-          ),
+          child: SettingsFeedback(),
         ),
       ],
     );

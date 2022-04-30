@@ -43,6 +43,7 @@ part 'routes/dashboard/todays_tasks/todays_tasks.dart';
 part 'routes/dashboard/todays_tasks/item.dart';
 part 'routes/dashboard/exams/exams.dart';
 part 'routes/route/user/user_notifications_item.dart';
+part 'routes/settings/feedback/feedback.dart';
 
 /// All routes the app has
 final Map<String, WidgetBuilder> kRoutes = {

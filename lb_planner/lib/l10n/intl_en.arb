@@ -17,8 +17,15 @@
   "notifications_noNotifications": "No notifications.",
   "plan_routeName": "Plan",
   "settings_feedback": "Feedback",
+  "settings_feedback_placeholder": "Tell us something...",
+  "settings_feedback_submit": "Submit",
+  "settings_feedback_title": "Feedback",
   "settings_general": "General",
   "settings_searchCourses": "Search courses...",
   "settings_themes": "Themes",
-  "settings_title": "Settings"
+  "settings_title": "Settings",
+  "settings_feedback_types_bug": "Bug",
+  "settings_feedback_types_suggestion": "Suggestion",
+  "settings_feedback_types_error": "Error",
+  "settings_feedback_types_other": "Other"
 }
