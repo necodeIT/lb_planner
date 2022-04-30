@@ -25,14 +25,12 @@ class _$PlanTearOff {
   _Plan call(
       {required int id,
       required String name,
-      required String description,
       required Map<int, PlanAccessTypes> members,
       required Map<int, Deadline> deadlines,
       required bool ekEnabled}) {
     return _Plan(
       id: id,
       name: name,
-      description: description,
       members: members,
       deadlines: deadlines,
       ekEnabled: ekEnabled,
@@ -54,9 +52,6 @@ mixin _$Plan {
 
   /// The name of the plan
   String get name => throw _privateConstructorUsedError;
-
-  /// The description of the plan
-  String get description => throw _privateConstructorUsedError;
 
   /// Planmembers of the plan
   /// Key: user id
@@ -83,7 +78,6 @@ abstract class $PlanCopyWith<$Res> {
   $Res call(
       {int id,
       String name,
-      String description,
       Map<int, PlanAccessTypes> members,
       Map<int, Deadline> deadlines,
       bool ekEnabled});
@@ -101,7 +95,6 @@ class _$PlanCopyWithImpl<$Res> implements $PlanCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
-    Object? description = freezed,
     Object? members = freezed,
     Object? deadlines = freezed,
     Object? ekEnabled = freezed,
@@ -114,10 +107,6 @@ class _$PlanCopyWithImpl<$Res> implements $PlanCopyWith<$Res> {
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: description == freezed
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
               as String,
       members: members == freezed
           ? _value.members
@@ -143,7 +132,6 @@ abstract class _$PlanCopyWith<$Res> implements $PlanCopyWith<$Res> {
   $Res call(
       {int id,
       String name,
-      String description,
       Map<int, PlanAccessTypes> members,
       Map<int, Deadline> deadlines,
       bool ekEnabled});
@@ -162,7 +150,6 @@ class __$PlanCopyWithImpl<$Res> extends _$PlanCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
-    Object? description = freezed,
     Object? members = freezed,
     Object? deadlines = freezed,
     Object? ekEnabled = freezed,
@@ -175,10 +162,6 @@ class __$PlanCopyWithImpl<$Res> extends _$PlanCopyWithImpl<$Res>
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: description == freezed
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
               as String,
       members: members == freezed
           ? _value.members
@@ -202,7 +185,6 @@ class _$_Plan extends _Plan {
   const _$_Plan(
       {required this.id,
       required this.name,
-      required this.description,
       required this.members,
       required this.deadlines,
       required this.ekEnabled})
@@ -218,10 +200,6 @@ class _$_Plan extends _Plan {
 
   /// The name of the plan
   final String name;
-  @override
-
-  /// The description of the plan
-  final String description;
   @override
 
   /// Planmembers of the plan
@@ -241,7 +219,7 @@ class _$_Plan extends _Plan {
 
   @override
   String toString() {
-    return 'Plan(id: $id, name: $name, description: $description, members: $members, deadlines: $deadlines, ekEnabled: $ekEnabled)';
+    return 'Plan(id: $id, name: $name, members: $members, deadlines: $deadlines, ekEnabled: $ekEnabled)';
   }
 
   @override
@@ -251,8 +229,6 @@ class _$_Plan extends _Plan {
             other is _Plan &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality()
-                .equals(other.description, description) &&
             const DeepCollectionEquality().equals(other.members, members) &&
             const DeepCollectionEquality().equals(other.deadlines, deadlines) &&
             const DeepCollectionEquality().equals(other.ekEnabled, ekEnabled));
@@ -263,7 +239,6 @@ class _$_Plan extends _Plan {
       runtimeType,
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(description),
       const DeepCollectionEquality().hash(members),
       const DeepCollectionEquality().hash(deadlines),
       const DeepCollectionEquality().hash(ekEnabled));
@@ -283,7 +258,6 @@ abstract class _Plan extends Plan {
   const factory _Plan(
       {required int id,
       required String name,
-      required String description,
       required Map<int, PlanAccessTypes> members,
       required Map<int, Deadline> deadlines,
       required bool ekEnabled}) = _$_Plan;
@@ -299,10 +273,6 @@ abstract class _Plan extends Plan {
 
   /// The name of the plan
   String get name;
-  @override
-
-  /// The description of the plan
-  String get description;
   @override
 
   /// Planmembers of the plan

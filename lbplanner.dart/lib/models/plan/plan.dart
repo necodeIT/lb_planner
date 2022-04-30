@@ -21,9 +21,6 @@ class Plan with _$Plan {
     /// The name of the plan
     required String name,
 
-    /// The description of the plan
-    required String description,
-
     /// Planmembers of the plan
     /// Key: user id
     /// Value: [PlanAccessTypes]
@@ -36,7 +33,6 @@ class Plan with _$Plan {
 
     /// Wheter the plan has modules of type [ModuleTypes.ek] enabled
     required bool ekEnabled,
-
   }) = _Plan;
 
   /// Plan model from json

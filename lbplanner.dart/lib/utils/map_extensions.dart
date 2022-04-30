@@ -28,13 +28,13 @@ extension ModelMappingExtensions on Map<String, dynamic> {
     var type = this["type"];
     var status = this["status"];
     var id = this["notificationid"];
-    
-    try{
+
+    try {
       body["payload"] = jsonDecode(payload.isEmpty ? '{}' : payload);
-    }catch(e){
-      body["payload"] = {"value":payload};
+    } catch (e) {
+      body["payload"] = {"value": payload};
     }
-    
+
     body["type"] = NotificationTypes.values[type].name;
     body["status"] = NotificationStatus.values[status].name;
     body["id"] = id;
@@ -44,9 +44,20 @@ extension ModelMappingExtensions on Map<String, dynamic> {
 
   /// Maps parameters to fit [Plan.fromJson]
   Map<String, dynamic> mapPlan() {
-    // todo: map parameters
+    var body = Map.of(this);
 
-    return this;
+    body["id"] = this["planid"];
+    body["ekEnabled"] = this["ekenabled"];
+    List<Deadline> deadlines = [];
+    for (var deadline in body["daedlines"]) {
+      var deadlineMap = Map<String, dynamic>.of(deadline);
+      deadlines.add(Deadline.fromJson(deadlineMap.mapDeadline()));
+    }
+    body["deadlines"] = deadlines;
+
+    body["members"] = {for (var user in body["members"]) user["userid"]: PlanAccessTypes.values[user["accesstype"]]};
+
+    return body;
   }
 
   /// Maps parameters to fit [Module.fromJson]
@@ -55,7 +66,6 @@ extension ModelMappingExtensions on Map<String, dynamic> {
 
     body["id"] = this["moduleid"];
     body["courseId"] = this["courseid"];
-
 
     int gradeIndex = this["grade"] ?? -1;
     body["grade"] = gradeIndex.isNegative ? null : ModuleGrades.values[gradeIndex].name;

@@ -9,7 +9,6 @@ part of 'plan.dart';
 _$_Plan _$$_PlanFromJson(Map<String, dynamic> json) => _$_Plan(
       id: json['id'] as int,
       name: json['name'] as String,
-      description: json['description'] as String,
       members: (json['members'] as Map<String, dynamic>).map(
         (k, e) =>
             MapEntry(int.parse(k), $enumDecode(_$PlanAccessTypesEnumMap, e)),
@@ -24,7 +23,6 @@ _$_Plan _$$_PlanFromJson(Map<String, dynamic> json) => _$_Plan(
 Map<String, dynamic> _$$_PlanToJson(_$_Plan instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'description': instance.description,
       'members': instance.members
           .map((k, e) => MapEntry(k.toString(), _$PlanAccessTypesEnumMap[e])),
       'deadlines': instance.deadlines.map((k, e) => MapEntry(k.toString(), e)),
