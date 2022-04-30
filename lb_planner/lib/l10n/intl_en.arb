@@ -1,6 +1,7 @@
 {
   "alertDialog_confirm": "OK",
-  "calendar_plan_title": "Calendar Title",
+  "calendar_modulesOverview_title": "Calendar",
+  "calendar_plan_title": "Calendar",
   "dashboard_exams_noExams": "No upcomming exams...",
   "dashboard_exams_title": "Exams",
   "dashboard_routeName": "Dashboard",
@@ -20,12 +21,12 @@
   "settings_feedback_placeholder": "Tell us something...",
   "settings_feedback_submit": "Submit",
   "settings_feedback_title": "Feedback",
+  "settings_feedback_types_bug": "Bug",
+  "settings_feedback_types_error": "Error",
+  "settings_feedback_types_other": "Other",
+  "settings_feedback_types_suggestion": "Suggestion",
   "settings_general": "General",
   "settings_searchCourses": "Search courses...",
   "settings_themes": "Themes",
-  "settings_title": "Settings",
-  "settings_feedback_types_bug": "Bug",
-  "settings_feedback_types_suggestion": "Suggestion",
-  "settings_feedback_types_error": "Error",
-  "settings_feedback_types_other": "Other"
+  "settings_title": "Settings"
 }
