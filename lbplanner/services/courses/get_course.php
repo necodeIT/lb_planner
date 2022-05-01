@@ -49,7 +49,12 @@ class courses_get_course extends external_api {
             throw new \moodle_exception('Not Enrolled in course');
         }
 
-        $course = $DB->get_record(course_helper::LBPLANNER_COURSE_TABLE, array('courseid' => $courseid), '*', MUST_EXIST);
+        $course = $DB->get_record(
+            course_helper::LBPLANNER_COURSE_TABLE,
+            array('courseid' => $courseid, 'userid' => $userid),
+            '*',
+            MUST_EXIST
+        );
         $course->name = course_helper::get_fullname($course->courseid);
         return $course;
     }
