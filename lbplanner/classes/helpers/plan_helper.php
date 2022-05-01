@@ -137,7 +137,7 @@ class plan_helper {
      * @param integer $userid The id of the user.
      * @return integer The access type of the given user for the given plan.
      */
-    public static function get_access_type(int $planid, int $userid):int {
+    public static function get_access_type(int $userid, int $planid):int {
         global $DB;
 
         if ($DB->record_exists(self::ACCESS_TABLE, array('planid' => $planid, 'userid' => $userid))) {
