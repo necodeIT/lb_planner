@@ -96,9 +96,9 @@ class course_helper {
      * @param int $courseid id of the course in lbplanner
      * @return stdClass course from lbplanner
      */
-    public static function get_lbplanner_course($courseid) : stdClass {
+    public static function get_lbplanner_course($courseid, $userid) : stdClass {
         global $DB;
-        return $DB->get_record(self::LBPLANNER_COURSE_TABLE, array('courseid' => $courseid));
+        return $DB->get_record(self::LBPLANNER_COURSE_TABLE, array('courseid' => $courseid, 'userid' => $userid));
     }
 
     /**
