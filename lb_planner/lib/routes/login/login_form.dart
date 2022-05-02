@@ -33,7 +33,10 @@ class _LoginFormState extends State<LoginForm> {
     });
   }
 
-  _login(UserProvider user) async {
+  _login(WidgetRef ref) async {
+    var user = ref.read(userController);
+    var courses = ref.read(coursesController);
+
     setState(() {
       _loginResponse = null;
       _loginFuture = user.login(
@@ -48,6 +51,14 @@ class _LoginFormState extends State<LoginForm> {
 
     if (mounted) {
       setState(() {
+        _loginFuture = (_loginResponse?.succeeded ?? false) ? courses.fetchCourses() : null;
+      });
+    }
+
+    await _loginFuture!;
+
+    if (mounted) {
+      setState(() {
         _loginFuture = null;
       });
     }
@@ -55,7 +66,10 @@ class _LoginFormState extends State<LoginForm> {
     if (mounted && (_loginResponse?.succeeded ?? false)) {
       // ignore: invalid_use_of_protected_member
       setTheme(NcThemes.all[user.state.theme]!);
-      Navigator.of(context).pushNamed(DashboardRoute.routeName);
+
+      var courses = ref.read(coursesProvider);
+
+      Navigator.of(context).pushNamed(courses.values.any((e) => e.enabled) ? DashboardRoute.routeName : LoginSelectCoursesRoute.routeName);
     }
   }
 
@@ -86,7 +100,7 @@ class _LoginFormState extends State<LoginForm> {
                   obscureText: !_showPassword,
                   placeholder: t.login_password,
                   errorText: errorMessage,
-                  onSubmitted: (_) => _login(ref.read(userProvider.notifier)),
+                  onSubmitted: (_) => _login(ref),
                   suffix: IconButton(
                     icon: LpIcon(
                       _showPassword ? Icons.visibility_off : Icons.visibility,
@@ -116,7 +130,7 @@ class _LoginFormState extends State<LoginForm> {
                     ),
                     child: LpButton(
                       text: t.login_login,
-                      onPressed: () => _login(ref.read(userProvider.notifier)),
+                      onPressed: () => _login(ref),
                     ),
                   ),
                 ),

@@ -17,7 +17,7 @@ class _SettingsCoursesState extends State<SettingsCourses> {
 
       return LpContainer(
         trailing: Expanded(
-          child: LpTextField(
+          child: LpTextField.filled(
             placeholder: t.settings_searchCourses,
           ),
         ),

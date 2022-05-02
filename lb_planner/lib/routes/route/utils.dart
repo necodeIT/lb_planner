@@ -40,4 +40,5 @@ Map<String, String Function(BuildContext)> _routeToTitle = {
   DashboardRoute.routeName: (context) => context.t.dashboard_routeName,
   CalendarPlanRoute.routeName: (context) => context.t.calendar_plan_title,
   SettingsRoute.routeName: (context) => context.t.settings_title,
+  LoginSelectCoursesRoute.routeName: (context) => context.t.login_selectCourses_title,
 };

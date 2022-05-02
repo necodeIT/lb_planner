@@ -14,7 +14,7 @@ class RouteWrapper extends StatelessWidget {
   static String get currentRoute => _currentRoute;
 
   /// Whether the current route is [LoginRoute.routeName].
-  static bool get isLogin => _currentRoute == LoginRoute.routeName;
+  static bool get isLogin => _currentRoute == LoginRoute.routeName || _currentRoute == LoginSelectCoursesRoute.routeName;
 
   /// Generates a route.
   static PageRouteBuilder gnerateRoute(RouteSettings settings) {

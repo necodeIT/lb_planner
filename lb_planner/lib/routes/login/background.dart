@@ -1,7 +1,9 @@
+// ignore_for_file: constant_identifier_names
+
 part of lbplanner_routes;
 
 /// Svg code of the login route background.
-const kLoginBackgoundSvg = '''
+const svg_login_background = '''
 <svg xmlns="http://www.w3.org/2000/svg" width="863.078" height="1081.211" viewBox="0 0 863.078 1081.211">
   <g id="Group_64" data-name="Group 64" transform="translate(0.052 0.216)">
     <path id="Path_113" data-name="Path 113" d="M13476.137,1514.384s27.448,97,83.17,198.937,129.542,200.906,191.774,250.989c75.894,61.077,255,147.89,255,147.89s135.638,106.573,189.893,195.706,73.152,183.718,67.44,286.786c-.109,1.977-3.561.113-8.323,0-7.595-.177-18.5,0-18.5,0h-760.408Z" transform="translate(-13476.188 -1514.599)" fill="${NcVectorImage.accentColor}"/>

@@ -30,7 +30,7 @@ class _LoginRouteState extends State<LoginRoute> {
         Align(
           alignment: Alignment.centerLeft,
           child: NcVectorImage(
-            code: kLoginBackgoundSvg,
+            code: svg_login_background,
             height: MediaQuery.of(context).size.height,
             alignment: Alignment.centerLeft,
           ),

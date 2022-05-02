@@ -44,6 +44,9 @@ part 'routes/dashboard/todays_tasks/item.dart';
 part 'routes/dashboard/exams/exams.dart';
 part 'routes/route/user/user_notifications_item.dart';
 part 'routes/settings/feedback/feedback.dart';
+part 'routes/login/select_courses/select_courses.dart';
+part 'routes/login/select_courses/svg.dart';
+part 'routes/login/select_courses/course_selection.dart';
 
 /// All routes the app has
 final Map<String, WidgetBuilder> kRoutes = {
@@ -51,6 +54,7 @@ final Map<String, WidgetBuilder> kRoutes = {
   DashboardRoute.routeName: (context) => DashboardRoute(),
   CalendarPlanRoute.routeName: (context) => CalendarPlanRoute(),
   SettingsRoute.routeName: (context) => SettingsRoute(),
+  LoginSelectCoursesRoute.routeName: (context) => LoginSelectCoursesRoute(),
   if (kDebugMode) TestRoute.routeName: (context) => TestRoute(),
 };
 
