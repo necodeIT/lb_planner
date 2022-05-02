@@ -57,7 +57,7 @@ class Api {
 
     var response = await client.get(Uri.parse(url));
     
-    await client.post(uri, body: {"username":username, "password":password}, headers: postHeaders) : await client.get(uri);
+    await client.post(url, body: {"username":username, "password":password}, headers: postHeaders) : await client.get(uri);
 
     var json = jsonDecode(response.body);
 
