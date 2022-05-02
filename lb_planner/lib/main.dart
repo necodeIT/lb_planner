@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localized_locales/flutter_localized_locales.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lb_planner/routes.dart';
+import 'package:lb_planner/updater.dart';
 import 'package:lb_planner/widgets.dart';
 import 'package:lbplanner_api/lbplanner_api.dart';
 import 'package:nekolib_ui/core.dart';
@@ -28,6 +29,8 @@ Future<void> load() async {
   if (UserDisk.data != null && !UserDisk.data!.isEmpty) {
     setTheme(NcThemes.all[UserDisk.data!.theme]!);
   }
+
+  await kUpdater.update();
 }
 
 /// Main app widget.

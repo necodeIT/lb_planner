@@ -6,7 +6,7 @@ import 'package:nekolib_utils/updater.dart';
 
 /// Current updater read only.
 /// For updating use [updaterProvider].
-final _kUpdater = Updater();
+final kUpdater = Updater();
 
 /// Provider for updating the app.
 final updaterProvider = ChangeNotifierProvider((ref) => UpdateProvider());
@@ -17,16 +17,16 @@ class UpdateProvider extends ChangeNotifier {
   int _progress = 0;
 
   /// Whether a new update is available.
-  bool get updateAvailable => _kUpdater.updateAvailable;
+  bool get updateAvailable => kUpdater.updateAvailable;
 
   /// The url to download the update from.
-  String get downloadUrl => _kUpdater.setupDownloadUrl;
+  String get downloadUrl => kUpdater.setupDownloadUrl;
 
   /// The version of the update.
-  String get latestVersionName => _kUpdater.latestVersionName;
+  String get latestVersionName => kUpdater.latestVersionName;
 
   /// The name of the current version
-  String get versionName => "Alpha v${_kUpdater.currentVersion}";
+  String get versionName => "Alpha v${kUpdater.currentVersion}";
 
   /// The status of the update.
   UpdateStatus get status => _status;
@@ -49,7 +49,7 @@ class UpdateProvider extends ChangeNotifier {
     _status = UpdateStatus.downloading;
     notifyListeners();
 
-    var f = await _kUpdater.upgrade(_updateProgress);
+    var f = await kUpdater.upgrade(_updateProgress);
 
     _status = await f.exists() ? UpdateStatus.done : UpdateStatus.error;
 
