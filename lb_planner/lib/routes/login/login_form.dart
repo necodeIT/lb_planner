@@ -34,12 +34,11 @@ class _LoginFormState extends State<LoginForm> {
   }
 
   _login(WidgetRef ref) async {
-    var user = ref.read(userController);
-    var courses = ref.read(coursesController);
+    var _userController = ref.read(userController);
 
     setState(() {
       _loginResponse = null;
-      _loginFuture = user.login(
+      _loginFuture = _userController.login(
         _userNameController.text.trimNewLineAndWhitespace(),
         _passwordController.text.trimNewLineAndWhitespace(),
         theme: NcThemes.current.name,
@@ -49,13 +48,21 @@ class _LoginFormState extends State<LoginForm> {
 
     _loginResponse = await _loginFuture!;
 
+    Future<ApiResponse<List<Course>>>? coursesFuture;
+    ApiResponse<List<Course>>? coursesResponse;
+
     if (mounted) {
+      var user = ref.read(userProvider);
       setState(() {
-        _loginFuture = (_loginResponse?.succeeded ?? false) ? courses.fetchCourses() : null;
+        _loginFuture = coursesFuture = (_loginResponse?.succeeded ?? false) ? CoursesApi.getAllCourses(user.token, user.id) : null;
       });
     }
 
-    await _loginFuture!;
+    if (_loginFuture != null) {
+      coursesResponse = await coursesFuture;
+
+      if (coursesResponse?.failed ?? false) _loginResponse = await _loginFuture;
+    }
 
     if (mounted) {
       setState(() {
@@ -64,12 +71,13 @@ class _LoginFormState extends State<LoginForm> {
     }
 
     if (mounted && (_loginResponse?.succeeded ?? false)) {
-      // ignore: invalid_use_of_protected_member
-      setTheme(NcThemes.all[user.state.theme]!);
+      var user = ref.read(userProvider);
 
-      var courses = ref.read(coursesProvider);
+      setTheme(NcThemes.all[user.theme]!);
 
-      Navigator.of(context).pushNamed(courses.values.any((e) => e.enabled) ? DashboardRoute.routeName : LoginSelectCoursesRoute.routeName);
+      var courses = coursesResponse!.value!;
+
+      Navigator.of(context).pushNamed(courses.any((e) => e.enabled) ? DashboardRoute.routeName : LoginSelectCoursesRoute.routeName);
     }
   }
 

@@ -103,6 +103,9 @@ class LpTextField extends StatelessWidget {
   /// Font size of any feedback text like errorText
   static const double feedbackFontSize = 15;
 
+  /// [InputDecoration.contentPadding]
+  static const double padding = 12;
+
   /// Generates an [InputBorder] with the given [color].
   static InputBorder? border(Color color, bool filled) {
     return filled
@@ -128,6 +131,8 @@ class LpTextField extends StatelessWidget {
       expands: multiline,
       textAlignVertical: TextAlignVertical.top,
       decoration: InputDecoration(
+        contentPadding: EdgeInsets.all(padding),
+        isDense: true,
         filled: filled,
         fillColor: fillColor,
         prefix: prefix,

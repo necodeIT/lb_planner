@@ -13,6 +13,16 @@ class LoginSelectCourseCourseSelection extends StatefulWidget {
 }
 
 class _LoginSelectCourseCourseSelectionState extends State<LoginSelectCourseCourseSelection> {
+  TextEditingController _searchController = TextEditingController();
+
+  @override
+  initState() {
+    super.initState();
+    _searchController.addListener(() {
+      setState(() {});
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Consumer(builder: (context, ref, _) {
@@ -21,24 +31,33 @@ class _LoginSelectCourseCourseSelectionState extends State<LoginSelectCourseCour
         width: LoginSelectCourseCourseSelection.width,
         height: MediaQuery.of(context).size.height * .8,
         trailing: Expanded(
-          child: LpTextField.filled(),
+          child: LpTextField.filled(
+            prefixIcon: Icons.search,
+            placeholder: t.settings_searchCourses,
+            controller: _searchController,
+            fontSize: 18,
+          ),
         ),
         child: Column(
           children: [
             Expanded(
               child: ListView(
                 children: [
-                  for (var id in courses.keys) ...[
-                    SettingsCourseItem(courseId: id),
-                    NcSpacing.xs(),
-                  ]
+                  for (var course in courses.values)
+                    if (course.name.containsCaseInsensitive(_searchController.text)) ...[
+                      SettingsCourseItem(
+                        courseId: course.id,
+                        key: ValueKey(course.id),
+                      ),
+                      NcSpacing.xs(),
+                    ]
                 ],
               ),
             ),
             Align(
               alignment: Alignment.centerRight,
               child: LpTextButton(
-                text: t.settings_feedback_submit,
+                text: t.login_selectCourses_continue,
                 trailingIcon: Feather.arrow_right_circle,
                 onPressed: () => Navigator.of(context).pushNamed(DashboardRoute.routeName),
                 fontSize: SettingsFeedback.fontSize,

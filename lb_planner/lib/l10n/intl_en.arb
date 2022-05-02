@@ -14,6 +14,8 @@
   "login_invalidUsernameOrPassword": "Invalid username or password",
   "login_login": "LOGIN",
   "login_password": "Password",
+  "login_selectCourses_continue": "Continue",
+  "login_selectCourses_searchCourses": "Search courses...",
   "login_selectCourses_title": "Select courses",
   "login_username": "Username",
   "notifications_noNotifications": "No notifications.",
