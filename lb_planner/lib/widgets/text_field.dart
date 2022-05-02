@@ -104,7 +104,7 @@ class LpTextField extends StatelessWidget {
   static const double feedbackFontSize = 15;
 
   /// [InputDecoration.contentPadding]
-  static const double padding = 12;
+  static const double filledPadding = 12;
 
   /// Generates an [InputBorder] with the given [color].
   static InputBorder? border(Color color, bool filled) {
@@ -131,7 +131,7 @@ class LpTextField extends StatelessWidget {
       expands: multiline,
       textAlignVertical: TextAlignVertical.top,
       decoration: InputDecoration(
-        contentPadding: filled ? EdgeInsets.all(padding) : EdgeInsets.symmetric(vertical: NcSpacing.smallSpacing),
+        contentPadding: filled ? EdgeInsets.all(filledPadding) : EdgeInsets.symmetric(vertical: NcSpacing.smallSpacing),
         isDense: true,
         filled: filled,
         fillColor: fillColor,
