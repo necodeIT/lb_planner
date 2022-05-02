@@ -109,13 +109,12 @@ class _LoginFormState extends State<LoginForm> {
                   placeholder: t.login_password,
                   errorText: errorMessage,
                   onSubmitted: (_) => _login(ref),
-                  suffix: IconButton(
-                    icon: LpIcon(
+                  suffix: GestureDetector(
+                    child: LpIcon(
                       _showPassword ? Icons.visibility_off : Icons.visibility,
                       size: 20,
                     ),
-                    splashRadius: 0.1,
-                    onPressed: _togglePassword,
+                    onTap: _togglePassword,
                   ),
                 ),
                 NcSpacing.xl(),

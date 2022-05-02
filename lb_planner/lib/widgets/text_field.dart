@@ -131,7 +131,7 @@ class LpTextField extends StatelessWidget {
       expands: multiline,
       textAlignVertical: TextAlignVertical.top,
       decoration: InputDecoration(
-        contentPadding: EdgeInsets.all(padding),
+        contentPadding: filled ? EdgeInsets.all(padding) : EdgeInsets.symmetric(vertical: NcSpacing.smallSpacing),
         isDense: true,
         filled: filled,
         fillColor: fillColor,

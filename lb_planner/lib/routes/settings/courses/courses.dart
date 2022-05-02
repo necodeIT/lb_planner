@@ -10,7 +10,7 @@ class SettingsCourses extends StatefulWidget {
 }
 
 class _SettingsCoursesState extends State<SettingsCourses> {
-  TextEditingController _searchController = TextEditingController();
+  final TextEditingController _searchController = TextEditingController();
 
   @override
   initState() {

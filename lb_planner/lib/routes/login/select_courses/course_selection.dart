@@ -13,7 +13,7 @@ class LoginSelectCourseCourseSelection extends StatefulWidget {
 }
 
 class _LoginSelectCourseCourseSelectionState extends State<LoginSelectCourseCourseSelection> {
-  TextEditingController _searchController = TextEditingController();
+  final TextEditingController _searchController = TextEditingController();
 
   @override
   initState() {
