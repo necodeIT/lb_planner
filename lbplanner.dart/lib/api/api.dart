@@ -55,10 +55,8 @@ class Api {
 
     var url = "$serverRoot/login/token.php?service=${service.name}&moodlewsrestformat=$format";
 
-    var response = await client.get(Uri.parse(url));
+    var response = await client.post(url, body: {"username":username, "password":password}, headers: postHeaders) : await client.get(uri);
     
-    await client.post(url, body: {"username":username, "password":password}, headers: postHeaders) : await client.get(uri);
-
     var json = jsonDecode(response.body);
 
     var result = ApiResponse<String>(response, json["token"]);
