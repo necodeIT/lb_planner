@@ -28,7 +28,7 @@ class _SettingsCoursesState extends State<SettingsCourses> {
       return LpContainer(
         trailing: Expanded(
           child: LpTextField.filled(
-            prefixIcon: Icons.search,
+            prefixIcon: Ionicons.search,
             placeholder: t.settings_searchCourses,
             controller: _searchController,
             fontSize: 18,

@@ -32,7 +32,7 @@ class _LoginSelectCourseCourseSelectionState extends State<LoginSelectCourseCour
         height: MediaQuery.of(context).size.height * .8,
         trailing: Expanded(
           child: LpTextField.filled(
-            prefixIcon: Icons.search,
+            prefixIcon: Ionicons.search,
             placeholder: t.settings_searchCourses,
             controller: _searchController,
             fontSize: 18,

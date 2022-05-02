@@ -25,7 +25,7 @@
   "settings_feedback_submit": "Submit",
   "settings_feedback_title": "Feedback",
   "settings_feedback_types_bug": "Bug",
-  "settings_feedback_types_error": "Error",
+  "settings_feedback_types_error": "Typo / Translation error",
   "settings_feedback_types_other": "Other",
   "settings_feedback_types_suggestion": "Suggestion",
   "settings_general": "General",
