@@ -53,11 +53,11 @@ class Api {
   static Future<ApiResponse<String>> requestToken(String password, String username, ApiServices service) async {
     log("Requesting token for ${service.name}...", LogTypes.tracking);
 
-    var encodedPassword = Uri.encodeComponent(password);
-
-    var url = "$serverRoot/login/token.php?username=$username&service=${service.name}&moodlewsrestformat=$format&password=$encodedPassword";
+    var url = "$serverRoot/login/token.php?service=${service.name}&moodlewsrestformat=$format";
 
     var response = await client.get(Uri.parse(url));
+    
+    await client.post(uri, body: {"username":username, "password":password}, headers: postHeaders) : await client.get(uri);
 
     var json = jsonDecode(response.body);
 
