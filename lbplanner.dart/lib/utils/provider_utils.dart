@@ -80,7 +80,7 @@ abstract class StateNotifier<T> extends riverpod.StateNotifier<T> {
 
   @override
   set state(T newState) {
-    if (mounted) return;
+    if (!mounted) return;
 
     super.state = newState;
   }
