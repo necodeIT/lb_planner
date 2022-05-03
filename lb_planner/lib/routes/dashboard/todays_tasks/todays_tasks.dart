@@ -11,7 +11,7 @@ class DashboardTodaysTasks extends LocalizedWidget {
       var modules = ref.watch(modulesProvider);
 
       return LpContainer(
-        title: t.dashboard_statusOverview_title,
+        title: t.dashboard_todaysTasks_title,
         child: ListView(
           children: [
             for (var module in modules.values) ...[
