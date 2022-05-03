@@ -54,8 +54,8 @@ class Api {
 
     var url = "$serverRoot/login/token.php?service=${service.name}&moodlewsrestformat=$format";
 
-    var response = await client.post(Uri.parse(url), body: {"username":username, "password":password}, headers: postHeaders);
-    
+    var response = await client.post(Uri.parse(url), body: {"username": username, "password": password}, headers: postHeaders);
+
     var json = jsonDecode(response.body);
 
     var result = ApiResponse<String>(response, json["token"]);
@@ -66,7 +66,7 @@ class Api {
   }
 
   static void _logResponse(RawApiResponse response) {
-    log("Response: ${response.response.statusCode}${response.failed ? ", Message: '${response.errorMessage}'" : ""}", response.succeeded ? LogTypes.success : LogTypes.error, 1);
+    log("Request: ${response.response.request}, Response: ${response.response.statusCode}${response.failed ? ", Message: '${response.errorMessage}'" : ""}", response.succeeded ? LogTypes.success : LogTypes.error, 1);
   }
 
   /// Callback called when an API call reults in an error.
