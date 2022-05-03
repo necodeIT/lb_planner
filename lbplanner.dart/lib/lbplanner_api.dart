@@ -22,7 +22,8 @@ import 'package:http/http.dart' as http;
 import 'package:lbplanner_api/models/statistics/statistics.dart';
 import 'package:nekolib_utils/log.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:riverpod/riverpod.dart';
+import 'package:riverpod/riverpod.dart' hide StateNotifier;
+import 'package:riverpod/riverpod.dart' as riverpod;
 
 // Project imports:
 import 'models/course/course.dart';
