@@ -23,6 +23,7 @@ use external_value;
 use local_lbplanner\helpers\course_helper;
 use local_lbplanner\helpers\modules_helper;
 use local_lbplanner\helpers\user_helper;
+use mod_bigbluebuttonbn\output\index;
 
 /**
  * Get all the modules of the current year.
@@ -43,18 +44,23 @@ class modules_get_all_modules extends external_api {
 
         $modules = array();
 
-        $courses = course_helper::get_all_courses($userid);
+        $courses = self::call_external_function('local_lbplanner_courses_get_all_courses', array('userid' => $userid));
 
-        foreach ($courses as $course) {
-            $modules = array_merge(modules_helper::get_all_course_modules($course->courseid, $userid), $modules);
+        foreach ($courses["data"] as $course) {
+            if ($course["enabled"] == course_helper::DISABLED_COURSE) {
+                continue;
+            }
+            $modules = array_merge(
+            modules_helper::get_all_course_modules($course['courseid'], $userid),
+                $modules
+            );
         }
-
         return $modules;
     }
 
     public static function get_all_modules_returns() {
         return new external_multiple_structure(
-            modules_helper::structure(),
+        modules_helper::structure(),
         );
     }
 }
