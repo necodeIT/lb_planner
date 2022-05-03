@@ -172,9 +172,7 @@ class course_helper {
 
             $catgirl->name = self::get_fullname($courseid);
 
-            if ($catgirl->enabled == self::ENABLED_COURSE) {
-                $catgirls[] = $catgirl;
-            }
+            $catgirls[] = $catgirl;
         }
         return $catgirls;
     }
