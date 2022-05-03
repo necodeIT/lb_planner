@@ -29,7 +29,9 @@ class Api {
   static Future<RawApiResponse> makeRequest({required String functionName, required String token, Map<String, dynamic>? params, Map<String, dynamic>? body, bool reportError = true}) async {
     var url = "$apiEndpoint?moodlewsrestformat=$format&wstoken=$token&wsfunction=$functionName";
 
-    log("Calling $functionName(${params ?? ''}) ...", LogTypes.tracking);
+    var func = "$functionName(${params ?? ''})";
+
+    log("Calling $func ...", LogTypes.tracking);
 
     if (params != null) {
       url += "&" + params.entries.map((e) => "${e.key}=${e.value}").join("&");
@@ -41,7 +43,7 @@ class Api {
 
     var result = RawApiResponse(response);
 
-    _logResponse(result);
+    _logResponse(result, func);
 
     if (result.failed && reportError) onError?.call(result);
 
@@ -60,13 +62,15 @@ class Api {
 
     var result = ApiResponse<String>(response, json["token"]);
 
-    _logResponse(result);
+    _logResponse(result, "${service.name} token");
 
     return result;
   }
 
-  static void _logResponse(RawApiResponse response) {
-    log("Request: ${response.response.request}, Response: ${response.response.statusCode}${response.failed ? ", Message: '${response.errorMessage}'" : ""}", response.succeeded ? LogTypes.success : LogTypes.error, 1);
+  static void _logResponse(RawApiResponse response, String func) {
+    var req = response.response.request!;
+
+    log("Request: ${req.method} $func, Response: ${response.response.statusCode}${response.failed ? ", Message: '${response.errorMessage}'" : ""}", response.succeeded ? LogTypes.success : LogTypes.error, 1);
   }
 
   /// Callback called when an API call reults in an error.
