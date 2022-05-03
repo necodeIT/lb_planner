@@ -2,6 +2,7 @@ part of lbplanner_api;
 
 /// Provides modules for the current user
 final modulesProvider = StateNotifierProvider<ModulesProvider, Map<int, Module>>((ref) {
+  ref.watch(coursesProvider);
   return ModulesProvider(ref.watch(userProvider));
 });
 
