@@ -8,6 +8,9 @@ class LoginSelectCoursesRoute extends LocalizedWidget {
   /// The name of this route.
   static const routeName = '/login/select-courses';
 
+  /// The margin of the selectioon form.
+  static const double margin = 100.0;
+
   @override
   Widget create(context, t) {
     return Stack(
@@ -31,7 +34,7 @@ class LoginSelectCoursesRoute extends LocalizedWidget {
         Align(
           alignment: Alignment.centerRight,
           child: Padding(
-            padding: const EdgeInsets.only(right: NcSpacing.xlSpacing),
+            padding: const EdgeInsets.only(right: margin),
             child: LoginSelectCourseCourseSelection(),
           ),
         ),

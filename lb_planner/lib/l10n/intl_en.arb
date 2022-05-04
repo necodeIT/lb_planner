@@ -1,7 +1,8 @@
 {
   "alertDialog_confirm": "OK",
-  "calendar_modulesOverview_title": "Calendar",
-  "calendar_plan_title": "Calendar",
+  "calendar_modulesOverview_title": "Modues overview",
+  "calendar_plan_title": "Plan",
+  "calendar_routeName": "Calendar",
   "dashboard_exams_noExams": "No upcomming exams...",
   "dashboard_exams_title": "Exams",
   "dashboard_routeName": "Dashboard",

@@ -38,7 +38,8 @@ extension RouteExtensions on String {
 
 Map<String, String Function(BuildContext)> _routeToTitle = {
   DashboardRoute.routeName: (context) => context.t.dashboard_routeName,
-  CalendarPlanRoute.routeName: (context) => context.t.calendar_plan_title,
+  CalendarPlanRoute.routeName: (context) => context.t.calendar_routeName,
+  CalendarModulesOverviewRoute.routeName: (context) => context.t.calendar_routeName,
   SettingsRoute.routeName: (context) => context.t.settings_title,
   LoginSelectCoursesRoute.routeName: (context) => context.t.login_selectCourses_title,
 };

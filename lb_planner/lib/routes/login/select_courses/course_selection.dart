@@ -28,7 +28,7 @@ class _LoginSelectCourseCourseSelectionState extends State<LoginSelectCourseCour
     return Consumer(builder: (context, ref, _) {
       var courses = ref.watch(coursesProvider);
       return LpContainer(
-        width: LoginSelectCourseCourseSelection.width,
+        width: MediaQuery.of(context).size.width * .4,
         height: MediaQuery.of(context).size.height * .8,
         trailing: Expanded(
           child: LpTextField.filled(

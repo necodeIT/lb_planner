@@ -10,6 +10,6 @@ class CalendarPlanRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LpLoadingIndicator.penguin();
+    return Calendar(child: LpLoadingIndicator.penguin());
   }
 }

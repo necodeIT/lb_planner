@@ -17,17 +17,17 @@ import 'package:nekolib_ui/utils.dart';
 import 'package:nekolib_utils/extensions.dart';
 import 'package:nekolib_utils/log.dart';
 
-part 'routes/login/login.dart';
-part 'routes/login/background.dart';
+part 'routes/login/login/login.dart';
+part 'routes/login/login/background.dart';
 part 'routes/dashboard/dashboard.dart';
 part 'routes/route/route.dart';
 part 'routes/route/sidebar/sidebar.dart';
-part 'routes/login/login_form.dart';
+part 'routes/login/login/login_form.dart';
 part 'routes/route/sidebar/sidebar_item.dart';
 part 'routes/route/user/user_profile.dart';
 part 'routes/route/utils.dart';
 part 'routes/route/route_title.dart';
-part 'routes/calendar/calendar_plan.dart';
+part 'routes/calendar/plan/calendar_plan.dart';
 part 'routes/settings/settings.dart';
 part 'routes/test/test.dart';
 part 'routes/route/user/user_notifications.dart';
@@ -48,6 +48,8 @@ part 'routes/settings/feedback/feedback.dart';
 part 'routes/login/select_courses/select_courses.dart';
 part 'routes/login/select_courses/svg.dart';
 part 'routes/login/select_courses/course_selection.dart';
+part 'routes/calendar/modules_overview/calendar_modules_overview.dart';
+part 'routes/calendar/calendar.dart';
 
 /// All routes the app has
 final Map<String, WidgetBuilder> kRoutes = {
@@ -56,6 +58,7 @@ final Map<String, WidgetBuilder> kRoutes = {
   CalendarPlanRoute.routeName: (context) => CalendarPlanRoute(),
   SettingsRoute.routeName: (context) => SettingsRoute(),
   LoginSelectCoursesRoute.routeName: (context) => LoginSelectCoursesRoute(),
+  CalendarModulesOverviewRoute.routeName: (context) => CalendarModulesOverviewRoute(),
   if (kDebugMode) TestRoute.routeName: (context) => TestRoute(),
 };
 

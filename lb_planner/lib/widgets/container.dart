@@ -43,7 +43,7 @@ class LpContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedContainer(
       duration: kFastAnimationDuration,
-      padding: const EdgeInsets.all(NcSpacing.smallSpacing),
+      padding: window ? null : const EdgeInsets.all(NcSpacing.smallSpacing),
       decoration: BoxDecoration(
         color: primaryColor,
         boxShadow: kElevationToShadow[4],
@@ -59,7 +59,7 @@ class LpContainer extends StatelessWidget {
               condition: window,
               wrapper: (context, child) => AnimatedContainer(
                 duration: kFastAnimationDuration,
-                padding: EdgeInsets.only(bottom: NcSpacing.smallSpacing),
+                padding: EdgeInsets.only(bottom: NcSpacing.smallSpacing, left: NcSpacing.smallSpacing, right: NcSpacing.smallSpacing),
                 decoration: BoxDecoration(
                   color: secondaryColor,
                   borderRadius: BorderRadius.vertical(top: Radius.circular(kRadius)),
