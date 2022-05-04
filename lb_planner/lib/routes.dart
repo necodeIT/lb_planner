@@ -50,6 +50,8 @@ part 'routes/login/select_courses/svg.dart';
 part 'routes/login/select_courses/course_selection.dart';
 part 'routes/calendar/modules_overview/calendar_modules_overview.dart';
 part 'routes/calendar/calendar.dart';
+part 'routes/calendar/modules_overview/course_modules_overview.dart';
+part 'routes/calendar/modules_overview/calendar_modules_overview_cell.dart';
 
 /// All routes the app has
 final Map<String, WidgetBuilder> kRoutes = {
