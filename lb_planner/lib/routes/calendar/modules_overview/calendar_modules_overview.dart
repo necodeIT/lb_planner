@@ -33,7 +33,22 @@ class CalendarModulesOverviewRoute extends StatelessWidget {
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: [
-                  // StickyHeader(header: , content: content)
+                  StickyHeader(
+                    header: CalendarModulesOverviewMonthHeader(months: winterMonths),
+                    content: Row(
+                      children: [
+                        for (var courseId in courses.keys) CalendarCourseModulesOverview(courseId: courseId, months: winterMonths),
+                      ],
+                    ),
+                  ),
+                  StickyHeader(
+                    header: CalendarModulesOverviewMonthHeader(months: summerMonths),
+                    content: Row(
+                      children: [
+                        for (var courseId in courses.keys) CalendarCourseModulesOverview(courseId: courseId, months: summerMonths),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),

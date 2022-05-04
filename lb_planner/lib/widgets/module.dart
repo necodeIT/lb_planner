@@ -4,22 +4,25 @@ part of lbplanner_widgets;
 class ModuleWidget extends StatelessWidget {
   /// The [ModuleWidget] will display the [Course], the name and the [ModuleStatus].
 
-  ModuleWidget.status({Key? key, required this.moduleId}) : super(key: key) {
+  ModuleWidget.status({Key? key, required this.moduleId, this.showTag = true}) : super(key: key) {
     displayMode = ModuleWidgetDisyplayModes.status;
   }
 
   /// The [ModuleWidget] will display the [Course], the name and the deadline assignd by teachers.
-  ModuleWidget.date({Key? key, required this.moduleId}) : super(key: key) {
+  ModuleWidget.date({Key? key, required this.moduleId, this.showTag = true}) : super(key: key) {
     displayMode = ModuleWidgetDisyplayModes.date;
   }
 
   /// The [ModuleWidget] will display the [Course], the name and a [LpCheckbox] to mark that will be ticked off as soon as the module has the [ModuleStaus.uploaded] status.
-  ModuleWidget.checkmark({Key? key, required this.moduleId}) : super(key: key) {
+  ModuleWidget.checkmark({Key? key, required this.moduleId, this.showTag = true}) : super(key: key) {
     displayMode = ModuleWidgetDisyplayModes.checkmark;
   }
 
   /// The id of the module to display.
   final int moduleId;
+
+  /// Whether to show the [Course] tag.
+  final bool showTag;
 
   /// Determins how a [ModuleWidget] should be displayed.
   late final ModuleWidgetDisyplayModes displayMode;
@@ -62,11 +65,12 @@ class ModuleWidget extends StatelessWidget {
             ),
             child: Row(
               children: [
-                LpTag(
-                  text: course.shortname,
-                  color: course.color,
-                  fontSize: tagSize,
-                ),
+                if (showTag)
+                  LpTag(
+                    text: course.shortname,
+                    color: course.color,
+                    fontSize: tagSize,
+                  ),
                 NcSpacing.small(),
                 Expanded(
                   child: NcCaptionText(

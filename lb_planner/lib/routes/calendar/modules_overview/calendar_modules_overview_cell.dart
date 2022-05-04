@@ -15,6 +15,7 @@ class CalendarModulesOverviewCell extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: width,
+      height: width,
       decoration: BoxDecoration(
         border: Border(
           right: BorderSide(
@@ -28,6 +29,7 @@ class CalendarModulesOverviewCell extends StatelessWidget {
           for (var module in modules)
             ModuleWidget.checkmark(
               moduleId: module,
+              showTag: false,
             ),
         ],
       ),
