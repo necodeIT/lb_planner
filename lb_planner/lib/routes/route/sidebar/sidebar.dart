@@ -47,6 +47,7 @@ class Sidebar extends StatelessWidget {
                       SidebarItem(
                         icon: Icons.calendar_month_rounded,
                         route: CalendarPlanRoute.routeName,
+                        routes: const [CalendarModulesOverviewRoute.routeName],
                       ),
                     ],
                   ),

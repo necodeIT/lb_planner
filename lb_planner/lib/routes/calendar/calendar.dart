@@ -15,6 +15,7 @@ class Calendar extends LocalizedWidget {
   Widget create(BuildContext context, t) {
     return LpContainer.window(
       leading: LpDropdown<String>(
+        alignment: Alignment.bottomLeft,
         fontSize: 18,
         value: currentRoute,
         items: [

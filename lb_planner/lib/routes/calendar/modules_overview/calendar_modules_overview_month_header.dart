@@ -12,17 +12,32 @@ class CalendarModulesOverviewMonthHeader extends StatelessWidget {
   static const width = 40.0;
 
   /// Formatter for the month.
-  static final formatter = DateFormat.MMMMd();
+  static final formatter = DateFormat.MMM();
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: width,
-      child: Column(
-        children: [
-          for (var month in months) Expanded(child: NcTitleText(formatter.format(DateTime(0, month)))),
-        ],
-      ),
+    return Column(
+      children: [
+        Container(
+          color: primaryColor,
+          width: width,
+          height: CalendarCourseModulesOverview.courseHeight,
+        ),
+        for (var month in months)
+          Expanded(
+            child: Container(
+              width: width,
+              color: primaryColor,
+              child: Center(
+                child: NcTitleText(
+                  formatter.format(DateTime(0, month)).characters.join('\n').toUpperCase(),
+                  color: month == DateTime.now().month ? accentColor : textColor,
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ),
+          ),
+      ],
     );
   }
 }

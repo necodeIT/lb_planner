@@ -12,7 +12,7 @@ class CalendarCourseModulesOverview extends StatelessWidget {
   final List<int> months;
 
   /// The height of the course label.
-  static const courseHeight = 40.0;
+  static const courseHeight = 25.0;
 
   @override
   Widget build(BuildContext context) {
@@ -26,17 +26,21 @@ class CalendarCourseModulesOverview extends StatelessWidget {
             color: course.color,
             height: courseHeight,
             width: CalendarModulesOverviewCell.width,
-            child: NcCaptionText(
-              course.shortname,
-              buttonText: true,
+            child: Center(
+              child: NcCaptionText(
+                course.shortname,
+                buttonText: true,
+              ),
             ),
           ),
           Expanded(
             child: Column(
               children: [
                 for (var month in months)
-                  CalendarModulesOverviewCell(
-                    modules: modules.where((module) => module.deadline?.month == month).map((module) => module.id).toList(),
+                  Expanded(
+                    child: CalendarModulesOverviewCell(
+                      modules: modules.where((module) => module.deadline?.month == month).map((module) => module.id).toList(),
+                    ),
                   ),
               ],
             ),

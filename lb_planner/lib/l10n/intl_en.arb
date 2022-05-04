@@ -1,5 +1,6 @@
 {
   "alertDialog_confirm": "OK",
+  "calendar_modulesOverview_noCourses": "No courses enabled...",
   "calendar_modulesOverview_title": "Modues overview",
   "calendar_plan_title": "Plan",
   "calendar_routeName": "Calendar",

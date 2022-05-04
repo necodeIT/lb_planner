@@ -75,7 +75,7 @@ class ModuleWidget extends StatelessWidget {
                 Expanded(
                   child: NcCaptionText(
                     module.name,
-                    textAlign: TextAlign.center,
+                    textAlign: showTag ? TextAlign.center : TextAlign.start,
                     // fontSize: 14,
                   ),
                 ),
@@ -85,7 +85,7 @@ class ModuleWidget extends StatelessWidget {
                   falseWidget: (context) => ConditionalWidget(
                     condition: displayMode.isCheckmark,
                     trueWidget: (context) => LpCheckbox(value: module.status.isUploaded || module.status.isDone),
-                    falseWidget: (context) => throw "Not implemented yet",
+                    falseWidget: (context) => throw "$displayMode is not implemented yet",
                   ),
                 )
               ],

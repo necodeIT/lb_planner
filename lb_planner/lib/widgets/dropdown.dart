@@ -3,7 +3,7 @@ part of lbplanner_widgets;
 /// Themed [DropdownButton] widget.
 class LpDropdown<T> extends StatelessWidget {
   /// Themed [DropdownButton] widget.
-  const LpDropdown({Key? key, required this.items, required this.onChanged, this.color, this.value, this.fontSize}) : super(key: key);
+  const LpDropdown({Key? key, required this.items, required this.onChanged, this.color, this.value, this.fontSize, this.alignment = Alignment.centerLeft}) : super(key: key);
 
   /// The items to display in the dropdown.
   final List<DropdownMenuItem<T>> items;
@@ -20,9 +20,13 @@ class LpDropdown<T> extends StatelessWidget {
   /// The font size of the dropdown button.
   final double? fontSize;
 
+  /// The alignment of the dropdown button.
+  final Alignment alignment;
+
   @override
   Widget build(BuildContext context) {
     return DropdownButton<T>(
+      alignment: alignment,
       value: value,
       items: items,
       onChanged: onChanged,

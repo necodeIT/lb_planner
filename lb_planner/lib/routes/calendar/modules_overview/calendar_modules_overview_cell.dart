@@ -9,28 +9,41 @@ class CalendarModulesOverviewCell extends StatelessWidget {
   final List<int> modules;
 
   /// The width of the cell.
-  static const width = 40.0;
+  static const width = 200.0;
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.all(NcSpacing.xsSpacing),
       width: width,
       height: width,
       decoration: BoxDecoration(
-        border: Border(
-          right: BorderSide(
-            color: tertiaryColor,
-            width: 1.0,
-          ),
+        border: Border.all(
+          color: tertiaryColor,
+          width: 0.5,
         ),
       ),
-      child: ListView(
+      child: Column(
         children: [
-          for (var module in modules)
-            ModuleWidget.checkmark(
-              moduleId: module,
-              showTag: false,
+          if (modules.isNotEmpty)
+            Align(
+              alignment: Alignment.topRight,
+              child: NcBodyText(modules.length.toString()),
             ),
+          Expanded(
+            child: ListView(
+              controller: ScrollController(),
+              children: [
+                for (var module in modules) ...[
+                  NcSpacing.xs(),
+                  ModuleWidget.checkmark(
+                    moduleId: module,
+                    showTag: false,
+                  ),
+                ]
+              ],
+            ),
+          ),
         ],
       ),
     );

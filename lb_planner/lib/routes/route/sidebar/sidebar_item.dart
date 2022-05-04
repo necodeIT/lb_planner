@@ -28,10 +28,12 @@ class SidebarItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var value = currentRoute == route || routes.contains(currentRoute);
+    var selected = currentRoute == route || routes.contains(currentRoute);
 
     return HoverBuilder(
       onTap: () {
+        if (selected) return;
+
         onTap?.call();
         Navigator.pushNamed(context, route);
       },
@@ -42,12 +44,12 @@ class SidebarItem extends StatelessWidget {
         height: size,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(radius),
-          color: value ? accentColor : secondaryColor,
-          boxShadow: kElevationToShadow[value || hover ? 3 : 0],
+          color: selected ? accentColor : secondaryColor,
+          boxShadow: kElevationToShadow[selected || hover ? 3 : 0],
         ),
         child: LpIcon(
           icon,
-          color: value ? buttonTextColor : textColor,
+          color: selected ? buttonTextColor : textColor,
           size: iconSize,
         ),
       ),
