@@ -14,19 +14,39 @@ class DashboardStatusOverviewBarLabel extends StatelessWidget {
   /// The label size.
   static const double size = 22;
 
+  /// The max count that can be displayed.
+  static const int max = 99;
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: size,
-      height: size,
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(kRadius),
+    var cap = count > max;
+    var text = min(max, count).toString();
+    text += cap ? "+" : "";
+
+    return ConditionalWrapper(
+      condition: cap,
+      wrapper: (context, child) => Tooltip(
+        message: count.toString(),
+        child: child,
+        textStyle: NcBaseText.style(buttonText: true, fontSize: 12),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(kRadius),
+          color: color,
+        ),
       ),
-      child: Center(
-        child: NcTitleText(
-          count.toString(),
-          buttonText: true,
+      child: Container(
+        width: size,
+        height: size,
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(kRadius),
+        ),
+        child: Center(
+          child: NcTitleText(
+            text,
+            buttonText: true,
+            fontSize: cap ? 10 : null,
+          ),
         ),
       ),
     );
