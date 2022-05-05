@@ -56,7 +56,27 @@ class App extends StatelessWidget {
             theme: ThemeData(
               splashFactory: NoSplash.splashFactory,
 
-              // todo: theme ToolbarOtpions
+              // TODO: theme ToolbarOtpions
+
+              scrollbarTheme: ScrollbarThemeData(
+                thickness: MaterialStateProperty.resolveWith(
+                  (states) {
+                    if (states.contains(MaterialState.hovered)) return 8;
+
+                    return 6.0;
+                  },
+                ),
+                thumbColor: MaterialStateColor.resolveWith(
+                  (states) {
+                    if (states.contains(MaterialState.hovered)) return accentColor.withOpacity(0.5);
+
+                    if (states.contains(MaterialState.dragged)) return accentColor;
+
+                    return tertiaryColor.withOpacity(0.5);
+                  },
+                ),
+              ),
+
               cardTheme: CardTheme(
                 color: primaryColor,
                 shape: RoundedRectangleBorder(
