@@ -7,9 +7,13 @@ import 'package:lb_planner/widgets.dart';
 import 'package:lbplanner_api/lbplanner_api.dart';
 import 'package:nekolib_ui/core.dart';
 import 'package:nekolib_utils/log.dart';
+import 'package:window_manager/window_manager.dart';
 
 void main() async {
   Logger.init(autoSave: true, appStoragePath: (await Disk.appDir).path);
+
+  WidgetsFlutterBinding.ensureInitialized();
+  await windowManager.ensureInitialized();
 
   runThemedApp(
     appBuilder: App.builder,

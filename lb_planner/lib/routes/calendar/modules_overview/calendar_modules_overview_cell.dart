@@ -35,11 +35,11 @@ class CalendarModulesOverviewCell extends StatelessWidget {
               controller: ScrollController(),
               children: [
                 for (var module in modules) ...[
-                  NcSpacing.xs(),
                   ModuleWidget.checkmark(
                     moduleId: module,
                     showTag: false,
                   ),
+                  NcSpacing.xs(),
                 ]
               ],
             ),

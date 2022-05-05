@@ -1,7 +1,5 @@
 library lbplanner_routes;
 
-import 'dart:math';
-
 import 'package:animations/animations.dart';
 import 'package:badges/badges.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -20,6 +18,7 @@ import 'package:nekolib_ui/core.dart';
 import 'package:nekolib_ui/utils.dart';
 import 'package:nekolib_utils/extensions.dart';
 import 'package:nekolib_utils/log.dart';
+import 'package:window_manager/window_manager.dart';
 
 part 'routes/login/login/login.dart';
 part 'routes/login/login/background.dart';
