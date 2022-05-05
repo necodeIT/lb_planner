@@ -21,47 +21,46 @@ class CalendarPlanMonth extends StatelessWidget {
     );
 
     /// a map of all days of each week.
-    var weeks = Map<int, List<DateTime>>();
+    Map<int, List<DateTime>> weekDays = {DateTime.monday: [], DateTime.tuesday: [], DateTime.wednesday: [], DateTime.thursday: [], DateTime.friday: [], DateTime.saturday: [], DateTime.sunday: []};
 
     for (var day in days) {
-      if (!weeks.containsKey(day.weekday)) {
-        weeks[day.weekday] = [];
-      }
-
-      weeks[day.weekday]!.add(day);
+      weekDays[day.weekday]!.add(day);
     }
 
-    /// get the days of the next month.
-    var nextMonthDays = List<DateTime>.generate(
-      DateTime(month.year, month.month + 1, 0).day,
-      (i) => DateTime(month.year, month.month + 1, i + 1),
-    );
+    // /// get the days of the next month.
+    // var nextMonthDays = List<DateTime>.generate(
+    //   DateTime(month.year, month.month + 1, 0).day,
+    //   (i) => DateTime(month.year, month.month + 1, i + 1),
+    // );
 
-    /// fill in the days of the next month.
+    // /// fill in the days of the next month.
 
-    var missingDays = 7 - weeks.values.last.length;
+    // var missingDays = 7 - weeks.values.last.length;
 
-    /// I don't know why this is necessary. Just don't touch it.
-    missingDays++;
+    // /// I don't know why this is necessary. Just don't touch it.
+    // // missingDays++;
 
-    for (var day in nextMonthDays.take(missingDays)) {
-      weeks[day.weekday]!.add(day);
-    }
+    // for (var day in nextMonthDays.take(missingDays)) {
+    //   weeks[day.weekday]!.add(day);
+    // }
+
+    print(weekDays.keys.first);
+    print(formatter.format(DateTime(month.year, 0, weekDays.keys.first)));
 
     return Row(
       children: [
-        for (var i in weeks.keys) ...[
+        for (var weekDay in weekDays.keys) ...[
           Expanded(
             child: Column(
               children: [
                 NcSpacing.xs(),
                 Center(
                   child: NcTitleText(
-                    formatter.format(DateTime(0, 0, i)),
+                    formatter.dateSymbols.STANDALONEWEEKDAYS[weekDay - 1],
                   ),
                 ),
                 NcSpacing.xs(),
-                for (var day in weeks[i]!) ...[
+                for (var day in weekDays[weekDay]!) ...[
                   Expanded(child: CalendarPlanCell(day: day, isCurrentMonth: day.month == month.month)),
                 ],
               ],
