@@ -92,6 +92,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.1"
+  cell_calendar:
+    dependency: "direct main"
+    description:
+      name: cell_calendar
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.6.0"
   characters:
     dependency: transitive
     description:
@@ -426,6 +433,13 @@ packages:
       url: "https://github.com/necodeIT/nekolib.git"
     source: git
     version: "0.0.1"
+  nested:
+    dependency: transitive
+    description:
+      name: nested
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   nm:
     dependency: transitive
     description:
@@ -545,6 +559,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.2.4"
+  provider:
+    dependency: transitive
+    description:
+      name: provider
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "6.0.2"
   rive:
     dependency: "direct main"
     description:
@@ -706,4 +727,4 @@ packages:
     version: "5.3.1"
 sdks:
   dart: ">=2.16.2 <3.0.0"
-  flutter: ">=2.10.0-0"
+  flutter: ">=2.10.3"

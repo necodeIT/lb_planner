@@ -5,6 +5,7 @@ import 'dart:math';
 import 'package:animations/animations.dart';
 import 'package:badges/badges.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cell_calendar/cell_calendar.dart';
 import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' hide Notification;
@@ -58,6 +59,8 @@ part 'routes/calendar/calendar.dart';
 part 'routes/calendar/modules_overview/course_modules_overview.dart';
 part 'routes/calendar/modules_overview/calendar_modules_overview_cell.dart';
 part 'routes/calendar/modules_overview/calendar_modules_overview_month_header.dart';
+part 'routes/calendar/plan/calendar_plan_cell.dart';
+part 'routes/calendar/plan/calendar_plan_month.dart';
 
 /// All routes the app has
 final Map<String, WidgetBuilder> kRoutes = {

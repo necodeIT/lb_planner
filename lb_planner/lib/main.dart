@@ -61,7 +61,7 @@ class App extends StatelessWidget {
               scrollbarTheme: ScrollbarThemeData(
                 thickness: MaterialStateProperty.resolveWith(
                   (states) {
-                    if (states.contains(MaterialState.hovered)) return 8;
+                    if (states.contains(MaterialState.hovered) || states.contains(MaterialState.dragged)) return 8;
 
                     return 6.0;
                   },
