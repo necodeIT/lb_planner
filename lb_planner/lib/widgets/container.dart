@@ -59,7 +59,7 @@ class LpContainer extends StatelessWidget {
               condition: window,
               wrapper: (context, child) => AnimatedContainer(
                 duration: kFastAnimationDuration,
-                padding: EdgeInsets.only(bottom: NcSpacing.smallSpacing, left: NcSpacing.smallSpacing, right: NcSpacing.smallSpacing),
+                padding: EdgeInsets.only(left: NcSpacing.smallSpacing, right: NcSpacing.smallSpacing),
                 decoration: BoxDecoration(
                   color: secondaryColor,
                   borderRadius: BorderRadius.vertical(top: Radius.circular(kRadius)),
