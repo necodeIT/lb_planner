@@ -20,10 +20,10 @@ class CalendarModulesOverviewRoute extends LocalizedWidget {
   /// The key of the list that displays the summer months.
   final summerKey = GlobalKey();
 
-  final scrollController = ScrollController();
-
   @override
   Widget create(BuildContext context, t) {
+    final scrollController = ScrollController();
+
     WidgetsBinding.instance!.addPostFrameCallback((_) {
       if (summerMonths.contains(DateTime.now().month)) Scrollable.ensureVisible(summerKey.currentContext!);
     });

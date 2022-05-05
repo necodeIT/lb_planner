@@ -22,7 +22,7 @@ class Calendar extends LocalizedWidget {
           DropdownMenuItem(child: NcCaptionText(t.calendar_plan_title), value: CalendarPlanRoute.routeName),
           DropdownMenuItem(child: NcCaptionText(t.calendar_modulesOverview_title), value: CalendarModulesOverviewRoute.routeName),
         ],
-        onChanged: (route) => Navigator.of(context).pushNamed(route!),
+        onChanged: (route) => Navigator.of(context).pushReplacementNamed(route!),
       ),
       trailing: header,
       child: child,

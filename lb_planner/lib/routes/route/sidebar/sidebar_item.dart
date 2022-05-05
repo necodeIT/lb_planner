@@ -35,7 +35,7 @@ class SidebarItem extends StatelessWidget {
         if (selected) return;
 
         onTap?.call();
-        Navigator.pushNamed(context, route);
+        Navigator.pushReplacementNamed(context, route);
       },
       builder: (context, hover) => AnimatedContainer(
         duration: kFastAnimationDuration,
