@@ -56,6 +56,7 @@ class _CalendarPlanRouteState extends State<CalendarPlanRoute> {
             ),
             LpPopup(
               popupBuilder: (context, close) => CalendarPlanDropdown(),
+              backgroundDismissable: false,
               child: LpIcon(Icons.more_horiz),
             ),
           ],
@@ -63,6 +64,7 @@ class _CalendarPlanRouteState extends State<CalendarPlanRoute> {
       ),
       child: PageTransitionSwitcher(
         reverse: lastMonth.isBefore(month),
+        duration: kSlowAnimationDuration,
         child: CalendarPlanMonth(
           month: month,
           key: ValueKey(month),

@@ -50,6 +50,7 @@ class CalendarPlanMonth extends LocalizedWidget {
       weeks.add([]);
 
       if (i == 0) {
+        /// Fill up the first week with days from the previous month.
         var missingDays = days.first.weekday - DateTime.monday;
 
         weeks[i].addAll(prevDays.reversed.toList().sublist(0, missingDays).reversed);
@@ -58,17 +59,20 @@ class CalendarPlanMonth extends LocalizedWidget {
 
         weeks[i].addAll(days.sublist(0, insertedDays));
       } else if (i == rows - 1) {
+        /// Fill up the last week with days from the next month.
         var missingDays = insertedDays == days.length ? insertedNextDays + DateTime.daysPerWeek : DateTime.sunday - days.last.weekday;
 
         weeks[i].addAll(days.sublist(insertedDays, days.length));
         weeks[i].addAll(nextDays.sublist(insertedNextDays, missingDays));
       } else {
+        /// Fill up the rest of the weeks with days from the current month.
         var daysToInsert = min(insertedDays + DateTime.daysPerWeek, days.length);
         weeks[i].addAll(days.sublist(insertedDays, daysToInsert));
 
         insertedDays = daysToInsert;
 
         if (insertedDays == days.length) {
+          /// If all days have been inserted, insert the next days from the next month.
           var missingDays = DateTime.sunday - days.last.weekday;
 
           weeks[i].addAll(nextDays.sublist(0, missingDays));

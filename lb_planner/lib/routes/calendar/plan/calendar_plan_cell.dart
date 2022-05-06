@@ -22,7 +22,8 @@ class _CalendarPlanCellState extends State<CalendarPlanCell> {
   Widget build(BuildContext context) {
     bool isToday = widget.day.year == DateTime.now().year && widget.day.month == DateTime.now().month && widget.day.day == DateTime.now().day;
 
-    return Container(
+    return AnimatedContainer(
+      duration: kNormalAnimationDuration,
       decoration: BoxDecoration(
         border: Border.all(
           color: tertiaryColor,
