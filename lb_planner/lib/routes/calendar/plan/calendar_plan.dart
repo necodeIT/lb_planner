@@ -39,21 +39,6 @@ class _CalendarPlanRouteState extends State<CalendarPlanRoute> {
           ],
         ),
       ),
-      // child: SfCalendar(
-      //   controller: _calendar,
-      //   cellBorderColor: tertiaryColor,
-      //   todayHighlightColor: accentColor,
-      //   todayTextStyle: NcBaseText.style(fontSize: null, buttonText: true),
-      //   monthCellBuilder: (context, info) => CalendarPlanCell(
-      //     day: info.date,
-      //     isCurrentMonth: info.date.month == month.month,
-      //   ),
-      //   backgroundColor: primaryColor,
-      //   scheduleViewMonthHeaderBuilder: (_, __) => SizedBox.shrink(),
-      //   initialDisplayDate: month,
-      //   selectionDecoration: null,
-      //   view: CalendarView.month,
-      // ),
       child: CalendarPlanMonth(month: month),
     );
 
