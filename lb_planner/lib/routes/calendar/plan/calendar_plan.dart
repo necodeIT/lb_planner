@@ -15,16 +15,20 @@ class CalendarPlanRoute extends StatefulWidget {
 class _CalendarPlanRouteState extends State<CalendarPlanRoute> {
   final formatter = DateFormat("EEE");
 
+  DateTime lastMonth = DateTime.now();
+
   DateTime month = DateTime.now();
 
   void _nextMonth() {
     setState(() {
+      lastMonth = month;
       month = DateTime(month.year, month.month + 1, 1);
     });
   }
 
   void _prevMonth() {
     setState(() {
+      lastMonth = month;
       month = DateTime(month.year, month.month - 1, 1);
     });
   }
@@ -43,17 +47,26 @@ class _CalendarPlanRouteState extends State<CalendarPlanRoute> {
               ),
             ),
             LpPopup(
-              popupBuilder: (context, close) => LpContainer(
-                width: 500,
-                height: 500,
-                child: NcTitleText("test"),
-              ),
+              popupBuilder: (context, close) => CalendarPlanDropdown(),
               child: LpIcon(Icons.more_horiz),
             ),
           ],
         ),
       ),
-      child: CalendarPlanMonth(month: month),
+      child: PageTransitionSwitcher(
+        reverse: lastMonth.isBefore(month),
+        child: CalendarPlanMonth(
+          month: month,
+          key: ValueKey(month),
+        ),
+        transitionBuilder: (child, primaryAnimation, secondaryAnimation) => SharedAxisTransition(
+          animation: primaryAnimation,
+          secondaryAnimation: secondaryAnimation,
+          transitionType: SharedAxisTransitionType.horizontal,
+          child: child,
+          fillColor: primaryColor,
+        ),
+      ),
     );
 
     // return Calendar(child: CalendarPlanMonth(month: DateTime.now()));

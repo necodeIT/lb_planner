@@ -21,16 +21,25 @@ class CalendarPlanMonthNavigator extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: onPreviousMonth,
-          child: LpIcon(Icons.chevron_left),
-        ),
-        Center(
-          child: NcTitleText(
-            DateFormat("MMMM yyyy").format(currentMonth),
+          child: LpIcon(
+            Icons.chevron_left,
+            size: Calendar.fontSize,
           ),
         ),
+        NcSpacing.xs(),
+        Center(
+          child: NcCaptionText(
+            DateFormat("MMMM yyyy").format(currentMonth),
+            fontSize: Calendar.fontSize,
+          ),
+        ),
+        NcSpacing.xs(),
         GestureDetector(
           onTap: onNextMonth,
-          child: LpIcon(Icons.chevron_right),
+          child: LpIcon(
+            Icons.chevron_right,
+            size: Calendar.fontSize,
+          ),
         ),
       ],
     );

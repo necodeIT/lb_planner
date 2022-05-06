@@ -11,12 +11,15 @@ class Calendar extends LocalizedWidget {
   /// The header of the window.
   final Widget? header;
 
+  /// The font size of the navigation dropdown.
+  static const double fontSize = 18;
+
   @override
   Widget create(BuildContext context, t) {
     return LpContainer.window(
       leading: LpDropdown<String>(
         alignment: Alignment.bottomLeft,
-        fontSize: 18,
+        fontSize: fontSize,
         value: currentRoute,
         items: [
           DropdownMenuItem(child: NcCaptionText(t.calendar_plan_title), value: CalendarPlanRoute.routeName),
