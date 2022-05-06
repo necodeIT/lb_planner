@@ -33,6 +33,13 @@ class _CalendarPlanRouteState extends State<CalendarPlanRoute> {
     });
   }
 
+  void _today() {
+    setState(() {
+      lastMonth = month;
+      month = DateTime.now();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Calendar(
@@ -41,6 +48,7 @@ class _CalendarPlanRouteState extends State<CalendarPlanRoute> {
           children: [
             Expanded(
               child: CalendarPlanMonthNavigator(
+                onToday: _today,
                 onNextMonth: _nextMonth,
                 onPreviousMonth: _prevMonth,
                 currentMonth: month,
