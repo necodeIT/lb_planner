@@ -8,6 +8,7 @@ class CalendarPlanCell extends StatefulWidget {
   /// The day this cell represents.
   final DateTime day;
 
+  /// Whether this cell is in the current month.
   final bool isCurrentMonth;
 
   @override
@@ -24,7 +25,7 @@ class _CalendarPlanCellState extends State<CalendarPlanCell> {
     return Container(
       decoration: BoxDecoration(
         border: Border.all(
-          color: widget.isCurrentMonth ? tertiaryColor : tertiaryColor.withOpacity(0.4),
+          color: widget.isCurrentMonth ? tertiaryColor : tertiaryColor.withOpacity(0.8),
           width: 0.5,
         ),
       ),
@@ -50,7 +51,7 @@ class _CalendarPlanCellState extends State<CalendarPlanCell> {
                       ? buttonTextColor
                       : widget.isCurrentMonth
                           ? textColor
-                          : textColor.withOpacity(0.4),
+                          : textColor.withOpacity(0.7),
                 ),
               ),
             ),

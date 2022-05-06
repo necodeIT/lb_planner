@@ -15,40 +15,48 @@ class CalendarPlanRoute extends StatefulWidget {
 class _CalendarPlanRouteState extends State<CalendarPlanRoute> {
   final formatter = DateFormat("EEE");
 
-  final _calendar = CellCalendarPageController();
+  DateTime month = DateTime.now();
+
+  void _nextMonth() {
+    setState(() {
+      month = DateTime(month.year, month.month + 1, 1);
+    });
+  }
+
+  void _prevMonth() {
+    setState(() {
+      month = DateTime(month.year, month.month - 1, 1);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    // return Calendar(
-    //   header: Row(
-    //     children: [
-    //       Expanded(
-    //         child: NcCaptionText(
-    //           _calendar.,
-    //           fontSize: 18,
-    //         ),
-    //       ),
+    return Calendar(
+      header: Expanded(
+        child: Row(
+          children: [
+            CalendarPlanMonthNavigator(onNextMonth: _nextMonth, onPreviousMonth: _prevMonth, currentMonth: month),
+          ],
+        ),
+      ),
+      // child: SfCalendar(
+      //   controller: _calendar,
+      //   cellBorderColor: tertiaryColor,
+      //   todayHighlightColor: accentColor,
+      //   todayTextStyle: NcBaseText.style(fontSize: null, buttonText: true),
+      //   monthCellBuilder: (context, info) => CalendarPlanCell(
+      //     day: info.date,
+      //     isCurrentMonth: info.date.month == month.month,
+      //   ),
+      //   backgroundColor: primaryColor,
+      //   scheduleViewMonthHeaderBuilder: (_, __) => SizedBox.shrink(),
+      //   initialDisplayDate: month,
+      //   selectionDecoration: null,
+      //   view: CalendarView.month,
+      // ),
+      child: CalendarPlanMonth(month: month),
+    );
 
-    //     ],
-    //   ),
-    //   child: CellCalendar(
-
-    //     cellCalendarPageController: _calendar,
-    //     todayMarkColor: accentColor,
-    //     todayTextColor: buttonTextColor,
-    //     dateTextStyle: NcBaseText.style(fontSize: null),
-    //     daysOfTheWeekBuilder: (day) => Center(
-    //       child: NcTitleText(
-    //         formatter.format(
-    //           DateTime(0, 0, day),
-    //         ),
-    //         fontSize: 15,
-    //       ),
-    //     ),
-    //     monthYearLabelBuilder: (_) => SizedBox.shrink(),
-    //   ),
-    // );
-
-    return Calendar(child: CalendarPlanMonth(month: DateTime.now()));
+    // return Calendar(child: CalendarPlanMonth(month: DateTime.now()));
   }
 }

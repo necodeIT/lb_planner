@@ -31,7 +31,6 @@ dependencies:
   badges: ^2.0.2
   bitsdojo_window: ^0.1.1+1
   cached_network_image: ^3.2.0
-  cell_calendar: ^0.6.0
   cupertino_icons: ^1.0.2
   enum_to_string: ^2.0.1
   flare_flutter: ^3.0.2

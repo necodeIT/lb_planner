@@ -1,72 +1,104 @@
 part of lbplanner_routes;
 
 /// Month grid for the calendar.
-class CalendarPlanMonth extends StatelessWidget {
+class CalendarPlanMonth extends LocalizedWidget {
   /// Month grid for the calendar.
-  CalendarPlanMonth({Key? key, required this.month}) : super(key: key);
+  const CalendarPlanMonth({Key? key, required this.month}) : super(key: key);
 
   /// The month to display.
   final DateTime month;
 
-  /// Formatter for the weekdays.
-  final formatter = DateFormat("EEE");
-
   @override
-  Widget build(BuildContext context) {
-    /// Get all the days in the month.
-
-    var days = List<DateTime>.generate(
+  Widget create(context, t) {
+    /// List of all days in the month.
+    final days = List<DateTime>.generate(
       DateTime(month.year, month.month + 1, 0).day,
       (i) => DateTime(month.year, month.month, i + 1),
     );
 
-    /// a map of all days of each week.
-    Map<int, List<DateTime>> weekDays = {DateTime.monday: [], DateTime.tuesday: [], DateTime.wednesday: [], DateTime.thursday: [], DateTime.friday: [], DateTime.saturday: [], DateTime.sunday: []};
+    /// List of all days in the previous month.
+    final prevDays = List<DateTime>.generate(
+      DateTime(month.year, month.month, 0).day,
+      (i) => DateTime(month.year, month.month - 1, i + 1),
+    );
 
-    for (var day in days) {
-      weekDays[day.weekday]!.add(day);
+    /// List of all days in the next month.
+    final nextDays = List<DateTime>.generate(
+      DateTime(month.year, month.month + 2, 0).day,
+      (i) => DateTime(month.year, month.month + 1, i + 1),
+    );
+
+    final int rows = month.month == DateTime.february ? 5 : 6;
+
+    final List<String> weekDaysNames = [
+      t.calendar_plan_monday,
+      t.calendar_plan_tuesday,
+      t.calendar_plan_wednesday,
+      t.calendar_plan_thursday,
+      t.calendar_plan_friday,
+      t.calendar_plan_saturday,
+      t.calendar_plan_sunday,
+    ];
+
+    List<List<DateTime>> weeks = [];
+
+    var insertedDays = 0;
+
+    for (var i = 0; i < rows; i++) {
+      weeks.add([]);
+
+      if (i == 0) {
+        var missingDays = days.first.weekday - DateTime.monday;
+
+        weeks[i].addAll(prevDays.reversed.toList().sublist(0, missingDays).reversed);
+
+        insertedDays += DateTime.daysPerWeek - missingDays;
+
+        weeks[i].addAll(days.sublist(0, insertedDays));
+      } else if (i == rows - 1) {
+        var missingDays = DateTime.sunday - days.last.weekday;
+
+        weeks[i].addAll(days.sublist(insertedDays, days.length));
+        weeks[i].addAll(nextDays.sublist(0, missingDays));
+
+        insertedDays = days.length;
+      } else {
+        weeks[i].addAll(days.sublist(insertedDays, insertedDays + DateTime.daysPerWeek));
+
+        insertedDays += DateTime.daysPerWeek;
+      }
     }
 
-    // /// get the days of the next month.
-    // var nextMonthDays = List<DateTime>.generate(
-    //   DateTime(month.year, month.month + 1, 0).day,
-    //   (i) => DateTime(month.year, month.month + 1, i + 1),
-    // );
-
-    // /// fill in the days of the next month.
-
-    // var missingDays = 7 - weeks.values.last.length;
-
-    // /// I don't know why this is necessary. Just don't touch it.
-    // // missingDays++;
-
-    // for (var day in nextMonthDays.take(missingDays)) {
-    //   weeks[day.weekday]!.add(day);
-    // }
-
-    print(weekDays.keys.first);
-    print(formatter.format(DateTime(month.year, 0, weekDays.keys.first)));
-
-    return Row(
+    return Column(
       children: [
-        for (var weekDay in weekDays.keys) ...[
-          Expanded(
-            child: Column(
-              children: [
-                NcSpacing.xs(),
-                Center(
+        SizedBox(
+          height: CalendarCourseModulesOverview.courseHeight,
+          child: Row(
+            children: [
+              for (var weekDay in weekDaysNames)
+                Expanded(
                   child: NcTitleText(
-                    formatter.dateSymbols.STANDALONEWEEKDAYS[weekDay - 1],
+                    weekDay,
+                    textAlign: TextAlign.center,
                   ),
                 ),
-                NcSpacing.xs(),
-                for (var day in weekDays[weekDay]!) ...[
-                  Expanded(child: CalendarPlanCell(day: day, isCurrentMonth: day.month == month.month)),
-                ],
+            ],
+          ),
+        ),
+        for (var week in weeks)
+          Expanded(
+            child: Row(
+              children: [
+                for (var day in week)
+                  Expanded(
+                    child: CalendarPlanCell(
+                      day: day,
+                      isCurrentMonth: day.month == month.month,
+                    ),
+                  ),
               ],
             ),
           ),
-        ],
       ],
     );
   }
