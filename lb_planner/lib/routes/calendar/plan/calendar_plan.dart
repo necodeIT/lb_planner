@@ -35,7 +35,21 @@ class _CalendarPlanRouteState extends State<CalendarPlanRoute> {
       header: Expanded(
         child: Row(
           children: [
-            CalendarPlanMonthNavigator(onNextMonth: _nextMonth, onPreviousMonth: _prevMonth, currentMonth: month),
+            Expanded(
+              child: CalendarPlanMonthNavigator(
+                onNextMonth: _nextMonth,
+                onPreviousMonth: _prevMonth,
+                currentMonth: month,
+              ),
+            ),
+            LpPopup(
+              popupBuilder: (context, close) => LpContainer(
+                width: 500,
+                height: 500,
+                child: NcTitleText("test"),
+              ),
+              child: LpIcon(Icons.more_horiz),
+            ),
           ],
         ),
       ),

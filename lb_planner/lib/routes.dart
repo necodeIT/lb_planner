@@ -61,6 +61,7 @@ part 'routes/calendar/modules_overview/calendar_modules_overview_month_header.da
 part 'routes/calendar/plan/calendar_plan_cell.dart';
 part 'routes/calendar/plan/calendar_plan_month.dart';
 part 'routes/calendar/plan/calendar_plan_month_navigator.dart';
+part 'routes/calendar/plan/calendar_plan_dropdown.dart';
 
 /// All routes the app has
 final Map<String, WidgetBuilder> kRoutes = {

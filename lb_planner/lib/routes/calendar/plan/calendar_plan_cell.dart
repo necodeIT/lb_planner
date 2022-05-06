@@ -25,8 +25,8 @@ class _CalendarPlanCellState extends State<CalendarPlanCell> {
     return Container(
       decoration: BoxDecoration(
         border: Border.all(
-          color: widget.isCurrentMonth ? tertiaryColor : tertiaryColor.withOpacity(0.8),
-          width: 0.5,
+          color: tertiaryColor,
+          width: widget.isCurrentMonth ? 0.5 : 0.2,
         ),
       ),
       child: Column(

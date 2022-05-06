@@ -17,6 +17,7 @@ class CalendarPlanMonthNavigator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         GestureDetector(
           onTap: onPreviousMonth,

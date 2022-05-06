@@ -8,6 +8,9 @@ class CalendarPlanMonth extends LocalizedWidget {
   /// The month to display.
   final DateTime month;
 
+  /// The number of rows to display.
+  static const int rows = 6;
+
   @override
   Widget create(context, t) {
     /// List of all days in the month.
@@ -28,8 +31,6 @@ class CalendarPlanMonth extends LocalizedWidget {
       (i) => DateTime(month.year, month.month + 1, i + 1),
     );
 
-    final int rows = month.month == DateTime.february ? 5 : 6;
-
     final List<String> weekDaysNames = [
       t.calendar_plan_monday,
       t.calendar_plan_tuesday,
@@ -43,6 +44,7 @@ class CalendarPlanMonth extends LocalizedWidget {
     List<List<DateTime>> weeks = [];
 
     var insertedDays = 0;
+    var insertedNextDays = 0;
 
     for (var i = 0; i < rows; i++) {
       weeks.add([]);
@@ -56,16 +58,23 @@ class CalendarPlanMonth extends LocalizedWidget {
 
         weeks[i].addAll(days.sublist(0, insertedDays));
       } else if (i == rows - 1) {
-        var missingDays = DateTime.sunday - days.last.weekday;
+        var missingDays = insertedDays == days.length ? insertedNextDays + DateTime.daysPerWeek : DateTime.sunday - days.last.weekday;
 
         weeks[i].addAll(days.sublist(insertedDays, days.length));
-        weeks[i].addAll(nextDays.sublist(0, missingDays));
-
-        insertedDays = days.length;
+        weeks[i].addAll(nextDays.sublist(insertedNextDays, missingDays));
       } else {
-        weeks[i].addAll(days.sublist(insertedDays, insertedDays + DateTime.daysPerWeek));
+        var daysToInsert = min(insertedDays + DateTime.daysPerWeek, days.length);
+        weeks[i].addAll(days.sublist(insertedDays, daysToInsert));
 
-        insertedDays += DateTime.daysPerWeek;
+        insertedDays = daysToInsert;
+
+        if (insertedDays == days.length) {
+          var missingDays = DateTime.sunday - days.last.weekday;
+
+          weeks[i].addAll(nextDays.sublist(0, missingDays));
+
+          insertedNextDays = missingDays;
+        }
       }
     }
 
