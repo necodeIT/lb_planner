@@ -62,6 +62,7 @@ part 'routes/calendar/plan/calendar_plan_cell.dart';
 part 'routes/calendar/plan/calendar_plan_month.dart';
 part 'routes/calendar/plan/calendar_plan_month_navigator.dart';
 part 'routes/calendar/plan/calendar_plan_dropdown.dart';
+part 'routes/admin/admin.dart';
 
 /// All routes the app has
 final Map<String, WidgetBuilder> kRoutes = {
@@ -71,7 +72,18 @@ final Map<String, WidgetBuilder> kRoutes = {
   SettingsRoute.routeName: (context) => SettingsRoute(),
   LoginSelectCoursesRoute.routeName: (context) => LoginSelectCoursesRoute(),
   CalendarModulesOverviewRoute.routeName: (context) => CalendarModulesOverviewRoute(),
+  AdminRoute.routeName: (context) => AdminRoute(),
   if (kDebugMode) TestRoute.routeName: (context) => TestRoute(),
+};
+
+/// Human readable route names
+Map<String, String Function(BuildContext)> kRouteToTitle = {
+  DashboardRoute.routeName: (context) => context.t.dashboard_routeName,
+  CalendarPlanRoute.routeName: (context) => context.t.calendar_routeName,
+  CalendarModulesOverviewRoute.routeName: (context) => context.t.calendar_routeName,
+  SettingsRoute.routeName: (context) => context.t.settings_title,
+  LoginSelectCoursesRoute.routeName: (context) => context.t.login_selectCourses_title,
+  AdminRoute.routeName: (context) => context.t.admin_routeName,
 };
 
 /// Observes navigation events.

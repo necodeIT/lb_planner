@@ -9,7 +9,7 @@ bool get isLogin => RouteWrapper.isLogin;
 /// Utils for handling routes.
 extension RouteExtensions on String {
   /// Returns the human readable name of the route.
-  String toHumanReadableRouteName(BuildContext context) => _routeToTitle[this]?.call(context) ?? replaceAll('/', ' ').toTitleCase();
+  String toHumanReadableRouteName(BuildContext context) => kRouteToTitle[this]?.call(context) ?? replaceAll('/', ' ').toTitleCase();
 
   /// Capitalizes the first letter of each word.
   String toTitleCase() {
@@ -35,11 +35,3 @@ extension RouteExtensions on String {
     return capitalizedWords.join(' ').trim();
   }
 }
-
-Map<String, String Function(BuildContext)> _routeToTitle = {
-  DashboardRoute.routeName: (context) => context.t.dashboard_routeName,
-  CalendarPlanRoute.routeName: (context) => context.t.calendar_routeName,
-  CalendarModulesOverviewRoute.routeName: (context) => context.t.calendar_routeName,
-  SettingsRoute.routeName: (context) => context.t.settings_title,
-  LoginSelectCoursesRoute.routeName: (context) => context.t.login_selectCourses_title,
-};
