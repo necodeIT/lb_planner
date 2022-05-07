@@ -41,7 +41,7 @@ class _UserNotificationsState extends State<UserNotifications> {
         );
 
         return ConditionalWrapper(
-          condition: notifications.any((notification) => notification.status == NotificationStatus.unread),
+          condition: notifications.values.any((notification) => notification.status == NotificationStatus.unread),
           wrapper: (context, child) => Badge(
             child: child,
             badgeColor: accentColor,

@@ -1,4 +1,13 @@
 {
+  "@user_notifications_invite_text": {
+    "description": "Invite notification text",
+    "placeholders": {
+      "inviter": {
+        "example": "Jane",
+        "type": "String"
+      }
+    }
+  },
   "admin_routeName": "Admin",
   "alertDialog_confirm": "OK",
   "calendar_modulesOverview_noCourses": "No courses enabled...",
@@ -41,5 +50,8 @@
   "settings_general": "General",
   "settings_searchCourses": "Search courses...",
   "settings_themes": "Themes",
-  "settings_title": "Settings"
+  "settings_title": "Settings",
+  "user_notifications_invite_accept_text": "Join",
+  "user_notifications_invite_decline_text": "Decline",
+  "user_notifications_invite_text": "You have been invited to join {inviter}'s plan!"
 }

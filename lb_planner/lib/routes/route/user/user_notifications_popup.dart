@@ -34,7 +34,7 @@ class UserNotificationsPopup extends StatelessWidget {
           condition: notifications.isNotEmpty,
           trueWidget: (context) => ListView(
             children: [
-              for (var notification in notifications) ...[
+              for (var notification in notifications.values) ...[
                 NcSpacing.small(),
                 UserNotificationsItem(notificationId: notification.id),
               ]

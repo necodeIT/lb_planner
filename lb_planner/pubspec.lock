@@ -321,7 +321,7 @@ packages:
       name: freezed_annotation
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.1"
+    version: "2.0.3"
   google_fonts:
     dependency: transitive
     description:
@@ -376,7 +376,7 @@ packages:
     description:
       path: "lbplanner.dart"
       ref: "lbplanner.dart"
-      resolved-ref: "293cc8e2eca41d91cb79db7a5db8f2bc4d897d2d"
+      resolved-ref: a62d0c56a5b7a64efcf8d3bc6f801af286b8e5c2
       url: "https://github.com/necodeIT/lb_planner.git"
     source: git
     version: "0.0.1"
@@ -413,7 +413,7 @@ packages:
     description:
       path: ui
       ref: flutter
-      resolved-ref: af7fab3576f203cdb30ae4956a2fcda10b66d001
+      resolved-ref: "9ad123da7da04cca9c861a3946d7692ba8496f2e"
       url: "https://github.com/necodeIT/nekolib.git"
     source: git
     version: "0.0.1"
@@ -422,7 +422,7 @@ packages:
     description:
       path: utils
       ref: flutter
-      resolved-ref: af7fab3576f203cdb30ae4956a2fcda10b66d001
+      resolved-ref: "9ad123da7da04cca9c861a3946d7692ba8496f2e"
       url: "https://github.com/necodeIT/nekolib.git"
     source: git
     version: "0.0.1"
