@@ -36,7 +36,7 @@ class UserNotificationsPopup extends StatelessWidget {
             children: [
               for (var notification in notifications) ...[
                 NcSpacing.small(),
-                NcBodyText(notification.type.toString() + ": " + notification.payload.toString()),
+                UserNotificationsItem(notificationId: notification.id),
               ]
             ],
           ),
