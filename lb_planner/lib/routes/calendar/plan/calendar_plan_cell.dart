@@ -35,11 +35,11 @@ class _CalendarPlanCellState extends State<CalendarPlanCell> {
           Align(
             alignment: Alignment.topRight,
             child: Padding(
-              padding: const EdgeInsets.all(NcSpacing.xsSpacing),
+              padding: const EdgeInsets.all(NcSpacing.smallSpacing),
               child: ConditionalWrapper(
                 condition: isToday,
                 wrapper: (context, child) => Container(
-                  padding: const EdgeInsets.all(NcSpacing.xsSpacing),
+                  padding: const EdgeInsets.all(7),
                   decoration: BoxDecoration(
                     color: accentColor,
                     shape: BoxShape.circle,
@@ -48,6 +48,7 @@ class _CalendarPlanCellState extends State<CalendarPlanCell> {
                 ),
                 child: NcBodyText(
                   formatter.format(widget.day),
+                  textAlign: TextAlign.center,
                   color: isToday
                       ? buttonTextColor
                       : widget.isCurrentMonth
