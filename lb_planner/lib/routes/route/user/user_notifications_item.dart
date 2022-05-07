@@ -14,21 +14,21 @@ class UserNotificationsItem extends LocalizedWidget {
       builder: (context, ref, _) {
         var notification = ref.watch(notificationsProvider)[notificationId]!;
 
-        String title = notification.toString();
+        String text = notification.toString();
         List<Widget> actions = [];
 
         switch (notification.type) {
           case NotificationTypes.invite:
-            title = t.user_notifications_invite_text(notification.payload["inviterid"].toString());
+            text = t.user_notifications_invite_text(notification.payload["inviterid"].toString());
             actions = [
               LpTextButton(
-                text: t.user_notifications_invite_accept_text,
+                text: t.user_notifications_invite_accept,
                 color: accentColor,
                 decoration: TextDecoration.underline,
                 onPressed: () {},
               ),
               LpTextButton(
-                text: t.user_notifications_invite_decline_text,
+                text: t.user_notifications_invite_decline,
                 color: accentColor,
                 decoration: TextDecoration.underline,
                 // color: errorColor,
@@ -49,7 +49,27 @@ class UserNotificationsItem extends LocalizedWidget {
             // TODO: Handle this case.
             break;
           case NotificationTypes.userRegistered:
-            // TODO: Handle this case.
+            var user = ref.read(userProvider);
+
+            text = t.user_notifications_userRegistered_text(user.firstname);
+
+            actions = [
+              LpTextButton(
+                text: t.user_notifications_userRegistered_feedback,
+                color: accentColor,
+                decoration: TextDecoration.underline,
+                // color: errorColor,
+                onPressed: () => Navigator.of(context).pushReplacementNamed(SettingsRoute.routeName),
+              ),
+              LpTextButton(
+                text: t.user_notifications_userRegistered_docs,
+                color: accentColor,
+                decoration: TextDecoration.underline,
+                // color: errorColor,
+                onPressed: () {},
+              ),
+            ];
+
             break;
         }
 
@@ -64,7 +84,7 @@ class UserNotificationsItem extends LocalizedWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               NcCaptionText(
-                title,
+                text,
                 overflow: TextOverflow.visible,
               ),
               if (actions.isNotEmpty) NcSpacing.small(),

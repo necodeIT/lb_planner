@@ -8,6 +8,15 @@
       }
     }
   },
+  "@user_notifications_userRegistered_text": {
+    "description": "User registered notification text",
+    "placeholders": {
+      "username": {
+        "example": "Jane",
+        "type": "String"
+      }
+    }
+  },
   "admin_routeName": "Admin",
   "alertDialog_confirm": "OK",
   "calendar_modulesOverview_noCourses": "No courses enabled...",
@@ -51,7 +60,10 @@
   "settings_searchCourses": "Search courses...",
   "settings_themes": "Themes",
   "settings_title": "Settings",
-  "user_notifications_invite_accept_text": "Join",
-  "user_notifications_invite_decline_text": "Decline",
-  "user_notifications_invite_text": "You have been invited to join {inviter}'s plan!"
+  "user_notifications_invite_accept": "Join",
+  "user_notifications_invite_decline": "Decline",
+  "user_notifications_invite_text": "You have been invited to join {inviter}'s plan!",
+  "user_notifications_userRegistered_docs": "Need help?",
+  "user_notifications_userRegistered_feedback": "File an issue",
+  "user_notifications_userRegistered_text": "Welcome {username}!\n\nIf you happen to face any issues, please let us know."
 }
