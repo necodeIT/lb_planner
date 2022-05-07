@@ -13,6 +13,9 @@ import 'package:lbplanner_api/lbplanner_api.dart';
 import 'package:nekolib_ui/core.dart';
 import 'package:nekolib_ui/utils.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+// ignore: import_of_legacy_library_into_null_safe
+import 'package:nima/nima_actor.dart';
+import 'package:rive/rive.dart' as rive;
 import 'package:shimmer/shimmer.dart';
 
 part 'widgets/button.dart';
@@ -31,6 +34,7 @@ part 'widgets/dialog.dart';
 part 'widgets/container.dart';
 part 'widgets/popup.dart';
 part 'widgets/module.dart';
+part 'widgets/universal_actor.dart';
 
 /// Radius for all rounded rectangles.
 const double kRadius = 5;

@@ -59,6 +59,7 @@ dependencies:
       url: https://github.com/necodeIT/nekolib.git
       ref: flutter
       path: utils
+  nima: ^1.0.5
   rive: ^0.8.4
   shimmer: ^2.0.0
   window_manager: ^0.2.2

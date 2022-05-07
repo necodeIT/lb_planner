@@ -39,9 +39,6 @@ class LpLoadingIndicator extends StatelessWidget {
   /// Background color of the progress indicator.
   late final Color backgroundColor;
 
-  /// Flare animation name for the penguin to play.
-  static const penguinAnimation = "walk";
-
   @override
   Widget build(BuildContext context) {
     var color = this.color ?? accentColor;
@@ -71,10 +68,11 @@ class LpLoadingIndicator extends StatelessWidget {
               value: progress,
               backgroundColor: backgroundColor,
             ),
-            falseWidget: (context) => FlareActor(
-              assets_rive_penguin,
-              animation: penguinAnimation,
-            ),
+            falseWidget: (context) {
+              var animation = (kLoadingAnimations.toList()..shuffle()).first;
+
+              return UniversalActor.fromRiveAnimation(animation);
+            },
           ),
         ),
       ),

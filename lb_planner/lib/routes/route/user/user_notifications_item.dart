@@ -8,6 +8,12 @@ class UserNotificationsItem extends LocalizedWidget {
   /// The notification to display.
   final int notificationId;
 
+  /// Fontsize actions labels.
+  static const double actionsFontSize = 14;
+
+  /// Formatter for the date.
+  static final formatter = DateFormat.MMMEd();
+
   @override
   Widget create(BuildContext context, t) {
     return Consumer(
@@ -15,23 +21,18 @@ class UserNotificationsItem extends LocalizedWidget {
         var notification = ref.watch(notificationsProvider)[notificationId]!;
 
         String text = notification.toString();
-        List<Widget> actions = [];
+        List<_Action> actions = [];
 
         switch (notification.type) {
           case NotificationTypes.invite:
             text = t.user_notifications_invite_text(notification.payload["inviterid"].toString());
             actions = [
-              LpTextButton(
+              _Action(
                 text: t.user_notifications_invite_accept,
-                color: accentColor,
-                decoration: TextDecoration.underline,
                 onPressed: () {},
               ),
-              LpTextButton(
+              _Action(
                 text: t.user_notifications_invite_decline,
-                color: accentColor,
-                decoration: TextDecoration.underline,
-                // color: errorColor,
                 onPressed: () {},
               ),
             ];
@@ -54,18 +55,8 @@ class UserNotificationsItem extends LocalizedWidget {
             text = t.user_notifications_userRegistered_text(user.firstname);
 
             actions = [
-              LpTextButton(
-                text: t.user_notifications_userRegistered_feedback,
-                color: accentColor,
-                decoration: TextDecoration.underline,
-                // color: errorColor,
-                onPressed: () => Navigator.of(context).pushReplacementNamed(SettingsRoute.routeName),
-              ),
-              LpTextButton(
+              _Action(
                 text: t.user_notifications_userRegistered_docs,
-                color: accentColor,
-                decoration: TextDecoration.underline,
-                // color: errorColor,
                 onPressed: () {},
               ),
             ];
@@ -87,15 +78,53 @@ class UserNotificationsItem extends LocalizedWidget {
                 text,
                 overflow: TextOverflow.visible,
               ),
-              if (actions.isNotEmpty) NcSpacing.small(),
+              NcSpacing.small(),
               Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: actions,
-              ),
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      LpIcon(
+                        Icons.access_time,
+                        size: actionsFontSize,
+                        color: textColor.withOpacity(.7),
+                      ),
+                      NcSpacing.xs(),
+                      NcCaptionText(
+                        formatter.format(DateTime.now()), // TODO: notification.timestamp.toString(),
+                        color: textColor.withOpacity(.7),
+                        fontSize: actionsFontSize,
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      for (var action in actions) action.build(context),
+                    ],
+                  ),
+                ],
+              )
             ],
           ),
         );
       },
+    );
+  }
+}
+
+class _Action {
+  final String text;
+  final VoidCallback onPressed;
+
+  _Action({required this.text, required this.onPressed});
+
+  Widget build(BuildContext context) {
+    return LpTextButton(
+      text: text,
+      color: accentColor,
+      decoration: TextDecoration.underline,
+      fontSize: UserNotificationsItem.actionsFontSize,
+      onPressed: onPressed,
     );
   }
 }

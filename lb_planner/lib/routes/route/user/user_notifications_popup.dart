@@ -42,7 +42,7 @@ class UserNotificationsPopup extends StatelessWidget {
           ),
           falseWidget: (context) => Column(
             children: [
-              Expanded(child: NcVectorImage(code: no_notifications_svg)),
+              Expanded(child: UniversalActor.fromRiveAnimation(animations_rive_newton)),
               NcSpacing.small(),
               NcBodyText(
                 context.t.notifications_noNotifications,
