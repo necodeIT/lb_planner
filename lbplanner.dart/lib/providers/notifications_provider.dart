@@ -1,18 +1,18 @@
 part of lbplanner_api;
 
 /// Provides notifications for the current user
-final notificationsProvider = StateNotifierProvider<NotificationsProvider, List<Notification>>((ref) => NotificationsProvider(ref.watch(userProvider)));
+final notificationsProvider = StateNotifierProvider<NotificationsProvider, Map<int, Notification>>((ref) => NotificationsProvider(ref.watch(userProvider)));
 
 /// Controller for the notifications.p
 final notificationsController = notificationsProvider.notifier;
 
 /// Provides notifications for the current user
-class NotificationsProvider extends StateNotifier<List<Notification>> {
+class NotificationsProvider extends StateNotifier<Map<int, Notification>> {
   /// The user to get the notifications for
   final User user;
 
   /// Provides notifications for the current user
-  NotificationsProvider(this.user) : super(<Notification>[]){
+  NotificationsProvider(this.user) : super({}) {
     fetchNotifications();
   }
 
@@ -20,14 +20,14 @@ class NotificationsProvider extends StateNotifier<List<Notification>> {
   Future<RawApiResponse> fetchNotifications() async {
     var response = await NotificationsApi.getAllNotifications(user.token, user.id);
 
-    if (response.succeeded) state = response.value!;
+    if (response.succeeded) state = Map.fromEntries(response.value!.map((notification) => MapEntry(notification.id, notification)));
 
     return response;
   }
 
   /// Marks all notifications as read
   Future<RawApiResponse> markAllAsRead() async {
-    for (var notification in state) {
+    for (var notification in state.values) {
       if (notification.status == NotificationStatus.unread) {
         var response = await NotificationsApi.updateNotificationStatus(user.token, user.id, notification.copyWith(status: NotificationStatus.read));
 
