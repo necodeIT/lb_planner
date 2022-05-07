@@ -1,7 +1,7 @@
 part of lbplanner_routes;
 
 /// Popup that displays all notifications the user received.
-class UserNotificationsPopup extends StatelessWidget {
+class UserNotificationsPopup extends LocalizedWidget {
   /// Popup that displays all notifications the user received.
   const UserNotificationsPopup({Key? key, required this.close}) : super(key: key);
 
@@ -18,11 +18,13 @@ class UserNotificationsPopup extends StatelessWidget {
   static const double height = 350;
 
   @override
-  Widget build(BuildContext context) {
+  Widget create(BuildContext context, t) {
     return Consumer(builder: (context, ref, _) {
       var notifications = ref.watch(notificationsProvider);
+
       return LpContainer(
         spacing: true,
+        leading: NcCaptionText(t.user_notifications_notifications(notifications.length)),
         trailing: GestureDetector(
           onTap: close,
           child: LpIcon(
@@ -40,16 +42,7 @@ class UserNotificationsPopup extends StatelessWidget {
               ]
             ],
           ),
-          falseWidget: (context) => Column(
-            children: [
-              Expanded(child: UniversalActor.fromRiveAnimation(animations_rive_newton)),
-              NcSpacing.small(),
-              NcBodyText(
-                context.t.notifications_noNotifications,
-                textAlign: TextAlign.center,
-              ),
-            ],
-          ),
+          falseWidget: (context) => UniversalActor.fromRiveAnimation(animations_rive_newton),
         ),
         width: width,
         height: height,
