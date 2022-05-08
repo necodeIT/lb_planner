@@ -57,6 +57,7 @@ part 'providers/modules_provider.dart';
 part 'providers/courses_provider.dart';
 part 'providers/feedback_provider.dart';
 part 'providers/statistics_provider.dart';
+part 'providers/users_provider.dart';
 
 // Api
 

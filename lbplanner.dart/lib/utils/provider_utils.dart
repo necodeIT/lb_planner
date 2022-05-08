@@ -26,6 +26,15 @@ extension ProviderMapUtils<T> on StateNotifier<Map<int, T>> {
   void assertId(int id) {
     assert(state.containsKey(id), '${T.runtimeType} with id $id does not exist');
   }
+
+  /// Adds the given [value] with the given [id] to the state.
+  void addValue(int id, T value) {
+    var newState = Map<int, T>.from(state);
+
+    newState[id] = value;
+
+    state = newState;
+  }
 }
 
 /// An observable class that stores a single immutable [state].

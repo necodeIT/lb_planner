@@ -54,4 +54,24 @@ class FeedbackProvider extends StateNotifier<Map<int, Feedback>> {
 
     return response;
   }
+
+  /// Deletes the feedback with the given [id]
+  Future<RawApiResponse> deleteFeedback(int id) async {
+    assertId(id);
+
+    var response = await FeedbackApi.deleteFeedback(user.token, user.id, id);
+
+    if (response.succeeded) removeValue(id);
+
+    return response;
+  }
+
+  /// Creates a new feedback for the current user
+  Future<RawApiResponse> submitFeedback(Feedback feedback) async {
+    var response = await FeedbackApi.submitFeedback(user.token, user.id, feedback);
+
+    if (response.succeeded) addValue(response.value!.id, response.value!);
+
+    return response;
+  }
 }
