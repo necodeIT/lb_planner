@@ -17,7 +17,7 @@ class SettingsThemes extends LocalizedWidget {
             spacing: NcSpacing.mediumSpacing,
             runSpacing: NcSpacing.mediumSpacing,
             children: [
-              for (var theme in NcThemes.all.entries) SettingsThemesThemeItem(theme: theme.value),
+              for (var theme in NcThemes.all.values) SettingsThemesThemeItem(theme: theme),
             ],
           ),
         ),
