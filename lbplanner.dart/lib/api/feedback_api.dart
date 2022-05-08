@@ -53,7 +53,7 @@ class FeedbackApi {
       token: token,
       params: {
         "userid": userId,
-        "type": data.type,
+        "type": data.type.index,
       },
       body: {
         "content": data.content,
