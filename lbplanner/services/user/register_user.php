@@ -54,6 +54,7 @@ class user_register_user extends external_api {
         $user->userid = $userid;
         $user->language = $lang;
         $user->theme = $theme;
+        $user->colorblindness = "none";
 
         $DB->insert_record(user_helper::TABLE, $user);
 
@@ -84,6 +85,7 @@ class user_register_user extends external_api {
             'lang' => $user->language,
             'profileimageurl' => $mdluser->profileimageurl,
             'planid' => $planid,
+            'colorblindness' => $user->colorblindness,
         );
     }
 
@@ -99,6 +101,7 @@ class user_register_user extends external_api {
                 'lang' => new external_value(PARAM_TEXT, 'The language the user has selected'),
                 'profileimageurl' => new external_value(PARAM_URL, 'The url of the profile image'),
                 'planid' => new external_value(PARAM_INT, 'The id of the plan the user is assigned to'),
+                'colorblindness' => new external_value(PARAM_TEXT, 'The colorblindness of the user'),
             )
         );
     }

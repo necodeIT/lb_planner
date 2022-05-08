@@ -40,9 +40,7 @@ class user_get_all_users extends external_api {
 
         // Check if token is allowed to access this function.
 
-        if (!user_helper::check_access($userid)) {
-            throw new \moodle_exception('Access denied');
-        }
+        user_helper::assert_access($userid);
 
         $users = $DB->get_records(user_helper::TABLE);
 

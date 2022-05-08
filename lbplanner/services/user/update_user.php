@@ -32,20 +32,24 @@ class user_update_user extends external_api {
             'userid' => new external_value(PARAM_INT, 'The id of the user to register', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
             'lang' => new external_value(PARAM_TEXT, 'The language the user has selected', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
             'theme' => new external_value(PARAM_TEXT, 'The theme the user has selected', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
+            'colorblindness' => new external_value(
+                PARAM_TEXT,
+                'The colorblindness the user has selected',
+                VALUE_REQUIRED,
+                null,
+                NULL_NOT_ALLOWED),
         ));
     }
 
-    public static function update_user($userid, $lang, $theme) {
+    public static function update_user($userid, $lang, $theme, $colorblindness) {
         global $DB;
 
         self::validate_parameters(
             self::update_user_parameters(),
-            array('userid' => $userid, 'lang' => $lang, 'theme' => $theme)
+            array('userid' => $userid, 'lang' => $lang, 'theme' => $theme, 'colorblindness' => $colorblindness)
         );
 
-        if (!user_helper::check_access($userid)) {
-            throw new \moodle_exception('Access denied');
-        }
+        user_helper::assert_access($userid);
 
         if (!user_helper::check_user_exists($userid)) {
             throw new \moodle_exception('User does not exist');
@@ -57,6 +61,7 @@ class user_update_user extends external_api {
 
         $user->language = $lang;
         $user->theme = $theme;
+        $user->colorblindness = $colorblindness;
 
         $DB->update_record(user_helper::TABLE, $user, false);
 
@@ -72,6 +77,7 @@ class user_update_user extends external_api {
             'lastname' => $mdluser->lastname,
             'profileimageurl' => $mdluser->profileimageurl,
             'planid' => plan_helper::get_plan_id($userid),
+            'colorblindness' => $colorblindness,
         );
     }
 
@@ -87,6 +93,7 @@ class user_update_user extends external_api {
                 'lang' => new external_value(PARAM_TEXT, 'The language the user has selected'),
                 'profileimageurl' => new external_value(PARAM_URL, 'The url of the profile image'),
                 'planid' => new external_value(PARAM_INT, 'The id of the plan the user is assigned to'),
+                'colorblindness' => new external_value(PARAM_TEXT, 'The colorblindness the user has selected'),
             )
         );
     }

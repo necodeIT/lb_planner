@@ -62,18 +62,7 @@ class user_get_user extends external_api {
                 'lang' => $user->language,
                 'profileimageurl' => $mdluser->profileimageurl,
                 'planid' => plan_helper::get_plan_id($userid),
-            );
-
-            return array(
-            'userid' => $user->userid,
-            'username' => $user->username,
-            'firstname' => $mdluser->firstname,
-            'lastname' => $mdluser->lastname,
-            'role' => null,
-            'theme' => null,
-            'lang' => null,
-            'profileimageurl' => $mdluser->profileimageurl,
-            'planid' => null,
+                'colorblindness' => $user->colorblindness,
             );
     }
     public static function get_user_returns() {
@@ -88,6 +77,7 @@ class user_get_user extends external_api {
                 'lang' => new external_value(PARAM_TEXT, 'The language the user has selected'),
                 'profileimageurl' => new external_value(PARAM_URL, 'The url of the profile image'),
                 'planid' => new external_value(PARAM_INT, 'The id of the plan the user is assigned to'),
+                'colorblindness' => new external_value(PARAM_INT, 'The colorblindness of the user'),
             )
         );
     }
