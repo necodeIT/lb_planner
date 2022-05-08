@@ -8,6 +8,15 @@
       }
     }
   },
+  "@settings_feedback_failed_message": {
+    "description": "Error message when feedback submission fails",
+    "placeholders": {
+      "error": {
+        "example": "Index out of range",
+        "type": "String"
+      }
+    }
+  },
   "@user_notifications_notifications": {
     "placeholders": {
       "count": {
@@ -56,7 +65,7 @@
   "login_username": "Username",
   "plan_routeName": "Plan",
   "settings_feedback": "Feedback",
-  "settings_feedback_failed_message": "We could not process your feedback. Please try again later.\nIf this error persists please consider opening an issue on GitHub.",
+  "settings_feedback_failed_message": "We could not process your feedback. Please try again later.\nIf this error persists please consider opening an issue on GitHub.\n\nThe culprit: '{error}'",
   "settings_feedback_failed_title": "Error trasmitting feedback",
   "settings_feedback_placeholder": "Tell us something...",
   "settings_feedback_submit": "Submit",
