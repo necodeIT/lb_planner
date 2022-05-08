@@ -22,10 +22,21 @@ class UserNotificationsItem extends LocalizedWidget {
 
         String text = notification.toString();
         List<_Action> actions = [];
+        bool loading = false;
 
         switch (notification.type) {
           case NotificationTypes.invite:
-            text = t.user_notifications_invite_text(notification.payload["inviterid"].toString());
+            int inviterId = notification.payload["inviterid"];
+
+            var inviter = ref.watch(usersProvider)[inviterId];
+
+            if (inviter == null) {
+              loading = true;
+              break;
+            }
+
+            text = t.user_notifications_invite_text(inviter.fullname);
+
             actions = [
               _Action(
                 text: t.user_notifications_invite_accept,
@@ -64,47 +75,51 @@ class UserNotificationsItem extends LocalizedWidget {
             break;
         }
 
-        return Container(
-          padding: EdgeInsets.all(NcSpacing.smallSpacing),
-          decoration: BoxDecoration(
-            color: secondaryColor,
-            borderRadius: BorderRadius.circular(kRadius),
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              NcCaptionText(
-                text,
-                overflow: TextOverflow.visible,
-              ),
-              NcSpacing.small(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      LpIcon(
-                        Icons.access_time,
-                        size: actionsFontSize,
-                        color: textColor.withOpacity(.7),
-                      ),
-                      NcSpacing.xs(),
-                      NcCaptionText(
-                        formatter.format(DateTime.now()), // TODO: notification.timestamp.toString(),
-                        color: textColor.withOpacity(.7),
-                        fontSize: actionsFontSize,
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      for (var action in actions) action.build(context),
-                    ],
-                  ),
-                ],
-              )
-            ],
+        return ConditionalWidget(
+          condition: loading,
+          trueWidget: (context) => LpShimmer(),
+          falseWidget: (context) => Container(
+            padding: EdgeInsets.all(NcSpacing.smallSpacing),
+            decoration: BoxDecoration(
+              color: secondaryColor,
+              borderRadius: BorderRadius.circular(kRadius),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                NcCaptionText(
+                  text,
+                  overflow: TextOverflow.visible,
+                ),
+                NcSpacing.small(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        LpIcon(
+                          Icons.access_time,
+                          size: actionsFontSize,
+                          color: textColor.withOpacity(.7),
+                        ),
+                        NcSpacing.xs(),
+                        NcCaptionText(
+                          formatter.format(DateTime.now()), // TODO: notification.timestamp.toString(),
+                          color: textColor.withOpacity(.7),
+                          fontSize: actionsFontSize,
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        for (var action in actions) action.build(context),
+                      ],
+                    ),
+                  ],
+                )
+              ],
+            ),
           ),
         );
       },

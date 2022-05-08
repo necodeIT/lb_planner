@@ -35,6 +35,7 @@ part 'widgets/container.dart';
 part 'widgets/popup.dart';
 part 'widgets/module.dart';
 part 'widgets/universal_actor.dart';
+part 'widgets/shimmer.dart';
 
 /// Radius for all rounded rectangles.
 const double kRadius = 5;

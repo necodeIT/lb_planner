@@ -39,9 +39,6 @@ class ModuleWidget extends StatelessWidget {
   /// Formatter for the date if [displayMode] == [ModuleWidgetDisyplayModes.date].
   static final formatter = DateFormat('dd.MM');
 
-  /// Default value for [Shimmer.period] if [displayMode] == [ModuleWidgetDisyplayModes.date].
-  static const shimmerPeriod = Duration(milliseconds: 2000);
-
   @override
   Widget build(BuildContext context) {
     return Consumer(builder: (context, ref, _) {
@@ -92,19 +89,7 @@ class ModuleWidget extends StatelessWidget {
             ),
           );
         },
-        falseWidget: (context) => Shimmer.fromColors(
-          period: shimmerPeriod,
-          child: Container(
-            height: height,
-            width: width,
-            decoration: BoxDecoration(
-              color: secondaryColor,
-              borderRadius: BorderRadius.circular(kRadius),
-            ),
-          ),
-          baseColor: secondaryColor,
-          highlightColor: secondaryColor.lighten(0.02),
-        ),
+        falseWidget: (context) => LpShimmer(height: height, width: width),
       );
     });
   }

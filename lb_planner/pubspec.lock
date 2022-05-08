@@ -376,7 +376,7 @@ packages:
     description:
       path: "lbplanner.dart"
       ref: "lbplanner.dart"
-      resolved-ref: a62d0c56a5b7a64efcf8d3bc6f801af286b8e5c2
+      resolved-ref: ac0a213219b7180e5ad1c143119c8785275fb1bf
       url: "https://github.com/necodeIT/lb_planner.git"
     source: git
     version: "0.0.1"
@@ -696,7 +696,7 @@ packages:
       name: window_manager
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.2"
+    version: "0.2.3"
   xdg_directories:
     dependency: transitive
     description:

@@ -8,6 +8,14 @@
       }
     }
   },
+  "@user_notifications_notifications": {
+    "placeholders": {
+      "count": {
+        "example": "1",
+        "type": "Number"
+      }
+    }
+  },
   "@user_notifications_userRegistered_text": {
     "description": "User registered notification text",
     "placeholders": {
@@ -48,8 +56,12 @@
   "login_username": "Username",
   "plan_routeName": "Plan",
   "settings_feedback": "Feedback",
+  "settings_feedback_failed_message": "We could not process your feedback. Please try again later.\nIf this error persists please consider opening an issue on GitHub.",
+  "settings_feedback_failed_title": "Error trasmitting feedback",
   "settings_feedback_placeholder": "Tell us something...",
   "settings_feedback_submit": "Submit",
+  "settings_feedback_submitted_message": "We have successfully received your feedback and are now working on it!",
+  "settings_feedback_submitted_title": "Thank you for your feedback!",
   "settings_feedback_title": "Feedback",
   "settings_feedback_types_bug": "Bug",
   "settings_feedback_types_error": "Typo / Translation error",
@@ -62,15 +74,7 @@
   "user_notifications_invite_accept": "Join",
   "user_notifications_invite_decline": "Decline",
   "user_notifications_invite_text": "You have been invited to join {inviter}'s plan!",
+  "user_notifications_notifications": "{count, plural, =0{No news... You're up to date!} one{1 Notification} other{{count} Notifications}}",
   "user_notifications_userRegistered_docs": "Need help?",
-  "user_notifications_userRegistered_text": "Welcome, {username}!\n\nIf you happen to face any issues, please let us know.",
-  "user_notifications_notifications" : "{count, plural, =0{No news... You're up to date!} one{1 Notification} other{{count} Notifications}}",
-  "@user_notifications_notifications" : {
-      "placeholders": {
-          "count": {
-              "example": "1",
-              "type": "Number"
-          }
-      }
-  }
+  "user_notifications_userRegistered_text": "Welcome, {username}!\n\nIf you happen to face any issues, please let us know."
 }
