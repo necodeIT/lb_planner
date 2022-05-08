@@ -39,6 +39,12 @@ class Api {
 
     var uri = Uri.parse(url);
 
+    if (body != null) {
+      for (var key in body.keys) {
+        body[key] = Uri.encodeComponent(body[key]);
+      }
+    }
+
     var response = body != null ? await client.post(uri, body: body, headers: postHeaders) : await client.get(uri);
 
     var result = RawApiResponse(response);
