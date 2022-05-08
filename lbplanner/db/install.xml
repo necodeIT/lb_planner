@@ -6,7 +6,7 @@
                 <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="User ID assigned from moodle."/>
                 <FIELD NAME="theme" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="The name of the theme the user has selected in the app."/>
                 <FIELD NAME="language" TYPE="char" LENGTH="2" NOTNULL="true" DEFAULT="en" SEQUENCE="false" COMMENT="Language the user has selected in the app."/>
-                <FIELD NAME="colorblindness" TYPE="TEXT" NOTNULL="true" SEQUENCE="false" DEFAULT="None" COMMENT="The colorblindness the user has selected in the app."/>
+                <FIELD NAME="colorblindness" TYPE="TEXT" NOTNULL="true" SEQUENCE="false" COMMENT="The colorblindness the user has selected in the app."/>
             </FIELDS>
             <KEYS>
                 <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
