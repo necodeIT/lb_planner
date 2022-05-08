@@ -36,7 +36,6 @@ class _SettingsThemesThemeItemState extends State<SettingsThemesThemeItem> {
 
     setState(() {
       _themeFuture = controller.updateTheme(widget.theme.name);
-      // _themeFuture = Future.delayed(Duration(seconds: 10));
     });
 
     var response = await _themeFuture!;

@@ -70,7 +70,7 @@ class LpLoadingIndicator extends StatelessWidget {
             ),
             falseWidget: (context) {
               var animation = (kLoadingAnimations.toList()..shuffle()).first;
-
+              print(animation);
               return UniversalActor.fromRiveAnimation(animation);
             },
           ),
