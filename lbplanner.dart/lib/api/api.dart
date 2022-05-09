@@ -42,7 +42,7 @@ class Api {
     if (body != null) {
       for (var key in body.keys) {
         var value = body[key];
-        body[key] = value != null : Uri.encodeComponent(value.toString()) : null;
+        body[key] = value != null ? Uri.encodeComponent(value.toString()) : null;
       }
     }
 
