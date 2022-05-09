@@ -105,7 +105,7 @@ class UserNotificationsItem extends LocalizedWidget {
                         ),
                         NcSpacing.xs(),
                         NcCaptionText(
-                          formatter.format(DateTime.now()), // TODO: notification.timestamp.toString(),
+                          timeago.format(notification.timestamp),
                           color: textColor.withOpacity(.7),
                           fontSize: actionsFontSize,
                         ),

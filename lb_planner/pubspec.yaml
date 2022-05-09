@@ -62,6 +62,7 @@ dependencies:
   nima: ^1.0.5
   rive: ^0.8.4
   shimmer: ^2.0.0
+  timeago: ^3.2.2
   window_manager: ^0.2.2
 
 dev_dependencies:

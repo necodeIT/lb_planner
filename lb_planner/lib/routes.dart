@@ -22,6 +22,7 @@ import 'package:nekolib_ui/utils.dart';
 import 'package:nekolib_utils/extensions.dart';
 import 'package:nekolib_utils/log.dart';
 import 'package:window_manager/window_manager.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 part 'routes/login/login/login.dart';
 part 'routes/login/login/background.dart';

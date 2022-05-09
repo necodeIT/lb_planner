@@ -83,7 +83,7 @@
   "user_notifications_invite_accept": "Join",
   "user_notifications_invite_decline": "Decline",
   "user_notifications_invite_text": "You have been invited to join {inviter}'s plan!",
-  "user_notifications_notifications": "{count, plural, =0{No news... You're up to date!} one{1 Notification} other{{count} Notifications}}",
+  "user_notifications_notifications": "{count, plural, =0{No news... You're up to date!} =1{1 Notification} other{{count} Notifications}}",
   "user_notifications_userRegistered_docs": "Need help?",
   "user_notifications_userRegistered_text": "Welcome, {username}!\n\nIf you happen to face any issues, please let us know."
 }

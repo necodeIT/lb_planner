@@ -376,7 +376,7 @@ packages:
     description:
       path: "lbplanner.dart"
       ref: "lbplanner.dart"
-      resolved-ref: "68da66ff19327a3683b7da417a71b520db79a1e9"
+      resolved-ref: "702cbc158ed84169e5828e7866ac74371586c145"
       url: "https://github.com/necodeIT/lb_planner.git"
     source: git
     version: "0.0.1"
@@ -655,6 +655,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.4.8"
+  timeago:
+    dependency: "direct main"
+    description:
+      name: timeago
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.2.2"
   typed_data:
     dependency: transitive
     description:
