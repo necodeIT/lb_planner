@@ -40,6 +40,7 @@ class user_get_user extends external_api {
     }
 
     public static function get_user($userid) {
+        global $USER;
         self::validate_parameters(self::get_user_parameters(), array('userid' => $userid));
 
         if (!user_helper::check_user_exists($userid)) {
@@ -51,7 +52,8 @@ class user_get_user extends external_api {
         $mdluser = user_helper::get_mdl_user_info($user->userid);
 
         // Check if the user is allowed to get the data for this userid.
-        user_helper::assert_access($userid);
+        if ($userid == $USER->id) {
+
             return array(
                 'userid' => $user->userid,
                 'username' => $mdluser->username,
@@ -63,6 +65,19 @@ class user_get_user extends external_api {
                 'profileimageurl' => $mdluser->profileimageurl,
                 'planid' => plan_helper::get_plan_id($userid),
                 'colorblindness' => $user->colorblindness,
+            );
+        }
+            return array(
+                'userid' => $user->userid,
+                'username' => $user->username,
+                'firstname' => $mdluser->firstname,
+                'lastname' => $mdluser->lastname,
+                'role' => null,
+                'theme' => null,
+                'lang' => null,
+                'profileimageurl' => $mdluser->profileimageurl,
+                'planid' => null,
+                'colorblindness' => null
             );
     }
     public static function get_user_returns() {
@@ -77,7 +92,7 @@ class user_get_user extends external_api {
                 'lang' => new external_value(PARAM_TEXT, 'The language the user has selected'),
                 'profileimageurl' => new external_value(PARAM_URL, 'The url of the profile image'),
                 'planid' => new external_value(PARAM_INT, 'The id of the plan the user is assigned to'),
-                'colorblindness' => new external_value(PARAM_INT, 'The colorblindness of the user'),
+                'colorblindness' => new external_value(PARAM_TEXT, 'The colorblindness of the user'),
             )
         );
     }

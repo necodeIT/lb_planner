@@ -19,7 +19,7 @@
                 <FIELD NAME="courseid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Course ID assigned from moodle."/>
                 <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="The id of the user for whom this course's settings are for."/>
                 <FIELD NAME="shortname" TYPE="char" LENGTH="5" NOTNULL="true" SEQUENCE="false" COMMENT="The short name for this course the user has chosen."/>
-                <FIELD NAME="color" TYPE="char" LENGTH="7" NOTNULL="true" SEQUENCE="false" COMMENT="The color of the course the user wants to display the in in the UI."/>
+                <FIELD NAME="color" TYPE="char" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="The color of the course the user wants to display the in in the UI."/>
                 <FIELD NAME="enabled" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Whether the user has enabled (1) the course for planning or not (0)."/>
             </FIELDS>
             <KEYS>

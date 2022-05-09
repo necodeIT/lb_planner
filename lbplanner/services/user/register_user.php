@@ -54,7 +54,7 @@ class user_register_user extends external_api {
         $user->userid = $userid;
         $user->language = $lang;
         $user->theme = $theme;
-        $user->colorblindness = "none";
+        $user->colorblindness = "None";
 
         $DB->insert_record(user_helper::TABLE, $user);
 
