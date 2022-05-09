@@ -50,7 +50,7 @@ class UserApi {
         "userid": data.id,
         "lang": data.language.name,
         "theme": data.theme,
-        "colorblindness": data.colorBlindness,
+        "colorblindness": data.colorBlindness.name,
       },
     );
 
