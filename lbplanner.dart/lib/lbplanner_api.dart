@@ -17,6 +17,7 @@ import 'dart:io';
 import 'dart:ui';
 
 // Package imports:
+import 'package:color_blindness/color_blindness.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:lbplanner_api/models/statistics/statistics.dart';

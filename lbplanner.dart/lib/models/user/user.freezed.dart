@@ -33,7 +33,8 @@ class _$UserTearOff {
       String theme = "",
       UserAccessLevels accessLevel = UserAccessLevels.restricted,
       int planId = -1,
-      bool isEmpty = false}) {
+      bool isEmpty = false,
+      ColorBlindnessType colorBlindness = ColorBlindnessType.none}) {
     return _User(
       id: id,
       username: username,
@@ -46,6 +47,7 @@ class _$UserTearOff {
       accessLevel: accessLevel,
       planId: planId,
       isEmpty: isEmpty,
+      colorBlindness: colorBlindness,
     );
   }
 
@@ -92,6 +94,9 @@ mixin _$User {
   /// If this is set to true the this user contains no useful data
   bool get isEmpty => throw _privateConstructorUsedError;
 
+  /// The colorblindness of the user
+  ColorBlindnessType get colorBlindness => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $UserCopyWith<User> get copyWith => throw _privateConstructorUsedError;
@@ -112,7 +117,8 @@ abstract class $UserCopyWith<$Res> {
       String theme,
       UserAccessLevels accessLevel,
       int planId,
-      bool isEmpty});
+      bool isEmpty,
+      ColorBlindnessType colorBlindness});
 }
 
 /// @nodoc
@@ -136,6 +142,7 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object? accessLevel = freezed,
     Object? planId = freezed,
     Object? isEmpty = freezed,
+    Object? colorBlindness = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -182,6 +189,10 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _value.isEmpty
           : isEmpty // ignore: cast_nullable_to_non_nullable
               as bool,
+      colorBlindness: colorBlindness == freezed
+          ? _value.colorBlindness
+          : colorBlindness // ignore: cast_nullable_to_non_nullable
+              as ColorBlindnessType,
     ));
   }
 }
@@ -202,7 +213,8 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       String theme,
       UserAccessLevels accessLevel,
       int planId,
-      bool isEmpty});
+      bool isEmpty,
+      ColorBlindnessType colorBlindness});
 }
 
 /// @nodoc
@@ -227,6 +239,7 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     Object? accessLevel = freezed,
     Object? planId = freezed,
     Object? isEmpty = freezed,
+    Object? colorBlindness = freezed,
   }) {
     return _then(_User(
       id: id == freezed
@@ -273,6 +286,10 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
           ? _value.isEmpty
           : isEmpty // ignore: cast_nullable_to_non_nullable
               as bool,
+      colorBlindness: colorBlindness == freezed
+          ? _value.colorBlindness
+          : colorBlindness // ignore: cast_nullable_to_non_nullable
+              as ColorBlindnessType,
     ));
   }
 }
@@ -291,7 +308,8 @@ class _$_User extends _User {
       this.theme = "",
       this.accessLevel = UserAccessLevels.restricted,
       this.planId = -1,
-      this.isEmpty = false})
+      this.isEmpty = false,
+      this.colorBlindness = ColorBlindnessType.none})
       : super._();
 
   factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
@@ -346,10 +364,15 @@ class _$_User extends _User {
 
   /// If this is set to true the this user contains no useful data
   final bool isEmpty;
+  @JsonKey()
+  @override
+
+  /// The colorblindness of the user
+  final ColorBlindnessType colorBlindness;
 
   @override
   String toString() {
-    return 'User(id: $id, username: $username, firstname: $firstname, lastname: $lastname, avatar: $avatar, language: $language, token: $token, theme: $theme, accessLevel: $accessLevel, planId: $planId, isEmpty: $isEmpty)';
+    return 'User(id: $id, username: $username, firstname: $firstname, lastname: $lastname, avatar: $avatar, language: $language, token: $token, theme: $theme, accessLevel: $accessLevel, planId: $planId, isEmpty: $isEmpty, colorBlindness: $colorBlindness)';
   }
 
   @override
@@ -368,7 +391,9 @@ class _$_User extends _User {
             const DeepCollectionEquality()
                 .equals(other.accessLevel, accessLevel) &&
             const DeepCollectionEquality().equals(other.planId, planId) &&
-            const DeepCollectionEquality().equals(other.isEmpty, isEmpty));
+            const DeepCollectionEquality().equals(other.isEmpty, isEmpty) &&
+            const DeepCollectionEquality()
+                .equals(other.colorBlindness, colorBlindness));
   }
 
   @override
@@ -384,7 +409,8 @@ class _$_User extends _User {
       const DeepCollectionEquality().hash(theme),
       const DeepCollectionEquality().hash(accessLevel),
       const DeepCollectionEquality().hash(planId),
-      const DeepCollectionEquality().hash(isEmpty));
+      const DeepCollectionEquality().hash(isEmpty),
+      const DeepCollectionEquality().hash(colorBlindness));
 
   @JsonKey(ignore: true)
   @override
@@ -409,7 +435,8 @@ abstract class _User extends User {
       String theme,
       UserAccessLevels accessLevel,
       int planId,
-      bool isEmpty}) = _$_User;
+      bool isEmpty,
+      ColorBlindnessType colorBlindness}) = _$_User;
   const _User._() : super._();
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
@@ -458,6 +485,10 @@ abstract class _User extends User {
 
   /// If this is set to true the this user contains no useful data
   bool get isEmpty;
+  @override
+
+  /// The colorblindness of the user
+  ColorBlindnessType get colorBlindness;
   @override
   @JsonKey(ignore: true)
   _$UserCopyWith<_User> get copyWith => throw _privateConstructorUsedError;

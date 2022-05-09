@@ -27,6 +27,9 @@ class Notification with _$Notification {
 
     /// The status of the notification
     required NotificationStatus status,
+
+    /// The date the notification was received
+    required DateTime timestamp,
   }) = _Notification;
 
   /// Notification model from json

@@ -21,6 +21,9 @@ _$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
               UserAccessLevels.restricted,
       planId: json['planId'] as int? ?? -1,
       isEmpty: json['isEmpty'] as bool? ?? false,
+      colorBlindness: $enumDecodeNullable(
+              _$ColorBlindnessTypeEnumMap, json['colorBlindness']) ??
+          ColorBlindnessType.none,
     );
 
 Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
@@ -35,6 +38,7 @@ Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
       'accessLevel': _$UserAccessLevelsEnumMap[instance.accessLevel],
       'planId': instance.planId,
       'isEmpty': instance.isEmpty,
+      'colorBlindness': _$ColorBlindnessTypeEnumMap[instance.colorBlindness],
     };
 
 const _$LanguagesEnumMap = {
@@ -48,4 +52,16 @@ const _$UserAccessLevelsEnumMap = {
   UserAccessLevels.teacher: 'teacher',
   UserAccessLevels.student: 'student',
   UserAccessLevels.restricted: 'restricted',
+};
+
+const _$ColorBlindnessTypeEnumMap = {
+  ColorBlindnessType.none: 'none',
+  ColorBlindnessType.protanomaly: 'protanomaly',
+  ColorBlindnessType.deuteranomaly: 'deuteranomaly',
+  ColorBlindnessType.tritanomaly: 'tritanomaly',
+  ColorBlindnessType.protanopia: 'protanopia',
+  ColorBlindnessType.deuteranopia: 'deuteranopia',
+  ColorBlindnessType.tritanopia: 'tritanopia',
+  ColorBlindnessType.achromatopsia: 'achromatopsia',
+  ColorBlindnessType.achromatomaly: 'achromatomaly',
 };

@@ -26,12 +26,14 @@ class _$NotificationTearOff {
       {required int id,
       required Map<String, dynamic> payload,
       required NotificationTypes type,
-      required NotificationStatus status}) {
+      required NotificationStatus status,
+      required DateTime timestamp}) {
     return _Notification(
       id: id,
       payload: payload,
       type: type,
       status: status,
+      timestamp: timestamp,
     );
   }
 
@@ -57,6 +59,9 @@ mixin _$Notification {
   /// The status of the notification
   NotificationStatus get status => throw _privateConstructorUsedError;
 
+  /// The date the notification was received
+  DateTime get timestamp => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $NotificationCopyWith<Notification> get copyWith =>
@@ -72,7 +77,8 @@ abstract class $NotificationCopyWith<$Res> {
       {int id,
       Map<String, dynamic> payload,
       NotificationTypes type,
-      NotificationStatus status});
+      NotificationStatus status,
+      DateTime timestamp});
 }
 
 /// @nodoc
@@ -89,6 +95,7 @@ class _$NotificationCopyWithImpl<$Res> implements $NotificationCopyWith<$Res> {
     Object? payload = freezed,
     Object? type = freezed,
     Object? status = freezed,
+    Object? timestamp = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -107,6 +114,10 @@ class _$NotificationCopyWithImpl<$Res> implements $NotificationCopyWith<$Res> {
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as NotificationStatus,
+      timestamp: timestamp == freezed
+          ? _value.timestamp
+          : timestamp // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
@@ -122,7 +133,8 @@ abstract class _$NotificationCopyWith<$Res>
       {int id,
       Map<String, dynamic> payload,
       NotificationTypes type,
-      NotificationStatus status});
+      NotificationStatus status,
+      DateTime timestamp});
 }
 
 /// @nodoc
@@ -141,6 +153,7 @@ class __$NotificationCopyWithImpl<$Res> extends _$NotificationCopyWithImpl<$Res>
     Object? payload = freezed,
     Object? type = freezed,
     Object? status = freezed,
+    Object? timestamp = freezed,
   }) {
     return _then(_Notification(
       id: id == freezed
@@ -159,6 +172,10 @@ class __$NotificationCopyWithImpl<$Res> extends _$NotificationCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as NotificationStatus,
+      timestamp: timestamp == freezed
+          ? _value.timestamp
+          : timestamp // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
@@ -170,7 +187,8 @@ class _$_Notification with DiagnosticableTreeMixin implements _Notification {
       {required this.id,
       required this.payload,
       required this.type,
-      required this.status});
+      required this.status,
+      required this.timestamp});
 
   factory _$_Notification.fromJson(Map<String, dynamic> json) =>
       _$$_NotificationFromJson(json);
@@ -191,10 +209,14 @@ class _$_Notification with DiagnosticableTreeMixin implements _Notification {
 
   /// The status of the notification
   final NotificationStatus status;
+  @override
+
+  /// The date the notification was received
+  final DateTime timestamp;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Notification(id: $id, payload: $payload, type: $type, status: $status)';
+    return 'Notification(id: $id, payload: $payload, type: $type, status: $status, timestamp: $timestamp)';
   }
 
   @override
@@ -205,7 +227,8 @@ class _$_Notification with DiagnosticableTreeMixin implements _Notification {
       ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('payload', payload))
       ..add(DiagnosticsProperty('type', type))
-      ..add(DiagnosticsProperty('status', status));
+      ..add(DiagnosticsProperty('status', status))
+      ..add(DiagnosticsProperty('timestamp', timestamp));
   }
 
   @override
@@ -216,7 +239,8 @@ class _$_Notification with DiagnosticableTreeMixin implements _Notification {
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.payload, payload) &&
             const DeepCollectionEquality().equals(other.type, type) &&
-            const DeepCollectionEquality().equals(other.status, status));
+            const DeepCollectionEquality().equals(other.status, status) &&
+            const DeepCollectionEquality().equals(other.timestamp, timestamp));
   }
 
   @override
@@ -225,7 +249,8 @@ class _$_Notification with DiagnosticableTreeMixin implements _Notification {
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(payload),
       const DeepCollectionEquality().hash(type),
-      const DeepCollectionEquality().hash(status));
+      const DeepCollectionEquality().hash(status),
+      const DeepCollectionEquality().hash(timestamp));
 
   @JsonKey(ignore: true)
   @override
@@ -243,7 +268,8 @@ abstract class _Notification implements Notification {
       {required int id,
       required Map<String, dynamic> payload,
       required NotificationTypes type,
-      required NotificationStatus status}) = _$_Notification;
+      required NotificationStatus status,
+      required DateTime timestamp}) = _$_Notification;
 
   factory _Notification.fromJson(Map<String, dynamic> json) =
       _$_Notification.fromJson;
@@ -264,6 +290,10 @@ abstract class _Notification implements Notification {
 
   /// The status of the notification
   NotificationStatus get status;
+  @override
+
+  /// The date the notification was received
+  DateTime get timestamp;
   @override
   @JsonKey(ignore: true)
   _$NotificationCopyWith<_Notification> get copyWith =>

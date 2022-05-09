@@ -15,6 +15,7 @@ extension ModelMappingExtensions on Map<String, dynamic> {
     body["avatar"] = this["profileimageurl"];
     body["planId"] = this["planid"];
     body["token"] = token;
+    body["colorBlindness"] = this["colorblindness"];
 
     return body;
   }
@@ -28,6 +29,8 @@ extension ModelMappingExtensions on Map<String, dynamic> {
     var type = this["type"];
     var status = this["status"];
     var id = this["notificationid"];
+
+    body["timestamp"] = DateTime.fromMillisecondsSinceEpoch(this["timestamp"] * 1000);
 
     try {
       body["payload"] = jsonDecode(payload.isEmpty ? '{}' : payload);
@@ -77,7 +80,7 @@ extension ModelMappingExtensions on Map<String, dynamic> {
     body["status"] = ModuleStatus.values[statusIndex].name;
 
     int unixDeadline = this["deadline"];
-    if (unixDeadline != null) body["deadline"] = DateTime.fromMillisecondsSinceEpoch(unixDeadline * 1000).toString();
+    body["deadline"] = DateTime.fromMillisecondsSinceEpoch(unixDeadline * 1000).toString();
 
     return body;
   }
