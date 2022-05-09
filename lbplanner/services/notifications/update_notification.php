@@ -66,6 +66,7 @@ class notifications_update_notification extends external_api {
             'info' => $notification->info,
             'userid' => $notification->userid,
             'notificationid' => $notification->id,
+            'timestamp' => $notification->timestamp,
         );
     }
 
@@ -77,6 +78,7 @@ class notifications_update_notification extends external_api {
                 'info' => new external_value(PARAM_TEXT, 'Additional information about the notification'),
                 'userid' => new external_value(PARAM_INT, 'The ID of the user for whom the notification is for'),
                 'notificationid' => new external_value(PARAM_INT, 'The ID of the notification'),
+                'timestamp' => new external_value(PARAM_INT, 'The timestamp of the notification'),
             )
         );
     }
