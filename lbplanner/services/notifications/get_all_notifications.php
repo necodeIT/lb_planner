@@ -66,7 +66,7 @@ class notifications_get_all_notifications extends external_api {
                     'type' => new external_value(PARAM_INT, 'The type of the event that triggered the notification'),
                     'info' => new external_value(PARAM_TEXT, 'Additional information about the notification'),
                     'userid' => new external_value(PARAM_INT, 'The ID of the user for whom the notification is for'),
-                    'notificationid' => new external_value(PARAM_INT, 'The ID of the notification'),
+                    'notificationid' => new external_value(PARAM_INT, 'The ID of the notification', NULL_NOT_ALLOWED),
                     'timestamp' => new external_value(PARAM_INT, 'The timestamp of the notification'),
                 )
             )

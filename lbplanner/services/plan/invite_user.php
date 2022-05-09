@@ -63,12 +63,7 @@ class plan_invite_user extends external_api {
         );
 
         user_helper::assert_access($inviterid);
-
         if (plan_helper::get_owner($planid) != $inviterid) {
-            throw new \moodle_exception('Access denied');
-        }
-
-        if (plan_helper::get_access_type($planid, $inviterid) != plan_helper::ACCESS_TYPE_OWNER) {
             throw new \moodle_exception('Access denied');
         }
 
