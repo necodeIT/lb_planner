@@ -34,7 +34,7 @@ class Api {
     log("Calling $func ...", LogTypes.tracking);
 
     if (params != null) {
-      url += "&" + params.entries.map((e) => "${e.key}=${e.value}").join("&");
+      url += "&" + params.entries.map((e) => "${e.key}=${Uri.encodeComponent(e.value)}").join("&");
     }
 
     var uri = Uri.parse(url);
