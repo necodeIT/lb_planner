@@ -52,11 +52,11 @@ class CoursesApi {
       params: {
         "userid": userId,
         "courseid": data.id,
-        "shortname": data.shortname,
-        "enabled": data.enabled.intValue,
       },
       body: {
         "color": data.colorCode,
+        "shortname": data.shortname,
+        "enabled": data.enabled.intValue,
       },
     );
 
