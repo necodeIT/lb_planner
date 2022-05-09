@@ -10,11 +10,16 @@ import 'package:nekolib_ui/core.dart';
 import 'package:nekolib_utils/log.dart';
 import 'package:window_manager/window_manager.dart';
 
+import 'assets.dart';
+
 void main() async {
   Logger.init(autoSave: true, appStoragePath: (await Disk.appDir).path);
 
   WidgetsFlutterBinding.ensureInitialized();
   await windowManager.ensureInitialized();
+
+  // Randomly selected outside of build for consistency of the animtion when applying the theme
+  var animation = (kLoadingAnimations.toList()..shuffle()).first;
 
   runThemedApp(
     appBuilder: App.builder,
@@ -23,7 +28,7 @@ void main() async {
     minSize: Size(1200, 700),
     onLoad: load,
     windowHandleColor: () => primaryColor,
-    loadingWidgetBuilder: (_) => LpLoadingIndicator.penguin(),
+    loadingWidgetBuilder: (_) => LpLoadingIndicator.penguin(animation: animation),
   );
 }
 
@@ -34,8 +39,6 @@ Future<void> load() async {
   if (UserDisk.data != null && !UserDisk.data!.isEmpty) {
     applyUserTheme(UserDisk.data!);
   }
-
-  // await Future.delayed(Duration(seconds: 30));
 
   await kUpdater.update();
 }

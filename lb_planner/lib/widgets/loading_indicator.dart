@@ -5,15 +5,17 @@ class LpLoadingIndicator extends StatelessWidget {
   /// Linear progress indicator.
   LpLoadingIndicator({Key? key, this.progress, this.color, this.size, this.thickness, this.backgroundColor = Colors.transparent}) : super(key: key) {
     type = _LpProgressIndicatorTypes.linear;
+    animation = null;
   }
 
   /// Circular progress indicator.
   LpLoadingIndicator.circular({Key? key, this.progress, this.color, this.size, this.thickness, this.backgroundColor = Colors.transparent}) : super(key: key) {
+    animation = null;
     type = _LpProgressIndicatorTypes.circular;
   }
 
   /// Circular progress indicator with logo in the middle.
-  LpLoadingIndicator.penguin({Key? key, this.size}) : super(key: key) {
+  LpLoadingIndicator.penguin({Key? key, this.size, this.animation}) : super(key: key) {
     type = _LpProgressIndicatorTypes.penguin;
     backgroundColor = Colors.transparent;
     thickness = 0;
@@ -38,6 +40,9 @@ class LpLoadingIndicator extends StatelessWidget {
 
   /// Background color of the progress indicator.
   late final Color backgroundColor;
+
+  /// The animation to play when of type [LpLoadingIndicator.penguin].
+  late RiveAnimation? animation;
 
   @override
   Widget build(BuildContext context) {
@@ -69,8 +74,8 @@ class LpLoadingIndicator extends StatelessWidget {
               backgroundColor: backgroundColor,
             ),
             falseWidget: (context) {
-              var animation = (kLoadingAnimations.toList()..shuffle()).first;
-              print(animation);
+              var animation = this.animation ?? (kLoadingAnimations.toList()..shuffle()).first;
+
               return UniversalActor.fromRiveAnimation(animation);
             },
           ),
