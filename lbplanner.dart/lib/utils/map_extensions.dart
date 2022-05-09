@@ -30,7 +30,7 @@ extension ModelMappingExtensions on Map<String, dynamic> {
     var status = this["status"];
     var id = this["notificationid"];
 
-    body["timestamp"] = DateTime.fromMillisecondsSinceEpoch(this["timestamp"] * 1000);
+    body["timestamp"] = DateTime.fromMillisecondsSinceEpoch(this["timestamp"] * 1000).toString();
 
     try {
       body["payload"] = jsonDecode(payload.isEmpty ? '{}' : payload);
