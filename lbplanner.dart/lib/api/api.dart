@@ -34,14 +34,15 @@ class Api {
     log("Calling $func ...", LogTypes.tracking);
 
     if (params != null) {
-      url += "&" + params.entries.map((e) => "${e.key}=${Uri.encodeComponent(e.value)}").join("&");
+      url += "&" + params.entries.map((e) => "${e.key}=${e.value != null ? Uri.encodeComponent(e.value.toString()) : null}").join("&");
     }
 
     var uri = Uri.parse(url);
 
     if (body != null) {
       for (var key in body.keys) {
-        body[key] = Uri.encodeComponent(body[key]);
+        var value = body[key];
+        body[key] = value != null : Uri.encodeComponent(value.toString()) : null;
       }
     }
 
