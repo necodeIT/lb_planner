@@ -50,6 +50,7 @@ class UserApi {
         "userid": data.id,
         "lang": data.language.name,
         "theme": data.theme,
+        "colorblindness": data.colorBlindness,
       },
     );
 
@@ -62,7 +63,7 @@ class UserApi {
     return ApiResponse(response.response, user);
   }
 
-  ///Get all users from the lbplanner app.
+  /// Get all users from the lbplanner app.
   static Future<ApiResponse<List<User>>> getAllUsers(String token, int userId) async {
     var response = await Api.makeRequest(
       functionName: "local_lbplanner_user_get_all_users",
@@ -97,7 +98,7 @@ class UserApi {
   static Future<ApiResponse<String>> login(String username, String password) => Api.requestToken(password, username, ApiServices.lpa);
 
   /// Retrieves the user id with the given [token].
-  /// The token must have access to the [ApiServices.moodle_mobile_app] service.
+  /// The [token] must have access to the [ApiServices.moodle_mobile_app] service.
   static Future<ApiResponse<int>> getUserId(String token) async {
     var response = await Api.makeRequest(
       functionName: "core_webservice_get_site_info",
