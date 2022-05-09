@@ -80,7 +80,7 @@ extension ModelMappingExtensions on Map<String, dynamic> {
     body["status"] = ModuleStatus.values[statusIndex].name;
 
     int unixDeadline = this["deadline"];
-    body["deadline"] = DateTime.fromMillisecondsSinceEpoch(unixDeadline * 1000).toString();
+    if(unixDeadline != null) body["deadline"] = DateTime.fromMillisecondsSinceEpoch(unixDeadline * 1000).toString();
 
     return body;
   }
