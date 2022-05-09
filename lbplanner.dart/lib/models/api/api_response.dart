@@ -23,7 +23,7 @@ class RawApiResponse {
   /// Wrapper for the given [response].
   /// Provides utilities to handle errors and parse the response body.
   RawApiResponse(this.response) {
-    var payload = jsonDecode(Uri.decodeComponent(response.body));
+    var payload = jsonDecode(response.body);
 
     isList = payload.runtimeType == List;
 
