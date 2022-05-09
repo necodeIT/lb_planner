@@ -17,11 +17,17 @@ class UserNotificationsPopup extends LocalizedWidget {
   /// The height of the popup.
   static const double height = 350;
 
+  /// The max. age of the notifications to display.
+  static const maxNotificationAge = Duration(days: 7);
+
+  /// The max. number of notifications to display as [DateTime].
+  static get maxNotificationAgeAsDateTime => DateTime.now().subtract(maxNotificationAge);
+
   @override
   Widget create(BuildContext context, t) {
     return Consumer(builder: (context, ref, _) {
-      var notifications = ref.watch(notificationsProvider);
-
+      var notifications = ref.watch(notificationsProvider).values.where((e) => e.shouldDisplay);
+      print(notifications);
       return LpContainer(
         spacing: true,
         leading: NcCaptionText(t.user_notifications_notifications(notifications.length)),
@@ -36,7 +42,7 @@ class UserNotificationsPopup extends LocalizedWidget {
           condition: notifications.isNotEmpty,
           trueWidget: (context) => ListView(
             children: [
-              for (var notification in notifications.values) ...[
+              for (var notification in notifications) ...[
                 UserNotificationsItem(notificationId: notification.id),
                 NcSpacing.small(),
               ]
@@ -49,4 +55,8 @@ class UserNotificationsPopup extends LocalizedWidget {
       );
     });
   }
+}
+
+extension _NotificationExt on Notification {
+  bool get shouldDisplay => timestamp.isAfter(UserNotificationsPopup.maxNotificationAgeAsDateTime) || type.isInvite;
 }
