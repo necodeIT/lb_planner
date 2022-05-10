@@ -7,17 +7,17 @@ const kRiveFolder = "$kAssetsFolder/rive";
 
 /// 'penguin.flr' asset.
 ///
-/// [© JcToon](https://flare.rive.app/a/JuanCarlos/files/recent/all) — [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+/// [© JcToon](https://flare.rive.app/a/JuanCarlos/files/recent/all) • [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 const assets_rive_penguin = "$kRiveFolder/penguin.flr";
 
 /// 'Newton.nma2d' asset.
 ///
-/// [© JcToon](https://flare.rive.app/a/JuanCarlos/files/recent/all) — [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+/// [© JcToon](https://flare.rive.app/a/JuanCarlos/files/recent/all) • [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 const assets_rive_newton = "$kRiveFolder/Newton.nma";
 
 /// 'Liquid Downlad.flr' asset.
 ///
-/// [© Guido Rosso](https://flare.rive.app/a/pollux/files/recent/all) — [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+/// [© Guido Rosso](https://flare.rive.app/a/pollux/files/recent/all) • [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 const assets_rive_liquidDownload = "$kRiveFolder/Liquid Download.flr";
 
 /// All loading animations.
