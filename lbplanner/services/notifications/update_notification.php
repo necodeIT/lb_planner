@@ -57,6 +57,7 @@ class notifications_update_notification extends external_api {
 
         $notification = $DB->get_record(notifications_helper::TABLE, array('id' => $notificationid), '*', MUST_EXIST);
         $notification->status = $status;
+        $notification->timestamp_read = time();
 
         $DB->update_record(notifications_helper::TABLE, $notification);
 
@@ -67,6 +68,7 @@ class notifications_update_notification extends external_api {
             'userid' => $notification->userid,
             'notificationid' => $notification->id,
             'timestamp' => $notification->timestamp,
+            'timestamp_read' => $notification->timestamp_read,
         );
     }
 
@@ -79,6 +81,7 @@ class notifications_update_notification extends external_api {
                 'userid' => new external_value(PARAM_INT, 'The ID of the user for whom the notification is for'),
                 'notificationid' => new external_value(PARAM_INT, 'The ID of the notification'),
                 'timestamp' => new external_value(PARAM_INT, 'The timestamp of the notification'),
+                'timestamp_read' => new external_value(PARAM_INT, 'The timestamp of the notification'),
             )
         );
     }

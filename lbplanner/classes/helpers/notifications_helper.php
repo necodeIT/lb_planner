@@ -82,6 +82,7 @@ class notifications_helper {
         $notification->type = $type;
         $notification->status = self::STATUS_UNREAD;
         $notification->timestamp = time();
+        $notification->timestamp_read = null;
 
         $id = $DB->insert_record(self::TABLE, $notification);
 

@@ -35,6 +35,7 @@
                 <FIELD NAME="status" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Whether the notification has been read or not."/>
                 <FIELD NAME="type" TYPE="int" LENGTH="1" NOTNULL="true" SEQUENCE="false" COMMENT="The type of event that triggered the notifcation." />
                 <FIELD NAME="timestamp" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="The time when the notification was created." />
+                <FIELD NAME="timestamp_read" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="The time when the notification was read." />
             </FIELDS>
             <KEYS>
                 <KEY NAME="primary" TYPE="primary" FIELDS="id"/>

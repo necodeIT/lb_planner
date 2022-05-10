@@ -53,6 +53,7 @@ class notifications_get_all_notifications extends external_api {
                 'userid' => $dbnotification->userid,
                 'notificationid' => $dbnotification->id,
                 'timestamp' => $dbnotification->timestamp,
+                'timestamp_read' => $dbnotification->timestamp_read,
             );
         }
         return $notifications;
@@ -68,6 +69,7 @@ class notifications_get_all_notifications extends external_api {
                     'userid' => new external_value(PARAM_INT, 'The ID of the user for whom the notification is for'),
                     'notificationid' => new external_value(PARAM_INT, 'The ID of the notification', NULL_NOT_ALLOWED),
                     'timestamp' => new external_value(PARAM_INT, 'The timestamp of the notification'),
+                    'timestamp_read' => new external_value(PARAM_INT, 'The timestamp of the notification when it was read'),
                 )
             )
         );
