@@ -17,7 +17,6 @@ import 'dart:io';
 import 'dart:ui';
 
 // Package imports:
-import 'package:color_blindness/color_blindness.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:lbplanner_api/models/statistics/statistics.dart';
@@ -38,7 +37,7 @@ import 'models/invite/invite.dart';
 
 // Models
 
-part 'models/languages.dart';
+part 'models/user/languages.dart';
 part 'models/user/user_access_levels.dart';
 part 'models/notification/notification_types.dart';
 part 'models/notification/notification_status.dart';
@@ -59,6 +58,9 @@ part 'providers/courses_provider.dart';
 part 'providers/feedback_provider.dart';
 part 'providers/statistics_provider.dart';
 part 'providers/users_provider.dart';
+part 'providers/deadlines_provider.dart';
+part 'providers/invites_provider.dart';
+part 'providers/plan_provider.dart';
 
 // Api
 
@@ -79,6 +81,7 @@ part 'utils/color_extensions.dart';
 part 'utils/bool_extensions.dart';
 part 'utils/response.dart';
 part 'utils/provider_utils.dart';
+part 'utils/date_time_extensions.dart';
 
 // Disk
 

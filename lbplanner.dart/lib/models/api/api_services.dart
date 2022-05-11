@@ -9,3 +9,12 @@ enum ApiServices {
   /// LB Planner api service
   lpa
 }
+
+/// Bool extension for different [ApiServices].
+extension ApiServicesExtension on ApiServices {
+  /// Whether the [this] is of type [ApiServices.moodle_mobile_app].
+  bool get isMoodleMobileApp => this == ApiServices.moodle_mobile_app;
+
+  /// Whether the [this] is of type [ApiServices.lpa].
+  bool get isLpa => this == ApiServices.lpa;
+}

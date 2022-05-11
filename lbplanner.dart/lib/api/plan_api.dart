@@ -46,15 +46,15 @@ class PlanApi {
   }
 
   /// Updates the plan [userId] and [planId].
-  static Future<ApiResponse<Plan>> updatePlan(String token, int userId, Plan givenPlan) async {
+  static Future<ApiResponse<Plan>> updatePlan(String token, int userId, Plan data) async {
     var response = await Api.makeRequest(
       functionName: "local_lbplanner_plan_update_plan",
       token: token,
       params: {
-        "planid": givenPlan.id,
+        "planid": data.id,
         "userid": userId,
-        "name": givenPlan.name,
-        "enableek": givenPlan.ekEnabled.intValue,
+        "name": data.name,
+        "enableek": data.ekEnabled.intValue,
       },
     );
 
@@ -73,8 +73,8 @@ class PlanApi {
         "planid": planId,
         "userid": userId,
         "moduleid": deadline.moduleId,
-        "deadlinestart": deadline.start.toIso8601String(),
-        "deadlineend": deadline.end.toIso8601String(),
+        "deadlinestart": deadline.start.unixTimestamp,
+        "deadlineend": deadline.end.unixTimestamp,
       },
     );
 
