@@ -7,7 +7,7 @@ class PlanApi {
     var response = await Api.makeRequest(
       functionName: "local_lbplanner_plan_get_plan",
       token: token,
-      params: {"planid": planId, "userid": userId},
+      params: {"userid": userId},
     );
 
     Plan? plan;
