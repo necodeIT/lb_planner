@@ -3,7 +3,7 @@
 part of lbplanner_widgets;
 
 /// An actor that can play rive, flare and nima animations.
-class UniversalActor extends StatelessWidget {
+class UniversalActor extends StatefulWidget {
   /// An actor that can play rive, flare and nima animations.
   UniversalActor(this.filename, {Key? key, this.fit = BoxFit.scaleDown, required this.animation, this.alignment = Alignment.center}) : super(key: key);
 
@@ -28,14 +28,37 @@ class UniversalActor extends StatelessWidget {
   final Alignment alignment;
 
   @override
+  State<UniversalActor> createState() => _UniversalActorState();
+}
+
+class _UniversalActorState extends State<UniversalActor> {
+  late final rive.RiveAnimationController _riveController;
+
+  @override
+  void initState() {
+    _riveController = rive.SimpleAnimation(widget.animation);
+
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    switch (filename.engine) {
+    print(widget.filename + ": " + widget.animation);
+    switch (widget.filename.engine) {
       case _Engine.flr:
-        return FlareActor(filename, alignment: alignment, fit: fit, animation: animation);
-      case _Engine.rive:
-        return rive.RiveAnimation.asset(filename, animations: [animation], fit: fit, alignment: alignment);
+        return FlareActor(widget.filename, alignment: widget.alignment, fit: widget.fit, animation: widget.animation);
+      case _Engine.riv:
+        if (!_riveController.isActive) WidgetsBinding.instance!.addPostFrameCallback((_) => setState(() => _riveController.isActive = true));
+
+        return rive.RiveAnimation.asset(
+          widget.filename,
+          // animations: [animation],
+          fit: widget.fit,
+          alignment: widget.alignment,
+          controllers: [_riveController],
+        );
       case _Engine.nma:
-        return NimaActor(filename, animation: animation, fit: fit, alignment: alignment);
+        return NimaActor(widget.filename, animation: widget.animation, fit: widget.fit, alignment: widget.alignment);
     }
   }
 }
@@ -44,4 +67,4 @@ extension _UniversalActorHelper on String {
   _Engine get engine => _Engine.values.firstWhere((e) => contains(".${e.name}"));
 }
 
-enum _Engine { flr, rive, nma }
+enum _Engine { flr, riv, nma }

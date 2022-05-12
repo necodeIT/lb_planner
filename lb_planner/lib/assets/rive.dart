@@ -15,15 +15,13 @@ const assets_rive_penguin = "$kRiveFolder/penguin.flr";
 /// [© JcToon](https://flare.rive.app/a/JuanCarlos/files/recent/all) • [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 const assets_rive_newton = "$kRiveFolder/Newton.nma";
 
-/// 'Liquid Downlad.flr' asset.
-///
-/// [© Guido Rosso](https://flare.rive.app/a/pollux/files/recent/all) • [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
-const assets_rive_liquidDownload = "$kRiveFolder/Liquid Download.flr";
+/// 'ufo.rive' asset.
+const assets_rive_ufo = "$kRiveFolder/ufo.riv";
 
 /// All loading animations.
 const kLoadingAnimations = [
   animations_rive_penguin,
-  animations_rive_liquidDownload,
+  animations_rive_ufo,
 ];
 
 /// Looping [assets_rive_newton] animation.
@@ -32,8 +30,10 @@ const animations_rive_newton = RiveAnimation(assets_rive_newton, "Idle");
 /// Looping [assets_rive_penguin] animation.
 const animations_rive_penguin = RiveAnimation(assets_rive_penguin, "walk");
 
-/// Looping [assets_rive_liquidDownload] animation.
-const animations_rive_liquidDownload = RiveAnimation(assets_rive_liquidDownload, "Indeterminate");
+/// Looping [assets_rive_ufo] animation.
+///
+/// [© necodeIT](https://rive.app/necodeIT/) • [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+const animations_rive_ufo = RiveAnimation(assets_rive_ufo, "Waiting");
 
 /// Looping rive animation.
 class RiveAnimation {
