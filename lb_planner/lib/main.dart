@@ -40,7 +40,7 @@ Future<void> load() async {
     applyUserTheme(UserDisk.data!);
   }
 
-  await Future.delayed(Duration(seconds: 500));
+  // await Future.delayed(Duration(seconds: 500));
 
   await kUpdater.update();
 }
