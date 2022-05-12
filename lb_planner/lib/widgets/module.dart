@@ -82,7 +82,33 @@ class ModuleWidget extends StatelessWidget {
                   falseWidget: (context) => ConditionalWidget(
                     condition: displayMode.isCheckmark,
                     trueWidget: (context) => LpCheckbox(value: module.status.isUploaded || module.status.isDone),
-                    falseWidget: (context) => throw "$displayMode is not implemented yet",
+                    falseWidget: (context) {
+                      Widget container(Color color, [IconData? icon, bool outlined = false]) => Container(
+                            // padding: const EdgeInsets.all(NcSpacing.xsSpacing),
+                            width: 18,
+                            height: 18,
+                            decoration: BoxDecoration(
+                              color: outlined ? null : color,
+                              border: Border.all(
+                                color: color,
+                                width: 2,
+                              ),
+                              borderRadius: BorderRadius.circular(kRadius),
+                            ),
+                            child: outlined ? null : FittedBox(child: LpIcon(icon, color: buttonTextColor)),
+                          );
+
+                      switch (module.status) {
+                        case ModuleStatus.uploaded:
+                          return container(warningColor, Icons.remove);
+                        case ModuleStatus.done:
+                          return container(successColor, Icons.check);
+                        case ModuleStatus.late:
+                          return container(errorColor, Icons.warning_rounded);
+                        case ModuleStatus.pending:
+                          return container(neutralColor, null, true);
+                      }
+                    },
                   ),
                 )
               ],

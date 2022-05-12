@@ -35,7 +35,7 @@ class CalendarModulesOverviewCell extends StatelessWidget {
               controller: ScrollController(),
               children: [
                 for (var module in modules) ...[
-                  ModuleWidget.checkmark(
+                  ModuleWidget.status(
                     moduleId: module,
                     showTag: false,
                   ),

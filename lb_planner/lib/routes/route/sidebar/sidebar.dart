@@ -18,7 +18,7 @@ class Sidebar extends StatelessWidget {
       wrapper: (context, child) {
         return Consumer(builder: (context, ref, _) {
           var user = ref.watch(userProvider);
-          var showAdmin = user.accessLevel == UserAccessLevels.admin || user.accessLevel == UserAccessLevels.moderator;
+          var showAdmin = user.accessLevel.isAdmin || user.accessLevel.isModerator;
 
           return Row(
             children: [
