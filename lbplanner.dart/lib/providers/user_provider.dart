@@ -9,8 +9,11 @@ final userController = userProvider.notifier;
 /// Provides the current user
 class UserProvider extends StateNotifier<User> {
   /// Provides the current user
-  UserProvider() : super(User.empty()) {
-    if (UserDisk.data != null) state = UserDisk.data!;
+  UserProvider() : super(User.empty());
+
+  @override
+  init() {
+    if (UserDisk.data != null) setState(UserDisk.data!);
   }
 
   /// Performs a login request with the given [username] and [password].

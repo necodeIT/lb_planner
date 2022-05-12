@@ -27,13 +27,15 @@ class _$PlanTearOff {
       required String name,
       required Map<int, PlanAccessTypes> members,
       required Map<int, Deadline> deadlines,
-      required bool ekEnabled}) {
+      required bool ekEnabled,
+      bool loading = false}) {
     return _Plan(
       id: id,
       name: name,
       members: members,
       deadlines: deadlines,
       ekEnabled: ekEnabled,
+      loading: loading,
     );
   }
 
@@ -66,6 +68,9 @@ mixin _$Plan {
   /// Wheter the plan has modules of type [ModuleTypes.ek] enabled
   bool get ekEnabled => throw _privateConstructorUsedError;
 
+  /// Wether the plan is currently being fetched from the server or not.
+  bool get loading => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $PlanCopyWith<Plan> get copyWith => throw _privateConstructorUsedError;
@@ -80,7 +85,8 @@ abstract class $PlanCopyWith<$Res> {
       String name,
       Map<int, PlanAccessTypes> members,
       Map<int, Deadline> deadlines,
-      bool ekEnabled});
+      bool ekEnabled,
+      bool loading});
 }
 
 /// @nodoc
@@ -98,6 +104,7 @@ class _$PlanCopyWithImpl<$Res> implements $PlanCopyWith<$Res> {
     Object? members = freezed,
     Object? deadlines = freezed,
     Object? ekEnabled = freezed,
+    Object? loading = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -120,6 +127,10 @@ class _$PlanCopyWithImpl<$Res> implements $PlanCopyWith<$Res> {
           ? _value.ekEnabled
           : ekEnabled // ignore: cast_nullable_to_non_nullable
               as bool,
+      loading: loading == freezed
+          ? _value.loading
+          : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -134,7 +145,8 @@ abstract class _$PlanCopyWith<$Res> implements $PlanCopyWith<$Res> {
       String name,
       Map<int, PlanAccessTypes> members,
       Map<int, Deadline> deadlines,
-      bool ekEnabled});
+      bool ekEnabled,
+      bool loading});
 }
 
 /// @nodoc
@@ -153,6 +165,7 @@ class __$PlanCopyWithImpl<$Res> extends _$PlanCopyWithImpl<$Res>
     Object? members = freezed,
     Object? deadlines = freezed,
     Object? ekEnabled = freezed,
+    Object? loading = freezed,
   }) {
     return _then(_Plan(
       id: id == freezed
@@ -175,6 +188,10 @@ class __$PlanCopyWithImpl<$Res> extends _$PlanCopyWithImpl<$Res>
           ? _value.ekEnabled
           : ekEnabled // ignore: cast_nullable_to_non_nullable
               as bool,
+      loading: loading == freezed
+          ? _value.loading
+          : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -187,7 +204,8 @@ class _$_Plan extends _Plan {
       required this.name,
       required this.members,
       required this.deadlines,
-      required this.ekEnabled})
+      required this.ekEnabled,
+      this.loading = false})
       : super._();
 
   factory _$_Plan.fromJson(Map<String, dynamic> json) => _$$_PlanFromJson(json);
@@ -216,10 +234,15 @@ class _$_Plan extends _Plan {
 
   /// Wheter the plan has modules of type [ModuleTypes.ek] enabled
   final bool ekEnabled;
+  @JsonKey()
+  @override
+
+  /// Wether the plan is currently being fetched from the server or not.
+  final bool loading;
 
   @override
   String toString() {
-    return 'Plan(id: $id, name: $name, members: $members, deadlines: $deadlines, ekEnabled: $ekEnabled)';
+    return 'Plan(id: $id, name: $name, members: $members, deadlines: $deadlines, ekEnabled: $ekEnabled, loading: $loading)';
   }
 
   @override
@@ -231,7 +254,8 @@ class _$_Plan extends _Plan {
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.members, members) &&
             const DeepCollectionEquality().equals(other.deadlines, deadlines) &&
-            const DeepCollectionEquality().equals(other.ekEnabled, ekEnabled));
+            const DeepCollectionEquality().equals(other.ekEnabled, ekEnabled) &&
+            const DeepCollectionEquality().equals(other.loading, loading));
   }
 
   @override
@@ -241,7 +265,8 @@ class _$_Plan extends _Plan {
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(members),
       const DeepCollectionEquality().hash(deadlines),
-      const DeepCollectionEquality().hash(ekEnabled));
+      const DeepCollectionEquality().hash(ekEnabled),
+      const DeepCollectionEquality().hash(loading));
 
   @JsonKey(ignore: true)
   @override
@@ -260,7 +285,8 @@ abstract class _Plan extends Plan {
       required String name,
       required Map<int, PlanAccessTypes> members,
       required Map<int, Deadline> deadlines,
-      required bool ekEnabled}) = _$_Plan;
+      required bool ekEnabled,
+      bool loading}) = _$_Plan;
   const _Plan._() : super._();
 
   factory _Plan.fromJson(Map<String, dynamic> json) = _$_Plan.fromJson;
@@ -289,6 +315,10 @@ abstract class _Plan extends Plan {
 
   /// Wheter the plan has modules of type [ModuleTypes.ek] enabled
   bool get ekEnabled;
+  @override
+
+  /// Wether the plan is currently being fetched from the server or not.
+  bool get loading;
   @override
   @JsonKey(ignore: true)
   _$PlanCopyWith<_Plan> get copyWith => throw _privateConstructorUsedError;

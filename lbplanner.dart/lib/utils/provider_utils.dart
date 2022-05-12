@@ -85,12 +85,32 @@ extension ProviderMapUtils<T> on StateNotifier<Map<int, T>> {
 abstract class StateNotifier<T> extends riverpod.StateNotifier<T> {
   /// An observable class that stores a single immutable [state].
   /// This class extends from [riverpod.StateNotifier] and adds some utilites such as checking if [mounted] when setting the state.
-  StateNotifier(T value) : super(value);
+  StateNotifier(T value) : super(value) {
+    init();
+  }
 
   @override
   set state(T newState) {
     if (!mounted) return;
 
     super.state = newState;
+  }
+
+  /// Override this function to do some initial laoding.
+  init() => null;
+
+  /// Sets the state from the given [value] and notifies the listeners.
+  setState(T value) {
+    state = value;
+  }
+
+  /// Sets the state from the given [response] if it succeeded and notifies the listeners.
+  setStateFromResponse(ApiResponse<T> response) {
+    if (response.succeeded) setState(response.value!);
+  }
+
+  /// Notifies all listeners.
+  void notifyListeners() {
+    state = state;
   }
 }

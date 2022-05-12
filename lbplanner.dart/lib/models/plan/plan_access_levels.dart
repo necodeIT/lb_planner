@@ -1,7 +1,7 @@
 part of lbplanner_api;
 
 /// Access types for the plan.
-enum PlanAccessTypes {
+enum PlanAccessLevels {
   /// The user is the owner of the plan
   owner,
 
@@ -13,13 +13,13 @@ enum PlanAccessTypes {
 }
 
 /// Plan access types extensions.
-extension PlanAccessTypesExtension on PlanAccessTypes {
+extension PlanAccessTypesExtension on PlanAccessLevels {
   /// Whether this access type is owner.
-  bool get isOwner => this == PlanAccessTypes.owner;
+  bool get isOwner => this == PlanAccessLevels.owner;
 
   /// Whether this access type is write.
-  bool get isWrite => this == PlanAccessTypes.write;
+  bool get isWrite => this == PlanAccessLevels.write;
 
   /// Whether this access type is read.
-  bool get isRead => this == PlanAccessTypes.read;
+  bool get isRead => this == PlanAccessLevels.read;
 }

@@ -44,7 +44,7 @@ part 'models/notification/notification_status.dart';
 part 'models/module/module_grades.dart';
 part 'models/module/module_types.dart';
 part 'models/module/module_status.dart';
-part 'models/plan/plan_access_types.dart';
+part 'models/plan/plan_access_levels.dart';
 part 'models/invite/invite_status.dart';
 part 'models/feedback/feedback_types.dart';
 part 'models/feedback/feedback_status.dart';
@@ -58,7 +58,6 @@ part 'providers/courses_provider.dart';
 part 'providers/feedback_provider.dart';
 part 'providers/statistics_provider.dart';
 part 'providers/users_provider.dart';
-part 'providers/deadlines_provider.dart';
 part 'providers/invites_provider.dart';
 part 'providers/plan_provider.dart';
 

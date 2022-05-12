@@ -119,21 +119,21 @@ class PlanApi {
   }
 
   /// Gets the access level of the user in the plan with the given [userId] and [planId].
-  static Future<ApiResponse<PlanAccessTypes>> getAccess(String token, int planId, int userId) async {
+  static Future<ApiResponse<PlanAccessLevels>> getAccess(String token, int planId, int userId) async {
     var response = await Api.makeRequest(
       functionName: "local_lbplanner_plan_get_access",
       token: token,
       params: {"planid": planId, "userid": userId},
     );
 
-    PlanAccessTypes? access;
+    PlanAccessLevels? access;
 
-    if (response.succeeded) access = PlanAccessTypes.values[response["accesstype"]];
+    if (response.succeeded) access = PlanAccessLevels.values[response["accesstype"]];
     return ApiResponse(response.response, access);
   }
 
   /// Updates the Access level of the user in the plan with the given [userId] and [planId].
-  static Future<ApiResponse<Plan>> updateAccess(String token, int planId, int userId, PlanAccessTypes access, int memberId) async {
+  static Future<ApiResponse<Plan>> updateAccess(String token, int userId, int planId, PlanAccessLevels access, int memberId) async {
     var response = await Api.makeRequest(
       functionName: "local_lbplanner_plan_update_access",
       token: token,
@@ -164,11 +164,11 @@ class PlanApi {
   }
 
   /// Invites a user with the given [inviteeId] to the plan with the given [planId].
-  static Future<ApiResponse<PlanInvite>> inviteUser(String token, PlanInvite invite) async {
+  static Future<ApiResponse<PlanInvite>> inviteUser(String token, int inviterId, int planId, int inviteeId) async {
     var response = await Api.makeRequest(
       functionName: "local_lbplanner_plan_invite_user",
       token: token,
-      params: {"inviterid": invite.inviter, "planid": invite.planId, "inviteeid": invite.invitee},
+      params: {"inviterid": inviterId, "planid": planId, "inviteeid": inviteeId},
     );
 
     PlanInvite? planInvite;

@@ -12,7 +12,7 @@ class UsersProvider extends StateNotifier<Map<int, User>> {
   final User user;
 
   /// Provides all registered users for the current user
-  UsersProvider(this.user) : super({}){
+  UsersProvider(this.user) : super({}) {
     fetchUsers();
   }
 
@@ -20,7 +20,7 @@ class UsersProvider extends StateNotifier<Map<int, User>> {
   Future<RawApiResponse> fetchUsers() async {
     var response = await UserApi.getAllUsers(user.token, user.id);
 
-    if (response.succeeded) state = Map.fromEntries(response.value!.map((user) => MapEntry(user.id, user)));
+    if (response.succeeded) setState(Map.fromEntries(response.value!.map((user) => MapEntry(user.id, user))));
 
     return response;
   }

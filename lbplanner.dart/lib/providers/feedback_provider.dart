@@ -8,19 +8,20 @@ final feedbackController = feedbackProvider.notifier;
 
 /// Provides feedbacks for the current user
 class FeedbackProvider extends StateNotifier<Map<int, Feedback>> {
-  /// Provides feedbacks for the current user
-  FeedbackProvider(this.user) : super({}) {
-    fetchFeedbacks();
-  }
-
   /// The user to get the feedbacks for
   final User user;
+
+  /// Provides feedbacks for the current user
+  FeedbackProvider(this.user) : super({});
+
+  @override
+  init() => fetchFeedbacks();
 
   /// Gets all feedbacks for the current user
   Future<RawApiResponse> fetchFeedbacks() async {
     var response = await FeedbackApi.getAllFeedbacks(user.token, user.id);
 
-    if (response.succeeded) state = Map.fromIterable(response.value!, key: (feedback) => feedback.id);
+    if (response.succeeded) setState(Map.fromIterable(response.value!, key: (feedback) => feedback.id));
 
     return response;
   }

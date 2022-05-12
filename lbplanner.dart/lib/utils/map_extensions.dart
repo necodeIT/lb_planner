@@ -58,7 +58,7 @@ extension ModelMappingExtensions on Map<String, dynamic> {
     }
     body["deadlines"] = deadlines;
 
-    body["members"] = {for (var user in body["members"]) user["userid"]: PlanAccessTypes.values[user["accesstype"]]};
+    body["members"] = {for (var user in body["members"]) user["userid"]: PlanAccessLevels.values[user["accesstype"]]};
 
     return body;
   }

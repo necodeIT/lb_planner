@@ -12,15 +12,16 @@ class NotificationsProvider extends StateNotifier<Map<int, Notification>> {
   final User user;
 
   /// Provides notifications for the current user
-  NotificationsProvider(this.user) : super({}) {
-    fetchNotifications();
-  }
+  NotificationsProvider(this.user) : super({});
+
+  @override
+  init() => fetchNotifications();
 
   /// Gets the notifications for the current user
   Future<RawApiResponse> fetchNotifications() async {
     var response = await NotificationsApi.getAllNotifications(user.token, user.id);
 
-    if (response.succeeded) state = Map.fromEntries(response.value!.map((notification) => MapEntry(notification.id, notification)));
+    if (response.succeeded) setState(Map.fromEntries(response.value!.map((notification) => MapEntry(notification.id, notification))));
 
     return response;
   }

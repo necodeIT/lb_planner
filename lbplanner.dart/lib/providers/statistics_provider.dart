@@ -12,9 +12,10 @@ class StatisticsProvider extends StateNotifier<Statistics> {
   final List<Module> modules;
 
   /// Provides statistics for the current user
-  StatisticsProvider(this.modules) : super(Statistics()) {
-    analyze();
-  }
+  StatisticsProvider(this.modules) : super(Statistics());
+
+  @override
+  init() => analyze();
 
   /// Analyzes the modules and updates the statistics.
   void analyze() {
