@@ -13,6 +13,10 @@ class PlanProvider extends StateNotifier<Plan> {
 
   /// Provides the current plan.
   PlanProvider(this.user) : super(Plan.loading());
+  
+  @override
+  init() => fetchPlan();
+  
 
   /// Fetches the current plan.
   Future<RawApiResponse> fetchPlan() async {
