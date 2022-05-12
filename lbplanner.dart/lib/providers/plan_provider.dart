@@ -94,4 +94,22 @@ class PlanProvider extends StateNotifier<Plan> {
 
     return response;
   }
+
+  /// Removes the given [userId] from the plan.
+  Future<RawApiResponse> removeUser(int userId) async {
+    final response = await PlanApi.removeUser(user.token, state.id, userId);
+
+    setStateFromResponse(response);
+
+    return response;
+  }
+
+  /// Removes the current user from the plan.
+  Future<RawApiResponse> leavePlan() async {
+    final response = await PlanApi.leavePlan(user.token, state.id, user.id);
+
+    setStateFromResponse(response);
+
+    return response;
+  }
 }
