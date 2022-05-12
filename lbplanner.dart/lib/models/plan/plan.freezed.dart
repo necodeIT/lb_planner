@@ -25,7 +25,7 @@ class _$PlanTearOff {
   _Plan call(
       {required int id,
       required String name,
-      required Map<int, PlanAccessTypes> members,
+      required Map<int, PlanAccessLevels> members,
       required Map<int, Deadline> deadlines,
       required bool ekEnabled,
       bool loading = false}) {
@@ -58,10 +58,10 @@ mixin _$Plan {
   /// Planmembers of the plan
   /// Key: user id
   /// Value: [PlanAccessTypes]
-  Map<int, PlanAccessTypes> get members => throw _privateConstructorUsedError;
+  Map<int, PlanAccessLevels> get members => throw _privateConstructorUsedError;
 
   /// The deadlines this plan has.
-  /// Key: Module id
+  /// Key: [Module.id]
   /// Value: [Deadline]
   Map<int, Deadline> get deadlines => throw _privateConstructorUsedError;
 
@@ -83,7 +83,7 @@ abstract class $PlanCopyWith<$Res> {
   $Res call(
       {int id,
       String name,
-      Map<int, PlanAccessTypes> members,
+      Map<int, PlanAccessLevels> members,
       Map<int, Deadline> deadlines,
       bool ekEnabled,
       bool loading});
@@ -118,7 +118,7 @@ class _$PlanCopyWithImpl<$Res> implements $PlanCopyWith<$Res> {
       members: members == freezed
           ? _value.members
           : members // ignore: cast_nullable_to_non_nullable
-              as Map<int, PlanAccessTypes>,
+              as Map<int, PlanAccessLevels>,
       deadlines: deadlines == freezed
           ? _value.deadlines
           : deadlines // ignore: cast_nullable_to_non_nullable
@@ -143,7 +143,7 @@ abstract class _$PlanCopyWith<$Res> implements $PlanCopyWith<$Res> {
   $Res call(
       {int id,
       String name,
-      Map<int, PlanAccessTypes> members,
+      Map<int, PlanAccessLevels> members,
       Map<int, Deadline> deadlines,
       bool ekEnabled,
       bool loading});
@@ -179,7 +179,7 @@ class __$PlanCopyWithImpl<$Res> extends _$PlanCopyWithImpl<$Res>
       members: members == freezed
           ? _value.members
           : members // ignore: cast_nullable_to_non_nullable
-              as Map<int, PlanAccessTypes>,
+              as Map<int, PlanAccessLevels>,
       deadlines: deadlines == freezed
           ? _value.deadlines
           : deadlines // ignore: cast_nullable_to_non_nullable
@@ -223,11 +223,11 @@ class _$_Plan extends _Plan {
   /// Planmembers of the plan
   /// Key: user id
   /// Value: [PlanAccessTypes]
-  final Map<int, PlanAccessTypes> members;
+  final Map<int, PlanAccessLevels> members;
   @override
 
   /// The deadlines this plan has.
-  /// Key: Module id
+  /// Key: [Module.id]
   /// Value: [Deadline]
   final Map<int, Deadline> deadlines;
   @override
@@ -283,7 +283,7 @@ abstract class _Plan extends Plan {
   const factory _Plan(
       {required int id,
       required String name,
-      required Map<int, PlanAccessTypes> members,
+      required Map<int, PlanAccessLevels> members,
       required Map<int, Deadline> deadlines,
       required bool ekEnabled,
       bool loading}) = _$_Plan;
@@ -304,11 +304,11 @@ abstract class _Plan extends Plan {
   /// Planmembers of the plan
   /// Key: user id
   /// Value: [PlanAccessTypes]
-  Map<int, PlanAccessTypes> get members;
+  Map<int, PlanAccessLevels> get members;
   @override
 
   /// The deadlines this plan has.
-  /// Key: Module id
+  /// Key: [Module.id]
   /// Value: [Deadline]
   Map<int, Deadline> get deadlines;
   @override

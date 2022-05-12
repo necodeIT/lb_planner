@@ -11,7 +11,7 @@ _$_Plan _$$_PlanFromJson(Map<String, dynamic> json) => _$_Plan(
       name: json['name'] as String,
       members: (json['members'] as Map<String, dynamic>).map(
         (k, e) =>
-            MapEntry(int.parse(k), $enumDecode(_$PlanAccessTypesEnumMap, e)),
+            MapEntry(int.parse(k), $enumDecode(_$PlanAccessLevelsEnumMap, e)),
       ),
       deadlines: (json['deadlines'] as Map<String, dynamic>).map(
         (k, e) => MapEntry(
@@ -25,14 +25,14 @@ Map<String, dynamic> _$$_PlanToJson(_$_Plan instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'members': instance.members
-          .map((k, e) => MapEntry(k.toString(), _$PlanAccessTypesEnumMap[e])),
+          .map((k, e) => MapEntry(k.toString(), _$PlanAccessLevelsEnumMap[e])),
       'deadlines': instance.deadlines.map((k, e) => MapEntry(k.toString(), e)),
       'ekEnabled': instance.ekEnabled,
       'loading': instance.loading,
     };
 
-const _$PlanAccessTypesEnumMap = {
-  PlanAccessTypes.owner: 'owner',
-  PlanAccessTypes.write: 'write',
-  PlanAccessTypes.read: 'read',
+const _$PlanAccessLevelsEnumMap = {
+  PlanAccessLevels.owner: 'owner',
+  PlanAccessLevels.write: 'write',
+  PlanAccessLevels.read: 'read',
 };
