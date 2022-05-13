@@ -121,8 +121,8 @@ extension ModelMappingExtensions on Map<String, dynamic> {
     var body = Map.of(this);
 
     body["moduleId"] = this["moduleid"];
-    body["start"] = DateTime.fromMillisecondsSinceEpoch(this["deadlinestart"] * 1000);
-    body["end"] = DateTime.fromMillisecondsSinceEpoch(this["deadlineend"] * 1000);
+    body["start"] = DateTime.fromMillisecondsSinceEpoch(this["deadlinestart"] * 1000).toString();
+    body["end"] = DateTime.fromMillisecondsSinceEpoch(this["deadlineend"] * 1000).toString();
 
     return body;
   }
