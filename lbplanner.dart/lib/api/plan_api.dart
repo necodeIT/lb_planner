@@ -107,8 +107,8 @@ class PlanApi {
         "planid": planId,
         "userid": userId,
         "moduleid": deadline.moduleId,
-        "deadlinestart": deadline.start.toIso8601String(),
-        "deadlineend": deadline.end.toIso8601String(),
+        "deadlinestart": deadline.start.unixTimestamp,
+        "deadlineend": deadline.end.unixTimestamp,
       },
     );
 
