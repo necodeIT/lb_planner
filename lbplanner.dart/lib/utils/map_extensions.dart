@@ -52,7 +52,7 @@ extension ModelMappingExtensions on Map<String, dynamic> {
     body["id"] = this["planid"];
     body["ekEnabled"] = this["ekenabled"];
     List<Deadline> deadlines = [];
-    for (var deadline in body["daedlines"]) {
+    for (var deadline in body["deadlines"]) {
       var deadlineMap = Map<String, dynamic>.of(deadline);
       deadlines.add(Deadline.fromJson(deadlineMap.mapDeadline()));
     }
