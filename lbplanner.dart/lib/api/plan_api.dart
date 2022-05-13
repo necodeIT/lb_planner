@@ -106,7 +106,7 @@ class PlanApi {
       params: {
         "planid": planId,
         "userid": userId,
-        "deadlineid": deadline.moduleId,
+        "moduleid": deadline.moduleId,
         "deadlinestart": deadline.start.toIso8601String(),
         "deadlineend": deadline.end.toIso8601String(),
       },
