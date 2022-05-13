@@ -10,8 +10,8 @@ class DraggableModule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (context, box) {
-      return Draggable<int>(
+    return LayoutBuilder(
+      builder: (context, box) => Draggable<int>(
         data: moduleId,
         child: ModuleWidget.status(moduleId: moduleId),
         feedback: SizedBox(
@@ -19,7 +19,7 @@ class DraggableModule extends StatelessWidget {
           child: ModuleWidget.status(moduleId: moduleId),
         ),
         childWhenDragging: LpShimmer(),
-      );
-    });
+      ),
+    );
   }
 }
