@@ -59,7 +59,7 @@ extension ModelMappingExtensions on Map<String, dynamic> {
     //   deadlines.add(Deadline.fromJson(deadlineMap.mapDeadline()));
     // }
 
-    body["deadlines"] = Map<String, dynamic>.from({for (var user in body["deadlines"]) user["userid"].toString(): PlanAccessLevels.values[user["accesstype"] as int].name});
+    body["deadlines"] = Map<String, dynamic>.from({for (var deadline in body["deadlines"]) deadline["moduleid"].toString(): Deadline.fromJson(Map<String, dynamic>.from(deadline).mapDeadline())});
 
     // body["deadlines"] = deadlines;
 
