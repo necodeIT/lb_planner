@@ -99,7 +99,7 @@ class PlanApi {
   }
 
   /// Updates a specific deadline of the plan[userId] and [planId].
-  static Future<ApiResponse<Plan>> updateDeadline(String token, int planId, int userId, Deadline deadline) async {
+  static Future<ApiResponse<Plan>> updateDeadline(String token, int userId, int planId, Deadline deadline) async {
     var response = await Api.makeRequest(
       functionName: "local_lbplanner_plan_update_deadline",
       token: token,
