@@ -62,6 +62,7 @@ class ModuleWidget extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(kRadius),
               color: secondaryColor,
+              boxShadow: kElevationToShadow[2],
             ),
             child: Row(
               children: [
