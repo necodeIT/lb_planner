@@ -51,14 +51,17 @@ extension ModelMappingExtensions on Map<String, dynamic> {
 
     body["id"] = this["planid"];
     body["ekEnabled"] = this["ekenabled"];
+
     List<Deadline> deadlines = [];
-    for (var deadline in Map.of(body["deadlines"])) {
-      var deadlineMap = Map<String, dynamic>.of(deadline);
+
+    for (var deadline in body["deadlines"]) {
+      var deadlineMap = Map<String, dynamic>.from(deadline);
       deadlines.add(Deadline.fromJson(deadlineMap.mapDeadline()));
     }
+
     body["deadlines"] = deadlines;
 
-    body["members"] = {for (var user in Map.of(body["members"])) user["userid"]: PlanAccessLevels.values[user["accesstype"]]};
+    body["members"] = Map<String, dynamic>.from({for (var user in body["members"]) user["userid"].toString(): PlanAccessLevels.values[user["accesstype"] as int].name});
 
     return body;
   }
@@ -80,7 +83,7 @@ extension ModelMappingExtensions on Map<String, dynamic> {
     body["status"] = ModuleStatus.values[statusIndex].name;
 
     int unixDeadline = this["deadline"];
-     if(unixDeadline != null) body["deadline"] = DateTimeExtensions.fromUnixTimestamp(unixDeadline).toString();
+    if (unixDeadline != null) body["deadline"] = DateTimeExtensions.fromUnixTimestamp(unixDeadline).toString();
 
     return body;
   }
