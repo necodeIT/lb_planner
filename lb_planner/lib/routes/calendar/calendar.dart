@@ -17,16 +17,18 @@ class Calendar extends LocalizedWidget {
   @override
   Widget create(BuildContext context, t) {
     return LpContainer.window(
-      leading: LpDropdown<String>(
-        alignment: Alignment.bottomLeft,
-        fontSize: fontSize,
-        value: currentRoute,
-        items: [
-          DropdownMenuItem(child: NcCaptionText(t.calendar_plan_title), value: CalendarPlanRoute.routeName),
-          DropdownMenuItem(child: NcCaptionText(t.calendar_modulesOverview_title), value: CalendarModulesOverviewRoute.routeName),
-        ],
-        onChanged: (route) => Navigator.of(context).pushReplacementNamed(route!),
-      ),
+      leading: currentRoute == CalendarPlanRoute.routeName || currentRoute == CalendarModulesOverviewRoute.routeName
+          ? LpDropdown<String>(
+              alignment: Alignment.bottomLeft,
+              fontSize: fontSize,
+              value: currentRoute,
+              items: [
+                DropdownMenuItem(child: NcCaptionText(t.calendar_plan_title), value: CalendarPlanRoute.routeName),
+                DropdownMenuItem(child: NcCaptionText(t.calendar_modulesOverview_title), value: CalendarModulesOverviewRoute.routeName),
+              ],
+              onChanged: (route) => Navigator.of(context).pushReplacementNamed(route!),
+            )
+          : null,
       trailing: header,
       child: child,
     );
