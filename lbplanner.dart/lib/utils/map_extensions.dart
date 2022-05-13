@@ -50,7 +50,7 @@ extension ModelMappingExtensions on Map<String, dynamic> {
     var body = Map.of(this);
 
     body["id"] = this["planid"];
-    body["ekEnabled"] = this["ekenabled"];
+    body["ekEnabled"] = this["enableek"];
 
     List<Deadline> deadlines = [];
 
