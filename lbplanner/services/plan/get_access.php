@@ -52,7 +52,7 @@ class plan_get_access extends external_api {
         user_helper::assert_access($userid);
 
         return array(
-            'accesstype' => plan_helper::get_access_type($planid, $userid),
+            'accesstype' => plan_helper::get_access_type($userid, $planid),
             'planid' => $planid,
             'userid' => $userid,
         );

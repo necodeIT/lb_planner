@@ -155,7 +155,7 @@ class plan_helper {
      * @return boolean True if the given user has editing permissions for the given plan.
      */
     public static function check_edit_permissions(int $planid, int $userid):bool {
-        $access = self::get_access_type($planid, $userid);
+        $access = self::get_access_type($userid, $planid);
 
         return $access == self::ACCESS_TYPE_OWNER || $access == self::ACCESS_TYPE_WRITE;
     }
