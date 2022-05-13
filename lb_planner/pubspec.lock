@@ -224,7 +224,7 @@ packages:
       name: ffi
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.2"
+    version: "1.2.1"
   file:
     dependency: transitive
     description:
@@ -376,7 +376,7 @@ packages:
     description:
       path: "lbplanner.dart"
       ref: "lbplanner.dart"
-      resolved-ref: "02d6193dfa3efaeab272b6c2d164630cf09c9576"
+      resolved-ref: "72412e48a2d4bd1b6959baf29382f7a69927ec84"
       url: "https://github.com/necodeIT/lb_planner.git"
     source: git
     version: "0.0.1"

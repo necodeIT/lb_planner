@@ -1,7 +1,6 @@
 library lbplanner_routes;
 
 import 'dart:math';
-
 import 'package:animations/animations.dart';
 import 'package:badges/badges.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -67,6 +66,7 @@ part 'routes/calendar/plan/calendar_plan_dropdown.dart';
 part 'routes/admin/admin.dart';
 part 'routes/calendar/plan/dropdown/dropdown_modules.dart';
 part 'routes/calendar/plan/dropdown/dropdown_access.dart';
+part 'routes/calendar/plan/dragable_module.dart';
 
 /// All routes the app has
 final Map<String, WidgetBuilder> kRoutes = {

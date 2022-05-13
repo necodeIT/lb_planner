@@ -33,6 +33,9 @@ class ModuleWidget extends StatelessWidget {
   /// The height of the module item.
   static const double height = 34;
 
+  /// The font size of the module name.
+  static const double fontSize = 14;
+
   /// The width of the module item.
   static const width = double.infinity;
 
@@ -73,12 +76,12 @@ class ModuleWidget extends StatelessWidget {
                   child: NcCaptionText(
                     module.name,
                     textAlign: showTag ? TextAlign.center : TextAlign.start,
-                    // fontSize: 14,
+                    fontSize: fontSize,
                   ),
                 ),
                 ConditionalWidget(
                   condition: displayMode.isDate,
-                  trueWidget: (context) => NcCaptionText(formatter.format(module.deadline!)),
+                  trueWidget: (context) => Expanded(child: NcCaptionText(formatter.format(module.deadline!))),
                   falseWidget: (context) => ConditionalWidget(
                     condition: displayMode.isCheckmark,
                     trueWidget: (context) => LpCheckbox(value: module.status.isUploaded || module.status.isDone),
@@ -104,7 +107,7 @@ class ModuleWidget extends StatelessWidget {
                         case ModuleStatus.done:
                           return container(successColor, Icons.check);
                         case ModuleStatus.late:
-                          return container(errorColor, Icons.warning_rounded);
+                          return container(errorColor, FontAwesome.exclamation);
                         case ModuleStatus.pending:
                           return container(neutralColor, null, true);
                       }

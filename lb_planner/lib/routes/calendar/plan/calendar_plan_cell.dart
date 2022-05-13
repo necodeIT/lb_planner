@@ -18,9 +18,40 @@ class CalendarPlanCell extends StatefulWidget {
 class _CalendarPlanCellState extends State<CalendarPlanCell> {
   final DateFormat formatter = DateFormat.d();
 
+  List<int> _addedModules = [];
+
+  void _setDeadline(WidgetRef ref, int module) async {
+    var plan = ref.read(planProvider);
+    var controller = ref.read(planController);
+
+    var deadline = Deadline(moduleId: module, start: widget.day, end: widget.day);
+
+    Future<RawApiResponse> future;
+
+    if (plan.deadlines.containsKey(module)) {
+      if (plan.deadlines[module]!.end.isSameDate(widget.day)) return;
+
+      future = controller.updateDeadline(deadline);
+    } else {
+      future = controller.addDeadline(deadline);
+    }
+
+    ref.read(modulesController).fetchModules();
+
+    setState(() {
+      _addedModules.add(module);
+    });
+
+    await future;
+
+    setState(() {
+      _addedModules.remove(module);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    bool isToday = widget.day.year == DateTime.now().year && widget.day.month == DateTime.now().month && widget.day.day == DateTime.now().day;
+    bool isToday = widget.day.isSameDate(DateTime.now());
 
     return Consumer(builder: (context, ref, _) {
       var plan = ref.watch(planProvider);
@@ -52,27 +83,51 @@ class _CalendarPlanCellState extends State<CalendarPlanCell> {
               ),
             ),
             Expanded(
-              child: ListView(
-                controller: ScrollController(),
-                children: [
-                  if (plan.loading) ...[
-                    LpShimmer(),
-                    NcSpacing.xs(),
-                    LpShimmer(),
-                    NcSpacing.xs(),
-                    LpShimmer(),
-                    NcSpacing.xs(),
-                  ] else
-                    for (var deadline in plan.deadlines.values) ...[
-                      ModuleWidget.status(moduleId: deadline.moduleId),
-                      NcSpacing.xs(),
+              child: DragTarget<int>(
+                onAccept: (module) => _setDeadline(ref, module),
+                builder: (context, candidateData, rejectedData) {
+                  List<int> modules = plan.deadlines.values.where((deadline) => deadline.end.isSameDate(widget.day)).map((deadline) => deadline.moduleId).toList();
+
+                  return ListView(
+                    controller: ScrollController(),
+                    children: [
+                      if (plan.loading) ...[
+                        LpShimmer(),
+                        NcSpacing.xs(),
+                        LpShimmer(),
+                        NcSpacing.xs(),
+                        LpShimmer(),
+                        NcSpacing.xs(),
+                      ] else ...[
+                        for (var module in modules) ...[
+                          DraggableModule(moduleId: module),
+                          NcSpacing.xs(),
+                        ],
+                        for (var i in candidateData)
+                          if (!modules.contains(i)) ...[
+                            LpShimmer(),
+                            NcSpacing.xs(),
+                          ],
+                        for (var i in _addedModules)
+                          if (!modules.contains(i)) ...[
+                            LpShimmer(),
+                            NcSpacing.xs(),
+                          ],
+                      ]
                     ],
-                ],
+                  );
+                },
               ),
             ),
           ],
         ),
       );
     });
+  }
+}
+
+extension _DateOnlyCompare on DateTime {
+  bool isSameDate(DateTime other) {
+    return year == other.year && month == other.month && day == other.day;
   }
 }
