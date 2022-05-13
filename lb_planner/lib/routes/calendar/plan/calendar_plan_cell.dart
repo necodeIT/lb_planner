@@ -18,7 +18,7 @@ class CalendarPlanCell extends StatefulWidget {
 class _CalendarPlanCellState extends State<CalendarPlanCell> {
   final DateFormat formatter = DateFormat.d();
 
-  List<int> _addedModules = [];
+  final List<int> _addedModules = [];
 
   void _setDeadline(WidgetRef ref, int module) async {
     var plan = ref.read(planProvider);
@@ -36,13 +36,15 @@ class _CalendarPlanCellState extends State<CalendarPlanCell> {
       future = controller.addDeadline(deadline);
     }
 
-    ref.read(modulesController).fetchModules();
-
     setState(() {
       _addedModules.add(module);
     });
 
     await future;
+
+    if (!mounted) return;
+
+    await ref.read(modulesController).fetchModules();
 
     setState(() {
       _addedModules.remove(module);
@@ -55,6 +57,17 @@ class _CalendarPlanCellState extends State<CalendarPlanCell> {
 
     return Consumer(builder: (context, ref, _) {
       var plan = ref.watch(planProvider);
+      List<int> modules = plan.deadlines.values.where((deadline) => deadline.end.isSameDate(widget.day)).map((deadline) => deadline.moduleId).toList();
+
+      var allModules = ref.read(modulesProvider);
+
+      modules = modules.where(
+        (id) {
+          var module = allModules[id];
+
+          return module != null && (!module.type.isEK || plan.ekEnabled);
+        },
+      ).toList();
 
       return AnimatedContainer(
         padding: const EdgeInsets.all(NcSpacing.xsSpacing),
@@ -86,8 +99,6 @@ class _CalendarPlanCellState extends State<CalendarPlanCell> {
               child: DragTarget<int>(
                 onAccept: (module) => _setDeadline(ref, module),
                 builder: (context, candidateData, rejectedData) {
-                  List<int> modules = plan.deadlines.values.where((deadline) => deadline.end.isSameDate(widget.day)).map((deadline) => deadline.moduleId).toList();
-
                   return ListView(
                     controller: ScrollController(),
                     children: [

@@ -1,18 +1,18 @@
 {
-  "@user_notifications_invite_text": {
-    "description": "Invite notification text",
-    "placeholders": {
-      "inviter": {
-        "example": "Jane",
-        "type": "String"
-      }
-    }
-  },
   "@settings_feedback_failed_message": {
     "description": "Error message when feedback submission fails",
     "placeholders": {
       "error": {
         "example": "Index out of range",
+        "type": "String"
+      }
+    }
+  },
+  "@user_notifications_invite_text": {
+    "description": "Invite notification text",
+    "placeholders": {
+      "inviter": {
+        "example": "Jane",
         "type": "String"
       }
     }
@@ -38,6 +38,10 @@
   "alertDialog_confirm": "OK",
   "calendar_modulesOverview_noCourses": "No courses enabled...",
   "calendar_modulesOverview_title": "Modues overview",
+  "calendar_plan_dropdown_members_title": "Members",
+  "calendar_plan_dropdown_modules_clearPlan": "Clear plan",
+  "calendar_plan_dropdown_modules_enableEk": "Enable EK",
+  "calendar_plan_dropdown_modules_title": "Modules",
   "calendar_plan_friday": "Fri",
   "calendar_plan_monday": "Mon",
   "calendar_plan_saturday": "Sat",

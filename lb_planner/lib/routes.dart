@@ -62,11 +62,12 @@ part 'routes/calendar/modules_overview/calendar_modules_overview_month_header.da
 part 'routes/calendar/plan/calendar_plan_cell.dart';
 part 'routes/calendar/plan/calendar_plan_month.dart';
 part 'routes/calendar/plan/calendar_plan_month_navigator.dart';
-part 'routes/calendar/plan/calendar_plan_dropdown.dart';
 part 'routes/admin/admin.dart';
 part 'routes/calendar/plan/dropdown/dropdown_modules.dart';
-part 'routes/calendar/plan/dropdown/dropdown_access.dart';
+part 'routes/calendar/plan/dropdown/dropdown_members.dart';
 part 'routes/calendar/plan/dragable_module.dart';
+part 'routes/calendar/plan/dropdown/dropdown_body.dart';
+part 'routes/calendar/plan/dropdown/dropdown_header.dart';
 
 /// All routes the app has
 final Map<String, WidgetBuilder> kRoutes = {

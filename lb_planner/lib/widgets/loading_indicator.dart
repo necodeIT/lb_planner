@@ -42,7 +42,7 @@ class LpLoadingIndicator extends StatelessWidget {
   late final Color backgroundColor;
 
   /// The animation to play when of type [LpLoadingIndicator.penguin].
-  late RiveAnimation? animation;
+  late final RiveAnimation? animation;
 
   @override
   Widget build(BuildContext context) {

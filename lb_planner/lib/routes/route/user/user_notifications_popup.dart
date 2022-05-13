@@ -27,7 +27,7 @@ class UserNotificationsPopup extends LocalizedWidget {
   Widget create(BuildContext context, t) {
     return Consumer(builder: (context, ref, _) {
       var notifications = ref.watch(notificationsProvider).values.where((e) => e.shouldDisplay);
-      print(notifications);
+
       return LpContainer(
         spacing: true,
         leading: NcCaptionText(t.user_notifications_notifications(notifications.length)),

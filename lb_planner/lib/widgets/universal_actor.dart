@@ -43,7 +43,6 @@ class _UniversalActorState extends State<UniversalActor> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.filename + ": " + widget.animation);
     switch (widget.filename.engine) {
       case _Engine.flr:
         return FlareActor(widget.filename, alignment: widget.alignment, fit: widget.fit, animation: widget.animation);

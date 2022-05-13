@@ -55,7 +55,8 @@ class _CalendarPlanRouteState extends State<CalendarPlanRoute> {
               ),
             ),
             LpPopup(
-              popupBuilder: (context, close) => CalendarPlanDropdown(),
+              offset: const Offset(-10, 0),
+              popupBuilder: CalendarPlanDropDownBody.popupBuilder,
               backgroundDismissable: false,
               child: LpIcon(Icons.more_horiz),
             ),
