@@ -52,13 +52,13 @@ extension ModelMappingExtensions on Map<String, dynamic> {
     body["id"] = this["planid"];
     body["ekEnabled"] = this["ekenabled"];
     List<Deadline> deadlines = [];
-    for (var deadline in body["deadlines"]) {
+    for (var deadline in Map.of(body["deadlines"])) {
       var deadlineMap = Map<String, dynamic>.of(deadline);
       deadlines.add(Deadline.fromJson(deadlineMap.mapDeadline()));
     }
     body["deadlines"] = deadlines;
 
-    body["members"] = {for (var user in body["members"]) user["userid"]: PlanAccessLevels.values[user["accesstype"]]};
+    body["members"] = {for (var user in Map.of(body["members"])) user["userid"]: PlanAccessLevels.values[user["accesstype"]]};
 
     return body;
   }
