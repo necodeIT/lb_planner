@@ -200,7 +200,11 @@ class PlanApi {
     var response = await Api.makeRequest(
       functionName: "local_lbplanner_plan_remove_user",
       token: token,
-      params: {"planid": planId, "removeuserid": userId},
+      params: {
+        "planid": planId,
+        "removeuserid": userId,
+        "userid": userId,
+      },
     );
 
     Plan? plan;
