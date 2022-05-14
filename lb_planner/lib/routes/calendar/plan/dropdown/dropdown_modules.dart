@@ -96,7 +96,7 @@ class _CalendarPlanDropDwonModulesState extends State<CalendarPlanDropDwonModule
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           NcTitleText(
-                            t.calendar_plan_dropdown_modules_clearPlan_title,
+                            t.calendar_plan_dropdown_modules_clearPlan_btn,
                             fontSize: LpButton.defaultFontSize,
                             buttonText: true,
                           ),

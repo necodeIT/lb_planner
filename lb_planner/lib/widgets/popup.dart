@@ -51,7 +51,7 @@ class LpPopup extends StatefulWidget {
   State<LpPopup> createState() => _LpPopupState();
 }
 
-class _LpPopupState extends State<LpPopup> with WindowListener {
+class _LpPopupState extends State<LpPopup> with WindowListener, RouteAware {
   OverlayEntry? _popup;
   OverlayEntry? _dissmissArea;
   final GlobalKey _key = GlobalKey();
@@ -116,7 +116,18 @@ class _LpPopupState extends State<LpPopup> with WindowListener {
   void dispose() {
     close();
     windowManager.removeListener(this);
+
     super.dispose();
+  }
+
+  @override
+  void didPop() {
+    close();
+  }
+
+  @override
+  didPopNext() {
+    close();
   }
 
   @override
@@ -143,6 +154,10 @@ class _LpPopupState extends State<LpPopup> with WindowListener {
   @override
   initState() {
     windowManager.addListener(this);
+
+    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+      kRouteObserver.subscribe(this, ModalRoute.of(context)!);
+    });
 
     super.initState();
   }

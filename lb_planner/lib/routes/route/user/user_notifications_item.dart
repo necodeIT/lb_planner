@@ -37,18 +37,27 @@ class UserNotificationsItem extends LocalizedWidget {
 
             text = t.user_notifications_invite_text(inviter.fullname);
 
-            var invites = ref.watch(invitesProvider).values.where((invite) => invite.inviter == inviterId);
+            var invite = ref.watch(invitesProvider).values.where((invite) => invite.inviter == inviterId);
 
             actions = [
-              _Action(
-                text: t.user_notifications_invite_accept,
-                onPressed: () {},
-              ),
-              _Action(
-                text: t.user_notifications_invite_decline,
-                onPressed: () {},
-              ),
+              // if (invite.status.isPending)
+              if (invite.isNotEmpty)
+                _Action(
+                  text: t.user_notifications_invite_accept,
+                  onPressed: () {},
+                ),
+              // if (invite.status.isPending)
+              if (invite.isNotEmpty)
+                _Action(
+                  text: t.user_notifications_invite_decline,
+                  onPressed: () {},
+                ),
+              // if (!invite.status.isPending)
+              //   _Action(
+              //     text: invite.status.isAccepted ? "Accepted" : "Declined",
+              //   ),
             ];
+
             break;
           case NotificationTypes.inviteAccepted:
             // TODO: Handle this case.

@@ -84,7 +84,7 @@ class _CalendarPlanDropDownMembersState extends State<CalendarPlanDropDownMember
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           NcTitleText(
-                            t.calendar_plan_dropdown_members_leavePlan_title,
+                            t.calendar_plan_dropdown_members_leavePlan_btn,
                             fontSize: LpButton.defaultFontSize,
                             buttonText: true,
                           ),

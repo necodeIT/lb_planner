@@ -111,7 +111,12 @@ class _CalendarPlanMembersMemberState extends State<CalendarPlanMembersMember> {
                   ScaleOnHover(
                     duration: kFasterAnimationDuration,
                     scale: 1.1,
-                    onTap: () => _removeMember(ref),
+                    onTap: () => lpShowConfirmDialog(
+                      context,
+                      title: t.calendar_plan_dropdown_members_removeMemver_title,
+                      body: NcBodyText(t.calendar_plan_dropdown_members_removeMemver_message),
+                      onConfirm: () => _removeMember(ref),
+                    ),
                     child: LpIcon(
                       Icons.remove_circle_outline,
                       color: errorColor,
