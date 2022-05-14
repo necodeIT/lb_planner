@@ -89,7 +89,7 @@ class PlanApi {
     var response = await Api.makeRequest(
       functionName: "local_lbplanner_plan_delete_deadline",
       token: token,
-      params: {"planid": planId, "userid": userId, "deadlineid": moduleId},
+      params: {"planid": planId, "userid": userId, "moduleid": moduleId},
     );
 
     Plan? plan;
