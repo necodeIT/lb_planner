@@ -116,6 +116,7 @@ class _LpPopupState extends State<LpPopup> with WindowListener, RouteAware {
   void dispose() {
     close();
     windowManager.removeListener(this);
+    kRouteObserver.unsubscribe(this);
 
     super.dispose();
   }
