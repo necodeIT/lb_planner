@@ -12,11 +12,15 @@ class CalendarPlanCell extends StatefulWidget {
   final bool isCurrentMonth;
 
   @override
-  State<CalendarPlanCell> createState() => _CalendarPlanCellState();
+  State<CalendarPlanCell> createState() => CalendarPlanCellState();
 }
 
-class _CalendarPlanCellState extends State<CalendarPlanCell> {
-  final DateFormat formatter = DateFormat.d();
+/// State of the [CalendarPlanCell].
+class CalendarPlanCellState extends State<CalendarPlanCell> {
+  /// The width of the cell.
+  static double currentWidth = 0;
+
+  final DateFormat _formatter = DateFormat.d();
 
   final List<int> _addedModules = [];
 
@@ -59,16 +63,6 @@ class _CalendarPlanCellState extends State<CalendarPlanCell> {
       var plan = ref.watch(planProvider);
       List<int> modules = plan.deadlines.values.where((deadline) => deadline.end.isSameDate(widget.day)).map((deadline) => deadline.moduleId).toList();
 
-      var allModules = ref.read(modulesProvider);
-
-      modules = modules.where(
-        (id) {
-          var module = allModules[id];
-
-          return module != null && (!module.type.isEK || plan.ekEnabled);
-        },
-      ).toList();
-
       return AnimatedContainer(
         padding: const EdgeInsets.all(NcSpacing.xsSpacing),
         duration: kNormalAnimationDuration,
@@ -85,7 +79,7 @@ class _CalendarPlanCellState extends State<CalendarPlanCell> {
               child: Padding(
                 padding: const EdgeInsets.all(NcSpacing.xsSpacing),
                 child: NcBodyText(
-                  formatter.format(widget.day),
+                  _formatter.format(widget.day),
                   textAlign: TextAlign.center,
                   color: isToday
                       ? accentColor
@@ -96,39 +90,42 @@ class _CalendarPlanCellState extends State<CalendarPlanCell> {
               ),
             ),
             Expanded(
-              child: DragTarget<int>(
-                onAccept: (module) => _setDeadline(ref, module),
-                builder: (context, candidateData, rejectedData) {
-                  return ListView(
-                    controller: ScrollController(),
-                    children: [
-                      if (plan.loading) ...[
-                        LpShimmer(),
-                        NcSpacing.xs(),
-                        LpShimmer(),
-                        NcSpacing.xs(),
-                        LpShimmer(),
-                        NcSpacing.xs(),
-                      ] else ...[
-                        for (var module in modules) ...[
-                          DraggableModule(moduleId: module),
+              child: LayoutBuilder(builder: (context, box) {
+                currentWidth = box.maxWidth;
+                return DragTarget<int>(
+                  onAccept: (module) => _setDeadline(ref, module),
+                  builder: (context, candidateData, rejectedData) {
+                    return ListView(
+                      controller: ScrollController(),
+                      children: [
+                        if (plan.loading) ...[
+                          LpShimmer(),
                           NcSpacing.xs(),
-                        ],
-                        for (var i in candidateData)
-                          if (!modules.contains(i)) ...[
-                            LpShimmer(),
+                          LpShimmer(),
+                          NcSpacing.xs(),
+                          LpShimmer(),
+                          NcSpacing.xs(),
+                        ] else ...[
+                          for (var module in modules) ...[
+                            DraggableModule(moduleId: module),
                             NcSpacing.xs(),
                           ],
-                        for (var i in _addedModules)
-                          if (!modules.contains(i)) ...[
-                            LpShimmer(),
-                            NcSpacing.xs(),
-                          ],
-                      ]
-                    ],
-                  );
-                },
-              ),
+                          for (var i in _addedModules)
+                            if (!modules.contains(i)) ...[
+                              LpShimmer(),
+                              NcSpacing.xs(),
+                            ],
+                          for (var i in candidateData)
+                            if (!modules.contains(i)) ...[
+                              LpShimmer(),
+                              NcSpacing.xs(),
+                            ],
+                        ]
+                      ],
+                    );
+                  },
+                );
+              }),
             ),
           ],
         ),

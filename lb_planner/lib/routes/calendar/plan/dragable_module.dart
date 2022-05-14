@@ -11,15 +11,25 @@ class DraggableModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
-      builder: (context, box) => Draggable<int>(
-        data: moduleId,
-        child: ModuleWidget.status(moduleId: moduleId),
-        feedback: SizedBox(
-          width: box.maxWidth,
+      builder: (context, box) {
+        var width = CalendarPlanCellState.currentWidth > 0 ? CalendarPlanCellState.currentWidth : box.maxWidth;
+
+        return Draggable<int>(
+          rootOverlay: true,
+          // feedbackOffset: Offset(600, 0),
+          data: moduleId,
+          dragAnchorStrategy: (child, context, offset) => Offset(width / 2, ModuleWidget.height / 2),
           child: ModuleWidget.status(moduleId: moduleId),
-        ),
-        childWhenDragging: LpShimmer(),
-      ),
+          feedback: AnimatedPositioned(
+            duration: kFastAnimationDuration,
+            child: SizedBox(
+              width: width,
+              child: ModuleWidget.status(moduleId: moduleId),
+            ),
+          ),
+          childWhenDragging: LpShimmer(),
+        );
+      },
     );
   }
 }

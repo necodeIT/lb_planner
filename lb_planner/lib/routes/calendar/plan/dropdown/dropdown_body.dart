@@ -17,21 +17,33 @@ class CalendarPlanDropDownBody extends StatefulWidget {
 
 class _CalendarPlanDropDownBodyState extends State<CalendarPlanDropDownBody> {
   bool _showModules = true;
+  final TextEditingController _searchController = TextEditingController();
 
   void showModules() {
     setState(() {
+      _searchController.text = "";
       _showModules = true;
     });
   }
 
   void showMembers() {
     setState(() {
+      _searchController.text = "";
       _showModules = false;
     });
   }
 
   @override
+  initState() {
+    super.initState();
+    _searchController.addListener(() {
+      setState(() {});
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+    var screen = MediaQuery.of(context).size;
     return Consumer(builder: (context, ref, _) {
       var plan = ref.watch(planProvider);
 
@@ -44,8 +56,8 @@ class _CalendarPlanDropDownBodyState extends State<CalendarPlanDropDownBody> {
           ),
         ),
         title: plan.name,
-        width: UserNotificationsPopup.width * 1.5,
-        height: UserNotificationsPopup.height * 2,
+        width: screen.width * .25,
+        height: screen.height * 0.6,
         child: Column(
           children: [
             NcSpacing.small(),
@@ -75,8 +87,8 @@ class _CalendarPlanDropDownBodyState extends State<CalendarPlanDropDownBody> {
                 child: ConditionalWidget(
                   key: ValueKey(_showModules),
                   condition: _showModules,
-                  trueWidget: (_) => CalendarPlanDropDwonModules(),
-                  falseWidget: (_) => CalendarPlanDropDownMembers(),
+                  trueWidget: (_) => CalendarPlanDropDwonModules(searchController: _searchController),
+                  falseWidget: (_) => CalendarPlanDropDownMembers(searchController: _searchController),
                 ),
                 transitionBuilder: (child, primaryAnimation, secondaryAnimation) => SharedAxisTransition(
                   animation: primaryAnimation,

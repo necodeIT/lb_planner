@@ -1,14 +1,14 @@
 part of lbplanner_widgets;
 
 /// Themed [Dialog] widget.
-class LpDialog extends StatelessWidget {
+class LpDialog extends StatefulWidget {
   /// Themed ConfirmDialog widget.
-  LpDialog.confirm({Key? key, required this.title, required this.body, this.confirmText, this.cancelText, required this.onConfirm, this.onCancel}) : super(key: key) {
+  LpDialog.confirm({Key? key, required this.title, required this.body, this.confirmText, this.cancelText, required this.onConfirm, this.onCancel, required this.removeFromWidgetTree}) : super(key: key) {
     confirmOnly = false;
   }
 
   /// Themed [AlertDialog] widget with just one button.
-  LpDialog.alert({Key? key, required this.title, required this.body, this.onConfirm, this.confirmText}) : super(key: key) {
+  LpDialog.alert({Key? key, required this.title, required this.body, this.onConfirm, this.confirmText, required this.removeFromWidgetTree}) : super(key: key) {
     confirmOnly = true;
   }
 
@@ -30,6 +30,9 @@ class LpDialog extends StatelessWidget {
   /// The callback that is called when the user confirms the dialog.
   final Function()? onConfirm;
 
+  /// Called when the dialog has to be removed from the widget tree.
+  final VoidCallback removeFromWidgetTree;
+
   /// The callback that is called when the user cancels the dialog.
   late final Function()? onCancel;
 
@@ -49,51 +52,78 @@ class LpDialog extends StatelessWidget {
   static const double btnPadding = 14;
 
   @override
+  State<LpDialog> createState() => _LpDialogState();
+}
+
+class _LpDialogState extends State<LpDialog> with TickerProviderStateMixin {
+  late AnimationController _controller;
+
+  @override
+  void initState() {
+    _controller = AnimationController(vsync: this, duration: kNormalAnimationDuration);
+    _controller.forward();
+    super.initState();
+  }
+
+  Future _removeFromWidgetTree() async {
+    await _controller.reverse();
+    widget.removeFromWidgetTree();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-      title: NcTitleText(title, fontSize: 30),
-      titlePadding: EdgeInsets.all(padding),
-      buttonPadding: EdgeInsets.only(left: padding, right: padding),
-      contentPadding: EdgeInsets.only(bottom: padding, left: padding, right: padding),
-      content: ConstrainedBox(
-        constraints: BoxConstraints(
-          minWidth: MediaQuery.of(context).size.width * widthFactor,
-          maxHeight: MediaQuery.of(context).size.height * heightFactor,
-          maxWidth: MediaQuery.of(context).size.width * widthFactor,
+    return ScaleTransition(
+      child: AlertDialog(
+        title: NcTitleText(widget.title, fontSize: 30),
+        titlePadding: EdgeInsets.all(LpDialog.padding),
+        buttonPadding: EdgeInsets.only(left: LpDialog.padding, right: LpDialog.padding),
+        contentPadding: EdgeInsets.only(bottom: LpDialog.padding, left: LpDialog.padding, right: LpDialog.padding),
+        content: ConstrainedBox(
+          constraints: BoxConstraints(
+            minWidth: MediaQuery.of(context).size.width * LpDialog.widthFactor,
+            maxHeight: MediaQuery.of(context).size.height * LpDialog.heightFactor,
+            maxWidth: MediaQuery.of(context).size.width * LpDialog.widthFactor,
+          ),
+          child: widget.body,
         ),
-        child: body,
-      ),
-      actions: <Widget>[
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            if (!confirmOnly)
+        actions: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              if (!widget.confirmOnly)
+                LpButton(
+                  text: widget.cancelText ?? context.t.dialog_cancel,
+                  fontSize: LpDialog.btnFontSize,
+                  padding: LpDialog.btnPadding,
+                  color: errorColor,
+                  onPressed: () async {
+                    await _removeFromWidgetTree();
+                    widget.onCancel?.call();
+                  },
+                ),
+              NcSpacing.medium(),
               LpButton(
-                text: cancelText ?? context.t.dialog_cancel,
-                fontSize: btnFontSize,
-                padding: btnPadding,
-                color: errorColor,
-                onPressed: () {
-                  Navigator.of(context).pop();
-                  onCancel?.call();
+                text: widget.confirmText ?? (widget.confirmOnly ? context.t.alertDialog_confirm : context.t.dialog_confirm),
+                fontSize: LpDialog.btnFontSize,
+                padding: LpDialog.btnPadding,
+                onPressed: () async {
+                  await _removeFromWidgetTree();
+                  widget.onConfirm?.call();
                 },
               ),
-            NcSpacing.medium(),
-            LpButton(
-              text: confirmText ?? (confirmOnly ? context.t.alertDialog_confirm : context.t.dialog_confirm),
-              fontSize: btnFontSize,
-              padding: btnPadding,
-              onPressed: () {
-                Navigator.of(context).pop();
-                onConfirm?.call();
-              },
-            ),
-          ],
-        )
-      ],
-      backgroundColor: NcThemes.current.primaryColor,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(kRadius)),
+            ],
+          )
+        ],
+        backgroundColor: NcThemes.current.primaryColor,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(kRadius)),
+        ),
+      ),
+      scale: Tween<double>(begin: 1, end: 0.85).animate(
+        CurvedAnimation(
+          parent: _controller,
+          curve: Interval(0.0, 0.5, curve: kDialogAnimationCurve),
+        ),
       ),
     );
   }
@@ -101,54 +131,59 @@ class LpDialog extends StatelessWidget {
 
 /// Themed ConfirmDialog widget.
 void lpShowConfirmDialog(BuildContext context, {required String title, required Widget body, String? confirmText, String? cancelText, Function()? onConfirm, Function()? onCancel}) {
-  showGeneralDialog(
-    context: context,
-    barrierDismissible: false,
-    transitionDuration: kNormalAnimationDuration,
-    transitionBuilder: (context, animation, secondaryAnimation, child) {
-      return shrinkAnimation(animation, secondaryAnimation, child);
-    },
-    pageBuilder: (animation, secondaryAnimation, child) {
-      return LpDialog.confirm(
-        title: title,
-        body: body,
-        confirmText: confirmText,
-        cancelText: cancelText,
-        onConfirm: onConfirm,
-        onCancel: onCancel,
-      );
+  OverlayEntry? dialogOverLay;
+  OverlayEntry background = _generateBackground();
+
+  var dialog = LpDialog.confirm(
+    title: title,
+    body: body,
+    confirmText: confirmText,
+    cancelText: cancelText,
+    onConfirm: onConfirm,
+    onCancel: onCancel,
+    removeFromWidgetTree: () {
+      dialogOverLay!.remove();
+      background.remove();
     },
   );
+
+  dialogOverLay = OverlayEntry(
+    builder: (context) => dialog,
+  );
+
+  Overlay.of(context)!.insert(background);
+  Overlay.of(context)!.insert(dialogOverLay);
 }
 
 /// Themed [AlertDialog] widget.
 void lpShowAlertDialog(BuildContext context, {required String title, required Widget body, String? confirmText, Function()? onConfirm}) {
-  showGeneralDialog(
-    context: context,
-    barrierDismissible: false,
-    transitionDuration: kNormalAnimationDuration,
-    transitionBuilder: (context, animation, secondaryAnimation, child) {
-      return shrinkAnimation(animation, secondaryAnimation, child);
-    },
-    pageBuilder: (animation, secondaryAnimation, child) {
-      return LpDialog.alert(
-        title: title,
-        body: body,
-        confirmText: confirmText,
-        onConfirm: onConfirm,
-      );
+  OverlayEntry? dialogOverLay;
+  OverlayEntry background = _generateBackground();
+
+  var dialog = LpDialog.alert(
+    title: title,
+    body: body,
+    onConfirm: onConfirm,
+    confirmText: confirmText,
+    removeFromWidgetTree: () {
+      dialogOverLay!.remove();
+      background.remove();
     },
   );
+
+  dialogOverLay = OverlayEntry(
+    builder: (context) => dialog,
+  );
+
+  Overlay.of(context)!.insert(background);
+  Overlay.of(context)!.insert(dialogOverLay);
 }
 
-/// Shrinkanimation for the dialogs.
-shrinkAnimation(Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
-  return ScaleTransition(
-    child: child,
-    scale: Tween<double>(begin: 1, end: 0.85).animate(
-      CurvedAnimation(
-        parent: animation,
-        curve: Interval(0.0, 0.5, curve: kDialogAnimationCurve),
+OverlayEntry _generateBackground() {
+  return OverlayEntry(
+    builder: (context) => AbsorbPointer(
+      child: Container(
+        color: Colors.black38,
       ),
     ),
   );

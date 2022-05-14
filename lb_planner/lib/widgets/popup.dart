@@ -51,7 +51,7 @@ class LpPopup extends StatefulWidget {
   State<LpPopup> createState() => _LpPopupState();
 }
 
-class _LpPopupState extends State<LpPopup> {
+class _LpPopupState extends State<LpPopup> with WindowListener {
   OverlayEntry? _popup;
   OverlayEntry? _dissmissArea;
   final GlobalKey _key = GlobalKey();
@@ -70,7 +70,7 @@ class _LpPopupState extends State<LpPopup> {
     if (mounted) widget.onHide?.call();
   }
 
-  void show(BuildContext context) {
+  void show() {
     if (_isShowing) return;
 
     _isShowing = true;
@@ -115,7 +115,36 @@ class _LpPopupState extends State<LpPopup> {
   @override
   void dispose() {
     close();
+    windowManager.removeListener(this);
     super.dispose();
+  }
+
+  @override
+  void onWindowResized() {
+    close();
+
+    super.onWindowResized();
+  }
+
+  @override
+  void onWindowMaximize() {
+    close();
+
+    super.onWindowMaximize();
+  }
+
+  @override
+  void onWindowUnmaximize() {
+    close();
+
+    super.onWindowUnmaximize();
+  }
+
+  @override
+  initState() {
+    windowManager.addListener(this);
+
+    super.initState();
   }
 
   @override
@@ -124,7 +153,7 @@ class _LpPopupState extends State<LpPopup> {
       cursor: widget.cursor,
       child: Listener(
         key: _key,
-        onPointerDown: (event) => show(context),
+        onPointerDown: (event) => show(),
         child: widget.child,
       ),
     );
@@ -171,7 +200,10 @@ class __PopupAnimatorState extends State<_PopupAnimator> with TickerProviderStat
           top: widget.top * value,
           child: Material(
             type: MaterialType.transparency,
-            child: child!,
+            child: GestureDetector(
+              onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+              child: child!,
+            ),
           ),
         );
       },

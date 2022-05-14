@@ -60,6 +60,7 @@ dependencies:
       ref: flutter
       path: utils
   nima: ^1.0.5
+  overlay_dialog: ^0.2.1
   rive: ^0.8.4
   shimmer: ^2.0.0
   timeago: ^3.2.2

@@ -39,13 +39,16 @@ class RouteWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: secondaryColor,
-      body: Sidebar(
-        child: ConditionalWrapper(
-          condition: !isLogin,
-          wrapper: RouteTitle.builder,
-          child: child,
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: Scaffold(
+        backgroundColor: secondaryColor,
+        body: Sidebar(
+          child: ConditionalWrapper(
+            condition: !isLogin,
+            wrapper: RouteTitle.builder,
+            child: child,
+          ),
         ),
       ),
     );

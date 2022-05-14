@@ -42,7 +42,21 @@ class _CalendarModulesOverviewRouteState extends State<CalendarModulesOverviewRo
   void onWindowResize() {
     scrollToSummer();
 
-    super.onWindowResized();
+    super.onWindowResize();
+  }
+
+  @override
+  void onWindowUnmaximize() {
+    scrollToSummer();
+
+    super.onWindowUnmaximize();
+  }
+
+  @override
+  void onWindowMaximize() {
+    scrollToSummer();
+
+    super.onWindowMaximize();
   }
 
   void scrollToSummer() {
