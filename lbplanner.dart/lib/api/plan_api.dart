@@ -196,13 +196,13 @@ class PlanApi {
   }
 
   /// Removes an user of the plan with the given [userId] and [planId].
-  static Future<ApiResponse<Plan>> removeUser(String token, int planId, int userId) async {
+  static Future<ApiResponse<Plan>> removeUser(String token, int planId, int userId, int removeUserId) async {
     var response = await Api.makeRequest(
       functionName: "local_lbplanner_plan_remove_user",
       token: token,
       params: {
         "planid": planId,
-        "removeuserid": userId,
+        "removeuserid": removeUserId,
         "userid": userId,
       },
     );
