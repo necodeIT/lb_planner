@@ -15,7 +15,6 @@ import 'package:nekolib_ui/utils.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:nima/nima_actor.dart';
-import 'package:overlay_dialog/overlay_dialog.dart';
 import 'package:rive/rive.dart' as rive;
 import 'package:shimmer/shimmer.dart';
 import 'package:window_manager/window_manager.dart';

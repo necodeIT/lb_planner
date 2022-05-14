@@ -3,12 +3,23 @@ part of lbplanner_widgets;
 /// Themed [Dialog] widget.
 class LpDialog extends StatefulWidget {
   /// Themed ConfirmDialog widget.
-  LpDialog.confirm({Key? key, required this.title, required this.body, this.confirmText, this.cancelText, required this.onConfirm, this.onCancel, required this.removeFromWidgetTree}) : super(key: key) {
+  LpDialog.confirm({
+    Key? key,
+    required this.title,
+    required this.body,
+    this.confirmText,
+    this.cancelText,
+    required this.onConfirm,
+    this.onCancel,
+    required this.removeFromWidgetTree,
+    this.confirmIsBad = true,
+  }) : super(key: key) {
     confirmOnly = false;
   }
 
   /// Themed [AlertDialog] widget with just one button.
   LpDialog.alert({Key? key, required this.title, required this.body, this.onConfirm, this.confirmText, required this.removeFromWidgetTree}) : super(key: key) {
+    confirmIsBad = false;
     confirmOnly = true;
   }
 
@@ -17,6 +28,9 @@ class LpDialog extends StatefulWidget {
 
   /// The body of the dialog.
   final Widget body;
+
+  /// Whether the confirm button should have [errorColor] as it's background color.
+  late final bool confirmIsBad;
 
   /// The text of the confirm button.
   final String? confirmText;
@@ -93,9 +107,9 @@ class _LpDialogState extends State<LpDialog> with TickerProviderStateMixin {
               if (!widget.confirmOnly)
                 LpButton(
                   text: widget.cancelText ?? context.t.dialog_cancel,
+                  color: widget.confirmIsBad ? accentColor : errorColor,
                   fontSize: LpDialog.btnFontSize,
                   padding: LpDialog.btnPadding,
-                  color: errorColor,
                   onPressed: () async {
                     await _removeFromWidgetTree();
                     widget.onCancel?.call();
@@ -104,6 +118,7 @@ class _LpDialogState extends State<LpDialog> with TickerProviderStateMixin {
               NcSpacing.medium(),
               LpButton(
                 text: widget.confirmText ?? (widget.confirmOnly ? context.t.alertDialog_confirm : context.t.dialog_confirm),
+                color: widget.confirmIsBad ? errorColor : accentColor,
                 fontSize: LpDialog.btnFontSize,
                 padding: LpDialog.btnPadding,
                 onPressed: () async {
