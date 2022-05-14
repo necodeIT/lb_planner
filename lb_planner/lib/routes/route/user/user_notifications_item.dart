@@ -37,6 +37,8 @@ class UserNotificationsItem extends LocalizedWidget {
 
             text = t.user_notifications_invite_text(inviter.fullname);
 
+            var invites = ref.watch(invitesProvider).values.where((invite) => invite.inviter == inviterId);
+
             actions = [
               _Action(
                 text: t.user_notifications_invite_accept,
@@ -129,17 +131,25 @@ class UserNotificationsItem extends LocalizedWidget {
 
 class _Action {
   final String text;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
 
-  _Action({required this.text, required this.onPressed});
+  _Action({required this.text, this.onPressed});
 
   Widget build(BuildContext context) {
-    return LpTextButton(
-      text: text,
-      color: accentColor,
-      decoration: TextDecoration.underline,
-      fontSize: UserNotificationsItem.actionsFontSize,
-      onPressed: onPressed,
+    return ConditionalWidget(
+      condition: onPressed != null,
+      trueWidget: (_) => LpTextButton(
+        text: text,
+        color: accentColor,
+        decoration: TextDecoration.underline,
+        fontSize: UserNotificationsItem.actionsFontSize,
+        onPressed: onPressed,
+      ),
+      falseWidget: (_) => NcCaptionText(
+        text,
+        color: textColor.withOpacity(.7),
+        fontSize: UserNotificationsItem.actionsFontSize,
+      ),
     );
   }
 }
