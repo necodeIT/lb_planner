@@ -39,6 +39,9 @@ class _CalendarPlanDropDwonModulesState extends State<CalendarPlanDropDwonModule
     return Consumer(builder: (context, ref, _) {
       var allModules = ref.watch(modulesProvider);
       var plan = ref.watch(planProvider);
+      var user = ref.watch(userProvider);
+
+      var accessLvl = plan.members[user.id]!;
 
       var modules = allModules.keys.where(
         (module) {
@@ -57,7 +60,10 @@ class _CalendarPlanDropDwonModulesState extends State<CalendarPlanDropDwonModule
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              NcCaptionText(t.calendar_plan_dropdown_modules_enableEk),
+              NcCaptionText(
+                t.calendar_plan_dropdown_modules_enableEk,
+                fontSize: CalendarPlanDropDownBody.fontSize,
+              ),
               NcSpacing.xs(),
               LpCheckbox(value: plan.ekEnabled, onChanged: (value) => ref.read(planController).setPlanEkEnabled(value)),
             ],
@@ -66,7 +72,7 @@ class _CalendarPlanDropDwonModulesState extends State<CalendarPlanDropDwonModule
           LpTextField.filled(
             controller: widget.searchController,
             placeholder: t.calendar_plan_dropdown_modules_search,
-            fontSize: 15,
+            fontSize: CalendarPlanDropDownBody.fontSize,
           ),
           NcSpacing.small(),
           Expanded(
@@ -76,36 +82,37 @@ class _CalendarPlanDropDwonModulesState extends State<CalendarPlanDropDwonModule
                   DraggableModule(moduleId: module),
                   NcSpacing.xs(),
                 ],
-                NcSpacing.small(),
-                LpButton(
-                  child: ConditionalWidget(
-                    condition: _clearFuture != null,
-                    trueWidget: (context) => LpLoadingIndicator.circular(
-                      thickness: 2,
-                      size: 15,
-                      color: buttonTextColor,
+                if (!accessLvl.isRead) NcSpacing.small(),
+                if (!accessLvl.isRead)
+                  LpButton(
+                    child: ConditionalWidget(
+                      condition: _clearFuture != null,
+                      trueWidget: (context) => LpLoadingIndicator.circular(
+                        thickness: 2,
+                        size: CalendarPlanDropDownBody.fontSize,
+                        color: buttonTextColor,
+                      ),
+                      falseWidget: (context) => Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          NcTitleText(
+                            t.calendar_plan_dropdown_modules_clearPlan_title,
+                            fontSize: LpButton.defaultFontSize,
+                            buttonText: true,
+                          ),
+                          NcSpacing.xs(),
+                          LpIcon(Feather.arrow_right_circle, color: buttonTextColor, size: LpButton.iconSize),
+                        ],
+                      ),
                     ),
-                    falseWidget: (context) => Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        NcTitleText(
-                          t.calendar_plan_dropdown_modules_clearPlan_title,
-                          fontSize: LpButton.defaultFontSize,
-                          buttonText: true,
-                        ),
-                        NcSpacing.xs(),
-                        LpIcon(Feather.arrow_right_circle, color: buttonTextColor, size: LpButton.iconSize),
-                      ],
+                    onPressed: () => lpShowConfirmDialog(
+                      context,
+                      title: t.calendar_plan_dropdown_modules_clearPlan_title,
+                      body: NcBodyText(t.calendar_plan_dropdown_modules_clearPlan_message),
+                      onConfirm: () => _clearPlan(ref),
                     ),
+                    color: errorColor,
                   ),
-                  onPressed: () => lpShowConfirmDialog(
-                    context,
-                    title: t.calendar_plan_dropdown_modules_clearPlan_title,
-                    body: NcBodyText(t.calendar_plan_dropdown_modules_clearPlan_message),
-                    onConfirm: () => _clearPlan(ref),
-                  ),
-                  color: errorColor,
-                ),
               ],
             ),
           ),

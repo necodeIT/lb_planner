@@ -72,7 +72,7 @@ class ModuleWidget extends StatelessWidget {
                     color: course.color,
                     fontSize: tagSize,
                   ),
-                NcSpacing.small(),
+                if (showTag) NcSpacing.small(),
                 Expanded(
                   child: NcCaptionText(
                     module.name,

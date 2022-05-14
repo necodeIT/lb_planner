@@ -11,6 +11,7 @@ import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_sticky_header/flutter_sticky_header.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:lb_planner/assets.dart';
 import 'package:lb_planner/updater.dart';
@@ -68,6 +69,7 @@ part 'routes/calendar/plan/dropdown/dropdown_members.dart';
 part 'routes/calendar/plan/dragable_module.dart';
 part 'routes/calendar/plan/dropdown/dropdown_body.dart';
 part 'routes/calendar/plan/dropdown/dropdown_header.dart';
+part 'routes/calendar/plan/dropdown/dropdown_members_member.dart';
 
 /// All routes the app has
 final Map<String, WidgetBuilder> kRoutes = {

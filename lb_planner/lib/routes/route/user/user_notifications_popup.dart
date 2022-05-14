@@ -26,7 +26,9 @@ class UserNotificationsPopup extends LocalizedWidget {
   @override
   Widget create(BuildContext context, t) {
     return Consumer(builder: (context, ref, _) {
-      var notifications = ref.watch(notificationsProvider).values.where((e) => e.shouldDisplay);
+      var notifications = ref.watch(notificationsProvider).values.where((e) => e.shouldDisplay).toList();
+
+      notifications.sort((a, b) => b.timestamp.compareTo(a.timestamp));
 
       return LpContainer(
         spacing: true,

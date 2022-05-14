@@ -38,6 +38,8 @@
   "alertDialog_confirm": "OK",
   "calendar_modulesOverview_noCourses": "No courses enabled...",
   "calendar_modulesOverview_title": "Modues overview",
+  "calendar_plan_dropdown_members_leavePlan_message": "Are you sure you want to leave this plan?\n\nYou may get invited again.",
+  "calendar_plan_dropdown_members_leavePlan_title": "Leave plan",
   "calendar_plan_dropdown_members_search": "Search members...",
   "calendar_plan_dropdown_members_title": "Members",
   "calendar_plan_dropdown_modules_clearPlan_message": "Are you sure you want to clear all deadlines for this plan? This action cannot be undone.",

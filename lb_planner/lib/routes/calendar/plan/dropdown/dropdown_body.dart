@@ -11,6 +11,9 @@ class CalendarPlanDropDownBody extends StatefulWidget {
   /// Builder for the body.
   static CalendarPlanDropDownBody popupBuilder(BuildContext context, VoidCallback close) => CalendarPlanDropDownBody(close: close);
 
+  /// The font size of the dropdown.
+  static const double fontSize = 15.0;
+
   @override
   State<CalendarPlanDropDownBody> createState() => _CalendarPlanDropDownBodyState();
 }
