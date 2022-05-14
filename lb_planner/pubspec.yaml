@@ -31,6 +31,7 @@ dependencies:
   badges: ^2.0.2
   bitsdojo_window: ^0.1.1+1
   cached_network_image: ^3.2.0
+  context_menus: ^1.0.1
   cupertino_icons: ^1.0.2
   enum_to_string: ^2.0.1
   flare_flutter: ^3.0.2
@@ -64,6 +65,7 @@ dependencies:
   rive: ^0.8.4
   shimmer: ^2.0.0
   timeago: ^3.2.2
+  url_launcher: ^6.1.2
   window_manager: ^0.2.2
 
 dev_dependencies:

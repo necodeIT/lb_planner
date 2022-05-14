@@ -1,25 +1,28 @@
 part of lbplanner_widgets;
 
 /// Displays the given [module] in a [ModuleItem].
-class ModuleWidget extends StatelessWidget {
+class ModuleWidget extends LocalizedWidget {
   /// The [ModuleWidget] will display the [Course], the name and the [ModuleStatus].
 
-  ModuleWidget.status({Key? key, required this.moduleId, this.showTag = true}) : super(key: key) {
+  ModuleWidget.status({Key? key, required this.moduleId, this.showTag = true, this.contextMenu = true}) : super(key: key) {
     displayMode = ModuleWidgetDisyplayModes.status;
   }
 
   /// The [ModuleWidget] will display the [Course], the name and the deadline assignd by teachers.
-  ModuleWidget.date({Key? key, required this.moduleId, this.showTag = true}) : super(key: key) {
+  ModuleWidget.date({Key? key, required this.moduleId, this.showTag = true, this.contextMenu = true}) : super(key: key) {
     displayMode = ModuleWidgetDisyplayModes.date;
   }
 
   /// The [ModuleWidget] will display the [Course], the name and a [LpCheckbox] to mark that will be ticked off as soon as the module has the [ModuleStaus.uploaded] status.
-  ModuleWidget.checkmark({Key? key, required this.moduleId, this.showTag = true}) : super(key: key) {
+  ModuleWidget.checkmark({Key? key, required this.moduleId, this.showTag = true, this.contextMenu = true}) : super(key: key) {
     displayMode = ModuleWidgetDisyplayModes.checkmark;
   }
 
   /// The id of the module to display.
   final int moduleId;
+
+  /// Whether to show the context menu.
+  final bool contextMenu;
 
   /// Whether to show the [Course] tag.
   final bool showTag;
@@ -43,7 +46,7 @@ class ModuleWidget extends StatelessWidget {
   static final formatter = DateFormat('dd.MM');
 
   @override
-  Widget build(BuildContext context) {
+  Widget create(BuildContext context, t) {
     return Consumer(builder: (context, ref, _) {
       var module = ref.watch(modulesProvider)[moduleId]!;
 
@@ -55,67 +58,88 @@ class ModuleWidget extends StatelessWidget {
         trueWidget: (context) {
           var course = courses[module.courseId]!;
 
-          return Container(
-            padding: EdgeInsets.all(NcSpacing.xsSpacing),
-            height: height,
-            width: width,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(kRadius),
-              color: secondaryColor,
-              boxShadow: kElevationToShadow[2],
+          return ConditionalWrapper(
+            condition: contextMenu,
+            wrapper: (context, child) => ContextMenuRegion(
+              contextMenu: GenericContextMenu(
+                buttonConfigs: [
+                  ContextMenuButtonConfig(
+                    t.module_openUrl,
+                    icon: LpIcon.contextMenu(
+                      Icons.link,
+                    ),
+                    iconHover: LpIcon.contextMenu(
+                      Icons.link,
+                      color: accentColor,
+                    ),
+                    onPressed: () => launchUrl(Uri.parse(module.url)),
+                  ),
+                ],
+              ),
+              child: child,
             ),
-            child: Row(
-              children: [
-                if (showTag)
-                  LpTag(
-                    text: course.shortname,
-                    color: course.color,
-                    fontSize: tagSize,
+            child: Container(
+              padding: EdgeInsets.all(NcSpacing.xsSpacing),
+              height: height,
+              width: width,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(kRadius),
+                color: secondaryColor,
+                boxShadow: kElevationToShadow[2],
+              ),
+              child: Row(
+                children: [
+                  if (showTag)
+                    LpTag(
+                      text: course.shortname,
+                      color: course.color,
+                      fontSize: tagSize,
+                    ),
+                  if (showTag) NcSpacing.small(),
+                  Expanded(
+                    child: NcCaptionText(
+                      module.name,
+                      textAlign: showTag ? TextAlign.center : TextAlign.start,
+                      fontSize: fontSize,
+                    ),
                   ),
-                if (showTag) NcSpacing.small(),
-                Expanded(
-                  child: NcCaptionText(
-                    module.name,
-                    textAlign: showTag ? TextAlign.center : TextAlign.start,
-                    fontSize: fontSize,
-                  ),
-                ),
-                ConditionalWidget(
-                  condition: displayMode.isDate,
-                  trueWidget: (context) => Expanded(child: NcCaptionText(formatter.format(module.deadline!))),
-                  falseWidget: (context) => ConditionalWidget(
-                    condition: displayMode.isCheckmark,
-                    trueWidget: (context) => LpCheckbox(value: module.status.isUploaded || module.status.isDone),
-                    falseWidget: (context) {
-                      Widget container(Color color, [IconData? icon, bool outlined = false]) => Container(
-                            // padding: const EdgeInsets.all(NcSpacing.xsSpacing),
-                            width: 18,
-                            height: 18,
-                            decoration: BoxDecoration(
-                              color: outlined ? null : color,
-                              border: Border.all(
-                                color: color,
-                                width: 2,
+                  ConditionalWidget(
+                    condition: displayMode.isDate,
+                    trueWidget: (context) => Expanded(child: NcCaptionText(formatter.format(module.deadline!))),
+                    falseWidget: (context) => ConditionalWidget(
+                      condition: displayMode.isCheckmark,
+                      trueWidget: (context) => LpCheckbox(value: module.status.isUploaded || module.status.isDone),
+                      falseWidget: (context) {
+                        Widget container(Color color, [IconData? icon, bool outlined = false]) => Container(
+                              // padding: const EdgeInsets.all(NcSpacing.xsSpacing),
+                              width: 18,
+                              height: 18,
+                              decoration: BoxDecoration(
+                                color: outlined ? null : color,
+                                border: Border.all(
+                                  color: color,
+                                  width: 2,
+                                ),
+                                borderRadius: BorderRadius.circular(kRadius),
                               ),
-                              borderRadius: BorderRadius.circular(kRadius),
-                            ),
-                            child: outlined ? null : FittedBox(child: LpIcon(icon, color: buttonTextColor)),
-                          );
+                              child: outlined ? null : FittedBox(child: LpIcon(icon, color: buttonTextColor)),
+                            );
 
-                      switch (module.status) {
-                        case ModuleStatus.uploaded:
-                          return container(warningColor, Icons.remove);
-                        case ModuleStatus.done:
-                          return container(successColor, Icons.check);
-                        case ModuleStatus.late:
-                          return container(errorColor, FontAwesome.exclamation);
-                        case ModuleStatus.pending:
-                          return container(neutralColor, null, true);
-                      }
-                    },
-                  ),
-                )
-              ],
+                        switch (module.status) {
+                          case ModuleStatus.uploaded:
+                            return container(warningColor, Icons.remove);
+                          case ModuleStatus.done:
+                            return container(successColor, Icons.check);
+                          case ModuleStatus.late:
+                            return container(errorColor, FontAwesome.exclamation);
+                          case ModuleStatus.pending:
+                            return container(neutralColor, null, true);
+                        }
+                      },
+                    ),
+                  )
+                ],
+              ),
             ),
           );
         },

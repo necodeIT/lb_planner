@@ -3,7 +3,18 @@ part of lbplanner_widgets;
 /// The [LpTextButton] widget is a button that displays clickable text and an icon.
 class LpTextButton extends StatelessWidget {
   /// The [LpTextButton] widget is a button that displays clickable text and an icon.
-  const LpTextButton({Key? key, required this.text, this.onPressed, this.leadingIcon, this.trailingIcon, this.fontSize, this.color, this.decoration = TextDecoration.none}) : super(key: key);
+  const LpTextButton({
+    Key? key,
+    required this.text,
+    this.onPressed,
+    this.leadingIcon,
+    this.trailingIcon,
+    this.fontSize,
+    this.color,
+    this.decoration = TextDecoration.none,
+    this.leading,
+    this.trailing,
+  }) : super(key: key);
 
   /// The text the button displays.
   final String text;
@@ -16,6 +27,12 @@ class LpTextButton extends StatelessWidget {
 
   /// The icon to display on the trailing side of the button.
   final IconData? trailingIcon;
+
+  /// The leading widget to display on the button. This is ignored if [leadingIcon] is not null.
+  final Widget? leading;
+
+  /// The trailing widget to display on the button. This is ignored if [trailingIcon] is not null.
+  final Widget? trailing;
 
   /// The font size of the button text.
   final double? fontSize;
@@ -37,9 +54,11 @@ class LpTextButton extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           if (leadingIcon != null) LpIcon(leadingIcon, size: fontSize, color: color),
-          if (leadingIcon != null) NcSpacing.small(),
+          if (leading != null && leadingIcon == null) leading!,
+          if (leadingIcon != null || leading != null) NcSpacing.small(),
           NcCaptionText(text, fontSize: fontSize, color: color, decoration: decoration),
-          if (trailingIcon != null) NcSpacing.small(),
+          if (trailingIcon != null || trailing != null) NcSpacing.small(),
+          if (trailing != null && trailingIcon == null) trailing!,
           if (trailingIcon != null) LpIcon(trailingIcon, size: fontSize, color: color),
         ],
       ),

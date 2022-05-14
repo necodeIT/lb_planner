@@ -63,6 +63,8 @@ class CalendarPlanCellState extends State<CalendarPlanCell> {
       var plan = ref.watch(planProvider);
       List<int> modules = plan.deadlines.values.where((deadline) => deadline.end.isSameDate(widget.day)).map((deadline) => deadline.moduleId).toList();
 
+      var accessLvl = plan.members[ref.read(userProvider).id];
+
       return AnimatedContainer(
         padding: const EdgeInsets.all(NcSpacing.xsSpacing),
         duration: kNormalAnimationDuration,
@@ -98,7 +100,7 @@ class CalendarPlanCellState extends State<CalendarPlanCell> {
                     return ListView(
                       controller: ScrollController(),
                       children: [
-                        if (plan.loading) ...[
+                        if (plan.loading || accessLvl == null) ...[
                           LpShimmer(),
                           NcSpacing.xs(),
                           LpShimmer(),

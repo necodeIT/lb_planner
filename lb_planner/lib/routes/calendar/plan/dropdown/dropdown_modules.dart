@@ -79,7 +79,7 @@ class _CalendarPlanDropDwonModulesState extends State<CalendarPlanDropDwonModule
             child: ListView(
               children: [
                 for (var module in modules) ...[
-                  DraggableModule(moduleId: module),
+                  DraggableModule(moduleId: module, allowContextMenu: false),
                   NcSpacing.xs(),
                 ],
                 if (!accessLvl.isRead) NcSpacing.small(),

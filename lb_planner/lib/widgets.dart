@@ -2,6 +2,7 @@ library lbplanner_widgets;
 
 export 'package:flutter_gen/gen_l10n/l10n.dart';
 
+import 'package:context_menus/context_menus.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:nima/nima_actor.dart';
 import 'package:rive/rive.dart' as rive;
 import 'package:shimmer/shimmer.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:window_manager/window_manager.dart';
 
 part 'widgets/button.dart';

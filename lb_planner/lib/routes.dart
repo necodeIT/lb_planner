@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:animations/animations.dart';
 import 'package:badges/badges.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:context_menus/context_menus.dart';
 import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' hide Notification, Feedback;
@@ -21,6 +22,7 @@ import 'package:nekolib_ui/core.dart';
 import 'package:nekolib_ui/utils.dart';
 import 'package:nekolib_utils/extensions.dart';
 import 'package:nekolib_utils/log.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:window_manager/window_manager.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
