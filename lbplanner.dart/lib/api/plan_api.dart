@@ -17,7 +17,7 @@ class PlanApi {
   }
 
   /// Deletes all deadlines of the plan[userId] and [planId].
-  static Future<ApiResponse<Plan>> clearPlan(String token, int planId, int userId) async {
+  static Future<ApiResponse<Plan>> clearPlan(String token, int userId, int planId) async {
     var response = await Api.makeRequest(
       functionName: "local_lbplanner_plan_clear_plan",
       token: token,
@@ -53,7 +53,7 @@ class PlanApi {
       params: {
         "planid": data.id,
         "userid": userId,
-        "name": data.name,
+        "planname": data.name,
         "enableek": data.ekEnabled.intValue,
       },
     );
