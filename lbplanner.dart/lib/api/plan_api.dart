@@ -85,7 +85,7 @@ class PlanApi {
   }
 
   /// Deletes a specific deadline of the plan[userId] and [planId].
-  static Future<ApiResponse<Plan>> deleteDeadline(String token, int planId, int userId, int moduleId) async {
+  static Future<ApiResponse<Plan>> deleteDeadline(String token, int userId, int planId, int moduleId) async {
     var response = await Api.makeRequest(
       functionName: "local_lbplanner_plan_delete_deadline",
       token: token,
