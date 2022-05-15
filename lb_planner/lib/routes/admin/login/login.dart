@@ -9,7 +9,10 @@ class AdminLoginRoute extends StatefulWidget {
   static const routeName = "/admin/login";
 
   /// The size of the user profile image.
-  static const double imgSize = 100;
+  static const double imgSize = 150;
+
+  /// The width of the login form.
+  static const double width = 450;
 
   /// Cache manager for the profile image.
   static CacheManager get cacheManager => CacheManager(
@@ -60,10 +63,8 @@ class _AdminLoginRouteState extends State<AdminLoginRoute> {
       builder: (context, ref, _) {
         var user = ref.watch(userProvider);
 
-        var width = MediaQuery.of(context).size.width * 0.4;
-
         return SizedBox(
-          width: width,
+          width: AdminLoginRoute.width,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -73,6 +74,7 @@ class _AdminLoginRouteState extends State<AdminLoginRoute> {
                     imageUrl: user.avatar,
                     width: AdminLoginRoute.imgSize,
                     height: AdminLoginRoute.imgSize,
+                    fit: BoxFit.contain,
                     placeholder: (_, __) => LpLoadingIndicator.circular(),
                     errorWidget: (_, __, ___) => LpIcon(
                       Icons.account_circle,
@@ -82,8 +84,10 @@ class _AdminLoginRouteState extends State<AdminLoginRoute> {
                   ),
                 ),
               ),
-              NcSpacing.large(),
+              NcSpacing.xl(),
+              NcSpacing.xl(),
               LpTextField(
+                autoFocus: true,
                 controller: _pwController,
                 obscureText: true,
                 errorText: (_loginResponse?.failed ?? false) ? t.admin_login_wrongPassword : null,
@@ -92,7 +96,7 @@ class _AdminLoginRouteState extends State<AdminLoginRoute> {
               ),
               NcSpacing.medium(),
               SizedBox(
-                width: width,
+                width: AdminLoginRoute.width,
                 child: LpButton(
                   onPressed: () => _login(ref),
                   text: _loginFuture == null ? t.admin_login_login : null,

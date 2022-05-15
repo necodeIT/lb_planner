@@ -21,8 +21,8 @@ class CalendarPlanCellState extends State<CalendarPlanCell> {
   static double currentWidth = 0;
 
   final DateFormat _formatter = DateFormat.d();
-
   final List<int> _addedModules = [];
+  final ScrollController _controller = ScrollController();
 
   void _setDeadline(WidgetRef ref, int module) async {
     var plan = ref.read(planProvider);
@@ -99,8 +99,18 @@ class CalendarPlanCellState extends State<CalendarPlanCell> {
                 return DragTarget<int>(
                   onAccept: (module) => _setDeadline(ref, module),
                   builder: (context, candidateData, rejectedData) {
+                    if (_controller.hasClients && (_addedModules.isNotEmpty || candidateData.isNotEmpty || _controller.position.outOfRange)) {
+                      WidgetsBinding.instance!.addPostFrameCallback(
+                        (timeStamp) => _controller.animateTo(
+                          _controller.position.maxScrollExtent,
+                          duration: kFastAnimationDuration,
+                          curve: kAnimationCurve,
+                        ),
+                      );
+                    }
+
                     return ListView(
-                      controller: ScrollController(),
+                      controller: _controller,
                       children: [
                         if (plan.loading || accessLvl == null) ...[
                           LpShimmer(),

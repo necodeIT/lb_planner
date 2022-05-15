@@ -65,7 +65,7 @@ class _CalendarPlanDropDownBodyState extends State<CalendarPlanDropDownBody> {
         height: screen.height * 0.6,
         child: Column(
           children: [
-            NcSpacing.small(),
+            NcSpacing.medium(),
             Row(
               children: [
                 Expanded(

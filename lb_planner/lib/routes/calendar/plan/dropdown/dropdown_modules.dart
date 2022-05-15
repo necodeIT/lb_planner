@@ -69,12 +69,13 @@ class _CalendarPlanDropDwonModulesState extends State<CalendarPlanDropDwonModule
             ],
           ),
           NcSpacing.medium(),
-          LpTextField.filled(
-            controller: widget.searchController,
-            placeholder: t.calendar_plan_dropdown_modules_search,
-            fontSize: CalendarPlanDropDownBody.fontSize,
-          ),
-          NcSpacing.small(),
+          if (modules.length > 1)
+            LpTextField.filled(
+              controller: widget.searchController,
+              placeholder: t.calendar_plan_dropdown_modules_search,
+              fontSize: CalendarPlanDropDownBody.fontSize,
+            ),
+          if (modules.length > 1) NcSpacing.small(),
           Expanded(
             child: ListView(
               children: [
