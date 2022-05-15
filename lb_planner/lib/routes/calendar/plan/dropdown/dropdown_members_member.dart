@@ -70,7 +70,7 @@ class _CalendarPlanMembersMemberState extends State<CalendarPlanMembersMember> {
         decoration: BoxDecoration(
           color: secondaryColor,
           borderRadius: BorderRadius.circular(kRadius),
-          boxShadow: kElevationToShadow[2],
+          boxShadow: kElevationToShadow[ModuleWidget.elevation],
         ),
         child: Row(
           children: [
@@ -91,6 +91,7 @@ class _CalendarPlanMembersMemberState extends State<CalendarPlanMembersMember> {
                     wrapper: (context, child) => ScaleOnHover(
                       onTap: () => _changeAccessLevel(ref, accessLevel.opposite),
                       duration: kFasterAnimationDuration,
+                      // ignore: no-magic-number
                       scale: 1.1,
                       child: child,
                     ),
@@ -103,13 +104,13 @@ class _CalendarPlanMembersMemberState extends State<CalendarPlanMembersMember> {
                   falseWidget: (context) => LpLoadingIndicator.circular(
                     color: accentColor,
                     size: ModuleWidget.fontSize,
-                    thickness: 2,
                   ),
                 ),
                 if (!accessLevel.isOwner) NcSpacing.small(),
                 if (!accessLevel.isOwner)
                   ScaleOnHover(
                     duration: kFasterAnimationDuration,
+                    // ignore: no-magic-number
                     scale: 1.1,
                     onTap: () => lpShowConfirmDialog(
                       context,

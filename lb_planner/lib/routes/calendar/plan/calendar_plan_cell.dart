@@ -71,6 +71,7 @@ class CalendarPlanCellState extends State<CalendarPlanCell> {
         decoration: BoxDecoration(
           border: Border.all(
             color: tertiaryColor,
+            // ignore: no-magic-number
             width: widget.isCurrentMonth ? 0.5 : 0.2,
           ),
         ),
@@ -87,6 +88,7 @@ class CalendarPlanCellState extends State<CalendarPlanCell> {
                       ? accentColor
                       : widget.isCurrentMonth
                           ? textColor
+                          // ignore: no-magic-number
                           : textColor.withOpacity(0.7),
                 ),
               ),

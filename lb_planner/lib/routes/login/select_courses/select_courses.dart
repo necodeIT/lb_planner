@@ -27,6 +27,7 @@ class LoginSelectCoursesRoute extends LocalizedWidget {
           alignment: Alignment.centerLeft,
           child: NcVectorImage(
             code: svg_select_courses,
+            // ignore: no-magic-number
             height: MediaQuery.of(context).size.height * .7,
             alignment: Alignment.centerLeft,
           ),

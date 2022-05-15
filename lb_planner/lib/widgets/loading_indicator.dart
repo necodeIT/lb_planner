@@ -9,7 +9,8 @@ class LpLoadingIndicator extends StatelessWidget {
   }
 
   /// Circular progress indicator.
-  LpLoadingIndicator.circular({Key? key, this.progress, this.color, this.size, this.thickness, this.backgroundColor = Colors.transparent}) : super(key: key) {
+  // ignore: no-magic-number
+  LpLoadingIndicator.circular({Key? key, this.progress, this.color, this.size = 15, this.thickness = 2, this.backgroundColor = Colors.transparent}) : super(key: key) {
     animation = null;
     type = _LpProgressIndicatorTypes.circular;
   }
@@ -69,6 +70,7 @@ class LpLoadingIndicator extends StatelessWidget {
             condition: type.isCircular,
             trueWidget: (context) => CircularProgressIndicator(
               color: color,
+              // ignore: no-magic-number
               strokeWidth: thickness ?? 4,
               value: progress,
               backgroundColor: backgroundColor,

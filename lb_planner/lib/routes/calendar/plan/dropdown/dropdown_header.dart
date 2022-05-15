@@ -14,6 +14,12 @@ class CalendarPlanDropdownHeader extends StatelessWidget {
   /// The header text.
   final String title;
 
+  /// The font size of the header.
+  static const double fontSize = 17.0;
+
+  /// The thickness of the indicator.
+  static const double indicatorThickness = 4.0;
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, box) {
@@ -23,12 +29,12 @@ class CalendarPlanDropdownHeader extends StatelessWidget {
         child: Column(mainAxisSize: MainAxisSize.min, children: [
           NcTitleText(
             title,
-            fontSize: 17,
+            fontSize: fontSize,
           ),
           NcSpacing.xs(),
           Container(
             width: box.maxWidth * .5,
-            height: 4,
+            height: indicatorThickness,
             decoration: BoxDecoration(
               color: active ? accentColor : Colors.transparent,
               borderRadius: BorderRadius.all(Radius.circular(kRadius)),

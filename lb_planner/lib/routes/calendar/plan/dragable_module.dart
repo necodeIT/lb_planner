@@ -19,7 +19,6 @@ class _DraggableModuleState extends State<DraggableModule> {
   bool _isClearing = false;
 
   void _removeDeadline(WidgetRef ref) async {
-    throw "Test";
     if (_isClearing) return;
 
     setState(() {
@@ -29,7 +28,7 @@ class _DraggableModuleState extends State<DraggableModule> {
     var controller = ref.read(planController);
     var deadline = ref.read(planProvider).deadlines[widget.moduleId]!;
 
-    // await controller.deleteDeadline(deadline);
+    await controller.deleteDeadline(deadline);
 
     if (!mounted) return;
 
@@ -93,18 +92,18 @@ class _DraggableModuleState extends State<DraggableModule> {
                           rootOverlay: true,
                           // feedbackOffset: Offset(600, 0),
                           data: widget.moduleId,
-                          dragAnchorStrategy: (child, context, offset) => Offset(width / 2, ModuleWidget.height / 2),
+                          dragAnchorStrategy: (child, context, offset) => Offset(width * 0.5, ModuleWidget.height * 0.5),
                           child: child,
                           feedback: AnimatedPositioned(
                             duration: kFastAnimationDuration,
                             child: SizedBox(
                               width: width,
-                              child: ModuleWidget.status(moduleId: widget.moduleId, contextMenu: false),
+                              child: ModuleWidget.status(moduleId: widget.moduleId, contextMenu: false, shadow: true),
                             ),
                           ),
                           childWhenDragging: LpShimmer(),
                         ),
-                        child: ModuleWidget.status(moduleId: widget.moduleId, contextMenu: false),
+                        child: ModuleWidget.status(moduleId: widget.moduleId, contextMenu: false, shadow: true),
                       ),
                       falseWidget: (context) => LpShimmer(),
                     ),

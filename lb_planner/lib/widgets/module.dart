@@ -4,17 +4,17 @@ part of lbplanner_widgets;
 class ModuleWidget extends LocalizedWidget {
   /// The [ModuleWidget] will display the [Course], the name and the [ModuleStatus].
 
-  ModuleWidget.status({Key? key, required this.moduleId, this.showTag = true, this.contextMenu = true}) : super(key: key) {
+  ModuleWidget.status({Key? key, required this.moduleId, this.showTag = true, this.contextMenu = true, this.shadow = false}) : super(key: key) {
     displayMode = ModuleWidgetDisyplayModes.status;
   }
 
   /// The [ModuleWidget] will display the [Course], the name and the deadline assignd by teachers.
-  ModuleWidget.date({Key? key, required this.moduleId, this.showTag = true, this.contextMenu = true}) : super(key: key) {
+  ModuleWidget.date({Key? key, required this.moduleId, this.showTag = true, this.contextMenu = true, this.shadow = false}) : super(key: key) {
     displayMode = ModuleWidgetDisyplayModes.date;
   }
 
   /// The [ModuleWidget] will display the [Course], the name and a [LpCheckbox] to mark that will be ticked off as soon as the module has the [ModuleStaus.uploaded] status.
-  ModuleWidget.checkmark({Key? key, required this.moduleId, this.showTag = true, this.contextMenu = true}) : super(key: key) {
+  ModuleWidget.checkmark({Key? key, required this.moduleId, this.showTag = true, this.contextMenu = true, this.shadow = false}) : super(key: key) {
     displayMode = ModuleWidgetDisyplayModes.checkmark;
   }
 
@@ -30,6 +30,9 @@ class ModuleWidget extends LocalizedWidget {
   /// Determins how a [ModuleWidget] should be displayed.
   late final ModuleWidgetDisyplayModes displayMode;
 
+  /// Whether to display drop shaodow.
+  final bool shadow;
+
   /// The font size of the course tag.
   static const double tagSize = 12;
 
@@ -41,6 +44,10 @@ class ModuleWidget extends LocalizedWidget {
 
   /// The width of the module item.
   static const width = double.infinity;
+
+  /// The elevation of the module item when [shadow] is set to true.
+  // static const elevation = 2;
+  static const elevation = 0;
 
   /// Formatter for the date if [displayMode] == [ModuleWidgetDisyplayModes.date].
   static final formatter = DateFormat('dd.MM');
@@ -85,7 +92,7 @@ class ModuleWidget extends LocalizedWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(kRadius),
                 color: secondaryColor,
-                boxShadow: kElevationToShadow[2],
+                boxShadow: kElevationToShadow[shadow ? elevation : 0],
               ),
               child: Row(
                 children: [
@@ -111,13 +118,15 @@ class ModuleWidget extends LocalizedWidget {
                       trueWidget: (context) => LpCheckbox(value: module.status.isUploaded || module.status.isDone),
                       falseWidget: (context) {
                         Widget container(Color color, [IconData? icon, bool outlined = false]) => Container(
-                              // padding: const EdgeInsets.all(NcSpacing.xsSpacing),
+                              // ignore: no-magic-number
                               width: 18,
+                              // ignore: no-magic-number
                               height: 18,
                               decoration: BoxDecoration(
                                 color: outlined ? null : color,
                                 border: Border.all(
                                   color: color,
+                                  // ignore: no-magic-number
                                   width: 2,
                                 ),
                                 borderRadius: BorderRadius.circular(kRadius),

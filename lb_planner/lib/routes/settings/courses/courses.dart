@@ -31,7 +31,7 @@ class _SettingsCoursesState extends State<SettingsCourses> {
             prefixIcon: Ionicons.search,
             placeholder: t.settings_searchCourses,
             controller: _searchController,
-            fontSize: 18,
+            fontSize: LoginSelectCourseCourseSelection.searchFontSize,
           ),
         ),
         width: double.infinity,

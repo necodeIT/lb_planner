@@ -76,6 +76,7 @@ class _SettingsThemesThemeItemState extends State<SettingsThemesThemeItem> {
                   falseWidget: (context) => LpLoadingIndicator.circular(
                     size: SettingsThemesThemeItem.iconSize,
                     color: widget.theme.accentColor,
+                    // ignore: no-magic-number
                     thickness: 3,
                   ),
                 ),

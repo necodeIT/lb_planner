@@ -8,6 +8,9 @@ class LoginSelectCourseCourseSelection extends StatefulWidget {
   /// The width of the course selection.
   static const width = 500.0;
 
+  /// The font size of the search bar.
+  static const searchFontSize = 18.0;
+
   @override
   State<LoginSelectCourseCourseSelection> createState() => _LoginSelectCourseCourseSelectionState();
 }
@@ -28,14 +31,16 @@ class _LoginSelectCourseCourseSelectionState extends State<LoginSelectCourseCour
     return Consumer(builder: (context, ref, _) {
       var courses = ref.watch(coursesProvider);
       return LpContainer(
+        // ignore: no-magic-number
         width: MediaQuery.of(context).size.width * .4,
+        // ignore: no-magic-number
         height: MediaQuery.of(context).size.height * .8,
         trailing: Expanded(
           child: LpTextField.filled(
             prefixIcon: Ionicons.search,
             placeholder: t.settings_searchCourses,
             controller: _searchController,
-            fontSize: 18,
+            fontSize: LoginSelectCourseCourseSelection.searchFontSize,
           ),
         ),
         child: Column(

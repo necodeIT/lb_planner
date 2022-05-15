@@ -88,7 +88,6 @@ class _CalendarPlanDropDwonModulesState extends State<CalendarPlanDropDwonModule
                     child: ConditionalWidget(
                       condition: _clearFuture != null,
                       trueWidget: (context) => LpLoadingIndicator.circular(
-                        thickness: 2,
                         size: CalendarPlanDropDownBody.fontSize,
                         color: buttonTextColor,
                       ),

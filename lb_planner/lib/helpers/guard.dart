@@ -60,12 +60,15 @@ class LpReportMode extends ReportMode {
   @override
   bool isContextRequired() => true;
 
+  /// Timeout for reports to prevent handling duplicates of same error. In milliseconds.
+  static const timeout = 60000 * 60 * 24;
+
   /// Default config for this report mode.
   static CatcherOptions get config => CatcherOptions(
         LpReportMode(),
         [],
         logger: _LpLogger(),
-        reportOccurrenceTimeout: 60000 * 60 * 24,
+        reportOccurrenceTimeout: timeout,
         filterFunction: _filterReport,
       );
 }

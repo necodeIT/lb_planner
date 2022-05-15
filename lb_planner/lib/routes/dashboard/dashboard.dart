@@ -8,6 +8,9 @@ class DashboardRoute extends StatelessWidget {
   /// Name of the route.
   static const String routeName = '/dashboard';
 
+  /// The height of the [DashboardStatusOverview] section.
+  static const double statusOverViewHeight = 100;
+
   @override
   Widget build(BuildContext context) {
     var filler = LpContainer(
@@ -26,14 +29,16 @@ class DashboardRoute extends StatelessWidget {
         ),
         NcSpacing.medium(),
         Expanded(
+          // ignore: no-magic-number
           flex: 2,
           child: Column(
             children: [
               ConstrainedBox(
-                constraints: BoxConstraints(maxHeight: 100),
+                constraints: BoxConstraints(maxHeight: statusOverViewHeight),
                 child: DashboardStatusOverview(),
               ),
               NcSpacing.medium(),
+              // ignore: no-magic-number
               Expanded(flex: 3, child: filler),
             ],
           ),

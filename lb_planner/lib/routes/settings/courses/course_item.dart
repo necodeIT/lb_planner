@@ -44,12 +44,14 @@ class _SettingsCourseItemState extends State<SettingsCourseItem> {
             LpCheckbox(
               value: course.enabled,
               onChanged: (value) => _enableCourse(value, controller),
+              // ignore: no-magic-number
               scale: 1.2,
             ),
             NcSpacing.small(),
             LpTag(
               text: course.shortname,
               color: course.color,
+              // ignore: no-magic-number
               fontSize: 14,
             ),
             NcSpacing.small(),
@@ -63,6 +65,7 @@ class _SettingsCourseItemState extends State<SettingsCourseItem> {
                     trueWidget: (_) => Padding(
                       padding: EdgeInsets.all(NcSpacing.smallSpacing),
                       child: LpLoadingIndicator(
+                        // ignore: no-magic-number
                         thickness: 2,
                       ),
                     ),
@@ -71,7 +74,7 @@ class _SettingsCourseItemState extends State<SettingsCourseItem> {
                 ),
                 child: NcBodyText(
                   course.name,
-                  fontSize: 18,
+                  fontSize: LoginSelectCourseCourseSelection.searchFontSize,
                   textAlign: TextAlign.center,
                 ),
               ),

@@ -18,7 +18,7 @@ class LpTextField extends StatelessWidget {
     this.onSubmitted,
     this.obscureText = false,
     this.autoFocus = false,
-    this.fontSize = 20,
+    this.fontSize = defaultFontSize,
   }) : super(key: key) {
     filled = false;
     multiline = false;
@@ -41,7 +41,7 @@ class LpTextField extends StatelessWidget {
     this.onSubmitted,
     this.obscureText = false,
     this.autoFocus = false,
-    this.fontSize = 20,
+    this.fontSize = defaultFontSize,
     this.multiline = false,
     Color? fillColor,
   }) : super(key: key) {
@@ -106,6 +106,12 @@ class LpTextField extends StatelessWidget {
   /// [InputDecoration.contentPadding]
   static const double filledPadding = 12;
 
+  /// The width of the [InputBorder]
+  static const double borderWidth = 2;
+
+  /// The default [fontSize].
+  static const double defaultFontSize = 20;
+
   /// Generates an [InputBorder] with the given [color].
   static InputBorder? border(Color color, bool filled) {
     return filled
@@ -115,7 +121,7 @@ class LpTextField extends StatelessWidget {
           )
         : UnderlineInputBorder(
             // borderRadius: BorderRadius.all(Radius.circular(kRadius)),
-            borderSide: BorderSide(color: color, width: 2),
+            borderSide: BorderSide(color: color, width: borderWidth),
           );
   }
 

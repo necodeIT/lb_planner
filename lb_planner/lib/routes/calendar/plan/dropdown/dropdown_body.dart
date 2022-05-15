@@ -59,7 +59,9 @@ class _CalendarPlanDropDownBodyState extends State<CalendarPlanDropDownBody> {
           ),
         ),
         title: plan.name,
+        // ignore: no-magic-number
         width: screen.width * .25,
+        // ignore: no-magic-number
         height: screen.height * 0.6,
         child: Column(
           children: [

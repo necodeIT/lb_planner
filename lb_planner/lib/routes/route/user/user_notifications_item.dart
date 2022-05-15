@@ -112,11 +112,13 @@ class UserNotificationsItem extends LocalizedWidget {
                         LpIcon(
                           Icons.access_time,
                           size: actionsFontSize,
+                          // ignore: no-magic-number
                           color: textColor.withOpacity(.7),
                         ),
                         NcSpacing.xs(),
                         NcCaptionText(
                           timeago.format(notification.timestamp),
+                          // ignore: no-magic-number
                           color: textColor.withOpacity(.7),
                           fontSize: actionsFontSize,
                         ),
@@ -156,6 +158,7 @@ class _Action {
       ),
       falseWidget: (_) => NcCaptionText(
         text,
+        // ignore: no-magic-number
         color: textColor.withOpacity(.7),
         fontSize: UserNotificationsItem.actionsFontSize,
       ),

@@ -65,6 +65,9 @@ class LpDialog extends StatefulWidget {
   /// The padding of the buttons in the dialog.
   static const double btnPadding = 14;
 
+  /// The font size of the [title].
+  static const double titleFontSize = 30;
+
   @override
   State<LpDialog> createState() => _LpDialogState();
 }
@@ -88,7 +91,7 @@ class _LpDialogState extends State<LpDialog> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return ScaleTransition(
       child: AlertDialog(
-        title: NcTitleText(widget.title, fontSize: 30),
+        title: NcTitleText(widget.title, fontSize: LpDialog.titleFontSize),
         titlePadding: EdgeInsets.all(LpDialog.padding),
         buttonPadding: EdgeInsets.only(left: LpDialog.padding, right: LpDialog.padding),
         contentPadding: EdgeInsets.only(bottom: LpDialog.padding, left: LpDialog.padding, right: LpDialog.padding),
@@ -137,6 +140,7 @@ class _LpDialogState extends State<LpDialog> with TickerProviderStateMixin {
           borderRadius: BorderRadius.all(Radius.circular(kRadius)),
         ),
       ),
+      // ignore: no-magic-number
       scale: Tween<double>(begin: 1, end: 0.85).animate(
         CurvedAnimation(
           parent: _controller,

@@ -35,6 +35,7 @@ void main() async {
       appBuilder: App.builder,
       title: 'LB Planner',
       appIcon: LpLogo.svg,
+      // ignore: no-magic-number
       minSize: Size(1200, 700),
       onLoad: load,
       windowHandleColor: () => primaryColor,

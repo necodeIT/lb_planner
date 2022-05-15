@@ -19,6 +19,7 @@ class DashboardExams extends LocalizedWidget {
 
         var diff = module.deadline!.difference(DateTime.now());
 
+        // ignore: no-magic-number
         if (diff.inDays.isNegative || diff.inDays > 14) continue;
 
         exams.add(module);

@@ -11,6 +11,16 @@ class AdminLoginRoute extends StatefulWidget {
   /// The size of the user profile image.
   static const double imgSize = 100;
 
+  /// Cache manager for the profile image.
+  static CacheManager get cacheManager => CacheManager(
+        Config(
+          'user_profile',
+
+          // ignore: no-magic-number
+          stalePeriod: Duration(days: 7),
+        ),
+      );
+
   @override
   State<AdminLoginRoute> createState() => _AdminLoginRouteState();
 }
@@ -68,12 +78,7 @@ class _AdminLoginRouteState extends State<AdminLoginRoute> {
                       Icons.account_circle,
                       size: AdminLoginRoute.imgSize,
                     ),
-                    cacheManager: CacheManager(
-                      Config(
-                        'user_profile',
-                        stalePeriod: Duration(days: 7),
-                      ),
-                    ),
+                    cacheManager: AdminLoginRoute.cacheManager,
                   ),
                 ),
               ),
@@ -94,8 +99,6 @@ class _AdminLoginRouteState extends State<AdminLoginRoute> {
                   child: _loginFuture == null
                       ? null
                       : LpLoadingIndicator.circular(
-                          thickness: 2,
-                          size: 15,
                           color: buttonTextColor,
                         ),
                 ),

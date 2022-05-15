@@ -36,12 +36,7 @@ class UserProfile extends StatelessWidget {
                 Icons.account_circle,
                 size: imgSize,
               ),
-              cacheManager: CacheManager(
-                Config(
-                  'user_profile',
-                  stalePeriod: Duration(days: 7),
-                ),
-              ),
+              cacheManager: AdminLoginRoute.cacheManager,
             ),
           ),
           NcSpacing.small(),

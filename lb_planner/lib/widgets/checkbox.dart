@@ -23,6 +23,7 @@ class LpCheckbox extends StatelessWidget {
       scale: scale,
       child: ScaleOnHover(
         duration: kFastAnimationDuration,
+        // ignore: no-magic-number
         scale: onChanged != null ? 1.1 : 1,
         child: Checkbox(
           focusColor: accentColor,

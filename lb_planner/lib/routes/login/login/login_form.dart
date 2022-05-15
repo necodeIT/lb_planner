@@ -112,7 +112,7 @@ class _LoginFormState extends State<LoginForm> {
                   suffix: GestureDetector(
                     child: LpIcon(
                       _showPassword ? Icons.visibility_off : Icons.visibility,
-                      size: 20,
+                      size: LpTextField.defaultFontSize,
                     ),
                     onTap: _togglePassword,
                   ),
@@ -129,8 +129,6 @@ class _LoginFormState extends State<LoginForm> {
                         child: SizedBox(
                             width: LoginForm.width,
                             child: LpLoadingIndicator.circular(
-                              thickness: 2,
-                              size: 15,
                               color: buttonTextColor,
                             )),
                       ),

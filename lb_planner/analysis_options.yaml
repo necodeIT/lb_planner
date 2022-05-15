@@ -9,6 +9,10 @@
 # packages, and plugins designed to encourage good coding practices.
 include: package:flutter_lints/flutter.yaml
 
+analyzer:
+  plugins:
+    - dart_code_metrics
+
 linter:
   # The lint rules applied to this project can be customized in the
   # section below to disable rules from the `package:flutter_lints/flutter.yaml`
@@ -29,3 +33,10 @@ linter:
 
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options
+dart_code_metrics:
+  rules:
+    - no-magic-number: 
+        allowed: [0, 1, 0.5]
+    - lines-of-code: 150
+    - maintainability-index: 50
+    - binary-expression-operand-order: true

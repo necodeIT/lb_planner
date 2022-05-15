@@ -1,3 +1,4 @@
+// ignore_for_file: no-magic-number
 part of lbplanner_widgets;
 
 /// The theme data for this app.

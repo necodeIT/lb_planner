@@ -45,6 +45,7 @@ class SidebarItem extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(radius),
           color: selected ? accentColor : secondaryColor,
+          // ignore: no-magic-number
           boxShadow: kElevationToShadow[selected || hover ? 3 : 0],
         ),
         child: LpIcon(
