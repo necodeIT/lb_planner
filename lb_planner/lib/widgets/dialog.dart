@@ -98,7 +98,10 @@ class _LpDialogState extends State<LpDialog> with TickerProviderStateMixin {
             maxHeight: MediaQuery.of(context).size.height * LpDialog.heightFactor,
             maxWidth: MediaQuery.of(context).size.width * LpDialog.widthFactor,
           ),
-          child: widget.body,
+          child: SingleChildScrollView(
+            controller: ScrollController(),
+            child: widget.body,
+          ),
         ),
         actions: <Widget>[
           Row(
@@ -145,7 +148,16 @@ class _LpDialogState extends State<LpDialog> with TickerProviderStateMixin {
 }
 
 /// Themed ConfirmDialog widget.
-void lpShowConfirmDialog(BuildContext context, {required String title, required Widget body, String? confirmText, String? cancelText, Function()? onConfirm, Function()? onCancel}) {
+void lpShowConfirmDialog(
+  BuildContext context, {
+  required String title,
+  required Widget body,
+  String? confirmText,
+  String? cancelText,
+  Function()? onConfirm,
+  Function()? onCancel,
+  bool confirmIsBad = true,
+}) {
   OverlayEntry? dialogOverLay;
   OverlayEntry background = _generateBackground();
 
@@ -156,6 +168,7 @@ void lpShowConfirmDialog(BuildContext context, {required String title, required 
     cancelText: cancelText,
     onConfirm: onConfirm,
     onCancel: onCancel,
+    confirmIsBad: confirmIsBad,
     removeFromWidgetTree: () {
       dialogOverLay!.remove();
       background.remove();

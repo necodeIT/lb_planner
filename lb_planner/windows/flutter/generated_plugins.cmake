@@ -4,6 +4,7 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   bitsdojo_window_windows
+  catcher
   connectivity_plus_windows
   url_launcher_windows
   window_manager

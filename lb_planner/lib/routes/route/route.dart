@@ -39,47 +39,51 @@ class RouteWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ContextMenuOverlay(
-      buttonBuilder: (context, config, [_]) => HoverBuilder(
-        builder: (_, hover) => Padding(
+    return Consumer(builder: (context, ref, _) {
+      initGuard(ref);
+
+      return ContextMenuOverlay(
+        buttonBuilder: (context, config, [_]) => HoverBuilder(
+          builder: (_, hover) => Padding(
+            padding: const EdgeInsets.all(NcSpacing.xsSpacing),
+            child: Row(
+              children: [
+                if (config.icon != null && !(config.iconHover != null && hover)) config.icon!,
+                if (config.iconHover != null && hover) config.iconHover!,
+                if (config.icon != null) NcSpacing.small(),
+                NcCaptionText(config.label),
+              ],
+            ),
+          ),
+          onTap: config.onPressed,
+        ),
+        cardBuilder: (context, children) => Container(
           padding: const EdgeInsets.all(NcSpacing.xsSpacing),
-          child: Row(
-            children: [
-              if (config.icon != null && !(config.iconHover != null && hover)) config.icon!,
-              if (config.iconHover != null && hover) config.iconHover!,
-              if (config.icon != null) NcSpacing.small(),
-              NcCaptionText(config.label),
-            ],
+          decoration: BoxDecoration(
+            color: primaryColor,
+            borderRadius: BorderRadius.circular(kRadius),
+            boxShadow: kElevationToShadow[3],
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisSize: MainAxisSize.min,
+            children: children,
           ),
         ),
-        onTap: config.onPressed,
-      ),
-      cardBuilder: (context, children) => Container(
-        padding: const EdgeInsets.all(NcSpacing.xsSpacing),
-        decoration: BoxDecoration(
-          color: primaryColor,
-          borderRadius: BorderRadius.circular(kRadius),
-          boxShadow: kElevationToShadow[3],
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisSize: MainAxisSize.min,
-          children: children,
-        ),
-      ),
-      child: GestureDetector(
-        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-        child: Scaffold(
-          backgroundColor: secondaryColor,
-          body: Sidebar(
-            child: ConditionalWrapper(
-              condition: !isLogin,
-              wrapper: RouteTitle.builder,
-              child: child,
+        child: GestureDetector(
+          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+          child: Scaffold(
+            backgroundColor: secondaryColor,
+            body: Sidebar(
+              child: ConditionalWrapper(
+                condition: !isLogin,
+                wrapper: RouteTitle.builder,
+                child: child,
+              ),
             ),
           ),
         ),
-      ),
-    );
+      );
+    });
   }
 }

@@ -157,7 +157,7 @@ class _LpPopupState extends State<LpPopup> with WindowListener, RouteAware {
     windowManager.addListener(this);
 
     WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
-      kRouteObserver.subscribe(this, ModalRoute.of(context)!);
+      if (mounted) kRouteObserver.subscribe(this, ModalRoute.of(context)!);
     });
 
     super.initState();

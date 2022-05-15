@@ -34,6 +34,15 @@
       }
     }
   },
+  "@error_message": {
+    "description": "Error message text",
+    "placeholders": {
+      "error": {
+        "example": "NoSuchMethod Exception",
+        "type": "String"
+      }
+    }
+  },
   "admin_dashboard_routeName": "Admin",
   "admin_login_login": "Login",
   "admin_login_pwPlaceholder": "Enter password...",
@@ -74,6 +83,10 @@
   "dashboard_todaysTasks_title": "Today's tasks",
   "dialog_cancel": "Cancel",
   "dialog_confirm": "Confirm",
+  "error_ingore": "Ignore",
+  "error_message": "An unexpected error occured:\n\n{error}\n\nDo you want to report this error? This will automatically send feedback containing this error message and your logs.",
+  "error_report": "Send report",
+  "error_title": "Oops...",
   "login_invalidUsernameOrPassword": "Invalid username or password",
   "login_login": "LOGIN",
   "login_password": "Password",
