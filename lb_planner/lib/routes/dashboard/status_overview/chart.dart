@@ -48,7 +48,7 @@ class DashboardStatusOverviewChart extends StatelessWidget {
                   if (shouldUploadSpace) NcSpacing.small(),
                   DashboardStatusOverviewBar(width: shouldLateSpace ? lateWidth.withSpacing.safeValue : lateWidth.safeValue, color: errorColor),
                   if (shouldLateSpace) NcSpacing.small(),
-                  DashboardStatusOverviewBar(width: pendingWidth.withSpacing.safeValue, color: neutralColor),
+                  DashboardStatusOverviewBar(width: pendingWidth.safeValue, color: neutralColor),
                 ],
               ),
               falseWidget: (context) => Center(
