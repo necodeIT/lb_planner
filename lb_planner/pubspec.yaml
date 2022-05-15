@@ -33,6 +33,7 @@ dependencies:
   cached_network_image: ^3.2.0
   catcher: ^0.6.9
   context_menus: ^1.0.1
+  crypto: ^3.0.2
   cupertino_icons: ^1.0.2
   enum_to_string: ^2.0.1
   flare_flutter: ^3.0.2

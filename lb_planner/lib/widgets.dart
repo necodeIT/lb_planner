@@ -40,6 +40,7 @@ part 'widgets/popup.dart';
 part 'widgets/module.dart';
 part 'widgets/universal_actor.dart';
 part 'widgets/shimmer.dart';
+part 'widgets/style.dart';
 
 /// Radius for all rounded rectangles.
 const double kRadius = 5;

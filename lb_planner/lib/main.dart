@@ -72,7 +72,7 @@ class App extends StatelessWidget {
 
           return MaterialApp(
             navigatorKey: kNavigator,
-            theme: themeData,
+            theme: appStyle,
             localizationsDelegates: const [
               LocaleNamesLocalizationsDelegate(),
               ...AppLocalizations.localizationsDelegates,
