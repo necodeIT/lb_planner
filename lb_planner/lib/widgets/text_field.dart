@@ -135,7 +135,7 @@ class LpTextField extends StatelessWidget {
       keyboardType: multiline ? TextInputType.multiline : null,
       maxLines: multiline ? null : 1,
       expands: multiline,
-      textAlignVertical: TextAlignVertical.top,
+      textAlignVertical: multiline ? TextAlignVertical.top : TextAlignVertical.center,
       decoration: InputDecoration(
         contentPadding: filled ? EdgeInsets.all(filledPadding) : EdgeInsets.symmetric(vertical: NcSpacing.smallSpacing),
         isDense: true,
