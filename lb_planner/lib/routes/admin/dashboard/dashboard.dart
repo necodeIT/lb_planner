@@ -1,12 +1,12 @@
 part of lbplanner_routes;
 
 /// The admin route.
-class AdminRoute extends StatelessWidget {
+class AdminDashboardRoute extends StatelessWidget {
   /// The admin route.
-  const AdminRoute({Key? key}) : super(key: key);
+  const AdminDashboardRoute({Key? key}) : super(key: key);
 
   /// The name of the route.
-  static const routeName = "/admin";
+  static const routeName = "/admin/dashboard";
 
   @override
   Widget build(BuildContext context) {

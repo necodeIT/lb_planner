@@ -66,7 +66,10 @@ class Sidebar extends StatelessWidget {
                         if (showAdmin)
                           SidebarItem(
                             icon: Icons.admin_panel_settings,
-                            route: AdminRoute.routeName,
+                            route: AdminLoginRoute.routeName,
+                            routes: const [
+                              AdminDashboardRoute.routeName,
+                            ],
                           ),
                         if (showAdmin) NcSpacing.small(),
                         SidebarItem(

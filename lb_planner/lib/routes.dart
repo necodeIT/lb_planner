@@ -65,13 +65,14 @@ part 'routes/calendar/modules_overview/calendar_modules_overview_month_header.da
 part 'routes/calendar/plan/calendar_plan_cell.dart';
 part 'routes/calendar/plan/calendar_plan_month.dart';
 part 'routes/calendar/plan/calendar_plan_month_navigator.dart';
-part 'routes/admin/admin.dart';
 part 'routes/calendar/plan/dropdown/dropdown_modules.dart';
 part 'routes/calendar/plan/dropdown/dropdown_members.dart';
 part 'routes/calendar/plan/dragable_module.dart';
 part 'routes/calendar/plan/dropdown/dropdown_body.dart';
 part 'routes/calendar/plan/dropdown/dropdown_header.dart';
 part 'routes/calendar/plan/dropdown/dropdown_members_member.dart';
+part 'routes/admin/login/login.dart';
+part 'routes/admin/dashboard/dashboard.dart';
 
 /// All routes the app has
 final Map<String, WidgetBuilder> kRoutes = {
@@ -81,7 +82,8 @@ final Map<String, WidgetBuilder> kRoutes = {
   SettingsRoute.routeName: (context) => SettingsRoute(),
   LoginSelectCoursesRoute.routeName: (context) => LoginSelectCoursesRoute(),
   CalendarModulesOverviewRoute.routeName: (context) => CalendarModulesOverviewRoute(),
-  AdminRoute.routeName: (context) => AdminRoute(),
+  AdminLoginRoute.routeName: (context) => AdminLoginRoute(),
+  AdminDashboardRoute.routeName: (context) => AdminDashboardRoute(),
   if (kDebugMode) TestRoute.routeName: (context) => TestRoute(),
 };
 
@@ -92,7 +94,8 @@ Map<String, String Function(BuildContext)> kRouteToTitle = {
   CalendarModulesOverviewRoute.routeName: (context) => context.t.calendar_routeName,
   SettingsRoute.routeName: (context) => context.t.settings_title,
   LoginSelectCoursesRoute.routeName: (context) => context.t.login_selectCourses_title,
-  AdminRoute.routeName: (context) => context.t.admin_routeName,
+  AdminLoginRoute.routeName: (context) => context.t.admin_login_routeName,
+  AdminDashboardRoute.routeName: (context) => context.t.admin_dashboard_routeName,
 };
 
 /// Observes navigation events.

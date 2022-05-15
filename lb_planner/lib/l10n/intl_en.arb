@@ -34,7 +34,11 @@
       }
     }
   },
-  "admin_routeName": "Admin",
+  "admin_dashboard_routeName": "Admin",
+  "admin_login_login": "Login",
+  "admin_login_pwPlaceholder": "Enter password...",
+  "admin_login_routeName": "Admin",
+  "admin_login_wrongPassword": "Wrong password!",
   "alertDialog_confirm": "OK",
   "calendar_modulesOverview_noCourses": "No courses enabled...",
   "calendar_modulesOverview_title": "Modues overview",
