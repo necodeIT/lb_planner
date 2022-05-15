@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:catcher/catcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localized_locales/flutter_localized_locales.dart';
@@ -30,6 +32,7 @@ void main() async {
     navigatorKey: kNavigator,
     releaseConfig: LpReportMode.config,
     debugConfig: LpReportMode.config,
+    ensureInitialized: true,
     runAppFunction: () => runThemedApp(
       appBuilder: App.builder,
       title: 'LB Planner',

@@ -2,10 +2,9 @@ import 'package:catcher/catcher.dart';
 import 'package:catcher/model/platform_type.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:lb_planner/utils.dart';
 import 'package:lb_planner/widgets.dart';
 import 'package:lbplanner_api/lbplanner_api.dart';
-import 'package:nekolib_ui/core.dart';
+import 'package:nekolib_utils/extensions.dart';
 import 'package:nekolib_utils/log.dart';
 
 /// Consumer wrapping the current route. Only use [WidgetRef.read].
@@ -39,7 +38,7 @@ _handleError(BuildContext context, WidgetRef ref, Object obj, [StackTrace? stack
     context,
     confirmIsBad: false,
     title: context.t.error_title,
-    body: NcBodyText(context.t.error_message(message)),
+    message: context.t.error_message(message),
     confirmText: context.t.error_report,
     cancelText: context.t.error_ingore,
     onConfirm: () => controller.submitFeedback(feedback),
@@ -61,8 +60,6 @@ class LpReportMode extends ReportMode {
   @override
   void requestAction(Report report, BuildContext? context) {
     context!;
-
-    print(report.errorDetails.toString().sha256());
 
     _handleError(staticRef as BuildContext, staticRef, report.errorDetails ?? report.error, report.stackTrace);
   }
@@ -106,14 +103,11 @@ class _LpLogger extends CatcherLogger {
   }
 }
 
-final _dragErrorHashes = [
-  " ca4734e3c501059b8f467da8da33956553f12b36d4492a26f9d6976da93776ce",
-  "600e3a7639c58c22d7ee94a2a562fc51d91d3fbf6dc3c4f6e45b00c60eca6cfc",
+final _dragErrors = [
+  "The ParentDataWidget Positioned wants to apply",
 ];
 
 bool _filterReport(Report report) {
-  var hash = (report.errorDetails ?? "").toString().sha256();
-
   // Filter out error that occurse when dragging a module.
-  return _dragErrorHashes.contains(hash);
+  return !_dragErrors.any(report.error.toString().containsCaseInsensitive);
 }

@@ -19,6 +19,7 @@ class _DraggableModuleState extends State<DraggableModule> {
   bool _isClearing = false;
 
   void _removeDeadline(WidgetRef ref) async {
+    throw "Test";
     if (_isClearing) return;
 
     setState(() {
@@ -28,7 +29,7 @@ class _DraggableModuleState extends State<DraggableModule> {
     var controller = ref.read(planController);
     var deadline = ref.read(planProvider).deadlines[widget.moduleId]!;
 
-    await controller.deleteDeadline(deadline);
+    // await controller.deleteDeadline(deadline);
 
     if (!mounted) return;
 

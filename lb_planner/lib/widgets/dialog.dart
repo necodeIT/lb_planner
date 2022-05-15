@@ -151,19 +151,29 @@ class _LpDialogState extends State<LpDialog> with TickerProviderStateMixin {
 void lpShowConfirmDialog(
   BuildContext context, {
   required String title,
-  required Widget body,
+  Widget? body,
   String? confirmText,
   String? cancelText,
   Function()? onConfirm,
   Function()? onCancel,
+  String? message,
   bool confirmIsBad = true,
 }) {
+  assert(body != null || message != null, 'Either body or message must be provided.');
+
   OverlayEntry? dialogOverLay;
   OverlayEntry background = _generateBackground();
 
   var dialog = LpDialog.confirm(
     title: title,
-    body: body,
+    body: ConditionalWidget(
+      condition: body != null,
+      trueWidget: (_) => body!,
+      falseWidget: (_) => NcCaptionText(
+        message!,
+        overflow: TextOverflow.visible,
+      ),
+    ),
     confirmText: confirmText,
     cancelText: cancelText,
     onConfirm: onConfirm,
