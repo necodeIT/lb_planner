@@ -4,17 +4,15 @@ import 'package:catcher/catcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localized_locales/flutter_localized_locales.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:lb_planner/assets.dart';
+import 'package:lb_planner/helpers.dart';
 import 'package:lb_planner/routes.dart';
 import 'package:lb_planner/updater.dart';
-import 'package:lb_planner/utils.dart';
 import 'package:lb_planner/widgets.dart';
 import 'package:lbplanner_api/lbplanner_api.dart';
 import 'package:nekolib_ui/core.dart';
 import 'package:nekolib_utils/log.dart';
 import 'package:window_manager/window_manager.dart';
-
-import 'assets.dart';
-import 'guard.dart';
 
 /// Navigator key for [Catcher].
 final kNavigator = GlobalKey<NavigatorState>();
