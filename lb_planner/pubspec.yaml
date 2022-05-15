@@ -35,7 +35,6 @@ dependencies:
   context_menus: ^1.0.1
   crypto: ^3.0.2
   cupertino_icons: ^1.0.2
-  dart_code_metrics: ^4.15.1
   enum_to_string: ^2.0.1
   flare_flutter: ^3.0.2
   flutter:
@@ -72,6 +71,7 @@ dependencies:
   window_manager: ^0.2.2
 
 dev_dependencies:
+  dart_code_metrics: ^4.15.1
   flutter_lints: ^1.0.0
   flutter_test:
     sdk: flutter
