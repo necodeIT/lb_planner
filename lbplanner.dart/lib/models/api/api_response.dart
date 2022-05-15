@@ -49,7 +49,7 @@ class RawApiResponse {
   /// Error message of the response.
   String get errorMessage => failed ? _body["message"] ?? _body["error"] ?? "" : "";
   
-  @overrid
+  @override
   String toString() => failed ? errorMessage : body.toString();
 }
 
