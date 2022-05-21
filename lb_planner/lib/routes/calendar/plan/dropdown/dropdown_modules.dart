@@ -14,6 +14,26 @@ class CalendarPlanDropDwonModules extends StatefulWidget {
 
 class _CalendarPlanDropDwonModulesState extends State<CalendarPlanDropDwonModules> {
   Future? _clearFuture;
+  Future? _ekFuture;
+
+  void _enableEk(WidgetRef ref, bool value) async {
+    if (_ekFuture != null) return;
+
+    var controller = ref.read(planController);
+
+    setState(() {
+      _ekFuture = controller.setPlanEkEnabled(value);
+    });
+
+    await _ekFuture;
+    await ref.read(modulesController).fetchModules();
+
+    if (!mounted) return;
+
+    setState(() {
+      _ekFuture = null;
+    });
+  }
 
   void _clearPlan(WidgetRef ref) async {
     if (_clearFuture != null) return;
@@ -65,7 +85,13 @@ class _CalendarPlanDropDwonModulesState extends State<CalendarPlanDropDwonModule
                 fontSize: CalendarPlanDropDownBody.fontSize,
               ),
               NcSpacing.xs(),
-              LpCheckbox(value: plan.ekEnabled, onChanged: (value) => ref.read(planController).setPlanEkEnabled(value)),
+              ConditionalWidget(
+                  condition: _ekFuture == null,
+                  trueWidget: (_) => LpCheckbox(value: plan.ekEnabled, onChanged: (value) => _enableEk(ref, value)),
+                  falseWidget: (_) => Padding(
+                        padding: const EdgeInsets.all(8.5), // Do not touch!
+                        child: LpLoadingIndicator.circular(),
+                      )),
             ],
           ),
           NcSpacing.medium(),
@@ -84,26 +110,18 @@ class _CalendarPlanDropDwonModulesState extends State<CalendarPlanDropDwonModule
                 ],
                 if (!accessLvl.isRead) NcSpacing.small(),
                 if (!accessLvl.isRead)
-                  LpButton(
-                    child: ConditionalWidget(
-                      condition: _clearFuture != null,
-                      trueWidget: (context) => LpLoadingIndicator.circular(
-                        size: CalendarPlanDropDownBody.fontSize,
-                        color: buttonTextColor,
-                      ),
-                      falseWidget: (context) => Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          NcTitleText(
-                            t.calendar_plan_dropdown_modules_clearPlan_btn,
-                            fontSize: LpButton.defaultFontSize,
-                            buttonText: true,
+                  LpButton.icon(
+                    text: _clearFuture != null ? null : t.calendar_plan_dropdown_modules_clearPlan_btn,
+                    child: _clearFuture == null
+                        ? null
+                        : LpLoadingIndicator.circular(
+                            size: CalendarPlanDropDownBody.fontSize,
+                            color: buttonTextColor,
                           ),
-                          NcSpacing.xs(),
-                          LpIcon(Feather.arrow_right_circle, color: buttonTextColor, size: LpButton.iconSize),
-                        ],
-                      ),
-                    ),
+                    icon: Feather.arrow_right_circle,
+                    size: MainAxisSize.max,
+                    alignment: MainAxisAlignment.spaceBetween,
+                    trailing: true,
                     onPressed: () => lpShowConfirmDialog(
                       context,
                       title: t.calendar_plan_dropdown_modules_clearPlan_title,

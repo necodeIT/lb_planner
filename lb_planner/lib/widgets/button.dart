@@ -16,6 +16,7 @@ class LpButton extends StatelessWidget {
     icon = null;
     trailing = null;
     size = null;
+    alignment = null;
   }
 
   /// A button that can be used to trigger an action with icons.
@@ -27,6 +28,7 @@ class LpButton extends StatelessWidget {
     this.color,
     required this.icon,
     this.size = MainAxisSize.min,
+    this.alignment = MainAxisAlignment.center,
     this.trailing = false,
     this.fontSize = defaultFontSize,
     this.padding = NcSpacing.smallSpacing,
@@ -61,6 +63,9 @@ class LpButton extends StatelessWidget {
   /// The [MainAxisSize] to use for the icon button.
   late final MainAxisSize? size;
 
+  /// The [MainAxisAlignment] to use for the icon button.
+  late final MainAxisAlignment? alignment;
+
   /// Whether [icon] should be at the end or at the beginning.
   late final bool? trailing;
 
@@ -77,7 +82,7 @@ class LpButton extends StatelessWidget {
         condition: icon != null,
         wrapper: (context, child) => Row(
           mainAxisSize: size!,
-          mainAxisAlignment: size == MainAxisSize.min ? MainAxisAlignment.center : MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: alignment!,
           children: [
             if (trailing!) child,
             if (trailing! && size == MainAxisSize.min) NcSpacing.small(),

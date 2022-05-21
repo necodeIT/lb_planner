@@ -98,26 +98,18 @@ class _CalendarPlanDropDownMembersState extends State<CalendarPlanDropDownMember
                 ],
                 if (plan.members.length > 1) NcSpacing.small(),
                 if (plan.members.length > 1)
-                  LpButton(
-                    child: ConditionalWidget(
-                      condition: _leaveFuture != null,
-                      trueWidget: (context) => LpLoadingIndicator.circular(
-                        size: CalendarPlanDropDownBody.fontSize,
-                        color: buttonTextColor,
-                      ),
-                      falseWidget: (context) => Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          NcTitleText(
-                            t.calendar_plan_dropdown_members_leavePlan_btn,
-                            fontSize: LpButton.defaultFontSize,
-                            buttonText: true,
+                  LpButton.icon(
+                    text: _leaveFuture != null ? null : t.calendar_plan_dropdown_members_leavePlan_btn,
+                    child: _leaveFuture == null
+                        ? null
+                        : LpLoadingIndicator.circular(
+                            size: CalendarPlanDropDownBody.fontSize,
+                            color: buttonTextColor,
                           ),
-                          NcSpacing.xs(),
-                          LpIcon(Feather.arrow_right_circle, color: buttonTextColor, size: LpButton.iconSize),
-                        ],
-                      ),
-                    ),
+                    icon: Feather.arrow_right_circle,
+                    size: MainAxisSize.max,
+                    alignment: MainAxisAlignment.spaceBetween,
+                    trailing: true,
                     onPressed: () => lpShowConfirmDialog(
                       context,
                       title: t.calendar_plan_dropdown_members_leavePlan_title,
