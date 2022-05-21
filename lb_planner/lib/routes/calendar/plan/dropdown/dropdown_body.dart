@@ -60,22 +60,25 @@ class _CalendarPlanDropDownBodyState extends State<CalendarPlanDropDownBody> {
         ),
         title: plan.name,
         // ignore: no-magic-number
-        width: screen.width * .25,
+        width: screen.width * .2,
         // ignore: no-magic-number
         height: screen.height * 0.6,
         child: Column(
           children: [
             NcSpacing.medium(),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Expanded(
+                Padding(
+                  padding: const EdgeInsets.only(left: NcSpacing.mediumSpacing),
                   child: CalendarPlanDropdownHeader(
                     active: _showModules,
                     onTap: showModules,
                     title: t.calendar_plan_dropdown_modules_title,
                   ),
                 ),
-                Expanded(
+                Padding(
+                  padding: const EdgeInsets.only(right: NcSpacing.mediumSpacing),
                   child: CalendarPlanDropdownHeader(
                     active: !_showModules,
                     onTap: showMembers,

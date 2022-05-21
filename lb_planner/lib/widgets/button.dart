@@ -10,7 +10,7 @@ class LpButton extends StatelessWidget {
     this.onPressed,
     this.color,
     this.fontSize = defaultFontSize,
-    this.padding = NcSpacing.smallSpacing,
+    this.padding = defaultPadding,
   }) : super(key: key) {
     assert(text != null || child != null, "Either text or child must be provided.");
     icon = null;
@@ -31,7 +31,7 @@ class LpButton extends StatelessWidget {
     this.alignment = MainAxisAlignment.center,
     this.trailing = false,
     this.fontSize = defaultFontSize,
-    this.padding = NcSpacing.smallSpacing,
+    this.padding = defaultPadding,
   }) : super(key: key) {
     assert(text != null || child != null, "Either text or child must be provided.");
     assert(icon != null, "Icon must be provided.");
@@ -73,7 +73,10 @@ class LpButton extends StatelessWidget {
   static const double iconSize = 19;
 
   /// The default [fontSize] to use.
-  static const double defaultFontSize = 13;
+  static const double defaultFontSize = 14;
+
+  /// The default [padding] to use.
+  static const double defaultPadding = NcSpacing.smallSpacing;
 
   @override
   Widget build(BuildContext context) {

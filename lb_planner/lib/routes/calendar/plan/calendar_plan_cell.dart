@@ -28,7 +28,9 @@ class CalendarPlanCellState extends State<CalendarPlanCell> {
     var plan = ref.read(planProvider);
     var controller = ref.read(planController);
 
-    var deadline = Deadline(moduleId: module, start: widget.day, end: widget.day);
+    var utc = DateTime.utc(widget.day.year, widget.day.month, widget.day.day);
+
+    var deadline = Deadline(moduleId: module, start: utc, end: utc);
 
     Future<RawApiResponse> future;
 

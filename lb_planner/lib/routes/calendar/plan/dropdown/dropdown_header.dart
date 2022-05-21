@@ -20,28 +20,29 @@ class CalendarPlanDropdownHeader extends StatelessWidget {
   /// The thickness of the indicator.
   static const double indicatorThickness = 4.0;
 
+  /// The width if the indicator.
+  static const double indicatorWidth = 85.0;
+
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (context, box) {
-      return ConditionalWrapper(
-        condition: !active,
-        wrapper: (context, child) => GestureDetector(child: child, onTap: onTap),
-        child: Column(mainAxisSize: MainAxisSize.min, children: [
-          NcTitleText(
-            title,
-            fontSize: fontSize,
+    return ConditionalWrapper(
+      condition: !active,
+      wrapper: (context, child) => GestureDetector(child: child, onTap: onTap),
+      child: Column(mainAxisSize: MainAxisSize.min, children: [
+        NcTitleText(
+          title,
+          fontSize: fontSize,
+        ),
+        NcSpacing.xs(),
+        Container(
+          width: indicatorWidth,
+          height: indicatorThickness,
+          decoration: BoxDecoration(
+            color: active ? accentColor : Colors.transparent,
+            borderRadius: BorderRadius.all(Radius.circular(kRadius)),
           ),
-          NcSpacing.xs(),
-          Container(
-            width: box.maxWidth * .5,
-            height: indicatorThickness,
-            decoration: BoxDecoration(
-              color: active ? accentColor : Colors.transparent,
-              borderRadius: BorderRadius.all(Radius.circular(kRadius)),
-            ),
-          ),
-        ]),
-      );
-    });
+        ),
+      ]),
+    );
   }
 }
