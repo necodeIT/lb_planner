@@ -55,6 +55,8 @@ class LpReportMode extends ReportMode {
     context!;
 
     _handleError(staticRef as BuildContext, staticRef, report.errorDetails ?? report.error, report.stackTrace);
+
+    if (kDebugMode && report.errorDetails != null) FlutterError.dumpErrorToConsole(report.errorDetails!, forceReport: true);
   }
 
   @override

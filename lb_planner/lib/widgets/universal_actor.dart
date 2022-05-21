@@ -51,7 +51,6 @@ class _UniversalActorState extends State<UniversalActor> {
 
         return rive.RiveAnimation.asset(
           widget.filename,
-          // animations: [animation],
           fit: widget.fit,
           alignment: widget.alignment,
           controllers: [_riveController],

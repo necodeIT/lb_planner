@@ -10,6 +10,6 @@ class AdminDashboardRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LpLoadingIndicator.penguin();
+    return LpLoadingIndicator.rive();
   }
 }

@@ -14,6 +14,13 @@ class CalendarPlanDropDownMembers extends StatefulWidget {
 
 class _CalendarPlanDropDownMembersState extends State<CalendarPlanDropDownMembers> {
   Future? _leaveFuture;
+  bool _inviteMode = false;
+
+  void _toggleInviteMode() {
+    setState(() {
+      _inviteMode = !_inviteMode;
+    });
+  }
 
   void _leavePlan(WidgetRef ref) async {
     if (_leaveFuture != null) return;
@@ -36,29 +43,48 @@ class _CalendarPlanDropDownMembersState extends State<CalendarPlanDropDownMember
     });
   }
 
+  bool _filterSearch(int id, Map<int, User> users) => users[id] != null && users[id]!.fullname.containsCaseInsensitive(widget.searchController.text);
+
   @override
   Widget build(context) {
     return Consumer(builder: (context, ref, _) {
       var plan = ref.watch(planProvider);
       var users = ref.watch(usersProvider);
 
-      var members = plan.members.keys.where((member) => users[member] != null && users[member]!.fullname.containsCaseInsensitive(widget.searchController.text)).toList();
+      var members = _inviteMode ? users.keys.where((id) => _filterSearch(id, users)).toList() : plan.members.keys.where((id) => _filterSearch(id, users)).toList();
 
       members.sort((id1, id2) {
         var a = users[id1]!;
         var b = users[id2]!;
 
-        var result = plan.members[id1]!.index.compareTo(plan.members[id2]!.index);
+        var result = _inviteMode ? 0 : plan.members[id1]!.index.compareTo(plan.members[id2]!.index);
 
         return result == 0 ? a.fullname.compareTo(b.fullname) : result;
       });
 
+      var accessLvl = _inviteMode ? PlanAccessLevels.read : plan.members[ref.read(userProvider).id]!;
+
       return Column(
         children: [
-          LpTextField.filled(
-            controller: widget.searchController,
-            placeholder: t.calendar_plan_dropdown_members_search,
-            fontSize: CalendarPlanDropDownBody.fontSize,
+          Row(
+            children: [
+              Expanded(
+                child: LpTextField.filled(
+                  controller: widget.searchController,
+                  placeholder: t.calendar_plan_dropdown_members_search,
+                  fontSize: CalendarPlanDropDownBody.fontSize,
+                ),
+              ),
+              if (accessLvl.isOwner) NcSpacing.xs(),
+              ConditionalWidget(
+                condition: accessLvl.isOwner,
+                trueWidget: (_) => GestureDetector(
+                  onTap: _toggleInviteMode,
+                  child: LpIcon(_inviteMode ? Icons.cancel_outlined : Icons.add_circle_outline, color: accentColor),
+                ),
+                falseWidget: (_) => SizedBox.shrink(),
+              ),
+            ],
           ),
           NcSpacing.medium(),
           Expanded(

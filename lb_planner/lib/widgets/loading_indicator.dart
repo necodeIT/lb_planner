@@ -16,8 +16,8 @@ class LpLoadingIndicator extends StatelessWidget {
   }
 
   /// Circular progress indicator with logo in the middle.
-  LpLoadingIndicator.penguin({Key? key, this.size, this.animation}) : super(key: key) {
-    type = _LpProgressIndicatorTypes.penguin;
+  LpLoadingIndicator.rive({Key? key, this.size, this.animation}) : super(key: key) {
+    type = _LpProgressIndicatorTypes.rive;
     backgroundColor = Colors.transparent;
     thickness = 0;
     color = null;
@@ -42,14 +42,14 @@ class LpLoadingIndicator extends StatelessWidget {
   /// Background color of the progress indicator.
   late final Color backgroundColor;
 
-  /// The animation to play when of type [LpLoadingIndicator.penguin].
+  /// The animation to play when of type [LpLoadingIndicator.rive].
   late final RiveAnimation? animation;
 
   @override
   Widget build(BuildContext context) {
     var color = this.color ?? accentColor;
     return ConditionalWrapper(
-      condition: type.isPenguin || type.isCircular,
+      condition: type.isRive || type.isCircular,
       wrapper: (context, child) => Center(child: child),
       child: ConditionalWrapper(
         condition: size != null,
@@ -90,11 +90,11 @@ class LpLoadingIndicator extends StatelessWidget {
 enum _LpProgressIndicatorTypes {
   circular,
   linear,
-  penguin,
+  rive,
 }
 
 extension on _LpProgressIndicatorTypes {
   bool get isCircular => this == _LpProgressIndicatorTypes.circular;
   bool get isLinear => this == _LpProgressIndicatorTypes.linear;
-  bool get isPenguin => this == _LpProgressIndicatorTypes.penguin;
+  bool get isRive => this == _LpProgressIndicatorTypes.rive;
 }

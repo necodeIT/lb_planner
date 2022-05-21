@@ -39,7 +39,7 @@ void main() async {
       minSize: Size(1200, 700),
       onLoad: load,
       windowHandleColor: () => primaryColor,
-      loadingWidgetBuilder: (_) => LpLoadingIndicator.penguin(animation: animation),
+      loadingWidgetBuilder: (_) => LpLoadingIndicator.rive(animation: animation),
     ),
   );
 }

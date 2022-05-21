@@ -14,6 +14,9 @@ class AdminLoginRoute extends StatefulWidget {
   /// The width of the login form.
   static const double width = 450;
 
+  /// The font size of the user name.
+  static const double fontSize = 30;
+
   /// Cache manager for the profile image.
   static CacheManager get cacheManager => CacheManager(
         Config(
@@ -31,6 +34,13 @@ class AdminLoginRoute extends StatefulWidget {
 class _AdminLoginRouteState extends State<AdminLoginRoute> {
   Future<RawApiResponse>? _loginFuture;
   RawApiResponse? _loginResponse;
+  bool _showPassword = false;
+
+  _toggleShowPassword() {
+    setState(() {
+      _showPassword = !_showPassword;
+    });
+  }
 
   final TextEditingController _pwController = TextEditingController();
 
@@ -85,14 +95,26 @@ class _AdminLoginRouteState extends State<AdminLoginRoute> {
                 ),
               ),
               NcSpacing.xl(),
+              NcCaptionText(
+                user.fullname,
+                fontSize: AdminLoginRoute.fontSize,
+              ),
+              NcSpacing.xl(),
               NcSpacing.xl(),
               LpTextField(
                 autoFocus: true,
                 controller: _pwController,
-                obscureText: true,
+                obscureText: !_showPassword,
                 errorText: (_loginResponse?.failed ?? false) ? t.admin_login_wrongPassword : null,
                 placeholder: t.admin_login_pwPlaceholder,
                 onSubmitted: (_) => _login(ref),
+                suffix: GestureDetector(
+                  child: LpIcon(
+                    _showPassword ? Icons.visibility_off : Icons.visibility,
+                    size: LpTextField.defaultFontSize,
+                  ),
+                  onTap: _toggleShowPassword,
+                ),
               ),
               NcSpacing.medium(),
               SizedBox(

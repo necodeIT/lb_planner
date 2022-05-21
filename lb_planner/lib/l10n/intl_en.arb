@@ -1,4 +1,13 @@
 {
+  "@error_message": {
+    "description": "Error message text",
+    "placeholders": {
+      "error": {
+        "example": "NoSuchMethod Exception",
+        "type": "String"
+      }
+    }
+  },
   "@settings_feedback_failed_message": {
     "description": "Error message when feedback submission fails",
     "placeholders": {
@@ -34,15 +43,6 @@
       }
     }
   },
-  "@error_message": {
-    "description": "Error message text",
-    "placeholders": {
-      "error": {
-        "example": "NoSuchMethod Exception",
-        "type": "String"
-      }
-    }
-  },
   "admin_dashboard_routeName": "Admin",
   "admin_login_login": "Login",
   "admin_login_pwPlaceholder": "Enter password...",
@@ -52,6 +52,9 @@
   "calendar_modulesOverview_noCourses": "No courses enabled...",
   "calendar_modulesOverview_title": "Modues overview",
   "calendar_plan_deleteDeadline": "Remove deadline",
+  "calendar_plan_dropdown_members_inviteUsers_btn": "Invite users",
+  "calendar_plan_dropdown_members_inviteUsers_search": "Search for the users you want to invite...",
+  "calendar_plan_dropdown_members_inviteUsers_title": "Invite users",
   "calendar_plan_dropdown_members_leavePlan_btn": "Leave plan",
   "calendar_plan_dropdown_members_leavePlan_message": "Are you sure you want to leave this plan?\n\nYou may get invited again.",
   "calendar_plan_dropdown_members_leavePlan_title": "Leave plan?",
