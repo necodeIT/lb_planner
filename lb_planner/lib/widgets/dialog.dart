@@ -89,62 +89,71 @@ class _LpDialogState extends State<LpDialog> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return ScaleTransition(
-      child: AlertDialog(
-        title: NcTitleText(widget.title, fontSize: LpDialog.titleFontSize),
-        titlePadding: EdgeInsets.all(LpDialog.padding),
-        buttonPadding: EdgeInsets.only(left: LpDialog.padding, right: LpDialog.padding),
-        contentPadding: EdgeInsets.only(bottom: LpDialog.padding, left: LpDialog.padding, right: LpDialog.padding),
-        content: ConstrainedBox(
-          constraints: BoxConstraints(
-            minWidth: MediaQuery.of(context).size.width * LpDialog.widthFactor,
-            maxHeight: MediaQuery.of(context).size.height * LpDialog.heightFactor,
-            maxWidth: MediaQuery.of(context).size.width * LpDialog.widthFactor,
-          ),
-          child: SingleChildScrollView(
-            controller: ScrollController(),
-            child: widget.body,
-          ),
+    return FadeTransition(
+      // ignore: no-magic-number
+      opacity: Tween<double>(begin: 0.4, end: 1).animate(
+        CurvedAnimation(
+          parent: _controller,
+          curve: Interval(0.0, 0.5),
         ),
-        actions: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              if (!widget.confirmOnly)
+      ),
+      child: ScaleTransition(
+        child: AlertDialog(
+          title: NcTitleText(widget.title, fontSize: LpDialog.titleFontSize),
+          titlePadding: EdgeInsets.all(LpDialog.padding),
+          buttonPadding: EdgeInsets.only(left: LpDialog.padding, right: LpDialog.padding),
+          contentPadding: EdgeInsets.only(bottom: LpDialog.padding, left: LpDialog.padding, right: LpDialog.padding),
+          content: ConstrainedBox(
+            constraints: BoxConstraints(
+              minWidth: MediaQuery.of(context).size.width * LpDialog.widthFactor,
+              maxHeight: MediaQuery.of(context).size.height * LpDialog.heightFactor,
+              maxWidth: MediaQuery.of(context).size.width * LpDialog.widthFactor,
+            ),
+            child: SingleChildScrollView(
+              controller: ScrollController(),
+              child: widget.body,
+            ),
+          ),
+          actions: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                if (!widget.confirmOnly)
+                  LpButton(
+                    text: widget.cancelText ?? context.t.dialog_cancel,
+                    color: widget.confirmIsBad ? accentColor : errorColor,
+                    fontSize: LpDialog.btnFontSize,
+                    padding: LpDialog.btnPadding,
+                    onPressed: () async {
+                      await _removeFromWidgetTree();
+                      widget.onCancel?.call();
+                    },
+                  ),
+                NcSpacing.medium(),
                 LpButton(
-                  text: widget.cancelText ?? context.t.dialog_cancel,
-                  color: widget.confirmIsBad ? accentColor : errorColor,
+                  text: widget.confirmText ?? (widget.confirmOnly ? context.t.alertDialog_confirm : context.t.dialog_confirm),
+                  color: widget.confirmIsBad ? errorColor : accentColor,
                   fontSize: LpDialog.btnFontSize,
                   padding: LpDialog.btnPadding,
                   onPressed: () async {
                     await _removeFromWidgetTree();
-                    widget.onCancel?.call();
+                    widget.onConfirm?.call();
                   },
                 ),
-              NcSpacing.medium(),
-              LpButton(
-                text: widget.confirmText ?? (widget.confirmOnly ? context.t.alertDialog_confirm : context.t.dialog_confirm),
-                color: widget.confirmIsBad ? errorColor : accentColor,
-                fontSize: LpDialog.btnFontSize,
-                padding: LpDialog.btnPadding,
-                onPressed: () async {
-                  await _removeFromWidgetTree();
-                  widget.onConfirm?.call();
-                },
-              ),
-            ],
-          )
-        ],
-        backgroundColor: NcThemes.current.primaryColor,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(kRadius)),
+              ],
+            )
+          ],
+          backgroundColor: NcThemes.current.primaryColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(kRadius)),
+          ),
         ),
-      ),
-      // ignore: no-magic-number
-      scale: Tween<double>(begin: 1, end: 0.85).animate(
-        CurvedAnimation(
-          parent: _controller,
-          curve: Interval(0.0, 0.5, curve: kDialogAnimationCurve),
+        // ignore: no-magic-number
+        scale: Tween<double>(begin: 1, end: 0.85).animate(
+          CurvedAnimation(
+            parent: _controller,
+            curve: Interval(0.0, 0.5, curve: kDialogAnimationCurve),
+          ),
         ),
       ),
     );
