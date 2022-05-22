@@ -17,6 +17,8 @@ class _CalendarPlanDropDwonModulesState extends State<CalendarPlanDropDwonModule
   Future? _ekFuture;
 
   void _enableEk(WidgetRef ref, bool value) async {
+    throw "test";
+
     if (_ekFuture != null) return;
 
     var controller = ref.read(planController);

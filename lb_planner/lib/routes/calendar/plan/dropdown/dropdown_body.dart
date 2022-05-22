@@ -20,7 +20,45 @@ class CalendarPlanDropDownBody extends StatefulWidget {
 
 class _CalendarPlanDropDownBodyState extends State<CalendarPlanDropDownBody> {
   bool _showModules = true;
+  bool _planNameEditMode = false;
+
+  Future? _planNameFuture;
+
   final TextEditingController _searchController = TextEditingController();
+  final TextEditingController _planNameController = TextEditingController();
+
+  void _toggleEditMode(WidgetRef ref) {
+    var plan = ref.read(planProvider);
+
+    setState(() {
+      _planNameEditMode = !_planNameEditMode;
+
+      if (_planNameEditMode) {
+        _planNameController.text = plan.name;
+      }
+    });
+  }
+
+  void _setPlanName(WidgetRef ref) async {
+    var controller = ref.read(planController);
+
+    setState(() {
+      _planNameFuture = controller.setPlanName(_planNameController.text);
+    });
+
+    await _planNameFuture;
+
+    setState(() {
+      _planNameEditMode = false;
+    });
+
+    if (!mounted) return;
+
+    setState(() {
+      _planNameFuture = null;
+      _planNameEditMode = false;
+    });
+  }
 
   void showModules() {
     setState(() {
@@ -58,7 +96,21 @@ class _CalendarPlanDropDownBodyState extends State<CalendarPlanDropDownBody> {
             color: errorColor,
           ),
         ),
-        title: plan.name,
+        leading: Row(
+          children: [
+            ConditionalWidget(
+              condition: _planNameEditMode,
+              trueWidget: (_) => LpTextField(
+                controller: _planNameController,
+                onSubmitted: (text) => _setPlanName(ref),
+              ),
+              falseWidget: (_) => GestureDetector(
+                onDoubleTap: () => _toggleEditMode(ref),
+                child: NcTitleText(plan.name, fontSize: LpContainer.titleFontSize),
+              ),
+            )
+          ],
+        ),
         // ignore: no-magic-number
         width: screen.width * .2,
         // ignore: no-magic-number

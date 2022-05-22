@@ -63,7 +63,11 @@ class CalendarPlanCellState extends State<CalendarPlanCell> {
 
     return Consumer(builder: (context, ref, _) {
       var plan = ref.watch(planProvider);
-      List<int> modules = plan.deadlines.values.where((deadline) => deadline.end.isSameDate(widget.day)).map((deadline) => deadline.moduleId).toList();
+
+      var allModules = ref.watch(modulesProvider);
+      List<int> deadlines = plan.deadlines.values.where((deadline) => deadline.end.isSameDate(widget.day)).map((deadline) => deadline.moduleId).toList();
+
+      var modules = allModules.keys.where(deadlines.contains).toList();
 
       var accessLvl = plan.members[ref.read(userProvider).id];
 

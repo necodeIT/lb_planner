@@ -20,9 +20,6 @@ final kNavigator = GlobalKey<NavigatorState>();
 void main() async {
   Logger.init(autoSave: true, appStoragePath: (await Disk.appDir).path);
 
-  WidgetsFlutterBinding.ensureInitialized();
-  await windowManager.ensureInitialized();
-
   // Randomly selected outside of build for consistency of the animtion when applying the theme
   var animation = (kLoadingAnimations.toList()..shuffle()).first;
 
@@ -30,17 +27,21 @@ void main() async {
     navigatorKey: kNavigator,
     releaseConfig: LpReportMode.config,
     debugConfig: LpReportMode.config,
-    ensureInitialized: true,
-    runAppFunction: () => runThemedApp(
-      appBuilder: App.builder,
-      title: 'LB Planner',
-      appIcon: LpLogo.svg,
-      // ignore: no-magic-number
-      minSize: Size(1200, 700),
-      onLoad: load,
-      windowHandleColor: () => primaryColor,
-      loadingWidgetBuilder: (_) => LpLoadingIndicator.rive(animation: animation),
-    ),
+    runAppFunction: () async {
+      WidgetsFlutterBinding.ensureInitialized();
+      await windowManager.ensureInitialized();
+
+      runThemedApp(
+        appBuilder: App.builder,
+        title: 'LB Planner',
+        appIcon: LpLogo.svg,
+        // ignore: no-magic-number
+        minSize: Size(1200, 700),
+        onLoad: load,
+        windowHandleColor: () => primaryColor,
+        loadingWidgetBuilder: (_) => LpLoadingIndicator.rive(animation: animation),
+      );
+    },
   );
 }
 

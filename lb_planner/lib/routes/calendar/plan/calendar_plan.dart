@@ -59,7 +59,6 @@ class _CalendarPlanRouteState extends State<CalendarPlanRoute> {
               popupBuilder: CalendarPlanDropDownBody.popupBuilder,
               backgroundDismissable: false,
               child: LpIcon(Icons.more_horiz),
-              key: GlobalKey(),
             ),
           ],
         ),
