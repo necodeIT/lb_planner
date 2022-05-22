@@ -10,8 +10,11 @@ WidgetRef get staticRef {
 WidgetRef? _staticRef;
 
 _handleError(BuildContext context, WidgetRef ref, Object obj, [StackTrace? stackTrace]) {
-  var controller = ref.read(feedbackController);
   var user = ref.read(userProvider);
+
+  if (user.isEmpty) return;
+
+  var controller = ref.read(feedbackController);
 
   if (user.isEmpty) return;
 

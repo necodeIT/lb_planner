@@ -40,10 +40,11 @@ class _CalendarPlanDropDownInviteUsersDialogState extends State<CalendarPlanDrop
               fontSize: CalendarPlanDropDownInviteUsersDialog.fontSize,
             ),
             NcSpacing.medium(),
-            for (var userId in users) ...[
-              CalendarPlanDropDownInviteUsersUser(userId: userId),
-              NcSpacing.small(),
-            ],
+            for (var userId in users)
+              if (userId != user.id) ...[
+                CalendarPlanDropDownInviteUsersUser(userId: userId),
+                NcSpacing.small(),
+              ],
             // Expanded(
             //   child: ListView(
             //     children: [

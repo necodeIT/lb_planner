@@ -80,21 +80,22 @@ class _CalendarPlanDropDownMembersState extends State<CalendarPlanDropDownMember
                 NcSpacing.small(),
                 Row(
                   children: [
-                    Expanded(
-                      child: LpButton.icon(
-                        text: t.calendar_plan_dropdown_members_inviteUsers_btn,
-                        icon: plan.members.length > 1 ? null : Feather.arrow_right_circle,
-                        size: MainAxisSize.max,
-                        alignment: MainAxisAlignment.spaceBetween,
-                        trailing: true,
-                        onPressed: () => lpShowAlertDialog(
-                          context,
-                          title: t.calendar_plan_dropdown_members_inviteUsers_title,
-                          body: CalendarPlanDropDownInviteUsersDialog(),
+                    if (accessLvl.isOwner)
+                      Expanded(
+                        child: LpButton.icon(
+                          text: t.calendar_plan_dropdown_members_inviteUsers_btn,
+                          icon: plan.members.length > 1 ? null : Feather.arrow_right_circle,
+                          size: MainAxisSize.max,
+                          alignment: MainAxisAlignment.spaceBetween,
+                          trailing: true,
+                          onPressed: () => lpShowAlertDialog(
+                            context,
+                            title: t.calendar_plan_dropdown_members_inviteUsers_title,
+                            body: CalendarPlanDropDownInviteUsersDialog(),
+                          ),
                         ),
                       ),
-                    ),
-                    if (plan.members.length > 1) NcSpacing.small(),
+                    if (plan.members.length > 1 && accessLvl.isOwner) NcSpacing.small(),
                     if (plan.members.length > 1)
                       Expanded(
                         child: LpButton.icon(
