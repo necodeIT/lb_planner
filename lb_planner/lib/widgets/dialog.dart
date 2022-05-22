@@ -13,12 +13,21 @@ class LpDialog extends StatefulWidget {
     this.onCancel,
     required this.removeFromWidgetTree,
     this.confirmIsBad = true,
+    required this.scrollable,
   }) : super(key: key) {
     confirmOnly = false;
   }
 
   /// Themed [AlertDialog] widget with just one button.
-  LpDialog.alert({Key? key, required this.title, required this.body, this.onConfirm, this.confirmText, required this.removeFromWidgetTree}) : super(key: key) {
+  LpDialog.alert({
+    Key? key,
+    required this.title,
+    required this.body,
+    this.onConfirm,
+    this.confirmText,
+    required this.removeFromWidgetTree,
+    required this.scrollable,
+  }) : super(key: key) {
     confirmIsBad = false;
     confirmOnly = true;
   }
@@ -40,6 +49,9 @@ class LpDialog extends StatefulWidget {
 
   /// The boolean that determines if the dialog has just one button.
   late final bool confirmOnly;
+
+  /// Whether the dialog body should be scrollable.
+  final bool scrollable;
 
   /// The callback that is called when the user confirms the dialog.
   final Function()? onConfirm;
@@ -112,8 +124,12 @@ class _LpDialogState extends State<LpDialog> with TickerProviderStateMixin {
             child: AnimatedSize(
               duration: kNormalAnimationDuration,
               curve: kAnimationCurve,
-              child: SingleChildScrollView(
-                controller: ScrollController(),
+              child: ConditionalWrapper(
+                condition: widget.scrollable,
+                wrapper: (context, child) => SingleChildScrollView(
+                  controller: ScrollController(),
+                  child: child,
+                ),
                 child: widget.body,
               ),
             ),
@@ -175,6 +191,7 @@ void lpShowConfirmDialog(
   Function()? onCancel,
   String? message,
   bool confirmIsBad = true,
+  bool scrollable = true,
 }) {
   assert(body != null || message != null, 'Either body or message must be provided.');
 
@@ -196,6 +213,7 @@ void lpShowConfirmDialog(
     onConfirm: onConfirm,
     onCancel: onCancel,
     confirmIsBad: confirmIsBad,
+    scrollable: scrollable,
     removeFromWidgetTree: () {
       dialogOverLay!.remove();
       background.remove();
@@ -218,6 +236,7 @@ void lpShowAlertDialog(
   String? message,
   String? confirmText,
   Function()? onConfirm,
+  bool scrollable = true,
 }) {
   assert(body != null || message != null, 'Either body or message must be provided.');
 
@@ -236,6 +255,7 @@ void lpShowAlertDialog(
     ),
     onConfirm: onConfirm,
     confirmText: confirmText,
+    scrollable: scrollable,
     removeFromWidgetTree: () {
       dialogOverLay!.remove();
       background.remove();

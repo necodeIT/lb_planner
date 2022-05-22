@@ -38,19 +38,21 @@ class _CalendarPlanDropDownInviteUsersDialogState extends State<CalendarPlanDrop
               controller: _searchController,
               placeholder: t.calendar_plan_dropdown_members_inviteUsers_search,
               fontSize: CalendarPlanDropDownInviteUsersDialog.fontSize,
+              prefixIcon: Ionicons.search,
             ),
             NcSpacing.medium(),
-            for (var userId in users)
-              if (userId != user.id) ...[
-                CalendarPlanDropDownInviteUsersUser(userId: userId),
-                NcSpacing.small(),
-              ],
-            // Expanded(
-            //   child: ListView(
-            //     children: [
-            //     ],
-            //   ),
-            // ),
+            Expanded(
+              child: ListView(
+                controller: ScrollController(),
+                children: [
+                  for (var userId in users)
+                    if (userId != user.id) ...[
+                      CalendarPlanDropDownInviteUsersUser(userId: userId),
+                      NcSpacing.small(),
+                    ],
+                ],
+              ),
+            ),
           ],
         );
       },

@@ -41,91 +41,94 @@ class _CalendarPlanDropDownMembersState extends State<CalendarPlanDropDownMember
 
   @override
   Widget build(context) {
-    return Consumer(builder: (context, ref, _) {
-      var plan = ref.watch(planProvider);
-      var users = ref.watch(usersProvider);
+    return Consumer(
+      builder: (context, ref, _) {
+        var plan = ref.watch(planProvider);
+        var users = ref.watch(usersProvider);
 
-      var members = plan.members.keys.where((id) => CalendarPlanDropDownMembers.filterSearch(id, users, widget.searchController.text)).toList();
+        var members = plan.members.keys.where((id) => CalendarPlanDropDownMembers.filterSearch(id, users, widget.searchController.text)).toList();
 
-      // var potentialMembers = users.values.where((user) => _filterSearch(user.id, users)).toList();
+        // var potentialMembers = users.values.where((user) => _filterSearch(user.id, users)).toList();
 
-      members.sort((id1, id2) {
-        var a = users[id1]!;
-        var b = users[id2]!;
+        members.sort((id1, id2) {
+          var a = users[id1]!;
+          var b = users[id2]!;
 
-        var result = plan.members[id1]!.index.compareTo(plan.members[id2]!.index);
+          var result = plan.members[id1]!.index.compareTo(plan.members[id2]!.index);
 
-        return result == 0 ? a.fullname.compareTo(b.fullname) : result;
-      });
+          return result == 0 ? a.fullname.compareTo(b.fullname) : result;
+        });
 
-      var accessLvl = plan.members[ref.read(userProvider).id]!;
+        var accessLvl = plan.members[ref.read(userProvider).id]!;
 
-      return Column(
-        children: [
-          LpTextField.filled(
-            controller: widget.searchController,
-            placeholder: t.calendar_plan_dropdown_members_search,
-            fontSize: CalendarPlanDropDownBody.fontSize,
-          ),
-          NcSpacing.medium(),
-          Expanded(
-            child: ListView(
-              children: [
-                for (var member in members) ...[
-                  CalendarPlanMembersMember(
-                    memberId: member,
-                  ),
-                  NcSpacing.xs(),
-                ],
-                NcSpacing.small(),
-                Row(
-                  children: [
-                    if (accessLvl.isOwner)
-                      Expanded(
-                        child: LpButton.icon(
-                          text: t.calendar_plan_dropdown_members_inviteUsers_btn,
-                          icon: plan.members.length > 1 ? null : Feather.arrow_right_circle,
-                          size: MainAxisSize.max,
-                          alignment: MainAxisAlignment.spaceBetween,
-                          trailing: true,
-                          onPressed: () => lpShowAlertDialog(
-                            context,
-                            title: t.calendar_plan_dropdown_members_inviteUsers_title,
-                            body: CalendarPlanDropDownInviteUsersDialog(),
-                          ),
-                        ),
-                      ),
-                    if (plan.members.length > 1 && accessLvl.isOwner) NcSpacing.small(),
-                    if (plan.members.length > 1)
-                      Expanded(
-                        child: LpButton.icon(
-                          text: _leaveFuture != null ? null : t.calendar_plan_dropdown_members_leavePlan_btn,
-                          child: _leaveFuture == null
-                              ? null
-                              : LpLoadingIndicator.circular(
-                                  size: CalendarPlanDropDownBody.fontSize,
-                                  color: buttonTextColor,
-                                ),
-                          icon: accessLvl.isOwner ? null : Feather.arrow_right_circle,
-                          size: MainAxisSize.max,
-                          alignment: MainAxisAlignment.spaceBetween,
-                          trailing: true,
-                          onPressed: () => lpShowConfirmDialog(
-                            context,
-                            title: t.calendar_plan_dropdown_members_leavePlan_title,
-                            message: t.calendar_plan_dropdown_members_leavePlan_message,
-                            onConfirm: () => _leavePlan(ref),
-                          ),
-                          color: errorColor,
-                        ),
-                      ),
-                  ],
-                ),
-              ],
+        return Column(
+          children: [
+            LpTextField.filled(
+              controller: widget.searchController,
+              placeholder: t.calendar_plan_dropdown_members_search,
+              fontSize: CalendarPlanDropDownBody.fontSize,
             ),
-          ),
-        ],
-      );
-    });
+            NcSpacing.medium(),
+            Expanded(
+              child: ListView(
+                children: [
+                  for (var member in members) ...[
+                    CalendarPlanMembersMember(
+                      memberId: member,
+                    ),
+                    NcSpacing.xs(),
+                  ],
+                  NcSpacing.small(),
+                  Row(
+                    children: [
+                      if (accessLvl.isOwner)
+                        Expanded(
+                          child: LpButton.icon(
+                            text: t.calendar_plan_dropdown_members_inviteUsers_btn,
+                            icon: plan.members.length > 1 ? null : Feather.arrow_right_circle,
+                            size: MainAxisSize.max,
+                            alignment: MainAxisAlignment.spaceBetween,
+                            trailing: true,
+                            onPressed: () => lpShowAlertDialog(
+                              context,
+                              title: t.calendar_plan_dropdown_members_inviteUsers_title,
+                              body: CalendarPlanDropDownInviteUsersDialog(),
+                              scrollable: false,
+                            ),
+                          ),
+                        ),
+                      if (plan.members.length > 1 && accessLvl.isOwner) NcSpacing.small(),
+                      if (plan.members.length > 1)
+                        Expanded(
+                          child: LpButton.icon(
+                            text: _leaveFuture != null ? null : t.calendar_plan_dropdown_members_leavePlan_btn,
+                            child: _leaveFuture == null
+                                ? null
+                                : LpLoadingIndicator.circular(
+                                    size: CalendarPlanDropDownBody.fontSize,
+                                    color: buttonTextColor,
+                                  ),
+                            icon: accessLvl.isOwner ? null : Feather.arrow_right_circle,
+                            size: MainAxisSize.max,
+                            alignment: MainAxisAlignment.spaceBetween,
+                            trailing: true,
+                            onPressed: () => lpShowConfirmDialog(
+                              context,
+                              title: t.calendar_plan_dropdown_members_leavePlan_title,
+                              message: t.calendar_plan_dropdown_members_leavePlan_message,
+                              onConfirm: () => _leavePlan(ref),
+                            ),
+                            color: errorColor,
+                          ),
+                        ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        );
+      },
+    );
   }
 }
