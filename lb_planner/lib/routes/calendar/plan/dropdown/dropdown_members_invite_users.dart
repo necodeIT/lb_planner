@@ -46,7 +46,7 @@ class _CalendarPlanDropDownInviteUsersDialogState extends State<CalendarPlanDrop
                 potential: true,
                 fontSize: CalendarPlanDropDownInviteUsersDialog.fontSize,
               ),
-              NcSpacing.xs(),
+              NcSpacing.small(),
             ],
             // Expanded(
             //   child: ListView(

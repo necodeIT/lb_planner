@@ -50,3 +50,9 @@ ThemeData get appStyle => ThemeData(
         ),
       ),
     );
+
+/// Multiplier to apply to icons and the font size in use.
+const kIconSizeMultiplier = 1.2;
+
+/// Applies [kIconSizeMultiplier] to the given [fontSize].
+double? scaleIcon(num? fontSize) => fontSize != null ? fontSize * kIconSizeMultiplier : null;

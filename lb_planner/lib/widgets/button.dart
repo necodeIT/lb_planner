@@ -87,7 +87,7 @@ class LpButton extends StatelessWidget {
             children: [
               if (trailing!) child,
               if (trailing! && size == MainAxisSize.min) NcSpacing.small(),
-              Icon(icon, color: buttonTextColor, size: fontSize),
+              Icon(icon, color: buttonTextColor, size: scaleIcon(fontSize)),
               if (!trailing! && size == MainAxisSize.min) NcSpacing.small(),
               if (!trailing!) child,
             ],

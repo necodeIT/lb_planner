@@ -4,7 +4,6 @@ export 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import 'package:context_menus/context_menus.dart';
 import 'package:flare_flutter/flare_actor.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -33,7 +32,6 @@ part 'widgets/logo.dart';
 part 'widgets/app_icon.dart';
 part 'widgets/text_field.dart';
 part 'widgets/icon.dart';
-part 'widgets/animated_fade_out_in.dart';
 part 'widgets/loading_indicator.dart';
 part 'widgets/dialog.dart';
 part 'widgets/container.dart';

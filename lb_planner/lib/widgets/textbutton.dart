@@ -53,13 +53,13 @@ class LpTextButton extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          if (leadingIcon != null) LpIcon(leadingIcon, size: fontSize, color: color),
+          if (leadingIcon != null) LpIcon(leadingIcon, size: scaleIcon(fontSize), color: color),
           if (leading != null && leadingIcon == null) leading!,
           if (leadingIcon != null || leading != null) NcSpacing.small(),
           NcCaptionText(text, fontSize: fontSize, color: color, decoration: decoration),
           if (trailingIcon != null || trailing != null) NcSpacing.small(),
           if (trailing != null && trailingIcon == null) trailing!,
-          if (trailingIcon != null) LpIcon(trailingIcon, size: fontSize, color: color),
+          if (trailingIcon != null) LpIcon(trailingIcon, size: scaleIcon(fontSize), color: color),
         ],
       ),
     );

@@ -125,20 +125,21 @@ class _CalendarPlanMembersMemberState extends State<CalendarPlanMembersMember> {
                   // TODO: Check if user is already invited.
 
                   return ConditionalWidget(
-                      condition: _inviteFuture != null,
-                      trueWidget: (_) => LpLoadingIndicator.circular(),
-                      falseWidget: (context) => ConditionalWrapper(
-                            condition: onTap != null,
-                            wrapper: (context, child) => GestureDetector(
-                              onTap: onTap,
-                              child: child,
-                            ),
-                            child: LpIcon(
-                              icon,
-                              color: color,
-                              size: fontSize,
-                            ),
-                          ));
+                    condition: _inviteFuture != null,
+                    trueWidget: (_) => LpLoadingIndicator.circular(),
+                    falseWidget: (context) => ConditionalWrapper(
+                      condition: onTap != null,
+                      wrapper: (context, child) => GestureDetector(
+                        onTap: onTap,
+                        child: child,
+                      ),
+                      child: LpIcon(
+                        icon,
+                        color: color,
+                        // size: fontSize,
+                      ),
+                    ),
+                  );
                 },
                 falseWidget: (context) {
                   var accessLevel = plan.members[widget.memberId]!;
