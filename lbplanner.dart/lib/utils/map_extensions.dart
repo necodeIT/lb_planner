@@ -128,7 +128,7 @@ extension ModelMappingExtensions on Map<String, dynamic> {
     body["inviter"] = this["inviterid"];
     body["planId"] = this["planid"];
     body["status"] = PlanInviteStatus.values[this["status"]].name;
-    body["timeStamp"] = DateTime.fromMillisecondsSinceEpoch(this["timestamp"] * 1000);
+    body["timeStamp"] = DateTime.fromMillisecondsSinceEpoch(this["timestamp"] * 1000).toString();
 
     return body;
   }
