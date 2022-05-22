@@ -14,7 +14,7 @@ abstract class LocalizedWidget extends StatefulWidget {
 
 class _LocalizedWidgetState extends State<LocalizedWidget> {
   @override
-  Widget build(BuildContext context) => widget.build(context, context.t);
+  Widget build(BuildContext context) => widget.build(context, t);
 }
 
 /// Provides localized strings for the app.
