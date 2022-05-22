@@ -53,6 +53,8 @@ class PlanApi {
       params: {
         "planid": data.id,
         "userid": userId,
+      },
+      body: {
         "planname": data.name,
         "enableek": data.ekEnabled.intValue,
       },
