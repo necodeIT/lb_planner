@@ -68,9 +68,6 @@ class LpButton extends StatelessWidget {
   /// Whether [icon] should be at the end or at the beginning.
   late final bool? trailing;
 
-  /// Size of [LpButton.icon].
-  static const double iconSize = 19;
-
   /// The default [fontSize] to use.
   static const double defaultFontSize = 14;
 
@@ -90,7 +87,7 @@ class LpButton extends StatelessWidget {
             children: [
               if (trailing!) child,
               if (trailing! && size == MainAxisSize.min) NcSpacing.small(),
-              Icon(icon, color: buttonTextColor, size: iconSize),
+              Icon(icon, color: buttonTextColor, size: fontSize),
               if (!trailing! && size == MainAxisSize.min) NcSpacing.small(),
               if (!trailing!) child,
             ],
