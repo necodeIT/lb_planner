@@ -250,6 +250,7 @@ class modules_helper {
      */
     public static function get_module(int $moduleid, int $userid) : array {
         global $DB;
+        date_default_timezone_set('UTC');
 
             // Get module data.
             $module = $DB->get_record(self::ASSIGN_TABLE, array('id' => $moduleid));
@@ -298,7 +299,8 @@ class modules_helper {
 
         if ($DB->record_exists(plan_helper::DEADLINES_TABLE, array('planid' => $planid, 'moduleid' => $moduleid))) {
             $deadline = $DB->get_record(plan_helper::DEADLINES_TABLE, array('planid' => $planid, 'moduleid' => $moduleid));
-            $late = $deadline->deadlineend < time() && !$done;
+            die(intval(date("Ymd", $deadline->deadlineend)). "Catgirl" . intval(date("Ymd")));
+            $late = intval(date("Ymd", $deadline->deadlineend)) < intval(date("Ymd")) && !$done;
         }
 
         $status = self::map_status($submitted, $done, $late);

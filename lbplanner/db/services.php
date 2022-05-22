@@ -297,6 +297,15 @@ $functions = array(
         'capabilities' => '',
         'ajax' => true,
     ),
+    'local_lbplanner_plan_accept_invite' => array(
+        'classname' => 'local_lbplanner_services\plan_accept_invite',
+        'methodname' => 'accept_invite',
+        'classpath' => 'local/lbplanner/services/feedback/accept_invite.php',
+        'description' => 'Accept the invite of the given id',
+        'type' => 'write',
+        'capabilities' => '',
+        'ajax' => true,
+    ),
 );
 
 $services = array(
@@ -333,6 +342,7 @@ $services = array(
             'local_lbplanner_feedback_get_all_feedbacks',
             'local_lbplanner_feedback_get_feedback',
             'local_lbplanner_feedback_update_feedback',
+            'local_lbplanner_plan_accept_invite',
         ),
         'restrictedusers' => 0,
         'enabled' => 1,
