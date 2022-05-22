@@ -28,12 +28,6 @@ class DashboardStatusOverviewBarLabel extends StatelessWidget {
       wrapper: (context, child) => Tooltip(
         message: count.toString(),
         child: child,
-        // ignore: no-magic-number
-        textStyle: NcBaseText.style(buttonText: true, fontSize: 12),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(kRadius),
-          color: color,
-        ),
       ),
       child: Container(
         width: size,

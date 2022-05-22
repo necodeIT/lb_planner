@@ -3,10 +3,16 @@ part of lbplanner_routes;
 /// Member widget for the members section of the dropdown.
 class CalendarPlanMembersMember extends StatefulWidget {
   /// Member widget for the members section of the dropdown.
-  const CalendarPlanMembersMember({Key? key, required this.memberId}) : super(key: key);
+  const CalendarPlanMembersMember({Key? key, required this.memberId, required this.potential, this.fontSize}) : super(key: key);
 
   /// The id of the member to display.
   final int memberId;
+
+  /// Whether the member is a potential member or is already in the plan.
+  final bool potential;
+
+  /// The font size to use.
+  final double? fontSize;
 
   @override
   State<CalendarPlanMembersMember> createState() => _CalendarPlanMembersMemberState();
@@ -15,6 +21,26 @@ class CalendarPlanMembersMember extends StatefulWidget {
 class _CalendarPlanMembersMemberState extends State<CalendarPlanMembersMember> {
   Future? _removeFuture;
   Future? _accessLevelFuture;
+  Future? _inviteFuture;
+
+  void _inviteUser(WidgetRef ref) async {
+    if (_inviteFuture != null) return;
+
+    var controller = ref.read(planController);
+
+    setState(() {
+      _inviteFuture = controller.inviteUser(widget.memberId);
+    });
+
+    await _inviteFuture;
+    await controller.fetchPlan();
+
+    if (!mounted) return;
+
+    setState(() {
+      _inviteFuture = null;
+    });
+  }
 
   void _removeMember(WidgetRef ref) async {
     if (_removeFuture != null) return;
@@ -57,12 +83,13 @@ class _CalendarPlanMembersMemberState extends State<CalendarPlanMembersMember> {
 
   @override
   Widget build(BuildContext context) {
+    double fontSize = widget.fontSize ?? ModuleWidget.fontSize;
+
     return Consumer(builder: (context, ref, _) {
-      var plan = ref.watch(planProvider);
       var users = ref.watch(usersProvider);
+      var plan = ref.watch(planProvider);
 
       var member = users[widget.memberId]!;
-      var accessLevel = plan.members[widget.memberId]!;
 
       return Container(
         height: ModuleWidget.height,
@@ -78,55 +105,90 @@ class _CalendarPlanMembersMemberState extends State<CalendarPlanMembersMember> {
             Expanded(
               child: NcCaptionText(
                 member.fullname,
-                fontSize: ModuleWidget.fontSize,
+                fontSize: fontSize,
               ),
             ),
             NcSpacing.xs(),
-            Row(
-              children: [
-                ConditionalWidget(
-                  condition: _accessLevelFuture == null,
-                  trueWidget: (context) => ConditionalWrapper(
-                    condition: !accessLevel.isOwner,
-                    wrapper: (context, child) => ScaleOnHover(
-                      onTap: () => _changeAccessLevel(ref, accessLevel.opposite),
-                      duration: kFasterAnimationDuration,
-                      // ignore: no-magic-number
-                      scale: 1.1,
-                      child: child,
-                    ),
-                    child: LpIcon(
-                      accessLevel.icon,
-                      color: accentColor,
-                      size: ModuleWidget.fontSize,
-                    ),
-                  ),
-                  falseWidget: (context) => LpLoadingIndicator.circular(
-                    color: accentColor,
-                    size: ModuleWidget.fontSize,
-                  ),
-                ),
-                if (!accessLevel.isOwner) NcSpacing.small(),
-                if (!accessLevel.isOwner)
-                  ScaleOnHover(
-                    duration: kFasterAnimationDuration,
-                    // ignore: no-magic-number
-                    scale: 1.1,
-                    onTap: () => lpShowConfirmDialog(
-                      context,
-                      title: t.calendar_plan_dropdown_members_removeMemver_title,
-                      message: t.calendar_plan_dropdown_members_removeMemver_message,
-                      onConfirm: () => _removeMember(ref),
-                    ),
-                    child: LpIcon(
-                      Icons.remove_circle_outline,
-                      color: errorColor,
-                      size: ModuleWidget.fontSize,
-                    ),
-                  ),
-                NcSpacing.xs(),
-              ],
-            ),
+            ConditionalWidget(
+                condition: widget.potential,
+                trueWidget: (context) {
+                  var color = accentColor;
+                  var icon = Icons.add_circle_outline_rounded;
+                  VoidCallback? onTap = () => _inviteUser(ref);
+
+                  if (plan.members.containsKey(widget.memberId)) {
+                    color = successColor;
+                    icon = Icons.check_circle;
+                    onTap = null;
+                  }
+
+                  // TODO: Check if user is already invited.
+
+                  return ConditionalWidget(
+                      condition: _inviteFuture != null,
+                      trueWidget: (_) => LpLoadingIndicator.circular(),
+                      falseWidget: (context) => ConditionalWrapper(
+                            condition: onTap != null,
+                            wrapper: (context, child) => GestureDetector(
+                              onTap: onTap,
+                              child: child,
+                            ),
+                            child: LpIcon(
+                              icon,
+                              color: color,
+                              size: fontSize,
+                            ),
+                          ));
+                },
+                falseWidget: (context) {
+                  var accessLevel = plan.members[widget.memberId]!;
+
+                  return Row(
+                    children: [
+                      ConditionalWidget(
+                        condition: _accessLevelFuture == null,
+                        trueWidget: (context) => ConditionalWrapper(
+                          condition: !accessLevel.isOwner,
+                          wrapper: (context, child) => ScaleOnHover(
+                            onTap: () => _changeAccessLevel(ref, accessLevel.opposite),
+                            duration: kFasterAnimationDuration,
+                            // ignore: no-magic-number
+                            scale: 1.1,
+                            child: child,
+                          ),
+                          child: LpIcon(
+                            accessLevel.icon,
+                            color: accentColor,
+                            size: fontSize,
+                          ),
+                        ),
+                        falseWidget: (context) => LpLoadingIndicator.circular(
+                          color: accentColor,
+                          size: fontSize,
+                        ),
+                      ),
+                      if (!accessLevel.isOwner) NcSpacing.small(),
+                      if (!accessLevel.isOwner)
+                        ScaleOnHover(
+                          duration: kFasterAnimationDuration,
+                          // ignore: no-magic-number
+                          scale: 1.1,
+                          onTap: () => lpShowConfirmDialog(
+                            context,
+                            title: t.calendar_plan_dropdown_members_removeMemver_title,
+                            message: t.calendar_plan_dropdown_members_removeMemver_message,
+                            onConfirm: () => _removeMember(ref),
+                          ),
+                          child: LpIcon(
+                            Icons.remove_circle_outline,
+                            color: errorColor,
+                            size: fontSize,
+                          ),
+                        ),
+                      NcSpacing.xs(),
+                    ],
+                  );
+                }),
           ],
         ),
       );

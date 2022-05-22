@@ -25,7 +25,6 @@ ThemeData get appStyle => ThemeData(
           },
         ),
       ),
-
       cardTheme: CardTheme(
         color: primaryColor,
         shape: RoundedRectangleBorder(
@@ -41,5 +40,13 @@ ThemeData get appStyle => ThemeData(
         cursorColor: accentColor,
         selectionColor: accentColor.withOpacity(.7),
         selectionHandleColor: accentColor,
+      ),
+      tooltipTheme: TooltipThemeData(
+        textStyle: NcBaseText.style(fontSize: 12),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(kRadius),
+          color: primaryColor,
+          boxShadow: kElevationToShadow[6],
+        ),
       ),
     );

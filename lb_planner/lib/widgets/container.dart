@@ -46,7 +46,7 @@ class LpContainer extends StatelessWidget {
       padding: window ? EdgeInsets.only(bottom: NcSpacing.smallSpacing) : const EdgeInsets.all(NcSpacing.smallSpacing),
       decoration: BoxDecoration(
         color: primaryColor,
-        boxShadow: kElevationToShadow[4],
+        boxShadow: kElevationToShadow[6],
         borderRadius: BorderRadius.circular(kRadius),
       ),
       width: width,

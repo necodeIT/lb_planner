@@ -10,12 +10,13 @@ class CalendarPlanDropDownMembers extends StatefulWidget {
 
   @override
   State<CalendarPlanDropDownMembers> createState() => _CalendarPlanDropDownMembersState();
+
+  /// Filters the given [users] by the given [search] string.
+  static bool filterSearch(int id, Map<int, User> users, String search) => users[id] != null && users[id]!.fullname.containsCaseInsensitive(search);
 }
 
 class _CalendarPlanDropDownMembersState extends State<CalendarPlanDropDownMembers> {
   Future? _leaveFuture;
-
-  final TextEditingController _newMemberSearchController = TextEditingController();
 
   void _leavePlan(WidgetRef ref) async {
     if (_leaveFuture != null) return;
@@ -38,15 +39,13 @@ class _CalendarPlanDropDownMembersState extends State<CalendarPlanDropDownMember
     });
   }
 
-  bool _filterSearch(int id, Map<int, User> users, String search) => users[id] != null && users[id]!.fullname.containsCaseInsensitive(search);
-
   @override
   Widget build(context) {
     return Consumer(builder: (context, ref, _) {
       var plan = ref.watch(planProvider);
       var users = ref.watch(usersProvider);
 
-      var members = plan.members.keys.where((id) => _filterSearch(id, users, widget.searchController.text)).toList();
+      var members = plan.members.keys.where((id) => CalendarPlanDropDownMembers.filterSearch(id, users, widget.searchController.text)).toList();
 
       // var potentialMembers = users.values.where((user) => _filterSearch(user.id, users)).toList();
 
@@ -75,6 +74,7 @@ class _CalendarPlanDropDownMembersState extends State<CalendarPlanDropDownMember
                 for (var member in members) ...[
                   CalendarPlanMembersMember(
                     memberId: member,
+                    potential: false,
                   ),
                   NcSpacing.xs(),
                 ],
@@ -88,11 +88,10 @@ class _CalendarPlanDropDownMembersState extends State<CalendarPlanDropDownMember
                         size: MainAxisSize.max,
                         alignment: MainAxisAlignment.spaceBetween,
                         trailing: true,
-                        onPressed: () => lpShowConfirmDialog(
+                        onPressed: () => lpShowAlertDialog(
                           context,
                           title: t.calendar_plan_dropdown_members_inviteUsers_title,
-                          message: "",
-                          onConfirm: () => _leavePlan(ref),
+                          body: CalendarPlanDropDownInviteUsersDialog(),
                         ),
                       ),
                     ),
