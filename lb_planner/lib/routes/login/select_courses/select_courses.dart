@@ -12,7 +12,7 @@ class LoginSelectCoursesRoute extends LocalizedWidget {
   static const double margin = 100.0;
 
   @override
-  Widget create(context, t) {
+  Widget build(context, t) {
     return Stack(
       children: [
         Positioned(

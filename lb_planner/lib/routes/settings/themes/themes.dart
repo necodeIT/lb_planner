@@ -6,7 +6,7 @@ class SettingsThemes extends LocalizedWidget {
   const SettingsThemes({Key? key}) : super(key: key);
 
   @override
-  Widget create(context, t) {
+  Widget build(context, t) {
     return LpContainer(
       title: t.settings_themes,
       height: double.infinity,

@@ -12,7 +12,7 @@ class CalendarPlanMonth extends LocalizedWidget {
   static const int rows = 6;
 
   @override
-  Widget create(context, t) {
+  Widget build(context, t) {
     /// List of all days in the month.
     final days = List<DateTime>.generate(
       DateTime(month.year, month.month + 1, 0).day,

@@ -15,7 +15,7 @@ class UserNotificationsItem extends LocalizedWidget {
   static final formatter = DateFormat.MMMEd();
 
   @override
-  Widget create(BuildContext context, t) {
+  Widget build(context, t) {
     return Consumer(
       builder: (context, ref, _) {
         var notification = ref.watch(notificationsProvider)[notificationId]!;

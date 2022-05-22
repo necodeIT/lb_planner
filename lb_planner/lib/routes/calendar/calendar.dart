@@ -15,7 +15,7 @@ class Calendar extends LocalizedWidget {
   static const double fontSize = 18;
 
   @override
-  Widget create(BuildContext context, t) {
+  Widget build(BuildContext context, t) {
     return LpContainer.window(
       leading: currentRoute == CalendarPlanRoute.routeName || currentRoute == CalendarModulesOverviewRoute.routeName
           ? LpDropdown<String>(

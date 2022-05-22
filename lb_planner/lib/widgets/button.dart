@@ -34,7 +34,6 @@ class LpButton extends StatelessWidget {
     this.padding = defaultPadding,
   }) : super(key: key) {
     assert(text != null || child != null, "Either text or child must be provided.");
-    assert(icon != null, "Icon must be provided.");
     assert(size != null, "Size must be provided.");
     assert(trailing != null, "Trailing must be provided.");
   }
@@ -80,38 +79,41 @@ class LpButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      child: ConditionalWrapper(
-        condition: icon != null,
-        wrapper: (context, child) => Row(
-          mainAxisSize: size!,
-          mainAxisAlignment: alignment!,
-          children: [
-            if (trailing!) child,
-            if (trailing! && size == MainAxisSize.min) NcSpacing.small(),
-            Icon(icon, color: buttonTextColor, size: iconSize),
-            if (!trailing! && size == MainAxisSize.min) NcSpacing.small(),
-            if (!trailing!) child,
-          ],
-        ),
-        child: ConditionalWidget(
-          condition: text != null,
-          trueWidget: (context) => NcTitleText(
-            text!,
-            buttonText: true,
-            fontSize: fontSize,
+    return AnimatedSize(
+      duration: kNormalAnimationDuration,
+      child: ElevatedButton(
+        child: ConditionalWrapper(
+          condition: icon != null,
+          wrapper: (context, child) => Row(
+            mainAxisSize: size!,
+            mainAxisAlignment: alignment!,
+            children: [
+              if (trailing!) child,
+              if (trailing! && size == MainAxisSize.min) NcSpacing.small(),
+              Icon(icon, color: buttonTextColor, size: iconSize),
+              if (!trailing! && size == MainAxisSize.min) NcSpacing.small(),
+              if (!trailing!) child,
+            ],
           ),
-          falseWidget: (context) => child!,
+          child: ConditionalWidget(
+            condition: text != null,
+            trueWidget: (context) => NcTitleText(
+              text!,
+              buttonText: true,
+              fontSize: fontSize,
+            ),
+            falseWidget: (context) => child!,
+          ),
         ),
-      ),
-      style: ElevatedButton.styleFrom(
-        padding: EdgeInsets.all(padding),
-        primary: color ?? accentColor,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(kRadius),
+        style: ElevatedButton.styleFrom(
+          padding: EdgeInsets.all(padding),
+          primary: color ?? accentColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(kRadius),
+          ),
         ),
+        onPressed: onPressed,
       ),
-      onPressed: onPressed,
     );
   }
 }

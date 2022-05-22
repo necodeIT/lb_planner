@@ -10,7 +10,7 @@ class SettingsRoute extends LocalizedWidget {
   static const routeName = "/settings";
 
   @override
-  Widget create(context, t) {
+  Widget build(context, t) {
     var placeholder = Center(child: NcTitleText("Test"));
     return Row(
       children: [

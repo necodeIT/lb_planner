@@ -24,7 +24,7 @@ class UserNotificationsPopup extends LocalizedWidget {
   static get maxNotificationAgeAsDateTime => DateTime.now().subtract(maxNotificationAge);
 
   @override
-  Widget create(BuildContext context, t) {
+  Widget build(context, t) {
     return Consumer(builder: (context, ref, _) {
       var notifications = ref.watch(notificationsProvider).values.where((e) => e.shouldDisplay).toList();
 

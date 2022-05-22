@@ -1,17 +1,20 @@
 part of lbplanner_widgets;
 
 /// Provides localized strings for the app.
-abstract class LocalizedWidget extends StatelessWidget {
+abstract class LocalizedWidget extends StatefulWidget {
   /// Provides localized strings for the app.
   const LocalizedWidget({Key? key}) : super(key: key);
 
-  @override
-  @nonVirtual
-  Widget build(BuildContext context) => create(context, context.t);
-
   /// Creates the widget.
-  /// Similar to [StatelessWidget.build] but with [AppLocalizations] as extra parameter.
-  Widget create(BuildContext context, AppLocalizations t);
+  Widget build(BuildContext context, AppLocalizations t);
+
+  @override
+  State<LocalizedWidget> createState() => _LocalizedWidgetState();
+}
+
+class _LocalizedWidgetState extends State<LocalizedWidget> {
+  @override
+  Widget build(BuildContext context) => widget.build(context, context.t);
 }
 
 /// Provides localized strings for the app.

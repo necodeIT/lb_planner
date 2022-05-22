@@ -6,7 +6,7 @@ class DashboardExams extends LocalizedWidget {
   const DashboardExams({Key? key}) : super(key: key);
 
   @override
-  Widget create(context, t) {
+  Widget build(context, t) {
     return Consumer(builder: (context, ref, _) {
       var modules = ref.watch(modulesProvider);
 

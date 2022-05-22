@@ -53,7 +53,7 @@ class ModuleWidget extends LocalizedWidget {
   static final formatter = DateFormat('dd.MM');
 
   @override
-  Widget create(BuildContext context, t) {
+  Widget build(BuildContext context, t) {
     return Consumer(builder: (context, ref, _) {
       var module = ref.watch(modulesProvider)[moduleId]!;
 

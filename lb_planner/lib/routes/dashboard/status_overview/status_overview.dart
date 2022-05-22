@@ -6,7 +6,7 @@ class DashboardStatusOverview extends LocalizedWidget {
   const DashboardStatusOverview({Key? key}) : super(key: key);
 
   @override
-  Widget create(context, t) {
+  Widget build(context, t) {
     return Consumer(builder: (context, ref, _) {
       var stats = ref.watch(statisticsProvider);
 
