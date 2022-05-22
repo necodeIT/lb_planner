@@ -25,7 +25,7 @@ use local_lbplanner\helpers\plan_helper;
 use local_lbplanner\helpers\notifications_helper;
 
 /**
- * Update a invite from the plan.
+ * THIS METHOD IS NOT USED ANYMORE. JUST TO KEEP OLD CODE FOR REFERENCE.
  */
 class plan_update_invite extends external_api {
     public static function update_invite_parameters() {

@@ -27,18 +27,18 @@ use local_lbplanner\helpers\notifications_helper;
 /**
  * Update a invite from the plan.
  */
-class plan_accept_invite extends external_api {
-    public static function accept_invite_parameters() {
+class plan_decline_invite extends external_api {
+    public static function decline_invite_parameters() {
         return new external_function_parameters(array(
-        'inviteid' => new external_value(PARAM_INT, 'The id of the plan', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
+        'inviteid' => new external_value(PARAM_INT, 'The inviteid of the plan', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
         'userid' => new external_value(PARAM_INT, 'The id of the invited user', VALUE_REQUIRED, null, NULL_NOT_ALLOWED)
         ));
     }
 
-    public static function accept_invite($inviteid, $userid) {
+    public static function decline_invite($inviteid, $userid) {
         global $DB;
 
-        self::validate_parameters(self::accept_invite_parameters(), array(
+        self::validate_parameters(self::decline_invite_parameters(), array(
         'inviteid' => $inviteid,
         'userid' => $userid,
         ));
@@ -49,13 +49,13 @@ class plan_accept_invite extends external_api {
             throw new \moodle_exception('Invite not found');
         }
         if (!$DB->record_exists(plan_helper::INVITES_TABLE,
-        array( 'id' => $inviteid, 'inviteeid' => $userid, 'status' => plan_helper::INVITE_PENDING))) {
+        array('id' => $inviteid, 'inviteeid' => $userid, 'status' => plan_helper::INVITE_PENDING))) {
             throw new \moodle_exception('Invite already accepted or declined');
         }
 
         $invite = $DB->get_record(plan_helper::INVITES_TABLE,
         array(
-            'inviteid' => $inviteid,
+            'id' => $inviteid,
             'inviteeid' => $userid,
             'status' => plan_helper::INVITE_PENDING,
         ),
@@ -63,50 +63,16 @@ class plan_accept_invite extends external_api {
         MUST_EXIST
         );
 
-        // Notify the user that invite has been accepted.
+        // Notify the user that invite has been declined.
         notifications_helper::notify_user(
             $invite->inviterid,
             user_helper::get_complete_name($userid),
-            notifications_helper::TRIGGER_INVITE_ACCEPTED
+            notifications_helper::TRIGGER_INVITE_DECLINED
         );
 
-        // If the User is the User has Member in his plan, then removes it.
-        $oldplanid = plan_helper::get_plan_id($userid);
-        if (plan_helper::get_owner($oldplanid) == $userid) {
-
-            foreach (plan_helper::get_plan_members($oldplanid) as $member) {
-                if ($member->userid != $userid) {
-                    self::call_external_function('local_lbplanner_services/plan_remove_member', array(
-                        'planid' => $oldplanid,
-                        'userid' => $member->userid
-                    ));
-                }
-            }
-            self::call_external_function('local_lbplanner_plan_clear_plan', array(
-                'planid' => $oldplanid,
-                'userid' => $userid
-            ));
-            $DB->delete_records(plan_helper::TABLE, array('id' => $oldplanid));
-        }
-        // Updates the plan access.
-        $planaccess = $DB->get_record(
-            plan_helper::ACCESS_TABLE,
-            array(
-                'planid' => $oldplanid,
-                'userid' => $userid
-            ),
-            '*',
-            MUST_EXIST
-        );
-
-        $invite->status = plan_helper::INVITE_ACCEPTED;
+        $invite->status = plan_helper::INVITE_DECLINED;
 
         $DB->update_record(plan_helper::INVITES_TABLE, $invite);
-
-        $planaccess->accesstype = plan_helper::ACCESS_TYPE_READ;
-        $planaccess->planid = $invite->planid;
-
-        $DB->update_record(plan_helper::ACCESS_TABLE, $planaccess);
 
         return array(
         'id' => $invite->id,
@@ -119,7 +85,7 @@ class plan_accept_invite extends external_api {
     }
 
 
-    public static function accept_invite_returns() {
+    public static function decline_invite_returns() {
         return new external_single_structure(
             array(
                 'id' => new external_value(PARAM_INT, 'The id of the invite'),

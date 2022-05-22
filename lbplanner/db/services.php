@@ -198,15 +198,6 @@ $functions = array(
         'capabilities' => '',
         'ajax' => true,
     ),
-    'local_lbplanner_plan_update_invite' => array(
-        'classname' => 'local_lbplanner_services\plan_update_invite',
-        'methodname' => 'update_invite',
-        'classpath' => 'local/lbplanner/services/plan/update_invite.php',
-        'description' => 'Update a invite from the plan',
-        'type' => 'write',
-        'capabilities' => '',
-        'ajax' => true,
-    ),
     'local_lbplanner_plan_get_access' => array(
         'classname' => 'local_lbplanner_services\plan_get_access',
         'methodname' => 'get_access',
@@ -306,6 +297,15 @@ $functions = array(
         'capabilities' => '',
         'ajax' => true,
     ),
+    'local_lbplanner_plan_decline_invite' => array(
+        'classname' => 'local_lbplanner_services\plan_decline_invite',
+        'methodname' => 'decline_invite',
+        'classpath' => 'local/lbplanner/services/feedback/decline_invite.php',
+        'description' => 'Decline the invite of the given id',
+        'type' => 'write',
+        'capabilities' => '',
+        'ajax' => true,
+    ),
 );
 
 $services = array(
@@ -326,7 +326,6 @@ $services = array(
             'local_lbplanner_plan_delete_deadline',
             'local_lbplanner_plan_get_plan',
             'local_lbplanner_plan_invite_user',
-            'local_lbplanner_plan_update_invite',
             'local_lbplanner_plan_get_invites',
             'local_lbplanner_plan_leave_plan',
             'local_lbplanner_plan_remove_user',
@@ -343,6 +342,7 @@ $services = array(
             'local_lbplanner_feedback_get_feedback',
             'local_lbplanner_feedback_update_feedback',
             'local_lbplanner_plan_accept_invite',
+            'local_lbplanner_plan_decline_invite',
         ),
         'restrictedusers' => 0,
         'enabled' => 1,

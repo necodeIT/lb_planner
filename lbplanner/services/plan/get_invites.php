@@ -57,6 +57,7 @@ class plan_get_invites extends external_api {
 
         foreach ($invitesreceived as $invite) {
             $invites[] = array(
+                'id' => $invite->id,
                 'inviterid' => $invite->inviterid,
                 'inviteeid' => $invite->inviteeid,
                 'planid' => $invite->planid,
@@ -67,6 +68,7 @@ class plan_get_invites extends external_api {
 
         foreach ($invitessent as $invitesent) {
             $invites[] = array(
+                'id' => $invitesent->id,
                 'inviterid' => $invitesent->inviterid,
                 'inviteeid' => $invitesent->inviteeid,
                 'planid' => $invitesent->planid,
@@ -82,6 +84,7 @@ class plan_get_invites extends external_api {
         return new external_multiple_structure(
             new external_single_structure(
                 array(
+                    'id' => new external_value(PARAM_INT, 'The id of the invite'),
                     'inviterid' => new external_value(PARAM_INT, 'The id of the owner user'),
                     'inviteeid' => new external_value(PARAM_INT, 'The id of the invited user'),
                     'planid' => new external_value(PARAM_INT, 'The id of the plan'),

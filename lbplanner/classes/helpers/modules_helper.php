@@ -215,7 +215,7 @@ class modules_helper {
         }
 
         // Return TYPE_EK if the name contains 'ek'.
-        if (strpos($modulename, 'ek') !== false) {
+        if (strpos($modulename, 'ek') !== false || strpos($modulename, 'EK') !== false) {
             return self::TYPE_EK;
         }
 
@@ -293,13 +293,12 @@ class modules_helper {
                 $done = $grade != self::GRADE_RIP;
             }
         }
+        // Check if the module is late.
 
             $late = false;
             $planid = plan_helper::get_plan_id($userid);
-
         if ($DB->record_exists(plan_helper::DEADLINES_TABLE, array('planid' => $planid, 'moduleid' => $moduleid))) {
             $deadline = $DB->get_record(plan_helper::DEADLINES_TABLE, array('planid' => $planid, 'moduleid' => $moduleid));
-            die(intval(date("Ymd", $deadline->deadlineend)). "Catgirl" . intval(date("Ymd")));
             $late = intval(date("Ymd", $deadline->deadlineend)) < intval(date("Ymd")) && !$done;
         }
 

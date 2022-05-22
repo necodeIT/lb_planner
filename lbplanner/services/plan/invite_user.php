@@ -92,7 +92,7 @@ class plan_invite_user extends external_api {
         $invite->inviterid = $inviterid;
         $invite->inviteeid = $inviteeid;
         $invite->timestamp = time();
-        $invite->status = 0;
+        $invite->status = plan_helper::INVITE_PENDING;
 
         $DB->insert_record(plan_helper::INVITES_TABLE, $invite);
 
