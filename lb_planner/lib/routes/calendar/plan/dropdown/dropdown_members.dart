@@ -113,7 +113,7 @@ class _CalendarPlanDropDownMembersState extends State<CalendarPlanDropDownMember
                     onPressed: () => lpShowConfirmDialog(
                       context,
                       title: t.calendar_plan_dropdown_members_leavePlan_title,
-                      body: NcBodyText(t.calendar_plan_dropdown_members_leavePlan_message),
+                      message: t.calendar_plan_dropdown_members_leavePlan_message,
                       onConfirm: () => _leavePlan(ref),
                     ),
                     color: errorColor,

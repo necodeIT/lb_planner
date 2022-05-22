@@ -17,8 +17,6 @@ class _CalendarPlanDropDwonModulesState extends State<CalendarPlanDropDwonModule
   Future? _ekFuture;
 
   void _enableEk(WidgetRef ref, bool value) async {
-    throw "test";
-
     if (_ekFuture != null) return;
 
     var controller = ref.read(planController);
@@ -127,7 +125,7 @@ class _CalendarPlanDropDwonModulesState extends State<CalendarPlanDropDwonModule
                     onPressed: () => lpShowConfirmDialog(
                       context,
                       title: t.calendar_plan_dropdown_modules_clearPlan_title,
-                      body: NcBodyText(t.calendar_plan_dropdown_modules_clearPlan_message),
+                      message: t.calendar_plan_dropdown_modules_clearPlan_message,
                       onConfirm: () => _clearPlan(ref),
                     ),
                     color: errorColor,

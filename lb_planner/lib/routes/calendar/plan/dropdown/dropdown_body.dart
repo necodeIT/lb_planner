@@ -20,43 +20,47 @@ class CalendarPlanDropDownBody extends StatefulWidget {
 
 class _CalendarPlanDropDownBodyState extends State<CalendarPlanDropDownBody> {
   bool _showModules = true;
-  bool _planNameEditMode = false;
+  bool planNameEditMode = false;
 
-  Future? _planNameFuture;
+  Future? planNameFuture;
 
   final TextEditingController _searchController = TextEditingController();
   final TextEditingController _planNameController = TextEditingController();
 
-  void _toggleEditMode(WidgetRef ref) {
+  void _enterEditMode(WidgetRef ref) {
+    if (planNameFuture != null) return;
+
     var plan = ref.read(planProvider);
 
     setState(() {
-      _planNameEditMode = !_planNameEditMode;
+      planNameEditMode = true;
 
-      if (_planNameEditMode) {
-        _planNameController.text = plan.name;
-      }
+      _planNameController.text = plan.name;
     });
   }
 
-  void _setPlanName(WidgetRef ref) async {
+  void exitEditMode() {
+    if (planNameFuture != null) return;
+
+    setState(() {
+      planNameEditMode = false;
+    });
+  }
+
+  void setPlanName(WidgetRef ref) async {
     var controller = ref.read(planController);
 
     setState(() {
-      _planNameFuture = controller.setPlanName(_planNameController.text);
+      planNameFuture = controller.setPlanName(_planNameController.text);
     });
 
-    await _planNameFuture;
-
-    setState(() {
-      _planNameEditMode = false;
-    });
+    await planNameFuture;
 
     if (!mounted) return;
 
     setState(() {
-      _planNameFuture = null;
-      _planNameEditMode = false;
+      planNameFuture = null;
+      planNameEditMode = false;
     });
   }
 
@@ -89,27 +93,44 @@ class _CalendarPlanDropDownBodyState extends State<CalendarPlanDropDownBody> {
       var plan = ref.watch(planProvider);
 
       return LpContainer(
-        trailing: GestureDetector(
-          onTap: widget.close,
-          child: LpIcon(
-            Icons.close,
-            color: errorColor,
+        trailing: Expanded(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              ConditionalWidget(
+                condition: planNameEditMode,
+                trueWidget: (_) => Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: NcSpacing.mediumSpacing),
+                    child: LpTextField(
+                      placeholder: t.calendar_plan_dropdown_planName_placeholder,
+                      onCancel: exitEditMode,
+                      onUnfocus: exitEditMode,
+                      autoFocus: true,
+                      controller: _planNameController,
+                      onSubmitted: (text) => setPlanName(ref),
+                      suffix: planNameFuture != null
+                          ? LpLoadingIndicator.circular(
+                              center: false,
+                            )
+                          : null,
+                    ),
+                  ),
+                ),
+                falseWidget: (_) => GestureDetector(
+                  onDoubleTap: () => _enterEditMode(ref),
+                  child: NcTitleText(plan.name, fontSize: LpContainer.titleFontSize),
+                ),
+              ),
+              GestureDetector(
+                onTap: widget.close,
+                child: LpIcon(
+                  Icons.close,
+                  color: errorColor,
+                ),
+              ),
+            ],
           ),
-        ),
-        leading: Row(
-          children: [
-            ConditionalWidget(
-              condition: _planNameEditMode,
-              trueWidget: (_) => LpTextField(
-                controller: _planNameController,
-                onSubmitted: (text) => _setPlanName(ref),
-              ),
-              falseWidget: (_) => GestureDetector(
-                onDoubleTap: () => _toggleEditMode(ref),
-                child: NcTitleText(plan.name, fontSize: LpContainer.titleFontSize),
-              ),
-            )
-          ],
         ),
         // ignore: no-magic-number
         width: screen.width * .2,

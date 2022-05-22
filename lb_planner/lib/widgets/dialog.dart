@@ -198,13 +198,29 @@ void lpShowConfirmDialog(
 }
 
 /// Themed [AlertDialog] widget.
-void lpShowAlertDialog(BuildContext context, {required String title, required Widget body, String? confirmText, Function()? onConfirm}) {
+void lpShowAlertDialog(
+  BuildContext context, {
+  required String title,
+  Widget? body,
+  String? message,
+  String? confirmText,
+  Function()? onConfirm,
+}) {
+  assert(body != null || message != null, 'Either body or message must be provided.');
+
   OverlayEntry? dialogOverLay;
   OverlayEntry background = _generateBackground();
 
   var dialog = LpDialog.alert(
     title: title,
-    body: body,
+    body: ConditionalWidget(
+      condition: body != null,
+      trueWidget: (_) => body!,
+      falseWidget: (_) => NcCaptionText(
+        message!,
+        overflow: TextOverflow.visible,
+      ),
+    ),
     onConfirm: onConfirm,
     confirmText: confirmText,
     removeFromWidgetTree: () {

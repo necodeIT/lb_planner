@@ -115,7 +115,7 @@ class _CalendarPlanMembersMemberState extends State<CalendarPlanMembersMember> {
                     onTap: () => lpShowConfirmDialog(
                       context,
                       title: t.calendar_plan_dropdown_members_removeMemver_title,
-                      body: NcBodyText(t.calendar_plan_dropdown_members_removeMemver_message),
+                      message: t.calendar_plan_dropdown_members_removeMemver_message,
                       onConfirm: () => _removeMember(ref),
                     ),
                     child: LpIcon(

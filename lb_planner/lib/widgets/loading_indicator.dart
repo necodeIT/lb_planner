@@ -6,11 +6,12 @@ class LpLoadingIndicator extends StatelessWidget {
   LpLoadingIndicator({Key? key, this.progress, this.color, this.size, this.thickness, this.backgroundColor = Colors.transparent}) : super(key: key) {
     type = _LpProgressIndicatorTypes.linear;
     animation = null;
+    center = false;
   }
 
   /// Circular progress indicator.
   // ignore: no-magic-number
-  LpLoadingIndicator.circular({Key? key, this.progress, this.color, this.size = 15, this.thickness = 2, this.backgroundColor = Colors.transparent}) : super(key: key) {
+  LpLoadingIndicator.circular({Key? key, this.progress, this.color, this.size = 15, this.thickness = 2, this.backgroundColor = Colors.transparent, this.center = true}) : super(key: key) {
     animation = null;
     type = _LpProgressIndicatorTypes.circular;
   }
@@ -22,6 +23,7 @@ class LpLoadingIndicator extends StatelessWidget {
     thickness = 0;
     color = null;
     progress = 0;
+    center = false;
   }
 
   /// Progress indicator type.
@@ -45,11 +47,14 @@ class LpLoadingIndicator extends StatelessWidget {
   /// The animation to play when of type [LpLoadingIndicator.rive].
   late final RiveAnimation? animation;
 
+  /// Whether to automatically center the progress indicator.
+  late final bool center;
+
   @override
   Widget build(BuildContext context) {
     var color = this.color ?? accentColor;
     return ConditionalWrapper(
-      condition: type.isRive || type.isCircular,
+      condition: type.isRive || (type.isCircular && center),
       wrapper: (context, child) => Center(child: child),
       child: ConditionalWrapper(
         condition: size != null,

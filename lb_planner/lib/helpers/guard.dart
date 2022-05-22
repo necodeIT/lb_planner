@@ -30,10 +30,36 @@ _handleError(BuildContext context, WidgetRef ref, Object obj, [StackTrace? stack
   lpShowConfirmDialog(
     context,
     confirmIsBad: false,
-    title: context.t.error_title,
-    message: context.t.error_message(message),
-    confirmText: context.t.error_report,
-    cancelText: context.t.error_ingore,
+    title: context.t.guard_dialog_title,
+    body: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        NcCaptionText(
+          context.t.guard_dialog_description,
+          overflow: TextOverflow.visible,
+        ),
+        NcSpacing.medium(),
+        Container(
+          padding: EdgeInsets.all(NcSpacing.smallSpacing),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(kRadius),
+            color: secondaryColor,
+          ),
+          child: NcCaptionText(
+            message,
+            selectable: true,
+            overflow: TextOverflow.visible,
+          ),
+        ),
+        NcSpacing.medium(),
+        NcCaptionText(
+          context.t.guard_dialog_consent,
+          overflow: TextOverflow.visible,
+        ),
+      ],
+    ),
+    confirmText: context.t.guard_dialog_sendReport,
+    cancelText: context.t.guard_dialog_ingore,
     onConfirm: () => controller.submitFeedback(feedback),
   );
 }

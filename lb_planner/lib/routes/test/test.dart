@@ -14,14 +14,14 @@ class TestRoute extends StatelessWidget {
         LpButton(
           text: "lpShowConfirmDialog",
           onPressed: () {
-            lpShowConfirmDialog(context, title: "Test", body: NcBodyText("Test"));
+            lpShowConfirmDialog(context, title: "Test", message: "Test");
           },
         ),
         NcSpacing.medium(),
         LpButton(
           text: "lpShowAlertDialog",
           onPressed: () {
-            lpShowAlertDialog(context, title: "Test", body: NcBodyText("Test"));
+            lpShowAlertDialog(context, title: "Test", message: "Test");
           },
         ),
         NcSpacing.medium(),

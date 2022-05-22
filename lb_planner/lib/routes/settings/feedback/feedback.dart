@@ -48,10 +48,7 @@ class _SettingsFeedbackState extends State<SettingsFeedback> {
     lpShowAlertDialog(
       context,
       title: response.succeeded ? t.settings_feedback_submitted_title : t.settings_feedback_failed_title,
-      body: NcBodyText(
-        response.succeeded ? t.settings_feedback_submitted_message : t.settings_feedback_failed_message(response.errorMessage),
-        overflow: TextOverflow.visible,
-      ),
+      message: response.succeeded ? t.settings_feedback_submitted_message : t.settings_feedback_failed_message(response.errorMessage),
     );
   }
 

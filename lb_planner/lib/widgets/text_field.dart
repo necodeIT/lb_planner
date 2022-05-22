@@ -1,7 +1,7 @@
 part of lbplanner_widgets;
 
 /// Themed [TextField] widget.
-class LpTextField extends StatelessWidget {
+class LpTextField extends StatefulWidget {
   /// Themed [TextField] widget.
   LpTextField({
     Key? key,
@@ -18,7 +18,10 @@ class LpTextField extends StatelessWidget {
     this.onSubmitted,
     this.obscureText = false,
     this.autoFocus = false,
+    this.maxLength,
     this.fontSize = defaultFontSize,
+    this.onCancel,
+    this.onUnfocus,
   }) : super(key: key) {
     filled = false;
     multiline = false;
@@ -43,7 +46,10 @@ class LpTextField extends StatelessWidget {
     this.autoFocus = false,
     this.fontSize = defaultFontSize,
     this.multiline = false,
+    this.maxLength,
+    this.onCancel,
     Color? fillColor,
+    this.onUnfocus,
   }) : super(key: key) {
     filled = true;
     this.fillColor = fillColor ?? secondaryColor;
@@ -54,6 +60,15 @@ class LpTextField extends StatelessWidget {
 
   /// The focus node of the [TextField].
   final FocusNode? focusNode;
+
+  /// Called when the [TextField] is looses focus.
+  final VoidCallback? onUnfocus;
+
+  /// The maximum number of characters (Unicode scalar values) to allow in the [TextField].
+  final int? maxLength;
+
+  /// Called when the user presses the [PhysicalKeyboardKey.escape] key on the keyboard.
+  final VoidCallback? onCancel;
 
   /// The prefix icon of the [TextField].
   final IconData? prefixIcon;
@@ -126,44 +141,71 @@ class LpTextField extends StatelessWidget {
   }
 
   @override
+  State<LpTextField> createState() => _LpTextFieldState();
+}
+
+class _LpTextFieldState extends State<LpTextField> {
+  late FocusNode focusNode = widget.focusNode ?? FocusNode();
+
+  @override
+  void initState() {
+    focusNode.addListener(() {
+      if (!focusNode.hasFocus) widget.onUnfocus?.call();
+    });
+
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return TextField(
-      autofocus: autoFocus,
-      obscureText: obscureText,
-      onSubmitted: onSubmitted,
-      toolbarOptions: ToolbarOptions(copy: true, cut: true, paste: true, selectAll: true),
-      keyboardType: multiline ? TextInputType.multiline : null,
-      maxLines: multiline ? null : 1,
-      expands: multiline,
-      textAlignVertical: multiline ? TextAlignVertical.top : TextAlignVertical.center,
-      decoration: InputDecoration(
-        contentPadding: filled ? EdgeInsets.all(filledPadding) : EdgeInsets.symmetric(vertical: NcSpacing.smallSpacing),
-        isDense: true,
-        filled: filled,
-        fillColor: fillColor,
-        prefix: prefix,
-        prefixIcon: prefixIcon != null ? LpIcon(prefixIcon, size: fontSize) : null,
-        suffix: suffix,
-        suffixIcon: suffixIcon != null ? LpIcon(suffixIcon, size: fontSize) : null,
-        hintText: placeholder,
-        hintStyle: NcBaseText.style(fontSize: fontSize),
-        border: border(accentColor, filled),
-        errorBorder: border(errorColor, filled),
-        errorStyle: NcBaseText.style(color: errorColor, fontSize: feedbackFontSize),
-        helperStyle: NcBaseText.style(color: textColor, fontSize: feedbackFontSize),
-        enabledBorder: border(textColor, filled),
-        disabledBorder: border(tertiaryColor, filled),
-        focusedErrorBorder: border(accentColor, filled),
-        errorText: errorText,
-        helperText: helperText,
-        enabled: enabled,
-        focusedBorder: border(accentColor, filled),
-        focusColor: fillColor,
-        hoverColor: fillColor,
+    return KeyboardListener(
+      focusNode: FocusNode(),
+      onKeyEvent: (event) {
+        if (event.physicalKey == PhysicalKeyboardKey.escape) {
+          widget.onCancel?.call();
+          focusNode.unfocus();
+        }
+      },
+      child: TextField(
+        autofocus: widget.autoFocus,
+        obscureText: widget.obscureText,
+        onSubmitted: widget.onSubmitted,
+        toolbarOptions: ToolbarOptions(copy: true, cut: true, paste: true, selectAll: true),
+        keyboardType: widget.multiline ? TextInputType.multiline : null,
+        maxLines: widget.multiline ? null : 1,
+        expands: widget.multiline,
+        maxLength: widget.maxLength,
+        maxLengthEnforcement: widget.maxLength != null ? MaxLengthEnforcement.enforced : null,
+        textAlignVertical: widget.multiline ? TextAlignVertical.top : TextAlignVertical.center,
+        decoration: InputDecoration(
+          contentPadding: widget.filled ? EdgeInsets.all(LpTextField.filledPadding) : EdgeInsets.symmetric(vertical: NcSpacing.smallSpacing),
+          isDense: true,
+          filled: widget.filled,
+          fillColor: widget.fillColor,
+          prefix: widget.prefix,
+          prefixIcon: widget.prefixIcon != null ? LpIcon(widget.prefixIcon, size: widget.fontSize) : null,
+          suffix: widget.suffix,
+          suffixIcon: widget.suffixIcon != null ? LpIcon(widget.suffixIcon, size: widget.fontSize) : null,
+          hintText: widget.placeholder,
+          hintStyle: NcBaseText.style(fontSize: widget.fontSize),
+          border: LpTextField.border(accentColor, widget.filled),
+          errorBorder: LpTextField.border(errorColor, widget.filled),
+          errorStyle: NcBaseText.style(color: errorColor, fontSize: LpTextField.feedbackFontSize),
+          helperStyle: NcBaseText.style(color: textColor, fontSize: LpTextField.feedbackFontSize),
+          enabledBorder: LpTextField.border(textColor, widget.filled),
+          disabledBorder: LpTextField.border(tertiaryColor, widget.filled),
+          focusedErrorBorder: LpTextField.border(accentColor, widget.filled),
+          errorText: widget.errorText,
+          helperText: widget.helperText,
+          enabled: widget.enabled,
+          focusedBorder: LpTextField.border(accentColor, widget.filled),
+          focusColor: widget.fillColor,
+          hoverColor: widget.fillColor,
+        ),
+        style: NcBaseText.style(fontSize: widget.fontSize),
+        controller: widget.controller,
+        focusNode: focusNode,
       ),
-      style: NcBaseText.style(fontSize: fontSize),
-      controller: controller,
-      focusNode: focusNode,
     );
   }
 }
