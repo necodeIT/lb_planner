@@ -91,11 +91,11 @@ class _CalendarPlanDropDownInviteUsersUserState extends State<CalendarPlanDropDo
                       children: [
                         NcCaptionText(
                           user!.fullname,
-                          fontSize: CalendarPlanDropDownInviteUsersUser.fontSize,
+                          fontSize: CalendarPlanDropDownInviteUsersUser.usernameFontSize,
                         ),
                         NcBodyText(
                           t.calendar_plan_dropdown_members_inviteUsers_userTag(user.username),
-                          fontSize: CalendarPlanDropDownInviteUsersUser.usernameFontSize,
+                          fontSize: CalendarPlanDropDownInviteUsersUser.userTagFontSize,
                         ),
                       ],
                     ),
