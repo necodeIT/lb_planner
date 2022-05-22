@@ -109,9 +109,13 @@ class _LpDialogState extends State<LpDialog> with TickerProviderStateMixin {
               maxHeight: MediaQuery.of(context).size.height * LpDialog.heightFactor,
               maxWidth: MediaQuery.of(context).size.width * LpDialog.widthFactor,
             ),
-            child: SingleChildScrollView(
-              controller: ScrollController(),
-              child: widget.body,
+            child: AnimatedSize(
+              duration: kNormalAnimationDuration,
+              curve: kAnimationCurve,
+              child: SingleChildScrollView(
+                controller: ScrollController(),
+                child: widget.body,
+              ),
             ),
           ),
           actions: <Widget>[
