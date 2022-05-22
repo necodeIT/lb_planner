@@ -43,6 +43,7 @@
   "calendar_modulesOverview_noCourses": "No courses enabled...",
   "calendar_modulesOverview_title": "Modues overview",
   "calendar_plan_deleteDeadline": "Remove deadline",
+  "calendar_plan_dropdown_members_addMember": "Enter name to add members...",
   "calendar_plan_dropdown_members_inviteUsers_btn": "Invite users",
   "calendar_plan_dropdown_members_inviteUsers_search": "Search for the users you want to invite...",
   "calendar_plan_dropdown_members_inviteUsers_title": "Invite users",
