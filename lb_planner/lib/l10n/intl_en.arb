@@ -1,4 +1,13 @@
 {
+  "@calendar_plan_dropdown_members_inviteUsers_userTag": {
+    "description": "The tag of the user",
+    "placeholders": {
+      "username": {
+        "example": "Jane",
+        "type": "String"
+      }
+    }
+  },
   "@settings_feedback_failed_message": {
     "description": "Error message when feedback submission fails",
     "placeholders": {
@@ -45,8 +54,12 @@
   "calendar_plan_deleteDeadline": "Remove deadline",
   "calendar_plan_dropdown_members_addMember": "Enter name to add members...",
   "calendar_plan_dropdown_members_inviteUsers_btn": "Invite users",
+  "calendar_plan_dropdown_members_inviteUsers_inPlan": "Already a member of your plan",
+  "calendar_plan_dropdown_members_inviteUsers_invite": "Invite",
+  "calendar_plan_dropdown_members_inviteUsers_invited": "Invited",
   "calendar_plan_dropdown_members_inviteUsers_search": "Search for the users you want to invite...",
   "calendar_plan_dropdown_members_inviteUsers_title": "Invite users",
+  "calendar_plan_dropdown_members_inviteUsers_userTag": "@{username}",
   "calendar_plan_dropdown_members_leavePlan_btn": "Leave plan",
   "calendar_plan_dropdown_members_leavePlan_message": "Are you sure you want to leave this plan?\n\nYou may get invited again.",
   "calendar_plan_dropdown_members_leavePlan_title": "Leave plan?",

@@ -29,7 +29,7 @@ class _CalendarPlanDropDownInviteUsersDialogState extends State<CalendarPlanDrop
     return Consumer(
       builder: (context, ref, _) {
         var allUsers = ref.watch(usersProvider);
-
+        var user = ref.watch(userProvider);
         var users = allUsers.keys.where((id) => CalendarPlanDropDownMembers.filterSearch(id, allUsers, _searchController.text)).toList();
 
         return Column(
@@ -41,11 +41,7 @@ class _CalendarPlanDropDownInviteUsersDialogState extends State<CalendarPlanDrop
             ),
             NcSpacing.medium(),
             for (var userId in users) ...[
-              CalendarPlanMembersMember(
-                memberId: userId,
-                potential: true,
-                fontSize: CalendarPlanDropDownInviteUsersDialog.fontSize,
-              ),
+              CalendarPlanDropDownInviteUsersUser(userId: userId),
               NcSpacing.small(),
             ],
             // Expanded(

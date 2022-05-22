@@ -17,16 +17,6 @@ class AdminLoginRoute extends StatefulWidget {
   /// The font size of the user name.
   static const double fontSize = 30;
 
-  /// Cache manager for the profile image.
-  static CacheManager get cacheManager => CacheManager(
-        Config(
-          'user_profile',
-
-          // ignore: no-magic-number
-          stalePeriod: Duration(days: 7),
-        ),
-      );
-
   @override
   State<AdminLoginRoute> createState() => _AdminLoginRouteState();
 }
@@ -79,20 +69,7 @@ class _AdminLoginRouteState extends State<AdminLoginRoute> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Center(
-                child: ClipOval(
-                  child: CachedNetworkImage(
-                    imageUrl: user.avatar,
-                    width: AdminLoginRoute.imgSize,
-                    height: AdminLoginRoute.imgSize,
-                    fit: BoxFit.contain,
-                    placeholder: (_, __) => LpLoadingIndicator.circular(),
-                    errorWidget: (_, __, ___) => LpIcon(
-                      Icons.account_circle,
-                      size: AdminLoginRoute.imgSize,
-                    ),
-                    cacheManager: AdminLoginRoute.cacheManager,
-                  ),
-                ),
+                child: UserProfileImg(size: AdminLoginRoute.imgSize),
               ),
               NcSpacing.xl(),
               NcCaptionText(

@@ -74,7 +74,6 @@ class _CalendarPlanDropDownMembersState extends State<CalendarPlanDropDownMember
                 for (var member in members) ...[
                   CalendarPlanMembersMember(
                     memberId: member,
-                    potential: false,
                   ),
                   NcSpacing.xs(),
                 ],

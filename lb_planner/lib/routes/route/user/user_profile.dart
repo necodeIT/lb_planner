@@ -26,19 +26,7 @@ class UserProfile extends StatelessWidget {
         children: [
           UserNotifications(),
           NcSpacing.small(),
-          ClipOval(
-            child: CachedNetworkImage(
-              imageUrl: user.avatar,
-              width: imgSize,
-              height: imgSize,
-              placeholder: (_, __) => LpLoadingIndicator.circular(),
-              errorWidget: (_, __, ___) => LpIcon(
-                Icons.account_circle,
-                size: imgSize,
-              ),
-              cacheManager: AdminLoginRoute.cacheManager,
-            ),
-          ),
+          UserProfileImg(size: imgSize),
           NcSpacing.small(),
           Column(
             mainAxisSize: MainAxisSize.min,

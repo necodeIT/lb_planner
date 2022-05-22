@@ -74,6 +74,8 @@ part 'routes/calendar/plan/dropdown/dropdown_members_member.dart';
 part 'routes/admin/login/login.dart';
 part 'routes/admin/dashboard/dashboard.dart';
 part 'routes/calendar/plan/dropdown/dropdown_members_invite_users.dart';
+part 'routes/calendar/plan/dropdown/dropdown_members_invite_users_user.dart';
+part 'routes/route/user/user_profile_img.dart';
 
 /// All routes the app has
 final Map<String, WidgetBuilder> kRoutes = {
