@@ -49,6 +49,12 @@ class _CalendarPlanDropDownBodyState extends State<CalendarPlanDropDownBody> {
 
   void setPlanName(WidgetRef ref) async {
     var controller = ref.read(planController);
+    var plan = ref.read(planProvider);
+
+    if (plan.name == _planNameController.text) {
+      exitEditMode();
+      return;
+    }
 
     setState(() {
       planNameFuture = controller.setPlanName(_planNameController.text);
