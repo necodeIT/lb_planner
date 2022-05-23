@@ -59,7 +59,7 @@ class _CalendarPlanDropDownMembersState extends State<CalendarPlanDropDownMember
           return result == 0 ? a.fullname.compareTo(b.fullname) : result;
         });
 
-        var accessLvl = plan.members[ref.read(userProvider).id]!;
+        var accessLvl = plan.members[ref.read(userProvider).id];
 
         return Column(
           children: [
@@ -81,7 +81,7 @@ class _CalendarPlanDropDownMembersState extends State<CalendarPlanDropDownMember
                   NcSpacing.small(),
                   Row(
                     children: [
-                      if (accessLvl.isOwner)
+                      if (accessLvl != null && accessLvl.isOwner)
                         Expanded(
                           child: LpButton.icon(
                             text: t.calendar_plan_dropdown_members_inviteUsers_btn,
@@ -97,7 +97,7 @@ class _CalendarPlanDropDownMembersState extends State<CalendarPlanDropDownMember
                             ),
                           ),
                         ),
-                      if (plan.members.length > 1 && accessLvl.isOwner) NcSpacing.small(),
+                      if (plan.members.length > 1 && accessLvl != null && accessLvl.isOwner) NcSpacing.small(),
                       if (plan.members.length > 1)
                         Expanded(
                           child: LpButton.icon(
@@ -108,7 +108,7 @@ class _CalendarPlanDropDownMembersState extends State<CalendarPlanDropDownMember
                                     size: CalendarPlanDropDownBody.fontSize,
                                     color: buttonTextColor,
                                   ),
-                            icon: accessLvl.isOwner ? null : Feather.arrow_right_circle,
+                            icon: accessLvl != null && accessLvl.isOwner ? null : Feather.arrow_right_circle,
                             size: MainAxisSize.max,
                             alignment: MainAxisAlignment.spaceBetween,
                             trailing: true,

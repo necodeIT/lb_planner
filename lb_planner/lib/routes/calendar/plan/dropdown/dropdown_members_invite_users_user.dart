@@ -73,10 +73,12 @@ class _CalendarPlanDropDownInviteUsersUserState extends State<CalendarPlanDropDo
               onTap = null;
             }
 
-            var filteredInvites = invites.values.where((e) => e.invitee == widget.userId);
+            var filteredInvites = invites.values.where((e) => e.invitee == widget.userId).toList();
+
+            filteredInvites.sort((a, b) => a.timeStamp.compareTo(b.timeStamp));
 
             if (filteredInvites.isNotEmpty) {
-              var invite = filteredInvites.first;
+              var invite = filteredInvites.last;
 
               if (invite.status.isPending) {
                 icon = Icons.mail;

@@ -43,6 +43,7 @@ _handleError(BuildContext context, WidgetRef ref, Object obj, [StackTrace? stack
         ),
         NcSpacing.medium(),
         Container(
+          width: double.infinity,
           padding: EdgeInsets.all(NcSpacing.smallSpacing),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(kRadius),
@@ -130,11 +131,12 @@ class _LpLogger extends CatcherLogger {
   }
 }
 
-final _dragErrors = [
+final _ignoreList = [
   "The ParentDataWidget Positioned wants to apply",
+  "setState() or markNeedsBuild() called during build.",
 ];
 
 bool _filterReport(Report report) {
   // Filter out error that occurse when dragging a module.
-  return !_dragErrors.any(report.error.toString().containsCaseInsensitive);
+  return !_ignoreList.any(report.error.toString().containsCaseInsensitive);
 }

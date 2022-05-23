@@ -68,75 +68,79 @@ class _CalendarPlanMembersMemberState extends State<CalendarPlanMembersMember> {
         var plan = ref.watch(planProvider);
         var user = ref.watch(userProvider);
 
-        var accessLevel = plan.members[widget.memberId]!;
-        var member = users[widget.memberId]!;
-        var currentAccessLvl = plan.members[user.id]!;
+        var accessLevel = plan.members[widget.memberId];
+        var member = users[widget.memberId];
+        var currentAccessLvl = plan.members[user.id];
 
-        return Container(
-          height: ModuleWidget.height,
-          padding: EdgeInsets.all(NcSpacing.xsSpacing),
-          decoration: BoxDecoration(
-            color: secondaryColor,
-            borderRadius: BorderRadius.circular(kRadius),
-            boxShadow: kElevationToShadow[ModuleWidget.elevation],
-          ),
-          child: Row(
-            children: [
-              NcSpacing.xs(),
-              Expanded(
-                child: NcCaptionText(
-                  member.fullname,
-                  fontSize: fontSize,
+        return ConditionalWidget(
+          condition: accessLevel != null && member != null && currentAccessLvl != null,
+          trueWidget: (context) => Container(
+            height: ModuleWidget.height,
+            padding: EdgeInsets.all(NcSpacing.xsSpacing),
+            decoration: BoxDecoration(
+              color: secondaryColor,
+              borderRadius: BorderRadius.circular(kRadius),
+              boxShadow: kElevationToShadow[ModuleWidget.elevation],
+            ),
+            child: Row(
+              children: [
+                NcSpacing.xs(),
+                Expanded(
+                  child: NcCaptionText(
+                    member!.fullname,
+                    fontSize: fontSize,
+                  ),
                 ),
-              ),
-              NcSpacing.xs(),
-              Row(
-                children: [
-                  ConditionalWidget(
-                    condition: _accessLevelFuture == null,
-                    trueWidget: (context) => ConditionalWrapper(
-                      condition: !accessLevel.isOwner && currentAccessLvl.isOwner,
-                      wrapper: (context, child) => ScaleOnHover(
-                        onTap: () => _changeAccessLevel(ref, accessLevel.opposite),
-                        duration: kFasterAnimationDuration,
-                        // ignore: no-magic-number
-                        scale: 1.1,
-                        child: child,
+                NcSpacing.xs(),
+                Row(
+                  children: [
+                    ConditionalWidget(
+                      condition: _accessLevelFuture == null,
+                      trueWidget: (context) => ConditionalWrapper(
+                        condition: !accessLevel!.isOwner && currentAccessLvl!.isOwner,
+                        wrapper: (context, child) => ScaleOnHover(
+                          onTap: () => _changeAccessLevel(ref, accessLevel.opposite),
+                          duration: kFasterAnimationDuration,
+                          // ignore: no-magic-number
+                          scale: 1.1,
+                          child: child,
+                        ),
+                        child: LpIcon(
+                          accessLevel.icon,
+                          color: accentColor,
+                          size: fontSize,
+                        ),
                       ),
-                      child: LpIcon(
-                        accessLevel.icon,
+                      falseWidget: (context) => LpLoadingIndicator.circular(
                         color: accentColor,
                         size: fontSize,
                       ),
                     ),
-                    falseWidget: (context) => LpLoadingIndicator.circular(
-                      color: accentColor,
-                      size: fontSize,
-                    ),
-                  ),
-                  if (!accessLevel.isOwner && currentAccessLvl.isOwner) NcSpacing.small(),
-                  if (!accessLevel.isOwner && currentAccessLvl.isOwner)
-                    ScaleOnHover(
-                      duration: kFasterAnimationDuration,
-                      // ignore: no-magic-number
-                      scale: 1.1,
-                      onTap: () => lpShowConfirmDialog(
-                        context,
-                        title: t.calendar_plan_dropdown_members_removeMemver_title,
-                        message: t.calendar_plan_dropdown_members_removeMemver_message,
-                        onConfirm: () => _removeMember(ref),
+                    if (!accessLevel!.isOwner && currentAccessLvl!.isOwner) NcSpacing.small(),
+                    if (!accessLevel.isOwner && currentAccessLvl!.isOwner)
+                      ScaleOnHover(
+                        duration: kFasterAnimationDuration,
+                        // ignore: no-magic-number
+                        scale: 1.1,
+                        onTap: () => lpShowConfirmDialog(
+                          context,
+                          title: t.calendar_plan_dropdown_members_removeMemver_title,
+                          message: t.calendar_plan_dropdown_members_removeMemver_message,
+                          onConfirm: () => _removeMember(ref),
+                        ),
+                        child: LpIcon(
+                          Icons.remove_circle_outline,
+                          color: errorColor,
+                          size: fontSize,
+                        ),
                       ),
-                      child: LpIcon(
-                        Icons.remove_circle_outline,
-                        color: errorColor,
-                        size: fontSize,
-                      ),
-                    ),
-                  NcSpacing.xs(),
-                ],
-              ),
-            ],
+                    NcSpacing.xs(),
+                  ],
+                ),
+              ],
+            ),
           ),
+          falseWidget: (context) => LpShimmer(),
         );
       },
     );

@@ -60,5 +60,9 @@ class UserNotificationsPopup extends LocalizedWidget {
 }
 
 extension _NotificationExt on Notification {
-  bool get shouldDisplay => timestamp.isAfter(UserNotificationsPopup.maxNotificationAgeAsDateTime) || type.isInvite;
+  bool get shouldDisplay {
+    if (readTimestamp == null) return true;
+
+    return readTimestamp!.isAfter(UserNotificationsPopup.maxNotificationAgeAsDateTime) || type.isInvite;
+  }
 }

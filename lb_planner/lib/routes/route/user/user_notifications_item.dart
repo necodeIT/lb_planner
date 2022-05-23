@@ -21,9 +21,19 @@ class UserNotificationsItem extends StatefulWidget {
 class _UserNotificationsItemState extends State<UserNotificationsItem> {
   Future? _future;
 
-  void load(Future future) {
+  void load(List<Future> future) async {
     setState(() {
-      _future = future;
+      _future = Future.wait(future);
+    });
+
+    if (_future == null) return;
+
+    await _future;
+
+    if (!mounted) return;
+
+    setState(() {
+      _future = null;
     });
   }
 
@@ -50,7 +60,12 @@ class _UserNotificationsItemState extends State<UserNotificationsItem> {
 
             var controller = ref.read(invitesController);
 
-            var inviter = ref.watch(usersProvider)[invite.inviter]!;
+            var inviter = ref.watch(usersProvider)[invite.inviter];
+
+            if (inviter == null) {
+              loading = true;
+              break;
+            }
 
             text = t.user_notifications_invite_text(inviter.fullname);
 
@@ -58,12 +73,17 @@ class _UserNotificationsItemState extends State<UserNotificationsItem> {
               if (invite.status.isPending && _future == null)
                 _Action(
                   text: t.user_notifications_invite_accept,
-                  onPressed: () => load(controller.acceptInvite(invite.id)),
+                  onPressed: () => load(
+                    [
+                      controller.acceptInvite(invite.id),
+                      ref.read(planController).fetchPlan(),
+                    ],
+                  ),
                 ),
               if (invite.status.isPending && _future == null)
                 _Action(
                   text: t.user_notifications_invite_decline,
-                  onPressed: () => load(controller.declineInvite(invite.id)),
+                  onPressed: () => load([controller.declineInvite(invite.id)]),
                 ),
               if (!invite.status.isPending)
                 _Action(
@@ -74,16 +94,60 @@ class _UserNotificationsItemState extends State<UserNotificationsItem> {
 
             break;
           case NotificationTypes.inviteAccepted:
-            // TODO: Handle this case.
+            var id = int.parse(notification.payload["inviteid"]); // dunno why but "inviteid" is appearently a string
+
+            var invite = ref.watch(invitesProvider)[id];
+
+            if (invite == null) {
+              loading = true;
+              break;
+            }
+
+            var user = ref.watch(usersProvider)[invite.invitee];
+
+            if (user == null) {
+              loading = true;
+              break;
+            }
+
+            text = t.user_notifications_inviteAccepted_text(user.fullname);
             break;
           case NotificationTypes.inviteDeclined:
-            // TODO: Handle this case.
+            var id = int.parse(notification.payload["inviteid"]); // dunno why but "inviteid" is appearently a string
+
+            var invite = ref.watch(invitesProvider)[id];
+
+            if (invite == null) {
+              loading = true;
+              break;
+            }
+
+            var user = ref.watch(usersProvider)[invite.invitee];
+
+            if (user == null) {
+              loading = true;
+              break;
+            }
+
+            text = t.user_notifications_inviteDeclined_text(user.fullname);
+
             break;
           case NotificationTypes.planLeft:
-            // TODO: Handle this case.
+            var username = notification.payload["value"];
+
+            text = t.user_notifications_planLeft_text(username);
             break;
           case NotificationTypes.planRemoved:
-            // TODO: Handle this case.
+            var userId = notification.payload["userid"];
+
+            var user = ref.watch(usersProvider)[userId];
+
+            if (user == null) {
+              loading = true;
+              break;
+            }
+
+            text = t.user_notifications_planRemoved_text(user.fullname);
             break;
           case NotificationTypes.userRegistered:
             var user = ref.read(userProvider);

@@ -17,6 +17,24 @@
       }
     }
   },
+  "@user_notifications_inviteAccepted_text": {
+    "description": "Invite accepted notification text",
+    "placeholders": {
+      "username": {
+        "example": "Jane",
+        "type": "String"
+      }
+    }
+  },
+  "@user_notifications_inviteDeclined_text": {
+    "description": "Invite accepted notification text",
+    "placeholders": {
+      "username": {
+        "example": "Jane",
+        "type": "String"
+      }
+    }
+  },
   "@user_notifications_invite_text": {
     "description": "Invite notification text",
     "placeholders": {
@@ -34,7 +52,25 @@
       }
     }
   },
+  "@user_notifications_planLeft_text": {
+    "description": "User registered notification text",
+    "placeholders": {
+      "username": {
+        "example": "Jane",
+        "type": "String"
+      }
+    }
+  },
   "@user_notifications_userRegistered_text": {
+    "description": "User registered notification text",
+    "placeholders": {
+      "username": {
+        "example": "Jane",
+        "type": "String"
+      }
+    }
+  },
+  "@user_notifications_planRemoved_text": {
     "description": "User registered notification text",
     "placeholders": {
       "username": {
@@ -123,12 +159,17 @@
   "settings_searchCourses": "Search courses...",
   "settings_themes": "Themes",
   "settings_title": "Settings",
+  "user_notifications_inviteAccepted_text": "{username} has joined your plan!",
+  "user_notifications_inviteDeclined_text": "{username} has declined your offer to joind your plan!",
   "user_notifications_invite_accept": "Join",
-  "user_notifications_invite_accepted": "Accepted",
+  "user_notifications_invite_accepted": "You accepted",
   "user_notifications_invite_decline": "Decline",
-  "user_notifications_invite_declined": "Declined",
+  "user_notifications_invite_declined": "You declined",
   "user_notifications_invite_text": "You have been invited to join {inviter}'s plan!",
   "user_notifications_notifications": "{count, plural, =0{No news... You're up to date!} =1{1 Notification} other{{count} Notifications}}",
+  "user_notifications_planLeft_text": "{username} has left your plan.",
+  "user_notifications_planRemoved": "You have been removed from {username}'s plan.",
   "user_notifications_userRegistered_docs": "Need help?",
-  "user_notifications_userRegistered_text": "Welcome, {username}!\n\nIf you happen to face any issues, please let us know."
+  "user_notifications_userRegistered_text": "Welcome, {username}!\n\nIf you happen to face any issues, please let us know.",
+  "user_notifications_planRemoved_text": "You have been removed from {username}'s plan."
 }

@@ -29,7 +29,7 @@ class UserProfileImg extends StatelessWidget {
 
         return ClipOval(
           child: ConditionalWidget(
-            condition: user != null,
+            condition: user != null && user.avatar.isNotEmpty,
             trueWidget: (_) => CachedNetworkImage(
               imageUrl: user!.avatar,
               width: size,
