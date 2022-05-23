@@ -11,9 +11,12 @@ class UserProvider extends StateNotifier<User> {
   /// Provides the current user
   UserProvider() : super(User.loading());
 
+  DateTime? _lastRefresh;
+
   @override
   init() {
     if (UserDisk.data != null) setState(UserDisk.data!);
+    _refresh();
   }
 
   /// Performs a login request with the given [username] and [password].
@@ -46,6 +49,7 @@ class UserProvider extends StateNotifier<User> {
 
       state = user.value!;
       UserDisk.saveUser(state);
+      _lastRefresh = DateTime.now();
       return user;
     }
 
@@ -56,6 +60,7 @@ class UserProvider extends StateNotifier<User> {
     if (register.succeeded) {
       state = register.value!;
       UserDisk.saveUser(state);
+      _lastRefresh = DateTime.now();
     }
 
     log("Registered user successfully", LogTypes.success);
@@ -77,6 +82,7 @@ class UserProvider extends StateNotifier<User> {
     if (response.succeeded) {
       state = response.value!;
       UserDisk.saveUser(state);
+      _lastRefresh = DateTime.now();
     }
 
     return response;
@@ -89,8 +95,36 @@ class UserProvider extends StateNotifier<User> {
     if (response.succeeded) {
       state = response.value!;
       UserDisk.saveUser(state);
+      _lastRefresh = DateTime.now();
     }
 
     return response;
+  }
+
+  void _refresh() async {
+    if (_lastRefresh != null) {
+      var diff = DateTime.now().difference(_lastRefresh!);
+
+      if (diff < kApiRefreshRate) {
+        var delay = kApiRefreshRate - diff;
+
+        await Future.delayed(delay);
+      }
+    }
+
+    if (!state.loading && !state.restricted) {
+      _lastRefresh = DateTime.now();
+
+      var user = await UserApi.getUser(state.token, state.id);
+
+      if (user.succeeded) {
+        setState(user.value!);
+        UserDisk.saveUser(state);
+      }
+    }
+
+    await Future.delayed(kApiRefreshRate);
+
+    _refresh();
   }
 }
