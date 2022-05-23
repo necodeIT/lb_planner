@@ -159,7 +159,7 @@ class PlanApi {
     List<PlanInvite>? planInvites = [];
 
     if (response.succeeded) {
-      planInvites = [for (var invite in response.body[kApiListContent]) PlanInvite.fromJson(invite.mapPlanInvite())];
+       planInvites = [for (var invite in response.body[kApiListContent]) PlanInvite.fromJson(Map<String, dynamic>.from(invite).mapPlanInvite())];
     }
 
     return ApiResponse(response.response, planInvites);
