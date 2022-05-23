@@ -47,8 +47,6 @@ class _UserNotificationsState extends State<UserNotifications> {
             badgeColor: accentColor,
             // ignore: no-magic-number
             position: BadgePosition.bottomEnd(bottom: -2, end: -2),
-            // animationType: BadgeAnimationType.fade,
-            // animationDuration: kFasterAnimationDuration,
           ),
           child: child,
         );

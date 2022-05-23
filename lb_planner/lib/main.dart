@@ -7,7 +7,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lb_planner/assets.dart';
 import 'package:lb_planner/helpers.dart';
 import 'package:lb_planner/routes.dart';
-import 'package:lb_planner/updater.dart';
 import 'package:lb_planner/widgets.dart';
 import 'package:lbplanner_api/lbplanner_api.dart';
 import 'package:nekolib_ui/core.dart';
@@ -49,7 +48,7 @@ void main() async {
 Future<void> load() async {
   await UserDisk.loadUser();
 
-  if (UserDisk.data != null && !UserDisk.data!.isEmpty) {
+  if (UserDisk.data != null && !UserDisk.data!.loading) {
     applyUserTheme(UserDisk.data!);
   }
 

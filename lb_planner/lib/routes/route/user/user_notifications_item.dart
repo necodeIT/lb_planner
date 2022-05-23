@@ -1,7 +1,7 @@
 part of lbplanner_routes;
 
 /// User notifications item.
-class UserNotificationsItem extends LocalizedWidget {
+class UserNotificationsItem extends StatefulWidget {
   /// User notifications item.
   const UserNotificationsItem({Key? key, required this.notificationId}) : super(key: key);
 
@@ -15,10 +15,23 @@ class UserNotificationsItem extends LocalizedWidget {
   static final formatter = DateFormat.MMMEd();
 
   @override
-  Widget build(context, t) {
+  State<UserNotificationsItem> createState() => _UserNotificationsItemState();
+}
+
+class _UserNotificationsItemState extends State<UserNotificationsItem> {
+  Future? _future;
+
+  void load(Future future) {
+    setState(() {
+      _future = future;
+    });
+  }
+
+  @override
+  Widget build(context) {
     return Consumer(
       builder: (context, ref, _) {
-        var notification = ref.watch(notificationsProvider)[notificationId]!;
+        var notification = ref.watch(notificationsProvider)[widget.notificationId]!;
 
         String text = notification.toString();
         List<_Action> actions = [];
@@ -26,36 +39,37 @@ class UserNotificationsItem extends LocalizedWidget {
 
         switch (notification.type) {
           case NotificationTypes.invite:
-            int inviterId = notification.payload["inviterid"];
+            int id = notification.payload["inviteid"];
 
-            var inviter = ref.watch(usersProvider)[inviterId];
+            var invite = ref.watch(invitesProvider)[id];
 
-            if (inviter == null) {
+            if (invite == null) {
               loading = true;
               break;
             }
 
+            var controller = ref.read(invitesController);
+
+            var inviter = ref.watch(usersProvider)[invite.inviter]!;
+
             text = t.user_notifications_invite_text(inviter.fullname);
 
-            // var invite = ref.watch(invitesProvider).values.where((invite) => invite.inviter == inviterId);
-
             actions = [
-              // if (invite.status.isPending)
-              // if (invite.isNotEmpty)
-              _Action(
-                text: t.user_notifications_invite_accept,
-                onPressed: () {},
-              ),
-              // if (invite.status.isPending)
-              // if (invite.isNotEmpty)
-              _Action(
-                text: t.user_notifications_invite_decline,
-                onPressed: () {},
-              ),
-              // if (!invite.status.isPending)
-              //   _Action(
-              //     text: invite.status.isAccepted ? "Accepted" : "Declined",
-              //   ),
+              if (invite.status.isPending && _future == null)
+                _Action(
+                  text: t.user_notifications_invite_accept,
+                  onPressed: () => load(controller.acceptInvite(invite.id)),
+                ),
+              if (invite.status.isPending && _future == null)
+                _Action(
+                  text: t.user_notifications_invite_decline,
+                  onPressed: () => load(controller.declineInvite(invite.id)),
+                ),
+              if (!invite.status.isPending)
+                _Action(
+                  text: invite.status.isAccepted ? t.user_notifications_invite_accepted : t.user_notifications_invite_declined,
+                  loading: _future != null,
+                ),
             ];
 
             break;
@@ -111,7 +125,7 @@ class UserNotificationsItem extends LocalizedWidget {
                       children: [
                         LpIcon(
                           Icons.access_time,
-                          size: actionsFontSize,
+                          size: UserNotificationsItem.actionsFontSize,
                           // ignore: no-magic-number
                           color: textColor.withOpacity(.7),
                         ),
@@ -120,7 +134,7 @@ class UserNotificationsItem extends LocalizedWidget {
                           timeago.format(notification.timestamp),
                           // ignore: no-magic-number
                           color: textColor.withOpacity(.7),
-                          fontSize: actionsFontSize,
+                          fontSize: UserNotificationsItem.actionsFontSize,
                         ),
                       ],
                     ),
@@ -143,24 +157,29 @@ class UserNotificationsItem extends LocalizedWidget {
 class _Action {
   final String text;
   final VoidCallback? onPressed;
+  final bool loading;
 
-  _Action({required this.text, this.onPressed});
+  _Action({required this.text, this.onPressed, this.loading = false});
 
   Widget build(BuildContext context) {
     return ConditionalWidget(
-      condition: onPressed != null,
-      trueWidget: (_) => LpTextButton(
-        text: text,
-        color: accentColor,
-        decoration: TextDecoration.underline,
-        fontSize: UserNotificationsItem.actionsFontSize,
-        onPressed: onPressed,
-      ),
-      falseWidget: (_) => NcCaptionText(
-        text,
-        // ignore: no-magic-number
-        color: textColor.withOpacity(.7),
-        fontSize: UserNotificationsItem.actionsFontSize,
+      condition: loading,
+      trueWidget: (context) => LpLoadingIndicator.circular(),
+      falseWidget: (context) => ConditionalWidget(
+        condition: onPressed != null,
+        trueWidget: (_) => LpTextButton(
+          text: text,
+          color: accentColor,
+          decoration: TextDecoration.underline,
+          fontSize: UserNotificationsItem.actionsFontSize,
+          onPressed: onPressed,
+        ),
+        falseWidget: (_) => NcCaptionText(
+          text,
+          // ignore: no-magic-number
+          color: textColor.withOpacity(.7),
+          fontSize: UserNotificationsItem.actionsFontSize,
+        ),
       ),
     );
   }

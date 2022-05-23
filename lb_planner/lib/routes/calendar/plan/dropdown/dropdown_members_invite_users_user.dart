@@ -30,14 +30,16 @@ class _CalendarPlanDropDownInviteUsersUserState extends State<CalendarPlanDropDo
   void _inviteUser(WidgetRef ref) async {
     if (_inviteFuture != null) return;
 
-    var controller = ref.read(planController);
+    var plan = ref.read(planController);
+    var invites = ref.read(invitesController);
 
     setState(() {
-      _inviteFuture = controller.inviteUser(widget.userId);
+      _inviteFuture = plan.inviteUser(widget.userId);
     });
 
     await _inviteFuture;
-    await controller.fetchPlan();
+    await invites.fetchInvites();
+    await plan.fetchPlan();
 
     if (!mounted) return;
 
@@ -52,12 +54,11 @@ class _CalendarPlanDropDownInviteUsersUserState extends State<CalendarPlanDropDo
       builder: (context, ref, _) {
         var user = ref.watch(usersProvider)[widget.userId];
 
-        // TODO: Check if user is already invited.
-
         return ConditionalWidget(
           condition: user != null,
           trueWidget: (context) {
             var plan = ref.watch(planProvider);
+            var invites = ref.watch(invitesProvider);
 
             var color = accentColor;
             IconData? icon;
@@ -70,6 +71,23 @@ class _CalendarPlanDropDownInviteUsersUserState extends State<CalendarPlanDropDo
               icon = Icons.check_circle;
               text = t.calendar_plan_dropdown_members_inviteUsers_inPlan;
               onTap = null;
+            }
+
+            var filteredInvites = invites.values.where((e) => e.invitee == widget.userId);
+
+            if (filteredInvites.isNotEmpty) {
+              var invite = filteredInvites.first;
+
+              if (invite.status.isPending) {
+                icon = Icons.mail;
+                text = t.calendar_plan_dropdown_members_inviteUsers_invited;
+                onTap = null;
+              }
+
+              if (invite.status.isDeclined) {
+                icon = Icons.shortcut;
+                text = t.calendar_plan_dropdown_members_inviteUsers_reInvite;
+              }
             }
 
             return Container(
@@ -106,6 +124,7 @@ class _CalendarPlanDropDownInviteUsersUserState extends State<CalendarPlanDropDo
                     falseWidget: (context) => ConditionalWidget(
                       condition: onTap != null,
                       trueWidget: (_) => LpTextButton(
+                        leadingIcon: icon,
                         fontSize: CalendarPlanDropDownInviteUsersUser.fontSize,
                         text: text,
                         onPressed: onTap!,

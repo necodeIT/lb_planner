@@ -12,11 +12,11 @@ WidgetRef? _staticRef;
 _handleError(BuildContext context, WidgetRef ref, Object obj, [StackTrace? stackTrace]) {
   var user = ref.read(userProvider);
 
-  if (user.isEmpty) return;
+  if (user.loading) return;
 
   var controller = ref.read(feedbackController);
 
-  if (user.isEmpty) return;
+  if (user.loading) return;
 
   var message = obj.toString();
   var stack = stackTrace?.toString() ?? '';
