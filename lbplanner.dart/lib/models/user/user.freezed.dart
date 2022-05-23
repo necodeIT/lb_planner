@@ -33,7 +33,7 @@ class _$UserTearOff {
       String theme = "",
       UserAccessLevels accessLevel = UserAccessLevels.restricted,
       int planId = -1,
-      bool isEmpty = false,
+      bool loading = false,
       ColorBlindnessType colorBlindness = ColorBlindnessType.none}) {
     return _User(
       id: id,
@@ -46,7 +46,7 @@ class _$UserTearOff {
       theme: theme,
       accessLevel: accessLevel,
       planId: planId,
-      isEmpty: isEmpty,
+      loading: loading,
       colorBlindness: colorBlindness,
     );
   }
@@ -91,8 +91,8 @@ mixin _$User {
   /// The id of the plan the user is currently a member of
   int get planId => throw _privateConstructorUsedError;
 
-  /// If this is set to true the this user contains no useful data
-  bool get isEmpty => throw _privateConstructorUsedError;
+  /// If this is set to true the this user contains no useful data and is loading
+  bool get loading => throw _privateConstructorUsedError;
 
   /// The colorblindness of the user
   ColorBlindnessType get colorBlindness => throw _privateConstructorUsedError;
@@ -117,7 +117,7 @@ abstract class $UserCopyWith<$Res> {
       String theme,
       UserAccessLevels accessLevel,
       int planId,
-      bool isEmpty,
+      bool loading,
       ColorBlindnessType colorBlindness});
 }
 
@@ -141,7 +141,7 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object? theme = freezed,
     Object? accessLevel = freezed,
     Object? planId = freezed,
-    Object? isEmpty = freezed,
+    Object? loading = freezed,
     Object? colorBlindness = freezed,
   }) {
     return _then(_value.copyWith(
@@ -185,9 +185,9 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _value.planId
           : planId // ignore: cast_nullable_to_non_nullable
               as int,
-      isEmpty: isEmpty == freezed
-          ? _value.isEmpty
-          : isEmpty // ignore: cast_nullable_to_non_nullable
+      loading: loading == freezed
+          ? _value.loading
+          : loading // ignore: cast_nullable_to_non_nullable
               as bool,
       colorBlindness: colorBlindness == freezed
           ? _value.colorBlindness
@@ -213,7 +213,7 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       String theme,
       UserAccessLevels accessLevel,
       int planId,
-      bool isEmpty,
+      bool loading,
       ColorBlindnessType colorBlindness});
 }
 
@@ -238,7 +238,7 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     Object? theme = freezed,
     Object? accessLevel = freezed,
     Object? planId = freezed,
-    Object? isEmpty = freezed,
+    Object? loading = freezed,
     Object? colorBlindness = freezed,
   }) {
     return _then(_User(
@@ -282,9 +282,9 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
           ? _value.planId
           : planId // ignore: cast_nullable_to_non_nullable
               as int,
-      isEmpty: isEmpty == freezed
-          ? _value.isEmpty
-          : isEmpty // ignore: cast_nullable_to_non_nullable
+      loading: loading == freezed
+          ? _value.loading
+          : loading // ignore: cast_nullable_to_non_nullable
               as bool,
       colorBlindness: colorBlindness == freezed
           ? _value.colorBlindness
@@ -308,7 +308,7 @@ class _$_User extends _User {
       this.theme = "",
       this.accessLevel = UserAccessLevels.restricted,
       this.planId = -1,
-      this.isEmpty = false,
+      this.loading = false,
       this.colorBlindness = ColorBlindnessType.none})
       : super._();
 
@@ -362,8 +362,8 @@ class _$_User extends _User {
   @JsonKey()
   @override
 
-  /// If this is set to true the this user contains no useful data
-  final bool isEmpty;
+  /// If this is set to true the this user contains no useful data and is loading
+  final bool loading;
   @JsonKey()
   @override
 
@@ -372,7 +372,7 @@ class _$_User extends _User {
 
   @override
   String toString() {
-    return 'User(id: $id, username: $username, firstname: $firstname, lastname: $lastname, avatar: $avatar, language: $language, token: $token, theme: $theme, accessLevel: $accessLevel, planId: $planId, isEmpty: $isEmpty, colorBlindness: $colorBlindness)';
+    return 'User(id: $id, username: $username, firstname: $firstname, lastname: $lastname, avatar: $avatar, language: $language, token: $token, theme: $theme, accessLevel: $accessLevel, planId: $planId, loading: $loading, colorBlindness: $colorBlindness)';
   }
 
   @override
@@ -391,7 +391,7 @@ class _$_User extends _User {
             const DeepCollectionEquality()
                 .equals(other.accessLevel, accessLevel) &&
             const DeepCollectionEquality().equals(other.planId, planId) &&
-            const DeepCollectionEquality().equals(other.isEmpty, isEmpty) &&
+            const DeepCollectionEquality().equals(other.loading, loading) &&
             const DeepCollectionEquality()
                 .equals(other.colorBlindness, colorBlindness));
   }
@@ -409,7 +409,7 @@ class _$_User extends _User {
       const DeepCollectionEquality().hash(theme),
       const DeepCollectionEquality().hash(accessLevel),
       const DeepCollectionEquality().hash(planId),
-      const DeepCollectionEquality().hash(isEmpty),
+      const DeepCollectionEquality().hash(loading),
       const DeepCollectionEquality().hash(colorBlindness));
 
   @JsonKey(ignore: true)
@@ -435,7 +435,7 @@ abstract class _User extends User {
       String theme,
       UserAccessLevels accessLevel,
       int planId,
-      bool isEmpty,
+      bool loading,
       ColorBlindnessType colorBlindness}) = _$_User;
   const _User._() : super._();
 
@@ -483,8 +483,8 @@ abstract class _User extends User {
   int get planId;
   @override
 
-  /// If this is set to true the this user contains no useful data
-  bool get isEmpty;
+  /// If this is set to true the this user contains no useful data and is loading
+  bool get loading;
   @override
 
   /// The colorblindness of the user

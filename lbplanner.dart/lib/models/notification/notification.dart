@@ -30,6 +30,9 @@ class Notification with _$Notification {
 
     /// The date the notification was received
     required DateTime timestamp,
+
+    /// The date the notification was read
+    @Default(null) DateTime? readTimestamp,
   }) = _Notification;
 
   /// Notification model from json

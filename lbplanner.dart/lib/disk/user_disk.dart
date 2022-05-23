@@ -34,14 +34,14 @@ class UserDisk {
 
     try {
       var json = await file.readAsString();
-      
+
       var user = User.fromJson(jsonDecode(json));
 
       var response = await UserApi.getUser(user.token, user.id);
 
-      _data = response.value ?? User.empty();
+      _data = response.value ?? User.loading();
     } catch (e) {
-      _data = User.empty();
+      _data = User.loading();
     }
   }
 }

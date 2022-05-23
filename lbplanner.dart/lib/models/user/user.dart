@@ -46,16 +46,16 @@ class User with _$User {
     /// The id of the plan the user is currently a member of
     @Default(-1) int planId,
 
-    /// If this is set to true the this user contains no useful data
-    @Default(false) bool isEmpty,
+    /// If this is set to true the this user contains no useful data and is loading
+    @Default(false) bool loading,
 
     /// The colorblindness of the user
     @Default(ColorBlindnessType.none) ColorBlindnessType colorBlindness,
   }) = _User;
 
-  /// Empty [User] with [isEmpty] set to true.
-  /// This is used to indicate that the user is not logged in and contains no valuable information other than that.
-  factory User.empty() => _EmptyUser();
+  /// Empty [User] with [loading] set to true.
+  /// This is used to indicate that the user is not logged in or is currently loading.
+  factory User.loading() => _LoadingUser();
 
   /// If this is true, only restricted information is available about this user
   bool get restricted => accessLevel == UserAccessLevels.restricted;
@@ -67,7 +67,7 @@ class User with _$User {
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 }
 
-User _EmptyUser() => User(
+User _LoadingUser() => User(
       id: -1,
       username: "",
       firstname: "",
@@ -76,6 +76,6 @@ User _EmptyUser() => User(
       language: Languages.en,
       theme: "",
       accessLevel: UserAccessLevels.restricted,
-      isEmpty: true,
+      loading: true,
       planId: -1,
     );

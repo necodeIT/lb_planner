@@ -20,7 +20,7 @@ _$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
           $enumDecodeNullable(_$UserAccessLevelsEnumMap, json['accessLevel']) ??
               UserAccessLevels.restricted,
       planId: json['planId'] as int? ?? -1,
-      isEmpty: json['isEmpty'] as bool? ?? false,
+      loading: json['loading'] as bool? ?? false,
       colorBlindness: $enumDecodeNullable(
               _$ColorBlindnessTypeEnumMap, json['colorBlindness']) ??
           ColorBlindnessType.none,
@@ -37,7 +37,7 @@ Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
       'theme': instance.theme,
       'accessLevel': _$UserAccessLevelsEnumMap[instance.accessLevel],
       'planId': instance.planId,
-      'isEmpty': instance.isEmpty,
+      'loading': instance.loading,
       'colorBlindness': _$ColorBlindnessTypeEnumMap[instance.colorBlindness],
     };
 

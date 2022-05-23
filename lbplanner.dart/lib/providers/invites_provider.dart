@@ -21,22 +21,29 @@ class InvitesProvider extends StateNotifier<Map<int, PlanInvite>> {
   Future<RawApiResponse> fetchInvites() async {
     var response = await PlanApi.getInvites(user.token, user.id);
 
-    if (response.succeeded) setState({for (var invite in response.value!) invite.planId: invite});
+    if (response.succeeded) setState({for (var invite in response.value!) invite.id: invite});
 
     return response;
   }
 
-  /// Updates the invitation for the given [planId] with the given [status]
-  Future<RawApiResponse> updateInviteStatus(int planId, PlanInviteStatus status) async {
-    assertId(planId);
+  /// Accepts an invitation
+  Future<RawApiResponse> acceptInvite(int id) async {
+    assertId(id);
 
-    var oldInvite = state[planId];
+    var response = await PlanApi.declineInvite(user.token, state[id]!);
 
-    var updatedInvite = oldInvite!.copyWith(status: status);
+    if (response.succeeded) updateValue(id, response.value!);
 
-    var response = await PlanApi.updateInvite(user.token, updatedInvite);
+    return response;
+  }
 
-    if (response.succeeded) updateValue(planId, response.value!);
+  /// Declines an invitation
+  Future<RawApiResponse> declineInvite(int id) async {
+    assertId(id);
+
+    var response = await PlanApi.declineInvite(user.token, state[id]!);
+
+    if (response.succeeded) updateValue(id, response.value!);
 
     return response;
   }

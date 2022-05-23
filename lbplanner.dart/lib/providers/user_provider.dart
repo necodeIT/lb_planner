@@ -9,7 +9,7 @@ final userController = userProvider.notifier;
 /// Provides the current user
 class UserProvider extends StateNotifier<User> {
   /// Provides the current user
-  UserProvider() : super(User.empty());
+  UserProvider() : super(User.loading());
 
   @override
   init() {
@@ -41,7 +41,6 @@ class UserProvider extends StateNotifier<User> {
 
     if (user.succeeded) {
       assert(!user.value!.restricted);
-      assert(!user.value!.isEmpty);
 
       log("Logged in successfully", LogTypes.success);
 
@@ -67,7 +66,7 @@ class UserProvider extends StateNotifier<User> {
   /// Logs out the current user.
   Future<void> logout() async {
     log("Logging out user", LogTypes.tracking);
-    state = User.empty();
+    state = User.loading();
     UserDisk.saveUser(state);
   }
 

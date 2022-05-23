@@ -13,6 +13,9 @@ _$_Notification _$$_NotificationFromJson(Map<String, dynamic> json) =>
       type: $enumDecode(_$NotificationTypesEnumMap, json['type']),
       status: $enumDecode(_$NotificationStatusEnumMap, json['status']),
       timestamp: DateTime.parse(json['timestamp'] as String),
+      readTimestamp: json['readTimestamp'] == null
+          ? null
+          : DateTime.parse(json['readTimestamp'] as String) ?? null,
     );
 
 Map<String, dynamic> _$$_NotificationToJson(_$_Notification instance) =>
@@ -22,6 +25,7 @@ Map<String, dynamic> _$$_NotificationToJson(_$_Notification instance) =>
       'type': _$NotificationTypesEnumMap[instance.type],
       'status': _$NotificationStatusEnumMap[instance.status],
       'timestamp': instance.timestamp.toIso8601String(),
+      'readTimestamp': instance.readTimestamp?.toIso8601String(),
     };
 
 const _$NotificationTypesEnumMap = {

@@ -179,15 +179,31 @@ class PlanApi {
     return ApiResponse(response.response, planInvite);
   }
 
-  /// Updates the access level of the user with the given [userId] and [planId].
-  static Future<ApiResponse<PlanInvite>> updateInvite(String token, PlanInvite invite) async {
+  /// Accepts the given [invite].
+  static Future<ApiResponse<PlanInvite>> acceptInvite(String token, PlanInvite invite) async {
     var response = await Api.makeRequest(
       functionName: "local_lbplanner_plan_update_invite",
       token: token,
       params: {
-        "planid": invite.planId,
-        "inviteid": invite.invitee,
-        "status": invite.status.index,
+        "id": invite.id,
+        "status": PlanInviteStatus.accepted.index,
+      },
+    );
+
+    PlanInvite? planInvite;
+
+    if (response.succeeded) planInvite = PlanInvite.fromJson(response.body.mapPlanInvite());
+    return ApiResponse(response.response, planInvite);
+  }
+
+  /// Declines the given [invite].
+  static Future<ApiResponse<PlanInvite>> declineInvite(String token, PlanInvite invite) async {
+    var response = await Api.makeRequest(
+      functionName: "local_lbplanner_plan_update_invite",
+      token: token,
+      params: {
+        "id": invite.id,
+        "status": PlanInviteStatus.declined.index,
       },
     );
 
