@@ -94,7 +94,7 @@ class plan_invite_user extends external_api {
         $invite->timestamp = time();
         $invite->status = plan_helper::INVITE_PENDING;
 
-        $DB->insert_record(plan_helper::INVITES_TABLE, $invite);
+        $invite->id = $DB->insert_record(plan_helper::INVITES_TABLE, $invite);
 
         // Notifiy the invitee that he/she/it/they/xier/* has been invited.
         notifications_helper::notify_user(
