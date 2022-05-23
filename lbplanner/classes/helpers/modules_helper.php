@@ -325,7 +325,7 @@ class modules_helper {
      * @param integer $userid The id of the user.
      * @return array The modules.
      */
-    public static function get_all_course_modules(int $courseid, int $userid) : array {
+    public static function get_all_course_modules(int $courseid, int $userid, bool $ekenabled) : array {
         global $DB;
 
         $mdlmodules = $DB->get_records(self::ASSIGN_TABLE, array('course' => $courseid));
@@ -333,6 +333,10 @@ class modules_helper {
         $modules = array();
 
         foreach ($mdlmodules as $mdlmodule) {
+            if (!$ekenabled && self::determin_type($mdlmodule->name) == self::TYPE_EK) {
+                continue;
+            }
+
             $modules[] = self::get_module($mdlmodule->id, $userid);
         }
 
