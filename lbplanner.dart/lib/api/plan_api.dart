@@ -185,8 +185,9 @@ class PlanApi {
       functionName: "local_lbplanner_plan_accept_invite",
       token: token,
       params: {
-        "id": invite.id,
+        "inviteid": invite.id,
         "status": PlanInviteStatus.accepted.index,
+        "userid": invite.invitee,
       },
     );
 
@@ -202,7 +203,8 @@ class PlanApi {
       functionName: "local_lbplanner_plan_decline_invite",
       token: token,
       params: {
-        "id": invite.id,
+        "inviteid": invite.id,
+        "userid": invite.invitee,
         "status": PlanInviteStatus.declined.index,
       },
     );
