@@ -85,7 +85,7 @@ class _AdminLoginRouteState extends State<AdminLoginRoute> {
                 errorText: (_loginResponse?.failed ?? false) ? t.admin_login_wrongPassword : null,
                 placeholder: t.admin_login_pwPlaceholder,
                 onSubmitted: (_) => _login(ref),
-                suffix: GestureDetector(
+                suffix: LpGestureDetector(
                   child: LpIcon(
                     _showPassword ? Icons.visibility_off : Icons.visibility,
                     size: LpTextField.defaultFontSize,

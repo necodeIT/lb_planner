@@ -123,12 +123,12 @@ class _CalendarPlanDropDownBodyState extends State<CalendarPlanDropDownBody> {
                     ),
                   ),
                 ),
-                falseWidget: (_) => GestureDetector(
+                falseWidget: (_) => LpGestureDetector(
                   onDoubleTap: () => _enterEditMode(ref),
                   child: NcTitleText(plan.name, fontSize: LpContainer.titleFontSize),
                 ),
               ),
-              GestureDetector(
+              LpGestureDetector(
                 onTap: widget.close,
                 child: LpIcon(
                   Icons.close,

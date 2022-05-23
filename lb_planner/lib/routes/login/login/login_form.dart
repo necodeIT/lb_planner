@@ -109,7 +109,7 @@ class _LoginFormState extends State<LoginForm> {
                   placeholder: t.login_password,
                   errorText: errorMessage,
                   onSubmitted: (_) => _login(ref),
-                  suffix: GestureDetector(
+                  suffix: LpGestureDetector(
                     child: LpIcon(
                       _showPassword ? Icons.visibility_off : Icons.visibility,
                       size: LpTextField.defaultFontSize,

@@ -22,7 +22,7 @@ class CalendarPlanMonthNavigator extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        GestureDetector(
+        LpGestureDetector(
           onTap: onPreviousMonth,
           child: LpIcon(
             Icons.chevron_left,
@@ -31,7 +31,7 @@ class CalendarPlanMonthNavigator extends StatelessWidget {
         ),
         NcSpacing.small(),
         Center(
-          child: GestureDetector(
+          child: LpGestureDetector(
             onTap: onToday,
             child: NcCaptionText(
               DateFormat("MMMM yyyy").format(currentMonth),
@@ -40,7 +40,7 @@ class CalendarPlanMonthNavigator extends StatelessWidget {
           ),
         ),
         NcSpacing.small(),
-        GestureDetector(
+        LpGestureDetector(
           onTap: onNextMonth,
           child: LpIcon(
             Icons.chevron_right,

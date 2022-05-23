@@ -27,7 +27,7 @@ class CalendarPlanDropdownHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return ConditionalWrapper(
       condition: !active,
-      wrapper: (context, child) => GestureDetector(child: child, onTap: onTap),
+      wrapper: (context, child) => LpGestureDetector(child: child, onTap: onTap),
       child: Column(mainAxisSize: MainAxisSize.min, children: [
         NcTitleText(
           title,
