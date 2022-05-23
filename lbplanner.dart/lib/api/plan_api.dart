@@ -186,7 +186,6 @@ class PlanApi {
       token: token,
       params: {
         "inviteid": invite.id,
-        "status": PlanInviteStatus.accepted.index,
         "userid": invite.invitee,
       },
     );
@@ -204,7 +203,6 @@ class PlanApi {
       token: token,
       params: {
         "inviteid": invite.id,
-        "userid": invite.invitee,
         "status": PlanInviteStatus.declined.index,
       },
     );
