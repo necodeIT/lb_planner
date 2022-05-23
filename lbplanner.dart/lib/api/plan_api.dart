@@ -182,7 +182,7 @@ class PlanApi {
   /// Accepts the given [invite].
   static Future<ApiResponse<PlanInvite>> acceptInvite(String token, PlanInvite invite) async {
     var response = await Api.makeRequest(
-      functionName: "local_lbplanner_plan_update_invite",
+      functionName: "local_lbplanner_plan_accept_invite",
       token: token,
       params: {
         "id": invite.id,
@@ -199,7 +199,7 @@ class PlanApi {
   /// Declines the given [invite].
   static Future<ApiResponse<PlanInvite>> declineInvite(String token, PlanInvite invite) async {
     var response = await Api.makeRequest(
-      functionName: "local_lbplanner_plan_update_invite",
+      functionName: "local_lbplanner_plan_decline_invite",
       token: token,
       params: {
         "id": invite.id,
