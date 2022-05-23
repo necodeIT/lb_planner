@@ -30,7 +30,7 @@ class InvitesProvider extends StateNotifier<Map<int, PlanInvite>> {
   Future<RawApiResponse> acceptInvite(int id) async {
     assertId(id);
 
-    var response = await PlanApi.declineInvite(user.token, state[id]!);
+    var response = await PlanApi.acceptInvite(user.token, state[id]!);
 
     if (response.succeeded) updateValue(id, response.value!);
 
