@@ -102,7 +102,7 @@ class UserProvider extends StateNotifier<User> {
   }
 
   void _refresh() async {
-    if (_lastRefresh != null) {
+    /*if (_lastRefresh != null) {
       var diff = DateTime.now().difference(_lastRefresh!);
 
       if (diff < kApiRefreshRate) {
@@ -125,6 +125,6 @@ class UserProvider extends StateNotifier<User> {
 
     await Future.delayed(kApiRefreshRate);
 
-    _refresh();
+    _refresh();*/
   }
 }
