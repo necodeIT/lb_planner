@@ -61,95 +61,99 @@ class CalendarPlanCellState extends State<CalendarPlanCell> {
   Widget build(BuildContext context) {
     bool isToday = widget.day.isSameDate(DateTime.now());
 
-    return Consumer(builder: (context, ref, _) {
-      var plan = ref.watch(planProvider);
+    return Consumer(
+      builder: (context, ref, _) {
+        var plan = ref.watch(planProvider);
 
-      var allModules = ref.watch(modulesProvider);
-      List<int> deadlines = plan.deadlines.values.where((deadline) => deadline.end.isSameDate(widget.day)).map((deadline) => deadline.moduleId).toList();
+        var allModules = ref.watch(modulesProvider);
+        List<int> deadlines = plan.deadlines.values.where((deadline) => deadline.end.isSameDate(widget.day)).map((deadline) => deadline.moduleId).toList();
 
-      var modules = allModules.keys.where(deadlines.contains).toList();
+        var modules = allModules.keys.where(deadlines.contains).toList();
 
-      var accessLvl = plan.members[ref.read(userProvider).id];
+        var accessLvl = plan.members[ref.read(userProvider).id];
 
-      return AnimatedContainer(
-        padding: const EdgeInsets.all(NcSpacing.xsSpacing),
-        duration: kNormalAnimationDuration,
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: tertiaryColor,
-            // ignore: no-magic-number
-            width: widget.isCurrentMonth ? 0.5 : 0.2,
+        return AnimatedContainer(
+          padding: const EdgeInsets.all(NcSpacing.xsSpacing),
+          duration: kNormalAnimationDuration,
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: tertiaryColor,
+              // ignore: no-magic-number
+              width: widget.isCurrentMonth ? 0.5 : 0.2,
+            ),
           ),
-        ),
-        child: Column(
-          children: [
-            Align(
-              alignment: Alignment.topRight,
-              child: Padding(
-                padding: const EdgeInsets.all(NcSpacing.xsSpacing),
-                child: NcBodyText(
-                  _formatter.format(widget.day),
-                  textAlign: TextAlign.center,
-                  color: isToday
-                      ? accentColor
-                      : widget.isCurrentMonth
-                          ? textColor
-                          // ignore: no-magic-number
-                          : textColor.withOpacity(0.7),
-                ),
-              ),
-            ),
-            Expanded(
-              child: LayoutBuilder(builder: (context, box) {
-                currentWidth = box.maxWidth;
-                return DragTarget<int>(
-                  onAccept: (module) => _setDeadline(ref, module),
-                  builder: (context, candidateData, rejectedData) {
-                    if (_controller.hasClients && (_addedModules.isNotEmpty || candidateData.isNotEmpty || _controller.position.outOfRange)) {
-                      WidgetsBinding.instance!.addPostFrameCallback(
-                        (timeStamp) => _controller.animateTo(
-                          _controller.position.maxScrollExtent,
-                          duration: kFastAnimationDuration,
-                          curve: kAnimationCurve,
-                        ),
-                      );
-                    }
-
-                    return ListView(
-                      controller: _controller,
-                      children: [
-                        if (plan.loading || accessLvl == null) ...[
-                          LpShimmer(),
-                          NcSpacing.xs(),
-                          LpShimmer(),
-                          NcSpacing.xs(),
-                          LpShimmer(),
-                          NcSpacing.xs(),
-                        ] else ...[
-                          for (var module in modules) ...[
-                            DraggableModule(moduleId: module),
-                            NcSpacing.xs(),
-                          ],
-                          for (var i in _addedModules)
-                            if (!modules.contains(i)) ...[
-                              LpShimmer(),
-                              NcSpacing.xs(),
-                            ],
-                          for (var i in candidateData)
-                            if (!modules.contains(i)) ...[
-                              LpShimmer(),
-                              NcSpacing.xs(),
-                            ],
-                        ]
-                      ],
+          child: LayoutBuilder(
+            builder: (context, box) {
+              currentWidth = box.maxWidth;
+              return DragTarget<int>(
+                onAccept: (module) => _setDeadline(ref, module),
+                builder: (context, candidateData, rejectedData) {
+                  if (_controller.hasClients && (_addedModules.isNotEmpty || candidateData.isNotEmpty || _controller.position.outOfRange)) {
+                    WidgetsBinding.instance!.addPostFrameCallback(
+                      (timeStamp) => _controller.animateTo(
+                        _controller.position.maxScrollExtent,
+                        duration: kFastAnimationDuration,
+                        curve: kAnimationCurve,
+                      ),
                     );
-                  },
-                );
-              }),
-            ),
-          ],
-        ),
-      );
-    });
+                  }
+
+                  return Column(
+                    children: [
+                      Align(
+                        alignment: Alignment.topRight,
+                        child: Padding(
+                          padding: const EdgeInsets.all(NcSpacing.xsSpacing),
+                          child: NcBodyText(
+                            _formatter.format(widget.day),
+                            textAlign: TextAlign.center,
+                            color: isToday
+                                ? accentColor
+                                : widget.isCurrentMonth
+                                    ? textColor
+                                    // ignore: no-magic-number
+                                    : textColor.withOpacity(0.7),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: ListView(
+                          controller: _controller,
+                          children: [
+                            if (plan.loading || accessLvl == null) ...[
+                              LpShimmer(),
+                              NcSpacing.xs(),
+                              LpShimmer(),
+                              NcSpacing.xs(),
+                              LpShimmer(),
+                              NcSpacing.xs(),
+                            ] else ...[
+                              for (var module in modules) ...[
+                                DraggableModule(moduleId: module),
+                                NcSpacing.xs(),
+                              ],
+                              for (var i in _addedModules)
+                                if (!modules.contains(i)) ...[
+                                  LpShimmer(),
+                                  NcSpacing.xs(),
+                                ],
+                              for (var i in candidateData)
+                                if (!modules.contains(i)) ...[
+                                  LpShimmer(),
+                                  NcSpacing.xs(),
+                                ],
+                            ]
+                          ],
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              );
+            },
+          ),
+        );
+      },
+    );
   }
 }

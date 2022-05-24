@@ -70,7 +70,7 @@ class RouteWrapper extends StatelessWidget {
             children: children,
           ),
         ),
-        child: LpGestureDetector(
+        child: GestureDetector(
           onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
           child: Scaffold(
             backgroundColor: secondaryColor,

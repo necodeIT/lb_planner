@@ -94,7 +94,7 @@ class _LpPopupState extends State<LpPopup> with WindowListener, RouteAware {
 
     if (widget.backgroundDismissable) {
       _dissmissArea = OverlayEntry(
-        builder: (context) => LpGestureDetector(
+        builder: (context) => GestureDetector(
           onTap: close,
           child: Container(
             color: widget.backgroundColor,
@@ -216,7 +216,7 @@ class __PopupAnimatorState extends State<_PopupAnimator> with TickerProviderStat
           top: widget.top * value,
           child: Material(
             type: MaterialType.transparency,
-            child: LpGestureDetector(
+            child: GestureDetector(
               onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
               child: child!,
             ),
