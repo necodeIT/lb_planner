@@ -91,4 +91,4 @@ part 'disk/user_disk.dart';
 part 'disk/disk.dart';
 
 /// The rate with which the api refreshes underlying data
-const kApiRefreshRate = Duration(seconds: 30);
+const kApiRefreshRate = Duration(seconds: 10);
