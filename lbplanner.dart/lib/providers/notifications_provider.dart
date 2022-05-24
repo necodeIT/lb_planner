@@ -17,7 +17,7 @@ class NotificationsProvider extends StateNotifier<Map<int, Notification>> with R
   @override
   init() {
     fetchNotifications();
-    refresh();
+    startRefresh();
   }
 
   @override
