@@ -7,14 +7,18 @@ final usersProvider = StateNotifierProvider<UsersProvider, Map<int, User>>((ref)
 final usersController = usersProvider.notifier;
 
 /// Provides all registered users for the current user
-class UsersProvider extends StateNotifier<Map<int, User>> {
+class UsersProvider extends StateNotifier<Map<int, User>> with IRefreshable {
   /// The user to use for the requests
   final User user;
 
   /// Provides all registered users for the current user
-  UsersProvider(this.user) : super({}) {
-    fetchUsers();
-  }
+  UsersProvider(this.user) : super({});
+
+  @override
+  init() => fetchUsers();
+
+  @override
+  onUpdate() => reportRefresh();
 
   /// Gets all registered users for the current user
   Future<RawApiResponse> fetchUsers() async {
@@ -24,4 +28,10 @@ class UsersProvider extends StateNotifier<Map<int, User>> {
 
     return response;
   }
+
+  @override
+  bool get canRefresh => user.canMakeRequests;
+
+  @override
+  onRefresh() => fetchUsers();
 }

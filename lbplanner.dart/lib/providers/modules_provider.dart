@@ -10,7 +10,7 @@ final modulesProvider = StateNotifierProvider<ModulesProvider, Map<int, Module>>
 final modulesController = modulesProvider.notifier;
 
 /// Provides modules for the current user
-class ModulesProvider extends StateNotifier<Map<int, Module>> {
+class ModulesProvider extends StateNotifier<Map<int, Module>> with IRefreshable {
   /// The user to get the modules for
   final User user;
 
@@ -18,7 +18,10 @@ class ModulesProvider extends StateNotifier<Map<int, Module>> {
   ModulesProvider(this.user) : super({});
 
   @override
-  init() => fetchModules();
+  init() {
+    fetchModules();
+    startRefresh();
+  }
 
   /// Gets all modules for the current user
   Future<RawApiResponse> fetchModules() async {
@@ -28,4 +31,13 @@ class ModulesProvider extends StateNotifier<Map<int, Module>> {
 
     return response;
   }
+
+  @override
+  bool get canRefresh => user.canMakeRequests;
+
+  @override
+  onRefresh() => fetchModules();
+
+  @override
+  onUpdate() => reportRefresh();
 }

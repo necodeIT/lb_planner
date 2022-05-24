@@ -7,7 +7,7 @@ final invitesProvider = StateNotifierProvider<InvitesProvider, Map<int, PlanInvi
 final invitesController = invitesProvider.notifier;
 
 /// Provides all invitations for the current user
-class InvitesProvider extends StateNotifier<Map<int, PlanInvite>> {
+class InvitesProvider extends StateNotifier<Map<int, PlanInvite>> with IRefreshable {
   /// The user to get the invitations for
   final User user;
 
@@ -47,4 +47,13 @@ class InvitesProvider extends StateNotifier<Map<int, PlanInvite>> {
 
     return response;
   }
+
+  @override
+  bool get canRefresh => user.canMakeRequests;
+
+  @override
+  onRefresh() => fetchInvites();
+
+  @override
+  onUpdate() => reportRefresh();
 }

@@ -38,7 +38,6 @@ class PlanApi {
       params: {"planid": planId, "userid": userId},
     );
 
-    /// TODO: Wait till Muhi corrects the API functions and look what it returns.
     Plan? plan;
 
     if (response.succeeded) plan = Plan.fromJson(response.body.mapPlan());
@@ -159,7 +158,7 @@ class PlanApi {
     List<PlanInvite>? planInvites = [];
 
     if (response.succeeded) {
-       planInvites = [for (var invite in response.body[kApiListContent]) PlanInvite.fromJson(Map<String, dynamic>.from(invite).mapPlanInvite())];
+      planInvites = [for (var invite in response.body[kApiListContent]) PlanInvite.fromJson(Map<String, dynamic>.from(invite).mapPlanInvite())];
     }
 
     return ApiResponse(response.response, planInvites);

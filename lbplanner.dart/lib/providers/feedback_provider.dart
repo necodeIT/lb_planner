@@ -7,7 +7,7 @@ final feedbackProvider = StateNotifierProvider<FeedbackProvider, Map<int, Feedba
 final feedbackController = feedbackProvider.notifier;
 
 /// Provides feedbacks for the current user
-class FeedbackProvider extends StateNotifier<Map<int, Feedback>> {
+class FeedbackProvider extends StateNotifier<Map<int, Feedback>> with IRefreshable {
   /// The user to get the feedbacks for
   final User user;
 
@@ -15,7 +15,7 @@ class FeedbackProvider extends StateNotifier<Map<int, Feedback>> {
   FeedbackProvider(this.user) : super({});
 
   @override
-  init() => fetchFeedbacks();
+  init() => canRefresh ? fetchFeedbacks() : null;
 
   /// Gets all feedbacks for the current user
   Future<RawApiResponse> fetchFeedbacks() async {
@@ -75,4 +75,13 @@ class FeedbackProvider extends StateNotifier<Map<int, Feedback>> {
 
     return response;
   }
+
+  @override
+  bool get canRefresh => user.isElevated && user.canMakeRequests;
+
+  @override
+  onRefresh() => fetchFeedbacks();
+
+  @override
+  onUpdate() => reportRefresh();
 }

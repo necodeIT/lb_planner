@@ -7,7 +7,7 @@ final coursesProvider = StateNotifierProvider<CoursesProvider, Map<int, Course>>
 final coursesController = coursesProvider.notifier;
 
 /// Provides courses for the current user
-class CoursesProvider extends StateNotifier<Map<int, Course>> {
+class CoursesProvider extends StateNotifier<Map<int, Course>> with IRefreshable {
   /// The user to get the courses for
   final User user;
 
@@ -71,4 +71,13 @@ class CoursesProvider extends StateNotifier<Map<int, Course>> {
 
     return response;
   }
+
+  @override
+  bool get canRefresh => user.canMakeRequests;
+
+  @override
+  onRefresh() => fetchCourses();
+
+  @override
+  onUpdate() => reportRefresh();
 }

@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_null_comparison
+
 part of lbplanner_api;
 
 /// Provides utilities to remap parameters as the moodle api and the models have different names for their parameters.
@@ -54,8 +56,6 @@ extension ModelMappingExtensions on Map<String, dynamic> {
 
     body["id"] = this["planid"];
     body["ekEnabled"] = this["enableek"];
-
-    List<Deadline> deadlines = [];
 
     body["deadlines"] = Map<String, dynamic>.from({for (var deadline in body["deadlines"]) deadline["moduleid"].toString(): Map<String, dynamic>.from(deadline).mapDeadline()});
 
