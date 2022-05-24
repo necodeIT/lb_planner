@@ -67,7 +67,7 @@ abstract class IRefreshable {
       log("$runtimeType - Refreshed");
       onRefresh();
     }else{
-      log("$runtimeType - Skipped refresh cycle - canRefresh: $canRefresh, refreshStarted:$_refresh");
+      log("$runtimeType - Skipped refresh cycle - canRefresh: $canRefresh, autoRefresh: $_refresh");
     }
 
     await Future.delayed(kApiRefreshRate);
