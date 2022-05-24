@@ -15,7 +15,10 @@ class InvitesProvider extends StateNotifier<Map<int, PlanInvite>> with IRefresha
   InvitesProvider(this.user) : super({});
 
   @override
-  init() => fetchInvites();
+  init(){
+    fetchInvites();
+    startRefresh();
+  }
 
   /// Gets all invitations for the current user
   Future<RawApiResponse> fetchInvites() async {
