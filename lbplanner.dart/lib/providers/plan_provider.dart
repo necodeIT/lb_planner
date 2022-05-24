@@ -127,7 +127,7 @@ class PlanProvider extends StateNotifier<Plan> with IRefreshable {
 
   @override
   dispose() {
-    super.dispose();
     stopAutoRefresh();
+    super.dispose();
   }
 }
