@@ -7,7 +7,7 @@ final notificationsProvider = StateNotifierProvider<NotificationsProvider, Map<i
 final notificationsController = notificationsProvider.notifier;
 
 /// Provides notifications for the current user
-class NotificationsProvider extends StateNotifier<Map<int, Notification>> {
+class NotificationsProvider extends StateNotifier<Map<int, Notification>> with RefreshableProvider {
   /// The user to get the notifications for
   final User user;
 
@@ -15,7 +15,13 @@ class NotificationsProvider extends StateNotifier<Map<int, Notification>> {
   NotificationsProvider(this.user) : super({});
 
   @override
-  init() => fetchNotifications();
+  init() {
+    fetchNotifications();
+    refresh();
+  }
+
+  @override
+  onUpdate() => manualRefresh();
 
   /// Gets the notifications for the current user
   Future<RawApiResponse> fetchNotifications() async {
@@ -38,4 +44,10 @@ class NotificationsProvider extends StateNotifier<Map<int, Notification>> {
 
     return fetchNotifications();
   }
+
+  @override
+  bool get canRefresh => !user.loading && !user.restricted;
+
+  @override
+  onRefresh() => fetchNotifications();
 }

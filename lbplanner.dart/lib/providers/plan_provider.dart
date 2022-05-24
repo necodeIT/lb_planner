@@ -7,16 +7,18 @@ final planProvider = StateNotifierProvider<PlanProvider, Plan>((ref) => PlanProv
 final planController = planProvider.notifier;
 
 /// Provides the current plan.
-class PlanProvider extends StateNotifier<Plan> {
+class PlanProvider extends StateNotifier<Plan> with RefreshableProvider {
   /// The user to get the plan for.
   final User user;
 
   /// Provides the current plan.
   PlanProvider(this.user) : super(Plan.loading());
-  
+
   @override
   init() => fetchPlan();
-  
+
+  @override
+  onUpdate() => manualRefresh();
 
   /// Fetches the current plan.
   Future<RawApiResponse> fetchPlan() async {
@@ -116,4 +118,10 @@ class PlanProvider extends StateNotifier<Plan> {
 
     return response;
   }
+
+  @override
+  void onRefresh() => fetchPlan();
+
+  @override
+  bool get canRefresh => !state.loading;
 }

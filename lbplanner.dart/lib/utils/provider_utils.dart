@@ -99,6 +99,9 @@ abstract class StateNotifier<T> extends riverpod.StateNotifier<T> {
   /// Override this function to do some initial laoding.
   init() => null;
 
+  /// Called when the state is updated.
+  onUpdate() => null;
+
   /// Sets the state from the given [value] and notifies the listeners.
   setState(T value) {
     state = value;
@@ -112,5 +115,74 @@ abstract class StateNotifier<T> extends riverpod.StateNotifier<T> {
   /// Notifies all listeners.
   void notifyListeners() {
     state = state;
+  }
+}
+
+/// Allows a provider to be automatically refreshed on a timer.
+///
+/// [kApiRefreshRate] is the timer duration.
+abstract class RefreshableProvider {
+  DateTime? _lastRefresh;
+  bool _refresh = true;
+  bool _refreshStarted = false;
+
+  /// The time at which the provider was last refreshed.
+  DateTime? get lastRefresh => _lastRefresh;
+
+  /// Marks that the provider was not refreshed in sync with the internal clock.
+  void manualRefresh() {
+    _lastRefresh = DateTime.now();
+  }
+
+  /// Disables the automatic refresh.
+  void disableRefresh() {
+    _refresh = false;
+  }
+
+  /// Enables the automatic refresh.
+  ///
+  /// If the refresh timer was not running before it will be automatically intiated.
+  void enableRefresh() {
+    _refresh = true;
+    if (!_refreshStarted) refresh();
+  }
+
+  /// Override this to execute your refresh logic.
+  onRefresh();
+
+  /// Whether the provider is ready to be refreshed.
+  ///
+  /// If this returns false, the current refresh cycle will be skipped.
+  bool get canRefresh;
+
+  /// Refreshes the provider.
+  /// This will be called automatically every [kApiRefreshRate].
+  ///
+  /// If [canRefresh] returns false, the refresh will be skipped.
+  /// If [canRefresh] returns true, the refresh will be executed.
+  ///
+  /// Internal only!
+  @nonVirtual
+  @protected
+  void refresh() async {
+    _refreshStarted = true;
+
+    if (_lastRefresh != null) {
+      var diff = DateTime.now().difference(_lastRefresh!);
+
+      if (diff < kApiRefreshRate) {
+        var delay = kApiRefreshRate - diff;
+
+        await Future.delayed(delay);
+      }
+    }
+
+    if (canRefresh && _refresh) {
+      onRefresh();
+    }
+
+    await Future.delayed(kApiRefreshRate);
+
+    refresh();
   }
 }
