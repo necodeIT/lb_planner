@@ -17,7 +17,11 @@ abstract class IRefreshable {
 
   /// Disables the automatic refresh.
   void stopAutoRefresh() {
+    if(!_autoRefresh) return;
+    
     _autoRefresh = false;
+    
+    log("$runtimeType - Stopped auto refresh");
   }
 
   /// Enables the automatic refresh.
@@ -28,6 +32,8 @@ abstract class IRefreshable {
     
     _autoRefresh = true;
     refresh();
+    
+    log("$runtimeType - Started auto refresh");
   }
 
   /// Override this to execute your refresh logic.
@@ -49,8 +55,6 @@ abstract class IRefreshable {
   @protected
   void refresh() async {
     if(!_autoRefresh) return;
-    
-    log("$runtimeType - Auto refresh");
 
     if (_lastRefresh != null) {
       var diff = DateTime.now().difference(_lastRefresh!);
@@ -64,11 +68,11 @@ abstract class IRefreshable {
       }
     }
 
-    if (canRefresh && _autoRefresh) {
+    if (canRefresh) {
       log("$runtimeType - Refreshed");
       onRefresh();
     }else{
-      log("$runtimeType - Skipped refresh cycle - canRefresh: $canRefresh, autoRefresh: $_autoRefresh");
+      log("$runtimeType - Skipped refresh cycle");
     }
 
     await Future.delayed(kApiRefreshRate);
