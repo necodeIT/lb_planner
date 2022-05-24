@@ -10,7 +10,7 @@ class Internet extends IRefreshable {
   /// Do not instantiate this class. Use [kInternet] instead.
   ///
   /// Provides information about the current internet connection using [Connectivity].
-  constInternet() {
+  Internet() {
     startAutoRefresh();
   }
 
