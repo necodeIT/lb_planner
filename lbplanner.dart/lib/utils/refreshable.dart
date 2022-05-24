@@ -45,7 +45,7 @@ abstract class IRefreshable {
   bool get canRefresh;
    
   /// Whether auto refresh is enabled or not.
-  bool get autoRefresh => _refresh;
+  bool get autoRefresh => _autoRefresh ;
 
   /// Internal only - only call this if you know what you are doing!
   ///
