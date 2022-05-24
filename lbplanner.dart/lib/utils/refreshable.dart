@@ -43,6 +43,9 @@ abstract class IRefreshable {
   ///
   /// If this returns false, the current refresh cycle will be skipped.
   bool get canRefresh;
+   
+  /// Whether auto refresh is enabled or not.
+  bool get autoRefresh => _refresh;
 
   /// Internal only - only call this if you know what you are doing!
   ///
