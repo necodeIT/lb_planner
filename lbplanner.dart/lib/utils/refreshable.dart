@@ -45,13 +45,18 @@ abstract class IRefreshable {
   /// If this returns false, the current refresh cycle will be skipped.
   bool get canRefresh;
    
+  /// The refresh rate of the refreshable.
+  ///
+  /// Override to set a custom refresh rate. Defaults to [kApiRefreshRate]
+  Duration get refreshRate => kApiRefreshRate;
+   
   /// Whether auto refresh is enabled or not.
   bool get autoRefresh => _autoRefresh ;
 
   /// Internal only - only call this if you know what you are doing!
   ///
   /// Automatically calls [onRefresh] on a timed basis.
-  /// This will be called automatically every [kApiRefreshRate].
+  /// This will be called periodically in the set [refreshRate].
   ///
   /// If [canRefresh] returns false, the refresh will be skipped.
   /// If [canRefresh] returns true, the refresh will be executed.
@@ -63,8 +68,8 @@ abstract class IRefreshable {
     if (_lastRefresh != null) {
       var diff = DateTime.now().difference(_lastRefresh!);
 
-      if (diff < kApiRefreshRate) {
-        var delay = kApiRefreshRate - diff;
+      if (diff < refreshRate) {
+        var delay = refreshRate - diff;
 
         if(delay.inSeconds > 0){
           log("$runtimeType - Shifted clock by ${delay.inSeconds}s due to external refresh");
@@ -81,7 +86,7 @@ abstract class IRefreshable {
       log("$runtimeType - Skipped refresh cycle");
     }
 
-    await Future.delayed(kApiRefreshRate);
+    await Future.delayed(refreshRate);
 
     refresh();
   }
