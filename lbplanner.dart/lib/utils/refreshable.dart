@@ -5,7 +5,7 @@ part of lbplanner_api;
 /// [kApiRefreshRate] is the timer duration.
 abstract class IRefreshable {
   DateTime? _lastRefresh;
-  bool _autoRefresh = true;
+  bool _autoRefresh = false;
 
   /// The time at which the last refresh happened.
   DateTime? get lastRefresh => _lastRefresh;
