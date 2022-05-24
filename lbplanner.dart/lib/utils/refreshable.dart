@@ -64,9 +64,11 @@ abstract class IRefreshable {
       var diff = DateTime.now().difference(_lastRefresh!);
 
       if (diff < kApiRefreshRate) {
-        log("$runtimeType - Skipping refresh cycle due to an external refresh ${diff.inSeconds}s ago...");
-        
-        await Future.delayed(kApiRefreshRate);
+        var delay = kApiRefreshRate - diff;
+
+        log("$runtimeType - Shifted clock by ${delay.inSeconds}s due to external refresh");
+
+        await Future.delayed(delay);
       }
     }
 
