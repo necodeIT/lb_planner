@@ -10,6 +10,7 @@ environment:
 
 dependencies:
   color_blindness: ^0.1.0
+  connectivity_plus: ^2.3.0
   flutter:
     sdk: flutter
   freezed_annotation: any
