@@ -135,14 +135,14 @@ abstract class RefreshableProvider {
   }
 
   /// Disables the automatic refresh.
-  void disableRefresh() {
+  void stopRefresh() {
     _refresh = false;
   }
 
   /// Enables the automatic refresh.
   ///
   /// If the refresh timer was not running before it will be automatically intiated.
-  void enableRefresh() {
+  void startRefresh() {
     _refresh = true;
     if (!_refreshStarted) refresh();
   }
