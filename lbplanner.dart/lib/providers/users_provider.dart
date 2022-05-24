@@ -34,4 +34,10 @@ class UsersProvider extends StateNotifier<Map<int, User>> with IRefreshable {
 
   @override
   onRefresh() => fetchUsers();
+
+  @override
+  dispose() {
+    super.dispose();
+    stopAutoRefresh();
+  }
 }

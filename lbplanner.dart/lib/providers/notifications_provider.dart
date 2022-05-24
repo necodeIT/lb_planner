@@ -17,7 +17,7 @@ class NotificationsProvider extends StateNotifier<Map<int, Notification>> with I
   @override
   init() {
     fetchNotifications();
-    startRefresh();
+    startAutoRefresh();
   }
 
   @override
@@ -50,4 +50,10 @@ class NotificationsProvider extends StateNotifier<Map<int, Notification>> with I
 
   @override
   onRefresh() => fetchNotifications();
+
+  @override
+  dispose() {
+    super.dispose();
+    stopAutoRefresh();
+  }
 }

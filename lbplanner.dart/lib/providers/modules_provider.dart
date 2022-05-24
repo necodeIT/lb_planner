@@ -20,7 +20,7 @@ class ModulesProvider extends StateNotifier<Map<int, Module>> with IRefreshable 
   @override
   init() {
     fetchModules();
-    startRefresh();
+    startAutoRefresh();
   }
 
   /// Gets all modules for the current user
@@ -40,4 +40,10 @@ class ModulesProvider extends StateNotifier<Map<int, Module>> with IRefreshable 
 
   @override
   onUpdate() => reportRefresh();
+
+  @override
+  dispose() {
+    super.dispose();
+    stopAutoRefresh();
+  }
 }

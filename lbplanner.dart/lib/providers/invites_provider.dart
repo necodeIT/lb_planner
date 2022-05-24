@@ -15,9 +15,9 @@ class InvitesProvider extends StateNotifier<Map<int, PlanInvite>> with IRefresha
   InvitesProvider(this.user) : super({});
 
   @override
-  init(){
+  init() {
     fetchInvites();
-    startRefresh();
+    startAutoRefresh();
   }
 
   /// Gets all invitations for the current user
@@ -59,4 +59,10 @@ class InvitesProvider extends StateNotifier<Map<int, PlanInvite>> with IRefresha
 
   @override
   onUpdate() => reportRefresh();
+
+  @override
+  dispose() {
+    super.dispose();
+    stopAutoRefresh();
+  }
 }

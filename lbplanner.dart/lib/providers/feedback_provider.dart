@@ -84,4 +84,10 @@ class FeedbackProvider extends StateNotifier<Map<int, Feedback>> with IRefreshab
 
   @override
   onUpdate() => reportRefresh();
+
+  @override
+  dispose() {
+    super.dispose();
+    stopAutoRefresh();
+  }
 }
