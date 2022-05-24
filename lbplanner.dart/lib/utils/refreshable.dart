@@ -37,17 +37,17 @@ abstract class IRefreshable {
   /// If this returns false, the current refresh cycle will be skipped.
   bool get canRefresh;
 
+  /// Internal only - only call this if you know what you are doing!
+  ///
   /// Automatically calls [onRefresh] on a timed basis.
   /// This will be called automatically every [kApiRefreshRate].
   ///
   /// If [canRefresh] returns false, the refresh will be skipped.
   /// If [canRefresh] returns true, the refresh will be executed.
-  ///
-  /// Internal only!
   @nonVirtual
   @protected
   void refresh() async {
-    if (_refreshStarted) return;
+    log("$runtimeType - Auto refresh");
 
     _refreshStarted = true;
 
@@ -56,13 +56,18 @@ abstract class IRefreshable {
 
       if (diff < kApiRefreshRate) {
         var delay = kApiRefreshRate - diff;
-
+        
+        log("$runtimeType - Waiting ${delay.inSeconds} until next cycle");
+        
         await Future.delayed(delay);
       }
     }
 
     if (canRefresh && _refresh) {
+      log("$runtimeType - Refreshed");
       onRefresh();
+    }else{
+      log("$runtimeType - Skipped refresh cycle - canRefresh: $canRefresh, refreshStarted:$_refresh");
     }
 
     await Future.delayed(kApiRefreshRate);
