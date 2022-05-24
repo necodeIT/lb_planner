@@ -26,8 +26,8 @@ class _$FeedbackTearOff {
       {required int id,
       required int userId,
       required String content,
-      String? comment = null,
-      String? logs = null,
+      String? comment,
+      String? logs,
       required FeedbackTypes type,
       required FeedbackStatus status}) {
     return _Feedback(
@@ -217,8 +217,8 @@ class _$_Feedback extends _Feedback {
       {required this.id,
       required this.userId,
       required this.content,
-      this.comment = null,
-      this.logs = null,
+      this.comment,
+      this.logs,
       required this.type,
       required this.status})
       : assert(type != FeedbackTypes.bug || logs != null,
@@ -240,12 +240,10 @@ class _$_Feedback extends _Feedback {
 
   /// The content of the feedback.
   final String content;
-  @JsonKey()
   @override
 
   /// Notes admins may add to the feedback.
   final String? comment;
-  @JsonKey()
   @override
 
   /// The logs provided if the feedback is of type [FeedbackTypes.bug].

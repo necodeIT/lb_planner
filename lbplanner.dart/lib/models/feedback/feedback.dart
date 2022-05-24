@@ -26,10 +26,10 @@ class Feedback with _$Feedback {
     required String content,
 
     /// Notes admins may add to the feedback.
-    @Default(null) String? comment,
+    String? comment,
 
     /// The logs provided if the feedback is of type [FeedbackTypes.bug].
-    @Default(null) String? logs,
+    String? logs,
 
     /// The type of the feedback.
     required FeedbackTypes type,

@@ -10,8 +10,8 @@ _$_Feedback _$$_FeedbackFromJson(Map<String, dynamic> json) => _$_Feedback(
       id: json['id'] as int,
       userId: json['userId'] as int,
       content: json['content'] as String,
-      comment: json['comment'] as String? ?? null,
-      logs: json['logs'] as String? ?? null,
+      comment: json['comment'] as String?,
+      logs: json['logs'] as String?,
       type: $enumDecode(_$FeedbackTypesEnumMap, json['type']),
       status: $enumDecode(_$FeedbackStatusEnumMap, json['status']),
     );

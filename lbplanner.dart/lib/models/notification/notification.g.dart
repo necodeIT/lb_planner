@@ -15,7 +15,7 @@ _$_Notification _$$_NotificationFromJson(Map<String, dynamic> json) =>
       timestamp: DateTime.parse(json['timestamp'] as String),
       readTimestamp: json['readTimestamp'] == null
           ? null
-          : DateTime.parse(json['readTimestamp'] as String) ?? null,
+          : DateTime.parse(json['readTimestamp'] as String),
     );
 
 Map<String, dynamic> _$$_NotificationToJson(_$_Notification instance) =>

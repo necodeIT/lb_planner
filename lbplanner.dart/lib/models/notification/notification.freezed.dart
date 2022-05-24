@@ -28,7 +28,7 @@ class _$NotificationTearOff {
       required NotificationTypes type,
       required NotificationStatus status,
       required DateTime timestamp,
-      DateTime? readTimestamp = null}) {
+      DateTime? readTimestamp}) {
     return _Notification(
       id: id,
       payload: payload,
@@ -206,7 +206,7 @@ class _$_Notification with DiagnosticableTreeMixin implements _Notification {
       required this.type,
       required this.status,
       required this.timestamp,
-      this.readTimestamp = null});
+      this.readTimestamp});
 
   factory _$_Notification.fromJson(Map<String, dynamic> json) =>
       _$$_NotificationFromJson(json);
@@ -231,7 +231,6 @@ class _$_Notification with DiagnosticableTreeMixin implements _Notification {
 
   /// The date the notification was received
   final DateTime timestamp;
-  @JsonKey()
   @override
 
   /// The date the notification was read
