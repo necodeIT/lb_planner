@@ -66,13 +66,6 @@ class _CalendarPlanDropDownInviteUsersUserState extends State<CalendarPlanDropDo
 
             VoidCallback? onTap = () => _inviteUser(ref);
 
-            if (plan.members.containsKey(widget.userId)) {
-              color = successColor;
-              icon = Icons.check_circle;
-              text = t.calendar_plan_dropdown_members_inviteUsers_inPlan;
-              onTap = null;
-            }
-
             var filteredInvites = invites.values.where((e) => e.invitee == widget.userId).toList();
 
             filteredInvites.sort((a, b) => a.timeStamp.compareTo(b.timeStamp));
@@ -89,6 +82,13 @@ class _CalendarPlanDropDownInviteUsersUserState extends State<CalendarPlanDropDo
               if (invite.status.isDeclined) {
                 icon = Icons.shortcut;
                 text = t.calendar_plan_dropdown_members_inviteUsers_reInvite;
+              }
+
+              if (invite.status.isAccepted || plan.members.containsKey(widget.userId)) {
+                color = successColor;
+                icon = Icons.check_circle;
+                text = t.calendar_plan_dropdown_members_inviteUsers_inPlan;
+                onTap = null;
               }
             }
 

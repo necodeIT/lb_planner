@@ -18,7 +18,8 @@ class _CalendarPlanRouteState extends State<CalendarPlanRoute> {
   DateTime lastMonth = DateTime.now();
   DateTime month = DateTime.now();
 
-  PlanProvider? _controller;
+  PlanProvider? _plan;
+  UsersProvider? _users;
 
   void _nextMonth() {
     setState(() {
@@ -43,15 +44,23 @@ class _CalendarPlanRouteState extends State<CalendarPlanRoute> {
 
   @override
   dispose() {
-    _controller?.stopRefresh();
+    _plan?.stopRefresh();
+    _users?.stopRefresh();
+
     super.dispose();
+  }
+
+  void _startRefresh(WidgetRef ref) {
+    _plan = ref.watch(planController);
+    _users = ref.watch(usersController);
+
+    _plan?.startRefresh();
   }
 
   @override
   Widget build(BuildContext context) {
     return Consumer(builder: (context, ref, _) {
-      _controller = ref.watch(planController);
-      _controller?.startRefresh();
+      _startRefresh(ref);
 
       return Calendar(
         header: Expanded(

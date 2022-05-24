@@ -131,9 +131,10 @@ class _LpLogger extends CatcherLogger {
   }
 }
 
-final _ignoreList = [
+const _ignoreList = [
   "The ParentDataWidget Positioned wants to apply",
   "setState() or markNeedsBuild() called during build.",
+  "Connection closed before full header was received",
 ];
 
 bool _filterReport(Report report) {

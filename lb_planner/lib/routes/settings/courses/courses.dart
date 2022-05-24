@@ -12,6 +12,8 @@ class SettingsCourses extends StatefulWidget {
 class _SettingsCoursesState extends State<SettingsCourses> {
   final TextEditingController _searchController = TextEditingController();
 
+  CoursesProvider? _courses;
+
   @override
   initState() {
     super.initState();
@@ -21,8 +23,22 @@ class _SettingsCoursesState extends State<SettingsCourses> {
   }
 
   @override
+  dispose() {
+    _courses?.stopRefresh();
+    _searchController.dispose();
+
+    super.dispose();
+  }
+
+  void _startRefresh(WidgetRef ref) {
+    _courses = ref.watch(coursesController);
+    _courses?.startRefresh();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Consumer(builder: (context, ref, _) {
+      _startRefresh(ref);
       var courses = ref.watch(coursesProvider);
 
       return LpContainer(
