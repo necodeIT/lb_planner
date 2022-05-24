@@ -5,8 +5,7 @@ part of lbplanner_api;
 /// [kApiRefreshRate] is the timer duration.
 abstract class IRefreshable {
   DateTime? _lastRefresh;
-  bool _refresh = true;
-  bool _refreshStarted = false;
+  bool _autoRefresh = true;
 
   /// The time at which the last refresh happened.
   DateTime? get lastRefresh => _lastRefresh;
@@ -17,16 +16,18 @@ abstract class IRefreshable {
   }
 
   /// Disables the automatic refresh.
-  void stopRefresh() {
-    _refresh = false;
+  void stopAutoRefresh() {
+    _autoRefresh = false;
   }
 
   /// Enables the automatic refresh.
   ///
   /// If the refresh timer was not running before it will be automatically intiated.
-  void startRefresh() {
-    _refresh = true;
-    if (!_refreshStarted) refresh();
+  void startAutoRefresh() {
+     if(_autoRefresh) return;
+    
+    _autoRefresh = true;
+    refresh();
   }
 
   /// Override this to execute your refresh logic.
@@ -47,9 +48,9 @@ abstract class IRefreshable {
   @nonVirtual
   @protected
   void refresh() async {
+    if(!_autoRefresh) return;
+    
     log("$runtimeType - Auto refresh");
-
-    _refreshStarted = true;
 
     if (_lastRefresh != null) {
       var diff = DateTime.now().difference(_lastRefresh!);
@@ -63,11 +64,11 @@ abstract class IRefreshable {
       }
     }
 
-    if (canRefresh && _refresh) {
+    if (canRefresh && _autoRefresh) {
       log("$runtimeType - Refreshed");
       onRefresh();
     }else{
-      log("$runtimeType - Skipped refresh cycle - canRefresh: $canRefresh, autoRefresh: $_refresh");
+      log("$runtimeType - Skipped refresh cycle - canRefresh: $canRefresh, autoRefresh: $_autoRefresh");
     }
 
     await Future.delayed(kApiRefreshRate);
