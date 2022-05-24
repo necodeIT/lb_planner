@@ -44,23 +44,23 @@ class _CalendarPlanRouteState extends State<CalendarPlanRoute> {
 
   @override
   dispose() {
-    _plan?.stopRefresh();
-    _users?.stopRefresh();
+    _plan?.stopAutoRefresh();
+    _users?.stopAutoRefresh();
 
     super.dispose();
   }
 
-  void _startRefresh(WidgetRef ref) {
+  void _startAutoRefresh(WidgetRef ref) {
     _plan = ref.watch(planController);
     _users = ref.watch(usersController);
 
-    _plan?.startRefresh();
+    _plan?.startAutoRefresh();
   }
 
   @override
   Widget build(BuildContext context) {
     return Consumer(builder: (context, ref, _) {
-      _startRefresh(ref);
+      _startAutoRefresh(ref);
 
       return Calendar(
         header: Expanded(

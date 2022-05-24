@@ -24,21 +24,21 @@ class _SettingsCoursesState extends State<SettingsCourses> {
 
   @override
   dispose() {
-    _courses?.stopRefresh();
+    _courses?.stopAutoRefresh();
     _searchController.dispose();
 
     super.dispose();
   }
 
-  void _startRefresh(WidgetRef ref) {
+  void _startAutoRefresh(WidgetRef ref) {
     _courses = ref.watch(coursesController);
-    _courses?.startRefresh();
+    _courses?.startAutoRefresh();
   }
 
   @override
   Widget build(BuildContext context) {
     return Consumer(builder: (context, ref, _) {
-      _startRefresh(ref);
+      _startAutoRefresh(ref);
       var courses = ref.watch(coursesProvider);
 
       return LpContainer(
