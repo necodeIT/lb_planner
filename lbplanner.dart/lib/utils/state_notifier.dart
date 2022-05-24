@@ -57,6 +57,7 @@ abstract class StateNotifier<T> extends riverpod.StateNotifier<T> {
     if (!mounted) return;
 
     super.state = newState;
+    onUpdate();
   }
 
   /// Override this function to do some initial laoding.
