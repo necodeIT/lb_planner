@@ -37,7 +37,7 @@ class UsersProvider extends StateNotifier<Map<int, User>> with IRefreshable {
 
   @override
   dispose() {
-    super.dispose();
     stopAutoRefresh();
+    super.dispose();
   }
 }
