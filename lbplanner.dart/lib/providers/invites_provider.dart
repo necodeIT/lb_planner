@@ -62,7 +62,7 @@ class InvitesProvider extends StateNotifier<Map<int, PlanInvite>> with IRefresha
 
   @override
   dispose() {
-    super.dispose();
     stopAutoRefresh();
+    super.dispose();
   }
 }
