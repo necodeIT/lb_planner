@@ -55,6 +55,7 @@ class _CalendarPlanRouteState extends State<CalendarPlanRoute> {
     _users = ref.watch(usersController);
 
     _plan?.startAutoRefresh();
+    _users?.startAutoRefresh();
   }
 
   @override
