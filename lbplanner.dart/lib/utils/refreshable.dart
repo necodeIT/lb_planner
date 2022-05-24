@@ -31,9 +31,10 @@ abstract class IRefreshable {
      if(_autoRefresh) return;
     
     _autoRefresh = true;
-    refresh();
     
     log("$runtimeType - Started auto refresh");
+    
+    refresh();
   }
 
   /// Override this to execute your refresh logic.
