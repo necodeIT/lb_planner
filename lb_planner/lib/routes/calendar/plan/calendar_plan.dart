@@ -16,8 +16,9 @@ class _CalendarPlanRouteState extends State<CalendarPlanRoute> {
   final formatter = DateFormat("EEE");
 
   DateTime lastMonth = DateTime.now();
-
   DateTime month = DateTime.now();
+
+  PlanProvider? _controller;
 
   void _nextMonth() {
     setState(() {
@@ -41,45 +42,54 @@ class _CalendarPlanRouteState extends State<CalendarPlanRoute> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Calendar(
-      header: Expanded(
-        child: Row(
-          children: [
-            Expanded(
-              child: CalendarPlanMonthNavigator(
-                onToday: _today,
-                onNextMonth: _nextMonth,
-                onPreviousMonth: _prevMonth,
-                currentMonth: month,
-              ),
-            ),
-            LpPopup(
-              offset: const Offset(-10, 0),
-              popupBuilder: CalendarPlanDropDownBody.popupBuilder,
-              backgroundDismissable: false,
-              child: LpIcon(Icons.more_horiz),
-            ),
-          ],
-        ),
-      ),
-      child: PageTransitionSwitcher(
-        reverse: lastMonth.isBefore(month),
-        duration: kSlowAnimationDuration,
-        child: CalendarPlanMonth(
-          month: month,
-          key: ValueKey(month),
-        ),
-        transitionBuilder: (child, primaryAnimation, secondaryAnimation) => SharedAxisTransition(
-          animation: primaryAnimation,
-          secondaryAnimation: secondaryAnimation,
-          transitionType: SharedAxisTransitionType.horizontal,
-          child: child,
-          fillColor: primaryColor,
-        ),
-      ),
-    );
+  dispose() {
+    _controller?.stopRefresh();
+    super.dispose();
+  }
 
-    // return Calendar(child: CalendarPlanMonth(month: DateTime.now()));
+  @override
+  Widget build(BuildContext context) {
+    return Consumer(builder: (context, ref, _) {
+      _controller = ref.watch(planController);
+      _controller?.startRefresh();
+
+      return Calendar(
+        header: Expanded(
+          child: Row(
+            children: [
+              Expanded(
+                child: CalendarPlanMonthNavigator(
+                  onToday: _today,
+                  onNextMonth: _nextMonth,
+                  onPreviousMonth: _prevMonth,
+                  currentMonth: month,
+                ),
+              ),
+              LpPopup(
+                offset: const Offset(-10, 0),
+                popupBuilder: CalendarPlanDropDownBody.popupBuilder,
+                backgroundDismissable: false,
+                child: LpIcon(Icons.more_horiz),
+              ),
+            ],
+          ),
+        ),
+        child: PageTransitionSwitcher(
+          reverse: lastMonth.isBefore(month),
+          duration: kSlowAnimationDuration,
+          child: CalendarPlanMonth(
+            month: month,
+            key: ValueKey(month),
+          ),
+          transitionBuilder: (child, primaryAnimation, secondaryAnimation) => SharedAxisTransition(
+            animation: primaryAnimation,
+            secondaryAnimation: secondaryAnimation,
+            transitionType: SharedAxisTransitionType.horizontal,
+            child: child,
+            fillColor: primaryColor,
+          ),
+        ),
+      );
+    });
   }
 }
