@@ -53,7 +53,7 @@ class NotificationsProvider extends StateNotifier<Map<int, Notification>> with I
 
   @override
   dispose() {
-    super.dispose();
     stopAutoRefresh();
+    super.dispose();
   }
 }
