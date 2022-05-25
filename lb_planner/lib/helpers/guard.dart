@@ -137,6 +137,7 @@ const _ignoreList = [
   "The ParentDataWidget Positioned wants to apply",
   "setState() or markNeedsBuild() called during build.",
   "Connection closed before full header was received",
+  "clipboard has strings",
 ];
 
 bool _filterReport(Report report) {

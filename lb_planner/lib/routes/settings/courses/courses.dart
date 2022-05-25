@@ -52,6 +52,7 @@ class _SettingsCoursesState extends State<SettingsCourses> {
         ),
         width: double.infinity,
         child: ListView(
+          controller: ScrollController(),
           children: [
             for (var course in courses.values)
               if (course.name.containsCaseInsensitive(_searchController.text)) ...[

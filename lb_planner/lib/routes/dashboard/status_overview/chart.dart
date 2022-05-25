@@ -38,6 +38,8 @@ class DashboardStatusOverviewChart extends StatelessWidget {
 
             var shouldLateSpace = !isLateLast && lateWidth > 0;
 
+            print("late: $lateWidth");
+
             return ConditionalWidget(
               condition: stats.totalModules > 0,
               trueWidget: (context) => Row(

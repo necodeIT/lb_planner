@@ -84,7 +84,7 @@ class _CalendarPlanDropDownInviteUsersUserState extends State<CalendarPlanDropDo
                 text = t.calendar_plan_dropdown_members_inviteUsers_reInvite;
               }
 
-              if (invite.status.isAccepted || plan.members.containsKey(widget.userId)) {
+              if (invite.status.isAccepted && plan.members.containsKey(widget.userId)) {
                 color = successColor;
                 icon = Icons.check_circle;
                 text = t.calendar_plan_dropdown_members_inviteUsers_inPlan;
