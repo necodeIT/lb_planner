@@ -57,9 +57,12 @@ class _CalendarPlanDropDwonModulesState extends State<CalendarPlanDropDwonModule
   @override
   Widget build(BuildContext context) {
     return Consumer(builder: (context, ref, _) {
+      var user = ref.watch(userProvider);
+
+      if (user.loading || user.restricted) return LpShimmer();
+
       var allModules = ref.watch(modulesProvider);
       var plan = ref.watch(planProvider);
-      var user = ref.watch(userProvider);
 
       var accessLvl = plan.members[user.id]!;
 
