@@ -83,7 +83,7 @@ class CoursesProvider extends StateNotifier<Map<int, Course>> with IRefreshable 
 
   @override
   dispose() {
-    stopAutoRefresh();
+    pauseAutoRefresh();
     super.dispose();
   }
 }

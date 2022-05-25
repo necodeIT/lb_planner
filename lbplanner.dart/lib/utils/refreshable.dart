@@ -16,42 +16,45 @@ abstract class IRefreshable {
   }
 
   /// Disables the automatic refresh.
-  void stopAutoRefresh() {
-    if(!_autoRefresh) return;
-    
+  void pauseAutoRefresh() {
+    if (!_autoRefresh) return;
+
     _autoRefresh = false;
-    
-    log("$runtimeType - Stopped auto refresh");
+
+    _log("$runtimeType - Auto refresh paused");
   }
 
   /// Enables the automatic refresh.
   ///
   /// If the refresh timer was not running before it will be automatically intiated.
   void startAutoRefresh() {
-     if(_autoRefresh) return;
-    
+    if (_autoRefresh) return;
+
     _autoRefresh = true;
-    
-    log("$runtimeType - Started auto refresh");
-    
+
+    _log("$runtimeType - Started auto refresh");
+
     refresh();
   }
 
-  /// Override this to execute your refresh logic.
+  /// Override this to execute your refresh _logic.
   onRefresh();
 
   /// Whether everything is ready and set up to refresh.
   ///
   /// If this returns false, the current refresh cycle will be skipped.
   bool get canRefresh;
-   
+
+  /// Whether activity should be _logged or not.
+  bool get silent => false;
+
   /// The refresh rate of the refreshable.
   ///
   /// Override to set a custom refresh rate. Defaults to [kApiRefreshRate]
   Duration get refreshRate => kApiRefreshRate;
-   
+
   /// Whether auto refresh is enabled or not.
-  bool get autoRefresh => _autoRefresh ;
+  bool get autoRefresh => _autoRefresh;
 
   /// Internal only - only call this if you know what you are doing!
   ///
@@ -63,7 +66,7 @@ abstract class IRefreshable {
   @nonVirtual
   @protected
   void refresh() async {
-    if(!_autoRefresh) return;
+    if (!_autoRefresh) return;
 
     if (_lastRefresh != null) {
       var diff = DateTime.now().difference(_lastRefresh!);
@@ -71,8 +74,8 @@ abstract class IRefreshable {
       if (diff < refreshRate) {
         var delay = refreshRate - diff;
 
-        if(delay.inSeconds > 0){
-          log("$runtimeType - Shifted clock by ${delay.inSeconds}s due to external refresh");
+        if (delay.inSeconds > 0) {
+          _log("$runtimeType - Shifted clock by ${delay.inSeconds}s due to external refresh");
 
           await Future.delayed(delay);
         }
@@ -80,14 +83,20 @@ abstract class IRefreshable {
     }
 
     if (canRefresh) {
-      log("$runtimeType - Refreshed");
+      _log("$runtimeType - Refreshed");
       onRefresh();
-    }else{
-      log("$runtimeType - Skipped refresh cycle");
+    } else {
+      _log("$runtimeType - Skipped refresh cycle");
     }
 
     await Future.delayed(refreshRate);
 
     refresh();
+  }
+
+  void _log(Object msg) {
+    if (!silent) return;
+
+    log(msg, LogTypes.debug, 1);
   }
 }

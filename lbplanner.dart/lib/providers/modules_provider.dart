@@ -43,7 +43,7 @@ class ModulesProvider extends StateNotifier<Map<int, Module>> with IRefreshable 
 
   @override
   dispose() {
-    stopAutoRefresh();
+    pauseAutoRefresh();
     super.dispose();
   }
 }
