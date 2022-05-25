@@ -19,7 +19,7 @@ class InternetProvider extends StateNotifier<bool> with IRefreshable {
   void _update(ConnectivityResult result) {
     var connected = result != ConnectivityResult.none;
     
-    if(connected == state) return;
+    if(connected == state && _connected != state) return;
     
     setState(connected);
   }
