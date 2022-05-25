@@ -10,6 +10,8 @@ WidgetRef get staticRef {
 WidgetRef? _staticRef;
 
 _handleError(BuildContext context, WidgetRef ref, Object obj, [StackTrace? stackTrace]) {
+  if (!InternetProvider.connected) return;
+
   var user = ref.read(userProvider);
 
   if (user.loading) return;
