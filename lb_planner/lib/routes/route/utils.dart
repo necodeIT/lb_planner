@@ -4,7 +4,7 @@ part of lbplanner_routes;
 String get currentRoute => RouteWrapper.currentRoute;
 
 /// Whether the current route is [LoginRoute.routeName].
-bool get isLogin => RouteWrapper.isLogin;
+bool get isLogin => RouteWrapper.currentRouteStandalone;
 
 /// Utils for handling routes.
 extension RouteExtensions on String {

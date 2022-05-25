@@ -13,8 +13,14 @@ class RouteWrapper extends StatelessWidget {
   /// The current route that was pushed.
   static String get currentRoute => _currentRoute;
 
-  /// Whether the current route is [LoginRoute.routeName].
-  static bool get isLogin => _currentRoute == LoginRoute.routeName || _currentRoute == LoginSelectCoursesRoute.routeName;
+  /// Whether the current route is standalone and therefore the side bar and user profile should not be generated.
+  static bool get currentRouteStandalone => _standaloneRoutes.contains(_currentRoute);
+
+  static const List<String> _standaloneRoutes = [
+    LoginRoute.routeName,
+    LoginSelectCoursesRoute.routeName,
+    OfflineRoute.routeName,
+  ];
 
   /// Generates a route.
   static PageRouteBuilder gnerateRoute(RouteSettings settings) {
@@ -76,7 +82,7 @@ class RouteWrapper extends StatelessWidget {
             backgroundColor: secondaryColor,
             body: Sidebar(
               child: ConditionalWrapper(
-                condition: !isLogin,
+                condition: !currentRouteStandalone,
                 wrapper: RouteTitle.builder,
                 child: child,
               ),

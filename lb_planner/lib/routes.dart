@@ -75,6 +75,7 @@ part 'routes/admin/dashboard/dashboard.dart';
 part 'routes/calendar/plan/dropdown/dropdown_members_invite_users.dart';
 part 'routes/calendar/plan/dropdown/dropdown_members_invite_users_user.dart';
 part 'routes/route/user/user_profile_img.dart';
+part 'routes/offline/offline.dart';
 
 /// All routes the app has
 final Map<String, WidgetBuilder> kRoutes = {
@@ -85,6 +86,7 @@ final Map<String, WidgetBuilder> kRoutes = {
   LoginSelectCoursesRoute.routeName: (context) => LoginSelectCoursesRoute(),
   CalendarModulesOverviewRoute.routeName: (context) => CalendarModulesOverviewRoute(),
   AdminLoginRoute.routeName: (context) => AdminLoginRoute(),
+  OfflineRoute.routeName: (context) => OfflineRoute(),
   AdminDashboardRoute.routeName: (context) => AdminDashboardRoute(),
   if (kDebugMode) TestRoute.routeName: (context) => TestRoute(),
 };

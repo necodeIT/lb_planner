@@ -61,7 +61,7 @@
       }
     }
   },
-  "@user_notifications_userRegistered_text": {
+  "@user_notifications_planRemoved_text": {
     "description": "User registered notification text",
     "placeholders": {
       "username": {
@@ -70,7 +70,7 @@
       }
     }
   },
-  "@user_notifications_planRemoved_text": {
+  "@user_notifications_userRegistered_text": {
     "description": "User registered notification text",
     "placeholders": {
       "username": {
@@ -142,6 +142,8 @@
   "login_selectCourses_title": "Select courses",
   "login_username": "Username",
   "module_openUrl": "Show on Moodle",
+  "offline_caption": "Your device is currently not connected to the internet. This application cannot be used when offline.",
+  "offline_title": "Offline",
   "plan_routeName": "Plan",
   "settings_feedback": "Feedback",
   "settings_feedback_failed_message": "We could not process your feedback. Please try again later.\nIf this error persists please consider opening an issue on GitHub.\n\nThe culprit: '{error}'",
@@ -169,7 +171,7 @@
   "user_notifications_notifications": "{count, plural, =0{No news... You're up to date!} =1{1 Notification} other{{count} Notifications}}",
   "user_notifications_planLeft_text": "{username} has left your plan.",
   "user_notifications_planRemoved": "You have been removed from {username}'s plan.",
+  "user_notifications_planRemoved_text": "You have been removed from {username}'s plan.",
   "user_notifications_userRegistered_docs": "Need help?",
-  "user_notifications_userRegistered_text": "Welcome, {username}!\n\nIf you happen to face any issues, please let us know.",
-  "user_notifications_planRemoved_text": "You have been removed from {username}'s plan."
+  "user_notifications_userRegistered_text": "Welcome, {username}!\n\nIf you happen to face any issues, please let us know."
 }
