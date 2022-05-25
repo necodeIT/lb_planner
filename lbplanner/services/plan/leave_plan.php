@@ -53,12 +53,39 @@ class plan_leave_plan extends external_api {
 
         user_helper::assert_access($userid);
 
-        if (plan_helper::get_access_type($userid, $planid) == plan_helper::ACCESS_TYPE_OWNER) {
-            throw new \moodle_exception('Owner cannot leave his plan');
-        }
-
         if (plan_helper::get_access_type($userid, $planid) == plan_helper::ACCESS_TYPE_NONE) {
             throw new \moodle_exception('User is not a member of this plan');
+        }
+
+        if (plan_helper::get_access_type($userid, $planid) == plan_helper::ACCESS_TYPE_OWNER) {
+            $members = plan_helper::get_plan_members($planid);
+
+            if (count($members) == 1) {
+                throw new \moodle_exception('Cannot Leave Plan: Plan must have at least one other member');
+            }
+
+            $writemembers = array();
+            $allmembers = array();
+            foreach ($members as $member) {
+                if ($member->userid == $userid) {
+                    continue;
+                }
+                if ($member->accesstype == plan_helper::ACCESS_TYPE_WRITE) {
+                    $writemembers[] = $member;
+                }
+                $allmembers[] = $member;
+            }
+            if (count($writemembers) > 0) {
+                $newowner = $writemembers[rand( 0, count($writemembers) - 1)]->userid;
+            } else {
+                $newowner = $allmembers[rand( 0, count($allmembers) - 1)]->userid;
+            }
+            $newowneraccess = $DB->get_record(
+                plan_helper::ACCESS_TABLE,
+                array('planid' => $planid, 'userid' => $newowner), '*', MUST_EXIST
+            );
+            $newowneraccess->accesstype = plan_helper::ACCESS_TYPE_OWNER;
+            $DB->update_record(plan_helper::ACCESS_TABLE, $newowneraccess);
         }
 
         $newplanid = plan_helper::copy_plan($planid, $userid);
