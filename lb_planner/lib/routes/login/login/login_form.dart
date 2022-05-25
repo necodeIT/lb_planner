@@ -77,7 +77,7 @@ class _LoginFormState extends State<LoginForm> {
 
       var courses = coursesResponse!.value!;
 
-      Navigator.of(context).pushNamed(courses.any((e) => e.enabled) ? DashboardRoute.routeName : LoginSelectCoursesRoute.routeName);
+      (courses.any((e) => e.enabled) ? DashboardRoute.info : LoginSelectCoursesRoute.info).push(context);
     }
   }
 

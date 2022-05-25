@@ -43,7 +43,7 @@ class _SettingsGeneralState extends State<SettingsGeneral> {
     await dir.delete(recursive: true);
     await controller.logout();
 
-    Navigator.of(context).pushReplacementNamed(LoginRoute.routeName);
+    Navigator.of(context).pushReplacementNamed(LoginRoute.info.routeName);
 
     if (!mounted) return;
 

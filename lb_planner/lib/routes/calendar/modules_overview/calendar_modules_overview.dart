@@ -5,8 +5,12 @@ class CalendarModulesOverviewRoute extends StatefulWidget {
   /// Modules overview route.
   const CalendarModulesOverviewRoute({Key? key}) : super(key: key);
 
-  /// The route name.
-  static const routeName = "calendar/modules-overview";
+  /// Info about this route.
+  static final info = RouteInfo(
+    routeName: "/calendar/modules-overview",
+    builder: (_) => CalendarModulesOverviewRoute(),
+    titleGenerator: (t) => t.calendar_routeName,
+  );
 
   /// A list of months which are in the winter (the first) semester of school.
   static const winterMonths = [DateTime.september, DateTime.october, DateTime.november, DateTime.december, DateTime.january, DateTime.february];

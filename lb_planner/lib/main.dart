@@ -84,10 +84,10 @@ class App extends StatelessWidget {
             supportedLocales: AppLocalizations.supportedLocales,
             debugShowCheckedModeBanner: false,
             initialRoute: !connected
-                ? OfflineRoute.routeName
+                ? OfflineRoute.info.routeName
                 : user.restricted
-                    ? LoginRoute.routeName
-                    : DashboardRoute.routeName,
+                    ? LoginRoute.info.routeName
+                    : DashboardRoute.info.routeName,
             onGenerateRoute: RouteWrapper.gnerateRoute,
           );
         },

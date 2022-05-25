@@ -1,5 +1,8 @@
 part of lbplanner_routes;
 
+/// The current route that was pushed.
+RouteInfo get currentRoute => RouteWrapper.currentRoute;
+
 /// Wraps a route in a Sidebar and a scaffold.
 class RouteWrapper extends StatelessWidget {
   /// Wraps a route in a Sidebar and a scaffold.
@@ -8,29 +11,20 @@ class RouteWrapper extends StatelessWidget {
   /// The child to wrap.
   final Widget child;
 
-  static String _currentRoute = '';
+  static RouteInfo _currentRoute = LoginRoute.info;
 
   /// The current route that was pushed.
-  static String get currentRoute => _currentRoute;
-
-  /// Whether the current route is standalone and therefore the side bar and user profile should not be generated.
-  static bool get currentRouteStandalone => _standaloneRoutes.contains(_currentRoute);
-
-  static const List<String> _standaloneRoutes = [
-    LoginRoute.routeName,
-    LoginSelectCoursesRoute.routeName,
-    OfflineRoute.routeName,
-  ];
+  static RouteInfo get currentRoute => _currentRoute;
 
   /// Generates a route.
   static PageRouteBuilder gnerateRoute(RouteSettings settings) {
-    _currentRoute = settings.name ?? '';
+    _currentRoute = kRoutes[settings.name] ?? RouteInfo(routeName: settings.name ?? '', builder: (_) => NcTitleText("404"));
 
     log("Navigating to '$currentRoute'", LogTypes.tracking);
 
     return PageRouteBuilder(
       settings: settings,
-      pageBuilder: (context, animation, secondaryAnimation) => Center(child: kRoutes[settings.name]?.call(context) ?? NcTitleText("404")),
+      pageBuilder: (context, animation, secondaryAnimation) => Center(child: currentRoute.build(context)),
       transitionsBuilder: (context, animation, secondaryAnimation, child) => RouteWrapper(
         child: SharedAxisTransition(
           transitionType: SharedAxisTransitionType.vertical,
@@ -50,8 +44,8 @@ class RouteWrapper extends StatelessWidget {
       var connected = ref.watch(internetProvider);
 
       WidgetsBinding.instance!.addPostFrameCallback((_) {
-        if (connected && currentRoute == OfflineRoute.routeName) Navigator.of(context).pushReplacementNamed(DashboardRoute.routeName);
-        if (!connected && currentRoute != OfflineRoute.routeName) Navigator.of(context).pushReplacementNamed(OfflineRoute.routeName);
+        if (connected && currentRoute == OfflineRoute.info) DashboardRoute.info.push(context);
+        if (!connected && currentRoute != OfflineRoute.info) OfflineRoute.info.push(context);
       });
 
       return ContextMenuOverlay(
@@ -88,7 +82,7 @@ class RouteWrapper extends StatelessWidget {
             backgroundColor: secondaryColor,
             body: Sidebar(
               child: ConditionalWrapper(
-                condition: !currentRouteStandalone,
+                condition: !currentRoute.standalone,
                 wrapper: RouteTitle.builder,
                 child: child,
               ),

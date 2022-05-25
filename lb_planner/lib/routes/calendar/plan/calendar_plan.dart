@@ -5,8 +5,8 @@ class CalendarPlanRoute extends StatefulWidget {
   /// Calendar plan route.
   const CalendarPlanRoute({Key? key}) : super(key: key);
 
-  /// Route name.
-  static const routeName = "/calendar/plan";
+  /// Info about this route.
+  static final info = RouteInfo(routeName: "/calendar/plan", builder: (_) => CalendarPlanRoute(), titleGenerator: (t) => t.calendar_routeName);
 
   @override
   State<CalendarPlanRoute> createState() => _CalendarPlanRouteState();

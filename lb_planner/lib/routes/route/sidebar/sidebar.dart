@@ -15,7 +15,7 @@ class Sidebar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ConditionalWrapper(
-      condition: !isLogin,
+      condition: !currentRoute.standalone,
       wrapper: (context, child) {
         return Consumer(builder: (context, ref, _) {
           var user = ref.watch(userProvider);
@@ -46,13 +46,15 @@ class Sidebar extends StatelessWidget {
                         NcSpacing.small(),
                         SidebarItem(
                           icon: FontAwesome.bars,
-                          route: DashboardRoute.routeName,
+                          route: DashboardRoute.info,
                         ),
                         NcSpacing.small(),
                         SidebarItem(
                           icon: Icons.calendar_month_rounded,
-                          route: CalendarPlanRoute.routeName,
-                          routes: const [CalendarModulesOverviewRoute.routeName],
+                          route: CalendarPlanRoute.info,
+                          routes: [
+                            CalendarModulesOverviewRoute.info,
+                          ],
                         ),
                       ],
                     ),
@@ -61,26 +63,26 @@ class Sidebar extends StatelessWidget {
                         if (kDebugMode)
                           SidebarItem(
                             icon: FontAwesome.flask,
-                            route: TestRoute.routeName,
+                            route: TestRoute.info,
                           ),
                         if (kDebugMode) NcSpacing.small(),
                         if (showAdmin)
                           SidebarItem(
                             icon: Icons.admin_panel_settings,
-                            route: AdminLoginRoute.routeName,
-                            routes: const [
-                              AdminDashboardRoute.routeName,
+                            route: AdminLoginRoute.info,
+                            routes: [
+                              AdminDashboardRoute.info,
                             ],
                           ),
                         if (showAdmin) NcSpacing.small(),
                         SidebarItem(
                           icon: Icons.settings,
-                          route: SettingsRoute.routeName,
+                          route: SettingsRoute.info,
                         ),
                         NcSpacing.small(),
                         SidebarItem(
                           icon: Icons.logout,
-                          route: LoginRoute.routeName,
+                          route: LoginRoute.info,
                           onTap: ref.read(userProvider.notifier).logout,
                         ),
                         NcSpacing.medium(),

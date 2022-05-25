@@ -19,3 +19,4 @@ import 'package:nekolib_utils/updater.dart';
 part 'helpers/utils.dart';
 part 'helpers/guard.dart';
 part 'helpers/updater.dart';
+part 'helpers/route_info.dart';

@@ -5,8 +5,9 @@ class TestRoute extends StatelessWidget {
   /// The TestRoute to Test the widgets
   const TestRoute({Key? key}) : super(key: key);
 
-  /// The route name for Test
-  static const routeName = "/test";
+  /// Info about this route.
+  static final info = RouteInfo(routeName: "/test", builder: (_) => TestRoute());
+
   @override
   Widget build(BuildContext context) {
     return ListView(

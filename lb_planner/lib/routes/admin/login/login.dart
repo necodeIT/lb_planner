@@ -5,8 +5,8 @@ class AdminLoginRoute extends StatefulWidget {
   /// The admin route.
   const AdminLoginRoute({Key? key}) : super(key: key);
 
-  /// The name of the route.
-  static const routeName = "/admin/login";
+  /// Info about this route.
+  static final info = RouteInfo(routeName: "/admin/login", builder: (_) => AdminLoginRoute(), titleGenerator: (t) => t.admin_login_routeName);
 
   /// The size of the user profile image.
   static const double imgSize = 150;
@@ -54,7 +54,7 @@ class _AdminLoginRouteState extends State<AdminLoginRoute> {
       _loginFuture = null;
     });
 
-    if (_loginResponse?.succeeded ?? false) Navigator.of(context).pushReplacementNamed(AdminDashboardRoute.routeName);
+    if (_loginResponse?.succeeded ?? false) AdminDashboardRoute.info.push(context);
   }
 
   @override

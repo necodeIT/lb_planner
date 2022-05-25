@@ -35,7 +35,6 @@ part 'routes/route/sidebar/sidebar.dart';
 part 'routes/login/login/login_form.dart';
 part 'routes/route/sidebar/sidebar_item.dart';
 part 'routes/route/user/user_profile.dart';
-part 'routes/route/utils.dart';
 part 'routes/route/route_title.dart';
 part 'routes/calendar/plan/calendar_plan.dart';
 part 'routes/settings/settings.dart';
@@ -82,28 +81,17 @@ part 'routes/settings/general/general_item.dart';
 part 'routes/settings/general/credits.dart';
 
 /// All routes the app has
-final Map<String, WidgetBuilder> kRoutes = {
-  LoginRoute.routeName: (context) => LoginRoute(),
-  DashboardRoute.routeName: (context) => DashboardRoute(),
-  CalendarPlanRoute.routeName: (context) => CalendarPlanRoute(),
-  SettingsRoute.routeName: (context) => SettingsRoute(),
-  LoginSelectCoursesRoute.routeName: (context) => LoginSelectCoursesRoute(),
-  CalendarModulesOverviewRoute.routeName: (context) => CalendarModulesOverviewRoute(),
-  AdminLoginRoute.routeName: (context) => AdminLoginRoute(),
-  OfflineRoute.routeName: (context) => OfflineRoute(),
-  AdminDashboardRoute.routeName: (context) => AdminDashboardRoute(),
-  if (kDebugMode) TestRoute.routeName: (context) => TestRoute(),
-};
-
-/// Human readable route names
-Map<String, String Function(BuildContext)> kRouteToTitle = {
-  DashboardRoute.routeName: (context) => context.t.dashboard_routeName,
-  CalendarPlanRoute.routeName: (context) => context.t.calendar_routeName,
-  CalendarModulesOverviewRoute.routeName: (context) => context.t.calendar_routeName,
-  SettingsRoute.routeName: (context) => context.t.settings_title,
-  LoginSelectCoursesRoute.routeName: (context) => context.t.login_selectCourses_title,
-  AdminLoginRoute.routeName: (context) => context.t.admin_login_routeName,
-  AdminDashboardRoute.routeName: (context) => context.t.admin_dashboard_routeName,
+final Map<String, RouteInfo> kRoutes = {
+  LoginRoute.info.routeName: LoginRoute.info,
+  DashboardRoute.info.routeName: DashboardRoute.info,
+  CalendarPlanRoute.info.routeName: CalendarPlanRoute.info,
+  SettingsRoute.info.routeName: SettingsRoute.info,
+  LoginSelectCoursesRoute.info.routeName: LoginSelectCoursesRoute.info,
+  CalendarModulesOverviewRoute.info.routeName: CalendarModulesOverviewRoute.info,
+  AdminLoginRoute.info.routeName: AdminLoginRoute.info,
+  OfflineRoute.info.routeName: OfflineRoute.info,
+  AdminDashboardRoute.info.routeName: AdminDashboardRoute.info,
+  if (kDebugMode) TestRoute.info.routeName: TestRoute.info,
 };
 
 /// Observes navigation events.

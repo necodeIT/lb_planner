@@ -64,7 +64,7 @@ class _LoginSelectCourseCourseSelectionState extends State<LoginSelectCourseCour
               child: LpTextButton(
                 text: t.login_selectCourses_continue,
                 trailingIcon: Feather.arrow_right_circle,
-                onPressed: () => Navigator.of(context).pushNamed(DashboardRoute.routeName),
+                onPressed: () => DashboardRoute.info.push(context),
                 fontSize: SettingsFeedback.fontSize,
               ),
             ),

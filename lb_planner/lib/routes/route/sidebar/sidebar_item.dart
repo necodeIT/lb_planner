@@ -9,10 +9,10 @@ class SidebarItem extends StatelessWidget {
   final IconData icon;
 
   /// Whether the item is selected
-  final String route;
+  final RouteInfo route;
 
   /// Routes that also actiavte the sidebar item.
-  final List<String> routes;
+  final List<RouteInfo> routes;
 
   /// Called when the item is tapped.
   final VoidCallback? onTap;
@@ -35,7 +35,7 @@ class SidebarItem extends StatelessWidget {
         if (selected) return;
 
         onTap?.call();
-        Navigator.pushReplacementNamed(context, route);
+        route.push(context);
       },
       builder: (context, hover) => AnimatedContainer(
         duration: kFastAnimationDuration,

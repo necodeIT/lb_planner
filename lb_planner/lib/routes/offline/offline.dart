@@ -5,8 +5,8 @@ class OfflineRoute extends LocalizedWidget {
   /// Route displayed when the user is offline.
   const OfflineRoute({Key? key}) : super(key: key);
 
-  /// The name of the route.
-  static const String routeName = '/offline';
+  /// Info about this route.
+  static final info = RouteInfo(routeName: '/offline', builder: (_) => OfflineRoute(), standalone: true);
 
   /// The size of the icon.
   static const double iconSize = 100;
