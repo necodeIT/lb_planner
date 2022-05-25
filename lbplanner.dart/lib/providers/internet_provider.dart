@@ -26,7 +26,9 @@ class InternetProvider extends StateNotifier<bool> with IRefreshable {
   
   @override
   onUpdate(){
+    log("before: $_connected");
     _connected = state;
+    log("after: $_connected");
   }
 
   @override
