@@ -18,15 +18,12 @@ class UserNotificationsPopup extends LocalizedWidget {
   static const double height = 350;
 
   /// The max. age of the notifications to display.
-  static const maxNotificationAge = Duration(days: 7);
-
-  /// The max. number of notifications to display as [DateTime].
-  static get maxNotificationAgeAsDateTime => DateTime.now().subtract(maxNotificationAge);
+  static const maxNotificationAge = Duration(days: 3);
 
   @override
   Widget build(context, t) {
     return Consumer(builder: (context, ref, _) {
-      var notifications = ref.watch(notificationsProvider).values.where((e) => e.shouldDisplay).toList();
+      var notifications = ref.watch(notificationsProvider).values.where((e) => e.shouldDisplay(ref)).toList();
 
       notifications.sort((a, b) => b.timestamp.compareTo(a.timestamp));
 
@@ -63,9 +60,19 @@ class UserNotificationsPopup extends LocalizedWidget {
 }
 
 extension _NotificationExt on Notification {
-  bool get shouldDisplay {
+  bool shouldDisplay(WidgetRef ref) {
     if (readTimestamp == null) return true;
 
-    return readTimestamp!.isAfter(UserNotificationsPopup.maxNotificationAgeAsDateTime) || type.isInvite;
+    var invitePending = false;
+
+    if (type.isInvite) {
+      var invites = ref.watch(invitesProvider);
+      var inviteId = payload["inviteid"];
+      var invite = invites[inviteId];
+
+      invitePending = invite != null && invite.status.isPending;
+    }
+
+    return DateTime.now().difference(readTimestamp!) < UserNotificationsPopup.maxNotificationAge || invitePending;
   }
 }
