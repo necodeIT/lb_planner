@@ -13,9 +13,8 @@ class DashboardRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var filler = LpContainer(
-      child: Center(child: NcTitleText("Test")),
-    );
+    var filler = TBAContainer();
+
     return Row(
       children: [
         Expanded(

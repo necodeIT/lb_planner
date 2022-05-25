@@ -52,6 +52,9 @@ class ModuleWidget extends LocalizedWidget {
   /// Formatter for the date if [displayMode] == [ModuleWidgetDisyplayModes.date].
   static final formatter = DateFormat('dd.MM');
 
+  /// How long the user has to hover over the name in order for the tooltip to show the full name.
+  static const Duration tooltipTrigger = Duration(seconds: 1);
+
   @override
   Widget build(BuildContext context, t) {
     return Consumer(builder: (context, ref, _) {
@@ -104,10 +107,14 @@ class ModuleWidget extends LocalizedWidget {
                     ),
                   if (showTag) NcSpacing.small(),
                   Expanded(
-                    child: NcCaptionText(
-                      module.name,
-                      textAlign: showTag ? TextAlign.center : TextAlign.start,
-                      fontSize: fontSize,
+                    child: Tooltip(
+                      waitDuration: tooltipTrigger,
+                      message: module.name,
+                      child: NcCaptionText(
+                        module.name,
+                        textAlign: showTag ? TextAlign.center : TextAlign.start,
+                        fontSize: fontSize,
+                      ),
                     ),
                   ),
                   ConditionalWidget(

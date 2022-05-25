@@ -11,7 +11,6 @@ class SettingsRoute extends LocalizedWidget {
 
   @override
   Widget build(context, t) {
-    var placeholder = Center(child: NcTitleText("Test"));
     return Row(
       children: [
         Expanded(
@@ -22,11 +21,7 @@ class SettingsRoute extends LocalizedWidget {
                 child: Row(
                   children: [
                     Expanded(
-                      child: LpContainer(
-                        title: t.settings_general,
-                        height: double.infinity,
-                        child: placeholder,
-                      ),
+                      child: SettingsGeneral(),
                     ),
                     NcSpacing.medium(),
                     Expanded(child: SettingsThemes())

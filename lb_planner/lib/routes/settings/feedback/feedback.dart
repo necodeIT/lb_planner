@@ -8,6 +8,9 @@ class SettingsFeedback extends StatefulWidget {
   /// The font size of the text.
   static const double fontSize = 18;
 
+  /// The size of the loading indicator when submitting feedback.
+  static const double loadingIndicatorSize = 50;
+
   @override
   State<SettingsFeedback> createState() => _SettingsFeedbackState();
 }
@@ -62,17 +65,10 @@ class _SettingsFeedbackState extends State<SettingsFeedback> {
   Widget build(BuildContext context) {
     return LpContainer(
       title: t.settings_feedback,
-      child: ConditionalWrapper(
+      child: ConditionalWidget(
         condition: _submitFuture != null,
-        wrapper: (context, child) => FutureBuilder(
-          future: _submitFuture,
-          builder: (context, snapshot) => ConditionalWidget(
-            condition: snapshot.connectionState.isDone,
-            trueWidget: (context) => child,
-            falseWidget: (context) => LpLoadingIndicator.circular(),
-          ),
-        ),
-        child: Column(
+        trueWidget: (context) => LpLoadingIndicator.circular(size: SettingsFeedback.loadingIndicatorSize),
+        falseWidget: (_) => Column(
           children: [
             Align(
               alignment: Alignment.centerLeft,
