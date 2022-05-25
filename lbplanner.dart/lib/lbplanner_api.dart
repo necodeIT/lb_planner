@@ -61,6 +61,7 @@ part 'providers/statistics_provider.dart';
 part 'providers/users_provider.dart';
 part 'providers/invites_provider.dart';
 part 'providers/plan_provider.dart';
+part 'providers/internet_provider.dart';
 
 // Api
 
@@ -85,7 +86,6 @@ part 'utils/date_time_extensions.dart';
 part 'utils/refreshable.dart';
 part 'utils/state_notifier.dart';
 part 'utils/user_utils.dart';
-part 'utils/internet.dart';
 
 // Disk
 
