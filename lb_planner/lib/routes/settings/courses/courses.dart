@@ -24,7 +24,7 @@ class _SettingsCoursesState extends State<SettingsCourses> {
 
   @override
   dispose() {
-    _courses?.stopAutoRefresh();
+    _courses?.pauseAutoRefresh();
     _searchController.dispose();
 
     super.dispose();

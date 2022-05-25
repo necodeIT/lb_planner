@@ -44,8 +44,8 @@ class _CalendarPlanRouteState extends State<CalendarPlanRoute> {
 
   @override
   dispose() {
-    _plan?.stopAutoRefresh();
-    _users?.stopAutoRefresh();
+    _plan?.pauseAutoRefresh();
+    _users?.pauseAutoRefresh();
 
     super.dispose();
   }

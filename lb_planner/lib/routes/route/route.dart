@@ -47,6 +47,12 @@ class RouteWrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer(builder: (context, ref, _) {
       initGuard(ref);
+      var connected = ref.watch(internetProvider);
+
+      WidgetsBinding.instance!.addPostFrameCallback((_) {
+        if (connected && currentRoute == OfflineRoute.routeName) Navigator.of(context).pushReplacementNamed(DashboardRoute.routeName);
+        if (!connected && currentRoute != OfflineRoute.routeName) Navigator.of(context).pushReplacementNamed(OfflineRoute.routeName);
+      });
 
       return ContextMenuOverlay(
         buttonBuilder: (context, config, [_]) => HoverBuilder(

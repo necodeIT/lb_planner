@@ -70,7 +70,7 @@ class App extends StatelessWidget {
     return ProviderScope(
       child: Consumer(
         builder: (context, ref, _) {
-          var connected = ref.watch(internetProvider);
+          var connected = ref.read(internetProvider);
           var user = ref.read(userProvider);
 
           return MaterialApp(

@@ -9,7 +9,7 @@ class OfflineRoute extends LocalizedWidget {
   static const String routeName = '/offline';
 
   /// The size of the icon.
-  static const double iconSize = 40;
+  static const double iconSize = 100;
 
   /// The size of the title text.
   static const double titleSize = 35;
@@ -25,7 +25,7 @@ class OfflineRoute extends LocalizedWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           LpIcon(
-            Icons.offline_bolt,
+            Icons.wifi_off_outlined,
             size: iconSize,
             color: accentColor,
           ),
