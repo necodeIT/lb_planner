@@ -46,7 +46,7 @@ class NotificationsProvider extends StateNotifier<Map<int, Notification>> with I
   }
 
   @override
-  bool get canRefresh => !user.loading && !user.restricted;
+  bool get canRefresh => user.canMakeRequests;
 
   @override
   onRefresh() => fetchNotifications();
