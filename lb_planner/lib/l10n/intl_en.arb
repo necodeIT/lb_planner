@@ -142,7 +142,7 @@
   "login_selectCourses_title": "Select courses",
   "login_username": "Username",
   "module_openUrl": "Show on Moodle",
-  "offline_caption": "Your device is currently not connected to the internet. This application cannot be used when offline.",
+  "offline_caption": "Your device is currently not connected to the internet. LB Planner cannot be used when offline.",
   "offline_title": "Offline",
   "plan_routeName": "Plan",
   "settings_feedback": "Feedback",

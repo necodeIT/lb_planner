@@ -551,7 +551,7 @@ packages:
     description:
       path: "lbplanner.dart"
       ref: "lbplanner.dart"
-      resolved-ref: "1f244cb13c9a2020bb9ddd7a4be1e0d63b2b9567"
+      resolved-ref: ee11f057f29e53f03dc73ea0749fa47dc90f2d1f
       url: "https://github.com/necodeIT/lb_planner.git"
     source: git
     version: "0.0.1"
