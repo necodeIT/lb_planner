@@ -24,7 +24,7 @@ class InternetProvider extends StateNotifier<bool> with IRefreshable {
     setState(connected);
   }
   
-  @overrid
+  @override
   onUpdate() => _connected = state;
 
   @override
