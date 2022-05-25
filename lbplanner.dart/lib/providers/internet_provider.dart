@@ -8,12 +8,24 @@ final internetController = internetProvider.notifier;
 
 /// Provides the current internet connection.
 class InternetProvider extends StateNotifier<bool> with IRefreshable {
+  static bool _connected = false;
+   
+  /// Whether the device is currently connected to the internet.
+  static bool get connected => _connected; 
+  
   /// Provides the current internet connection.
   InternetProvider() : super(true);
 
   void _update(ConnectivityResult result) {
-    setState(result != ConnectivityResult.none);
+    var connected = result != ConnectivityResult.none;
+    
+    if(connected == state) return;
+    
+    setState(connected);
   }
+  
+  @overrid
+  onUpdate() => _connected = state;
 
   @override
   init() {
