@@ -95,7 +95,7 @@ abstract class IRefreshable {
   }
 
   void _log(Object msg) {
-    if (!silent) return;
+    if (silent) return;
 
     log(msg, LogTypes.debug, 1);
   }
