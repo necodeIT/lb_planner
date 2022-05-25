@@ -43,7 +43,7 @@ class _SettingsGeneralState extends State<SettingsGeneral> {
     await dir.delete(recursive: true);
     await controller.logout();
 
-    Navigator.of(context).pushReplacementNamed(LoginRoute.info.routeName);
+    LoginRoute.info.push(context);
 
     if (!mounted) return;
 
@@ -113,7 +113,7 @@ class _SettingsGeneralState extends State<SettingsGeneral> {
             SettingsGeneralItem(
               title: t.settings_general_credits,
               icon: Icons.info_outline,
-              onTap: () => Navigator.of(context).pushReplacementNamed(SettingsGeneralCreditsRoute.routeName),
+              onTap: () => SettingsGeneralCreditsRoute.info.push(context),
             ),
           ],
         ),

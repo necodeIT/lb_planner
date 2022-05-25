@@ -171,7 +171,7 @@
   "tba_caption": "This section is still under development.",
   "tba_title": "TBA",
   "user_notifications_inviteAccepted_text": "{username} has joined your plan!",
-  "user_notifications_inviteDeclined_text": "{username} has declined your offer to joind your plan!",
+  "user_notifications_inviteDeclined_text": "{username} has declined your offer to join your plan!",
   "user_notifications_invite_accept": "Join",
   "user_notifications_invite_accepted": "You accepted",
   "user_notifications_invite_decline": "Decline",

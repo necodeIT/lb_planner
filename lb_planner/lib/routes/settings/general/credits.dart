@@ -5,8 +5,12 @@ class SettingsGeneralCreditsRoute extends StatelessWidget {
   /// Credits page of the general settings.
   const SettingsGeneralCreditsRoute({Key? key}) : super(key: key);
 
-  /// Name of the route.
-  static const routeName = '/settings/general/credits';
+  /// Info about this route.
+  static final info = RouteInfo(
+    routeName: 'settings/general/credits',
+    parent: SettingsRoute.info,
+    builder: (_) => SettingsGeneralCreditsRoute(),
+  );
 
   @override
   Widget build(BuildContext context) {

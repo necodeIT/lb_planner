@@ -91,6 +91,7 @@ final Map<String, RouteInfo> kRoutes = {
   AdminLoginRoute.info.routeName: AdminLoginRoute.info,
   OfflineRoute.info.routeName: OfflineRoute.info,
   AdminDashboardRoute.info.routeName: AdminDashboardRoute.info,
+  SettingsGeneralCreditsRoute.info.routeName: SettingsGeneralCreditsRoute.info,
   if (kDebugMode) TestRoute.info.routeName: TestRoute.info,
 };
 

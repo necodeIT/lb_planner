@@ -22,9 +22,23 @@ class RouteTitle extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            NcTitleText(
-              currentRoute.title(context),
-              fontSize: titleSize,
+            ConditionalWrapper(
+              condition: currentRoute.parent != null,
+              wrapper: (context, child) => LpGestureDetector(
+                onTap: () => currentRoute.parent!.push(context),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    LpIcon(Feather.arrow_left_circle, size: titleSize),
+                    NcSpacing.small(),
+                    child,
+                  ],
+                ),
+              ),
+              child: NcTitleText(
+                currentRoute.title(context),
+                fontSize: titleSize,
+              ),
             ),
             UserProfile(),
           ],
