@@ -85,7 +85,10 @@ class plan_leave_plan extends external_api {
                 array('planid' => $planid, 'userid' => $newowner), '*', MUST_EXIST
             );
             $newowneraccess->accesstype = plan_helper::ACCESS_TYPE_OWNER;
+<<<<<<< Updated upstream
             $DB->update_record(plan_helper::ACCESS_TABLE, $newowneraccess);
+=======
+>>>>>>> Stashed changes
         }
 
         $newplanid = plan_helper::copy_plan($planid, $userid);

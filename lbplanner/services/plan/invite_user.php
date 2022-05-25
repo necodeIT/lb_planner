@@ -75,7 +75,10 @@ class plan_invite_user extends external_api {
             throw new \moodle_exception('Cannot invite user who is already a member');
         }
 
-        if ($DB->record_exists(plan_helper::INVITES_TABLE, array('inviteeid' => $inviteeid, 'planid' => $planid))) {
+        if ($DB->record_exists(
+                plan_helper::INVITES_TABLE,
+                array('inviteeid' => $inviteeid, 'planid' => $planid, 'status' => plan_helper::INVITE_PENDING)
+            )) {
             throw new \moodle_exception('User is already invited');
         }
 
@@ -104,6 +107,7 @@ class plan_invite_user extends external_api {
         );
 
         return array(
+            'id' => $invite->id,
             'inviterid' => $inviterid,
             'inviteeid' => $inviteeid,
             'planid' => $planid,
@@ -115,6 +119,7 @@ class plan_invite_user extends external_api {
     public static function invite_user_returns() {
         return new external_single_structure(
             array(
+                'id' => new external_value(PARAM_INT, 'The id of the invite'),
                 'inviterid' => new external_value(PARAM_INT, 'The id of the owner user'),
                 'inviteeid' => new external_value(PARAM_INT, 'The id of the invited user'),
                 'planid' => new external_value(PARAM_INT, 'The id of the plan'),

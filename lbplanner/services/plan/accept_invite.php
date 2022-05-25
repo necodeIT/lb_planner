@@ -55,7 +55,7 @@ class plan_accept_invite extends external_api {
 
         $invite = $DB->get_record(plan_helper::INVITES_TABLE,
         array(
-            'inviteid' => $inviteid,
+            'id' => $inviteid,
             'inviteeid' => $userid,
             'status' => plan_helper::INVITE_PENDING,
         ),
