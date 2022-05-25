@@ -58,7 +58,9 @@ class ModuleWidget extends LocalizedWidget {
   @override
   Widget build(BuildContext context, t) {
     return Consumer(builder: (context, ref, _) {
-      var module = ref.watch(modulesProvider)[moduleId]!;
+      var module = ref.watch(modulesProvider)[moduleId];
+
+      if (module == null) return LpShimmer();
 
       var courses = ref.watch(coursesProvider);
 

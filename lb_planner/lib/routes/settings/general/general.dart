@@ -30,10 +30,8 @@ class _SettingsGeneralState extends State<SettingsGeneral> {
     });
   }
 
-  void _clearCache(WidgetRef ref) async {
+  void _clearCache() async {
     if (_clearCacheFuture != null) return;
-
-    var controller = ref.read(userController);
 
     setState(() {
       _clearCacheFuture = Disk.appDir;
@@ -41,8 +39,6 @@ class _SettingsGeneralState extends State<SettingsGeneral> {
 
     var dir = (await _clearCacheFuture) as Directory;
     await dir.delete(recursive: true);
-    await controller.logout();
-
     LoginRoute.info.push(context);
 
     if (!mounted) return;
@@ -95,7 +91,7 @@ class _SettingsGeneralState extends State<SettingsGeneral> {
                 context,
                 title: t.settings_general_clearCache_title,
                 message: t.settings_general_clearCache_msg,
-                onConfirm: () => _clearCache(ref),
+                onConfirm: _clearCache,
               ),
             ),
             NcSpacing.xs(),

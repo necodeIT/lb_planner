@@ -34,7 +34,10 @@ class UserNotificationsPopup extends LocalizedWidget {
         spacing: true,
         leading: NcCaptionText(t.user_notifications_notifications(notifications.length)),
         trailing: LpGestureDetector(
-          onTap: close,
+          onTap: () {
+            ref.read(notificationsController).markAllAsRead();
+            close();
+          },
           child: LpIcon(
             Icons.close,
             color: errorColor,

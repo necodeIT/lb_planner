@@ -21,12 +21,10 @@ class UserNotificationsItem extends StatefulWidget {
 class _UserNotificationsItemState extends State<UserNotificationsItem> {
   Future? _future;
 
-  void load(List<Future> future) async {
+  void load(List<Future> tasks) async {
     setState(() {
-      _future = Future.wait(future);
+      _future = Future.wait(tasks);
     });
-
-    if (_future == null) return;
 
     await _future;
 
