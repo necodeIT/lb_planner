@@ -85,10 +85,7 @@ class plan_leave_plan extends external_api {
                 array('planid' => $planid, 'userid' => $newowner), '*', MUST_EXIST
             );
             $newowneraccess->accesstype = plan_helper::ACCESS_TYPE_OWNER;
-<<<<<<< Updated upstream
             $DB->update_record(plan_helper::ACCESS_TABLE, $newowneraccess);
-=======
->>>>>>> Stashed changes
         }
 
         $newplanid = plan_helper::copy_plan($planid, $userid);
@@ -104,6 +101,13 @@ class plan_leave_plan extends external_api {
         $DB->update_record(plan_helper::ACCESS_TABLE, $oldaccess);
 
         // Notify plan owner that user has left his plan.
+        $invites = plan_helper::get_invites_send($userid);
+        foreach ($invites as $invite) {
+            if ($invite->status == plan_helper::INVITE_PENDING) {
+                $invite->status = plan_helper::INVITE_EXPIRED;
+                $DB->update_record(plan_helper::INVITES_TABLE, $invite);
+            }
+        }
 
         notifications_helper::notify_user(
             plan_helper::get_owner($planid),

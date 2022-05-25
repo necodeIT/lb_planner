@@ -107,6 +107,13 @@ class plan_accept_invite extends external_api {
         $planaccess->planid = $invite->planid;
 
         $DB->update_record(plan_helper::ACCESS_TABLE, $planaccess);
+        $invites = plan_helper::get_invites_send($userid);
+        foreach ($invites as $invite) {
+            if ($invite->status == plan_helper::INVITE_PENDING) {
+                $invite->status = plan_helper::INVITE_EXPIRED;
+                $DB->update_record(plan_helper::INVITES_TABLE, $invite);
+            }
+        }
 
         return array(
         'id' => $invite->id,

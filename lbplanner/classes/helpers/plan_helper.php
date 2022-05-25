@@ -70,6 +70,11 @@ class plan_helper {
     const INVITE_DECLINED = 2;
 
     /**
+     * Enum value for invites: The invite has expired.
+     */
+    const INVITE_EXPIRED = 3;
+
+    /**
      * local_lbplanner_plans table.
      */
     const TABLE = 'local_lbplanner_plans';
@@ -313,6 +318,16 @@ class plan_helper {
         $DB->update_record(self::ACCESS_TABLE, $oldaccess);
 
         return self::get_plan($planid, $removeuserid);
+    }
+    public static function get_invites_send(int $userid):array {
+        global $DB;
+        $invites = $DB->get_records(self::INVITES_TABLE, array('inviterid' => $userid));
+        return $invites;
+    }
+    public static function get_invites_received(int $userid):array {
+        global $DB;
+        $invites = $DB->get_records(self::INVITES_TABLE, array('inviteeid' => $userid));
+        return $invites;
     }
 }
 
