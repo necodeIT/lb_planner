@@ -10,6 +10,9 @@ enum PlanInviteStatus {
 
   /// The invite is declined.
   declined,
+  
+  /// The invite has expired.
+  expired,
 }
 
 /// Plan invite status extensions.
@@ -22,4 +25,7 @@ extension PlanInviteStatusExtension on PlanInviteStatus {
 
   /// Whether this invite status is declined.
   bool get isDeclined => this == PlanInviteStatus.declined;
+   
+  /// Whether this invite status is expired.
+  bool get isExpired => this == PlanInviteStatus.expired;
 }
