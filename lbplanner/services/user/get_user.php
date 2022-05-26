@@ -65,6 +65,7 @@ class user_get_user extends external_api {
                 'profileimageurl' => $mdluser->profileimageurl,
                 'planid' => plan_helper::get_plan_id($userid),
                 'colorblindness' => $user->colorblindness,
+                'displaytaskcount' => $user->displaytaskcount,
             );
         }
             return array(
@@ -77,7 +78,8 @@ class user_get_user extends external_api {
                 'lang' => null,
                 'profileimageurl' => $mdluser->profileimageurl,
                 'planid' => null,
-                'colorblindness' => null
+                'colorblindness' => null,
+                'displaytaskcount' => null,
             );
     }
     public static function get_user_returns() {
@@ -93,6 +95,7 @@ class user_get_user extends external_api {
                 'profileimageurl' => new external_value(PARAM_URL, 'The url of the profile image'),
                 'planid' => new external_value(PARAM_INT, 'The id of the plan the user is assigned to'),
                 'colorblindness' => new external_value(PARAM_TEXT, 'The colorblindness of the user'),
+                'displaytaskcount' => new external_value(PARAM_INT, 'The displaytaskcount of the user'),
             )
         );
     }

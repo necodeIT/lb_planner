@@ -7,6 +7,7 @@
                 <FIELD NAME="theme" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="The name of the theme the user has selected in the app."/>
                 <FIELD NAME="language" TYPE="char" LENGTH="2" NOTNULL="true" DEFAULT="en" SEQUENCE="false" COMMENT="Language the user has selected in the app."/>
                 <FIELD NAME="colorblindness" TYPE="TEXT" NOTNULL="true" SEQUENCE="false" COMMENT="The colorblindness the user has selected in the app."/>
+                <FIELD NAME="displaytaskcount" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="1" SEQUENCE="false" COMMENT="The display task count the user has selected in the app."/>
             </FIELDS>
             <KEYS>
                 <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
