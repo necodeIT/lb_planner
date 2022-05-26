@@ -85,7 +85,11 @@ class _UserNotificationsItemState extends State<UserNotificationsItem> {
                 ),
               if (!invite.status.isPending)
                 _Action(
-                  text: invite.status.isAccepted ? t.user_notifications_invite_accepted : t.user_notifications_invite_declined,
+                  text: invite.status.isExpired
+                      ? t.user_notifications_invite_expired
+                      : invite.status.isAccepted
+                          ? t.user_notifications_invite_accepted
+                          : t.user_notifications_invite_declined,
                   loading: _future != null,
                 ),
             ];

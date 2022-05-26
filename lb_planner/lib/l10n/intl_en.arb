@@ -79,6 +79,15 @@
       }
     }
   },
+  "@calendar_plan_tasks": {
+    "description": "Text displaying how many tasks are planned for a day",
+    "placeholders": {
+      "count": {
+        "example": "1",
+        "type": "Number"
+      }
+    }
+  },
   "admin_dashboard_routeName": "Admin",
   "admin_login_login": "Login",
   "admin_login_pwPlaceholder": "Enter password...",
@@ -176,8 +185,10 @@
   "user_notifications_invite_accepted": "You accepted",
   "user_notifications_invite_decline": "Decline",
   "user_notifications_invite_declined": "You declined",
+  "user_notifications_invite_expired": "Expired",
   "user_notifications_invite_text": "You have been invited to join {inviter}'s plan!",
   "user_notifications_notifications": "{count, plural, =0{No news... You're up to date!} =1{1 Notification} other{{count} Notifications}}",
+  "calendar_plan_tasks": "{count, plural, =0{-} =1{1 Task} other{{count} Tasks}}",
   "user_notifications_planLeft_text": "{username} has left your plan.",
   "user_notifications_planRemoved": "You have been removed from {username}'s plan.",
   "user_notifications_planRemoved_text": "You have been removed from {username}'s plan.",

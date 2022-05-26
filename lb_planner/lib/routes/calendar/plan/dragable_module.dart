@@ -29,6 +29,7 @@ class _DraggableModuleState extends State<DraggableModule> {
     var deadline = ref.read(planProvider).deadlines[widget.moduleId]!;
 
     await controller.deleteDeadline(deadline);
+    await ref.read(modulesController).fetchModules();
 
     if (!mounted) return;
 

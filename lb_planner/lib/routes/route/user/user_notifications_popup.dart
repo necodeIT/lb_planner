@@ -71,8 +71,9 @@ extension _NotificationExt on Notification {
       var invite = invites[inviteId];
 
       invitePending = invite != null && invite.status.isPending;
+      print(DateTime.now().difference(readTimestamp!).inDays);
     }
 
-    return DateTime.now().difference(readTimestamp!) < UserNotificationsPopup.maxNotificationAge || invitePending;
+    return DateTime.now().difference(readTimestamp!).inDays < UserNotificationsPopup.maxNotificationAge.inDays || invitePending;
   }
 }

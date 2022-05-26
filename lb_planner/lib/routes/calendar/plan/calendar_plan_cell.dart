@@ -100,20 +100,30 @@ class CalendarPlanCellState extends State<CalendarPlanCell> {
 
                   return Column(
                     children: [
-                      Align(
-                        alignment: Alignment.topRight,
-                        child: Padding(
-                          padding: const EdgeInsets.all(NcSpacing.xsSpacing),
-                          child: NcBodyText(
-                            _formatter.format(widget.day),
-                            textAlign: TextAlign.center,
-                            color: isToday
-                                ? accentColor
-                                : widget.isCurrentMonth
-                                    ? textColor
-                                    // ignore: no-magic-number
-                                    : textColor.withOpacity(0.7),
-                          ),
+                      Padding(
+                        padding: const EdgeInsets.all(NcSpacing.xsSpacing),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            NcBodyText(
+                              _formatter.format(widget.day),
+                              textAlign: TextAlign.center,
+                              color: isToday
+                                  ? accentColor
+                                  : widget.isCurrentMonth
+                                      ? textColor
+                                      // ignore: no-magic-number
+                                      : textColor.withOpacity(0.7),
+                            ),
+                            NcBodyText(
+                              t.calendar_plan_tasks(modules.length),
+                              textAlign: TextAlign.center,
+                              color: widget.isCurrentMonth
+                                  ? textColor
+                                  // ignore: no-magic-number
+                                  : textColor.withOpacity(0.7),
+                            ),
+                          ],
                         ),
                       ),
                       Expanded(
