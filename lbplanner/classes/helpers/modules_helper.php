@@ -215,7 +215,7 @@ class modules_helper {
         }
 
         // Return TYPE_EK if the name contains 'ek'.
-        if (strpos($modulename, 'ek') !== false || strpos($modulename, 'EK') !== false) {
+        if (strpos($modulename, 'ek') !== false) {
             return self::TYPE_EK;
         }
 
