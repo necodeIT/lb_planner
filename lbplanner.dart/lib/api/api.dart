@@ -20,6 +20,14 @@ class Api {
   /// Client used to communicate with the API
   static final http.Client client = http.Client();
 
+  /// How long it takes for a request to time out.
+  static const requestTimeout = Duration(seconds: 10);
+
+  /// Sets the timout callback for the given future using [requestTimeout] as duration and returns [Response.timeout()] when the future times out.
+  static Future<http.Response> timout(Future<http.Response> f) async {
+    return f.timeout(requestTimeout, onTimeout: () => Response.timeout());
+  }
+
   /// Sends a request to the API.
   /// - [functionName] The name of the function to call
   /// - [params] The parameters to pass to the function
@@ -46,7 +54,7 @@ class Api {
       }
     }
 
-    var response = body != null ? await client.post(uri, body: body, headers: postHeaders) : await client.get(uri);
+    var response = await timout(body != null ? client.post(uri, body: body, headers: postHeaders) : client.get(uri));
 
     var result = RawApiResponse(response);
 
@@ -63,7 +71,7 @@ class Api {
 
     var url = "$serverRoot/login/token.php?service=${service.name}&moodlewsrestformat=$format";
 
-    var response = await client.post(Uri.parse(url), body: {"username": username, "password": password}, headers: postHeaders);
+    var response = await timout(client.post(Uri.parse(url), body: {"username": username, "password": password}, headers: postHeaders));
 
     var json = jsonDecode(response.body);
 

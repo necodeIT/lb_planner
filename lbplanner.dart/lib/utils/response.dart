@@ -8,4 +8,7 @@ class Response extends http.Response {
 
   /// Constructs an empty response with status code 200.
   Response.ok() : super("", 200);
+
+  /// Constructs an empty response with status code 408.
+  Response.timeout() : super('{"error":"connection timed out"}', 408);
 }
