@@ -44,7 +44,23 @@ class course_helper {
 
     const LBPLANNER_COURSE_TABLE = 'local_lbplanner_courses';
 
-    const COLORS = array('#F50057', '#536DFE', '#F9A826', '#00BFA6', '#9B59B6', '#37BBCA', '#E67E22');
+    const COLORS = array(
+        "#f50057",
+        "#536dfe",
+        "#f9a826",
+        "#00bfa6",
+        "#9b59b6",
+        "#37bbca",
+        "#e67e22",
+        "#37CA48",
+        "#CA3737",
+        "#B5CA37",
+        "#37CA9E",
+        "#3792CA",
+        "#376ECA",
+        "#8B37CA",
+        "#CA37B9",
+    );
 
     const DISABLED_COURSE = 0;
     const ENABLED_COURSE = 1;
