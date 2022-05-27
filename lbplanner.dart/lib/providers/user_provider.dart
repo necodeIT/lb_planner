@@ -93,4 +93,16 @@ class UserProvider extends StateNotifier<User> {
 
     return response;
   }
+
+  /// Deletes the user.
+  Future<RawApiResponse> deleteUser() async {
+    var response = await UserApi.deleteUser(state.token, state.id);
+
+    if (response.succeeded) {
+      state = User.loading();
+      UserDisk.saveUser(state);
+    }
+
+    return response;
+  }
 }
