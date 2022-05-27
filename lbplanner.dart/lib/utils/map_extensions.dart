@@ -98,13 +98,13 @@ extension ModelMappingExtensions on Map<String, dynamic> {
 
     body["userId"] = this["userid"];
    
-    body["content"] = this["content"].replaceAll(r'\\n', r'\n');
+    body["content"] = this["content"].replaceAll("\\n", "\n");
     
     var logs = this["logs"];
     var comment =  this["notes"];
     
-    if(logs != null) body["logs"] = logs.replaceAll(r'\\n', r'\n');
-    if(comment != null) body["comment"] = comment.replaceAll(r'\\n', r'\n');
+    if(logs != null) body["logs"] = logs.replaceAll("\\n", "\n");
+    if(comment != null) body["comment"] = comment.replaceAll("\\n", "\n");
 
     return body;
   }
