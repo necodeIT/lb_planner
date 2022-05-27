@@ -6,5 +6,5 @@ extension ColorUtils on Color {
   String get hexCode => "#${value.toRadixString(16).replaceAll(r"ff", r"")}";
 
   /// Color from hexadecimal representation.
-  static Color fromHexCode(String hexCode) => Color(int.parse(hexCode.toLowerCase().replaceAll("#ff", ""), radix: 16));
+  static Color fromHexCode(String hexCode) => Color(int.parse(hexCodereplaceAll("#", ""), radix: 16));
 }
