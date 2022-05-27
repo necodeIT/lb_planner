@@ -103,7 +103,7 @@ class _SettingsCourseItemState extends State<SettingsCourseItem> {
                     condition: snapshot.connectionState != ConnectionState.done,
                     trueWidget: (_) => Padding(
                       padding: EdgeInsets.all(NcSpacing.smallSpacing),
-                      child: LpLoadingIndicator(
+                      child: LpLoadingIndicator.linear(
                         // ignore: no-magic-number
                         thickness: 2,
                       ),

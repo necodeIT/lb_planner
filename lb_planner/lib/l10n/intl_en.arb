@@ -89,6 +89,11 @@
     }
   },
   "admin_dashboard_routeName": "Admin",
+  "admin_feedback_routeName": "Feedback",
+  "admin_feedback_types_bug": "Bug",
+  "admin_feedback_types_error": "Typo / Translation error",
+  "admin_feedback_types_other": "Other",
+  "admin_feedback_types_suggestion": "Feature request",
   "admin_login_login": "Login",
   "admin_login_pwPlaceholder": "Enter password...",
   "admin_login_routeName": "Admin",

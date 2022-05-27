@@ -17,10 +17,18 @@ class CourseEditDialogBody extends StatefulWidget {
     Color(0xFF9b59b6),
     Color(0xFF37bbca),
     Color(0xFFe67e22),
+    Color(0xFF37CA48),
+    Color(0xFFCA3737),
+    Color(0xFFB5CA37),
+    Color(0xFF37CA9E),
+    Color(0xFF3792CA),
+    Color(0xFF376ECA),
+    Color(0xFF8B37CA),
+    Color(0xFFCA37B9),
   ];
 
   /// The size of the color buttons.
-  static const double colorSize = 30;
+  static const double colorSize = 40;
 
   @override
   State<CourseEditDialogBody> createState() => _CourseEditDialogBodyState();
@@ -28,6 +36,7 @@ class CourseEditDialogBody extends StatefulWidget {
 
 class _CourseEditDialogBodyState extends State<CourseEditDialogBody> {
   final TextEditingController _colorController = TextEditingController();
+  final FocusNode _colorFocusNode = FocusNode();
   String? errorMsg;
 
   @override
@@ -57,47 +66,51 @@ class _CourseEditDialogBodyState extends State<CourseEditDialogBody> {
   @override
   Widget build(BuildContext context) {
     _colorController.text = widget.controller.color.hexCode.toUpperCase();
+    _colorFocusNode.unfocus();
 
     return LayoutBuilder(
-        builder: (context, box) => Column(
-              children: [
-                ColorPicker(
-                  pickerColor: widget.controller.color,
-                  onColorChanged: (color) => widget.controller.color = color,
-                  labelTypes: const [],
-                  portraitOnly: true,
-                  colorPickerWidth: box.maxWidth,
-                  pickerAreaHeightPercent: 0.5,
-                  pickerAreaBorderRadius: BorderRadius.circular(kRadius),
-                  displayThumbColor: true,
-                  enableAlpha: false,
+      builder: (context, box) => Column(
+        children: [
+          ColorPicker(
+            pickerColor: widget.controller.color,
+            onColorChanged: (color) => widget.controller.color = color,
+            labelTypes: const [],
+            portraitOnly: true,
+            colorPickerWidth: box.maxWidth,
+            pickerAreaHeightPercent: 0.5,
+            pickerAreaBorderRadius: BorderRadius.circular(kRadius),
+            displayThumbColor: true,
+            enableAlpha: false,
+          ),
+          LpTextField.filled(
+            textAlign: TextAlign.center,
+            controller: _colorController,
+            onSubmitted: _updateColor,
+            errorText: errorMsg,
+            focusNode: _colorFocusNode,
+          ),
+          NcSpacing.medium(),
+          Wrap(
+            alignment: WrapAlignment.center,
+            spacing: NcSpacing.largeSpacing,
+            runSpacing: NcSpacing.largeSpacing,
+            children: CourseEditDialogBody.colors.map((color) {
+              return LpGestureDetector(
+                onTap: () => widget.controller.color = color,
+                child: Container(
+                  width: CourseEditDialogBody.colorSize,
+                  height: CourseEditDialogBody.colorSize,
+                  decoration: BoxDecoration(
+                    color: color,
+                    borderRadius: BorderRadius.circular(kRadius),
+                  ),
                 ),
-                LpTextField.filled(
-                  textAlign: TextAlign.center,
-                  controller: _colorController,
-                  onSubmitted: _updateColor,
-                  errorText: errorMsg,
-                ),
-                NcSpacing.medium(),
-                Wrap(
-                  spacing: NcSpacing.smallSpacing,
-                  runSpacing: NcSpacing.smallSpacing,
-                  children: CourseEditDialogBody.colors.map((color) {
-                    return LpGestureDetector(
-                      onTap: () => widget.controller.color = color,
-                      child: Container(
-                        width: CourseEditDialogBody.colorSize,
-                        height: CourseEditDialogBody.colorSize,
-                        decoration: BoxDecoration(
-                          color: color,
-                          borderRadius: BorderRadius.circular(kRadius),
-                        ),
-                      ),
-                    );
-                  }).toList(),
-                )
-              ],
-            ));
+              );
+            }).toList(),
+          )
+        ],
+      ),
+    );
   }
 }
 

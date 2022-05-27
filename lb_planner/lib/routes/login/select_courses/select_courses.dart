@@ -6,7 +6,7 @@ class LoginSelectCoursesRoute extends LocalizedWidget {
   const LoginSelectCoursesRoute({Key? key}) : super(key: key);
 
   /// Info about this route.
-  static final info = RouteInfo(routeName: "/login/select_courses", builder: (_) => LoginSelectCoursesRoute(), standalone: true);
+  static final info = RouteInfo(routeName: "/login/select_courses", builder: (_, __) => LoginSelectCoursesRoute(), standalone: true);
 
   /// The margin of the selectioon form.
   static const double margin = 100.0;

@@ -15,10 +15,13 @@ class RouteInfo {
   final RouteInfo? parent;
 
   /// The builder of the route.
-  final WidgetBuilder builder;
+  final Widget Function(BuildContext, Map<String, dynamic>) builder;
+
+  /// Params the route needs.
+  final Map<String, Type>? params;
 
   /// Contains all information needed to build a route.
-  const RouteInfo({required this.routeName, required this.builder, this.titleGenerator, this.standalone = false, this.parent});
+  const RouteInfo({required this.routeName, required this.builder, this.titleGenerator, this.standalone = false, this.parent, this.params});
 
   /// Returns the route title.
   ///
@@ -29,7 +32,11 @@ class RouteInfo {
   }
 
   /// Builds the route.
-  Widget build(BuildContext context) => builder(context);
+  Widget build(BuildContext context, RouteParameters parameters) {
+    validateParameters(parameters.params);
+
+    return builder(context, parameters.params);
+  }
 
   @override
   operator ==(Object other) {
@@ -43,8 +50,46 @@ class RouteInfo {
   @override
   int get hashCode => routeName.hashCode;
 
+  /// Asserts that any required params are present.
+  void validateParameters(Map<String, dynamic>? params) {
+    if (this.params != null) {
+      assert(params != null, "Route $routeName needs params but none were provided.");
+
+      for (var paramDef in this.params!.entries) {
+        var _paramValue = params![paramDef.key];
+        assert(_paramValue != null, "Missing parameter ${paramDef.key}");
+
+        assert(_paramValue.runtimeType == paramDef.value, "Parameter ${paramDef.key} is of type ${_paramValue.runtimeType} but should be of type ${paramDef.value}");
+      }
+    }
+  }
+
   /// Pushes the route.
-  void push(BuildContext context) => Navigator.pushReplacementNamed(context, routeName);
+  void push(BuildContext context, {Map<String, dynamic>? params}) {
+    validateParameters(params);
+
+    Navigator.pushReplacementNamed(context, routeName, arguments: RouteParameters(params));
+  }
+}
+
+/// Wrapper for route parameters for better handling.
+class RouteParameters {
+  /// The wrapped parameters.
+  late final Map<String, dynamic> params;
+
+  /// Wrapper for route parameters for better handling.
+  RouteParameters(Map<String, dynamic>? params) : params = params ?? {};
+
+  /// [RouteParameters] from [RouteSettings.arguments].
+  RouteParameters.fromRouteSettings(RouteSettings settings) {
+    if (settings.arguments is Map<String, dynamic>) {
+      params = settings.arguments as Map<String, dynamic>;
+    } else if (settings.arguments is RouteParameters) {
+      params = (settings.arguments as RouteParameters).params;
+    } else {
+      params = {};
+    }
+  }
 }
 
 /// Utils for handling routes.

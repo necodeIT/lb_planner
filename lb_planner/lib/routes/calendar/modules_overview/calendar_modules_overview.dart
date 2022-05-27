@@ -8,7 +8,7 @@ class CalendarModulesOverviewRoute extends StatefulWidget {
   /// Info about this route.
   static final info = RouteInfo(
     routeName: "/calendar/modules-overview",
-    builder: (_) => CalendarModulesOverviewRoute(),
+    builder: (_, __) => CalendarModulesOverviewRoute(),
     titleGenerator: (t) => t.calendar_routeName,
   );
 

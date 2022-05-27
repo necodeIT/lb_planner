@@ -6,7 +6,7 @@ class DashboardRoute extends StatelessWidget {
   const DashboardRoute({Key? key}) : super(key: key);
 
   /// Info about this route.
-  static final info = RouteInfo(routeName: "/dashboard", builder: (_) => DashboardRoute(), titleGenerator: (t) => t.dashboard_routeName);
+  static final info = RouteInfo(routeName: "/dashboard", builder: (_, __) => DashboardRoute(), titleGenerator: (t) => t.dashboard_routeName);
 
   /// The height of the [DashboardStatusOverview] section.
   static const double statusOverViewHeight = 100;

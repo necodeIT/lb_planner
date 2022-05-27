@@ -18,13 +18,18 @@ class RouteWrapper extends StatelessWidget {
 
   /// Generates a route.
   static PageRouteBuilder gnerateRoute(RouteSettings settings) {
-    _currentRoute = kRoutes[settings.name] ?? RouteInfo(routeName: settings.name ?? '', builder: (_) => NcTitleText("404"));
+    _currentRoute = kRoutes[settings.name] ?? RouteInfo(routeName: settings.name ?? '', builder: (_, __) => NcTitleText("404"));
 
     log("Navigating to '${currentRoute.routeName}'", LogTypes.tracking);
 
     return PageRouteBuilder(
       settings: settings,
-      pageBuilder: (context, animation, secondaryAnimation) => Center(child: currentRoute.build(context)),
+      pageBuilder: (context, animation, secondaryAnimation) => Center(
+        child: currentRoute.build(
+          context,
+          RouteParameters.fromRouteSettings(settings),
+        ),
+      ),
       transitionsBuilder: (context, animation, secondaryAnimation, child) => RouteWrapper(
         child: SharedAxisTransition(
           transitionType: SharedAxisTransitionType.vertical,
@@ -42,10 +47,13 @@ class RouteWrapper extends StatelessWidget {
     return Consumer(builder: (context, ref, _) {
       initGuard(ref);
       var connected = ref.watch(internetProvider);
+      var user = ref.watch(userProvider);
 
       WidgetsBinding.instance!.addPostFrameCallback((_) {
         if (connected && currentRoute == OfflineRoute.info) DashboardRoute.info.push(context);
         if (!connected && currentRoute != OfflineRoute.info) OfflineRoute.info.push(context);
+
+        if (user.loading && currentRoute != LoginRoute.info) LoginRoute.info.push(context);
       });
 
       return ContextMenuOverlay(

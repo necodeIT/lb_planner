@@ -6,7 +6,7 @@ class LoginRoute extends StatefulWidget {
   const LoginRoute({Key? key}) : super(key: key);
 
   /// Info about the route
-  static final info = RouteInfo(routeName: "/login", builder: (_) => LoginRoute(), standalone: true);
+  static final info = RouteInfo(routeName: "/login", builder: (_, __) => LoginRoute(), standalone: true);
 
   /// The padding of the login form.
   static const formPadding = 150.0;

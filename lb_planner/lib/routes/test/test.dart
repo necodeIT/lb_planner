@@ -6,7 +6,7 @@ class TestRoute extends StatelessWidget {
   const TestRoute({Key? key}) : super(key: key);
 
   /// Info about this route.
-  static final info = RouteInfo(routeName: "/test", builder: (_) => TestRoute());
+  static final info = RouteInfo(routeName: "/test", builder: (_, __) => TestRoute());
 
   @override
   Widget build(BuildContext context) {

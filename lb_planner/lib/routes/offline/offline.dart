@@ -6,7 +6,7 @@ class OfflineRoute extends LocalizedWidget {
   const OfflineRoute({Key? key}) : super(key: key);
 
   /// Info about this route.
-  static final info = RouteInfo(routeName: '/offline', builder: (_) => OfflineRoute(), standalone: true);
+  static final info = RouteInfo(routeName: '/offline', builder: (_, __) => OfflineRoute(), standalone: true);
 
   /// The size of the icon.
   static const double iconSize = 100;

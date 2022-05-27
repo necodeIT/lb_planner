@@ -6,7 +6,7 @@ class AdminLoginRoute extends StatefulWidget {
   const AdminLoginRoute({Key? key}) : super(key: key);
 
   /// Info about this route.
-  static final info = RouteInfo(routeName: "/admin/login", builder: (_) => AdminLoginRoute(), titleGenerator: (t) => t.admin_login_routeName);
+  static final info = RouteInfo(routeName: "/admin/login", builder: (_, __) => AdminLoginRoute(), titleGenerator: (t) => t.admin_login_routeName);
 
   /// The size of the user profile image.
   static const double imgSize = 150;
@@ -43,7 +43,7 @@ class _AdminLoginRouteState extends State<AdminLoginRoute> {
     var user = ref.read(userProvider);
 
     setState(() {
-      _loginFuture = UserApi.login(user.username, _pwController.text);
+      _loginFuture = UserApi.login(user.username, _pwController.text.trimNewLineAndWhitespace());
     });
 
     _loginResponse = await _loginFuture;

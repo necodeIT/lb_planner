@@ -82,6 +82,11 @@ part 'routes/settings/general/general_item.dart';
 part 'routes/settings/general/credits.dart';
 part 'routes/settings/courses/edit_dialog_body.dart';
 part 'routes/settings/courses/edit_dialog_header.dart';
+part 'routes/admin/dashboard/section.dart';
+part 'routes/admin/dashboard/svg.dart';
+part 'routes/admin/feedback/feedback.dart';
+part 'routes/admin/feedback/feedback_item.dart';
+part 'routes/admin/feedback/feedback_page.dart';
 
 /// All routes the app has
 final Map<String, RouteInfo> kRoutes = {
@@ -95,6 +100,8 @@ final Map<String, RouteInfo> kRoutes = {
   OfflineRoute.info.routeName: OfflineRoute.info,
   AdminDashboardRoute.info.routeName: AdminDashboardRoute.info,
   SettingsGeneralCreditsRoute.info.routeName: SettingsGeneralCreditsRoute.info,
+  AdminFeedbackRoute.info.routeName: AdminFeedbackRoute.info,
+  AdminFeedbackPageRoute.info.routeName: AdminFeedbackPageRoute.info,
   if (kDebugMode) TestRoute.info.routeName: TestRoute.info,
 };
 

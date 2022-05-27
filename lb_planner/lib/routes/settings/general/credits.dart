@@ -9,7 +9,7 @@ class SettingsGeneralCreditsRoute extends StatelessWidget {
   static final info = RouteInfo(
     routeName: 'settings/general/credits',
     parent: SettingsRoute.info,
-    builder: (_) => SettingsGeneralCreditsRoute(),
+    builder: (_, __) => SettingsGeneralCreditsRoute(),
   );
 
   @override

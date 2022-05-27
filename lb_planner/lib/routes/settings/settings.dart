@@ -7,7 +7,7 @@ class SettingsRoute extends LocalizedWidget {
   const SettingsRoute({Key? key}) : super(key: key);
 
   /// Info about this route.
-  static final info = RouteInfo(routeName: "/settings", builder: (_) => SettingsRoute(), titleGenerator: (t) => t.settings_title);
+  static final info = RouteInfo(routeName: "/settings", builder: (_, __) => SettingsRoute(), titleGenerator: (t) => t.settings_title);
 
   @override
   Widget build(context, t) {

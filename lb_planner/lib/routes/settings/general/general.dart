@@ -51,19 +51,19 @@ class _SettingsGeneralState extends State<SettingsGeneral> {
   void _deleteProfile(WidgetRef ref) async {
     if (_deleteProfileFuture != null) return;
 
-    // var controller = ref.read(userController);
+    var controller = ref.read(userController);
 
-    // setState(() {
-    //   _deleteProfileFuture = controller.deleteProfile();
-    // });
+    setState(() {
+      _deleteProfileFuture = controller.deleteUser();
+    });
 
-    // await _deleteProfileFuture;
+    await _deleteProfileFuture;
 
-    // if (!mounted) return;
+    if (!mounted) return;
 
-    // setState(() {
-    //   _deleteProfileFuture = null;
-    // });
+    setState(() {
+      _deleteProfileFuture = null;
+    });
   }
 
   @override

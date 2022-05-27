@@ -3,7 +3,7 @@ part of lbplanner_widgets;
 /// Progress indicator.
 class LpLoadingIndicator extends StatelessWidget {
   /// Linear progress indicator.
-  LpLoadingIndicator({Key? key, this.progress, this.color, this.size, this.thickness, this.backgroundColor = Colors.transparent}) : super(key: key) {
+  LpLoadingIndicator.linear({Key? key, this.progress, this.color, this.size, this.thickness, this.backgroundColor = Colors.transparent}) : super(key: key) {
     type = _LpProgressIndicatorTypes.linear;
     animation = null;
     center = false;
