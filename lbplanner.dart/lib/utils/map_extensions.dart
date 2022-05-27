@@ -97,7 +97,12 @@ extension ModelMappingExtensions on Map<String, dynamic> {
     body["status"] = FeedbackStatus.values[statusIndex].name;
 
     body["userId"] = this["userid"];
-    body["comment"] = this["notes"];
+    body["comment"] = this["notes"].replaceAll(r'\\n', r'\n');
+    body["content"] = this["content"].replaceAll(r'\\n', r'\n');
+    
+    var logs = this["logs"];
+    
+    if(logs != null) body["logs"] = logs.replaceAll(r'\\n', r'\n');
 
     return body;
   }
