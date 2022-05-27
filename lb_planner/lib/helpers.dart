@@ -20,3 +20,4 @@ part 'helpers/utils.dart';
 part 'helpers/guard.dart';
 part 'helpers/updater.dart';
 part 'helpers/route_info.dart';
+part 'helpers/widget_ext.dart';

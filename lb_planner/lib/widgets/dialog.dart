@@ -5,7 +5,7 @@ class LpDialog extends StatefulWidget {
   /// Themed ConfirmDialog widget.
   LpDialog.confirm({
     Key? key,
-    required this.title,
+    required this.header,
     required this.body,
     this.confirmText,
     this.cancelText,
@@ -21,7 +21,7 @@ class LpDialog extends StatefulWidget {
   /// Themed [AlertDialog] widget with just one button.
   LpDialog.alert({
     Key? key,
-    required this.title,
+    required this.header,
     required this.body,
     this.onConfirm,
     this.confirmText,
@@ -32,8 +32,8 @@ class LpDialog extends StatefulWidget {
     confirmOnly = true;
   }
 
-  /// The title of the dialog.
-  final String title;
+  /// The header of the dialog.
+  final Widget? header;
 
   /// The body of the dialog.
   final Widget body;
@@ -111,7 +111,7 @@ class _LpDialogState extends State<LpDialog> with TickerProviderStateMixin {
       ),
       child: ScaleTransition(
         child: AlertDialog(
-          title: NcTitleText(widget.title, fontSize: LpDialog.titleFontSize),
+          title: widget.header,
           titlePadding: EdgeInsets.all(LpDialog.padding),
           buttonPadding: EdgeInsets.only(left: LpDialog.padding, right: LpDialog.padding),
           contentPadding: EdgeInsets.only(bottom: LpDialog.padding, left: LpDialog.padding, right: LpDialog.padding),
@@ -128,7 +128,10 @@ class _LpDialogState extends State<LpDialog> with TickerProviderStateMixin {
                 condition: widget.scrollable,
                 wrapper: (context, child) => SingleChildScrollView(
                   controller: ScrollController(),
-                  child: child,
+                  child: GestureDetector(
+                    onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+                    child: child,
+                  ),
                 ),
                 child: widget.body,
               ),
@@ -183,7 +186,8 @@ class _LpDialogState extends State<LpDialog> with TickerProviderStateMixin {
 /// Themed ConfirmDialog widget.
 void lpShowConfirmDialog(
   BuildContext context, {
-  required String title,
+  String? title,
+  Widget? header,
   Widget? body,
   String? confirmText,
   String? cancelText,
@@ -194,12 +198,13 @@ void lpShowConfirmDialog(
   bool scrollable = true,
 }) {
   assert(body != null || message != null, 'Either body or message must be provided.');
+  assert(header != null || title != null, 'Either header or title must be provided.');
 
   OverlayEntry? dialogOverLay;
   OverlayEntry background = _generateBackground();
 
   var dialog = LpDialog.confirm(
-    title: title,
+    header: header ?? NcTitleText(title!, fontSize: LpDialog.titleFontSize),
     body: ConditionalWidget(
       condition: body != null,
       trueWidget: (_) => body!,
@@ -231,7 +236,8 @@ void lpShowConfirmDialog(
 /// Themed [AlertDialog] widget.
 void lpShowAlertDialog(
   BuildContext context, {
-  required String title,
+  String? title,
+  Widget? header,
   Widget? body,
   String? message,
   String? confirmText,
@@ -239,12 +245,13 @@ void lpShowAlertDialog(
   bool scrollable = true,
 }) {
   assert(body != null || message != null, 'Either body or message must be provided.');
+  assert(header != null || title != null, 'Either header or title must be provided.');
 
   OverlayEntry? dialogOverLay;
   OverlayEntry background = _generateBackground();
 
   var dialog = LpDialog.alert(
-    title: title,
+    header: header ?? NcTitleText(title!, fontSize: LpDialog.titleFontSize),
     body: ConditionalWidget(
       condition: body != null,
       trueWidget: (_) => body!,

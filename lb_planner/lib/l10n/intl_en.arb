@@ -8,6 +8,15 @@
       }
     }
   },
+  "@calendar_plan_tasks": {
+    "description": "Text displaying how many tasks are planned for a day",
+    "placeholders": {
+      "count": {
+        "example": "1",
+        "type": "Number"
+      }
+    }
+  },
   "@settings_feedback_failed_message": {
     "description": "Error message when feedback submission fails",
     "placeholders": {
@@ -79,15 +88,6 @@
       }
     }
   },
-  "@calendar_plan_tasks": {
-    "description": "Text displaying how many tasks are planned for a day",
-    "placeholders": {
-      "count": {
-        "example": "1",
-        "type": "Number"
-      }
-    }
-  },
   "admin_dashboard_routeName": "Admin",
   "admin_login_login": "Login",
   "admin_login_pwPlaceholder": "Enter password...",
@@ -124,6 +124,7 @@
   "calendar_plan_monday": "Mon",
   "calendar_plan_saturday": "Sat",
   "calendar_plan_sunday": "Sun",
+  "calendar_plan_tasks": "{count, plural, =0{-} =1{1 Task} other{{count} Tasks}}",
   "calendar_plan_thursday": "Thu",
   "calendar_plan_title": "Plan",
   "calendar_plan_tuesday": "Tue",
@@ -154,6 +155,8 @@
   "offline_caption": "Your device is currently not connected to the internet. LB Planner cannot be used when offline.",
   "offline_title": "Offline",
   "plan_routeName": "Plan",
+  "settings_courses_editCourse_invalidHexCode": "Invalid color code",
+  "settings_courses_searchCourses": "Search courses...",
   "settings_feedback": "Feedback",
   "settings_feedback_failed_message": "We could not process your feedback. Please try again later.\nIf this error persists please consider opening an issue on GitHub.\n\nThe culprit: '{error}'",
   "settings_feedback_failed_title": "Error trasmitting feedback",
@@ -174,7 +177,6 @@
   "settings_general_deleteProfile_msg": "Are you sure you want to delete your profile?\n\nThis will completely whipe any data stored by LB Planner about you. This cannot be undone but you can re-register at any given times.",
   "settings_general_deleteProfile_title": "Delete profile?",
   "settings_general_title": "General",
-  "settings_searchCourses": "Search courses...",
   "settings_themes": "Themes",
   "settings_title": "Settings",
   "tba_caption": "This section is still under development.",
@@ -188,7 +190,6 @@
   "user_notifications_invite_expired": "Expired",
   "user_notifications_invite_text": "You have been invited to join {inviter}'s plan!",
   "user_notifications_notifications": "{count, plural, =0{No news... You're up to date!} =1{1 Notification} other{{count} Notifications}}",
-  "calendar_plan_tasks": "{count, plural, =0{-} =1{1 Task} other{{count} Tasks}}",
   "user_notifications_planLeft_text": "{username} has left your plan.",
   "user_notifications_planRemoved": "You have been removed from {username}'s plan.",
   "user_notifications_planRemoved_text": "You have been removed from {username}'s plan.",

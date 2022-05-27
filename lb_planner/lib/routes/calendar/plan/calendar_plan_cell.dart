@@ -106,6 +106,14 @@ class CalendarPlanCellState extends State<CalendarPlanCell> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             NcBodyText(
+                              t.calendar_plan_tasks(modules.length),
+                              textAlign: TextAlign.center,
+                              color: widget.isCurrentMonth
+                                  ? textColor
+                                  // ignore: no-magic-number
+                                  : textColor.withOpacity(0.7),
+                            ),
+                            NcBodyText(
                               _formatter.format(widget.day),
                               textAlign: TextAlign.center,
                               color: isToday
@@ -114,14 +122,6 @@ class CalendarPlanCellState extends State<CalendarPlanCell> {
                                       ? textColor
                                       // ignore: no-magic-number
                                       : textColor.withOpacity(0.7),
-                            ),
-                            NcBodyText(
-                              t.calendar_plan_tasks(modules.length),
-                              textAlign: TextAlign.center,
-                              color: widget.isCurrentMonth
-                                  ? textColor
-                                  // ignore: no-magic-number
-                                  : textColor.withOpacity(0.7),
                             ),
                           ],
                         ),

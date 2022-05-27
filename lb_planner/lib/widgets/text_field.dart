@@ -22,6 +22,7 @@ class LpTextField extends StatefulWidget {
     this.fontSize = defaultFontSize,
     this.onCancel,
     this.onUnfocus,
+    this.textAlign = TextAlign.start,
   }) : super(key: key) {
     filled = false;
     multiline = false;
@@ -50,6 +51,7 @@ class LpTextField extends StatefulWidget {
     this.onCancel,
     Color? fillColor,
     this.onUnfocus,
+    this.textAlign = TextAlign.start,
   }) : super(key: key) {
     filled = true;
     this.fillColor = fillColor ?? secondaryColor;
@@ -93,6 +95,9 @@ class LpTextField extends StatefulWidget {
 
   /// Whether the [TextField] is enabled.
   final bool enabled;
+
+  /// [TextField.textAlign]
+  final TextAlign textAlign;
 
   /// The function to call when the [TextField] is submitted.
   final Function(String)? onSubmitted;
@@ -177,6 +182,7 @@ class _LpTextFieldState extends State<LpTextField> {
         maxLength: widget.maxLength,
         maxLengthEnforcement: widget.maxLength != null ? MaxLengthEnforcement.enforced : null,
         textAlignVertical: widget.multiline ? TextAlignVertical.top : TextAlignVertical.center,
+        textAlign: widget.textAlign,
         decoration: InputDecoration(
           contentPadding: widget.filled ? EdgeInsets.all(LpTextField.filledPadding) : EdgeInsets.symmetric(vertical: NcSpacing.smallSpacing),
           isDense: true,

@@ -38,7 +38,7 @@ class _LoginSelectCourseCourseSelectionState extends State<LoginSelectCourseCour
         trailing: Expanded(
           child: LpTextField.filled(
             prefixIcon: Ionicons.search,
-            placeholder: t.settings_searchCourses,
+            placeholder: t.settings_courses_searchCourses,
             controller: _searchController,
             fontSize: LoginSelectCourseCourseSelection.searchFontSize,
           ),

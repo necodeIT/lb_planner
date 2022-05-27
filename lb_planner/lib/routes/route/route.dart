@@ -20,7 +20,7 @@ class RouteWrapper extends StatelessWidget {
   static PageRouteBuilder gnerateRoute(RouteSettings settings) {
     _currentRoute = kRoutes[settings.name] ?? RouteInfo(routeName: settings.name ?? '', builder: (_) => NcTitleText("404"));
 
-    log("Navigating to '$currentRoute'", LogTypes.tracking);
+    log("Navigating to '${currentRoute.routeName}'", LogTypes.tracking);
 
     return PageRouteBuilder(
       settings: settings,

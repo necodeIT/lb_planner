@@ -10,6 +10,7 @@ import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' hide Notification, Feedback;
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_sticky_header/flutter_sticky_header.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
@@ -79,6 +80,8 @@ part 'routes/offline/offline.dart';
 part 'routes/settings/general/general.dart';
 part 'routes/settings/general/general_item.dart';
 part 'routes/settings/general/credits.dart';
+part 'routes/settings/courses/edit_dialog_body.dart';
+part 'routes/settings/courses/edit_dialog_header.dart';
 
 /// All routes the app has
 final Map<String, RouteInfo> kRoutes = {
