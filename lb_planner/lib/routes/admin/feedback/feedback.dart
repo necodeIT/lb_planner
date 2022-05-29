@@ -1,7 +1,7 @@
 part of lbplanner_routes;
 
 /// Admin feedback subroute.
-class AdminFeedbackRoute extends StatelessWidget {
+class AdminFeedbackRoute extends StatefulWidget {
   /// Admin feedback subroute.
   const AdminFeedbackRoute({Key? key}) : super(key: key);
 
@@ -14,9 +14,29 @@ class AdminFeedbackRoute extends StatelessWidget {
   );
 
   @override
+  State<AdminFeedbackRoute> createState() => _AdminFeedbackRouteState();
+}
+
+class _AdminFeedbackRouteState extends State<AdminFeedbackRoute> {
+  FeedbackProvider? _feedbackController;
+
+  _startAutoRefresh(WidgetRef ref) {
+    _feedbackController = ref.read(feedbackController);
+
+    _feedbackController?.startAutoRefresh();
+  }
+
+  @override
+  void dispose() {
+    _feedbackController?.pauseAutoRefresh();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Consumer(builder: (context, ref, _) {
       var feedbacks = ref.watch(feedbackProvider);
+      _startAutoRefresh(ref);
 
       return Align(
         alignment: Alignment.topLeft,

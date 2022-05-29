@@ -14,9 +14,6 @@ class AdminFeedbackItem extends StatelessWidget {
   /// The width of the item.
   static const double width = 400;
 
-  /// Scale when hovered.
-  static const double hoverScale = 1.01;
-
   @override
   Widget build(BuildContext context) {
     return Consumer(builder: (context, ref, _) {
@@ -26,7 +23,7 @@ class AdminFeedbackItem extends StatelessWidget {
 
       return ScaleOnHover(
         duration: kFastAnimationDuration,
-        scale: hoverScale,
+        scale: AdminDashboardSection.hoverScale,
         onTap: () => AdminFeedbackPageRoute.info.push(context, params: {"id": feedbackId}),
         child: LpContainer(
           title: feedback.type.title(context),

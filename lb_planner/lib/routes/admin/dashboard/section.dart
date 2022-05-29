@@ -15,7 +15,7 @@ class AdminDashboardSection extends StatelessWidget {
   final IconData icon;
 
   /// The scale on hover.
-  static const hoverScale = 1.02;
+  static const hoverScale = 1.01;
 
   /// The height of the section.
   static const double height = 250;
