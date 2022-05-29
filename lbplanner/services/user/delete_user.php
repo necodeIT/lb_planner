@@ -24,6 +24,7 @@ use external_value;
 use local_lbplanner\helpers\user_helper;
 use local_lbplanner\helpers\plan_helper;
 use local_lbplanner\helpers\course_helper;
+use local_lbplanner\helpers\notifications_helper;
 
 /**
  * Removes all user data stored by the lbplanner app
@@ -66,8 +67,18 @@ class user_delete_user extends external_api {
             $DB->delete_records(plan_helper::DEADLINES_TABLE, array('planid' => $planid));
             $DB->delete_records(plan_helper::TABLE, array('id' => $planid));
         }
-        // TODO: Delete all Notifications.
+        // Delete all Notifications.
+        if ($DB->record_exists(notifications_helper::TABLE, array('userid' => $userid))) {
+            $DB->delete_records(notifications_helper::TABLE, array('userid' => $userid));
+        }
 
+        $invites = plan_helper::get_invites_send($userid);
+        foreach ($invites as $invite) {
+            if ($invite->status == plan_helper::INVITE_PENDING) {
+                $invite->status = plan_helper::INVITE_EXPIRED;
+                $DB->update_record(plan_helper::INVITES_TABLE, $invite);
+            }
+        }
         // Deleting associating with the plan.
         $DB->delete_records(plan_helper::ACCESS_TABLE, array('userid' => $userid));
 
