@@ -45,53 +45,50 @@ class _AdminFeedbackRouteState extends State<AdminFeedbackRoute> {
         alignment: Alignment.topLeft,
         child: Column(
           children: [
-            LpCard(
-              child: Row(
-                children: [
-                  Expanded(
-                    child: NcCaptionText(
-                      t.admin_feedback_headers_user,
-                      fontSize: AdminFeedbackRoute.headerFontSize,
-                      textAlign: TextAlign.center,
-                    ),
+            Row(
+              children: [
+                Expanded(
+                  child: NcCaptionText(
+                    t.admin_feedback_headers_user,
+                    fontSize: AdminFeedbackRoute.headerFontSize,
                   ),
-                  Expanded(
-                    child: NcCaptionText(
-                      t.admin_feedback_headers_userid,
-                      fontSize: AdminFeedbackRoute.headerFontSize,
-                      textAlign: TextAlign.center,
-                    ),
+                ),
+                Expanded(
+                  child: NcCaptionText(
+                    t.admin_feedback_headers_id,
+                    fontSize: AdminFeedbackRoute.headerFontSize,
+                    textAlign: TextAlign.center,
                   ),
-                  Expanded(
-                    child: NcCaptionText(
-                      t.admin_feedback_headers_type,
-                      fontSize: AdminFeedbackRoute.headerFontSize,
-                      textAlign: TextAlign.center,
-                    ),
+                ),
+                Expanded(
+                  child: NcCaptionText(
+                    t.admin_feedback_headers_type,
+                    fontSize: AdminFeedbackRoute.headerFontSize,
+                    textAlign: TextAlign.center,
                   ),
-                  Expanded(
-                    child: NcCaptionText(
-                      t.admin_feedback_headers_lastModified,
-                      fontSize: AdminFeedbackRoute.headerFontSize,
-                      textAlign: TextAlign.center,
-                    ),
+                ),
+                Expanded(
+                  child: NcCaptionText(
+                    t.admin_feedback_headers_lastModified,
+                    fontSize: AdminFeedbackRoute.headerFontSize,
+                    textAlign: TextAlign.center,
                   ),
-                  Expanded(
-                    child: NcCaptionText(
-                      t.admin_feedback_headers_lastModifiedBy,
-                      fontSize: AdminFeedbackRoute.headerFontSize,
-                      textAlign: TextAlign.center,
-                    ),
+                ),
+                Expanded(
+                  child: NcCaptionText(
+                    t.admin_feedback_headers_lastModifiedBy,
+                    fontSize: AdminFeedbackRoute.headerFontSize,
+                    textAlign: TextAlign.center,
                   ),
-                  Expanded(
-                    child: NcCaptionText(
-                      t.admin_feedback_headers_timestamp,
-                      fontSize: AdminFeedbackRoute.headerFontSize,
-                      textAlign: TextAlign.center,
-                    ),
+                ),
+                Expanded(
+                  child: NcCaptionText(
+                    t.admin_feedback_headers_timestamp,
+                    fontSize: AdminFeedbackRoute.headerFontSize,
+                    textAlign: TextAlign.center,
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
             NcSpacing.large(),
             Expanded(

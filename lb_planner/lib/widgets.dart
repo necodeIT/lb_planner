@@ -60,7 +60,7 @@ const kSlowAnimationDuration = Duration(milliseconds: 500);
 const kNormalAnimationDuration = Duration(milliseconds: 300);
 
 /// Animation curve for all animations.
-const Curve kAnimationCurve = Curves.easeOutCubic;
+const Curve kAnimationCurve = Curves.ease;
 
 /// Animation curve used for dialogs.
 const Curve kDialogAnimationCurve = Curves.easeOut;
