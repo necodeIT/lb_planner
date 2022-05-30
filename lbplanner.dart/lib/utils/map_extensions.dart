@@ -98,7 +98,7 @@ extension ModelMappingExtensions on Map<String, dynamic> {
 
     body["userId"] = this["userid"];
     body["lastModifiedBy"] = this["lastmodifiedby"];
-    body["timeStamp"] = DateTime.fromMillisecondsSinceEpoch(this["timestamp"] * 1000).toString();
+    body["timestamp"] = DateTime.fromMillisecondsSinceEpoch(this["timestamp"] * 1000).toString();
 
     body["content"] = this["content"].replaceAll("\\n", "\n");
 
