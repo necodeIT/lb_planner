@@ -49,11 +49,11 @@ class AdminFeedbackItem extends LocalizedWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        NcCaptionText(
+                        NcBodyText(
                           user.fullname,
                           fontSize: usernameFontSize,
                         ),
-                        NcCaptionText(
+                        NcBodyText(
                           t.admin_feedback_userTag(user.username),
                           fontSize: userTagFontSize,
                         ),
@@ -63,7 +63,7 @@ class AdminFeedbackItem extends LocalizedWidget {
                 ),
               ),
               Expanded(
-                child: NcCaptionText(
+                child: NcBodyText(
                   t.admin_feedback_userid(feedback.userId),
                   fontSize: fontSize,
                   textAlign: TextAlign.center,
@@ -79,7 +79,7 @@ class AdminFeedbackItem extends LocalizedWidget {
                       size: scaleIcon(fontSize),
                     ),
                     NcSpacing.xs(),
-                    NcCaptionText(
+                    NcBodyText(
                       feedback.type.title(context),
                       fontSize: fontSize,
                     ),
