@@ -14,6 +14,11 @@ _$_Feedback _$$_FeedbackFromJson(Map<String, dynamic> json) => _$_Feedback(
       logs: json['logs'] as String?,
       type: $enumDecode(_$FeedbackTypesEnumMap, json['type']),
       status: $enumDecode(_$FeedbackStatusEnumMap, json['status']),
+      lastModifiedBy: json['lastModifiedBy'] as int?,
+      lastModified: json['lastModified'] == null
+          ? null
+          : DateTime.parse(json['lastModified'] as String),
+      timestamp: DateTime.parse(json['timestamp'] as String),
     );
 
 Map<String, dynamic> _$$_FeedbackToJson(_$_Feedback instance) =>
@@ -25,6 +30,9 @@ Map<String, dynamic> _$$_FeedbackToJson(_$_Feedback instance) =>
       'logs': instance.logs,
       'type': _$FeedbackTypesEnumMap[instance.type],
       'status': _$FeedbackStatusEnumMap[instance.status],
+      'lastModifiedBy': instance.lastModifiedBy,
+      'lastModified': instance.lastModified?.toIso8601String(),
+      'timestamp': instance.timestamp.toIso8601String(),
     };
 
 const _$FeedbackTypesEnumMap = {

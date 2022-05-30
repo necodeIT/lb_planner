@@ -36,6 +36,15 @@ class Feedback with _$Feedback {
 
     /// The status of the feedback.
     required FeedbackStatus status,
+
+    /// The id of the user who last modified the feedback.
+    int? lastModifiedBy,
+
+    /// The date the feedback was last modified.
+    DateTime? lastModified,
+
+    /// The date the feedback was created.
+    required DateTime timestamp,
   }) = _Feedback;
 
   /// Feedback model from json

@@ -30,4 +30,5 @@ const _$PlanInviteStatusEnumMap = {
   PlanInviteStatus.pending: 'pending',
   PlanInviteStatus.accepted: 'accepted',
   PlanInviteStatus.declined: 'declined',
+  PlanInviteStatus.expired: 'expired',
 };

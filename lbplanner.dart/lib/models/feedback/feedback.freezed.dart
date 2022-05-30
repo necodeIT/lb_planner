@@ -29,7 +29,10 @@ class _$FeedbackTearOff {
       String? comment,
       String? logs,
       required FeedbackTypes type,
-      required FeedbackStatus status}) {
+      required FeedbackStatus status,
+      int? lastModifiedBy,
+      DateTime? lastModified,
+      required DateTime timestamp}) {
     return _Feedback(
       id: id,
       userId: userId,
@@ -38,6 +41,9 @@ class _$FeedbackTearOff {
       logs: logs,
       type: type,
       status: status,
+      lastModifiedBy: lastModifiedBy,
+      lastModified: lastModified,
+      timestamp: timestamp,
     );
   }
 
@@ -72,6 +78,15 @@ mixin _$Feedback {
   /// The status of the feedback.
   FeedbackStatus get status => throw _privateConstructorUsedError;
 
+  /// The id of the user who last modified the feedback.
+  int? get lastModifiedBy => throw _privateConstructorUsedError;
+
+  /// The date the feedback was last modified.
+  DateTime? get lastModified => throw _privateConstructorUsedError;
+
+  /// The date the feedback was created.
+  DateTime get timestamp => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $FeedbackCopyWith<Feedback> get copyWith =>
@@ -89,7 +104,10 @@ abstract class $FeedbackCopyWith<$Res> {
       String? comment,
       String? logs,
       FeedbackTypes type,
-      FeedbackStatus status});
+      FeedbackStatus status,
+      int? lastModifiedBy,
+      DateTime? lastModified,
+      DateTime timestamp});
 }
 
 /// @nodoc
@@ -109,6 +127,9 @@ class _$FeedbackCopyWithImpl<$Res> implements $FeedbackCopyWith<$Res> {
     Object? logs = freezed,
     Object? type = freezed,
     Object? status = freezed,
+    Object? lastModifiedBy = freezed,
+    Object? lastModified = freezed,
+    Object? timestamp = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -139,6 +160,18 @@ class _$FeedbackCopyWithImpl<$Res> implements $FeedbackCopyWith<$Res> {
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as FeedbackStatus,
+      lastModifiedBy: lastModifiedBy == freezed
+          ? _value.lastModifiedBy
+          : lastModifiedBy // ignore: cast_nullable_to_non_nullable
+              as int?,
+      lastModified: lastModified == freezed
+          ? _value.lastModified
+          : lastModified // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      timestamp: timestamp == freezed
+          ? _value.timestamp
+          : timestamp // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
@@ -155,7 +188,10 @@ abstract class _$FeedbackCopyWith<$Res> implements $FeedbackCopyWith<$Res> {
       String? comment,
       String? logs,
       FeedbackTypes type,
-      FeedbackStatus status});
+      FeedbackStatus status,
+      int? lastModifiedBy,
+      DateTime? lastModified,
+      DateTime timestamp});
 }
 
 /// @nodoc
@@ -176,6 +212,9 @@ class __$FeedbackCopyWithImpl<$Res> extends _$FeedbackCopyWithImpl<$Res>
     Object? logs = freezed,
     Object? type = freezed,
     Object? status = freezed,
+    Object? lastModifiedBy = freezed,
+    Object? lastModified = freezed,
+    Object? timestamp = freezed,
   }) {
     return _then(_Feedback(
       id: id == freezed
@@ -206,6 +245,18 @@ class __$FeedbackCopyWithImpl<$Res> extends _$FeedbackCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as FeedbackStatus,
+      lastModifiedBy: lastModifiedBy == freezed
+          ? _value.lastModifiedBy
+          : lastModifiedBy // ignore: cast_nullable_to_non_nullable
+              as int?,
+      lastModified: lastModified == freezed
+          ? _value.lastModified
+          : lastModified // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      timestamp: timestamp == freezed
+          ? _value.timestamp
+          : timestamp // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
@@ -220,7 +271,10 @@ class _$_Feedback extends _Feedback {
       this.comment,
       this.logs,
       required this.type,
-      required this.status})
+      required this.status,
+      this.lastModifiedBy,
+      this.lastModified,
+      required this.timestamp})
       : assert(type != FeedbackTypes.bug || logs != null,
             'Logs must be provided if the feedback is of type bug.'),
         super._();
@@ -256,10 +310,22 @@ class _$_Feedback extends _Feedback {
 
   /// The status of the feedback.
   final FeedbackStatus status;
+  @override
+
+  /// The id of the user who last modified the feedback.
+  final int? lastModifiedBy;
+  @override
+
+  /// The date the feedback was last modified.
+  final DateTime? lastModified;
+  @override
+
+  /// The date the feedback was created.
+  final DateTime timestamp;
 
   @override
   String toString() {
-    return 'Feedback(id: $id, userId: $userId, content: $content, comment: $comment, logs: $logs, type: $type, status: $status)';
+    return 'Feedback(id: $id, userId: $userId, content: $content, comment: $comment, logs: $logs, type: $type, status: $status, lastModifiedBy: $lastModifiedBy, lastModified: $lastModified, timestamp: $timestamp)';
   }
 
   @override
@@ -273,7 +339,12 @@ class _$_Feedback extends _Feedback {
             const DeepCollectionEquality().equals(other.comment, comment) &&
             const DeepCollectionEquality().equals(other.logs, logs) &&
             const DeepCollectionEquality().equals(other.type, type) &&
-            const DeepCollectionEquality().equals(other.status, status));
+            const DeepCollectionEquality().equals(other.status, status) &&
+            const DeepCollectionEquality()
+                .equals(other.lastModifiedBy, lastModifiedBy) &&
+            const DeepCollectionEquality()
+                .equals(other.lastModified, lastModified) &&
+            const DeepCollectionEquality().equals(other.timestamp, timestamp));
   }
 
   @override
@@ -285,7 +356,10 @@ class _$_Feedback extends _Feedback {
       const DeepCollectionEquality().hash(comment),
       const DeepCollectionEquality().hash(logs),
       const DeepCollectionEquality().hash(type),
-      const DeepCollectionEquality().hash(status));
+      const DeepCollectionEquality().hash(status),
+      const DeepCollectionEquality().hash(lastModifiedBy),
+      const DeepCollectionEquality().hash(lastModified),
+      const DeepCollectionEquality().hash(timestamp));
 
   @JsonKey(ignore: true)
   @override
@@ -306,7 +380,10 @@ abstract class _Feedback extends Feedback {
       String? comment,
       String? logs,
       required FeedbackTypes type,
-      required FeedbackStatus status}) = _$_Feedback;
+      required FeedbackStatus status,
+      int? lastModifiedBy,
+      DateTime? lastModified,
+      required DateTime timestamp}) = _$_Feedback;
   const _Feedback._() : super._();
 
   factory _Feedback.fromJson(Map<String, dynamic> json) = _$_Feedback.fromJson;
@@ -339,6 +416,18 @@ abstract class _Feedback extends Feedback {
 
   /// The status of the feedback.
   FeedbackStatus get status;
+  @override
+
+  /// The id of the user who last modified the feedback.
+  int? get lastModifiedBy;
+  @override
+
+  /// The date the feedback was last modified.
+  DateTime? get lastModified;
+  @override
+
+  /// The date the feedback was created.
+  DateTime get timestamp;
   @override
   @JsonKey(ignore: true)
   _$FeedbackCopyWith<_Feedback> get copyWith =>

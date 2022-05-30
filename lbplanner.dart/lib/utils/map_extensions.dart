@@ -97,14 +97,18 @@ extension ModelMappingExtensions on Map<String, dynamic> {
     body["status"] = FeedbackStatus.values[statusIndex].name;
 
     body["userId"] = this["userid"];
-   
+    body["lastModifiedBy"] = this["lastmodifiedby"];
+    body["timeStamp"] = DateTime.fromMillisecondsSinceEpoch(this["timestamp"] * 1000).toString();
+
     body["content"] = this["content"].replaceAll("\\n", "\n");
-    
+
     var logs = this["logs"];
-    var comment =  this["notes"];
-    
-    if(logs != null) body["logs"] = logs.replaceAll("\\n", "\n");
-    if(comment != null) body["comment"] = comment.replaceAll("\\n", "\n");
+    var comment = this["notes"];
+    var lastModified = this["lastmodified"];
+
+    if (logs != null) body["logs"] = logs.replaceAll("\\n", "\n");
+    if (comment != null) body["comment"] = comment.replaceAll("\\n", "\n");
+    if (lastModified != null) body["lastModified"] = DateTime.fromMillisecondsSinceEpoch(lastModified * 1000).toString();
 
     return body;
   }
