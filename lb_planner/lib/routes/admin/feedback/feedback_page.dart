@@ -23,6 +23,12 @@ class AdminFeedbackPageRoute extends StatefulWidget {
 class _AdminFeedbackPageRouteState extends State<AdminFeedbackPageRoute> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Consumer(builder: (context, ref, _) {
+      var feedback = ref.watch(feedbackProvider)[widget.feedbackId];
+
+      if (feedback == null) return LpShimmer(height: AdminFeedbackItem.height);
+
+      return NcCaptionText(feedback.content);
+    });
   }
 }
