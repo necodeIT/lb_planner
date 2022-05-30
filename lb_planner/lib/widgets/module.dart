@@ -66,7 +66,6 @@ class ModuleWidget extends LocalizedWidget {
 
       return ConditionalWidget(
         condition: courses.containsKey(module.courseId),
-        // condition: false,
         trueWidget: (context) {
           var course = courses[module.courseId]!;
 

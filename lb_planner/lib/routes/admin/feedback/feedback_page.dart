@@ -28,7 +28,10 @@ class _AdminFeedbackPageRouteState extends State<AdminFeedbackPageRoute> {
 
       if (feedback == null) return LpShimmer(height: AdminFeedbackItem.height);
 
-      return NcCaptionText(feedback.content);
+      return SingleChildScrollView(
+        controller: ScrollController(),
+        child: NcCaptionText(feedback.content, selectable: true),
+      );
     });
   }
 }

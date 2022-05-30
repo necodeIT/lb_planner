@@ -93,16 +93,12 @@ class _DraggableModuleState extends State<DraggableModule> {
                     cursor: SystemMouseCursors.click,
                     child: Draggable<int>(
                       rootOverlay: true,
-                      // feedbackOffset: Offset(600, 0),
                       data: widget.moduleId,
                       dragAnchorStrategy: (child, context, offset) => Offset(width * 0.5, ModuleWidget.height * 0.5),
                       child: child,
-                      feedback: AnimatedPositioned(
-                        duration: kFastAnimationDuration,
-                        child: SizedBox(
-                          width: width,
-                          child: ModuleWidget.status(moduleId: widget.moduleId, contextMenu: false, shadow: true),
-                        ),
+                      feedback: SizedBox(
+                        width: width,
+                        child: ModuleWidget.status(moduleId: widget.moduleId, contextMenu: false, shadow: true),
                       ),
                       childWhenDragging: LpShimmer(),
                     ),

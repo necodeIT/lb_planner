@@ -231,7 +231,7 @@ packages:
       name: convert
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.1"
+    version: "3.0.2"
   cross_connectivity:
     dependency: transitive
     description:
@@ -558,7 +558,7 @@ packages:
     description:
       path: "lbplanner.dart"
       ref: "lbplanner.dart"
-      resolved-ref: e3281d1c8a97d288a1008f2c895791fcf222276e
+      resolved-ref: "6083672a9f31fb649560b618348e4bdeaef5768e"
       url: "https://github.com/necodeIT/lb_planner.git"
     source: git
     version: "0.0.1"
@@ -616,7 +616,7 @@ packages:
     description:
       path: ui
       ref: flutter
-      resolved-ref: dc4a4947dfd221895f6740a773f4642d7b25bfca
+      resolved-ref: dba0550a114c4e43f95aaa60fc3f0bf82ee85107
       url: "https://github.com/necodeIT/nekolib.git"
     source: git
     version: "0.0.1"
@@ -625,7 +625,7 @@ packages:
     description:
       path: utils
       ref: flutter
-      resolved-ref: dc4a4947dfd221895f6740a773f4642d7b25bfca
+      resolved-ref: dba0550a114c4e43f95aaa60fc3f0bf82ee85107
       url: "https://github.com/necodeIT/nekolib.git"
     source: git
     version: "0.0.1"

@@ -86,6 +86,7 @@ class CalendarPlanCellState extends State<CalendarPlanCell> {
             builder: (context, box) {
               currentWidth = box.maxWidth;
               return DragTarget<int>(
+                onWillAccept: (module) => !modules.contains(module),
                 onAccept: (module) => _setDeadline(ref, module),
                 builder: (context, candidateData, rejectedData) {
                   if (_controller.hasClients && (_addedModules.isNotEmpty || candidateData.isNotEmpty || _controller.position.outOfRange)) {
