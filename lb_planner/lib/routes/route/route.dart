@@ -16,6 +16,8 @@ class RouteWrapper extends StatelessWidget {
   /// The current route that was pushed.
   static RouteInfo get currentRoute => _currentRoute;
 
+  static RouteInfo? _cachedOnlineRoute;
+
   /// Generates a route.
   static PageRouteBuilder gnerateRoute(RouteSettings settings) {
     _currentRoute = kRoutes[settings.name] ?? RouteInfo(routeName: settings.name ?? '', builder: (_, __) => NcTitleText("404"));
@@ -50,8 +52,11 @@ class RouteWrapper extends StatelessWidget {
       var user = ref.watch(userProvider);
 
       WidgetsBinding.instance!.addPostFrameCallback((_) {
-        if (connected && currentRoute == OfflineRoute.info) DashboardRoute.info.push(context);
-        if (!connected && currentRoute != OfflineRoute.info) OfflineRoute.info.push(context);
+        if (connected && currentRoute == OfflineRoute.info) (_cachedOnlineRoute ?? DashboardRoute.info).push(context);
+        if (!connected && currentRoute != OfflineRoute.info) {
+          _cachedOnlineRoute = currentRoute;
+          OfflineRoute.info.push(context);
+        }
 
         if (user.loading && currentRoute != LoginRoute.info) LoginRoute.info.push(context);
       });
