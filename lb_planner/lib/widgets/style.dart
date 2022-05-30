@@ -27,6 +27,7 @@ ThemeData get appStyle => ThemeData(
       ),
       cardTheme: CardTheme(
         color: primaryColor,
+        margin: EdgeInsets.zero,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(kRadius),
         ),

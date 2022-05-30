@@ -40,20 +40,14 @@ class _AdminFeedbackRouteState extends State<AdminFeedbackRoute> {
 
       return Align(
         alignment: Alignment.topLeft,
-        child: SingleChildScrollView(
+        child: ListView(
           controller: ScrollController(),
-          child: Wrap(
-            // spacing: NcSpacing.xsSpacing,
-            runSpacing: NcSpacing.mediumSpacing,
-            alignment: WrapAlignment.start,
-            runAlignment: WrapAlignment.start,
-            children: [
-              for (var feedback in feedbacks.keys) ...[
-                AdminFeedbackItem(feedbackId: feedback),
-                NcSpacing.medium(),
-              ]
-            ],
-          ),
+          children: [
+            for (var feedback in feedbacks.keys) ...[
+              AdminFeedbackItem(feedbackId: feedback),
+              NcSpacing.medium(),
+            ]
+          ],
         ),
       );
     });

@@ -11,37 +11,58 @@ class AdminFeedbackItem extends StatelessWidget {
   /// The height of the item.
   static const double height = 300;
 
-  /// The width of the item.
-  static const double width = 400;
+  /// The size of the user profile img.
+  static const double imgSize = 55;
+
+  /// The size of the font displaying the username.
+  static const double usernameFontSize = 20;
+
+  /// The size of the font.
+  static const double fontSize = 18;
+
+  /// The size of the font, displaying the user tag.
+  static const double userTagFontSize = 17;
 
   @override
   Widget build(BuildContext context) {
     return Consumer(builder: (context, ref, _) {
       var feedback = ref.watch(feedbackProvider)[feedbackId];
 
-      if (feedback == null) return LpShimmer(height: height, width: width);
+      if (feedback == null) return LpShimmer(height: height);
 
-      return ScaleOnHover(
-        duration: kFastAnimationDuration,
-        scale: AdminDashboardSection.hoverScale,
+      return LpGestureDetector(
         onTap: () => AdminFeedbackPageRoute.info.push(context, params: {"id": feedbackId}),
-        child: LpContainer(
-          title: feedback.type.title(context),
-          leading: LpIcon(
-            feedback.type.icon,
-            color: feedback.type.color,
-            size: LpContainer.titleFontSize,
-          ),
-          height: height,
-          width: width,
-          child: ClipRRect(
-            child: Align(
-              alignment: Alignment.topLeft,
-              child: NcBodyText(
-                feedback.content,
-                textAlign: TextAlign.start,
-                overflow: TextOverflow.visible,
-              ),
+        child: Card(
+          child: Padding(
+            padding: const EdgeInsets.all(NcSpacing.smallSpacing),
+            child: Row(
+              children: [
+                UserProfileImg(size: imgSize, userId: feedback.userId),
+                Expanded(
+                  child: NcCaptionText(
+                    feedback.userId.toString(),
+                    fontSize: fontSize,
+                  ),
+                ),
+                Row(
+                  children: [
+                    LpIcon(
+                      feedback.type.icon,
+                      color: feedback.type.color,
+                      size: scaleIcon(fontSize),
+                    ),
+                    NcSpacing.xs(),
+                    NcCaptionText(
+                      feedback.type.title(context),
+                      fontSize: fontSize,
+                    ),
+                  ],
+                ),
+                // NcCaptionText(
+                //   feedback.,
+                //   fontSize: fontSize,
+                // ),
+              ],
             ),
           ),
         ),
