@@ -42,6 +42,7 @@ part 'widgets/shimmer.dart';
 part 'widgets/style.dart';
 part 'widgets/gesture_detector.dart';
 part 'widgets/tba.dart';
+part 'widgets/card.dart';
 
 /// Radius for all rounded rectangles.
 const double kRadius = 5;

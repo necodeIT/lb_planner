@@ -1,4 +1,22 @@
 {
+  "@admin_feedback_userTag": {
+    "description": "Display text for the user tag",
+    "placeholders": {
+      "username": {
+        "example": "Jane",
+        "type": "String"
+      }
+    }
+  },
+  "@admin_feedback_userid": {
+    "description": "Display text for the user id",
+    "placeholders": {
+      "userid": {
+        "example": "1",
+        "type": "int"
+      }
+    }
+  },
   "@calendar_plan_dropdown_members_inviteUsers_userTag": {
     "description": "The tag of the user",
     "placeholders": {
@@ -89,11 +107,20 @@
     }
   },
   "admin_dashboard_routeName": "Admin",
+  "admin_feedback_headers_lastModified": "Last modified",
+  "admin_feedback_headers_lastModifiedBy": "Last modified by",
+  "admin_feedback_headers_timestamp": "Created",
+  "admin_feedback_headers_type": "Type",
+  "admin_feedback_headers_user": "Username",
+  "admin_feedback_headers_userid": "User ID",
+  "admin_feedback_null": "-",
   "admin_feedback_routeName": "Feedback",
   "admin_feedback_types_bug": "Bug",
   "admin_feedback_types_error": "Typo / Translation error",
   "admin_feedback_types_other": "Other",
   "admin_feedback_types_suggestion": "Feature request",
+  "admin_feedback_userTag": "@{username}",
+  "admin_feedback_userid": "#{userid}",
   "admin_login_login": "Login",
   "admin_login_pwPlaceholder": "Enter password...",
   "admin_login_routeName": "Admin",

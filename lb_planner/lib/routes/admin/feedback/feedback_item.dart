@@ -1,7 +1,7 @@
 part of lbplanner_routes;
 
 /// Feedback item.
-class AdminFeedbackItem extends StatelessWidget {
+class AdminFeedbackItem extends LocalizedWidget {
   /// Feedback item.
   const AdminFeedbackItem({Key? key, required this.feedbackId}) : super(key: key);
 
@@ -24,27 +24,54 @@ class AdminFeedbackItem extends StatelessWidget {
   static const double userTagFontSize = 17;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, t) {
     return Consumer(builder: (context, ref, _) {
       var feedback = ref.watch(feedbackProvider)[feedbackId];
 
       if (feedback == null) return LpShimmer(height: height);
 
+      var user = ref.watch(usersProvider)[feedback.userId];
+
+      if (user == null) return LpShimmer(height: height);
+
+      var modifyingUser = ref.watch(usersProvider)[feedback.lastModifiedBy];
+
       return LpGestureDetector(
         onTap: () => AdminFeedbackPageRoute.info.push(context, params: {"id": feedbackId}),
-        child: Card(
-          child: Padding(
-            padding: const EdgeInsets.all(NcSpacing.smallSpacing),
-            child: Row(
-              children: [
-                UserProfileImg(size: imgSize, userId: feedback.userId),
-                Expanded(
-                  child: NcCaptionText(
-                    feedback.userId.toString(),
-                    fontSize: fontSize,
-                  ),
+        child: LpCard(
+          child: Row(
+            children: [
+              Expanded(
+                child: Row(
+                  children: [
+                    UserProfileImg(size: imgSize, userId: feedback.userId),
+                    NcSpacing.small(),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        NcCaptionText(
+                          user.fullname,
+                          fontSize: usernameFontSize,
+                        ),
+                        NcCaptionText(
+                          t.admin_feedback_userTag(user.username),
+                          fontSize: userTagFontSize,
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-                Row(
+              ),
+              Expanded(
+                child: NcCaptionText(
+                  t.admin_feedback_userid(feedback.userId),
+                  fontSize: fontSize,
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     LpIcon(
                       feedback.type.icon,
@@ -58,12 +85,29 @@ class AdminFeedbackItem extends StatelessWidget {
                     ),
                   ],
                 ),
-                // NcCaptionText(
-                //   feedback.,
-                //   fontSize: fontSize,
-                // ),
-              ],
-            ),
+              ),
+              Expanded(
+                child: NcBodyText(
+                  feedback.lastModified != null ? timeago.format(feedback.lastModified!) : t.admin_feedback_null,
+                  fontSize: fontSize,
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              Expanded(
+                child: NcBodyText(
+                  modifyingUser != null ? modifyingUser.fullname : t.admin_feedback_null,
+                  fontSize: fontSize,
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              Expanded(
+                child: NcBodyText(
+                  timeago.format(feedback.timestamp),
+                  fontSize: fontSize,
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ],
           ),
         ),
       );

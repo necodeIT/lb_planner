@@ -28,6 +28,7 @@ class _SettingsFeedbackState extends State<SettingsFeedback> {
     setState(() {
       _submitFuture = feedback.submitFeedback(
         Feedback(
+          timestamp: DateTime.now(),
           id: -1,
           userId: -1,
           content: _feedbackController.text,

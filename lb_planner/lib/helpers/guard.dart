@@ -24,6 +24,7 @@ _handleError(BuildContext context, WidgetRef ref, Object obj, [StackTrace? stack
   var stack = stackTrace?.toString() ?? '';
 
   var feedback = Feedback(
+    timestamp: DateTime.now(),
     id: -1,
     userId: user.id,
     content: "----------------Auto generated feedback---------------\n\n$message\n\n----------------Stack trace---------------\n\n${stack.isEmpty ? 'No stack trace provided.' : stack}",

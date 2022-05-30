@@ -558,7 +558,7 @@ packages:
     description:
       path: "lbplanner.dart"
       ref: "lbplanner.dart"
-      resolved-ref: "5cb68b1ef3df7b83ac127b56fad213ef820fb249"
+      resolved-ref: e3281d1c8a97d288a1008f2c895791fcf222276e
       url: "https://github.com/necodeIT/lb_planner.git"
     source: git
     version: "0.0.1"
@@ -747,7 +747,7 @@ packages:
       name: path_provider_linux
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.6"
+    version: "2.1.7"
   path_provider_macos:
     dependency: transitive
     description:
@@ -768,7 +768,7 @@ packages:
       name: path_provider_windows
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.6"
+    version: "2.0.7"
   pedantic:
     dependency: transitive
     description:
@@ -838,7 +838,7 @@ packages:
       name: rxdart
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.27.3"
+    version: "0.27.4"
   sentry:
     dependency: transitive
     description:

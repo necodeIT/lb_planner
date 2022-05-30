@@ -13,6 +13,9 @@ class AdminFeedbackRoute extends StatefulWidget {
     parent: AdminDashboardRoute.info,
   );
 
+  /// The font size of the header.
+  static const double headerFontSize = 20;
+
   @override
   State<AdminFeedbackRoute> createState() => _AdminFeedbackRouteState();
 }
@@ -40,13 +43,68 @@ class _AdminFeedbackRouteState extends State<AdminFeedbackRoute> {
 
       return Align(
         alignment: Alignment.topLeft,
-        child: ListView(
-          controller: ScrollController(),
+        child: Column(
           children: [
-            for (var feedback in feedbacks.keys) ...[
-              AdminFeedbackItem(feedbackId: feedback),
-              NcSpacing.medium(),
-            ]
+            LpCard(
+              child: Row(
+                children: [
+                  Expanded(
+                    child: NcCaptionText(
+                      t.admin_feedback_headers_user,
+                      fontSize: AdminFeedbackRoute.headerFontSize,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  Expanded(
+                    child: NcCaptionText(
+                      t.admin_feedback_headers_userid,
+                      fontSize: AdminFeedbackRoute.headerFontSize,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  Expanded(
+                    child: NcCaptionText(
+                      t.admin_feedback_headers_type,
+                      fontSize: AdminFeedbackRoute.headerFontSize,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  Expanded(
+                    child: NcCaptionText(
+                      t.admin_feedback_headers_lastModified,
+                      fontSize: AdminFeedbackRoute.headerFontSize,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  Expanded(
+                    child: NcCaptionText(
+                      t.admin_feedback_headers_lastModifiedBy,
+                      fontSize: AdminFeedbackRoute.headerFontSize,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  Expanded(
+                    child: NcCaptionText(
+                      t.admin_feedback_headers_timestamp,
+                      fontSize: AdminFeedbackRoute.headerFontSize,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            NcSpacing.large(),
+            Expanded(
+              child: ListView(
+                controller: ScrollController(),
+                children: [
+                  for (var feedback in feedbacks.keys) ...[
+                    AdminFeedbackItem(feedbackId: feedback),
+                    NcSpacing.medium(),
+                  ]
+                ],
+              ),
+            ),
           ],
         ),
       );
