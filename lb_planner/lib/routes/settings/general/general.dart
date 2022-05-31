@@ -13,17 +13,25 @@ class _SettingsGeneralState extends State<SettingsGeneral> {
   Future? _checkUpdatesFuture;
   Future? _clearCacheFuture;
   Future? _deleteProfileFuture;
-  Future? _displayTaskCountFuture;
+  // Future? _displayTaskCountFuture;
 
-  void _displayTaskCount(bool value, WidgetRef ref) async {
-    if (_displayTaskCountFuture != null) return;
+  // void _displayTaskCount(bool value, WidgetRef ref) async {
+  //   if (_displayTaskCountFuture != null) return;
 
-    var user = ref.read(userController);
+  //   var user = ref.read(userController);
 
-    //   setState(() {
-    //     _displayTaskCountFuture = user.upda
-    //   });
-  }
+  //   setState(() {
+  //     _displayTaskCountFuture = user.updateDisplayTaskCount(value);
+  //   });
+
+  //   await _displayTaskCountFuture;
+
+  //   if (!mounted) return;
+
+  //   setState(() {
+  //     _displayTaskCountFuture = null;
+  //   });
+  // }
 
   void _checkUpdates() async {
     if (_checkUpdatesFuture != null) return;
@@ -81,6 +89,7 @@ class _SettingsGeneralState extends State<SettingsGeneral> {
   Widget build(BuildContext context) {
     return Consumer(builder: (context, ref, _) {
       var updater = ref.watch(updaterProvider);
+      // var user = ref.watch(userProvider);
 
       return LpContainer(
         title: t.settings_general_title,
@@ -116,10 +125,13 @@ class _SettingsGeneralState extends State<SettingsGeneral> {
                 onConfirm: () => _deleteProfile(ref),
               ),
             ),
-            NcSpacing.xs(),
+            // NcSpacing.xs(),
             // SettingsGeneralItem(
             //   title: t.settings_general_displayTaskCount,
-            //   customAction: LpCheckBo,
+            //   customAction: LpCheckbox(
+            //     value: user.displayTaskCount,
+            //     onChanged: (value) => _displayTaskCount(value, ref),
+            //   ),
             // ),
             NcSpacing.xs(),
             SettingsGeneralItem(
