@@ -13,6 +13,17 @@ class _SettingsGeneralState extends State<SettingsGeneral> {
   Future? _checkUpdatesFuture;
   Future? _clearCacheFuture;
   Future? _deleteProfileFuture;
+  Future? _displayTaskCountFuture;
+
+  void _displayTaskCount(bool value, WidgetRef ref) async {
+    if (_displayTaskCountFuture != null) return;
+
+    var user = ref.read(userController);
+
+    //   setState(() {
+    //     _displayTaskCountFuture = user.upda
+    //   });
+  }
 
   void _checkUpdates() async {
     if (_checkUpdatesFuture != null) return;
@@ -105,6 +116,11 @@ class _SettingsGeneralState extends State<SettingsGeneral> {
                 onConfirm: () => _deleteProfile(ref),
               ),
             ),
+            NcSpacing.xs(),
+            // SettingsGeneralItem(
+            //   title: t.settings_general_displayTaskCount,
+            //   customAction: LpCheckBo,
+            // ),
             NcSpacing.xs(),
             SettingsGeneralItem(
               title: t.settings_general_credits,

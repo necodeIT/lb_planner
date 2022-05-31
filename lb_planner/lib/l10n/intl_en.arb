@@ -1,19 +1,19 @@
 {
-  "@admin_feedback_userTag": {
-    "description": "Display text for the user tag",
-    "placeholders": {
-      "username": {
-        "example": "Jane",
-        "type": "String"
-      }
-    }
-  },
   "@admin_feedback_id": {
     "description": "Display text for the feedback id",
     "placeholders": {
       "id": {
         "example": "1",
         "type": "int"
+      }
+    }
+  },
+  "@admin_feedback_userTag": {
+    "description": "Display text for the user tag",
+    "placeholders": {
+      "username": {
+        "example": "Jane",
+        "type": "String"
       }
     }
   },
@@ -208,6 +208,7 @@
   "settings_general_deleteProfile_btn": "Delete profile",
   "settings_general_deleteProfile_msg": "Are you sure you want to delete your profile?\n\nThis will completely whipe any data stored by LB Planner about you. This cannot be undone but you can re-register at any given times.",
   "settings_general_deleteProfile_title": "Delete profile?",
+  "settings_general_displayTaskCount": "Display task count",
   "settings_general_title": "General",
   "settings_themes": "Themes",
   "settings_title": "Settings",
