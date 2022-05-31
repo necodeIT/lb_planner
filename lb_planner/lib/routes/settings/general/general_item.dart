@@ -3,7 +3,7 @@ part of lbplanner_routes;
 /// Item for [SettingsGeneral]
 class SettingsGeneralItem extends StatelessWidget {
   /// Item for [SettingsGeneral]
-  const SettingsGeneralItem({Key? key, required this.title, required this.icon, required this.onTap, this.customAction, this.loading = false}) : super(key: key);
+  const SettingsGeneralItem({Key? key, required this.title, this.icon, this.onTap, this.customAction, this.loading = false}) : super(key: key);
 
   /// Title of the item.
   final String title;
