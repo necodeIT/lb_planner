@@ -23,15 +23,17 @@ class AdminFeedbackPageRoute extends StatefulWidget {
 class _AdminFeedbackPageRouteState extends State<AdminFeedbackPageRoute> {
   @override
   Widget build(BuildContext context) {
-    return Consumer(builder: (context, ref, _) {
-      var feedback = ref.watch(feedbackProvider)[widget.feedbackId];
+    return Consumer(
+      builder: (context, ref, _) {
+        var feedback = ref.watch(feedbackProvider)[widget.feedbackId];
 
-      if (feedback == null) return LpShimmer(height: AdminFeedbackItem.height);
+        if (feedback == null) return LpShimmer(height: AdminFeedbackItem.height);
 
-      return SingleChildScrollView(
-        controller: ScrollController(),
-        child: NcCaptionText(feedback.content, selectable: true),
-      );
-    });
+        return SingleChildScrollView(
+          controller: ScrollController(),
+          child: NcCaptionText(feedback.content, selectable: true),
+        );
+      },
+    );
   }
 }
