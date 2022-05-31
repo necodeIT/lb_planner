@@ -81,6 +81,18 @@ class UserProvider extends StateNotifier<User> {
 
     return response;
   }
+  
+  /// Updates the user's [User.displayTaskCount] to [displayTaskCount].
+  Future<RawApiResponse> updateDisplayTaskCount(bool displayTaskCount) async {
+    var response = await UserApi.updateUser(state.token, state.copyWith(displayTaskCount: displayTaskCount));
+
+    if (response.succeeded) {
+      state = response.value!;
+      UserDisk.saveUser(state);
+    }
+
+    return response;
+  }
 
   /// Updates the user's [User.language] to [language].
   Future<RawApiResponse> updateLanguage(Languages language) async {
