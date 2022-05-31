@@ -55,7 +55,7 @@ class PlanApi {
       },
       body: {
         "planname": data.name,
-        "enableek": data.ekEnabled.intValue,
+        "enableek": data.ekEnabled.intVal,
       },
     );
 

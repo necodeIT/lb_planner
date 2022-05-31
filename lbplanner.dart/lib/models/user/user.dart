@@ -31,6 +31,8 @@ class User with _$User {
     /// Url to the users moodle profile picture
     required String avatar,
 
+    @Default(true) bool displayTaskCount,
+
     /// the language the user has selected
     @Default(Languages.restricted) Languages language,
 

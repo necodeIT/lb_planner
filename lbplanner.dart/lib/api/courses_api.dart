@@ -18,7 +18,7 @@ class CoursesApi {
       courses = [];
 
       for (var course in response.body[kApiListContent]) {
-        var courseMap = Map.of(course).cast<String, dynamic>(); 
+        var courseMap = Map.of(course).cast<String, dynamic>();
         courses.add(Course.fromJson(courseMap.mapCourse()));
       }
     }
@@ -56,7 +56,7 @@ class CoursesApi {
       body: {
         "color": data.colorCode,
         "shortname": data.shortname,
-        "enabled": data.enabled.intValue,
+        "enabled": data.enabled.intVal,
       },
     );
 

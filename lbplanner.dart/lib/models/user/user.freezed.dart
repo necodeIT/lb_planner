@@ -28,6 +28,7 @@ class _$UserTearOff {
       required String firstname,
       required String lastname,
       required String avatar,
+      bool displayTaskCount = true,
       Languages language = Languages.restricted,
       String token = '',
       String theme = "",
@@ -41,6 +42,7 @@ class _$UserTearOff {
       firstname: firstname,
       lastname: lastname,
       avatar: avatar,
+      displayTaskCount: displayTaskCount,
       language: language,
       token: token,
       theme: theme,
@@ -75,6 +77,7 @@ mixin _$User {
 
   /// Url to the users moodle profile picture
   String get avatar => throw _privateConstructorUsedError;
+  bool get displayTaskCount => throw _privateConstructorUsedError;
 
   /// the language the user has selected
   Languages get language => throw _privateConstructorUsedError;
@@ -112,6 +115,7 @@ abstract class $UserCopyWith<$Res> {
       String firstname,
       String lastname,
       String avatar,
+      bool displayTaskCount,
       Languages language,
       String token,
       String theme,
@@ -136,6 +140,7 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object? firstname = freezed,
     Object? lastname = freezed,
     Object? avatar = freezed,
+    Object? displayTaskCount = freezed,
     Object? language = freezed,
     Object? token = freezed,
     Object? theme = freezed,
@@ -165,6 +170,10 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
               as String,
+      displayTaskCount: displayTaskCount == freezed
+          ? _value.displayTaskCount
+          : displayTaskCount // ignore: cast_nullable_to_non_nullable
+              as bool,
       language: language == freezed
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
@@ -208,6 +217,7 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       String firstname,
       String lastname,
       String avatar,
+      bool displayTaskCount,
       Languages language,
       String token,
       String theme,
@@ -233,6 +243,7 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     Object? firstname = freezed,
     Object? lastname = freezed,
     Object? avatar = freezed,
+    Object? displayTaskCount = freezed,
     Object? language = freezed,
     Object? token = freezed,
     Object? theme = freezed,
@@ -262,6 +273,10 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
               as String,
+      displayTaskCount: displayTaskCount == freezed
+          ? _value.displayTaskCount
+          : displayTaskCount // ignore: cast_nullable_to_non_nullable
+              as bool,
       language: language == freezed
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
@@ -303,6 +318,7 @@ class _$_User extends _User {
       required this.firstname,
       required this.lastname,
       required this.avatar,
+      this.displayTaskCount = true,
       this.language = Languages.restricted,
       this.token = '',
       this.theme = "",
@@ -334,6 +350,9 @@ class _$_User extends _User {
 
   /// Url to the users moodle profile picture
   final String avatar;
+  @JsonKey()
+  @override
+  final bool displayTaskCount;
   @JsonKey()
   @override
 
@@ -372,7 +391,7 @@ class _$_User extends _User {
 
   @override
   String toString() {
-    return 'User(id: $id, username: $username, firstname: $firstname, lastname: $lastname, avatar: $avatar, language: $language, token: $token, theme: $theme, accessLevel: $accessLevel, planId: $planId, loading: $loading, colorBlindness: $colorBlindness)';
+    return 'User(id: $id, username: $username, firstname: $firstname, lastname: $lastname, avatar: $avatar, displayTaskCount: $displayTaskCount, language: $language, token: $token, theme: $theme, accessLevel: $accessLevel, planId: $planId, loading: $loading, colorBlindness: $colorBlindness)';
   }
 
   @override
@@ -385,6 +404,8 @@ class _$_User extends _User {
             const DeepCollectionEquality().equals(other.firstname, firstname) &&
             const DeepCollectionEquality().equals(other.lastname, lastname) &&
             const DeepCollectionEquality().equals(other.avatar, avatar) &&
+            const DeepCollectionEquality()
+                .equals(other.displayTaskCount, displayTaskCount) &&
             const DeepCollectionEquality().equals(other.language, language) &&
             const DeepCollectionEquality().equals(other.token, token) &&
             const DeepCollectionEquality().equals(other.theme, theme) &&
@@ -404,6 +425,7 @@ class _$_User extends _User {
       const DeepCollectionEquality().hash(firstname),
       const DeepCollectionEquality().hash(lastname),
       const DeepCollectionEquality().hash(avatar),
+      const DeepCollectionEquality().hash(displayTaskCount),
       const DeepCollectionEquality().hash(language),
       const DeepCollectionEquality().hash(token),
       const DeepCollectionEquality().hash(theme),
@@ -430,6 +452,7 @@ abstract class _User extends User {
       required String firstname,
       required String lastname,
       required String avatar,
+      bool displayTaskCount,
       Languages language,
       String token,
       String theme,
@@ -461,6 +484,8 @@ abstract class _User extends User {
 
   /// Url to the users moodle profile picture
   String get avatar;
+  @override
+  bool get displayTaskCount;
   @override
 
   /// the language the user has selected

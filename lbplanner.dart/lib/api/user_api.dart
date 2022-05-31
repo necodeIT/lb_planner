@@ -7,7 +7,9 @@ class UserApi {
     var response = await Api.makeRequest(
       functionName: "local_lbplanner_user_get_user",
       token: token,
-      params: {"userid": userId},
+      params: {
+        "userid": userId,
+      },
       reportError: false,
     );
 
@@ -51,6 +53,7 @@ class UserApi {
         "lang": data.language.name,
         "theme": data.theme,
         "colorblindness": data.colorBlindness.name,
+        "displaytaskcount": data.displayTaskCount.intVal,
       },
     );
 

@@ -12,6 +12,7 @@ _$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
       firstname: json['firstname'] as String,
       lastname: json['lastname'] as String,
       avatar: json['avatar'] as String,
+      displayTaskCount: json['displayTaskCount'] as bool? ?? true,
       language: $enumDecodeNullable(_$LanguagesEnumMap, json['language']) ??
           Languages.restricted,
       token: json['token'] as String? ?? '',
@@ -32,6 +33,7 @@ Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
       'firstname': instance.firstname,
       'lastname': instance.lastname,
       'avatar': instance.avatar,
+      'displayTaskCount': instance.displayTaskCount,
       'language': _$LanguagesEnumMap[instance.language],
       'token': instance.token,
       'theme': instance.theme,

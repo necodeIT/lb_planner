@@ -18,6 +18,7 @@ extension ModelMappingExtensions on Map<String, dynamic> {
     body["planId"] = this["planid"];
     body["token"] = token;
     body["colorBlindness"] = this["colorblindness"];
+    body["displayTaskCount"] = BoolUtils.fromInt(this["displaytaskcount"]);
 
     return body;
   }
