@@ -138,6 +138,7 @@ const _ignoreList = [
   "setState() or markNeedsBuild() called during build.",
   "Connection closed before full header was received",
   "clipboard has strings",
+  "PlatformException(Clipboard error, Unable to open clipboard, 5,",
 ];
 
 bool _filterReport(Report report) {
