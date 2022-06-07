@@ -57,6 +57,7 @@ extension ModelMappingExtensions on Map<String, dynamic> {
 
     body["id"] = this["planid"];
     body["ekEnabled"] = this["enableek"];
+    body["name"] = this["planname"].decoded;
 
     body["deadlines"] = Map<String, dynamic>.from({for (var deadline in body["deadlines"]) deadline["moduleid"].toString(): Map<String, dynamic>.from(deadline).mapDeadline()});
 
@@ -101,14 +102,14 @@ extension ModelMappingExtensions on Map<String, dynamic> {
     body["lastModifiedBy"] = this["lastmodifiedby"];
     body["timestamp"] = DateTime.fromMillisecondsSinceEpoch(this["timestamp"] * 1000).toString();
 
-    body["content"] = this["content"].replaceAll("\\n", "\n");
+    body["content"] = this["content"].decoded;
 
     var logs = this["logs"];
     var comment = this["notes"];
     var lastModified = this["lastmodified"];
 
-    if (logs != null) body["logs"] = logs.replaceAll("\\n", "\n");
-    if (comment != null) body["comment"] = comment.replaceAll("\\n", "\n");
+    if (logs != null) body["logs"] = logs.decoded;
+    if (comment != null) body["comment"] = comment.decoded;
     if (lastModified != null) body["lastModified"] = DateTime.fromMillisecondsSinceEpoch(lastModified * 1000).toString();
 
     return body;
