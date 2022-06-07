@@ -57,7 +57,7 @@ extension ModelMappingExtensions on Map<String, dynamic> {
 
     body["id"] = this["planid"];
     body["ekEnabled"] = this["enableek"];
-    body["name"] = (this["planname"] as String).decoded;
+    body["name"] = (this["name"] as String).decoded;
 
     body["deadlines"] = Map<String, dynamic>.from({for (var deadline in body["deadlines"]) deadline["moduleid"].toString(): Map<String, dynamic>.from(deadline).mapDeadline()});
 
