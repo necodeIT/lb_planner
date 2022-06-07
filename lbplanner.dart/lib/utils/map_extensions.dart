@@ -121,7 +121,7 @@ extension ModelMappingExtensions on Map<String, dynamic> {
     var body = Map.of(this);
 
     body["id"] = this["courseid"];
-    body["colorCode"] = this["color"];
+    body["colorCode"] = (this["color"] as String).decoded;
 
     return body;
   }
