@@ -102,7 +102,7 @@ extension ModelMappingExtensions on Map<String, dynamic> {
     body["lastModifiedBy"] = this["lastmodifiedby"];
     body["timestamp"] = DateTime.fromMillisecondsSinceEpoch(this["timestamp"] * 1000).toString();
 
-    var content = this["content"].decoded;
+    var content = this["content"];
 
     var logs = this["logs"];
     var comment = this["notes"];
