@@ -1,3 +1,5 @@
+part of lbplanner_api;
+
 /// String extensions used by this library.
 extension LBPlannerApiStringExt on String {
   /// Calls [Uri.decodeComponent] on [this].
