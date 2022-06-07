@@ -108,9 +108,9 @@ extension ModelMappingExtensions on Map<String, dynamic> {
     var comment = this["notes"];
     var lastModified = this["lastmodified"];
 
-    if (logs != null) body["logs"] = logs.decoded;
-    if (comment != null) body["comment"] = comment.decoded;
-    if(content != null) body["content"] = content.decoded;
+    if (logs != null) body["logs"] = (logs as String).decoded;
+    if (comment != null) body["comment"] = (comment as String).decoded;
+    if (content != null) body["content"] = (content as String).decoded;
     if (lastModified != null) body["lastModified"] = DateTime.fromMillisecondsSinceEpoch(lastModified * 1000).toString();
 
     return body;
