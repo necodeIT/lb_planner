@@ -54,7 +54,7 @@
     }
   },
   "@user_notifications_inviteDeclined_text": {
-    "description": "Invite accepted notification text",
+    "description": "Invite declined notification text",
     "placeholders": {
       "username": {
         "example": "Jane",
@@ -80,7 +80,7 @@
     }
   },
   "@user_notifications_planLeft_text": {
-    "description": "User registered notification text",
+    "description": "User left plan notification text",
     "placeholders": {
       "username": {
         "example": "Jane",
@@ -89,7 +89,7 @@
     }
   },
   "@user_notifications_planRemoved_text": {
-    "description": "User registered notification text",
+    "description": "User removed from plan notification text",
     "placeholders": {
       "username": {
         "example": "Jane",
@@ -127,7 +127,7 @@
   "admin_login_wrongPassword": "Wrong password!",
   "alertDialog_confirm": "OK",
   "calendar_modulesOverview_noCourses": "No courses enabled...",
-  "calendar_modulesOverview_title": "Modues overview",
+  "calendar_modulesOverview_title": "Modules overview",
   "calendar_plan_deleteDeadline": "Remove deadline",
   "calendar_plan_dropdown_members_addMember": "Enter name to add members...",
   "calendar_plan_dropdown_members_inviteUsers_btn": "Invite users",
@@ -141,14 +141,14 @@
   "calendar_plan_dropdown_members_leavePlan_btn": "Leave plan",
   "calendar_plan_dropdown_members_leavePlan_message": "Are you sure you want to leave this plan?\n\nYou may get invited again.",
   "calendar_plan_dropdown_members_leavePlan_title": "Leave plan?",
-  "calendar_plan_dropdown_members_removeMemver_message": "Are you sure you want to remove this user?\n\nYou can re-invite this user at any given times.",
+  "calendar_plan_dropdown_members_removeMemver_message": "Are you sure you want to remove this user?\n\nYou can re-invite this user at any given time.",
   "calendar_plan_dropdown_members_removeMemver_title": "Remove member from plan?",
   "calendar_plan_dropdown_members_search": "Search members...",
   "calendar_plan_dropdown_members_title": "Members",
   "calendar_plan_dropdown_modules_clearPlan_btn": "Clear plan",
   "calendar_plan_dropdown_modules_clearPlan_message": "Are you sure you want to clear all deadlines for this plan? This action cannot be undone.",
   "calendar_plan_dropdown_modules_clearPlan_title": "Clear plan?",
-  "calendar_plan_dropdown_modules_enableEk": "Enable EK",
+  "calendar_plan_dropdown_modules_enableEk": "Show EK",
   "calendar_plan_dropdown_modules_search": "Search modules...",
   "calendar_plan_dropdown_modules_title": "Modules",
   "calendar_plan_dropdown_planName_placeholder": "Epic name for your plan here...",
@@ -162,7 +162,7 @@
   "calendar_plan_tuesday": "Tue",
   "calendar_plan_wednesday": "Wed",
   "calendar_routeName": "Calendar",
-  "dashboard_exams_noExams": "No upcomming exams...",
+  "dashboard_exams_noExams": "No upcoming exams...",
   "dashboard_exams_title": "Exams",
   "dashboard_routeName": "Dashboard",
   "dashboard_statusOverview_noData": "No data...",
@@ -190,7 +190,7 @@
   "settings_courses_editCourse_invalidHexCode": "Invalid color code",
   "settings_courses_searchCourses": "Search courses...",
   "settings_feedback": "Feedback",
-  "settings_feedback_failed_message": "We could not process your feedback. Please try again later.\nIf this error persists please consider opening an issue on GitHub.\n\nThe culprit: '{error}'",
+  "settings_feedback_failed_message": "We could not process your feedback. Please try again later.\nIf this error persists, please consider opening an issue on GitHub.\n\nThe culprit: '{error}'",
   "settings_feedback_failed_title": "Error trasmitting feedback",
   "settings_feedback_placeholder": "Tell us something...",
   "settings_feedback_submit": "Submit",
@@ -206,7 +206,7 @@
   "settings_general_clearCache_title": "Clear cache?",
   "settings_general_credits": "Credits",
   "settings_general_deleteProfile_btn": "Delete profile",
-  "settings_general_deleteProfile_msg": "Are you sure you want to delete your profile?\n\nThis will completely whipe any data stored by LB Planner about you. This cannot be undone but you can re-register at any given times.",
+  "settings_general_deleteProfile_msg": "Are you sure you want to delete your profile?\n\nThis will completely wipe any data stored by LB Planner about you. This cannot be undone, but you can re-register at any given time.",
   "settings_general_deleteProfile_title": "Delete profile?",
   "settings_general_displayTaskCount": "Display task count",
   "settings_general_title": "General",
