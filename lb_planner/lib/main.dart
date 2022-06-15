@@ -17,6 +17,8 @@ import 'package:window_manager/window_manager.dart';
 final kNavigator = GlobalKey<NavigatorState>();
 
 void main() async {
+  if (NcApp.locked) return;
+
   Logger.init(autoSave: true, appStoragePath: (await Disk.appDir).path);
 
   // Randomly selected outside of build for consistency of the animtion when applying the theme

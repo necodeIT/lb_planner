@@ -143,7 +143,6 @@ bool Win32Window::CreateAndShow(const std::wstring &title,
     }
     SetWindowPos(0, HWND_TOP, 0, 0, 0, 0, SWP_SHOWWINDOW | SWP_NOSIZE | SWP_NOMOVE);
     SetForegroundWindow(handle);
-    return 0;
   }
 
   Destroy();

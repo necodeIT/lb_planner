@@ -1,4 +1,5 @@
 .fvm/flutter_sdk
+.lock
 
 # Miscellaneous
 *.class
