@@ -83,6 +83,8 @@ class Api {
   }
 
   static void _logResponse(RawApiResponse response, String func) {
+    if(response.response.request == null) return;
+
     var req = response.response.request!;
 
     log("Request: ${req.method} $func, Response: ${response.response.statusCode}${response.failed ? ", Message: '${response.errorMessage}'" : ""}", response.succeeded ? LogTypes.success : LogTypes.error, 1);
