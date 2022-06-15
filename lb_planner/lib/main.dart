@@ -17,7 +17,7 @@ import 'package:window_manager/window_manager.dart';
 final kNavigator = GlobalKey<NavigatorState>();
 
 void main() async {
-  if (NcApp.locked) return;
+  exitIfLocked();
 
   Logger.init(autoSave: true, appStoragePath: (await Disk.appDir).path);
 
@@ -30,14 +30,12 @@ void main() async {
     debugConfig: LpReportMode.config,
     runAppFunction: () async {
       WidgetsFlutterBinding.ensureInitialized();
-      await windowManager.ensureInitialized();
 
       runThemedApp(
         appBuilder: App.builder,
         title: 'LB Planner',
         appIcon: LpLogo.svg,
-        // ignore: no-magic-number
-        minSize: Size(1200, 700),
+        minSize: const Size(1200, 700),
         onLoad: load,
         windowHandleColor: () => primaryColor,
         loadingWidgetBuilder: (_) => LpLoadingIndicator.rive(animation: animation),
