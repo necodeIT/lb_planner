@@ -139,9 +139,9 @@ const _ignoreList = [
   "Connection closed before full header was received",
   "clipboard has strings",
   "PlatformException(Clipboard error, Unable to open clipboard, 5,",
+  "cached files cannot be used by the cache manageranymore.:",
 ];
 
 bool _filterReport(Report report) {
-  // Filter out error that occurse when dragging a module.
   return !_ignoreList.any(report.error.toString().containsCaseInsensitive);
 }
