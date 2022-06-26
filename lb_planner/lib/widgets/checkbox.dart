@@ -26,6 +26,7 @@ class LpCheckbox extends StatelessWidget {
         // ignore: no-magic-number
         scale: onChanged != null ? 1.1 : 1,
         child: Checkbox(
+          mouseCursor: onChanged != null ? kDefaultHoverCursor : SystemMouseCursors.basic,
           focusColor: accentColor,
           value: value,
           onChanged: (value) => onChanged?.call(value ?? false),

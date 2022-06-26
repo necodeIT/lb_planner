@@ -7,14 +7,14 @@ packages:
       name: _fe_analyzer_shared
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "39.0.0"
+    version: "40.0.0"
   analyzer:
     dependency: transitive
     description:
       name: analyzer
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.0.0"
+    version: "4.1.0"
   analyzer_plugin:
     dependency: transitive
     description:
@@ -182,7 +182,7 @@ packages:
       name: connectivity_plus
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.3.4"
+    version: "2.3.5"
   connectivity_plus_linux:
     dependency: transitive
     description:
@@ -196,7 +196,7 @@ packages:
       name: connectivity_plus_macos
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.2.3"
+    version: "1.2.4"
   connectivity_plus_platform_interface:
     dependency: transitive
     description:
@@ -266,7 +266,7 @@ packages:
       name: dart_code_metrics
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.15.2"
+    version: "4.16.0"
   dart_style:
     dependency: transitive
     description:
@@ -489,7 +489,7 @@ packages:
       name: glob
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.2"
+    version: "2.1.0"
   google_fonts:
     dependency: transitive
     description:
@@ -616,7 +616,7 @@ packages:
     description:
       path: ui
       ref: flutter
-      resolved-ref: "17f90e5d1ca727910c9b0a4247002ca2c1447594"
+      resolved-ref: d2e17551601319ee0fda25ebadacdf6e67aedaa1
       url: "https://github.com/necodeIT/nekolib.git"
     source: git
     version: "0.0.1"
@@ -625,7 +625,7 @@ packages:
     description:
       path: utils
       ref: flutter
-      resolved-ref: "17f90e5d1ca727910c9b0a4247002ca2c1447594"
+      resolved-ref: d2e17551601319ee0fda25ebadacdf6e67aedaa1
       url: "https://github.com/necodeIT/nekolib.git"
     source: git
     version: "0.0.1"
@@ -852,7 +852,7 @@ packages:
       name: sentry
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.5.1"
+    version: "6.6.0"
   shimmer:
     dependency: "direct main"
     description:
@@ -962,7 +962,7 @@ packages:
       name: url_launcher
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.1.3"
+    version: "6.1.4"
   url_launcher_android:
     dependency: transitive
     description:
@@ -997,7 +997,7 @@ packages:
       name: url_launcher_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.5"
+    version: "2.1.0"
   url_launcher_web:
     dependency: transitive
     description:
