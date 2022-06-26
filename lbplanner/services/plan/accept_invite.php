@@ -76,7 +76,7 @@ class plan_accept_invite extends external_api {
 
             foreach (plan_helper::get_plan_members($oldplanid) as $member) {
                 if ($member->userid != $userid) {
-                    self::call_external_function('local_lbplanner_services/plan_remove_member', array(
+                    self::call_external_function('local_lbplanner_plan_remove_user', array(
                         'planid' => $oldplanid,
                         'userid' => $member->userid
                     ));
