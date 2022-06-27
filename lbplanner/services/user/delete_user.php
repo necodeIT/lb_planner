@@ -57,15 +57,12 @@ class user_delete_user extends external_api {
 
         if (plan_helper::get_access_type($planid, $userid) == plan_helper::ACCESS_TYPE_OWNER) {
             if (plan_helper::get_plan_members($planid) > 1) {
-                foreach (plan_helper::get_plan_members($planid) as $member) {
-                    if ($member->userid != $userid) {
-                        plan_helper::remove_user($planid, $userid, $member->userid);
-                    }
-                }
+                self::call_external_function('local_lbplanner_plan_leave_plan', array('userid' => $userid, 'planid' => $planid));
+            } else {
+                // Deleting Plan.
+                $DB->delete_records(plan_helper::DEADLINES_TABLE, array('planid' => $planid));
+                $DB->delete_records(plan_helper::TABLE, array('id' => $planid));
             }
-            // Deleting Plan.
-            $DB->delete_records(plan_helper::DEADLINES_TABLE, array('planid' => $planid));
-            $DB->delete_records(plan_helper::TABLE, array('id' => $planid));
         }
         // Delete all Notifications.
         if ($DB->record_exists(notifications_helper::TABLE, array('userid' => $userid))) {
