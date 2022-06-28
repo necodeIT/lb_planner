@@ -11,7 +11,7 @@ import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:intl/intl.dart';
 import 'package:lb_planner/assets.dart';
 import 'package:lb_planner/routes.dart';
-import 'package:lbplanner_api/lbplanner_api.dart';
+import 'package:lbplanner_engine/lbplanner_engine.dart';
 import 'package:nekolib_ui/core.dart';
 import 'package:nekolib_ui/utils.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';

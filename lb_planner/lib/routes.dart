@@ -19,7 +19,7 @@ import 'package:intl/intl.dart';
 import 'package:lb_planner/assets.dart';
 import 'package:lb_planner/helpers.dart';
 import 'package:lb_planner/widgets.dart';
-import 'package:lbplanner_api/lbplanner_api.dart';
+import 'package:lbplanner_engine/lbplanner_engine.dart';
 import 'package:nekolib_ui/core.dart';
 import 'package:nekolib_ui/utils.dart';
 import 'package:nekolib_utils/extensions.dart';

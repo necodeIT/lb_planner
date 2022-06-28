@@ -553,12 +553,12 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.5.0"
-  lbplanner_api:
+  lbplanner_engine:
     dependency: "direct main"
     description:
-      path: "lbplanner.dart"
-      ref: "lbplanner.dart"
-      resolved-ref: fcf503d5f8d47e68e8ec0496a1c6abd274d30a3b
+      path: "."
+      ref: engine
+      resolved-ref: "6917045b5ada9c4148c129c222e0cc1904105f23"
       url: "https://github.com/necodeIT/lb_planner.git"
     source: git
     version: "0.0.1"

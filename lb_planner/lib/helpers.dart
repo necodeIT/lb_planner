@@ -9,7 +9,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lb_planner/widgets.dart';
-import 'package:lbplanner_api/lbplanner_api.dart';
+import 'package:lbplanner_engine/lbplanner_engine.dart';
 import 'package:nekolib_ui/core.dart';
 import 'package:nekolib_utils/extensions.dart';
 import 'package:nekolib_utils/log.dart';
