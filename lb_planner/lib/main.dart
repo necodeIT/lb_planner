@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:catcher/catcher.dart';
 import 'package:flutter/material.dart';
@@ -38,6 +39,7 @@ void main() async {
         onLoad: load,
         windowHandleColor: () => primaryColor,
         loadingWidgetBuilder: (_) => LpLoadingIndicator.rive(animation: animation),
+        singleInstanceUuid: "necodeIT.lb_planner.mutex",
       );
     },
   );
