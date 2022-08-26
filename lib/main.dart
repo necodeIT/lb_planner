@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:catcher/catcher.dart';
 import 'package:flutter/material.dart';
