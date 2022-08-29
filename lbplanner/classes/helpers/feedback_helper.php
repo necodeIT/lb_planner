@@ -48,7 +48,7 @@ class feedback_helper {
                 'timestamp' => new external_value(PARAM_INT, 'The time when the feedback was created'),
                 'lastmodified' => new external_value(PARAM_INT, 'The time when the feedback was last modified'),
                 'lastmodifiedby' => new external_value(PARAM_INT, 'The id of the user who last modified the feedback'),
-                'logs' => new external_value(PARAM_TEXT, 'The logs of the feedback'),
+                'logfile' => new external_value(PARAM_TEXT, 'The logs of the feedback'),
             )
         );
     }

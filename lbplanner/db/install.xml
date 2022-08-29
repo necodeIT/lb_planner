@@ -106,7 +106,7 @@
 				<FIELD NAME="timestamp" TYPE="int" LENGTH="20" NOTNULL="true" SEQUENCE="false" />
 				<FIELD NAME="lastmodified" TYPE="int" LENGTH="20" NOTNULL="false" SEQUENCE="false" />
 				<FIELD NAME="lastmodifiedby" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" />
-				<FIELD NAME="logs" TYPE="text" NOTNULL="false" SEQUENCE="false" />
+				<FIELD NAME="logfile" TYPE="text" NOTNULL="false" SEQUENCE="false" />
 			</FIELDS>
 			<KEYS>
 				<KEY NAME="primary" TYPE="primary" FIELDS="id" />

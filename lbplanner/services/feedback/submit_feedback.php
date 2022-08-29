@@ -31,16 +31,16 @@ class feedback_submit_feedback extends external_api {
             'userid' => new external_value(PARAM_INT, 'The id of the user', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
             'type' => new external_value(PARAM_INT, 'The type ', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
             'content' => new external_value(PARAM_TEXT, 'The content of the feedback', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
-            'logs' => new external_value(PARAM_TEXT, 'The logs of the feedback', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
+            'logfile' => new external_value(PARAM_TEXT, 'The name of the logfile', VALUE_OPTIONAL, null, NULL_NOT_ALLOWED),
         ));
     }
 
-    public static function submit_feedback($userid, $type, $content, $logs) {
+    public static function submit_feedback($userid, $type, $content, $logfile) {
         global $DB;
 
         self::validate_parameters(
             self::submit_feedback_parameters(),
-            array('userid' => $userid, 'type' => $type, 'content' => $content, 'logs' => $logs)
+            array('userid' => $userid, 'type' => $type, 'content' => $content, 'logfile' => $logfile)
         );
 
         user_helper::assert_access($userid);
@@ -51,7 +51,7 @@ class feedback_submit_feedback extends external_api {
             'type' => $type,
             'status' => feedback_helper::STATUS_UNREAD,
             'timestamp' => time(),
-            'logs' => $logs,
+            'logfile' => $logfile,
         ));
 
         return feedback_helper::get_feedback($id);
