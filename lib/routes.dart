@@ -21,7 +21,6 @@ import 'package:lb_planner/helpers.dart';
 import 'package:lb_planner/widgets.dart';
 import 'package:lbplanner_engine/lbplanner_engine.dart';
 import 'package:nekolib_ui/core.dart';
-import 'package:nekolib_ui/utils.dart';
 import 'package:nekolib_utils/extensions.dart';
 import 'package:nekolib_utils/log.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -104,6 +103,3 @@ final Map<String, RouteInfo> kRoutes = {
   AdminFeedbackPageRoute.info.routeName: AdminFeedbackPageRoute.info,
   if (kDebugMode) TestRoute.info.routeName: TestRoute.info,
 };
-
-/// Observes navigation events.
-final RouteObserver<ModalRoute<void>> kRouteObserver = RouteObserver<ModalRoute<void>>();

@@ -30,7 +30,7 @@ _handleError(BuildContext context, WidgetRef ref, Object obj, [StackTrace? stack
     content: "----------------Auto generated feedback---------------\n\n$message\n\n----------------Stack trace---------------\n\n${stack.isEmpty ? 'No stack trace provided.' : stack}",
     type: FeedbackTypes.bug,
     status: FeedbackStatus.unread,
-    logs: Logger.logs.join('\n'),
+    logFile: Logger.logFileName,
   );
 
   lpShowConfirmDialog(

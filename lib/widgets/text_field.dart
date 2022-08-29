@@ -164,7 +164,7 @@ class _LpTextFieldState extends State<LpTextField> {
   @override
   Widget build(BuildContext context) {
     return KeyboardListener(
-      focusNode: FocusNode(),
+      focusNode: FocusNode(skipTraversal: true),
       onKeyEvent: (event) {
         if (event.physicalKey == PhysicalKeyboardKey.escape) {
           widget.onCancel?.call();

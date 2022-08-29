@@ -55,7 +55,7 @@ class _AdminFeedbackRouteState extends State<AdminFeedbackRoute> {
                 ),
                 Expanded(
                   child: NcCaptionText(
-                    t.admin_feedback_headers_id,
+                    t.admin_feedback_headers_status,
                     fontSize: AdminFeedbackRoute.headerFontSize,
                     textAlign: TextAlign.center,
                   ),

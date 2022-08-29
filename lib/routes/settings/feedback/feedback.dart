@@ -34,7 +34,7 @@ class _SettingsFeedbackState extends State<SettingsFeedback> {
           content: _feedbackController.text,
           type: _feedbackType,
           status: FeedbackStatus.unread,
-          logs: _feedbackType.isBug ? Logger.logs.join("\n") : "",
+          logFile: _feedbackType.isBug ? Logger.logFileName : "",
         ),
       );
     });
