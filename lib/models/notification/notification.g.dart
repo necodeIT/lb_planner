@@ -22,8 +22,8 @@ Map<String, dynamic> _$$_NotificationToJson(_$_Notification instance) =>
     <String, dynamic>{
       'id': instance.id,
       'payload': instance.payload,
-      'type': _$NotificationTypesEnumMap[instance.type],
-      'status': _$NotificationStatusEnumMap[instance.status],
+      'type': _$NotificationTypesEnumMap[instance.type]!,
+      'status': _$NotificationStatusEnumMap[instance.status]!,
       'timestamp': instance.timestamp.toIso8601String(),
       'readTimestamp': instance.readTimestamp?.toIso8601String(),
     };

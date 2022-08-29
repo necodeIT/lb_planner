@@ -23,7 +23,7 @@ Map<String, dynamic> _$$_PlanInviteToJson(_$_PlanInvite instance) =>
       'planId': instance.planId,
       'invitee': instance.invitee,
       'inviter': instance.inviter,
-      'status': _$PlanInviteStatusEnumMap[instance.status],
+      'status': _$PlanInviteStatusEnumMap[instance.status]!,
     };
 
 const _$PlanInviteStatusEnumMap = {

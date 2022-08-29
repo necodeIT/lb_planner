@@ -25,7 +25,7 @@ Map<String, dynamic> _$$_PlanToJson(_$_Plan instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'members': instance.members
-          .map((k, e) => MapEntry(k.toString(), _$PlanAccessLevelsEnumMap[e])),
+          .map((k, e) => MapEntry(k.toString(), _$PlanAccessLevelsEnumMap[e]!)),
       'deadlines': instance.deadlines.map((k, e) => MapEntry(k.toString(), e)),
       'ekEnabled': instance.ekEnabled,
       'loading': instance.loading,

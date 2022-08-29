@@ -34,13 +34,13 @@ Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
       'lastname': instance.lastname,
       'avatar': instance.avatar,
       'displayTaskCount': instance.displayTaskCount,
-      'language': _$LanguagesEnumMap[instance.language],
+      'language': _$LanguagesEnumMap[instance.language]!,
       'token': instance.token,
       'theme': instance.theme,
-      'accessLevel': _$UserAccessLevelsEnumMap[instance.accessLevel],
+      'accessLevel': _$UserAccessLevelsEnumMap[instance.accessLevel]!,
       'planId': instance.planId,
       'loading': instance.loading,
-      'colorBlindness': _$ColorBlindnessTypeEnumMap[instance.colorBlindness],
+      'colorBlindness': _$ColorBlindnessTypeEnumMap[instance.colorBlindness]!,
     };
 
 const _$LanguagesEnumMap = {

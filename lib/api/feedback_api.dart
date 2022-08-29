@@ -56,7 +56,7 @@ class FeedbackApi {
       },
       body: {
         "content": data.content,
-        "logs": data.logs,
+        "logfile": data.logFile,
       },
     );
 

@@ -27,7 +27,7 @@ class _$FeedbackTearOff {
       required int userId,
       required String content,
       String? comment,
-      String? logs,
+      String? logFile,
       required FeedbackTypes type,
       required FeedbackStatus status,
       int? lastModifiedBy,
@@ -38,7 +38,7 @@ class _$FeedbackTearOff {
       userId: userId,
       content: content,
       comment: comment,
-      logs: logs,
+      logFile: logFile,
       type: type,
       status: status,
       lastModifiedBy: lastModifiedBy,
@@ -69,8 +69,8 @@ mixin _$Feedback {
   /// Notes admins may add to the feedback.
   String? get comment => throw _privateConstructorUsedError;
 
-  /// The logs provided if the feedback is of type [FeedbackTypes.bug].
-  String? get logs => throw _privateConstructorUsedError;
+  /// Name of the client log file.
+  String? get logFile => throw _privateConstructorUsedError;
 
   /// The type of the feedback.
   FeedbackTypes get type => throw _privateConstructorUsedError;
@@ -102,7 +102,7 @@ abstract class $FeedbackCopyWith<$Res> {
       int userId,
       String content,
       String? comment,
-      String? logs,
+      String? logFile,
       FeedbackTypes type,
       FeedbackStatus status,
       int? lastModifiedBy,
@@ -124,7 +124,7 @@ class _$FeedbackCopyWithImpl<$Res> implements $FeedbackCopyWith<$Res> {
     Object? userId = freezed,
     Object? content = freezed,
     Object? comment = freezed,
-    Object? logs = freezed,
+    Object? logFile = freezed,
     Object? type = freezed,
     Object? status = freezed,
     Object? lastModifiedBy = freezed,
@@ -148,9 +148,9 @@ class _$FeedbackCopyWithImpl<$Res> implements $FeedbackCopyWith<$Res> {
           ? _value.comment
           : comment // ignore: cast_nullable_to_non_nullable
               as String?,
-      logs: logs == freezed
-          ? _value.logs
-          : logs // ignore: cast_nullable_to_non_nullable
+      logFile: logFile == freezed
+          ? _value.logFile
+          : logFile // ignore: cast_nullable_to_non_nullable
               as String?,
       type: type == freezed
           ? _value.type
@@ -186,7 +186,7 @@ abstract class _$FeedbackCopyWith<$Res> implements $FeedbackCopyWith<$Res> {
       int userId,
       String content,
       String? comment,
-      String? logs,
+      String? logFile,
       FeedbackTypes type,
       FeedbackStatus status,
       int? lastModifiedBy,
@@ -209,7 +209,7 @@ class __$FeedbackCopyWithImpl<$Res> extends _$FeedbackCopyWithImpl<$Res>
     Object? userId = freezed,
     Object? content = freezed,
     Object? comment = freezed,
-    Object? logs = freezed,
+    Object? logFile = freezed,
     Object? type = freezed,
     Object? status = freezed,
     Object? lastModifiedBy = freezed,
@@ -233,9 +233,9 @@ class __$FeedbackCopyWithImpl<$Res> extends _$FeedbackCopyWithImpl<$Res>
           ? _value.comment
           : comment // ignore: cast_nullable_to_non_nullable
               as String?,
-      logs: logs == freezed
-          ? _value.logs
-          : logs // ignore: cast_nullable_to_non_nullable
+      logFile: logFile == freezed
+          ? _value.logFile
+          : logFile // ignore: cast_nullable_to_non_nullable
               as String?,
       type: type == freezed
           ? _value.type
@@ -269,14 +269,14 @@ class _$_Feedback extends _Feedback {
       required this.userId,
       required this.content,
       this.comment,
-      this.logs,
+      this.logFile,
       required this.type,
       required this.status,
       this.lastModifiedBy,
       this.lastModified,
       required this.timestamp})
-      : assert(type != FeedbackTypes.bug || logs != null,
-            'Logs must be provided if the feedback is of type bug.'),
+      : assert(type != FeedbackTypes.bug || logFile != null,
+            'Log file must be provided if the feedback is of type bug.'),
         super._();
 
   factory _$_Feedback.fromJson(Map<String, dynamic> json) =>
@@ -300,8 +300,8 @@ class _$_Feedback extends _Feedback {
   final String? comment;
   @override
 
-  /// The logs provided if the feedback is of type [FeedbackTypes.bug].
-  final String? logs;
+  /// Name of the client log file.
+  final String? logFile;
   @override
 
   /// The type of the feedback.
@@ -325,7 +325,7 @@ class _$_Feedback extends _Feedback {
 
   @override
   String toString() {
-    return 'Feedback(id: $id, userId: $userId, content: $content, comment: $comment, logs: $logs, type: $type, status: $status, lastModifiedBy: $lastModifiedBy, lastModified: $lastModified, timestamp: $timestamp)';
+    return 'Feedback(id: $id, userId: $userId, content: $content, comment: $comment, logFile: $logFile, type: $type, status: $status, lastModifiedBy: $lastModifiedBy, lastModified: $lastModified, timestamp: $timestamp)';
   }
 
   @override
@@ -337,7 +337,7 @@ class _$_Feedback extends _Feedback {
             const DeepCollectionEquality().equals(other.userId, userId) &&
             const DeepCollectionEquality().equals(other.content, content) &&
             const DeepCollectionEquality().equals(other.comment, comment) &&
-            const DeepCollectionEquality().equals(other.logs, logs) &&
+            const DeepCollectionEquality().equals(other.logFile, logFile) &&
             const DeepCollectionEquality().equals(other.type, type) &&
             const DeepCollectionEquality().equals(other.status, status) &&
             const DeepCollectionEquality()
@@ -354,7 +354,7 @@ class _$_Feedback extends _Feedback {
       const DeepCollectionEquality().hash(userId),
       const DeepCollectionEquality().hash(content),
       const DeepCollectionEquality().hash(comment),
-      const DeepCollectionEquality().hash(logs),
+      const DeepCollectionEquality().hash(logFile),
       const DeepCollectionEquality().hash(type),
       const DeepCollectionEquality().hash(status),
       const DeepCollectionEquality().hash(lastModifiedBy),
@@ -378,7 +378,7 @@ abstract class _Feedback extends Feedback {
       required int userId,
       required String content,
       String? comment,
-      String? logs,
+      String? logFile,
       required FeedbackTypes type,
       required FeedbackStatus status,
       int? lastModifiedBy,
@@ -406,8 +406,8 @@ abstract class _Feedback extends Feedback {
   String? get comment;
   @override
 
-  /// The logs provided if the feedback is of type [FeedbackTypes.bug].
-  String? get logs;
+  /// Name of the client log file.
+  String? get logFile;
   @override
 
   /// The type of the feedback.

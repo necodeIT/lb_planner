@@ -27,8 +27,8 @@ Map<String, dynamic> _$$_ModuleToJson(_$_Module instance) => <String, dynamic>{
       'deadline': instance.deadline?.toIso8601String(),
       'hidden': instance.hidden,
       'grade': _$ModuleGradesEnumMap[instance.grade],
-      'type': _$ModuleTypesEnumMap[instance.type],
-      'status': _$ModuleStatusEnumMap[instance.status],
+      'type': _$ModuleTypesEnumMap[instance.type]!,
+      'status': _$ModuleStatusEnumMap[instance.status]!,
       'courseId': instance.courseId,
     };
 
