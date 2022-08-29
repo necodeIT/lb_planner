@@ -25,10 +25,10 @@ class Feedback with _$Feedback {
     required String content,
 
     /// Notes admins may add to the feedback.
-    String? comment,
+    @Default("") String comment,
 
     /// Name of the client log file.
-    String? logFile,
+    @Default("") String logFile,
 
     /// The type of the feedback.
     required FeedbackTypes type,

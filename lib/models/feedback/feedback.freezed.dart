@@ -26,8 +26,8 @@ class _$FeedbackTearOff {
       {required int id,
       required int userId,
       required String content,
-      String? comment,
-      String? logFile,
+      String comment = "",
+      String logFile = "",
       required FeedbackTypes type,
       required FeedbackStatus status,
       int? lastModifiedBy,
@@ -67,10 +67,10 @@ mixin _$Feedback {
   String get content => throw _privateConstructorUsedError;
 
   /// Notes admins may add to the feedback.
-  String? get comment => throw _privateConstructorUsedError;
+  String get comment => throw _privateConstructorUsedError;
 
   /// Name of the client log file.
-  String? get logFile => throw _privateConstructorUsedError;
+  String get logFile => throw _privateConstructorUsedError;
 
   /// The type of the feedback.
   FeedbackTypes get type => throw _privateConstructorUsedError;
@@ -101,8 +101,8 @@ abstract class $FeedbackCopyWith<$Res> {
       {int id,
       int userId,
       String content,
-      String? comment,
-      String? logFile,
+      String comment,
+      String logFile,
       FeedbackTypes type,
       FeedbackStatus status,
       int? lastModifiedBy,
@@ -147,11 +147,11 @@ class _$FeedbackCopyWithImpl<$Res> implements $FeedbackCopyWith<$Res> {
       comment: comment == freezed
           ? _value.comment
           : comment // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       logFile: logFile == freezed
           ? _value.logFile
           : logFile // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -185,8 +185,8 @@ abstract class _$FeedbackCopyWith<$Res> implements $FeedbackCopyWith<$Res> {
       {int id,
       int userId,
       String content,
-      String? comment,
-      String? logFile,
+      String comment,
+      String logFile,
       FeedbackTypes type,
       FeedbackStatus status,
       int? lastModifiedBy,
@@ -232,11 +232,11 @@ class __$FeedbackCopyWithImpl<$Res> extends _$FeedbackCopyWithImpl<$Res>
       comment: comment == freezed
           ? _value.comment
           : comment // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       logFile: logFile == freezed
           ? _value.logFile
           : logFile // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -268,8 +268,8 @@ class _$_Feedback extends _Feedback {
       {required this.id,
       required this.userId,
       required this.content,
-      this.comment,
-      this.logFile,
+      this.comment = "",
+      this.logFile = "",
       required this.type,
       required this.status,
       this.lastModifiedBy,
@@ -292,14 +292,16 @@ class _$_Feedback extends _Feedback {
 
   /// The content of the feedback.
   final String content;
+  @JsonKey()
   @override
 
   /// Notes admins may add to the feedback.
-  final String? comment;
+  final String comment;
+  @JsonKey()
   @override
 
   /// Name of the client log file.
-  final String? logFile;
+  final String logFile;
   @override
 
   /// The type of the feedback.
@@ -375,8 +377,8 @@ abstract class _Feedback extends Feedback {
       {required int id,
       required int userId,
       required String content,
-      String? comment,
-      String? logFile,
+      String comment,
+      String logFile,
       required FeedbackTypes type,
       required FeedbackStatus status,
       int? lastModifiedBy,
@@ -401,11 +403,11 @@ abstract class _Feedback extends Feedback {
   @override
 
   /// Notes admins may add to the feedback.
-  String? get comment;
+  String get comment;
   @override
 
   /// Name of the client log file.
-  String? get logFile;
+  String get logFile;
   @override
 
   /// The type of the feedback.
