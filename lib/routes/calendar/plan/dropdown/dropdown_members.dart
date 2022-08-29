@@ -12,7 +12,9 @@ class CalendarPlanDropDownMembers extends StatefulWidget {
   State<CalendarPlanDropDownMembers> createState() => _CalendarPlanDropDownMembersState();
 
   /// Filters the given [users] by the given [search] string.
-  static bool filterSearch(int id, Map<int, User> users, String search) => users[id] != null && users[id]!.fullname.containsCaseInsensitive(search);
+  static bool filterSearch(int id, Map<int, User> users, String search) {
+    return users[id] != null && (users[id]!.fullname.containsCaseInsensitive(search) || users[id]!.username.containsCaseInsensitive(search));
+  }
 }
 
 class _CalendarPlanDropDownMembersState extends State<CalendarPlanDropDownMembers> {
