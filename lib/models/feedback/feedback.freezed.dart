@@ -275,9 +275,7 @@ class _$_Feedback extends _Feedback {
       this.lastModifiedBy,
       this.lastModified,
       required this.timestamp})
-      : assert(type != FeedbackTypes.bug || logFile != null,
-            'Log file must be provided if the feedback is of type bug.'),
-        super._();
+      : super._();
 
   factory _$_Feedback.fromJson(Map<String, dynamic> json) =>
       _$$_FeedbackFromJson(json);
