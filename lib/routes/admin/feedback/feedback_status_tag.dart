@@ -32,11 +32,20 @@ class LpFeedbackStatusTag extends LocalizedWidget {
               color: color.withOpacity(opacity),
               borderRadius: BorderRadius.circular(kRadius),
             ),
-      child: NcBodyText(
-        status.isRead ? t.admin_feedback_status_read : t.admin_feedback_status_unread,
-        color: color,
-        fontSize: fontSize,
-        textAlign: TextAlign.center,
+      child: ConditionalWidget(
+        condition: label,
+        trueWidget: (context) => NcBodyText(
+          status.isRead ? t.admin_feedback_status_read : t.admin_feedback_status_unread,
+          color: color,
+          fontSize: fontSize,
+          textAlign: TextAlign.center,
+        ),
+        falseWidget: (context) => NcTitleText(
+          status.isRead ? t.admin_feedback_status_read : t.admin_feedback_status_unread,
+          color: color,
+          fontSize: fontSize,
+          textAlign: TextAlign.center,
+        ),
       ),
     );
   }

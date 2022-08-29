@@ -52,6 +52,7 @@ class AdminFeedbackItem extends LocalizedWidget {
                         NcBodyText(
                           user.fullname,
                           fontSize: usernameFontSize,
+                          overflow: TextOverflow.fade,
                         ),
                         NcBodyText(
                           t.admin_feedback_userTag(user.username),
