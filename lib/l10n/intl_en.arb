@@ -172,7 +172,7 @@
   "dashboard_todaysTasks_title": "Today's tasks",
   "dialog_cancel": "Cancel",
   "dialog_confirm": "Confirm",
-  "guard_dialog_consent": "Do you want to report this error? This will automatically send feedback containing this error message and your logs.",
+  "guard_dialog_consent": "Do you want to report this error?",
   "guard_dialog_description": "An unexpected error occured:",
   "guard_dialog_ingore": "Ignore",
   "guard_dialog_sendReport": "Send report",

@@ -63,10 +63,10 @@ class AdminFeedbackItem extends LocalizedWidget {
                 ),
               ),
               Expanded(
-                child: NcBodyText(
-                  feedback.status.isRead ? t.admin_feedback_status_read : t.admin_feedback_status_unread,
+                child: LpFeedbackStatusTag(
+                  status: feedback.status,
                   fontSize: fontSize,
-                  textAlign: TextAlign.center,
+                  label: true,
                 ),
               ),
               Expanded(
