@@ -4,6 +4,18 @@ part of lbplanner_engine;
 ///
 /// [kApiRefreshRate] is the timer duration.
 abstract class IRefreshable {
+  bool _pauseAll = false;
+
+  /// Pausese all refreshable objects.
+  void pauseAll() {
+    _pauseAll = true;
+  }
+
+  /// Resumes all refreshable objects.
+  void resumeAll() {
+    _pauseAll = false;
+  }
+
   DateTime? _lastRefresh;
   bool _autoRefresh = false;
 
@@ -67,6 +79,12 @@ abstract class IRefreshable {
   @protected
   void refresh() async {
     if (!_autoRefresh) return;
+
+    if (_pauseAll) {
+      await Future.delayed(refreshRate);
+
+      refresh();
+    }
 
     if (_lastRefresh != null) {
       var diff = DateTime.now().difference(_lastRefresh!);
