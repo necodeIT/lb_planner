@@ -4,15 +4,15 @@ part of lbplanner_engine;
 ///
 /// [kApiRefreshRate] is the timer duration.
 abstract class IRefreshable {
-  bool _pauseAll = false;
+  static bool _pauseAll = false;
 
   /// Pausese all refreshable objects.
-  void pauseAll() {
+  static void pauseAll() {
     _pauseAll = true;
   }
 
   /// Resumes all refreshable objects.
-  void resumeAll() {
+  static void resumeAll() {
     _pauseAll = false;
   }
 
