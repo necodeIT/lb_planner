@@ -12,7 +12,7 @@ class PluginConfigApi {
     Version? version;
 
     if (response.succeeded) {
-      version = Version.fromString(response["version"]);
+      version = Version.fromString(response["release"]);
     }
 
     return ApiResponse(response.response, version);
