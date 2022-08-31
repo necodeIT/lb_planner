@@ -306,6 +306,15 @@ $functions = array(
         'capabilities' => '',
         'ajax' => true,
     ),
+    'local_lbplanner_config_get_version' => array(
+        'classname' => 'local_lbplanner_services\config_get_version',
+        'methodname' => 'get_version',
+        'classpath' => 'local/lbplanner/services/config/get_version.php',
+        'description' => 'Get the version of the plugin',
+        'type' => 'read',
+        'capabilities' => '',
+        'ajax' => true,
+    ),
 );
 
 $services = array(
@@ -343,6 +352,7 @@ $services = array(
             'local_lbplanner_feedback_update_feedback',
             'local_lbplanner_plan_accept_invite',
             'local_lbplanner_plan_decline_invite',
+            'local_lbplanner_config_get_version',
         ),
         'restrictedusers' => 0,
         'enabled' => 1,

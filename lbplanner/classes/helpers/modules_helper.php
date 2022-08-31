@@ -336,7 +336,6 @@ class modules_helper {
             if (!$ekenabled && self::determin_type($mdlmodule->name) == self::TYPE_EK) {
                 continue;
             }
-
             $modules[] = self::get_module($mdlmodule->id, $userid);
         }
 

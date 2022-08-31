@@ -31,20 +31,26 @@ class modules_get_all_course_modules extends external_api {
         return new external_function_parameters(array(
             'courseid' => new external_value(PARAM_INT, 'The id of the course', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
             'userid' => new external_value(PARAM_INT, 'The id of the user', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
+            'ekenabled' => new external_value(
+            PARAM_BOOL,
+            'Whether or not to include ek modules',
+            VALUE_REQUIRED,
+            false,
+            NULL_NOT_ALLOWED),
         ));
     }
 
-    public static function get_all_course_modules($courseid, $userid) {
+    public static function get_all_course_modules($courseid, $userid, $ekenabled) {
         global $DB;
 
         self::validate_parameters(
             self::get_all_course_modules_parameters(),
-            array('courseid' => $courseid, 'userid' => $userid)
+            array('courseid' => $courseid, 'userid' => $userid, 'ekenabled' => $ekenabled)
         );
 
         user_helper::assert_access($userid);
 
-        return modules_helper::get_all_course_modules($courseid, $userid);
+        return modules_helper::get_all_course_modules($courseid, $userid, $ekenabled);
     }
 
     public static function get_all_course_modules_returns() {

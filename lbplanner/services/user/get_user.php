@@ -16,6 +16,7 @@
 
 namespace local_lbplanner_services;
 
+use core_privacy\local\request\subsystem\plugin_provider;
 use external_api;
 use external_function_parameters;
 use external_single_structure;

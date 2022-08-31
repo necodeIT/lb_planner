@@ -18,6 +18,7 @@ namespace local_lbplanner_services;
 
 use external_api;
 use external_function_parameters;
+use external_single_structure;
 use external_value;
 use local_lbplanner\helpers\user_helper;
 use local_lbplanner\helpers\feedback_helper;
@@ -27,12 +28,14 @@ use local_lbplanner\helpers\feedback_helper;
  */
 class feedback_submit_feedback extends external_api {
     public static function submit_feedback_parameters() {
-        return new external_function_parameters(array(
-            'userid' => new external_value(PARAM_INT, 'The id of the user', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
-            'type' => new external_value(PARAM_INT, 'The type ', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
-            'content' => new external_value(PARAM_TEXT, 'The content of the feedback', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
-            'logfile' => new external_value(PARAM_TEXT, 'The name of the logfile', VALUE_OPTIONAL, null, NULL_NOT_ALLOWED),
-        ));
+        return new external_function_parameters(
+            array(
+                'userid' => new external_value(PARAM_INT, 'The id of the user', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
+                'type' => new external_value(PARAM_INT, 'The type ', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
+                'content' => new external_value(PARAM_TEXT, 'The content of the feedback', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
+                'logfile' => new external_value(PARAM_TEXT, 'The name of the logfile', VALUE_DEFAULT, null, NULL_NOT_ALLOWED ),
+            )
+        );
     }
 
     public static function submit_feedback($userid, $type, $content, $logfile) {
