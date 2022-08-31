@@ -10,6 +10,7 @@ export 'models/course/course.dart';
 export 'models/statistics/statistics.dart';
 export 'models/feedback/feedback.dart';
 export 'models/deadline/deadline.dart';
+export 'models/version/version.dart';
 
 // Dart imports:
 import 'dart:convert';
@@ -35,6 +36,7 @@ import 'models/plan/plan.dart';
 import 'models/user/user.dart';
 import 'models/deadline/deadline.dart';
 import 'models/invite/invite.dart';
+import 'models/version/version.dart';
 
 // Models
 
@@ -74,6 +76,7 @@ part 'api/plan_api.dart';
 part 'api/feedback_api.dart';
 part 'api/modules_api.dart';
 part 'api/courses_api.dart';
+part 'api/plugin_config_api.dart';
 
 // Utils
 
