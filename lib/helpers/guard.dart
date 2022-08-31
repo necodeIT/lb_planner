@@ -75,7 +75,11 @@ _handleError(BuildContext context, WidgetRef ref, Object obj, [StackTrace? stack
 initGuard(WidgetRef ref) {
   _staticRef = ref;
 
-  Api.onError = (response) => _handleError(ref as BuildContext, ref, response);
+  Api.onError = (response) {
+    if (!_filterApiError(response)) return;
+
+    _handleError(ref as BuildContext, ref, response);
+  };
 }
 
 /// Report
@@ -144,5 +148,9 @@ const _ignoreList = [
 ];
 
 bool _filterReport(Report report) {
-  return !_ignoreList.any(report.error.toString().containsCaseInsensitive);
+  return !_ignoreList.any(report.error.toString().containsCaseInsensitive) && currentRoute != UpdateRoute.info;
+}
+
+bool _filterApiError(RawApiResponse response) {
+  return !_ignoreList.any(response.errorMessage.toString().containsCaseInsensitive) && currentRoute != UpdateRoute.info;
 }

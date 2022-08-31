@@ -26,12 +26,12 @@ class UpdateRoute extends StatefulWidget {
 }
 
 class _UpdateRouteState extends State<UpdateRoute> {
-  @override
-  initState() {
-    super.initState();
+  // @override
+  // initState() {
+  //   super.initState();
 
-    IRefreshable.pauseAll();
-  }
+  //   IRefreshable.pauseAll();
+  // }
 
   @override
   Widget build(BuildContext context) {
