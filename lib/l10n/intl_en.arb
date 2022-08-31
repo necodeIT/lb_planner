@@ -115,12 +115,24 @@
       }
     }
   },
+  "@update_btn": {
+    "description": "Update btn text",
+    "placeholders": {
+      "version": {
+        "example": "Version x.x.x",
+        "type": "String"
+      }
+    }
+  },
+  "update_btn": "Upgrade to {version}",
+  "update_launching": "Launching installer...",
   "admin_dashboard_routeName": "Admin",
   "admin_feedback_headers_status": "Status",
   "admin_feedback_page_author": "Author: {author}",
   "admin_feedback_page_update": "Update",
   "admin_feedback_page_comment": "Comment...",
   "admin_feedback_page_markRead": "Mark as read",
+  "admin_feedback_page_confirm": "Are you sure you want to delete this feedback?\nThis action cannot be undone.",
   "admin_feedback_page_id": "ID: #{id}",
   "admin_feedback_headers_lastModified": "Last modified",
   "admin_feedback_headers_lastModifiedBy": "Last modified by",

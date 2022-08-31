@@ -558,7 +558,7 @@ packages:
     description:
       path: "."
       ref: engine
-      resolved-ref: "4afd3cf6c900e33cb38e17d5c155d5a1cf9fae7d"
+      resolved-ref: "87ebcbfd395776913145ca126cb4406c49817a86"
       url: "https://github.com/necodeIT/lb_planner.git"
     source: git
     version: "0.0.1"
@@ -616,7 +616,7 @@ packages:
     description:
       path: ui
       ref: flutter
-      resolved-ref: "113edf6f7f381c1f3fa0f51d6006af2bcac3808a"
+      resolved-ref: ee873e68ff9f9682bea2dd60132b419dea6601ad
       url: "https://github.com/necodeIT/nekolib.git"
     source: git
     version: "0.0.1"
@@ -625,7 +625,7 @@ packages:
     description:
       path: utils
       ref: flutter
-      resolved-ref: "113edf6f7f381c1f3fa0f51d6006af2bcac3808a"
+      resolved-ref: ee873e68ff9f9682bea2dd60132b419dea6601ad
       url: "https://github.com/necodeIT/nekolib.git"
     source: git
     version: "0.0.1"

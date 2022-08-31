@@ -50,11 +50,14 @@ Future<void> load() async {
 
   if (UserDisk.data != null && !UserDisk.data!.loading) {
     applyUserTheme(UserDisk.data!);
+
+    var r = await PluginConfigApi.getVersion(UserDisk.data!.token);
+
+    if (r.value != null) {
+      gPluginVersion = r.value;
+      await kUpdater.update();
+    }
   }
-
-  // await Future.delayed(Duration(seconds: 500));
-
-  await kUpdater.update();
 }
 
 /// Main app widget.

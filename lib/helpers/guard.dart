@@ -140,6 +140,7 @@ const _ignoreList = [
   "clipboard has strings",
   "PlatformException(Clipboard error, Unable to open clipboard, 5,",
   "cached files cannot be used by the cache manageranymore.:",
+  "connection timed out",
 ];
 
 bool _filterReport(Report report) {

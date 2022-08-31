@@ -87,6 +87,7 @@ part 'routes/admin/feedback/feedback.dart';
 part 'routes/admin/feedback/feedback_item.dart';
 part 'routes/admin/feedback/feedback_page.dart';
 part 'routes/admin/feedback/feedback_status_tag.dart';
+part 'routes/update/update.dart';
 
 /// All routes the app has
 final Map<String, RouteInfo> kRoutes = {
@@ -102,5 +103,6 @@ final Map<String, RouteInfo> kRoutes = {
   SettingsGeneralCreditsRoute.info.routeName: SettingsGeneralCreditsRoute.info,
   AdminFeedbackRoute.info.routeName: AdminFeedbackRoute.info,
   AdminFeedbackPageRoute.info.routeName: AdminFeedbackPageRoute.info,
+  UpdateRoute.info.routeName: UpdateRoute.info,
   if (kDebugMode) TestRoute.info.routeName: TestRoute.info,
 };

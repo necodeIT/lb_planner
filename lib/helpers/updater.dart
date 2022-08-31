@@ -58,6 +58,17 @@ class UpdateProvider extends ChangeNotifier {
       exit(0);
     }
   }
+
+  /// Checks for updates.
+  Future<void> checkUpdates(String token) async {
+    var response = await PluginConfigApi.getVersion(token);
+
+    gPluginVersion = response.value;
+
+    await kUpdater.update();
+
+    notifyListeners();
+  }
 }
 
 /// Status of the update.
@@ -112,4 +123,23 @@ class Updater extends GitHubUpdater {
 
   @override
   String get windowsFileName => "Setup.exe";
+
+  @override
+  Future<bool> update() async {
+    if (gPluginVersion == null) {
+      log("Failed checking for updates because plugin version is unkown!", LogTypes.error);
+      return false;
+    }
+
+    var gh = await super.update();
+
+    if (!gh) return false;
+
+    var l = Version.fromString(latestVersion);
+
+    return gPluginVersion!.majorVersion >= l.majorVersion;
+  }
 }
+
+/// The current version of the plugin.
+Version? gPluginVersion;

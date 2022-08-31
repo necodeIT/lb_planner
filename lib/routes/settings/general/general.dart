@@ -33,11 +33,14 @@ class _SettingsGeneralState extends State<SettingsGeneral> {
   //   });
   // }
 
-  void _checkUpdates() async {
+  void _checkUpdates(WidgetRef ref) async {
     if (_checkUpdatesFuture != null) return;
 
+    var updater = ref.read(updaterProvider);
+    var user = ref.read(userProvider);
+
     setState(() {
-      _checkUpdatesFuture = kUpdater.update();
+      _checkUpdatesFuture = updater.checkUpdates(user.token);
     });
 
     await _checkUpdatesFuture;
@@ -89,7 +92,6 @@ class _SettingsGeneralState extends State<SettingsGeneral> {
   Widget build(BuildContext context) {
     return Consumer(builder: (context, ref, _) {
       var updater = ref.watch(updaterProvider);
-      // var user = ref.watch(userProvider);
 
       return LpContainer(
         title: t.settings_general_title,
@@ -100,7 +102,7 @@ class _SettingsGeneralState extends State<SettingsGeneral> {
             SettingsGeneralItem(
               title: updater.versionName,
               icon: Icons.update,
-              onTap: _checkUpdates,
+              onTap: () => _checkUpdates(ref),
               loading: _checkUpdatesFuture != null,
             ),
             NcSpacing.xs(),
