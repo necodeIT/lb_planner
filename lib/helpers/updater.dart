@@ -54,6 +54,7 @@ class UpdateProvider extends ChangeNotifier {
     if (_status.isError) {
       onError();
     } else {
+      await Future.delayed(kSlowAnimationDuration);
       await Process.start(f.path, []);
       exit(0);
     }
