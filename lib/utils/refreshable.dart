@@ -6,15 +6,15 @@ part of lbplanner_engine;
 abstract class IRefreshable {
   static bool _pauseAll = false;
 
-  /// Pausese all refreshable objects.
-  static void pauseAll() {
-    _pauseAll = true;
-  }
+  // /// Pausese all refreshable objects.
+  // static void pauseAll() {
+  //   _pauseAll = true;
+  // }
 
-  /// Resumes all refreshable objects.
-  static void resumeAll() {
-    _pauseAll = false;
-  }
+  // /// Resumes all refreshable objects.
+  // static void resumeAll() {
+  //   _pauseAll = false;
+  // }
 
   DateTime? _lastRefresh;
   bool _autoRefresh = false;
@@ -80,11 +80,11 @@ abstract class IRefreshable {
   void refresh() async {
     if (!_autoRefresh) return;
 
-    if (_pauseAll) {
-      await Future.delayed(refreshRate);
+    // if (_pauseAll) {
+    //   await Future.delayed(refreshRate);
 
-      refresh();
-    }
+    //   refresh();
+    // }
 
     if (_lastRefresh != null) {
       var diff = DateTime.now().difference(_lastRefresh!);
