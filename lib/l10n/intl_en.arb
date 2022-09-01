@@ -124,6 +124,15 @@
       }
     }
   },
+  "@admin_feedback_page_logFile": {
+    "description": "Admin feedback page log file text",
+    "placeholders": {
+      "logfile": {
+        "example": "logfile123.txt",
+        "type": "String"
+      }
+    }
+  },
   "update_btn": "Upgrade to {version}",
   "update_launching": "Launching installer...",
   "admin_dashboard_routeName": "Admin",
@@ -133,6 +142,7 @@
   "admin_feedback_noFeedback": "No feedback yet...",
   "admin_feedback_page_comment": "Comment...",
   "admin_feedback_page_markRead": "Mark as read",
+  "admin_feedback_page_logFile": "Log file: {logfile}",
   "admin_feedback_page_deleteText": "Are you sure you want to delete this feedback?\nThis action cannot be undone.",
   "admin_feedback_page_deleteTitle": "Delete feedback?",
   "admin_feedback_page_id": "ID: #{id}",

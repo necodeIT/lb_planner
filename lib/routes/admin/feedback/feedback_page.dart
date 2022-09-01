@@ -140,8 +140,9 @@ class _AdminFeedbackPageRouteState extends State<AdminFeedbackPageRoute> {
               NcSpacing.small(),
               LpFeedbackStatusTag(status: feedback.status),
               NcSpacing.small(),
-              NcCaptionText(t.admin_feedback_page_author(user.fullname), fontSize: AdminFeedbackItem.fontSize),
-              NcCaptionText(t.admin_feedback_page_id(feedback.id), fontSize: AdminFeedbackItem.fontSize),
+              NcCaptionText(t.admin_feedback_page_author(user.fullname), fontSize: AdminFeedbackItem.fontSize, selectable: true),
+              if (feedback.type.isBug) NcCaptionText(t.admin_feedback_page_logFile(feedback.logFile), fontSize: AdminFeedbackItem.fontSize, selectable: true),
+              NcCaptionText(t.admin_feedback_page_id(feedback.id), fontSize: AdminFeedbackItem.fontSize, selectable: true),
               NcSpacing.large(),
               Expanded(
                 child: CustomScrollView(
