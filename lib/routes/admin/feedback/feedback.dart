@@ -41,6 +41,28 @@ class _AdminFeedbackRouteState extends State<AdminFeedbackRoute> {
       var feedbacks = ref.watch(feedbackProvider);
       _startAutoRefresh(ref);
 
+      var sortedFeedbacks = feedbacks.values.toList()
+        ..sort(
+          (a, b) {
+            var status = a.status.index.compareTo(b.status.index);
+
+            if (status == 1) return status;
+
+            var type = a.type == b.type
+                ? 0
+                : a.type.isBug && b.type.isError
+                    ? -1
+                    : a.type.isError && b.type.isBug
+                        ? 1
+                        : a.type.isBug || a.type.isError
+                            ? -1
+                            : a.type.isSuggestion && !b.type.isOther
+                                ? 1
+                                : a.type.index.compareTo(b.type.index);
+            return type;
+          },
+        );
+
       return Align(
         alignment: Alignment.topLeft,
         child: Column(
@@ -95,8 +117,8 @@ class _AdminFeedbackRouteState extends State<AdminFeedbackRoute> {
               child: ListView(
                 controller: ScrollController(),
                 children: [
-                  for (var feedback in feedbacks.keys) ...[
-                    AdminFeedbackItem(feedbackId: feedback),
+                  for (var feedback in sortedFeedbacks) ...[
+                    AdminFeedbackItem(feedbackId: feedback.id),
                     NcSpacing.medium(),
                   ]
                 ],
