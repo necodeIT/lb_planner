@@ -130,6 +130,7 @@
   "admin_feedback_headers_status": "Status",
   "admin_feedback_page_author": "Author: {author}",
   "admin_feedback_page_update": "Update",
+  "admin_feedback_noFeedback": "No feedback yet...",
   "admin_feedback_page_comment": "Comment...",
   "admin_feedback_page_markRead": "Mark as read",
   "admin_feedback_page_deleteText": "Are you sure you want to delete this feedback?\nThis action cannot be undone.",

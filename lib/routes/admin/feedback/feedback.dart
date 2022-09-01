@@ -19,6 +19,7 @@ class AdminFeedbackRoute extends StatefulWidget {
   @override
   State<AdminFeedbackRoute> createState() => _AdminFeedbackRouteState();
 
+  /// Sorts the given feedback list
   static List<Feedback> sortFeedbacks(List<Feedback> feedbacks) {
     feedbacks.sort(
       (a, b) {
@@ -71,68 +72,77 @@ class _AdminFeedbackRouteState extends State<AdminFeedbackRoute> {
 
       var sortedFeedbacks = AdminFeedbackRoute.sortFeedbacks(feedbacks.values.toList());
 
-      return Align(
-        alignment: Alignment.topLeft,
-        child: Column(
-          children: [
-            Row(
-              children: [
-                Expanded(
-                  child: NcCaptionText(
-                    t.admin_feedback_headers_user,
-                    fontSize: AdminFeedbackRoute.headerFontSize,
-                  ),
-                ),
-                Expanded(
-                  child: NcCaptionText(
-                    t.admin_feedback_headers_status,
-                    fontSize: AdminFeedbackRoute.headerFontSize,
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-                Expanded(
-                  child: NcCaptionText(
-                    t.admin_feedback_headers_type,
-                    fontSize: AdminFeedbackRoute.headerFontSize,
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-                Expanded(
-                  child: NcCaptionText(
-                    t.admin_feedback_headers_lastModified,
-                    fontSize: AdminFeedbackRoute.headerFontSize,
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-                Expanded(
-                  child: NcCaptionText(
-                    t.admin_feedback_headers_lastModifiedBy,
-                    fontSize: AdminFeedbackRoute.headerFontSize,
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-                Expanded(
-                  child: NcCaptionText(
-                    t.admin_feedback_headers_timestamp,
-                    fontSize: AdminFeedbackRoute.headerFontSize,
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ],
-            ),
-            NcSpacing.large(),
-            Expanded(
-              child: ListView(
-                controller: ScrollController(),
+      return ConditionalWidget(
+        condition: sortedFeedbacks.isNotEmpty,
+        trueWidget: (_) => Align(
+          alignment: Alignment.topLeft,
+          child: Column(
+            children: [
+              Row(
                 children: [
-                  for (var feedback in sortedFeedbacks) ...[
-                    AdminFeedbackItem(feedbackId: feedback.id),
-                    NcSpacing.medium(),
-                  ]
+                  Expanded(
+                    child: NcCaptionText(
+                      t.admin_feedback_headers_user,
+                      fontSize: AdminFeedbackRoute.headerFontSize,
+                    ),
+                  ),
+                  Expanded(
+                    child: NcCaptionText(
+                      t.admin_feedback_headers_status,
+                      fontSize: AdminFeedbackRoute.headerFontSize,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  Expanded(
+                    child: NcCaptionText(
+                      t.admin_feedback_headers_type,
+                      fontSize: AdminFeedbackRoute.headerFontSize,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  Expanded(
+                    child: NcCaptionText(
+                      t.admin_feedback_headers_lastModified,
+                      fontSize: AdminFeedbackRoute.headerFontSize,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  Expanded(
+                    child: NcCaptionText(
+                      t.admin_feedback_headers_lastModifiedBy,
+                      fontSize: AdminFeedbackRoute.headerFontSize,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  Expanded(
+                    child: NcCaptionText(
+                      t.admin_feedback_headers_timestamp,
+                      fontSize: AdminFeedbackRoute.headerFontSize,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
                 ],
               ),
-            ),
-          ],
+              NcSpacing.large(),
+              Expanded(
+                child: ListView(
+                  controller: ScrollController(),
+                  children: [
+                    for (var feedback in sortedFeedbacks) ...[
+                      AdminFeedbackItem(feedbackId: feedback.id),
+                      NcSpacing.medium(),
+                    ]
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+        falseWidget: (_) => Center(
+          child: NcCaptionText(
+            t.admin_feedback_noFeedback,
+            fontSize: AdminFeedbackRoute.headerFontSize,
+          ),
         ),
       );
     });
