@@ -18,6 +18,34 @@ class AdminFeedbackRoute extends StatefulWidget {
 
   @override
   State<AdminFeedbackRoute> createState() => _AdminFeedbackRouteState();
+
+  static List<Feedback> sortFeedbacks(List<Feedback> feedbacks) {
+    feedbacks.sort(
+      (a, b) {
+        var status = a.status.index.compareTo(b.status.index);
+
+        if (status == 1) return status;
+
+        var type = a.type == b.type
+            ? 0
+            : a.type.isBug && b.type.isError
+                ? -1
+                : a.type.isError && b.type.isBug
+                    ? 1
+                    : a.type.isBug || a.type.isError
+                        ? -1
+                        : a.type.isSuggestion && !b.type.isOther
+                            ? 1
+                            : a.type.index.compareTo(b.type.index);
+
+        if (type == 0) return b.timestamp.compareTo(a.timestamp);
+
+        return type;
+      },
+    );
+
+    return feedbacks;
+  }
 }
 
 class _AdminFeedbackRouteState extends State<AdminFeedbackRoute> {
@@ -41,30 +69,7 @@ class _AdminFeedbackRouteState extends State<AdminFeedbackRoute> {
       var feedbacks = ref.watch(feedbackProvider);
       _startAutoRefresh(ref);
 
-      var sortedFeedbacks = feedbacks.values.toList()
-        ..sort(
-          (a, b) {
-            var status = a.status.index.compareTo(b.status.index);
-
-            if (status == 1) return status;
-
-            var type = a.type == b.type
-                ? 0
-                : a.type.isBug && b.type.isError
-                    ? -1
-                    : a.type.isError && b.type.isBug
-                        ? 1
-                        : a.type.isBug || a.type.isError
-                            ? -1
-                            : a.type.isSuggestion && !b.type.isOther
-                                ? 1
-                                : a.type.index.compareTo(b.type.index);
-
-            if (type == 0) return b.timestamp.compareTo(a.timestamp);
-
-            return type;
-          },
-        );
+      var sortedFeedbacks = AdminFeedbackRoute.sortFeedbacks(feedbacks.values.toList());
 
       return Align(
         alignment: Alignment.topLeft,

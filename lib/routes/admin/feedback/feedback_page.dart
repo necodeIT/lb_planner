@@ -26,6 +26,7 @@ class _AdminFeedbackPageRouteState extends State<AdminFeedbackPageRoute> {
   bool _commenmtInit = false;
 
   Future<RawApiResponse>? _updateFuture;
+  Future<RawApiResponse>? _deleteFuture;
 
   _updateFeedback(WidgetRef ref, Feedback feedback) async {
     if (_updateFuture != null) return;
@@ -62,20 +63,42 @@ class _AdminFeedbackPageRouteState extends State<AdminFeedbackPageRoute> {
         _updateFuture = null;
       });
 
-      if (response!.succeeded) {
-        if (feedbacks.values.any((f) => f.id > feedback.id)) {
-          var nexFeedback = feedbacks.values.firstWhere((f) => f.id > feedback.id);
-          AdminFeedbackPageRoute.info.push(context, params: {"id": nexFeedback.id});
-        } else {
-          AdminFeedbackRoute.info.push(context);
-        }
-      }
+      if (response!.succeeded) _pushNext(feedbacks, feedback);
+    }
+  }
+
+  _pushNext(Map<int, Feedback> feedbacks, Feedback feedback) {
+    var sorted = AdminFeedbackRoute.sortFeedbacks(feedbacks.values.toList());
+    var currentIndex = sorted.indexOf(feedback);
+
+    if (sorted.length - 1 > currentIndex && currentIndex >= 0) {
+      var nextFeedback = sorted[currentIndex + 1];
+      AdminFeedbackPageRoute.info.push(context, params: {"id": nextFeedback.id});
+    } else {
+      AdminFeedbackRoute.info.push(context);
+    }
+  }
+
+  _deleteFeedback(WidgetRef ref, Feedback feedback) async {
+    if (_deleteFuture != null) return;
+
+    setState(() {
+      _deleteFuture = ref.read(feedbackController).deleteFeedback(feedback.id);
+    });
+
+    var response = await _deleteFuture;
+
+    if (mounted) {
+      setState(() {
+        _deleteFuture = null;
+      });
+
+      if (response!.succeeded) _pushNext(ref.read(feedbackProvider), feedback);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement delete functionality
     return Consumer(
       builder: (context, ref, _) {
         var feedback = ref.watch(feedbackProvider)[widget.feedbackId];
@@ -94,10 +117,29 @@ class _AdminFeedbackPageRouteState extends State<AdminFeedbackPageRoute> {
         return LpContainer(
           title: feedback.type.title(context),
           leading: LpIcon(feedback.type.icon, color: feedback.type.color),
-          trailing: LpFeedbackStatusTag(status: feedback.status),
+          trailing: ConditionalWidget(
+            condition: _deleteFuture == null,
+            trueWidget: (_) => HoverBuilder(
+              builder: (context, hover) => LpIcon(
+                Icons.delete,
+                color: hover ? errorColor : neutralColor,
+              ),
+              onTap: () => lpShowConfirmDialog(
+                context,
+                title: t.admin_feedback_page_deleteTitle,
+                message: t.admin_feedback_page_deleteText,
+                confirmIsBad: true,
+                onConfirm: () => _deleteFeedback(ref, feedback),
+              ),
+            ),
+            falseWidget: (_) => LpLoadingIndicator.circular(color: errorColor),
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              NcSpacing.small(),
+              LpFeedbackStatusTag(status: feedback.status),
+              NcSpacing.small(),
               NcCaptionText(t.admin_feedback_page_author(user.fullname), fontSize: AdminFeedbackItem.fontSize),
               NcCaptionText(t.admin_feedback_page_id(feedback.id), fontSize: AdminFeedbackItem.fontSize),
               NcSpacing.large(),
