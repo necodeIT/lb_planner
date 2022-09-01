@@ -278,7 +278,7 @@ void lpShowAlertDialog(
   OverlayEntry? dialogOverLay;
   OverlayEntry background = _generateBackground(() => key.currentState!.close());
 
-  var dialog = LpDialog.confirm(
+  var dialog = LpDialog.alert(
     key: key,
     header: header ?? NcTitleText(title!, fontSize: LpDialog.titleFontSize),
     body: ConditionalWidget(

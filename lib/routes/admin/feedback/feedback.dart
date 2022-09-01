@@ -59,6 +59,9 @@ class _AdminFeedbackRouteState extends State<AdminFeedbackRoute> {
                             : a.type.isSuggestion && !b.type.isOther
                                 ? 1
                                 : a.type.index.compareTo(b.type.index);
+
+            if (type == 0) return b.timestamp.compareTo(a.timestamp);
+
             return type;
           },
         );
