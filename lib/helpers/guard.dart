@@ -145,6 +145,7 @@ const _ignoreList = [
   "PlatformException(Clipboard error, Unable to open clipboard, 5,",
   "cached files cannot be used by the cache manageranymore.:",
   "connection timed out",
+  "Bad state: Tried to use PlanProvider after `dispose` was called.",
 ];
 
 bool _filterError(String report) {

@@ -64,13 +64,14 @@ class CalendarPlanCellState extends State<CalendarPlanCell> {
     return Consumer(
       builder: (context, ref, _) {
         var plan = ref.watch(planProvider);
+        var user = ref.watch(userProvider);
 
         var allModules = ref.watch(modulesProvider);
         List<int> deadlines = plan.deadlines.values.where((deadline) => deadline.end.isSameDate(widget.day)).map((deadline) => deadline.moduleId).toList();
 
         var modules = allModules.keys.where(deadlines.contains).toList();
 
-        var accessLvl = plan.members[ref.read(userProvider).id];
+        var accessLvl = plan.members[user.id];
 
         return AnimatedContainer(
           padding: const EdgeInsets.all(NcSpacing.xsSpacing),
@@ -106,14 +107,15 @@ class CalendarPlanCellState extends State<CalendarPlanCell> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            NcBodyText(
-                              t.calendar_plan_tasks(modules.length),
-                              textAlign: TextAlign.center,
-                              color: widget.isCurrentMonth
-                                  ? textColor
-                                  // ignore: no-magic-number
-                                  : textColor.withOpacity(0.7),
-                            ),
+                            if (user.displayTaskCount)
+                              NcBodyText(
+                                t.calendar_plan_tasks(modules.length),
+                                textAlign: TextAlign.center,
+                                color: widget.isCurrentMonth
+                                    ? textColor
+                                    // ignore: no-magic-number
+                                    : textColor.withOpacity(0.7),
+                              ),
                             NcBodyText(
                               _formatter.format(widget.day),
                               textAlign: TextAlign.center,
