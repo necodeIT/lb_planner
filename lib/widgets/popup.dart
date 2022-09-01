@@ -15,6 +15,7 @@ class LpPopup extends StatefulWidget {
     this.cursor = SystemMouseCursors.click,
     this.onHide,
     this.onShow,
+    this.hoverChild,
   }) : super(key: key);
 
   /// Builds the popup to insert.
@@ -46,6 +47,9 @@ class LpPopup extends StatefulWidget {
 
   /// Called when the popup is shown.
   final VoidCallback? onShow;
+
+  /// The child that is displayd whihle hovering over [chiild].
+  final Widget? hoverChild;
 
   @override
   State<LpPopup> createState() => _LpPopupState();
@@ -170,7 +174,9 @@ class _LpPopupState extends State<LpPopup> with WindowListener, RouteAware {
       child: Listener(
         key: _key,
         onPointerDown: (event) => show(),
-        child: widget.child,
+        child: HoverBuilder(
+          builder: (context, hovering) => hovering && widget.hoverChild != null && !_isShowing ? widget.hoverChild! : widget.child,
+        ),
       ),
     );
   }

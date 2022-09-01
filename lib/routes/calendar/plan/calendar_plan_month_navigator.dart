@@ -22,29 +22,32 @@ class CalendarPlanMonthNavigator extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        LpGestureDetector(
+        HoverBuilder(
           onTap: onPreviousMonth,
-          child: LpIcon(
+          builder: (_, hover) => LpIcon(
             Icons.chevron_left,
             size: Calendar.fontSize,
+            color: hover ? accentColor : null,
           ),
         ),
         NcSpacing.small(),
         Center(
-          child: LpGestureDetector(
+          child: HoverBuilder(
             onTap: onToday,
-            child: NcCaptionText(
+            builder: (_, hover) => NcCaptionText(
               DateFormat("MMMM yyyy").format(currentMonth),
               fontSize: Calendar.fontSize,
+              color: hover ? accentColor : null,
             ),
           ),
         ),
         NcSpacing.small(),
-        LpGestureDetector(
+        HoverBuilder(
           onTap: onNextMonth,
-          child: LpIcon(
+          builder: (_, hover) => LpIcon(
             Icons.chevron_right,
             size: Calendar.fontSize,
+            color: hover ? accentColor : null,
           ),
         ),
       ],

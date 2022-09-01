@@ -36,6 +36,7 @@ class _UserNotificationsState extends State<UserNotifications> {
           onShow: () => _onShow(ref.read(notificationsController)),
           onHide: _onHide,
           child: LpIcon(Icons.notifications_outlined),
+          hoverChild: LpIcon(Icons.notifications_outlined, color: accentColor),
           popupBuilder: UserNotificationsPopup.builder,
           offset: const Offset(-10, 0),
         );
