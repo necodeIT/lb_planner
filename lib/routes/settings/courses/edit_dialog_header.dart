@@ -18,12 +18,15 @@ class CourseEditDialogHeader extends StatefulWidget {
 class _CourseEditDialogHeaderState extends State<CourseEditDialogHeader> {
   bool _editMode = false;
   final TextEditingController _shortnameController = TextEditingController();
+  final FocusNode _shortnameFocusNode = FocusNode();
 
   _enterEditMode() {
     setState(() {
       _editMode = true;
       _shortnameController.text = widget.controller.shortname;
     });
+
+    _shortnameFocusNode.requestFocus();
   }
 
   _leaveEditMode() {
@@ -70,6 +73,7 @@ class _CourseEditDialogHeaderState extends State<CourseEditDialogHeader> {
               trueWidget: (context) => Expanded(
                 child: LpTextField.filled(
                   controller: _shortnameController,
+                  focusNode: _shortnameFocusNode,
                   onCancel: _leaveEditMode,
                   maxLength: CourseEditDialogHeader.maxShortNameLength,
                   autoFocus: true,
