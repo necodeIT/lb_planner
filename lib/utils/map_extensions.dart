@@ -104,7 +104,7 @@ extension ModelMappingExtensions on Map<String, dynamic> {
 
     var content = this["content"];
 
-    var logFile = this["logifle"];
+    var logFile = this["logfile"];
     var comment = this["notes"];
     var lastModified = this["lastmodified"];
 
