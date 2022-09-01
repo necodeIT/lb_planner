@@ -76,7 +76,7 @@ initGuard(WidgetRef ref) {
   _staticRef = ref;
 
   Api.onError = (response) {
-    if (!_filterApiError(response)) return;
+    if (!_filterError(response.errorMessage)) return;
 
     _handleError(ref as BuildContext, ref, response);
   };
@@ -108,7 +108,7 @@ class LpReportMode extends ReportMode {
         [],
         logger: _LpLogger(),
         reportOccurrenceTimeout: timeout,
-        filterFunction: _filterReport,
+        filterFunction: (r) => _filterError(r.error.toString()),
       );
 }
 
@@ -147,10 +147,6 @@ const _ignoreList = [
   "connection timed out",
 ];
 
-bool _filterReport(Report report) {
-  return !_ignoreList.any(report.error.toString().containsCaseInsensitive) && currentRoute != UpdateRoute.info;
-}
-
-bool _filterApiError(RawApiResponse response) {
-  return !_ignoreList.any(response.errorMessage.toString().containsCaseInsensitive) && currentRoute != UpdateRoute.info;
+bool _filterError(String report) {
+  return !_ignoreList.any(report.containsCaseInsensitive) && currentRoute != UpdateRoute.info;
 }
