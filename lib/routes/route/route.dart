@@ -59,8 +59,8 @@ class RouteWrapper extends StatelessWidget {
           OfflineRoute.info.push(context);
         }
 
-        if (user.loading && currentRoute != LoginRoute.info) LoginRoute.info.push(context);
-        if (updater.updateAvailable && currentRoute != UpdateRoute.info) UpdateRoute.info.push(context);
+        if (user.loading && currentRoute != LoginRoute.info && connected) LoginRoute.info.push(context);
+        if (updater.updateAvailable && currentRoute != UpdateRoute.info && connected) UpdateRoute.info.push(context);
       });
 
       return ContextMenuOverlay(
