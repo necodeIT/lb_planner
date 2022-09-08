@@ -3,6 +3,9 @@ part of lbplanner_routes;
 /// The current route that was pushed.
 RouteInfo get currentRoute => RouteWrapper.currentRoute;
 
+/// The parameters for the current route.
+RouteParameters get currentRouteParams => RouteWrapper.currentRouteParams;
+
 /// Wraps a route in a Sidebar and a scaffold.
 class RouteWrapper extends StatelessWidget {
   /// Wraps a route in a Sidebar and a scaffold.
@@ -12,11 +15,16 @@ class RouteWrapper extends StatelessWidget {
   final Widget child;
 
   static RouteInfo _currentRoute = LoginRoute.info;
+  static RouteParameters _currentRouteParams = RouteParameters({});
 
   /// The current route that was pushed.
   static RouteInfo get currentRoute => _currentRoute;
 
+  /// The parameters for the current route.
+  static RouteParameters get currentRouteParams => _currentRouteParams;
+
   static RouteInfo? _cachedOnlineRoute;
+  static RouteParameters? _cachedOnlineRouteParams;
 
   /// Generates a route.
   static PageRouteBuilder gnerateRoute(RouteSettings settings) {
@@ -29,7 +37,7 @@ class RouteWrapper extends StatelessWidget {
       pageBuilder: (context, animation, secondaryAnimation) => Center(
         child: currentRoute.build(
           context,
-          RouteParameters.fromRouteSettings(settings),
+          _currentRouteParams = RouteParameters.fromRouteSettings(settings),
         ),
       ),
       transitionsBuilder: (context, animation, secondaryAnimation, child) => RouteWrapper(
@@ -53,9 +61,10 @@ class RouteWrapper extends StatelessWidget {
       var updater = ref.watch(updaterProvider);
 
       WidgetsBinding.instance!.addPostFrameCallback((_) {
-        if (connected && currentRoute == OfflineRoute.info) (_cachedOnlineRoute ?? DashboardRoute.info).push(context);
+        if (connected && currentRoute == OfflineRoute.info) (_cachedOnlineRoute ?? DashboardRoute.info).push(context, params: _cachedOnlineRouteParams?.params);
         if (!connected && currentRoute != OfflineRoute.info) {
           _cachedOnlineRoute = currentRoute;
+          _cachedOnlineRouteParams = currentRouteParams;
           OfflineRoute.info.push(context);
         }
 
