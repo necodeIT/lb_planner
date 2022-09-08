@@ -123,6 +123,16 @@ class modules_helper {
     const TYPE_TEST = 2;
 
     /**
+     * Enum value for modules of type 'M'.
+     */
+    const TYPE_M = 3;
+
+    /**
+     * Enum value for non
+     */
+    const TYPE_NONE = 4;
+
+    /**
      * The return structure of a module.
      *
      * @return external_single_structure The structure of a module.
@@ -200,27 +210,30 @@ class modules_helper {
      * @return integer The enum value for the module type.
      */
     public static function determin_type(string $modulename) : int {
-        // Convert module name to lowercase.
-        $modulename = strtolower($modulename);
+        // Convert module name to uppercase.
+        $modulename = strtoupper($modulename);
 
         // Return TYPE_TEST if the name contains 'test' or 'sa'.
-        if (strpos($modulename, 'test') !== false || strpos($modulename, 'sa') !== false) {
+        if (strpos($modulename, '[TEST]') !== false || strpos($modulename, '[SA]') !== false) {
             return self::TYPE_TEST;
         }
+        // Return TYPE_GK if the name contains 'GK'.
 
-        // Return TYPE_GK if the name contains 'gk.
-
-        if (strpos($modulename, 'gk') !== false) {
+        if (strpos($modulename, '[GK]') !== false) {
             return self::TYPE_GK;
         }
 
-        // Return TYPE_EK if the name contains 'ek'.
-        if (strpos($modulename, 'ek') !== false) {
+        if (strpos($modulename, '[EK]') !== false) {
             return self::TYPE_EK;
         }
 
-        // Return TYPE_GK elswise.
-        return self::TYPE_GK;
+        // Return TYPE_EK if the name contains 'M'.
+        if (strpos($modulename, '[M]') !== false) {
+            return self::TYPE_M;
+        }
+
+        // Return TYPE_NONE elswise.
+        return self::TYPE_NONE;
     }
 
     /**
@@ -252,12 +265,18 @@ class modules_helper {
         global $DB;
         date_default_timezone_set('UTC');
 
-            // Get module data.
-            $module = $DB->get_record(self::ASSIGN_TABLE, array('id' => $moduleid));
+        // Get module data.
+        $module = $DB->get_record(self::ASSIGN_TABLE, array('id' => $moduleid));
 
-            // Check if there are any submissions or feedbacks for this module.
+        // Determine module type.
+        $type = self::determin_type($module->name);
 
-            $submitted = false;
+        if ($type == self::TYPE_NONE) {
+                return null;
+        }
+        // Check if there are any submissions or feedbacks for this module.
+
+        $submitted = false;
 
         if ($DB->record_exists(self::SUBMISSIONS_TABLE, array('assignment' => $moduleid, 'userid' => $userid))) {
             $submission = $DB->get_record(
@@ -268,8 +287,8 @@ class modules_helper {
             $submitted = strval($submission->status) == self::SUBMISSION_STATUS_SUBMITTED;
         }
 
-            $done = false;
-            $grade = null;
+        $done = false;
+        $grade = null;
 
         if ($DB->record_exists(self::GRADES_TABLE, array('assignment' => $moduleid, 'userid' => $userid))) {
             $moduleboundaries = $DB->get_record(self::GRADE_ITEMS_TABLE, array('iteminstance' => $moduleid));
@@ -295,8 +314,9 @@ class modules_helper {
         }
         // Check if the module is late.
 
-            $late = false;
-            $planid = plan_helper::get_plan_id($userid);
+        $late = false;
+        $planid = plan_helper::get_plan_id($userid);
+
         if ($DB->record_exists(plan_helper::DEADLINES_TABLE, array('planid' => $planid, 'moduleid' => $moduleid))) {
             $deadline = $DB->get_record(plan_helper::DEADLINES_TABLE, array('planid' => $planid, 'moduleid' => $moduleid));
             $late = intval(date("Ymd", $deadline->deadlineend)) < intval(date("Ymd")) && !$done;
@@ -311,7 +331,7 @@ class modules_helper {
             'name' => $module->name,
             'courseid' => $module->course,
             'status' => $status,
-            'type' => self::determin_type($module->name),
+            'type' => $type,
             'url' => self::get_module_url($moduleid, $module->course),
             'grade' => $grade,
             'deadline' => $module->duedate > 0 ? $module->duedate : null,
@@ -336,7 +356,10 @@ class modules_helper {
             if (!$ekenabled && self::determin_type($mdlmodule->name) == self::TYPE_EK) {
                 continue;
             }
-            $modules[] = self::get_module($mdlmodule->id, $userid);
+            $module = self::get_module($mdlmodule->id, $userid);
+            if ($module != null) {
+                $modules[] = $module;
+            }
         }
 
         return $modules;
