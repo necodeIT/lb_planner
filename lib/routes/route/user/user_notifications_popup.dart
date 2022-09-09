@@ -67,7 +67,7 @@ extension _NotificationExt on Notification {
 
     if (type.isInvite) {
       var invites = ref.watch(invitesProvider);
-      var inviteId = payload["inviteid"];
+      var inviteId = payload;
       var invite = invites[inviteId];
 
       invitePending = invite != null && invite.status.isPending;

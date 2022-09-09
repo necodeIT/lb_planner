@@ -47,7 +47,7 @@ class _UserNotificationsItemState extends State<UserNotificationsItem> {
 
         switch (notification.type) {
           case NotificationTypes.invite:
-            int id = notification.payload["inviteid"];
+            int id = notification.payload;
 
             var invite = ref.watch(invitesProvider)[id];
 
@@ -96,7 +96,7 @@ class _UserNotificationsItemState extends State<UserNotificationsItem> {
 
             break;
           case NotificationTypes.inviteAccepted:
-            var id = int.parse(notification.payload["inviteid"]); // dunno why but "inviteid" is appearently a string
+            var id = notification.payload;
 
             var invite = ref.watch(invitesProvider)[id];
 
@@ -115,7 +115,7 @@ class _UserNotificationsItemState extends State<UserNotificationsItem> {
             text = t.user_notifications_inviteAccepted_text(user.fullname);
             break;
           case NotificationTypes.inviteDeclined:
-            var id = int.parse(notification.payload["inviteid"]); // dunno why but "inviteid" is appearently a string
+            var id = notification.payload; // dunno why but "inviteid" is appearently a string
 
             var invite = ref.watch(invitesProvider)[id];
 
@@ -135,12 +135,20 @@ class _UserNotificationsItemState extends State<UserNotificationsItem> {
 
             break;
           case NotificationTypes.planLeft:
-            var username = notification.payload["value"];
+            var userid = notification.payload;
+            var users = ref.watch(usersProvider);
 
-            text = t.user_notifications_planLeft_text(username);
+            var user = users[userid];
+
+            if (user == null) {
+              loading = true;
+              break;
+            }
+
+            text = t.user_notifications_planLeft_text(user.firstname);
             break;
           case NotificationTypes.planRemoved:
-            var userId = notification.payload["userid"];
+            var userId = notification.payload;
 
             var user = ref.watch(usersProvider)[userId];
 
