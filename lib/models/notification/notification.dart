@@ -20,7 +20,7 @@ class Notification with _$Notification {
     required int id,
 
     /// The payload of the notification
-    required Map<String, dynamic> payload,
+    required int payload,
 
     /// The type of the notification
     required NotificationTypes type,

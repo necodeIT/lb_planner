@@ -9,7 +9,7 @@ part of 'notification.dart';
 _$_Notification _$$_NotificationFromJson(Map<String, dynamic> json) =>
     _$_Notification(
       id: json['id'] as int,
-      payload: json['payload'] as Map<String, dynamic>,
+      payload: json['payload'] as int,
       type: $enumDecode(_$NotificationTypesEnumMap, json['type']),
       status: $enumDecode(_$NotificationStatusEnumMap, json['status']),
       timestamp: DateTime.parse(json['timestamp'] as String),

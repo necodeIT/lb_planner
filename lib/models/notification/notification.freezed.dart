@@ -24,7 +24,7 @@ class _$NotificationTearOff {
 
   _Notification call(
       {required int id,
-      required Map<String, dynamic> payload,
+      required int payload,
       required NotificationTypes type,
       required NotificationStatus status,
       required DateTime timestamp,
@@ -53,7 +53,7 @@ mixin _$Notification {
   int get id => throw _privateConstructorUsedError;
 
   /// The payload of the notification
-  Map<String, dynamic> get payload => throw _privateConstructorUsedError;
+  int get payload => throw _privateConstructorUsedError;
 
   /// The type of the notification
   NotificationTypes get type => throw _privateConstructorUsedError;
@@ -80,7 +80,7 @@ abstract class $NotificationCopyWith<$Res> {
       _$NotificationCopyWithImpl<$Res>;
   $Res call(
       {int id,
-      Map<String, dynamic> payload,
+      int payload,
       NotificationTypes type,
       NotificationStatus status,
       DateTime timestamp,
@@ -112,7 +112,7 @@ class _$NotificationCopyWithImpl<$Res> implements $NotificationCopyWith<$Res> {
       payload: payload == freezed
           ? _value.payload
           : payload // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>,
+              as int,
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -142,7 +142,7 @@ abstract class _$NotificationCopyWith<$Res>
   @override
   $Res call(
       {int id,
-      Map<String, dynamic> payload,
+      int payload,
       NotificationTypes type,
       NotificationStatus status,
       DateTime timestamp,
@@ -176,7 +176,7 @@ class __$NotificationCopyWithImpl<$Res> extends _$NotificationCopyWithImpl<$Res>
       payload: payload == freezed
           ? _value.payload
           : payload // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>,
+              as int,
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -218,7 +218,7 @@ class _$_Notification with DiagnosticableTreeMixin implements _Notification {
   @override
 
   /// The payload of the notification
-  final Map<String, dynamic> payload;
+  final int payload;
   @override
 
   /// The type of the notification
@@ -292,7 +292,7 @@ class _$_Notification with DiagnosticableTreeMixin implements _Notification {
 abstract class _Notification implements Notification {
   const factory _Notification(
       {required int id,
-      required Map<String, dynamic> payload,
+      required int payload,
       required NotificationTypes type,
       required NotificationStatus status,
       required DateTime timestamp,
@@ -308,7 +308,7 @@ abstract class _Notification implements Notification {
   @override
 
   /// The payload of the notification
-  Map<String, dynamic> get payload;
+  int get payload;
   @override
 
   /// The type of the notification
