@@ -15,6 +15,9 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 use local_lbplanner\helpers\user_helper;
+use local_lbplanner\helpers\config_helper;
+
+defined('MOODLE_INTERNAL') || die;
 
 function xmldb_local_lbplanner_install() {
     global $DB;
@@ -74,4 +77,5 @@ function xmldb_local_lbplanner_install() {
         role_assign($teacherid, $teacher->userid, $teacher->contextid);
     }
 }
+config_helper::set_default_active_year();
 

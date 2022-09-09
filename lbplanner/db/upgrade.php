@@ -14,12 +14,10 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-defined('MOODLE_INTERNAL') or die();
+use local_lbplanner\helpers\config_helper;
 
-$release = '0.0.0';
+function xmldb_local_lbplanner_upgrade($oldversion) {
+    config_helper::set_default_active_year();
+    return true;
+}
 
-$plugin->component = 'local_lbplanner';
-$plugin->release = 'Alpha v.'.$release;
-$plugin->version = 2022090904;
-
-set_config('release', $release, 'local_lbplanner');

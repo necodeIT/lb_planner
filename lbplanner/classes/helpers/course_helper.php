@@ -82,8 +82,12 @@ class course_helper {
      * @return string the current year the last 2 digits (20(20))
      */
     public static function get_current_year() : string {
-        return substr(date('Y'), 2);
+        if (get_config('local_lbplanner', 'activeyear') == null) {
+            return get_config('local_lbplanner', 'activeyear');
+        }
+        return get_config('local_lbplanner', 'defaultactiveyear');
     }
+
     /**
      * Get the current category id
      *

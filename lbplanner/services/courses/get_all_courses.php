@@ -59,47 +59,52 @@ class courses_get_all_courses extends external_api {
 
         foreach ($courses as $course) {
             $courseid = $course->courseid;
-            if ($DB->record_exists(course_helper::LBPLANNER_COURSE_TABLE, array('courseid' => $courseid, 'userid' => $userid))) {
-                $catgirl = $DB->get_record(
-                    course_helper::LBPLANNER_COURSE_TABLE, array('courseid' => $courseid, 'userid' => $userid),
+            $name = course_helper::get_fullname($courseid);
+            if (strpos($name, course_helper::get_current_year()) !== false) {
+                if ($DB->record_exists(
+                    course_helper::LBPLANNER_COURSE_TABLE, array('courseid' => $courseid, 'userid' => $userid)
+                    )) {
+                    $catgirl = $DB->get_record(
+                        course_helper::LBPLANNER_COURSE_TABLE, array('courseid' => $courseid, 'userid' => $userid),
                     '*',
                     MUST_EXIST
+                    );
+                    $catgirl->name = $name;
+                    $catgirls[] = $catgirl;
+                    continue;
+                }
+                $shortname = substr(course_helper::get_mdl_course($courseid)->shortname, 0, 5);
+                if (strpos($shortname, ' ') !== false) {
+                    $shortname = substr($shortname, 0, strpos($shortname, ' '));
+                }
+                // Check this out: https://youtu.be/dQw4w9WgXcQ .
+                $catgirl = (object) array(
+                    'courseid' => $courseid,
+                    'color' => course_helper::COLORS[array_rand(course_helper::COLORS)],
+                    'shortname' => strtoupper($shortname),
+                    'enabled' => course_helper::DISABLED_COURSE,
+                    'userid' => $userid,
                 );
-                $catgirl->name = course_helper::get_fullname($courseid);
+                $DB->insert_record(course_helper::LBPLANNER_COURSE_TABLE, $catgirl);
+
+                $catgirl->name = $name;
+
                 $catgirls[] = $catgirl;
+            } else {
                 continue;
             }
-            $shortname = substr(course_helper::get_mdl_course($courseid)->shortname, 0, 5);
-            if (strpos($shortname, ' ') !== false) {
-                $shortname = substr($shortname, 0, strpos($shortname, ' '));
-            }
-            // Check this out: https://youtu.be/dQw4w9WgXcQ .
-            $catgirl = (object) array(
-                'courseid' => $courseid,
-                'color' => course_helper::COLORS[array_rand(course_helper::COLORS)],
-                'shortname' => strtoupper($shortname),
-                'enabled' => course_helper::DISABLED_COURSE,
-                'userid' => $userid,
-            );
-
-            $DB->insert_record(course_helper::LBPLANNER_COURSE_TABLE, $catgirl);
-
-            $catgirl->name = course_helper::get_fullname($courseid);
-
-            $catgirls[] = $catgirl;
         }
-        return $catgirls;
+            return $catgirls;
     }
-
 
     public static function get_all_courses_returns() {
         return new external_multiple_structure(
-        new external_single_structure(
-            array(
-                'courseid' => new external_value(PARAM_INT, 'The id of the course'),
-                'color' => new external_value(PARAM_TEXT, 'The color of the course'),
-                'name' => new external_value(PARAM_TEXT, 'The name of the course'),
-                'shortname' => new external_value(PARAM_TEXT, 'The shortname of the course'),
+            new external_single_structure(
+                array(
+                    'courseid' => new external_value(PARAM_INT, 'The id of the course'),
+                    'color' => new external_value(PARAM_TEXT, 'The color of the course'),
+                    'name' => new external_value(PARAM_TEXT, 'The name of the course'),
+                    'shortname' => new external_value(PARAM_TEXT, 'The shortname of the course'),
                 'enabled' => new external_value(PARAM_BOOL, 'Whether the course is enabled or not'),
                 'userid' => new external_value(PARAM_INT, 'The id of the user'),
             )
