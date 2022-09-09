@@ -27,8 +27,6 @@ extension ModelMappingExtensions on Map<String, dynamic> {
   Map<String, dynamic> mapNotification() {
     var body = Map.of(this);
 
-    var payload = (this["info"] ?? "") as String;
-
     var type = this["type"];
     var status = this["status"];
     var id = this["notificationid"];
@@ -38,7 +36,7 @@ extension ModelMappingExtensions on Map<String, dynamic> {
     var readTimestamp = this["timestamp_read"];
     if (readTimestamp != null) body["readTimestamp"] = DateTime.fromMillisecondsSinceEpoch(readTimestamp * 1000).toString();
 
-    body["payload"] = payload as int;
+    body["payload"] = this["info"] ?? -1;
     body["type"] = NotificationTypes.values[type].name;
     body["status"] = NotificationStatus.values[status].name;
     body["id"] = id;
