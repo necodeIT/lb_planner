@@ -272,7 +272,7 @@ class modules_helper {
         $type = self::determin_type($module->name);
 
         if ($type == self::TYPE_NONE) {
-                return null;
+            return array();
         }
         // Check if there are any submissions or feedbacks for this module.
 
