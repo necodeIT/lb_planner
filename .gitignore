@@ -34,3 +34,4 @@ test/env.dart
 .dart_tool/
 .packages
 build/
+.fvm/flutter_sdk

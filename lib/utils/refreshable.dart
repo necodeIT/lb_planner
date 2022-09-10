@@ -2,7 +2,7 @@ part of lbplanner_engine;
 
 /// Allows any class to be automatically refreshed based on a timer.
 ///
-/// [kApiRefreshRate] is the timer duration.
+/// [kApiRefreshRate] is the default timer duration.
 abstract class IRefreshable {
   // static bool _pauseAll = false;
 

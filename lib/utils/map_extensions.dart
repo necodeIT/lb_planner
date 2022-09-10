@@ -36,7 +36,9 @@ extension ModelMappingExtensions on Map<String, dynamic> {
     var readTimestamp = this["timestamp_read"];
     if (readTimestamp != null) body["readTimestamp"] = DateTime.fromMillisecondsSinceEpoch(readTimestamp * 1000).toString();
 
-    body["payload"] = this["info"] ?? -1;
+    var info = this["info"];
+    if (info != null) body["payload"] = int.parse(info);
+
     body["type"] = NotificationTypes.values[type].name;
     body["status"] = NotificationStatus.values[status].name;
     body["id"] = id;
