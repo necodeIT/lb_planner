@@ -3,6 +3,9 @@ moodle
 test/env.dart
 .flutter-plugins-dependencies
 .flutter-plugins
+linux
+macos
+windows
 
 
 # Miscellaneous
