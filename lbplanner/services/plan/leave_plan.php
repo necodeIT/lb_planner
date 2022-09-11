@@ -111,7 +111,7 @@ class plan_leave_plan extends external_api {
 
         notifications_helper::notify_user(
             plan_helper::get_owner($planid),
-            user_helper::get_complete_name($userid),
+            $userid,
             notifications_helper::TRIGGER_PLAN_LEFT
         );
 

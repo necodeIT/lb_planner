@@ -72,7 +72,7 @@ class plan_update_invite extends external_api {
         notifications_helper::TRIGGER_INVITE_ACCEPTED
         : notifications_helper::TRIGGER_INVITE_DECLINED;
 
-        notifications_helper::notify_user($invite->inviterid, user_helper::get_complete_name($userid) , $trigger);
+        notifications_helper::notify_user($invite->inviterid, $userid , $trigger);
 
         // TODO: Change plan access and delete old plan if inivite is accepted.
 

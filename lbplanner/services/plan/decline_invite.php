@@ -66,7 +66,7 @@ class plan_decline_invite extends external_api {
         // Notify the user that invite has been declined.
         notifications_helper::notify_user(
             $invite->inviterid,
-            json_encode(array("inviteid" => $invite->id)),
+            $invite->id,
             notifications_helper::TRIGGER_INVITE_DECLINED
         );
 

@@ -73,7 +73,7 @@ class user_register_user extends external_api {
 
         $DB->insert_record(plan_helper::ACCESS_TABLE, $planaccess);
 
-        notifications_helper::notify_user($userid, '', notifications_helper::TRIGGER_USER_REGISTERED);
+        notifications_helper::notify_user($userid, -1, notifications_helper::TRIGGER_USER_REGISTERED);
 
         return array(
             'userid' => $user->userid,
