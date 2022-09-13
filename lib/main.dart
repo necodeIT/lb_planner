@@ -15,10 +15,14 @@ import 'package:nekolib_utils/log.dart';
 /// Navigator key for [Catcher].
 final kNavigator = GlobalKey<NavigatorState>();
 
+/// How long to wait before a log file is deleted.
+const kMaxLogFileAge = Duration(days: 7);
+
 void main() async {
   exitIfLocked();
 
   Logger.init(autoSave: true, appStoragePath: (await Disk.appDir).path);
+  await Logger.logFile; // I don't know why, but the log file is otherwise not created.
 
   // Randomly selected outside of build for consistency of the animtion when applying the theme
   var animation = (kLoadingAnimations.toList()..shuffle()).first;
@@ -57,6 +61,14 @@ Future<void> load() async {
       gPluginVersion = r.value;
       await kUpdater.update();
     }
+  }
+
+  var dir = await Logger.logDir;
+
+  for (var file in dir.listSync()) {
+    var stats = await file.stat();
+
+    if (stats.modified.isBefore(DateTime.now().subtract(kMaxLogFileAge))) file.deleteSync();
   }
 }
 
