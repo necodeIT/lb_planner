@@ -60,6 +60,8 @@ class _UserNotificationsItemState extends State<UserNotificationsItem> {
 
             var inviter = ref.watch(usersProvider)[invite.inviter];
 
+            var plan = ref.watch(planProvider);
+
             if (inviter == null) {
               loading = true;
               break;
@@ -71,12 +73,26 @@ class _UserNotificationsItemState extends State<UserNotificationsItem> {
               if (invite.status.isPending && _future == null)
                 _Action(
                   text: t.user_notifications_invite_accept,
-                  onPressed: () => load(
-                    [
-                      controller.acceptInvite(invite.id),
-                      ref.read(planController).fetchPlan(),
-                    ],
-                  ),
+                  onPressed: () {
+                    void action() {
+                      load(
+                        [
+                          controller.acceptInvite(invite.id),
+                          ref.read(planController).fetchPlan(),
+                        ],
+                      );
+                    }
+
+                    if (plan.deadlines.isEmpty) return action();
+
+                    lpShowConfirmDialog(
+                      context,
+                      title: t.user_notifications_invite_accept_confirm_title,
+                      message: t.user_notifications_invite_accept_confirm_body,
+                      confirmIsBad: true,
+                      onConfirm: action,
+                    );
+                  },
                 ),
               if (invite.status.isPending && _future == null)
                 _Action(

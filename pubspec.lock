@@ -430,7 +430,7 @@ packages:
       name: flutter_riverpod
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.3"
+    version: "1.0.3+1"
   flutter_sticky_header:
     dependency: "direct main"
     description:
@@ -616,7 +616,7 @@ packages:
     description:
       path: ui
       ref: flutter
-      resolved-ref: bef22c54f77ef1d40d2a922fe2c71c0bc8810a65
+      resolved-ref: e9a30f8cf04a8310833f0652736b0cecf1dec384
       url: "https://github.com/necodeIT/nekolib.git"
     source: git
     version: "0.0.1"
@@ -625,7 +625,7 @@ packages:
     description:
       path: utils
       ref: flutter
-      resolved-ref: bef22c54f77ef1d40d2a922fe2c71c0bc8810a65
+      resolved-ref: e9a30f8cf04a8310833f0652736b0cecf1dec384
       url: "https://github.com/necodeIT/nekolib.git"
     source: git
     version: "0.0.1"
@@ -831,7 +831,7 @@ packages:
       name: riverpod
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.3"
+    version: "1.0.3+1"
   rxdart:
     dependency: transitive
     description:
@@ -969,7 +969,7 @@ packages:
       name: url_launcher_android
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.0.18"
+    version: "6.0.19"
   url_launcher_ios:
     dependency: transitive
     description:
