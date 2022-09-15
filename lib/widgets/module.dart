@@ -120,7 +120,7 @@ class ModuleWidget extends LocalizedWidget {
                   ),
                   ConditionalWidget(
                     condition: displayMode.isDate,
-                    trueWidget: (context) => Expanded(child: NcCaptionText(formatter.format(module.deadline!))),
+                    trueWidget: (context) => NcCaptionText(formatter.format(module.deadline!)),
                     falseWidget: (context) => ConditionalWidget(
                       condition: displayMode.isCheckmark,
                       trueWidget: (context) => LpCheckbox(value: module.status.isUploaded || module.status.isDone),
