@@ -74,7 +74,7 @@ class _CalendarPlanDropDwonModulesState extends State<CalendarPlanDropDwonModule
 
           var containsQuery = "${course.shortname} ${data.name}".containsCaseInsensitive(widget.searchController.text);
 
-          return !hasDeadline && containsQuery;
+          return !hasDeadline && containsQuery && !data.type.isTest;
         },
       ).toList();
 
