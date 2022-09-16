@@ -1,0 +1,89 @@
+/* theme colors */
+.theme-light{
+	--primary-color:#FFF;
+	--secondary-color:#F2F3F9;
+	--tertiary-color:#CFCFCF;
+	--accent-color:#27BCF3;
+	--text-color:#1D1D1D;
+	--button-text-color:#FFF;
+}
+.theme-dark{
+	--primary-color:#1D1D1D;
+	--secondary-color:#2A2A2A;
+	--tertiary-color:#444;
+	--accent-color:#27BCF3;
+	--text-color:#FFF;
+	--button-text-color:#FFF;
+}
+.theme-ocean{
+	--primary-color:#212942;
+	--secondary-color:#262E48;
+	--tertiary-color:#3D4C80;
+	--accent-color:#78A5FE;
+	--text-color:#F8F2F2;
+	--button-text-color:#F8F2F2;
+}
+.theme-sakura{
+	--primary-color:#FCE9EB;
+	--secondary-color:#F3DCDB;
+	--tertiary-color:#ECBDB0;
+	--accent-color:#F3A39E;
+	--text-color:#8C5E6B;
+	--button-text-color:#FCE9EB;
+}
+/* body */
+body{
+	background-color:var(--primary-color);
+	font-family:Segoe UI,WeblySleek UI,Arial, Helvetica, sans-serif;
+	margin:0;
+}
+.screenpage{
+	height:calc(100vh - 4em);
+	padding:2em 1em;
+	box-sizing:border-box;
+	background-color:var(--primary-color);
+}
+.screenpage:nth-of-type(2n){
+	background-color:var(--secondary-color);
+}
+/* navbar */
+#mainnav{
+	position:sticky;
+	top:0;
+	left:0;
+	width:calc(100vw - 4em);
+	height:2em;
+	padding:1em 2em;
+	display:flex;
+	justify-content:end;
+	background-color:var(--primary-color);
+	background-image:url(/resources/wordmark.svg);
+	background-repeat:no-repeat;
+	background-position:1em center;
+	background-size:auto 2em;
+	box-shadow:0 0 0.5em #0008;
+}
+#mainnav>a{
+	position:relative;
+	display:inline-flex;
+	flex-direction:column;
+	align-items:center;
+	text-decoration:none;
+	color:var(--text-color);
+	padding:0.25em 0.5em;
+	font-weight:600;
+}
+#mainnav>a::after{
+	content:"";
+	position:absolute;
+	bottom:0.25em;
+	border-radius:0.075em;
+	height:0.15em;
+	width:80%;
+	transition:bottom 0.2s,background-color 0.2s;
+}
+#mainnav>a.cursite::after,
+#mainnav>a:hover::after{
+	background-color: var(--accent-color);
+	bottom:0;
+}
