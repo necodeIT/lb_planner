@@ -4,7 +4,7 @@
 	$stylesheets = array("main","download");
 	include('./snippets/head.php');
 ?>
-	<body class="theme-light">
+	<body <?php genThemeClass() ?>>
 		<?php 
 			include('./snippets/navbar.php');
 			genNavbar(1);

@@ -4,4 +4,10 @@
 		include("./resources/extref.svg");
 		echo '</a>';
 	}
+	function genThemeClass(){
+		if(!array_key_exists('theme',$_GET)){
+			$_GET['theme']='light';
+		}
+		echo "class='theme-${_GET['theme']}'";
+	}
 ?>
