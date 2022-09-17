@@ -1,4 +1,5 @@
 <?php
+	const root = ".";
 	include('./snippets/snips.php');
 	$stylesheets = array("main","download");
 	include('./snippets/head.php');

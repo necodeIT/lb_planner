@@ -58,13 +58,12 @@ body{
 	height:2em;
 	padding:1em 2em;
 	display:flex;
-	justify-content:end;
+	justify-content:start;
 	background-color:var(--primary-color);
-	background-image:url(/resources/wordmark.svg);
-	background-repeat:no-repeat;
-	background-position:1em center;
-	background-size:auto 2em;
 	box-shadow:0 0 0.5em #0008;
+}
+#mainnav>svg{
+	margin:0.25em auto 0.45em 0;
 }
 #mainnav>a{
 	position:relative;
