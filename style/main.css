@@ -44,6 +44,7 @@ body{
 	align-items:center;
 	min-height:calc(100vh - 4em);
 	max-height:150vh;
+	height:min-content;
 	padding:2em 10%;
 	box-sizing:border-box;
 	background-color:var(--primary-color);
@@ -128,7 +129,6 @@ h1{
 	border-bottom:solid 0.25rem currentColor;
 	padding-bottom:0.25em;
 	width:fit-content;
-	align-self:center;
 }
 /* cards */
 .card{
