@@ -25,6 +25,7 @@
 	max-width:100%;
 	max-height:100%;
 	justify-self:center;
+	margin-left:1em;
 }
 #og1>h1:last-of-type{/*section header for styles*/
 	grid-area:4/1/5/3;
