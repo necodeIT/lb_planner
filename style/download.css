@@ -67,8 +67,54 @@
 	justify-content:center;
 	font-weight:bold;
 }
+/* pages 2 and 3 */
+#pg2,
+#pg3{
+	display:grid;
+	grid-gap:1em;
+	grid-template-rows:0fr;
+	min-height:30em;
+	padding:5em 10%;
+}
+#pg2{
+	grid-template-areas:
+		"img ."
+		"img h"
+		"img p"
+		"img .";
+	grid-template-columns:5fr 3fr;
+	justify-items:start;
+}
+#pg3{
+	grid-template-areas:
+		". img"
+		"h img"
+		"p img"
+		". img";
+	grid-template-columns:3fr 5fr;
+	justify-items:end;
+}
+#pg2>img,
+#pg3>img{
+	max-width:100%;
+	max-height:100%;
+	grid-area:img;
+	align-self:center;
+}
+#pg2>h2,
+#pg3>h2{
+	grid-area:h;
+	justify-self:start;
+}
+#pg2>p,
+#pg3>p{
+	grid-area:p;
+	align-self:start;
+	margin-top:0;
+}
 /* responsive design */
 @media only screen and (max-width: 60em){
+	/* page 1 */
 	#og1{
 		grid-template-rows:0fr 0fr auto 0fr 0fr 0fr 0fr;
 		grid-template-columns:1fr;
@@ -94,5 +140,32 @@
 	#themebox .card{
 		height:8em;
 		width:12em;
+	}
+	/* page 2 & 3 */
+	#pg2,
+	#pg3{
+		grid-template-areas:
+			"h"
+			"img"
+			"p";
+		grid-template-rows:auto auto auto;
+		grid-template-columns:auto;
+	}
+	#pg2>h2,
+	#pg3>h2{
+		width:fit-content;
+		justify-self:center;
+		position:relative;
+	}
+	#pg2>h2::after,
+	#pg3>h2::after{
+		content:"";
+		position:absolute;
+		background-color:currentColor;
+		border-radius:0.1rem;
+		height:0.2rem;
+		width:50%;
+		bottom:-0.33em;
+		left:25%;
 	}
 }
