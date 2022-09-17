@@ -1,0 +1,47 @@
+/* omnigrid 1 */
+#og1{
+	display:grid;
+	grid-template-columns:2fr 3fr;
+	grid-template-rows:0fr 0fr 1fr;
+	grid-gap:1em;
+	max-height:80%;
+	margin-bottom:auto;
+}
+#og1>h1{
+	grid-area:1/1/2/2;
+	margin:1rem 2rem 0.5rem 0;
+}
+#og1>h3{
+	grid-area:2/1/3/2;
+	margin:0;
+}
+#og1>span{/*download link container*/
+	grid-area:3/1/4/2;
+	display:flex;
+	align-items:baseline;
+	gap:1em;
+}
+#og1>img{/*example screenshot*/
+	grid-area:1/2/4/3;
+	max-width:100%;
+	max-height:100%;
+	justify-self:center;
+}
+/* theme picker */
+#themebox{
+	display:flex;
+	flex-direction:row;
+	flex-wrap:wrap;
+	justify-content:space-between;
+	gap:2em;
+	width:100%;
+}
+#themebox>.card{
+	height:10em;
+	width:15em;
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+	justify-content:center;
+	font-weight:bold;
+}
