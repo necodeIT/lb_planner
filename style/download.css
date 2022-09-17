@@ -50,12 +50,12 @@
 	gap:2em;
 	width:100%;
 	margin:0.5em 0 0 0;
+	justify-content:center;
 }
 #themebox>div{
 	display:flex;
 	gap:2em;
-	flex-grow:1;
-	justify-content:space-around;
+	justify-content:center;
 	flex-wrap:wrap;
 }
 #themebox .card{
