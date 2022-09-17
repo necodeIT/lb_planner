@@ -5,44 +5,51 @@
 	grid-template-rows:0fr 0fr auto 0fr 0fr 0fr;
 	grid-gap:1em;
 	margin-bottom:2em;
+	grid-template-areas:
+		"h1  img"
+		"h3  img"
+		"lnk img"
+		"h2  h2 "
+		"the the"
+		"b   b  ";
 }
-#og1>h1:first-of-tpye{
-	grid-area:1/1/2/2;
-	margin:1rem 2rem 0.5rem 0;
+#og1>h1:first-of-type{
+	grid-area:h1;
+	margin:1rem 0rem 0.5rem 0;
 }
 #og1>h3{
-	grid-area:2/1/3/2;
+	grid-area:h3;
 	margin:0;
 }
 #og1>span:first-of-type{/*download link container*/
-	grid-area:3/1/4/2;
+	grid-area:lnk;
 	display:flex;
 	align-items:baseline;
 	gap:1em;
 }
 #og1>img{/*example screenshot*/
-	grid-area:1/2/4/3;
-	max-width:100%;
+	grid-area:img;
+	max-width:calc(100% - 1em);
 	max-height:100%;
 	justify-self:center;
 	margin-left:1em;
 }
 #og1>h1:last-of-type{/*section header for styles*/
-	grid-area:4/1/5/3;
+	grid-area:h2;
 	justify-self:center;
 	margin:2rem 0 0 0;
 }
 #og1>span:last-of-type{/*text at the bottom idk*/
-	grid-area:6/1/7/3;
+	grid-area:b;
 }
 /* theme picker */
 #themebox{
-	grid-area:5/1/6/3;
+	grid-area:the;
 	display:flex;
 	flex-wrap:wrap;
 	gap:2em;
 	width:100%;
-	margin:0.5em 0 2.5em 0;
+	margin:0.5em 0 0 0;
 }
 #themebox>div{
 	display:flex;
@@ -59,4 +66,33 @@
 	align-items:center;
 	justify-content:center;
 	font-weight:bold;
+}
+/* responsive design */
+@media only screen and (max-width: 60em){
+	#og1{
+		grid-template-rows:0fr 0fr auto 0fr 0fr 0fr 0fr;
+		grid-template-columns:1fr;
+		grid-template-areas:
+			"h1"
+			"h3"
+			"img"
+			"lnk"
+			"h2"
+			"the"
+			"b";
+		
+	}
+	#og1>img{
+		max-height:25vh;
+	}
+	#og1>h1,
+	#og1>h3,
+	#og1>span{
+		text-align:center;
+		justify-content:center;
+	}
+	#themebox .card{
+		height:8em;
+		width:12em;
+	}
 }
