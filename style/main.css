@@ -85,10 +85,44 @@ body{
 	width:80%;
 	transition:bottom 0.2s,background-color 0.2s;
 }
-#mainnav>a.cursite::after,
-#mainnav>a:hover::after{
+#mainnav>a:is(.current,:hover)::after{
 	background-color: var(--accent-color);
 	bottom:0;
+}
+/* footer */
+#mainfoot{
+	display:flex;
+	flex-direction:row;
+	justify-content:start;
+	background-color:var(--primary-color);
+	height:2em;
+	width:calc(100vw - 4em);
+	padding:1em 2em;
+}
+#mainfoot>svg{
+	height:100%;
+	margin:0.25em 1em 0.45em 0;
+}
+#tgm-logo{
+	mask-image:url(/resources/TGM_Logo_mask.png);
+	mask-mode:luminance;
+	mask-size:contain;
+}
+#mainfoot>span{
+	margin:0 auto;
+	align-self:center;
+}
+#mainfoot>span>a{
+	color:var(--text-color);
+}
+#mainfoot>a{
+	text-decoration:none;
+	color:var(--text-color);
+	padding:0.25em 0.5em;
+	font-weight:600;
+}
+#mainfoot>a:is(.current,:hover){
+	color:var(--accent-color);
 }
 /* buttons */
 .btn{

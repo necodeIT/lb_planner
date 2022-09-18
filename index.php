@@ -1,13 +1,16 @@
 <?php
-	const root = ".";
 	include('./snippets/snips.php');
+	
+	const root = '.';
+	const cursite = 1;
+	setContext();
+	
 	$stylesheets = array("main","download");
 	include('./snippets/head.php');
 ?>
-	<body <?php genThemeClass() ?>>
+	<body class="theme-<?php echo $context_theme; ?>">
 		<?php 
 			include('./snippets/navbar.php');
-			genNavbar(1);
 		?>
 		<section class="screenpage" id="og1">
 			<h1>Lorem ipsum dolor sit amet, consectetur</h2>
@@ -61,5 +64,8 @@
 				mollit anim id est laborum.
 			</p>
 		</section>
+		<?php
+			include('./snippets/foot.php');
+		?>
 	</body>
 </html>

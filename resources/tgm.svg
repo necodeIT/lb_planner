@@ -1,0 +1,4 @@
+<svg id="tgm-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 216">
+	<path fill="var(--text-color)" d="M0 0h450v216h-450z"/>
+	<path fill="var(--accent-color)" d="M380 0h70v70z"/>
+</svg>
