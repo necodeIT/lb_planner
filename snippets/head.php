@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Lernbüro-Planner</title>
+		<title>LB Planner</title>
 		<link rel="icon" type="image/svg" href="/resources/logo.svg"/>
 		<style>
 			<?php
