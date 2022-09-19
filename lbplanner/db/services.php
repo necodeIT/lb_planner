@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 
-defined('MOODLE_INTERNAL') or die();
+defined('MOODLE_INTERNAL') || die();
 
 $functions = array(
     'local_lbplanner_user_get_user' => array(
@@ -24,7 +24,7 @@ $functions = array(
         'classpath' => 'local/lbplanner/services/user/get_user.php',
         'description' => 'Get the data for a user',
         'type' => 'read',
-        'capabilities' => '',
+        'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
     ),
     'local_lbplanner_user_get_all_users' => array(
@@ -33,7 +33,7 @@ $functions = array(
         'classpath' => 'local/lbplanner/services/user/get_all_users.php',
         'description' => 'Gets all users registered by the lbplanner app',
         'type' => 'read',
-        'capabilities' => '',
+        'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
     ),
     'local_lbplanner_user_register_user' => array(
@@ -42,7 +42,7 @@ $functions = array(
         'classpath' => 'local/lbplanner/services/user/register_user.php',
         'description' => 'Register a new user in the lbplanner app',
         'type' => 'write',
-        'capabilities' => '',
+        'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
     ),
     'local_lbplanner_user_update_user' => array(
@@ -51,7 +51,7 @@ $functions = array(
         'classpath' => 'local/lbplanner/services/user/update_user.php',
         'description' => 'Update the data for a user',
         'type' => 'write',
-        'capabilities' => '',
+        'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
     ),
     'local_lbplanner_courses_get_course' => array(
@@ -60,7 +60,7 @@ $functions = array(
         'classpath' => 'local/lbplanner/services/courses/get_course.php',
         'description' => 'Get the data for a course',
         'type' => 'read',
-        'capabilities' => '',
+        'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
     ),
     'local_lbplanner_courses_get_all_courses' => array(
@@ -69,7 +69,7 @@ $functions = array(
         'classpath' => 'local/lbplanner/services/courses/get_all_courses.php',
         'description' => 'Get all the courses of the current year',
         'type' => 'read',
-        'capabilities' => '',
+        'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
     ),
     'local_lbplanner_courses_update_course' => array(
@@ -78,7 +78,7 @@ $functions = array(
         'classpath' => 'local/lbplanner/services/courses/update_course.php',
         'description' => 'Update the data for a course',
         'type' => 'write',
-        'capabilities' => '',
+        'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
     ),
     'local_lbplanner_modules_get_module' => array(
@@ -87,7 +87,7 @@ $functions = array(
         'classpath' => 'local/lbplanner/services/modules/get_module.php',
         'description' => 'Get the data for a module',
         'type' => 'read',
-        'capabilities' => '',
+        'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
     ),
     'local_lbplanner_modules_get_all_modules' => array(
@@ -96,7 +96,7 @@ $functions = array(
         'classpath' => 'local/lbplanner/services/modules/get_all_modules.php',
         'description' => 'Get all the modules of the current year',
         'type' => 'read',
-        'capabilities' => '',
+        'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
     ),
     'local_lbplanner_modules_get_all_course_modules' => array(
@@ -105,7 +105,7 @@ $functions = array(
         'classpath' => 'local/lbplanner/services/modules/get_all_course_modules.php',
         'description' => 'Get all the modules of the given course',
         'type' => 'read',
-        'capabilities' => '',
+        'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
     ),
     'local_lbplanner_plan_clear_plan' => array(
@@ -114,7 +114,7 @@ $functions = array(
         'classpath' => 'local/lbplanner/services/plan/clear_plan.php',
         'description' => 'Clear the plan for the given user',
         'type' => 'write',
-        'capabilities' => '',
+        'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
     ),
     'local_lbplanner_plan_get_plan' => array(
@@ -123,7 +123,7 @@ $functions = array(
         'classpath' => 'local/lbplanner/services/plan/get_plan.php',
         'description' => 'Get the plan of the given user',
         'type' => 'read',
-        'capabilities' => '',
+        'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
     ),
     'local_lbplanner_plan_invite_user' => array(
@@ -132,7 +132,7 @@ $functions = array(
         'classpath' => 'local/lbplanner/services/plan/invite_user.php',
         'description' => 'Invite a user to the plan',
         'type' => 'write',
-        'capabilities' => '',
+        'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
     ),
     'local_lbplanner_plan_remove_user' => array(
@@ -141,7 +141,7 @@ $functions = array(
         'classpath' => 'local/lbplanner/services/plan/remove_user.php',
         'description' => 'Remove a user from the plan',
         'type' => 'write',
-        'capabilities' => '',
+        'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
     ),
     'local_lbplanner_plan_update_plan' => array(
@@ -150,7 +150,7 @@ $functions = array(
         'classpath' => 'local/lbplanner/services/plan/update_plan.php',
         'description' => 'Update the plan of the given user',
         'type' => 'write',
-        'capabilities' => '',
+        'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
     ),
     'local_lbplanner_plan_leave_plan' => array(
@@ -159,7 +159,7 @@ $functions = array(
         'classpath' => 'local/lbplanner/services/plan/leave_plan.php',
         'description' => 'Leave the plan of the given user',
         'type' => 'write',
-        'capabilities' => '',
+        'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
     ),
     'local_lbplanner_plan_add_deadline' => array(
@@ -168,7 +168,7 @@ $functions = array(
         'classpath' => 'local/lbplanner/services/plan/add_deadline.php',
         'description' => 'Add a deadline to the plan',
         'type' => 'write',
-        'capabilities' => '',
+        'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
     ),
     'local_lbplanner_plan_delete_deadline' => array(
@@ -177,7 +177,7 @@ $functions = array(
         'classpath' => 'local/lbplanner/services/plan/delete_deadline.php',
         'description' => 'Delete a deadline from the plan',
         'type' => 'write',
-        'capabilities' => '',
+        'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
     ),
     'local_lbplanner_user_delete_user' => array(
@@ -186,7 +186,7 @@ $functions = array(
         'classpath' => 'local/lbplanner/services/user/delete_user.php',
         'description' => 'Removes all user data stored by the lbplanner app',
         'type' => 'write',
-        'capabilities' => '',
+        'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
     ),
     'local_lbplanner_plan_update_deadline' => array(
@@ -195,7 +195,7 @@ $functions = array(
         'classpath' => 'local/lbplanner/services/plan/update_deadline.php',
         'description' => 'Update a deadline from the plan',
         'type' => 'write',
-        'capabilities' => '',
+        'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
     ),
     'local_lbplanner_plan_get_access' => array(
@@ -204,7 +204,7 @@ $functions = array(
         'classpath' => 'local/lbplanner/services/plan/get_access.php',
         'description' => 'Get the access type to the plan',
         'type' => 'read',
-        'capabilities' => '',
+        'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
     ),
     'local_lbplanner_plan_update_access' => array(
@@ -213,7 +213,7 @@ $functions = array(
         'classpath' => 'local/lbplanner/services/plan/update_access.php',
         'description' => 'Update the access of the plan',
         'type' => 'write',
-        'capabilities' => '',
+        'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
     ),
     'local_lbplanner_plan_get_invites' => array(
@@ -222,7 +222,7 @@ $functions = array(
         'classpath' => 'local/lbplanner/services/plan/get_invites.php',
         'description' => 'Get all the invites of the given user',
         'type' => 'read',
-        'capabilities' => '',
+        'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
     ),
     'local_lbplanner_notifications_get_all_notifications' => array(
@@ -231,7 +231,7 @@ $functions = array(
         'classpath' => 'local/lbplanner/services/notifications/get_all_notifications.php',
         'description' => 'Get all the notifications of the given user',
         'type' => 'read',
-        'capabilities' => '',
+        'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
     ),
     'local_lbplanner_notifications_update_notification' => array(
@@ -240,7 +240,7 @@ $functions = array(
         'classpath' => 'local/lbplanner/services/notifications/update_notification.php',
         'description' => 'Update the notification status of the given user and id',
         'type' => 'write',
-        'capabilities' => '',
+        'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
     ),
     'local_lbplanner_feedback_submit_feedback' => array(
@@ -249,7 +249,7 @@ $functions = array(
         'classpath' => 'local/lbplanner/services/feedback/submit_feedback.php',
         'description' => 'Add a feedback to the DB',
         'type' => 'write',
-        'capabilities' => '',
+        'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
     ),
     'local_lbplanner_feedback_get_feedback' => array(
@@ -258,7 +258,7 @@ $functions = array(
         'classpath' => 'local/lbplanner/services/feedback/get_feedback.php',
         'description' => 'Get the feedback of the given id',
         'type' => 'read',
-        'capabilities' => '',
+        'capabilities' => 'local/lb_planner:admin',
         'ajax' => true,
     ),
     'local_lbplanner_feedback_get_all_feedbacks' => array(
@@ -267,7 +267,7 @@ $functions = array(
         'classpath' => 'local/lbplanner/services/feedback/get_all_feedbacks.php',
         'description' => 'Get all the feedback from the DB',
         'type' => 'read',
-        'capabilities' => '',
+        'capabilities' => 'local/lb_planner:admin',
         'ajax' => true,
     ),
     'local_lbplanner_feedback_update_feedback' => array(
@@ -276,7 +276,7 @@ $functions = array(
         'classpath' => 'local/lbplanner/services/feedback/update_feedback.php',
         'description' => 'Update the feedback of the given id',
         'type' => 'write',
-        'capabilities' => '',
+        'capabilities' => 'local/lb_planner:admin',
         'ajax' => true,
     ),
     'local_lbplanner_feedback_delete_feedback' => array(
@@ -285,7 +285,7 @@ $functions = array(
         'classpath' => 'local/lbplanner/services/feedback/delete_feedback.php',
         'description' => 'Delete the feedback of the given id',
         'type' => 'write',
-        'capabilities' => '',
+        'capabilities' => 'local/lb_planner:admin',
         'ajax' => true,
     ),
     'local_lbplanner_plan_accept_invite' => array(
@@ -294,7 +294,7 @@ $functions = array(
         'classpath' => 'local/lbplanner/services/plan/accept_invite.php',
         'description' => 'Accept the invite of the given id',
         'type' => 'write',
-        'capabilities' => '',
+        'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
     ),
     'local_lbplanner_plan_decline_invite' => array(
@@ -303,7 +303,7 @@ $functions = array(
         'classpath' => 'local/lbplanner/services/plan/decline_invite.php',
         'description' => 'Decline the invite of the given id',
         'type' => 'write',
-        'capabilities' => '',
+        'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
     ),
     'local_lbplanner_config_get_version' => array(
@@ -312,7 +312,7 @@ $functions = array(
         'classpath' => 'local/lbplanner/services/config/get_version.php',
         'description' => 'Get the version of the plugin',
         'type' => 'read',
-        'capabilities' => '',
+        'capabilities' => 'local/lb_planner:admin',
         'ajax' => true,
     ),
 );
