@@ -16,7 +16,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$locallbplannercapabilities = array(
+$capabilities = array(
     'local/lb_planner:student' => array(
         'riskbitmask' => RISK_SPAM,
         'captype' => 'write',
