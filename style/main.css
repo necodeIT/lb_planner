@@ -157,9 +157,20 @@ h1{
 	font-size:2rem;
 }
 .sectionheader{
-	border-bottom:solid 0.25rem currentColor;
+	position:relative;
 	padding-bottom:0.25em;
 	width:fit-content;
+}
+.sectionheader::after{
+	content:"";
+	position:absolute;
+	bottom:0;
+	left:50%;
+	transform:translate(-50%,0);
+	height:0.125em;
+	width:75%;
+	background-color:currentColor;
+	border-radius:1em;
 }
 /* cards */
 .card{
