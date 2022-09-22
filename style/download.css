@@ -75,16 +75,15 @@
 #themebox svg{
 	height:50%;
 }
-/* pages 2 and 3 */
-#pg2,
-#pg3{
+/* pages 2, 3 and 4 */
+.pagetype2{
 	display:grid;
 	grid-gap:1em;
 	grid-template-rows:0fr;
 	min-height:30em;
 	padding:5em 10%;
 }
-#pg2{
+.pagetype2:nth-of-type(2n+1){
 	grid-template-areas:
 		"img ."
 		"img h"
@@ -93,7 +92,7 @@
 	grid-template-columns:5fr 3fr;
 	justify-items:start;
 }
-#pg3{
+.pagetype2:nth-of-type(2n){
 	grid-template-areas:
 		". img"
 		"h img"
@@ -102,20 +101,17 @@
 	grid-template-columns:3fr 5fr;
 	justify-items:end;
 }
-#pg2>img,
-#pg3>img{
+.pagetype2>img{
 	max-width:100%;
 	max-height:100%;
 	grid-area:img;
 	align-self:center;
 }
-#pg2>h2,
-#pg3>h2{
+.pagetype2>h2{
 	grid-area:h;
 	justify-self:start;
 }
-#pg2>p,
-#pg3>p{
+.pagetype2>p{
 	grid-area:p;
 	align-self:start;
 	margin-top:0;
@@ -149,9 +145,8 @@
 		height:8em;
 		width:12em;
 	}
-	/* page 2 & 3 */
-	#pg2,
-	#pg3{
+	/* pages 2, 3 and 4 */
+	.pagetype2{
 		grid-template-areas:
 			"h"
 			"img"
@@ -159,14 +154,12 @@
 		grid-template-rows:auto auto auto;
 		grid-template-columns:auto;
 	}
-	#pg2>h2,
-	#pg3>h2{
+	.pagetype2>h2{
 		width:fit-content;
 		justify-self:center;
 		position:relative;
 	}
-	#pg2>h2::after,
-	#pg3>h2::after{
+	.pagetype2>h2::after{
 		content:"";
 		position:absolute;
 		background-color:currentColor;
