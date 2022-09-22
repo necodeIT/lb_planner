@@ -116,6 +116,85 @@
 	align-self:start;
 	margin-top:0;
 }
+/* 'other features' page */
+#ofeat{
+	display:grid;
+	grid-template-areas:
+		"h h h"
+		". . ."
+		"l l l"
+		". . ."
+		"t t t";
+	grid-template-rows:0fr auto 8em auto auto;
+	background-image:linear-gradient(to bottom,var(--primary-color) calc(100vh - 4em),var(--secondary-color) calc(100vh - 4em));
+}
+#ofeat>h1{
+	grid-area:h;
+	justify-self:center;
+}
+#ofeat>hr{
+	grid-area:l;
+	width:75%;
+	height:0.125rem;
+	border:none;
+	background-color:var(--text-color);
+	border-radius:1rem;
+	align-self:center;
+}
+#ofeat>.card{
+	padding:1.5em 1em;
+	display:flex;
+	flex-direction:column;
+	background-color:var(--primary-color);
+}
+#ofeat>.card>:is(h4,p){
+	margin:0;
+	margin-bottom:0.25em;
+}
+#ofeat>.card.learn{
+	margin:1em 2em;
+	align-items:start;
+}
+#ofeat>.card.learn>span{
+	margin-top:auto;
+	font-weight:600;
+}
+#ofeat>.card.learn>svg{
+	padding:1em 2em 2em 2em;
+}
+#ofeat>.card.dl{
+	margin:1.5em;
+	align-items:center;
+	justify-content:space-between;
+	height:100%;
+	aspect-ratio:1/1;
+	align-self:center;
+	justify-self:center;
+	grid-row:4;
+	box-sizing:border-box;
+}
+#ofeat>.card.dl.current{
+	grid-column:2;
+	margin:1em;
+}
+#ofeat>.card.dl:not(.current){
+	scale:0.8;
+}
+#ofeat>.card.dl>span{
+	text-transform:capitalize;
+	font-weight:600;
+}
+#ofeat>.card.dl>svg{
+	margin:1.5em;
+	height:8em;
+}
+#ofeat>p{
+	grid-area:t;
+	margin:2em 0;
+	max-width:65em;
+	justify-self:center;
+	text-align:center;
+}
 /* responsive design */
 @media only screen and (max-width: 60em){
 	/* page 1 */

@@ -82,6 +82,26 @@
 				mollit anim id est laborum.
 			</p>
 		</section>
+		<section class="screenpage" id="ofeat">
+			<h1 class="sectionheader">Other features</h1>
+			<?php
+				genLearnCard('Plan with your Friends','#plan');
+				genLearnCard('Get an immediate overview','#overview');
+				genLearnCard('Sync data across devices','#sync');
+			?>
+			<hr/>
+			<?php
+				genDownloadCard('linux');
+				genDownloadCard('windows');
+				genDownloadCard('mac');
+			?>
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+laborum.
+			</p>
+		</section>
 		<?php
 			include('./snippets/foot.php');
 		?>

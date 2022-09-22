@@ -21,11 +21,36 @@
 		echo '</a>';
 		$context_theme = $_tmp;
 	}
+	function genLearnCard($title,$link){
+		echo '<a class="card learn" href="/docs/'.genContextURLParams().$link.'">';
+			include(root.'/resources/logo.svg');#TODO: image
+			echo '<h4>Plan with your Friends</h4>';
+			echo '<p>'.
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor'.
+				'incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis'.
+				'nostrud exercitation ullamco laboris nisi';
+			echo '</p>';
+			echo '<span>Learn More</span>';
+		echo '</a>';
+	}
+	function genDownloadCard($os){
+		global $context_os;
+		if($os==$context_os){
+			$current=' current';
+		}else{
+			$current='';
+		}
+		echo "<a class='card dl$current' href='/download?os=$os'>";
+			echo '<h4 class="sectionheader">Download for</h4>';
+			include(root.'/resources/theme-light.svg');#TODO: image
+			echo "<span>$os</span>";
+		echo '</a>';
+	}
 	function setContext(){
 		global $contextURLParams;
 		_setContext_helper('theme','light');
 		_setContext_helper('lang','EN');
-		_setContext_helper('os','win');
+		_setContext_helper('os','windows');
 		$contextURLParams = genContextURLParams();
 	}
 	function _setContext_helper($varname,$default){
