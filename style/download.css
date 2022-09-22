@@ -179,7 +179,7 @@
 	margin:1em;
 }
 #ofeat>.card.dl:not(.current){
-	scale:0.8;
+	scale:0.9;
 }
 #ofeat>.card.dl>span{
 	text-transform:capitalize;
@@ -188,6 +188,13 @@
 #ofeat>.card.dl>svg{
 	margin:1.5em;
 	height:8em;
+}
+#ofeat>#linuxdlcard:not(.current){
+	justify-self:end;
+}
+#ofeat>#windowsdlcard:not(.current),
+#ofeat>#macdlcard:not(.current){
+	justify-self:start;
 }
 #ofeat>p{
 	grid-area:t;
