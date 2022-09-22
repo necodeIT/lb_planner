@@ -66,6 +66,14 @@
 	align-items:center;
 	justify-content:center;
 	font-weight:bold;
+	background-color:var(--primary-color);
+	text-transform:uppercase;
+}
+#themebox .card.current{
+	color:var(--accent-color);
+}
+#themebox svg{
+	height:50%;
 }
 /* pages 2 and 3 */
 #pg2,

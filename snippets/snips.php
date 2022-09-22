@@ -4,6 +4,23 @@
 		include("./resources/extref.svg");
 		echo '</a>';
 	}
+	function genThemeCard($theme){
+		global $context_theme;
+		if($theme==$context_theme){
+			$current = ' current';
+		}else{
+			$current = '';
+		}
+		$_tmp = $context_theme;
+		$context_theme = $theme;
+		echo "<a class='card$current' href='./?";
+			echo genContextURLParams();
+			echo '\'>';
+			include("./resources/theme-$theme.svg");
+			echo $theme;
+		echo '</a>';
+		$context_theme = $_tmp;
+	}
 	function setContext(){
 		_setContext_helper('theme','light');
 		_setContext_helper('lang','EN');

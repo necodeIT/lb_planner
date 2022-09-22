@@ -26,12 +26,16 @@
 			<h1 class="sectionheader">Fit your style</h1>
 			<div id="themebox">
 				<div>
-					<a class="card" href="./?theme=light">LIGHT</a>
-					<a class="card" href="./?theme=dark">DARK</a>
+					<?php
+						genThemeCard('light');
+						genThemeCard('dark');
+					?>
 				</div>
 				<div>
-					<a class="card" href="./?theme=ocean">OCEAN</a>
-					<a class="card" href="./?theme=sakura">SAKURA</a>
+					<?php
+						genThemeCard('ocean');
+						genThemeCard('sakura');
+					?>
 				</div>
 			</div>
 			<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud</span>
