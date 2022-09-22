@@ -22,9 +22,11 @@
 		$context_theme = $_tmp;
 	}
 	function setContext(){
+		global $contextURLParams;
 		_setContext_helper('theme','light');
 		_setContext_helper('lang','EN');
 		_setContext_helper('os','win');
+		$contextURLParams = genContextURLParams();
 	}
 	function _setContext_helper($varname,$default){
 		$globalname = 'context_'.$varname;

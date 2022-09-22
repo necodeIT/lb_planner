@@ -1,5 +1,5 @@
 <?php
-	include('./snippets/snips.php');
+	require_once('./snippets/snips.php');
 	
 	const root = '.';
 	const cursite = 1;
@@ -18,8 +18,8 @@
 			<span>
 				<a class="btn" href="https://soundcloud.com/riedler-musics/cupheads-title-screen-8-bit">😛 DOWNLOAD</a>
 				<?php
-					genExtRef('Docs','/docs/');
-					genExtRef('Admin','/docs/#admin');
+					genExtRef('Docs','/docs/'.genContextURLParams());
+					genExtRef('Admin','/docs/'.genContextURLParams().'#admin');
 				?>
 			</span>
 			<img class="card" src="/resources/example_cal.png" alt="example screenshot"/>
