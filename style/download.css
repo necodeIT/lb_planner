@@ -163,9 +163,10 @@
 	padding:1em 2em 2em 2em;
 }
 #ofeat>.card.dl{
+	position:relative;/* workaround for chrome bug - see https://jsfiddle.net/Lryfvuj7/3/ */
 	margin:1.5em;
 	align-items:center;
-	justify-content:space-between;
+	justify-content:space-evenly;
 	height:100%;
 	aspect-ratio:1/1;
 	align-self:center;
