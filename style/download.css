@@ -142,6 +142,7 @@
 	align-self:center;
 }
 #ofeat>.card{
+	position:relative;/* workaround for chrome bug - see https://jsfiddle.net/Lryfvuj7/3/ */
 	padding:1.5em 1em;
 	display:flex;
 	flex-direction:column;
@@ -163,7 +164,6 @@
 	padding:1em 2em 2em 2em;
 }
 #ofeat>.card.dl{
-	position:relative;/* workaround for chrome bug - see https://jsfiddle.net/Lryfvuj7/3/ */
 	margin:1.5em;
 	align-items:center;
 	justify-content:space-evenly;
