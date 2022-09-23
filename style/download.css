@@ -64,16 +64,18 @@
 	display:flex;
 	flex-direction:column;
 	align-items:center;
-	justify-content:center;
+	justify-content:space-evenly;
 	font-weight:bold;
 	background-color:var(--primary-color);
 	text-transform:uppercase;
+	box-sizing:border-box;
+	padding:1.5em;
 }
 #themebox .card.current{
 	color:var(--accent-color);
 }
 #themebox svg{
-	height:50%;
+	height:45%;
 }
 /* pages 2, 3 and 4 */
 .pagetype2{
