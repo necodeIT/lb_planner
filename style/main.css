@@ -102,11 +102,6 @@ body{
 	height:100%;
 	margin:0.25em 1em 0.45em 0;
 }
-#tgm-logo{
-	mask-image:url(/resources/TGM_Logo_mask.png);
-	mask-mode:luminance;
-	mask-size:contain;
-}
 #mainfoot>span{
 	margin:0 auto;
 	align-self:center;
