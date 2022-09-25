@@ -161,6 +161,9 @@
 	margin-top:auto;
 	font-weight:600;
 }
+#ofeat>.card.learn:hover>span{
+	text-decoration:underline;
+}
 #ofeat>.card.learn>svg{
 	padding:1em 4em 2em 4em;
 }
