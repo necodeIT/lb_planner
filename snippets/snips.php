@@ -42,7 +42,7 @@
 		}
 		echo "<a class='card dl$current' id='${os}dlcard' href='/download?os=$os'>";
 			echo '<h4 class="sectionheader">Download for</h4>';
-			include(root.'/resources/theme-light.svg');#TODO: image
+			include(root."/resources/os_$os.svg");
 			echo "<span>$os</span>";
 		echo '</a>';
 	}

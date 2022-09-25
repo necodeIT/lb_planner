@@ -190,8 +190,8 @@
 	font-weight:600;
 }
 #ofeat>.card.dl>svg{
-	margin:1.5em;
-	height:8em;
+	margin:2em;
+	height:6em;
 }
 #ofeat>#linuxdlcard:not(.current){
 	justify-self:end;
