@@ -38,12 +38,41 @@ class UpdateProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  _upgradeLinux(VoidCallback onError) {
+    /// ! WIP !
+    /// TODO: Adapt to appimage
+    var src = "/home/ubuntu/Desktop/bundle";
+    var current = "/home/ubuntu/Desktop/lb_planner/build/linux/x64/debug/bundle";
+    var target = "/home/ubuntu/Desktop/lb_planner/build/linux/x64/debug";
+
+    var cDir = Directory(current);
+
+    cDir.deleteSync(recursive: true);
+
+    cDir.createSync();
+
+    var path = "$current/upgrade.sh";
+
+    var content = "#! /bin/bash\ncp -r '$src' '$target'\nkill $pid\ncd $current\n./lb_planner\nrm ${r"$"}0";
+
+    var f = File(path);
+    f.createSync();
+
+    f.writeAsStringSync(content);
+
+    Process.start("chmod", ["+x", path]);
+
+    Process.start(path, []);
+  }
+
   /// Updates the app.
   void upgrade(VoidCallback onError) async {
     if (status.isDownloading || status.isDone || status.isError) return;
 
     _status = UpdateStatus.downloading;
     notifyListeners();
+
+    // TODO: _upgradeLinux(onError);
 
     var f = await kUpdater.upgrade(_updateProgress);
 
@@ -126,7 +155,11 @@ class Updater extends GitHubUpdater {
   String get windowsFileName => "Setup.exe";
 
   @override
+  bool get updateAvailable => true;
+
+  @override
   Future<bool> update() async {
+    return true;
     if (gPluginVersion == null) {
       log("Failed checking for updates because plugin version is unkown!", LogTypes.error);
       return false;
