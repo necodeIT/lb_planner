@@ -131,7 +131,7 @@
 		". . ."
 		"t t t";
 	grid-template-rows:0fr auto 8em auto auto;
-	background-image:linear-gradient(to bottom,var(--primary-color) calc(100vh - 4em),var(--secondary-color) calc(100vh - 4em));
+	background-image:linear-gradient(to top,var(--secondary-color) 27em,var(--primary-color) 27em);
 }
 #ofeat>h1{
 	grid-area:h;
