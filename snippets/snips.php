@@ -50,7 +50,7 @@
 		global $contextURLParams;
 		_setContext_helper('theme','light');
 		_setContext_helper('lang','EN');
-		_setContext_helper('os','windows');
+		_setOSContext();
 		$contextURLParams = genContextURLParams();
 	}
 	function _setContext_helper($varname,$default){
@@ -61,6 +61,17 @@
 			$GLOBALS[$globalname]=$default;
 		}else{
 			$GLOBALS[$globalname]=$_GET[$varname];
+		}
+	}
+	function _setOSContext(){
+		$user_agent = $_SERVER['HTTP_USER_AGENT'];
+		
+		if(preg_match('/macintosh|mac os x/i',$user_agent)){
+			_setContext_helper('os','mac');
+		}else if(preg_match('/linux|ubuntu/i',$user_agent)){
+			_setContext_helper('os','linux');
+		}else{
+			_setContext_helper('os','windows');
 		}
 	}
 	/* generates URL parameters that correspond with the current context */

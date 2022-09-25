@@ -16,7 +16,11 @@
 			<h1>Lorem ipsum dolor sit amet, consectetur</h2>
 			<h3>Lorem ipsum dolor sit amet, consectetur</h3>
 			<span>
-				<a class="btn" href="https://soundcloud.com/riedler-musics/cupheads-title-screen-8-bit">😛 DOWNLOAD</a>
+				<?php
+					echo "<a id='downloadbtn' class='btn' href='/download/?os=$context_os'>";
+					include("./resources/os_$context_os.svg");
+					echo 'DOWNLOAD</a>';
+				?>
 				<?php
 					genExtRef('Docs','/docs/'.genContextURLParams());
 					genExtRef('Admin','/docs/'.genContextURLParams().'#admin');

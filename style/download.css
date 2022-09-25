@@ -42,6 +42,9 @@
 #og1>span:last-of-type{/*text at the bottom idk*/
 	grid-area:b;
 }
+#downloadbtn>svg{
+	height:1em;
+}
 /* theme picker */
 #themebox{
 	grid-area:the;
