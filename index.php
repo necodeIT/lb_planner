@@ -85,9 +85,9 @@
 		<section class="screenpage" id="ofeat">
 			<h1 class="sectionheader">Other features</h1>
 			<?php
-				genLearnCard('Plan with your Friends','#plan');
-				genLearnCard('Get an immediate overview','#overview');
-				genLearnCard('Sync data across devices','#sync');
+				genLearnCard('Plan with your Friends','plan');
+				genLearnCard('Get an immediate overview','overview');
+				genLearnCard('Sync data across devices','sync');
 			?>
 			<hr/>
 			<?php

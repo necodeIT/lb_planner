@@ -21,9 +21,9 @@
 		echo '</a>';
 		$context_theme = $_tmp;
 	}
-	function genLearnCard($title,$link){
-		echo '<a class="card learn" href="/docs/'.genContextURLParams().$link.'">';
-			include(root.'/resources/logo.svg');#TODO: image
+	function genLearnCard($title,$name){
+		echo '<a class="card learn" href="/docs/'.genContextURLParams().'#'.$name.'">';
+			include(root."/resources/feature_$name.svg");
 			echo '<h4>Plan with your Friends</h4>';
 			echo '<p>'.
 				'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor'.
