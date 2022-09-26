@@ -196,11 +196,18 @@
 	margin:2em;
 	height:6em;
 }
-#ofeat>#linuxdlcard:not(.current){
+#ofeat>#windowsdlcard:not(.current){
 	justify-self:end;
 }
-#ofeat>#windowsdlcard:not(.current),
-#ofeat>#macdlcard:not(.current){
+#ofeat>#windowsdlcard:not(.current)~.card.dl:not(.current){
+	justify-self:start;
+}
+#ofeat>#linuxdlcard:not(.current){
+	grid-column:1;
+	justify-self:end;
+}
+#ofeat>#linuxdlcard:not(.current)~.card.dl:not(.current){
+	grid-column:3;
 	justify-self:start;
 }
 #ofeat>p{
@@ -224,7 +231,6 @@
 			"h2"
 			"the"
 			"b";
-		
 	}
 	#og1>img{
 		max-height:25vh;
@@ -262,5 +268,36 @@
 		width:50%;
 		bottom:-0.33em;
 		left:25%;
+	}
+	/* feature page */
+	#ofeat{
+		grid-template-rows:0fr 0fr auto 0fr 0fr 0fr 0fr;
+		grid-template-columns:auto;
+		grid-template-areas:
+			". . ."
+			"t t t";
+		min-height:unset;
+		background-image:linear-gradient(to bottom,var(--primary-color) 50%,var(--secondary-color) 50%);
+	}
+	#ofeat>.card.learn,
+	#ofeat>hr,
+	#ofeat>h1{/*no room for big cards*/
+		display:none;
+	}
+	#ofeat>.card.dl{
+		grid-row:1;
+	}
+}
+@media only screen and (max-width: 80em){
+	/* feature page */
+	#ofeat>.card.learn>svg{
+		padding:0 1em 1em 1em;
+	}
+	#ofeat>.card.dl{
+		width:15em;
+		height:15em;
+	}
+	#ofeat>.card.dl>svg{
+		margin:1em;
 	}
 }
