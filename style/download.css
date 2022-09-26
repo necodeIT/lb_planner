@@ -43,8 +43,13 @@
 	grid-area:b;
 	text-align:center;
 }
+#downloadbtn{
+	display:flex;
+	align-items:center;
+}
 #downloadbtn>svg{
 	height:1em;
+	margin-right:0.25em;
 }
 /* theme picker */
 #themebox{
