@@ -40,8 +40,6 @@ class UserProvider extends StateNotifier<User> {
     var user = await UserApi.getUser(token, id.value!);
 
     if (user.succeeded) {
-      assert(!user.value!.restricted);
-
       log("Logged in successfully", LogTypes.success);
 
       state = user.value!;

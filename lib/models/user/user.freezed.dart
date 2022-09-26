@@ -32,7 +32,7 @@ class _$UserTearOff {
       Languages language = Languages.restricted,
       String token = '',
       String theme = "",
-      UserAccessLevels accessLevel = UserAccessLevels.restricted,
+      Set<UserCapability> capabilities = const [],
       int planId = -1,
       bool loading = false,
       ColorBlindnessType colorBlindness = ColorBlindnessType.none}) {
@@ -46,7 +46,7 @@ class _$UserTearOff {
       language: language,
       token: token,
       theme: theme,
-      accessLevel: accessLevel,
+      capabilities: capabilities,
       planId: planId,
       loading: loading,
       colorBlindness: colorBlindness,
@@ -88,8 +88,8 @@ mixin _$User {
   /// The theme the user has selected
   String get theme => throw _privateConstructorUsedError;
 
-  /// The access level of the user
-  UserAccessLevels get accessLevel => throw _privateConstructorUsedError;
+  /// The capabilities of the user
+  Set<UserCapability> get capabilities => throw _privateConstructorUsedError;
 
   /// The id of the plan the user is currently a member of
   int get planId => throw _privateConstructorUsedError;
@@ -119,7 +119,7 @@ abstract class $UserCopyWith<$Res> {
       Languages language,
       String token,
       String theme,
-      UserAccessLevels accessLevel,
+      Set<UserCapability> capabilities,
       int planId,
       bool loading,
       ColorBlindnessType colorBlindness});
@@ -144,7 +144,7 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object? language = freezed,
     Object? token = freezed,
     Object? theme = freezed,
-    Object? accessLevel = freezed,
+    Object? capabilities = freezed,
     Object? planId = freezed,
     Object? loading = freezed,
     Object? colorBlindness = freezed,
@@ -186,10 +186,10 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _value.theme
           : theme // ignore: cast_nullable_to_non_nullable
               as String,
-      accessLevel: accessLevel == freezed
-          ? _value.accessLevel
-          : accessLevel // ignore: cast_nullable_to_non_nullable
-              as UserAccessLevels,
+      capabilities: capabilities == freezed
+          ? _value.capabilities
+          : capabilities // ignore: cast_nullable_to_non_nullable
+              as Set<UserCapability>,
       planId: planId == freezed
           ? _value.planId
           : planId // ignore: cast_nullable_to_non_nullable
@@ -221,7 +221,7 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       Languages language,
       String token,
       String theme,
-      UserAccessLevels accessLevel,
+      Set<UserCapability> capabilities,
       int planId,
       bool loading,
       ColorBlindnessType colorBlindness});
@@ -247,7 +247,7 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     Object? language = freezed,
     Object? token = freezed,
     Object? theme = freezed,
-    Object? accessLevel = freezed,
+    Object? capabilities = freezed,
     Object? planId = freezed,
     Object? loading = freezed,
     Object? colorBlindness = freezed,
@@ -289,10 +289,10 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
           ? _value.theme
           : theme // ignore: cast_nullable_to_non_nullable
               as String,
-      accessLevel: accessLevel == freezed
-          ? _value.accessLevel
-          : accessLevel // ignore: cast_nullable_to_non_nullable
-              as UserAccessLevels,
+      capabilities: capabilities == freezed
+          ? _value.capabilities
+          : capabilities // ignore: cast_nullable_to_non_nullable
+              as Set<UserCapability>,
       planId: planId == freezed
           ? _value.planId
           : planId // ignore: cast_nullable_to_non_nullable
@@ -322,7 +322,7 @@ class _$_User extends _User {
       this.language = Languages.restricted,
       this.token = '',
       this.theme = "",
-      this.accessLevel = UserAccessLevels.restricted,
+      this.capabilities = const [],
       this.planId = -1,
       this.loading = false,
       this.colorBlindness = ColorBlindnessType.none})
@@ -371,8 +371,8 @@ class _$_User extends _User {
   @JsonKey()
   @override
 
-  /// The access level of the user
-  final UserAccessLevels accessLevel;
+  /// The capabilities of the user
+  final Set<UserCapability> capabilities;
   @JsonKey()
   @override
 
@@ -391,7 +391,7 @@ class _$_User extends _User {
 
   @override
   String toString() {
-    return 'User(id: $id, username: $username, firstname: $firstname, lastname: $lastname, avatar: $avatar, displayTaskCount: $displayTaskCount, language: $language, token: $token, theme: $theme, accessLevel: $accessLevel, planId: $planId, loading: $loading, colorBlindness: $colorBlindness)';
+    return 'User(id: $id, username: $username, firstname: $firstname, lastname: $lastname, avatar: $avatar, displayTaskCount: $displayTaskCount, language: $language, token: $token, theme: $theme, capabilities: $capabilities, planId: $planId, loading: $loading, colorBlindness: $colorBlindness)';
   }
 
   @override
@@ -410,7 +410,7 @@ class _$_User extends _User {
             const DeepCollectionEquality().equals(other.token, token) &&
             const DeepCollectionEquality().equals(other.theme, theme) &&
             const DeepCollectionEquality()
-                .equals(other.accessLevel, accessLevel) &&
+                .equals(other.capabilities, capabilities) &&
             const DeepCollectionEquality().equals(other.planId, planId) &&
             const DeepCollectionEquality().equals(other.loading, loading) &&
             const DeepCollectionEquality()
@@ -429,7 +429,7 @@ class _$_User extends _User {
       const DeepCollectionEquality().hash(language),
       const DeepCollectionEquality().hash(token),
       const DeepCollectionEquality().hash(theme),
-      const DeepCollectionEquality().hash(accessLevel),
+      const DeepCollectionEquality().hash(capabilities),
       const DeepCollectionEquality().hash(planId),
       const DeepCollectionEquality().hash(loading),
       const DeepCollectionEquality().hash(colorBlindness));
@@ -456,7 +456,7 @@ abstract class _User extends User {
       Languages language,
       String token,
       String theme,
-      UserAccessLevels accessLevel,
+      Set<UserCapability> capabilities,
       int planId,
       bool loading,
       ColorBlindnessType colorBlindness}) = _$_User;
@@ -500,8 +500,8 @@ abstract class _User extends User {
   String get theme;
   @override
 
-  /// The access level of the user
-  UserAccessLevels get accessLevel;
+  /// The capabilities of the user
+  Set<UserCapability> get capabilities;
   @override
 
   /// The id of the plan the user is currently a member of

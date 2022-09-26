@@ -11,7 +11,7 @@ extension ModelMappingExtensions on Map<String, dynamic> {
     body["language"] = this["lang"];
 
     var role = this["role"];
-    if (role != null) body["accessLevel"] = UserAccessLevels.values[role].name;
+    if (role != null) body["accessLevel"] = UserCapability.values[role].name;
 
     body["id"] = this["userid"];
     body["avatar"] = this["profileimageurl"];

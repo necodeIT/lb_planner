@@ -17,9 +17,10 @@ _$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
           Languages.restricted,
       token: json['token'] as String? ?? '',
       theme: json['theme'] as String? ?? "",
-      accessLevel:
-          $enumDecodeNullable(_$UserAccessLevelsEnumMap, json['accessLevel']) ??
-              UserAccessLevels.restricted,
+      capabilities: (json['capabilities'] as List<dynamic>?)
+              ?.map((e) => $enumDecode(_$UserCapabilityEnumMap, e))
+              .toSet() ??
+          const [],
       planId: json['planId'] as int? ?? -1,
       loading: json['loading'] as bool? ?? false,
       colorBlindness: $enumDecodeNullable(
@@ -37,7 +38,9 @@ Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
       'language': _$LanguagesEnumMap[instance.language]!,
       'token': instance.token,
       'theme': instance.theme,
-      'accessLevel': _$UserAccessLevelsEnumMap[instance.accessLevel]!,
+      'capabilities': instance.capabilities
+          .map((e) => _$UserCapabilityEnumMap[e]!)
+          .toList(),
       'planId': instance.planId,
       'loading': instance.loading,
       'colorBlindness': _$ColorBlindnessTypeEnumMap[instance.colorBlindness]!,
@@ -48,12 +51,11 @@ const _$LanguagesEnumMap = {
   Languages.restricted: 'restricted',
 };
 
-const _$UserAccessLevelsEnumMap = {
-  UserAccessLevels.admin: 'admin',
-  UserAccessLevels.moderator: 'moderator',
-  UserAccessLevels.teacher: 'teacher',
-  UserAccessLevels.student: 'student',
-  UserAccessLevels.restricted: 'restricted',
+const _$UserCapabilityEnumMap = {
+  UserCapability.admin: 'admin',
+  UserCapability.moderator: 'moderator',
+  UserCapability.teacher: 'teacher',
+  UserCapability.student: 'student',
 };
 
 const _$ColorBlindnessTypeEnumMap = {

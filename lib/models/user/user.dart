@@ -41,8 +41,8 @@ class User with _$User {
     /// The theme the user has selected
     @Default("") String theme,
 
-    /// The access level of the user
-    @Default(UserAccessLevels.restricted) UserAccessLevels accessLevel,
+    /// The capabilities of the user
+    @Default([]) Set<UserCapability> capabilities,
 
     /// The id of the plan the user is currently a member of
     @Default(-1) int planId,
@@ -57,9 +57,6 @@ class User with _$User {
   /// Empty [User] with [loading] set to true.
   /// This is used to indicate that the user is not logged in or is currently loading.
   factory User.loading() => _LoadingUser();
-
-  /// If this is true, only restricted information is available about this user
-  bool get restricted => accessLevel == UserAccessLevels.restricted;
 
   /// The full name of the user, consiting out of the [firstname] and the [lastname]
   String get fullname => "$firstname $lastname";
@@ -76,7 +73,7 @@ User _LoadingUser() => User(
       avatar: "",
       language: Languages.en,
       theme: "",
-      accessLevel: UserAccessLevels.restricted,
+      capabilities: {},
       loading: true,
       planId: -1,
     );

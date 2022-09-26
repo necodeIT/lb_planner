@@ -5,6 +5,6 @@ extension UserUtils on User {
   /// Whether the user can make requests.
   bool get canMakeRequests => !restricted && !loading && InternetProvider.connected;
 
-  /// Whether the user has an access level of at least [UserAccessLevels.moderator].
+  /// Whether the user has an access level of at least [UserCapability.moderator].
   bool get isElevated => accessLevel.isAdmin || accessLevel.isModerator;
 }
