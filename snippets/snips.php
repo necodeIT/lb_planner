@@ -1,6 +1,6 @@
 <?php
 	function genExtRef($text,$href){
-		echo "<a class='extref' href='$href'>$text ";
+		echo "<a class='extref btn' href='$href'><span>$text </span>";
 		include("./resources/extref.svg");
 		echo '</a>';
 	}

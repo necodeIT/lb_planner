@@ -4,6 +4,7 @@
 	--secondary-color:#F2F3F9;
 	--tertiary-color:#CFCFCF;
 	--accent-color:#27BCF3;
+	--accent-bg-color:#27BCF315;
 	--text-color:#1D1D1D;
 	--button-text-color:#FFF;
 }
@@ -12,6 +13,7 @@
 	--secondary-color:#2A2A2A;
 	--tertiary-color:#444;
 	--accent-color:#27BCF3;
+	--accent-bg-color:#27BCF322;
 	--text-color:#FFF;
 	--button-text-color:#FFF;
 }
@@ -20,6 +22,7 @@
 	--secondary-color:#262E48;
 	--tertiary-color:#3D4C80;
 	--accent-color:#78A5FE;
+	--accent-bg-color:#78A5FE22;
 	--text-color:#F8F2F2;
 	--button-text-color:#F8F2F2;
 }
@@ -28,6 +31,7 @@
 	--secondary-color:#F3DCDB;
 	--tertiary-color:#ECBDB0;
 	--accent-color:#F3A39E;
+	--accent-bg-color:#F3A39E22;
 	--text-color:#8C5E6B;
 	--button-text-color:#FCE9EB;
 }
@@ -127,6 +131,7 @@ body{
 	border-radius:0.25em;
 	font-weight:bold;
 	white-space:nowrap;
+	transition:color 0.2s,background-color 0.2s;
 }
 .btn{
 	background-color:var(--accent-color);
@@ -135,11 +140,16 @@ body{
 .extref{
 	text-decoration:none;
 	color:var(--accent-color);
+	background-color:#0000;
 	font-weight:600;
 	white-space:nowrap;
 }
 .extref:hover{
-	text-decoration:underline;
+	background-color:var(--accent-bg-color);
+}
+.extref:focus{
+	background-color:var(--accent-color);
+	color:var(--button-text-color);
 }
 .extref>svg{
 	display:inline-block;
