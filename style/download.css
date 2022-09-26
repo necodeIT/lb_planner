@@ -41,6 +41,7 @@
 }
 #og1>span:last-of-type{/*text at the bottom idk*/
 	grid-area:b;
+	text-align:center;
 }
 #downloadbtn>svg{
 	height:1em;
