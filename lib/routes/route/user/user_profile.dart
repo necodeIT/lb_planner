@@ -37,7 +37,7 @@ class UserProfile extends StatelessWidget {
                 fontSize: nameSize,
               ),
               NcBodyText(
-                EnumToString.convertToString(user.accessLevel, camelCase: true),
+                EnumToString.convertToString(user.capabilities.highest, camelCase: true),
                 color: accentColor,
                 fontSize: accessLevelSize,
               ),
