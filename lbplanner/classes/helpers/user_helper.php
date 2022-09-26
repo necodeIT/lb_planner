@@ -16,6 +16,7 @@
 
 namespace local_lbplanner\helpers;
 
+use context_system;
 use moodle_url;
 use stdClass;
 
@@ -25,33 +26,33 @@ use stdClass;
 class user_helper {
 
     /**
-     * Shortname of the admin role.
+     * Shortname of the admin CAPABILITY.
      */
-    const ROLE_ADMIN = 'lbpa';
+    const CAPABILITY_ADMIN = 'local/lb_planner:admin';
 
     /**
-     * Shortname of the manager role.
+     * Shortname of the manager CAPABILITY.
      */
-    const ROLE_MANAGER = 'lbpm';
+    const CAPABILITY_MANAGER = 'local/lb_planner:manager';
 
     /**
-     * Shortname of the teacher role.
+     * Shortname of the teacher CAPABILITY.
      */
-    const ROLE_TEACHER = 'lbpt';
+    const CAPABILITY_TEACHER = 'local/lb_planner:teacher';
 
     /**
-     * Shortname of the student role.
+     * Shortname of the student CAPABILITY.
      */
-    const ROLE_STUDENT = 'lbps';
+    const CAPABILITY_STUDENT = 'local/lb_planner:student';
 
     /**
-     * Maps role shortnames to their corresponding enum value.
+     * Maps CAPABILITY shortnames to their corresponding enum value.
      */
-    const ROLE_ENUMS = [
-        self::ROLE_ADMIN => 0,
-        self::ROLE_MANAGER => 1,
-        self::ROLE_TEACHER => 2,
-        self::ROLE_STUDENT => 3
+    const CAPABILITY_ENUMS = [
+        self::CAPABILITY_ADMIN => 0,
+        self::CAPABILITY_MANAGER => 1,
+        self::CAPABILITY_TEACHER => 2,
+        self::CAPABILITY_STUDENT => 3
     ];
 
     /**
@@ -112,33 +113,29 @@ class user_helper {
     }
 
     /**
-     * Returns the role enum value for the given username.
+     * Gives back an enum containing the user's capabilities
      *
-     * @param integer $userid The id of the user to retrieve the role for.
-     * @return integer The enum value of the role.
+     * @param int $userid The id of the user to check access for.
+     * @return array An array containing the user's capabilities.
      */
-    public static function determin_user_role(int $userid) : int {
+    public static function determin_user_capabilities(int $userid) : array {
         global $DB;
-
-        $adminid = $DB->get_field('role', 'id', array('shortname' => self::ROLE_ADMIN));
-        $managerid = $DB->get_field('role', 'id', array('shortname' => self::ROLE_MANAGER));
-        $teacherid = $DB->get_field('role', 'id', array('shortname' => self::ROLE_TEACHER));
-
-        $isadmin = $DB->record_exists('role_assignments', array('userid' => $userid, 'roleid' => $adminid));
-        $ismanager = $DB->record_exists('role_assignments', array('userid' => $userid, 'roleid' => $managerid));
-        $isteacher = $DB->record_exists('role_assignments', array('userid' => $userid, 'roleid' => $teacherid));
-
-        if ($isadmin) {
-            return self::ROLE_ENUMS[self::ROLE_ADMIN];
-        } else if ($ismanager) {
-            return self::ROLE_ENUMS[self::ROLE_MANAGER];
-        } else if ($isteacher) {
-            return self::ROLE_ENUMS[self::ROLE_TEACHER];
-        } else {
-            return self::ROLE_ENUMS[self::ROLE_STUDENT];
+        $capabilities = [];
+        $context = context_system::instance();
+        if (has_capability(self::CAPABILITY_ADMIN, $context, $userid, false)) {
+            $capabilities[] = array(self::CAPABILITY_ENUMS[self::CAPABILITY_ADMIN]);
         }
+        if (has_capability(self::CAPABILITY_MANAGER, $context, $userid, false)) {
+            $capabilities[] = array(self::CAPABILITY_ENUMS[self::CAPABILITY_MANAGER]);
+        }
+        if (has_capability(self::CAPABILITY_TEACHER, $context, $userid, false)) {
+            $capabilities[] = array(self::CAPABILITY_ENUMS[self::CAPABILITY_TEACHER]);
+        }
+        if (has_capability(self::CAPABILITY_STUDENT, $context, $userid, false)) {
+            $capabilities[] = array(self::CAPABILITY_ENUMS[self::CAPABILITY_STUDENT]);
+        }
+        return $capabilities;
     }
-
     /**
      * Checks if the given user exists in the database.
      *

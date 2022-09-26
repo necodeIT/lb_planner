@@ -68,14 +68,14 @@ class feedback_helper {
      * @param integer $userid The id of the user
      * @return void Throws an exception if the user has no access
      */
-    public static function assert_access(int $userid) {
-        $role = user_helper::determin_user_role($userid);
-        if (user_helper::ROLE_ENUMS[user_helper::ROLE_ADMIN] != $role &&
-            user_helper::ROLE_ENUMS[user_helper::ROLE_MANAGER] != $role
-            ) {
+    public static function assert_admin_access(int $userid) {
+        $capabilities = user_helper::determin_user_capabilities($userid);
+        if (!in_array(user_helper::CAPABILITY_ENUMS[user_helper::CAPABILITY_ADMIN], $capabilities)
+        || !in_array(user_helper::CAPABILITY_ENUMS[user_helper::CAPABILITY_MANAGER], $capabilities)) {
             throw new \moodle_exception('Access denied');
         }
     }
+
     public static function get_all_feedbacks() : array {
         global $DB;
         return $DB->get_records(self::LBPLANNER_FEEDBACK_TABLE);

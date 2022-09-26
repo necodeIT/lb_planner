@@ -43,7 +43,7 @@ class feedback_get_all_feedbacks extends external_api {
 
         user_helper::assert_access($userid);
 
-        feedback_helper::assert_access($userid);
+        feedback_helper::assert_admin_access($userid);
 
         return feedback_helper::get_all_feedbacks($userid);
     }

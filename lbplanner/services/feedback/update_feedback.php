@@ -45,11 +45,12 @@ class feedback_update_feedback extends external_api {
         );
 
         user_helper::assert_access($userid);
+        feedback_helper::assert_admin_access($userid);
 
         if (!$DB->record_exists(feedback_helper::LBPLANNER_FEEDBACK_TABLE, array('id' => $feedbackid))) {
             throw new \moodle_exception('feedback_not_found');
         }
-        feedback_helper::assert_access($userid);
+
         $feedback = $DB->get_record(feedback_helper::LBPLANNER_FEEDBACK_TABLE, array('id' => $feedbackid), '*', MUST_EXIST);
         $feedback->notes = $notes;
         if ($status > 1 || $status < 0) {

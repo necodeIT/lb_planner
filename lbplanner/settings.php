@@ -21,5 +21,5 @@ if ($hassiteconfig) {
     $ADMIN->add('localplugins', $settings);
 
     $settings->add(new admin_setting_configtext('local_lbplanner/activeyear',
-        'Active year', 'Current Year  z.B.:"20/21" ', null, PARAM_TEXT));
+        'Active year', 'Current year  e.g.:"20/21" ', null, PARAM_TEXT));
 }

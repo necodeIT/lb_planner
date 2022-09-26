@@ -16,10 +16,12 @@
 
 namespace local_lbplanner_services;
 
+use block_recentlyaccesseditems\external;
 use core_privacy\local\request\subsystem\plugin_provider;
 use external_api;
 use external_function_parameters;
 use external_single_structure;
+use external_multiple_structure;
 use external_value;
 use local_lbplanner\helpers\plan_helper;
 use local_lbplanner\helpers\user_helper;
@@ -60,7 +62,7 @@ class user_get_user extends external_api {
                 'username' => $mdluser->username,
                 'firstname' => $mdluser->firstname,
                 'lastname' => $mdluser->lastname,
-                'role' => user_helper::determin_user_role($userid),
+                'capabilities' => user_helper::determin_user_capabilities($userid),
                 'theme' => $user->theme,
                 'lang' => $user->language,
                 'profileimageurl' => $mdluser->profileimageurl,
@@ -74,7 +76,7 @@ class user_get_user extends external_api {
                 'username' => $user->username,
                 'firstname' => $mdluser->firstname,
                 'lastname' => $mdluser->lastname,
-                'role' => null,
+                'capabilities' => null,
                 'theme' => null,
                 'lang' => null,
                 'profileimageurl' => $mdluser->profileimageurl,
@@ -90,13 +92,19 @@ class user_get_user extends external_api {
                 'username' => new external_value(PARAM_TEXT, 'The username of the user'),
                 'firstname' => new external_value(PARAM_TEXT, 'The firstname of the user'),
                 'lastname' => new external_value(PARAM_TEXT, 'The lastname of the user'),
-                'role' => new external_value(PARAM_INT, 'The role of the user'),
                 'theme' => new external_value(PARAM_TEXT, 'The theme the user has selected'),
                 'lang' => new external_value(PARAM_TEXT, 'The language the user has selected'),
                 'profileimageurl' => new external_value(PARAM_URL, 'The url of the profile image'),
                 'planid' => new external_value(PARAM_INT, 'The id of the plan the user is assigned to'),
                 'colorblindness' => new external_value(PARAM_TEXT, 'The colorblindness of the user'),
                 'displaytaskcount' => new external_value(PARAM_INT, 'The displaytaskcount of the user'),
+                'capabilities' => new external_multiple_structure(
+                    new external_single_structure(
+                        array(
+                            new external_value(PARAM_RAW, 'The capability'),
+                        )
+                    )
+               )
             )
         );
     }

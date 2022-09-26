@@ -48,7 +48,8 @@ class feedback_delete_feedback extends external_api {
             throw new \moodle_exception('feedback_not_found');
         }
 
-        feedback_helper::assert_access($userid);
+        feedback_helper::assert_admin_access($userid);
+
         $DB->delete_records(feedback_helper::LBPLANNER_FEEDBACK_TABLE, array('id' => $feedbackid));
 
         return feedback_helper::get_all_feedbacks($userid);
