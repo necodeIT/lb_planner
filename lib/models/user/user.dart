@@ -42,7 +42,7 @@ class User with _$User {
     @Default("") String theme,
 
     /// The capabilities of the user
-    @Default([]) Set<UserCapability> capabilities,
+    @Default(<UserCapability>{}) Set<UserCapability> capabilities,
 
     /// The id of the plan the user is currently a member of
     @Default(-1) int planId,

@@ -32,7 +32,7 @@ class _$UserTearOff {
       Languages language = Languages.restricted,
       String token = '',
       String theme = "",
-      Set<UserCapability> capabilities = const [],
+      Set<UserCapability> capabilities = const <UserCapability>{},
       int planId = -1,
       bool loading = false,
       ColorBlindnessType colorBlindness = ColorBlindnessType.none}) {
@@ -322,7 +322,7 @@ class _$_User extends _User {
       this.language = Languages.restricted,
       this.token = '',
       this.theme = "",
-      this.capabilities = const [],
+      this.capabilities = const <UserCapability>{},
       this.planId = -1,
       this.loading = false,
       this.colorBlindness = ColorBlindnessType.none})

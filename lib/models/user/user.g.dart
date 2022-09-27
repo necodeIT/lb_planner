@@ -20,7 +20,7 @@ _$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
       capabilities: (json['capabilities'] as List<dynamic>?)
               ?.map((e) => $enumDecode(_$UserCapabilityEnumMap, e))
               .toSet() ??
-          const [],
+          const <UserCapability>{},
       planId: json['planId'] as int? ?? -1,
       loading: json['loading'] as bool? ?? false,
       colorBlindness: $enumDecodeNullable(
