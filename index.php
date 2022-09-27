@@ -18,7 +18,10 @@
 			<span>
 				<?php
 					echo "<a id='downloadbtn' class='btn' href='/download/?os=$context_os'>";
-					include("./resources/os_$context_os.svg");
+					if($context_os=='linux')
+						include("./resources/os_linux_small.svg");
+					else
+						include("./resources/os_$context_os.svg");
 					echo 'DOWNLOAD</a>';
 				?>
 				<?php
