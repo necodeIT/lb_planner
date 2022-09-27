@@ -34,14 +34,14 @@
 			<div id="themebox">
 				<div>
 					<?php
-						genThemeCard('light');
-						genThemeCard('dark');
+						genThemeCard('light','Light');
+						genThemeCard('dark','Dark');
 					?>
 				</div>
 				<div>
 					<?php
-						genThemeCard('ocean');
-						genThemeCard('sakura');
+						genThemeCard('ocean','Ocean');
+						genThemeCard('sakura','桜');
 					?>
 				</div>
 			</div>

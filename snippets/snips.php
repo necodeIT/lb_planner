@@ -4,7 +4,7 @@
 		include("./resources/extref.svg");
 		echo '</a>';
 	}
-	function genThemeCard($theme){
+	function genThemeCard($theme,$name){
 		global $context_theme;
 		if($theme==$context_theme){
 			$current = ' current';
@@ -17,7 +17,7 @@
 			echo genContextURLParams();
 			echo '\'>';
 			include("./resources/theme-$theme.svg");
-			echo $theme;
+			echo $name;
 		echo '</a>';
 		$context_theme = $_tmp;
 	}
