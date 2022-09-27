@@ -96,11 +96,7 @@ class user_register_user extends external_api {
                 'username' => new external_value(PARAM_TEXT, 'The username of the user'),
                 'firstname' => new external_value(PARAM_TEXT, 'The firstname of the user'),
                 'lastname' => new external_value(PARAM_TEXT, 'The lastname of the user'),
-                'capabilities' => new external_single_structure(
-                    array(
-                        new external_value(PARAM_INT, 'The capabilites of the user'),
-                    )
-                    ),
+                'capabilities' => new external_value(PARAM_INT, 'The capability'),
                 'theme' => new external_value(PARAM_TEXT, 'The theme the user has selected'),
                 'lang' => new external_value(PARAM_TEXT, 'The language the user has selected'),
                 'profileimageurl' => new external_value(PARAM_URL, 'The url of the profile image'),

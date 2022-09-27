@@ -70,9 +70,8 @@ class feedback_helper {
      */
     public static function assert_admin_access(int $userid) {
         $capabilities = user_helper::determin_user_capabilities($userid);
-        if (!in_array(user_helper::CAPABILITY_ENUMS[user_helper::CAPABILITY_ADMIN], $capabilities)
-        || !in_array(user_helper::CAPABILITY_ENUMS[user_helper::CAPABILITY_MANAGER], $capabilities)) {
-            throw new \moodle_exception('Access denied');
+        if ($capabilities > user_helper::CAPABILITY_ENUMS[user_helper::CAPABILITY_MANAGER]) {
+            throw new \moodle_exception('Acces denied');
         }
     }
 

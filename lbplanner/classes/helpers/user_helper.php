@@ -49,10 +49,10 @@ class user_helper {
      * Maps CAPABILITY shortnames to their corresponding enum value.
      */
     const CAPABILITY_ENUMS = [
-        self::CAPABILITY_ADMIN => 0,
-        self::CAPABILITY_MANAGER => 1,
+        self::CAPABILITY_ADMIN => 8,
+        self::CAPABILITY_MANAGER => 4,
         self::CAPABILITY_TEACHER => 2,
-        self::CAPABILITY_STUDENT => 3
+        self::CAPABILITY_STUDENT => 1
     ];
 
     /**
@@ -113,26 +113,42 @@ class user_helper {
     }
 
     /**
-     * Gives back an enum containing the user's capabilities
+     * Gives back an integer which represents the capabilities of the given user.
+     * 0 = no capabilities
+     * 1 = student
+     * 2 = teacher
+     * 3 = student + teacher
+     * 4 = manager
+     * 5 = student + manager
+     * 6 = teacher + manager
+     * 7 = student + teacher + manager
+     * 8 = admin
+     * 9 = student + admin
+     * 10 = teacher + admin
+     * 11 = student + teacher + admin
+     * 12 = manager + admin
+     * 13 = student + manager + admin
+     * 14 = teacher + manager + admin
+     * 15 = student + teacher + manager + admin
      *
      * @param int $userid The id of the user to check access for.
-     * @return array An array containing the user's capabilities.
+     * @return int The capabilities of the given user.
      */
-    public static function determin_user_capabilities(int $userid) : array {
+    public static function determin_user_capabilities(int $userid) : int {
         global $DB;
-        $capabilities = [];
+        $capabilities = 0;
         $context = context_system::instance();
         if (has_capability(self::CAPABILITY_ADMIN, $context, $userid, false)) {
-            $capabilities[] = array(self::CAPABILITY_ENUMS[self::CAPABILITY_ADMIN]);
+            $capabilities += self::CAPABILITY_ENUMS[self::CAPABILITY_ADMIN];
         }
         if (has_capability(self::CAPABILITY_MANAGER, $context, $userid, false)) {
-            $capabilities[] = array(self::CAPABILITY_ENUMS[self::CAPABILITY_MANAGER]);
+            $capabilities += self::CAPABILITY_ENUMS[self::CAPABILITY_MANAGER];
         }
         if (has_capability(self::CAPABILITY_TEACHER, $context, $userid, false)) {
-            $capabilities[] = array(self::CAPABILITY_ENUMS[self::CAPABILITY_TEACHER]);
+            $capabilities += self::CAPABILITY_ENUMS[self::CAPABILITY_TEACHER];
         }
         if (has_capability(self::CAPABILITY_STUDENT, $context, $userid, false)) {
-            $capabilities[] = array(self::CAPABILITY_ENUMS[self::CAPABILITY_STUDENT]);
+            $capabilities += self::CAPABILITY_ENUMS[self::CAPABILITY_STUDENT];
         }
         return $capabilities;
     }
