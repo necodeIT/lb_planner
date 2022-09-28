@@ -4,6 +4,7 @@
 	
 	require_once('./snippets/snips.php');
 	require_once('./snippets/db.php');
+	require_once('./snippets/download.php');
 	
 	setContext();
 	
