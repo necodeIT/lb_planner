@@ -10,7 +10,7 @@ extension ModelMappingExtensions on Map<String, dynamic> {
 
     body["language"] = this["lang"];
 
-    var capabilitiesMask = this["capabilities"] as int;
+    var capabilitiesMask = (this["capabilities"] ?? 0) as int;
 
     List<String> capabilities = [];
 
