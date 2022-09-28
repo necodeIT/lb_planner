@@ -6,31 +6,31 @@
 11,Dunkel
 12,Ozean
 13,桜
-20,Lorem ipsum dolor sit amet\, consectetur
+20,SELBSTORGANISATION REVOLUTIONIERT
 21,Pass den Stil an
-22,Lorem ipsum dolor sit amet\,
-23,Lorem ipsum dolor sit amet\,
-24,Lorem ipsum dolor sit amet\,
+22,Immer übersichtlich!
+23,Planung war noch NIE so einfach!
+24,Kursspezifischer Einblick!
 25,Andere Funktionen
 26,Plane mit deinen Freunden
 27,Verschaffe dir den Überblick
 28,Synchronisiere deine Daten zwischen Geräten
 29,Download für
-40,Lorem ipsum dolor sit amet\, consectetur
+40,Behalte beim Planen alles im Blick!
 41,DOWNLOAD
 42,Doku
 43,Admin
 44,mehr erfahren
-70,Lorem ipsum dolor sit amet\, consectetur adipiscing elit\, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam\, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-71,Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident\, sunt in culpa qui officia deserunt mollit anim id est laborum.
-72,Lorem ipsum dolor sit amet\, consectetur adipiscing elit\, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam\, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-73,Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident\, sunt in culpa qui officia deserunt mollit anim id est laborum
-74,Lorem ipsum dolor sit amet\, consectetur adipiscing elit\, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam\, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-75,Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident\, sunt in culpa qui officia deserunt mollit anim id est laborum
-76,Lorem ipsum dolor sit amet\, consectetur adipiscing elit\, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam\, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-77,Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident\, sunt in culpa qui officia deserunt mollit anim id est laborum
-78,Lorem ipsum dolor sit amet\, consectetur adipiscing elit\, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam\, quis nostrud exercitation ullamco laboris nisi
-79,Lorem ipsum dolor sit amet\, consectetur adipiscing elit\, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam\, quis nostrud exercitation ullamco laboris nisi
-80,Lorem ipsum dolor sit amet\, consectetur adipiscing elit\, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam\, quis nostrud exercitation ullamco laboris nisi
-81,Lorem ipsum dolor sit amet\, consectetur adipiscing elit\, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam\, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-82,Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident\, sunt in culpa qui officia deserunt mollit anim id est laborum
+70,Wir bieten eine Vielfalt an Farbschemen an!
+71,
+72,Das Dashboard kann dir jederzeit eine Übersicht über Termine\, Fristen und Module bereitstellen. Wir bieten außerdem automatisierte Statusverfolgung (damit du dich nie mehr selbst belügen kannst - wir wissen\, dass du es auch tust ☜(ﾟヮﾟ☜) ). 
+73,Das sollte dir dabei helfen\, noch erfolgreicher in deiner Schulkarriere zu werden.
+74,Dank unseres gut durchdachten Planers wirst du in der Lage sein deine Module einfach und effizient zu planen. Die individuellen Module werden automatisch abgehakt sobald du eine positive Note erzielst. 
+75,So wirst du diese lästige Kleinarbeit los!
+76,Durch unsere farbcodierten Diagramme kannst du dir einen detaillierten Überblick erschaffen. Du hast außerdem Zugriff auf alle Module und Bewertungen der einzelnen Lehrkräfte. 
+77,Das hilft dir dabei\, schnell und einfach deine Schwachpunkte in einzelnen Fächern zu identifizieren.
+78,Du kannst Freunde zu deinem Plan hinzufügen um Module miteinander auszumachen.
+79,Wir berechnen automatisch deine Noten\, basierend auf Bewertungen\, die du von Lehrern erhalten hast.
+80,Deine Einstellungen werden automatisch auf all deinen Geräten gleichgestellt. So kannst du immer und überall sofort loslegen.
+81,LIZENZ- UND PRIVATSPHÄREBESTIMMUNGEN<br/><br/>LB Planner sammelt anonymisierte Daten für unsere Statistiken<br/>
+82,Durch das Herunteladen von LB Planner stimmst du den Lizenzbedingungen und Datenschutzerklärung zu
