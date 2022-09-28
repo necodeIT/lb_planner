@@ -2,10 +2,12 @@
 
 # needs FILE permission for mysql user
 
-paths=( "./keys.txt" "./en.txt" "./de.txt" );
-tables=( "TranslationKeys" "Translation_en" "Translation_de" );
+langs=('en' 'de')
 
-for ((i=0;i<"${#paths[@]}";i++));
+#IGNORE because otherwise you could accidentally change string keys & it throws an foreign key constraint error I'd have to explicitly ignore
+mysql lbpages -u lbplanner -e "LOAD DATA INFILE \"$(realpath ./keys.txt)\" IGNORE INTO TABLE TranslationKeys FIELDS TERMINATED BY ','"
+
+for ((i=0;i<"${#langs[@]}";i++));
 do :
-	mysql lbpages -u lbplanner -e "LOAD DATA INFILE \"$(realpath ${paths[$i]})\" REPLACE INTO TABLE ${tables[$i]} FIELDS TERMINATED BY ','"
+	mysql lbpages -u lbplanner -e "LOAD DATA INFILE \"$(realpath ./${langs[$i]}.txt)\" REPLACE INTO TABLE Translation_${langs[$i]} FIELDS TERMINATED BY ','"
 done
