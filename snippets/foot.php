@@ -1,3 +1,4 @@
+<?php require_once(root.'/snippets/db.php'); ?>
 <footer id="mainfoot">
 	<?php 
 		include(root.'/resources/logo.svg');

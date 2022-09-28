@@ -1,5 +1,7 @@
 <?php
 	global $contextURLParams;
+	require_once(root.'/snippets/db.php');
+	
 	$c=array('','','');
 	$c[cursite-1]=' class="current"';
 	echo '<nav id="mainnav">';
