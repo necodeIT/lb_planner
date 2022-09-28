@@ -16,6 +16,7 @@
 27,title_learn2
 28,title_learn3
 40,span_main
+41,btn_download
 70,p_themes1
 71,p_themes2
 72,p_demo11
