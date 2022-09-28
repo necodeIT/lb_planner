@@ -5,7 +5,7 @@
 10,Light
 11,Dark
 12,Ocean
-13,Sakura
+13,桜
 20,Lorem ipsum dolor sit amet, consectetur
 21,Fit your style
 22,Lorem ipsum dolor sit amet,
