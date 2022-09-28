@@ -15,10 +15,12 @@
 26,title_learn1
 27,title_learn2
 28,title_learn3
+29,title_download
 40,span_main
 41,btn_download
 42,lnk_docs
 43,lnk_admin
+44,lnk_learn
 70,p_themes1
 71,p_themes2
 72,p_demo11
@@ -27,3 +29,8 @@
 75,p_demo22
 76,p_demo31
 77,p_demo32
+78,p_learn1
+79,p_learn2
+80,p_learn3
+81,p_download1
+82,p_download2
