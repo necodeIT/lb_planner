@@ -10,9 +10,17 @@ extension ModelMappingExtensions on Map<String, dynamic> {
 
     body["language"] = this["lang"];
 
-    var role = this["role"];
-    if (role != null) body["accessLevel"] = UserCapability.values[role].name;
+    var capabilitiesMask = this["capabilities"] as int;
 
+    List<UserCapability> capabilities = [];
+
+    for (UserCapability capability in UserCapability.values) {
+      var mask = 1 << capability.index;
+
+      if (capabilitiesMask & mask != 0) capabilities.add(capability);
+    }
+
+    body["capabilities"] = capabilities;
     body["id"] = this["userid"];
     body["avatar"] = this["profileimageurl"];
     body["planId"] = this["planid"];

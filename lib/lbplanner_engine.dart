@@ -41,7 +41,7 @@ import 'models/version/version.dart';
 // Models
 
 part 'models/user/languages.dart';
-part 'models/user/user_access_levels.dart';
+part 'models/user/user_capabilities.dart';
 part 'models/notification/notification_types.dart';
 part 'models/notification/notification_status.dart';
 part 'models/module/module_grades.dart';
