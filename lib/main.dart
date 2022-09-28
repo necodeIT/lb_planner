@@ -85,8 +85,6 @@ class App extends StatelessWidget {
     return ProviderScope(
       child: Consumer(
         builder: (context, ref, _) {
-          var connected = ref.read(internetProvider);
-
           var user = ref.read(userProvider);
 
           return MaterialApp(
@@ -99,7 +97,7 @@ class App extends StatelessWidget {
             navigatorObservers: [kRouteObserver],
             supportedLocales: AppLocalizations.supportedLocales,
             debugShowCheckedModeBanner: false,
-            initialRoute: LoginRoute.info.routeName,
+            initialRoute: user.loading ? LoginRoute.info.routeName : DashboardRoute.info.routeName,
             onGenerateRoute: RouteWrapper.gnerateRoute,
           );
         },
