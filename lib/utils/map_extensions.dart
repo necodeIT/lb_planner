@@ -12,12 +12,12 @@ extension ModelMappingExtensions on Map<String, dynamic> {
 
     var capabilitiesMask = this["capabilities"] as int;
 
-    List<UserCapability> capabilities = [];
+    List<String> capabilities = [];
 
     for (UserCapability capability in UserCapability.values) {
       var mask = 1 << capability.index;
 
-      if (capabilitiesMask & mask != 0) capabilities.add(capability);
+      if (capabilitiesMask & mask != 0) capabilities.add(capability.name);
     }
 
     body["capabilities"] = capabilities;
