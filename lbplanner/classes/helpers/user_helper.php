@@ -49,10 +49,10 @@ class user_helper {
      * Maps CAPABILITY shortnames to their corresponding enum value.
      */
     const CAPABILITY_ENUMS = [
-        self::CAPABILITY_ADMIN => 8,
-        self::CAPABILITY_MANAGER => 4,
-        self::CAPABILITY_TEACHER => 2,
-        self::CAPABILITY_STUDENT => 1
+        self::CAPABILITY_ADMIN => 1,
+        self::CAPABILITY_MANAGER => 2,
+        self::CAPABILITY_TEACHER => 4,
+        self::CAPABILITY_STUDENT => 8
     ];
 
     /**
@@ -115,21 +115,22 @@ class user_helper {
     /**
      * Gives back an integer which represents the capabilities of the given user.
      * 0 = no capabilities
-     * 1 = student
-     * 2 = teacher
-     * 3 = student + teacher
-     * 4 = manager
-     * 5 = student + manager
-     * 6 = teacher + manager
-     * 7 = student + teacher + manager
-     * 8 = admin
-     * 9 = student + admin
-     * 10 = teacher + admin
-     * 11 = student + teacher + admin
-     * 12 = manager + admin
-     * 13 = student + manager + admin
-     * 14 = teacher + manager + admin
-     * 15 = student + teacher + manager + admin
+     * 1 = admin
+     * 2 = manager
+     * 3 = admin + manager
+     * 4 = teacher
+     * 5 = admin + teacher
+     * 6 = manager + teacher
+     * 7 = admin + manager + teacher
+     * 8 = student
+     * 9 = admin + student
+     * 10 = manager + student
+     * 11 = admin + manager + student
+     * 12 = teacher + student
+     * 13 = admin + teacher + student
+     * 14 = manager + teacher + student
+     * 15 = admin + manager + teacher + student
+     *
      *
      * @param int $userid The id of the user to check access for.
      * @return int The capabilities of the given user.
