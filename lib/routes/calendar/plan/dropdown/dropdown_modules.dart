@@ -90,7 +90,7 @@ class _CalendarPlanDropDwonModulesState extends State<CalendarPlanDropDwonModule
               NcSpacing.xs(),
               ConditionalWidget(
                   condition: _ekFuture == null,
-                  trueWidget: (_) => LpCheckbox(value: plan.ekEnabled, onChanged: (value) => _enableEk(ref, value)),
+                  trueWidget: (_) => LpCheckbox(value: plan.ekEnabled, onChanged: accessLvl.isRead ? null : (value) => _enableEk(ref, value)),
                   falseWidget: (_) => Padding(
                         padding: const EdgeInsets.all(8.5), // Do not touch!
                         child: LpLoadingIndicator.circular(),
