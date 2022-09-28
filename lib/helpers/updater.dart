@@ -155,7 +155,7 @@ class Updater extends GitHubUpdater {
   String get windowsFileName => "Setup.exe";
 
   @override
-  bool get updateAvailable => true;
+  bool get updateAvailable => false;
 
   @override
   Future<bool> update() async {
