@@ -9,5 +9,5 @@ mysql lbpages -u lbplanner -e "LOAD DATA INFILE \"$(realpath ./keys.txt)\" IGNOR
 
 for ((i=0;i<"${#langs[@]}";i++));
 do :
-	mysql lbpages -u lbplanner -e "LOAD DATA INFILE \"$(realpath ./${langs[$i]}.txt)\" REPLACE INTO TABLE Translation_${langs[$i]} FIELDS TERMINATED BY ','"
+	mysql lbpages -u lbplanner -e "LOAD DATA INFILE \"$(realpath ./${langs[$i]}.txt)\" REPLACE INTO TABLE Translation_${langs[$i]} FIELDS TERMINATED BY ',' ESCAPED BY '\\\\'"
 done
