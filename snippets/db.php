@@ -20,7 +20,8 @@
 		return $stmt;
 	}
 	//returns a translated string matching the key string from the database
-	function getDBString($key){
+	//short for Get DB String
+	function GDS($key){
 		global $context_lang,$db;
 		return _db_get_pq(
 			'SELECT str FROM Translation_'.strtolower($context_lang).' as trans INNER JOIN TranslationKeys as tkeys ON trans.id=tkeys.id WHERE tkeys.name=?',
@@ -28,6 +29,19 @@
 	}
 	//shorthand for Echo DB String
 	function EDS($key){
-		echo getDBString($key);
+		echo GDS($key);
+	}
+	//shorthand for Multiple Get DB String and Multiple Echo DB String
+	function MGDS($key,$postfixes){
+		$result = '';
+		foreach($postfixes as $pf){
+			$result.=GDS($key.$pf);
+		}
+		return $result;
+	}
+	function MEDS($key,$postfixes){
+		foreach($postfixes as $pf){
+			EDS($key.$pf);
+		}
 	}
 ?>

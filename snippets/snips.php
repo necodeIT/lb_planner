@@ -1,10 +1,11 @@
 <?php
+	require_once(root.'/snippets/db.php');
 	function genExtRef($text,$href){
 		echo "<a class='extref btn' href='$href'><span>$text </span>";
 		include("./resources/extref.svg");
 		echo '</a>';
 	}
-	function genThemeCard($theme,$name){
+	function genThemeCard($theme){
 		global $context_theme;
 		if($theme==$context_theme){
 			$current = ' current';
@@ -17,21 +18,17 @@
 			echo genContextURLParams();
 			echo '\'>';
 			include("./resources/theme-$theme.svg");
-			echo $name;
+			EDS('theme_'.$theme);
 		echo '</a>';
 		$context_theme = $_tmp;
 	}
-	function genLearnCard($title,$name){
+	function genLearnCard($name,$i){
 		echo '<a class="card learn" href="/docs/'.genContextURLParams().'#'.$name.'">';
 			include(root."/resources/feature_$name.svg");
-			echo '<h4>Plan with your Friends</h4>';
-			echo '<p>'.
-				'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor'.
-				'incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis'.
-				'nostrud exercitation ullamco laboris nisi';
-			echo '</p>';
-			echo '<span>Learn More</span>';
-		echo '</a>';
+			echo '<h4>'.GDS('title_learn'.$i).'</h4>'.
+				'<p>'.GDS('p_learn'.$i).'</p>'.
+				'<span>'.GDS('lnk_learn').'</span>'.
+		'</a>';
 	}
 	function genDownloadCard($os){
 		global $context_os;
@@ -41,10 +38,17 @@
 			$current='';
 		}
 		echo "<a class='card dl$current' id='${os}dlcard' href='/download?os=$os'>";
-			echo '<h4 class="sectionheader">Download for</h4>';
+			echo '<h4 class="sectionheader">'.GDS('title_download').'</h4>';
 			include(root."/resources/os_$os.svg");
 			echo "<span>$os</span>";
 		echo '</a>';
+	}
+	function genFeatureSection($title,$paragraph){
+		echo '<section class="screenpage pagetype2">'.
+			'<img class="card" src="/resources/example_cal.png" alt="example screenshot"/>'.
+			"<h2>$title</h2>".
+			"<p>$paragraph</p>".
+		'</section>';
 	}
 	function setContext(){
 		global $contextURLParams;

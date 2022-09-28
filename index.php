@@ -1,8 +1,10 @@
 <?php
-	require_once('./snippets/snips.php');
-	
 	const root = '.';
 	const cursite = 1;
+	
+	require_once('./snippets/snips.php');
+	require_once('./snippets/db.php');
+	
 	setContext();
 	
 	$stylesheets = array("main","download");
@@ -13,8 +15,8 @@
 			include('./snippets/navbar.php');
 		?>
 		<section class="screenpage" id="og1">
-			<h1>Lorem ipsum dolor sit amet, consectetur</h2>
-			<h3>Lorem ipsum dolor sit amet, consectetur</h3>
+			<h1><?php EDS('title_main') ?></h2>
+			<h3><?php EDS('span_main') ?></h3>
 			<span>
 				<?php
 					echo "<a id='downloadbtn' class='btn' href='/download/?os=$context_os'>";
@@ -22,79 +24,45 @@
 						include("./resources/os_linux_small.svg");
 					else
 						include("./resources/os_$context_os.svg");
-					echo 'DOWNLOAD</a>';
+					EDS('btn_download');
+					echo '</a>';
 				?>
 				<?php
-					genExtRef('Docs','/docs/'.genContextURLParams());
-					genExtRef('Admin','/docs/'.genContextURLParams().'#admin');
+					genExtRef(GDS('lnk_docs'),'/docs/?'.genContextURLParams());
+					genExtRef(GDS('lnk_admin'),'/docs/?'.genContextURLParams().'#admin');
 				?>
 			</span>
 			<img class="card" src="/resources/example_cal.png" alt="example screenshot"/>
-			<h1 class="sectionheader">Fit your style</h1>
+			<h1 class="sectionheader"><?php EDS('title_theme') ?></h1>
 			<div id="themebox">
 				<div>
 					<?php
-						genThemeCard('light','Light');
-						genThemeCard('dark','Dark');
+						genThemeCard('light');
+						genThemeCard('dark');
 					?>
 				</div>
 				<div>
 					<?php
-						genThemeCard('ocean','Ocean');
-						genThemeCard('sakura','桜');
+						genThemeCard('ocean');
+						genThemeCard('sakura');
 					?>
 				</div>
 			</div>
-			<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud</span>
+			<span><?php EDS('p_themes1');EDS('p_themes2') ?></span>
 		</section>
-		<section class="screenpage pagetype2">
-			<img class="card" src="/resources/example_cal.png" alt="example screenshot"/>
-			<h2>Lorem ipsum dolor sit amet,</h2>
-			<p>
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-				do eiusmod tempor incididunt ut labore et dolore magna
-				aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-				ullamco laboris nisi ut aliquip ex ea commodo consequat.
-				Duis aute irure dolor in reprehenderit in voluptate velit esse
-				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-				cupidatat non proident, sunt in culpa qui officia deserunt
-				mollit anim id est laborum.
-			</p>
-		</section>
-		<section class="screenpage pagetype2">
-			<img class="card" src="/resources/example_cal.png" alt="example screenshot"/>
-			<h2>Lorem ipsum dolor sit amet,</h2>
-			<p>
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-				do eiusmod tempor incididunt ut labore et dolore magna
-				aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-				ullamco laboris nisi ut aliquip ex ea commodo consequat.
-				Duis aute irure dolor in reprehenderit in voluptate velit esse
-				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-				cupidatat non proident, sunt in culpa qui officia deserunt
-				mollit anim id est laborum.
-			</p>
-		</section>
-		<section class="screenpage pagetype2">
-			<img class="card" src="/resources/example_cal.png" alt="example screenshot"/>
-			<h2>Lorem ipsum dolor sit amet,</h2>
-			<p>
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-				do eiusmod tempor incididunt ut labore et dolore magna
-				aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-				ullamco laboris nisi ut aliquip ex ea commodo consequat.
-				Duis aute irure dolor in reprehenderit in voluptate velit esse
-				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-				cupidatat non proident, sunt in culpa qui officia deserunt
-				mollit anim id est laborum.
-			</p>
-		</section>
+		<?php
+			foreach(array(1,2,3) as $i){
+				genFeatureSection(
+					GDS('title_demo'.$i),
+					MGDS("p_demo${i}",[1,2]));
+			}
+		?>
 		<section class="screenpage" id="ofeat">
-			<h1 class="sectionheader">Other features</h1>
+			<h1 class="sectionheader"><?php EDS('title_features') ?></h1>
 			<?php
-				genLearnCard('Plan with your Friends','plan');
-				genLearnCard('Get an immediate overview','overview');
-				genLearnCard('Sync data across devices','sync');
+				genLearnCard('plan',1);
+				genLearnCard('overview',2);
+				genLearnCard('sync',3);
 			?>
 			<hr/>
 			<?php
@@ -102,12 +70,7 @@
 				genDownloadCard('windows');
 				genDownloadCard('mac');
 			?>
-			<p>
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-laborum.
-			</p>
+			<p><?php MEDS('p_download',[1,2]) ?></p>
 		</section>
 		<?php
 			include('./snippets/foot.php');
