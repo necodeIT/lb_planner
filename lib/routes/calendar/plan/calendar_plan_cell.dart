@@ -17,8 +17,10 @@ class CalendarPlanCell extends StatefulWidget {
 
 /// State of the [CalendarPlanCell].
 class CalendarPlanCellState extends State<CalendarPlanCell> {
-  /// The width of the cell.
-  static double currentWidth = 0;
+  /// The current width of a cell.
+  ///
+  /// This is used for [DraggableModule] to prevent them stretching over the whole screen.
+  static double? currentWidth;
 
   final DateFormat _formatter = DateFormat.d();
   final List<int> _addedModules = [];

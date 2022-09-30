@@ -43,7 +43,7 @@ class _DraggableModuleState extends State<DraggableModule> {
     return Consumer(
       builder: (context, ref, _) => LayoutBuilder(
         builder: (context, box) {
-          var width = CalendarPlanCellState.currentWidth > 0 ? CalendarPlanCellState.currentWidth : box.maxWidth;
+          var width = CalendarPlanCellState.currentWidth ?? box.maxWidth;
           var plan = ref.watch(planProvider);
           var user = ref.watch(userProvider);
 
