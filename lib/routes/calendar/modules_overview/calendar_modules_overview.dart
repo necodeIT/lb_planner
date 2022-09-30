@@ -66,7 +66,7 @@ class _CalendarModulesOverviewRouteState extends State<CalendarModulesOverviewRo
   void scrollToSummer() {
     if (!CalendarModulesOverviewRoute.summerMonths.contains(DateTime.now().month)) return;
 
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       Scrollable.ensureVisible(
         summerKey.currentContext!,
         duration: kSlowAnimationDuration,
@@ -94,7 +94,7 @@ class _CalendarModulesOverviewRouteState extends State<CalendarModulesOverviewRo
               ),
             ),
             falseWidget: (context) => Scrollbar(
-              isAlwaysShown: true,
+              thumbVisibility: true,
               controller: scrollController,
               scrollbarOrientation: ScrollbarOrientation.bottom,
               child: CustomScrollView(

@@ -47,7 +47,7 @@ class LpTextButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       style: TextButton.styleFrom(
-        primary: accentColor,
+        foregroundColor: accentColor,
       ),
       onPressed: onPressed,
       child: Row(

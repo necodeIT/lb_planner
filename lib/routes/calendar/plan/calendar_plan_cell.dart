@@ -91,7 +91,7 @@ class CalendarPlanCellState extends State<CalendarPlanCell> {
                 onAccept: (module) => _setDeadline(ref, module),
                 builder: (context, candidateData, rejectedData) {
                   if (_controller.hasClients && (_addedModules.isNotEmpty || candidateData.isNotEmpty || _controller.position.outOfRange)) {
-                    WidgetsBinding.instance!.addPostFrameCallback(
+                    WidgetsBinding.instance.addPostFrameCallback(
                       (timeStamp) => _controller.animateTo(
                         _controller.position.maxScrollExtent,
                         duration: kFastAnimationDuration,

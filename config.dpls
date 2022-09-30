@@ -1,1 +1,25 @@
-{"engineVersion":"0.0.0","projectType":"_$_FlutterProject","projectData":{"name":"LB Planner","sdkVersion":"2.10.5","path":".","soundNullSafety":false},"config":{"appName":"LB Planner","version":"0.0.0","publisher":"necodeIT","outputFileName":"Setup","outputDir":"build","executeableBinaryFile":"lb_planner","uuid":"75c7586b-90c8-4f31-ad1d-dfb465f6941a","iconFile":"app_icon.png","prebuildCommands":{},"postbuildCommands":{},"additionalFiles":{},"additionalDirectories":{},"url":""}}
+{
+    "engineVersion": "0.0.0",
+    "projectType": "_$_FlutterProject",
+    "projectData": {
+        "name": "LB Planner",
+        "sdkVersion": "3.3.3",
+        "path": ".",
+        "soundNullSafety": false
+    },
+    "config": {
+        "appName": "LB Planner",
+        "version": "0.0.0",
+        "publisher": "necodeIT",
+        "outputFileName": "Setup",
+        "outputDir": "build",
+        "executeableBinaryFile": "lb_planner",
+        "uuid": "75c7586b-90c8-4f31-ad1d-dfb465f6941a",
+        "iconFile": "app_icon.png",
+        "prebuildCommands": {},
+        "postbuildCommands": {},
+        "additionalFiles": {},
+        "additionalDirectories": {},
+        "url": ""
+    }
+}

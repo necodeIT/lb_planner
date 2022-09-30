@@ -47,7 +47,7 @@ class _UniversalActorState extends State<UniversalActor> {
       case _Engine.flr:
         return FlareActor(widget.filename, alignment: widget.alignment, fit: widget.fit, animation: widget.animation);
       case _Engine.riv:
-        if (!_riveController.isActive) WidgetsBinding.instance!.addPostFrameCallback((_) => setState(() => _riveController.isActive = true));
+        if (!_riveController.isActive) WidgetsBinding.instance.addPostFrameCallback((_) => setState(() => _riveController.isActive = true));
 
         return rive.RiveAnimation.asset(
           widget.filename,

@@ -104,7 +104,7 @@ class LpButton extends StatelessWidget {
         ),
         style: ElevatedButton.styleFrom(
           padding: EdgeInsets.all(padding),
-          primary: color ?? accentColor,
+          backgroundColor: color ?? accentColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(kRadius),
           ),
