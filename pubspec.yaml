@@ -19,7 +19,7 @@ dependencies:
   nekolib_utils:
     git:
       url: https://github.com/necodeIT/nekolib.git
-      ref: flutter
+      ref: flutter3
       path: utils
   path_provider: ^2.0.9
   riverpod: any
