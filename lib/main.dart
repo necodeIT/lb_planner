@@ -19,8 +19,6 @@ final kNavigator = GlobalKey<NavigatorState>();
 const kMaxLogFileAge = Duration(days: 7);
 
 void main() async {
-  exitIfLocked();
-
   Logger.init(autoSave: true, appStoragePath: (await Disk.appDir).path);
   await Logger.logFile; // I don't know why, but the log file is otherwise not created.
 

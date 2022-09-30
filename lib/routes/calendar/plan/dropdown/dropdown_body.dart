@@ -97,6 +97,9 @@ class _CalendarPlanDropDownBodyState extends State<CalendarPlanDropDownBody> {
     var screen = MediaQuery.of(context).size;
     return Consumer(builder: (context, ref, _) {
       var plan = ref.watch(planProvider);
+      var user = ref.watch(userProvider);
+
+      var hasWriteAccess = (plan.members[user.id] ?? PlanAccessLevels.read).index < PlanAccessLevels.write.index;
 
       return LpContainer(
         trailing: Expanded(
@@ -125,7 +128,8 @@ class _CalendarPlanDropDownBodyState extends State<CalendarPlanDropDownBody> {
                 ),
                 falseWidget: (_) => Expanded(
                   child: LpGestureDetector(
-                    onDoubleTap: () => _enterEditMode(ref),
+                    cursor: hasWriteAccess ? SystemMouseCursors.click : SystemMouseCursors.basic,
+                    onDoubleTap: !hasWriteAccess ? null : () => _enterEditMode(ref),
                     child: NcTitleText(plan.name, fontSize: LpContainer.titleFontSize),
                   ),
                 ),
