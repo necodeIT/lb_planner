@@ -113,7 +113,7 @@ class user_helper {
     }
 
     /**
-     * Gives back an integer which represents the capabilities of the given user.
+     * Gives back a bitmask which represents the capabilities of the given user.
      * 0 = no capabilities
      * 1 = admin
      * 2 = manager
