@@ -112,12 +112,13 @@ class ModuleWidget extends LocalizedWidget {
                       waitDuration: tooltipTrigger,
                       message: module.name,
                       child: NcCaptionText(
-                        module.name,
+                        module.name.characters.replaceAll(Characters(''), Characters('\u{200B}')).toString(), // This is to prevent uggly ellipsis, which sometimes cuts off the entire name even though there is enough space.
                         textAlign: showTag ? TextAlign.center : TextAlign.start,
                         fontSize: fontSize,
                       ),
                     ),
                   ),
+                  if (displayMode.isStatus) NcSpacing.small(),
                   ConditionalWidget(
                     condition: displayMode.isDate,
                     trueWidget: (context) => NcCaptionText(formatter.format(module.deadline!)),
