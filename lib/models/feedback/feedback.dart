@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Project imports:
 import 'package:lbplanner_engine/lbplanner_engine.dart';
+import 'package:nekolib_utils/log.dart';
 
 part 'feedback.freezed.dart';
 part 'feedback.g.dart';
@@ -45,6 +46,19 @@ class Feedback with _$Feedback {
     /// The date the feedback was created.
     required DateTime timestamp,
   }) = _Feedback;
+
+  /// Creates a new [Feedback] ready to be sent to the server.
+  factory Feedback.create({required int userId, required String content, required FeedbackTypes type, String logFile = ""}) {
+    return Feedback(
+      id: -1,
+      userId: userId,
+      content: content,
+      type: type,
+      status: FeedbackStatus.unread,
+      timestamp: DateTime.now(),
+      logFile: logFile,
+    );
+  }
 
   /// Feedback model from json
   factory Feedback.fromJson(Map<String, dynamic> json) => _$FeedbackFromJson(json);

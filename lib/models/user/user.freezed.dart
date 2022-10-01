@@ -27,6 +27,7 @@ class _$UserTearOff {
       required String username,
       required String firstname,
       required String lastname,
+      required String vintage,
       required String avatar,
       bool displayTaskCount = true,
       Languages language = Languages.restricted,
@@ -34,13 +35,14 @@ class _$UserTearOff {
       String theme = "",
       Set<UserCapability> capabilities = const <UserCapability>{},
       int planId = -1,
-      bool loading = false,
+      bool invalid = false,
       ColorBlindnessType colorBlindness = ColorBlindnessType.none}) {
     return _User(
       id: id,
       username: username,
       firstname: firstname,
       lastname: lastname,
+      vintage: vintage,
       avatar: avatar,
       displayTaskCount: displayTaskCount,
       language: language,
@@ -48,7 +50,7 @@ class _$UserTearOff {
       theme: theme,
       capabilities: capabilities,
       planId: planId,
-      loading: loading,
+      invalid: invalid,
       colorBlindness: colorBlindness,
     );
   }
@@ -75,6 +77,9 @@ mixin _$User {
   /// Lastname of the user
   String get lastname => throw _privateConstructorUsedError;
 
+  /// The vintage the user is in
+  String get vintage => throw _privateConstructorUsedError;
+
   /// Url to the users moodle profile picture
   String get avatar => throw _privateConstructorUsedError;
   bool get displayTaskCount => throw _privateConstructorUsedError;
@@ -94,8 +99,8 @@ mixin _$User {
   /// The id of the plan the user is currently a member of
   int get planId => throw _privateConstructorUsedError;
 
-  /// If this is set to true the this user contains no useful data and is loading
-  bool get loading => throw _privateConstructorUsedError;
+  /// If this is true, this user contains no useful data and is invalid
+  bool get invalid => throw _privateConstructorUsedError;
 
   /// The colorblindness of the user
   ColorBlindnessType get colorBlindness => throw _privateConstructorUsedError;
@@ -114,6 +119,7 @@ abstract class $UserCopyWith<$Res> {
       String username,
       String firstname,
       String lastname,
+      String vintage,
       String avatar,
       bool displayTaskCount,
       Languages language,
@@ -121,7 +127,7 @@ abstract class $UserCopyWith<$Res> {
       String theme,
       Set<UserCapability> capabilities,
       int planId,
-      bool loading,
+      bool invalid,
       ColorBlindnessType colorBlindness});
 }
 
@@ -139,6 +145,7 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object? username = freezed,
     Object? firstname = freezed,
     Object? lastname = freezed,
+    Object? vintage = freezed,
     Object? avatar = freezed,
     Object? displayTaskCount = freezed,
     Object? language = freezed,
@@ -146,7 +153,7 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object? theme = freezed,
     Object? capabilities = freezed,
     Object? planId = freezed,
-    Object? loading = freezed,
+    Object? invalid = freezed,
     Object? colorBlindness = freezed,
   }) {
     return _then(_value.copyWith(
@@ -166,6 +173,10 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _value.lastname
           : lastname // ignore: cast_nullable_to_non_nullable
               as String,
+      vintage: vintage == freezed
+          ? _value.vintage
+          : vintage // ignore: cast_nullable_to_non_nullable
+              as String,
       avatar: avatar == freezed
           ? _value.avatar
           : avatar // ignore: cast_nullable_to_non_nullable
@@ -194,9 +205,9 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _value.planId
           : planId // ignore: cast_nullable_to_non_nullable
               as int,
-      loading: loading == freezed
-          ? _value.loading
-          : loading // ignore: cast_nullable_to_non_nullable
+      invalid: invalid == freezed
+          ? _value.invalid
+          : invalid // ignore: cast_nullable_to_non_nullable
               as bool,
       colorBlindness: colorBlindness == freezed
           ? _value.colorBlindness
@@ -216,6 +227,7 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       String username,
       String firstname,
       String lastname,
+      String vintage,
       String avatar,
       bool displayTaskCount,
       Languages language,
@@ -223,7 +235,7 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       String theme,
       Set<UserCapability> capabilities,
       int planId,
-      bool loading,
+      bool invalid,
       ColorBlindnessType colorBlindness});
 }
 
@@ -242,6 +254,7 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     Object? username = freezed,
     Object? firstname = freezed,
     Object? lastname = freezed,
+    Object? vintage = freezed,
     Object? avatar = freezed,
     Object? displayTaskCount = freezed,
     Object? language = freezed,
@@ -249,7 +262,7 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     Object? theme = freezed,
     Object? capabilities = freezed,
     Object? planId = freezed,
-    Object? loading = freezed,
+    Object? invalid = freezed,
     Object? colorBlindness = freezed,
   }) {
     return _then(_User(
@@ -268,6 +281,10 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
       lastname: lastname == freezed
           ? _value.lastname
           : lastname // ignore: cast_nullable_to_non_nullable
+              as String,
+      vintage: vintage == freezed
+          ? _value.vintage
+          : vintage // ignore: cast_nullable_to_non_nullable
               as String,
       avatar: avatar == freezed
           ? _value.avatar
@@ -297,9 +314,9 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
           ? _value.planId
           : planId // ignore: cast_nullable_to_non_nullable
               as int,
-      loading: loading == freezed
-          ? _value.loading
-          : loading // ignore: cast_nullable_to_non_nullable
+      invalid: invalid == freezed
+          ? _value.invalid
+          : invalid // ignore: cast_nullable_to_non_nullable
               as bool,
       colorBlindness: colorBlindness == freezed
           ? _value.colorBlindness
@@ -317,6 +334,7 @@ class _$_User extends _User {
       required this.username,
       required this.firstname,
       required this.lastname,
+      required this.vintage,
       required this.avatar,
       this.displayTaskCount = true,
       this.language = Languages.restricted,
@@ -324,7 +342,7 @@ class _$_User extends _User {
       this.theme = "",
       this.capabilities = const <UserCapability>{},
       this.planId = -1,
-      this.loading = false,
+      this.invalid = false,
       this.colorBlindness = ColorBlindnessType.none})
       : super._();
 
@@ -346,6 +364,10 @@ class _$_User extends _User {
 
   /// Lastname of the user
   final String lastname;
+  @override
+
+  /// The vintage the user is in
+  final String vintage;
   @override
 
   /// Url to the users moodle profile picture
@@ -381,8 +403,8 @@ class _$_User extends _User {
   @JsonKey()
   @override
 
-  /// If this is set to true the this user contains no useful data and is loading
-  final bool loading;
+  /// If this is true, this user contains no useful data and is invalid
+  final bool invalid;
   @JsonKey()
   @override
 
@@ -391,7 +413,7 @@ class _$_User extends _User {
 
   @override
   String toString() {
-    return 'User(id: $id, username: $username, firstname: $firstname, lastname: $lastname, avatar: $avatar, displayTaskCount: $displayTaskCount, language: $language, token: $token, theme: $theme, capabilities: $capabilities, planId: $planId, loading: $loading, colorBlindness: $colorBlindness)';
+    return 'User(id: $id, username: $username, firstname: $firstname, lastname: $lastname, vintage: $vintage, avatar: $avatar, displayTaskCount: $displayTaskCount, language: $language, token: $token, theme: $theme, capabilities: $capabilities, planId: $planId, invalid: $invalid, colorBlindness: $colorBlindness)';
   }
 
   @override
@@ -403,6 +425,7 @@ class _$_User extends _User {
             const DeepCollectionEquality().equals(other.username, username) &&
             const DeepCollectionEquality().equals(other.firstname, firstname) &&
             const DeepCollectionEquality().equals(other.lastname, lastname) &&
+            const DeepCollectionEquality().equals(other.vintage, vintage) &&
             const DeepCollectionEquality().equals(other.avatar, avatar) &&
             const DeepCollectionEquality()
                 .equals(other.displayTaskCount, displayTaskCount) &&
@@ -412,7 +435,7 @@ class _$_User extends _User {
             const DeepCollectionEquality()
                 .equals(other.capabilities, capabilities) &&
             const DeepCollectionEquality().equals(other.planId, planId) &&
-            const DeepCollectionEquality().equals(other.loading, loading) &&
+            const DeepCollectionEquality().equals(other.invalid, invalid) &&
             const DeepCollectionEquality()
                 .equals(other.colorBlindness, colorBlindness));
   }
@@ -424,6 +447,7 @@ class _$_User extends _User {
       const DeepCollectionEquality().hash(username),
       const DeepCollectionEquality().hash(firstname),
       const DeepCollectionEquality().hash(lastname),
+      const DeepCollectionEquality().hash(vintage),
       const DeepCollectionEquality().hash(avatar),
       const DeepCollectionEquality().hash(displayTaskCount),
       const DeepCollectionEquality().hash(language),
@@ -431,7 +455,7 @@ class _$_User extends _User {
       const DeepCollectionEquality().hash(theme),
       const DeepCollectionEquality().hash(capabilities),
       const DeepCollectionEquality().hash(planId),
-      const DeepCollectionEquality().hash(loading),
+      const DeepCollectionEquality().hash(invalid),
       const DeepCollectionEquality().hash(colorBlindness));
 
   @JsonKey(ignore: true)
@@ -451,6 +475,7 @@ abstract class _User extends User {
       required String username,
       required String firstname,
       required String lastname,
+      required String vintage,
       required String avatar,
       bool displayTaskCount,
       Languages language,
@@ -458,7 +483,7 @@ abstract class _User extends User {
       String theme,
       Set<UserCapability> capabilities,
       int planId,
-      bool loading,
+      bool invalid,
       ColorBlindnessType colorBlindness}) = _$_User;
   const _User._() : super._();
 
@@ -480,6 +505,10 @@ abstract class _User extends User {
 
   /// Lastname of the user
   String get lastname;
+  @override
+
+  /// The vintage the user is in
+  String get vintage;
   @override
 
   /// Url to the users moodle profile picture
@@ -508,8 +537,8 @@ abstract class _User extends User {
   int get planId;
   @override
 
-  /// If this is set to true the this user contains no useful data and is loading
-  bool get loading;
+  /// If this is true, this user contains no useful data and is invalid
+  bool get invalid;
   @override
 
   /// The colorblindness of the user

@@ -11,6 +11,7 @@ _$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
       username: json['username'] as String,
       firstname: json['firstname'] as String,
       lastname: json['lastname'] as String,
+      vintage: json['vintage'] as String,
       avatar: json['avatar'] as String,
       displayTaskCount: json['displayTaskCount'] as bool? ?? true,
       language: $enumDecodeNullable(_$LanguagesEnumMap, json['language']) ??
@@ -22,7 +23,7 @@ _$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
               .toSet() ??
           const <UserCapability>{},
       planId: json['planId'] as int? ?? -1,
-      loading: json['loading'] as bool? ?? false,
+      invalid: json['invalid'] as bool? ?? false,
       colorBlindness: $enumDecodeNullable(
               _$ColorBlindnessTypeEnumMap, json['colorBlindness']) ??
           ColorBlindnessType.none,
@@ -33,6 +34,7 @@ Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
       'username': instance.username,
       'firstname': instance.firstname,
       'lastname': instance.lastname,
+      'vintage': instance.vintage,
       'avatar': instance.avatar,
       'displayTaskCount': instance.displayTaskCount,
       'language': _$LanguagesEnumMap[instance.language]!,
@@ -42,7 +44,7 @@ Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
           .map((e) => _$UserCapabilityEnumMap[e]!)
           .toList(),
       'planId': instance.planId,
-      'loading': instance.loading,
+      'invalid': instance.invalid,
       'colorBlindness': _$ColorBlindnessTypeEnumMap[instance.colorBlindness]!,
     };
 

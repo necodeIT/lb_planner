@@ -9,7 +9,7 @@ final userController = userProvider.notifier;
 /// Provides the current user
 class UserProvider extends StateNotifier<User> {
   /// Provides the current user
-  UserProvider() : super(User.loading());
+  UserProvider() : super(User.invalid());
 
   @override
   init() {
@@ -64,7 +64,7 @@ class UserProvider extends StateNotifier<User> {
   /// Logs out the current user.
   Future<void> logout() async {
     log("Logging out user", LogTypes.tracking);
-    state = User.loading();
+    state = User.invalid();
     UserDisk.saveUser(state);
   }
 
@@ -109,7 +109,7 @@ class UserProvider extends StateNotifier<User> {
     var response = await UserApi.deleteUser(state.token, state.id);
 
     if (response.succeeded) {
-      state = User.loading();
+      state = User.invalid();
       UserDisk.saveUser(state);
     }
 

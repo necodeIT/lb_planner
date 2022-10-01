@@ -39,9 +39,9 @@ class UserDisk {
 
       var response = await UserApi.getUser(user.token, user.id);
 
-      _data = response.value ?? User.loading();
+      _data = response.value ?? User.invalid();
     } catch (e) {
-      _data = User.loading();
+      _data = User.invalid();
     }
   }
 }

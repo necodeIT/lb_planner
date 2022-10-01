@@ -28,6 +28,9 @@ class User with _$User {
     /// Lastname of the user
     required String lastname,
 
+    /// The vintage the user is in
+    required String vintage,
+
     /// Url to the users moodle profile picture
     required String avatar,
     @Default(true) bool displayTaskCount,
@@ -47,16 +50,17 @@ class User with _$User {
     /// The id of the plan the user is currently a member of
     @Default(-1) int planId,
 
-    /// If this is set to true the this user contains no useful data and is loading
-    @Default(false) bool loading,
+    /// If this is true, this user contains no useful data and is invalid
+    @Default(false) bool invalid,
 
     /// The colorblindness of the user
     @Default(ColorBlindnessType.none) ColorBlindnessType colorBlindness,
   }) = _User;
 
-  /// Empty [User] with [loading] set to true.
+  /// Empty [User] with [invalid] set to true.
+  ///
   /// This is used to indicate that the user is not logged in or is currently loading.
-  factory User.loading() => _LoadingUser();
+  factory User.invalid() => _InvalidUser();
 
   /// The full name of the user, consiting out of the [firstname] and the [lastname]
   String get fullname => "$firstname $lastname";
@@ -65,7 +69,7 @@ class User with _$User {
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 }
 
-User _LoadingUser() => User(
+User _InvalidUser() => User(
       id: -1,
       username: "",
       firstname: "",
@@ -74,6 +78,7 @@ User _LoadingUser() => User(
       language: Languages.en,
       theme: "",
       capabilities: {},
-      loading: true,
+      invalid: true,
       planId: -1,
+      vintage: "",
     );
