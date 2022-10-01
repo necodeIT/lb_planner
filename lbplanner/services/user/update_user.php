@@ -84,14 +84,16 @@ class user_update_user extends external_api {
             'userid' => $userid,
             'lang' => $lang,
             'theme' => $theme,
-            'role' => user_helper::determin_user_role($userid),
+            'role' => user_helper::get_user_capability_bitmask($userid),
             'username' => $mdluser->username,
             'firstname' => $mdluser->firstname,
             'lastname' => $mdluser->lastname,
             'profileimageurl' => $mdluser->profileimageurl,
             'planid' => plan_helper::get_plan_id($userid),
             'colorblindness' => $colorblindness,
-            'displaytaskcount' => $displaytaskcount
+            'displaytaskcount' => $displaytaskcount,
+            'vintage' => $mdluser->vintage,
+
         );
     }
 
@@ -109,6 +111,7 @@ class user_update_user extends external_api {
                 'planid' => new external_value(PARAM_INT, 'The id of the plan the user is assigned to'),
                 'colorblindness' => new external_value(PARAM_TEXT, 'The colorblindness the user has selected'),
                 'displaytaskcount' => new external_value(PARAM_INT, 'The displaytaskcount the user has selected'),
+                'vintage' => new external_value(PARAM_TEXT, 'The vintage of the user')
             )
         );
     }

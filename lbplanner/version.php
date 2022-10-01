@@ -20,6 +20,6 @@ $release = '0.0.0';
 
 $plugin->component = 'local_lbplanner';
 $plugin->release = 'Alpha v.'.$release;
-$plugin->version = 2022092702;
+$plugin->version = 2022100102;
 
 set_config('release', $release, 'local_lbplanner');

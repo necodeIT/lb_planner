@@ -62,16 +62,17 @@ class user_get_user extends external_api {
                 'username' => $mdluser->username,
                 'firstname' => $mdluser->firstname,
                 'lastname' => $mdluser->lastname,
-                'capabilities' => user_helper::determin_user_capabilities($userid),
+                'capabilities' => user_helper::get_user_capability_bitmask($userid),
                 'theme' => $user->theme,
                 'lang' => $user->language,
                 'profileimageurl' => $mdluser->profileimageurl,
                 'planid' => plan_helper::get_plan_id($userid),
                 'colorblindness' => $user->colorblindness,
                 'displaytaskcount' => $user->displaytaskcount,
+                'vintage' => $mdluser->vintage,
             );
         }
-            return array(
+        return array(
                 'userid' => $user->userid,
                 'username' => $user->username,
                 'firstname' => $mdluser->firstname,
@@ -83,6 +84,7 @@ class user_get_user extends external_api {
                 'planid' => null,
                 'colorblindness' => null,
                 'displaytaskcount' => null,
+                'vintage' => $mdluser->vintage,
             );
     }
     public static function get_user_returns() {
@@ -98,7 +100,8 @@ class user_get_user extends external_api {
                 'planid' => new external_value(PARAM_INT, 'The id of the plan the user is assigned to'),
                 'colorblindness' => new external_value(PARAM_TEXT, 'The colorblindness of the user'),
                 'displaytaskcount' => new external_value(PARAM_INT, 'The displaytaskcount of the user'),
-                'capabilities' => new external_value(PARAM_INT, 'The capability')
+                'capabilities' => new external_value(PARAM_INT, 'The capability'),
+                'vintage' => new external_value(PARAM_TEXT, 'The vintage of the user')
             )
         );
     }

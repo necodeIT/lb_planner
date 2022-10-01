@@ -61,6 +61,11 @@ class user_helper {
     const TABLE = 'local_lbplanner_users';
 
     /**
+     * The table where moodle stores the user data.
+     */
+    const MOODLE_TABLE = 'user';
+
+    /**
      * @deprecated Use user_helper::assert_access() instead
      * Checks if the current user has access to the given user id.
      *
@@ -86,13 +91,14 @@ class user_helper {
      */
     public static function get_mdl_user_info(int $userid):stdClass {
         global $DB;
-        $user = $DB->get_record('user', array('id' => $userid), '*', MUST_EXIST);
+        $user = $DB->get_record(self::MOODLE_TABLE, array('id' => $userid), '*', MUST_EXIST);
 
         $mdluser = new stdClass();
         $mdluser->username = $user->username;
         $mdluser->firstname = $user->firstname;
         $mdluser->lastname = $user->lastname;
         $mdluser->profileimageurl = strval(new moodle_url('/user/pix.php/'.$user->id.'/f1.jpg'));
+        $mdluser->vintage = $user->address;
 
         return $mdluser;
     }
@@ -135,7 +141,7 @@ class user_helper {
      * @param int $userid The id of the user to check access for.
      * @return int The capabilities of the given user.
      */
-    public static function determin_user_capabilities(int $userid) : int {
+    public static function get_user_capability_bitmask(int $userid) : int {
         global $DB;
         $capabilities = 0;
         $context = context_system::instance();
