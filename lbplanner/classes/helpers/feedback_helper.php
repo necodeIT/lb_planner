@@ -68,9 +68,9 @@ class feedback_helper {
      * @param integer $userid The id of the user
      * @return void Throws an exception if the user has no access
      */
-    public static function assert_admin_access(int $userid) {
-        if (has_capability('local/lb_planner:admin', \context_system::instance()) ||
-        has_capability('local/lb_planner:manager', \context_system::instance())) {
+    public static function assert_admin_access() {
+        if (!has_capability(user_helper::CAPABILITY_ADMIN, \context_system::instance()) &&
+        !has_capability(user_helper::CAPABILITY_MANAGER, \context_system::instance())) {
             throw new \moodle_exception('Acces denied');
         }
     }
