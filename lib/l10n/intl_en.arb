@@ -26,19 +26,10 @@
       }
     }
   },
-  "@admin_feedback_userTag": {
-    "description": "Display text for the user tag",
+  "@global_user_vintage": {
+    "description": "Display text for the user vintage",
     "placeholders": {
-      "username": {
-        "example": "Jane",
-        "type": "String"
-      }
-    }
-  },
-  "@calendar_plan_dropdown_members_inviteUsers_userTag": {
-    "description": "The tag of the user",
-    "placeholders": {
-      "username": {
+      "vintage": {
         "example": "Jane",
         "type": "String"
       }
@@ -157,7 +148,7 @@
   "admin_feedback_types_error": "Typo / Translation error",
   "admin_feedback_types_other": "Other",
   "admin_feedback_types_suggestion": "Feature request",
-  "admin_feedback_userTag": "@{username}",
+  "global_user_vintage": "{vintage}",
   "admin_login_login": "Login",
   "admin_login_pwPlaceholder": "Enter password...",
   "admin_login_routeName": "Admin",
@@ -174,7 +165,6 @@
   "calendar_plan_dropdown_members_inviteUsers_reInvite": "Re-invite",
   "calendar_plan_dropdown_members_inviteUsers_search": "Search for the users you want to invite...",
   "calendar_plan_dropdown_members_inviteUsers_title": "Invite users",
-  "calendar_plan_dropdown_members_inviteUsers_userTag": "@{username}",
   "calendar_plan_dropdown_members_leavePlan_btn": "Leave plan",
   "calendar_plan_dropdown_members_leavePlan_message": "Are you sure you want to leave this plan?\n\nYou may get invited again.",
   "calendar_plan_dropdown_members_leavePlan_title": "Leave plan?",

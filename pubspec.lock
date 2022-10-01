@@ -553,7 +553,7 @@ packages:
     description:
       path: "."
       ref: engine
-      resolved-ref: "616dd4196b619b510c4324620c91fdef2cb549c2"
+      resolved-ref: ba96bd00b88c0d1b5371fab91d693e5a98e667be
       url: "https://github.com/necodeIT/lb_planner.git"
     source: git
     version: "0.0.1"

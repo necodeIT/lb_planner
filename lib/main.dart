@@ -50,7 +50,7 @@ void main() async {
 Future<void> load() async {
   await UserDisk.loadUser();
 
-  if (UserDisk.data != null && !UserDisk.data!.loading) {
+  if (UserDisk.data != null && !UserDisk.data!.invalid) {
     applyUserTheme(UserDisk.data!);
 
     var r = await PluginConfigApi.getVersion(UserDisk.data!.token);
@@ -95,7 +95,7 @@ class App extends StatelessWidget {
             navigatorObservers: [kRouteObserver],
             supportedLocales: AppLocalizations.supportedLocales,
             debugShowCheckedModeBanner: false,
-            initialRoute: user.loading ? LoginRoute.info.routeName : DashboardRoute.info.routeName,
+            initialRoute: user.invalid ? LoginRoute.info.routeName : DashboardRoute.info.routeName,
             onGenerateRoute: RouteWrapper.gnerateRoute,
           );
         },

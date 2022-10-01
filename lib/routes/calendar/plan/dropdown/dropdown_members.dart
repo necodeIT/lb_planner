@@ -13,7 +13,8 @@ class CalendarPlanDropDownMembers extends StatefulWidget {
 
   /// Filters the given [users] by the given [search] string.
   static bool filterSearch(int id, Map<int, User> users, String search) {
-    return users[id] != null && (users[id]!.fullname.containsCaseInsensitive(search) || users[id]!.username.containsCaseInsensitive(search));
+    var user = users[id];
+    return user != null && (user.fullname.containsCaseInsensitive(search) || user.username.containsCaseInsensitive(search) || user.vintage.containsCaseInsensitive(search));
   }
 }
 

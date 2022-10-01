@@ -55,7 +55,7 @@ class AdminFeedbackItem extends LocalizedWidget {
                           overflow: TextOverflow.fade,
                         ),
                         NcBodyText(
-                          t.admin_feedback_userTag(user.username),
+                          t.global_user_vintage(user.vintage),
                           fontSize: userTagFontSize,
                         ),
                       ],

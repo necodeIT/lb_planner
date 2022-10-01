@@ -27,8 +27,10 @@ class SettingsThemesThemeItem extends StatefulWidget {
 class _SettingsThemesThemeItemState extends State<SettingsThemesThemeItem> {
   Future<RawApiResponse>? _themeFuture;
 
-  _setTheme(UserProvider controller) async {
+  _setTheme(WidgetRef ref) async {
     if (widget.theme == NcThemes.current) return;
+
+    var controller = ref.read(userController);
 
     // throw Exception('Catgirl');
 
@@ -40,14 +42,18 @@ class _SettingsThemesThemeItemState extends State<SettingsThemesThemeItem> {
 
     var response = await _themeFuture!;
 
-    if (response.succeeded) setTheme(widget.theme);
+    if (response.succeeded) {
+      var user = ref.read(userProvider);
+
+      applyUserTheme(user);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Consumer(
       builder: (context, ref, _) => HoverBuilder(
-        onTap: () => _setTheme(ref.read(userController)),
+        onTap: () => _setTheme(ref),
         builder: (context, hovering) {
           var active = widget.theme == NcThemes.current || hovering;
 

@@ -73,7 +73,7 @@ class _LoginFormState extends State<LoginForm> {
     if (mounted && (_loginResponse?.succeeded ?? false)) {
       var user = ref.read(userProvider);
 
-      setTheme(NcThemes.all[user.theme]!);
+      applyUserTheme(user);
 
       var courses = coursesResponse!.value!;
 

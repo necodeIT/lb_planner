@@ -14,11 +14,11 @@ _handleError(BuildContext context, WidgetRef ref, Object obj, [StackTrace? stack
 
   var user = ref.read(userProvider);
 
-  if (user.loading) return;
+  if (user.invalid) return;
 
   var controller = ref.read(feedbackController);
 
-  if (user.loading) return;
+  if (user.invalid) return;
 
   var message = obj.toString();
   var stack = stackTrace?.toString() ?? '';

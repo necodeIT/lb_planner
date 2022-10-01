@@ -59,7 +59,7 @@ class _CalendarPlanDropDwonModulesState extends State<CalendarPlanDropDwonModule
     return Consumer(builder: (context, ref, _) {
       var user = ref.watch(userProvider);
 
-      if (user.loading) return LpShimmer();
+      if (user.invalid) return LpShimmer();
 
       var allModules = ref.watch(modulesProvider);
       var plan = ref.watch(planProvider);
