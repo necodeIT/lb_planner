@@ -1,4 +1,7 @@
-<?php require_once(root.'/snippets/db.php'); ?>
+<?php
+	require_once(root.'/snippets/db.php');
+	require_once(root.'/snippets/snips.php');
+?>
 <footer id="mainfoot">
 	<?php 
 		include(root.'/resources/logo.svg');
@@ -6,7 +9,7 @@
 	?>
 	<span>© 2022 necodeIT | <a href="https://github.com/necodeIT/lb_planner/blob/pages/LICENSE.md"><?php EDS('foot_license') ?></a></span>
 	<?php
-		foreach(array('EN','DE') as $lang){
+		foreach(supported_languages as $lang){
 			if($lang==$context_lang){
 				$class = ' class="current"';
 			}else{
@@ -14,7 +17,8 @@
 			}
 			$_tmp = $context_lang;
 			$context_lang = $lang;
-			echo "<a id='lang-$lang'$class href='./?".genContextURLParams()."'>$lang</a>";
+			$upperlang = strtoupper($lang);
+			echo "<a id='lang-$lang'$class href='./?".genContextURLParams()."'>$upperlang</a>";
 			$context_lang = $_tmp;
 		}
 	?>
