@@ -16,7 +16,7 @@
 	function _setContext_helper($varname,$varvals){
 		$globalname = 'context_'.$varname;
 		if(array_key_exists($globalname,$GLOBALS)){
-			echo $globalname." already exists: ${GLOBALS[$globalname]}<br>";
+			;
 		}else if(!array_key_exists($varname,$_GET)){
 			$GLOBALS[$globalname]=$varvals[0];
 			return;
