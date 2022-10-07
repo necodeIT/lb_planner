@@ -1,0 +1,91 @@
+/*layout stuff to make sidebar work*/
+:root{
+	height:100%;
+}
+body{
+	display:grid;
+	grid-template-areas:
+	"nav nav"
+	"sb ap"
+	"ft ft";
+	grid-template-columns:0fr 1fr;
+	grid-template-rows:auto 1fr auto;
+	height:100%;
+}
+#mainnav{
+	grid-area:nav;
+}
+#mainfoot{
+	grid-area:ft;
+}
+/*sidebar*/
+#sidebar{
+	position:sticky;
+	left:0;
+	height:100%;
+	width:min-content;
+	grid-area:sb;
+	display:flex;
+	flex-direction:column;
+	align-items:start;/*no stretchy*/
+	padding:1em 3em 1em 5em;
+}
+#sidebar>label{
+	white-space:nowrap;
+	padding:0.5em;
+	color:var(--text-color);
+	text-decoration:none;
+	font-weight:600;
+	cursor:pointer;
+}
+#sidebar>label:hover,
+#sidebar>label.curpage{
+	color:var(--accent-color);
+}
+/*container for details*/
+.allpage{
+	display:none;
+	flex-direction:column;
+	grid-area:ap;
+	width:fit-content;
+	align-items:stretch;
+	margin:0 1em 1em 2em;
+}
+.allpage>details>summary{
+	font-size:1.5rem;
+	font-weight:bold;
+	cursor:pointer;
+	position:relative;/*for positioning of markers*/
+	padding-right:1.5em;
+	margin-top:1em;
+}
+.allpage>details>summary::-webkit-details-marker,
+.allpage>details>summary::marker{
+	content:'';/*wtf*/
+	display:none;
+}
+.allpage>details>summary::after{/*TODO: replace with SVG or smth*/
+	content:'';
+	position:absolute;
+	right:0;
+	top:0.25em;
+	display:block;
+	height:0.75rem;
+	width:0.75rem;
+	transform:rotate(45deg);
+	border:solid 0.2em var(--text-color);
+	border-left:0;
+	border-top:0;
+	border-radius:0.1em;
+	transition:transform 0.5s cubic-bezier(.18,.89,.32,1.28);/*flex flex*/
+}
+.allpage>details[open]>summary::after{
+	transform:rotate(-135deg);
+}
+/*radios to display/hide 'allpages' */
+input[name="pageradios"]{
+	display:none;
+}
+input[name="pageradios"]:checked+.allpage{
+	display:flex;
+}

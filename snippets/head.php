@@ -13,4 +13,11 @@
 				}
 			?>
 		</style>
+		<?php
+			if(isset($scripts)){
+				foreach($scripts as $script){
+					echo "<script async src='/js/$script.js'></script>";
+				}
+			}
+		?>
 	</head>

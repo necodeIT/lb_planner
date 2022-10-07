@@ -44,4 +44,25 @@
 			EDS($key.$pf);
 		}
 	}
+	//returns an array for docs which looks like this:
+	//{'title':{'heading':['text',…],…},…}
+	function db_get_docs_stuff(){
+		global $context_lang;
+		
+		//getting titles
+		$result = array();
+		$titles = _db_get_pq("SELECT id,text FROM DocsTitles_$context_lang ORDER BY id ASC",[])->fetchAll();
+		foreach($titles as list($tid,$title)){
+			//getting corresponding headings
+			$tmp = array();
+			$headings = _db_get_pq("SELECT id,text FROM DocsHeadings_$context_lang WHERE title_id=? ORDER BY id ASC",[$tid],[PDO::PARAM_INT])->fetchAll();
+			foreach($headings as list($hid,$heading)){
+				//getting corresponding texts
+				$tmp[$heading]=_db_get_pq("SELECT text FROM DocsTexts_$context_lang WHERE heading_id=? ORDER BY text_id",[$hid],[PDO::PARAM_INT])->fetchAll();
+			}
+			$result[$title]=$tmp;
+		}
+		
+		return $result;
+	}
 ?>
