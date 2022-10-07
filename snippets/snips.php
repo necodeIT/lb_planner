@@ -1,5 +1,6 @@
 <?php
 	const supported_languages = array('en','de');
+	const supported_systems = array('linux','mac','windows');
 	
 	function genExtRef($text,$href){
 		echo "<a class='extref btn' href='$href'><span>$text </span>";
@@ -40,6 +41,7 @@
 		}else{
 			array_push($osarr,'windows');
 		}
+		$osarr+=supported_systems;
 		
 		_setContext_helper('os',$osarr);
 	}
