@@ -80,7 +80,7 @@ class user_register_user extends external_api {
             'username' => $mdluser->username,
             'firstname' => $mdluser->firstname,
             'lastname' => $mdluser->lastname,
-            'capabilities' => user_helper::determin_user_capabilities($userid),
+            'capabilities' => user_helper::get_user_capability_bitmask($userid),
             'theme' => $user->theme,
             'lang' => $user->language,
             'profileimageurl' => $mdluser->profileimageurl,
