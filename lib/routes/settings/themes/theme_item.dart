@@ -64,9 +64,9 @@ class _SettingsThemesThemeItemState extends State<SettingsThemesThemeItem> {
             duration: kFastAnimationDuration,
             curve: kAnimationCurve,
             decoration: BoxDecoration(
-              color: widget.theme.primaryColor,
+              color: widget.theme.primaryColor.applyColorBlindness(),
               border: Border.all(
-                color: active ? widget.theme.accentColor : widget.theme.primaryColor,
+                color: active ? widget.theme.accentColor.applyColorBlindness() : widget.theme.primaryColor.applyColorBlindness(),
                 width: active ? SettingsThemesThemeItem.borderWidth : 0,
               ),
               boxShadow: kElevationToShadow[4],
@@ -81,7 +81,7 @@ class _SettingsThemesThemeItemState extends State<SettingsThemesThemeItem> {
                   trueWidget: (context) => child,
                   falseWidget: (context) => LpLoadingIndicator.circular(
                     size: SettingsThemesThemeItem.iconSize,
-                    color: widget.theme.accentColor,
+                    color: widget.theme.accentColor.applyColorBlindness(),
                     // ignore: no-magic-number
                     thickness: 3,
                   ),
@@ -90,7 +90,7 @@ class _SettingsThemesThemeItemState extends State<SettingsThemesThemeItem> {
               child: LpIcon(
                 widget.theme.icon,
                 size: SettingsThemesThemeItem.iconSize,
-                color: widget.theme.iconColor,
+                color: widget.theme.iconColor.applyColorBlindness(),
               ),
             ),
           );
