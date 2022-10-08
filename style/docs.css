@@ -64,17 +64,22 @@ body{
 	content:'';/*wtf*/
 	display:none;
 }
+.allpage>details>summary>svg>path{
+	transform:rotate(-45deg);
+	transform-origin:top;
+}
 .allpage>details>summary>svg{
 	position:absolute;
 	right:0;
 	top:0.33em;
-	height:0.5em;
-	width:0.5em;
-	transform:translate(0,0) rotate(315deg);
+	height:1em;
+	width:1em;
+	transform-origin:0 45%;
+	transform:scale(1,1);
 	transition:transform 0.2s ease;
 }
 .allpage>details[open]>summary>svg{
-	transform:translate(0,33%) rotate(135deg);
+	transform:scale(1,-1);
 }
 /*radios to display/hide 'allpages' */
 input[name="pageradios"]{
