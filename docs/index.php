@@ -25,8 +25,15 @@
 			?>
 		</div>
 		<?php
+			$first = true;
 			foreach($stuff as $title=>$tmp){
-				echo '<input type="radio" id="radio_'.rawurlencode($title).'" name="pageradios"/>';
+				echo '<input type="radio" id="radio_'.rawurlencode($title);
+				if($first){
+					$first=false;
+					echo '" checked name="pageradios"/>';//page radios not pager adios
+				}else{
+					echo '" name="pageradios"/>';
+				}
 				echo '<div class="allpage">';
 				foreach($tmp as $heading=>$texts){
 					echo '<details>';
