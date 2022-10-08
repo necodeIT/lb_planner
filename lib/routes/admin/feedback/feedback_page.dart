@@ -11,9 +11,9 @@ class AdminFeedbackPageRoute extends StatefulWidget {
   /// Info about this route.
   static final info = RouteInfo(
     routeName: "/admin/feedback/",
-    builder: (_, params) => AdminFeedbackPageRoute(feedbackId: params["id"]),
+    builder: (_, args) => AdminFeedbackPageRoute(feedbackId: args["id"]),
     parent: AdminFeedbackRoute.info,
-    params: {"id": int},
+    args: {"id": int},
   );
 
   @override

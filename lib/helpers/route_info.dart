@@ -18,10 +18,10 @@ class RouteInfo {
   final Widget Function(BuildContext, Map<String, dynamic>) builder;
 
   /// Params the route needs.
-  final Map<String, Type>? params;
+  final Map<String, Type>? args;
 
   /// Contains all information needed to build a route.
-  const RouteInfo({required this.routeName, required this.builder, this.titleGenerator, this.standalone = false, this.parent, this.params});
+  const RouteInfo({required this.routeName, required this.builder, this.titleGenerator, this.standalone = false, this.parent, this.args});
 
   /// Returns the route title.
   ///
@@ -32,10 +32,10 @@ class RouteInfo {
   }
 
   /// Builds the route.
-  Widget build(BuildContext context, RouteParameters parameters) {
-    validateParameters(parameters.params);
+  Widget build(BuildContext context, RouteArgs parameters) {
+    validateParameters(parameters.args);
 
-    return builder(context, parameters.params);
+    return builder(context, parameters.args);
   }
 
   @override
@@ -50,16 +50,16 @@ class RouteInfo {
   @override
   int get hashCode => routeName.hashCode;
 
-  /// Asserts that any required params are present.
-  void validateParameters(Map<String, dynamic>? params) {
-    if (this.params != null) {
-      assert(params != null, "Route $routeName needs params but none were provided.");
+  /// Asserts that every required args are present.
+  void validateParameters(Map<String, dynamic>? args) {
+    if (this.args != null) {
+      assert(args != null, "Route $routeName needs args but none were provided.");
 
-      for (var paramDef in this.params!.entries) {
-        var _paramValue = params![paramDef.key];
-        assert(_paramValue != null, "Missing parameter ${paramDef.key}");
+      for (var paramDef in this.args!.entries) {
+        var _paramValue = args![paramDef.key];
+        assert(_paramValue != null, "Missing argument ${paramDef.key}");
 
-        assert(_paramValue.runtimeType == paramDef.value, "Parameter ${paramDef.key} is of type ${_paramValue.runtimeType} but should be of type ${paramDef.value}");
+        assert(_paramValue.runtimeType == paramDef.value, "Argument ${paramDef.key} is of type ${_paramValue.runtimeType} but should be of type ${paramDef.value}");
       }
     }
   }
@@ -68,26 +68,26 @@ class RouteInfo {
   void push(BuildContext context, {Map<String, dynamic>? params}) {
     validateParameters(params);
 
-    Navigator.pushReplacementNamed(context, routeName, arguments: RouteParameters(params));
+    Navigator.pushReplacementNamed(context, routeName, arguments: RouteArgs(params));
   }
 }
 
 /// Wrapper for route parameters for better handling.
-class RouteParameters {
+class RouteArgs {
   /// The wrapped parameters.
-  late final Map<String, dynamic> params;
+  late final Map<String, dynamic> args;
 
   /// Wrapper for route parameters for better handling.
-  RouteParameters(Map<String, dynamic>? params) : params = params ?? {};
+  RouteArgs(Map<String, dynamic>? args) : args = args ?? {};
 
-  /// [RouteParameters] from [RouteSettings.arguments].
-  RouteParameters.fromRouteSettings(RouteSettings settings) {
+  /// [RouteArgs] from [RouteSettings.arguments].
+  RouteArgs.fromRouteSettings(RouteSettings settings) {
     if (settings.arguments is Map<String, dynamic>) {
-      params = settings.arguments as Map<String, dynamic>;
-    } else if (settings.arguments is RouteParameters) {
-      params = (settings.arguments as RouteParameters).params;
+      args = settings.arguments as Map<String, dynamic>;
+    } else if (settings.arguments is RouteArgs) {
+      args = (settings.arguments as RouteArgs).args;
     } else {
-      params = {};
+      args = {};
     }
   }
 }
