@@ -37,8 +37,9 @@
 				echo '<div class="allpage">';
 				foreach($tmp as $heading=>$texts){
 					echo '<details>';
-					echo '<summary>'.$heading.'</summary>';
-					echo '<p>';
+					echo '<summary>'.$heading;
+					include("../resources/dropdown_arrow.svg");
+					echo '</summary><p>';
 					foreach($texts as $text){
 						echo $text;
 					}

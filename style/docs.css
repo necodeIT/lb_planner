@@ -64,23 +64,17 @@ body{
 	content:'';/*wtf*/
 	display:none;
 }
-.allpage>details>summary::after{/*TODO: replace with SVG or smth*/
-	content:'';
+.allpage>details>summary>svg{
 	position:absolute;
 	right:0;
-	top:0.25em;
-	display:block;
-	height:0.75rem;
-	width:0.75rem;
-	transform:rotate(45deg);
-	border:solid 0.2em var(--text-color);
-	border-left:0;
-	border-top:0;
-	border-radius:0.1em;
-	transition:transform 0.5s cubic-bezier(.18,.89,.32,1.28);/*flex flex*/
+	top:0.33em;
+	height:0.5em;
+	width:0.5em;
+	transform:translate(0,0) rotate(315deg);
+	transition:transform 0.2s ease;
 }
-.allpage>details[open]>summary::after{
-	transform:rotate(-135deg);
+.allpage>details[open]>summary>svg{
+	transform:translate(0,33%) rotate(135deg);
 }
 /*radios to display/hide 'allpages' */
 input[name="pageradios"]{
