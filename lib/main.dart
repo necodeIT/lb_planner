@@ -35,7 +35,6 @@ void main() async {
       runThemedApp(
         appBuilder: App.builder,
         title: 'LB Planner',
-        appIcon: LpLogo.svg,
         minSize: const Size(1200, 700),
         onLoad: load,
         windowHandleColor: () => primaryColor,

@@ -231,7 +231,7 @@
   "settings_general_clearCache_btn": "Clear cache",
   "settings_general_clearCache_msg": "Are you sure you want to clear the cache?\nThis will remove any locally stored data and you will be logged out.",
   "settings_general_clearCache_title": "Clear cache?",
-  "settings_general_credits": "Credits",
+  "settings_general_credits": "About",
   "settings_general_deleteProfile_btn": "Delete profile",
   "settings_general_deleteProfile_msg": "Are you sure you want to delete your profile?\n\nThis will completely wipe any data stored by LB Planner about you. This cannot be undone, but you can re-register at any given time.",
   "settings_general_deleteProfile_title": "Delete profile?",

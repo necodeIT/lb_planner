@@ -81,6 +81,9 @@ dependency_overrides:
   catcher:
     git:
       url: https://github.com/ThexXTURBOXx/catcher.git
+  # uncomment to test
+  # nekolib_ui:
+  #   path: ../nekolib/ui
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
