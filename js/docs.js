@@ -15,3 +15,13 @@ for(let label of sidebar.children){
 		label.classList.add("curpage");
 	}
 }
+/* adding delay to details closing to let animation finish playing */
+for(let details of document.getElementsByTagName("details")){
+	details.onclick = function(event){
+		if(this.isExpanding || this.hasAttribute('open')){
+			event.preventDefault();
+			this.children[1].style["transform"]="var(--rotateAway)";
+			setTimeout(()=>{this.removeAttribute("open");this.children[1].style["transform"]=null},200);
+		}
+	}
+}

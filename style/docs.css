@@ -48,6 +48,7 @@ body{
 	flex-direction:column;
 	grid-area:ap;
 	width:fit-content;
+	min-width:33vw;
 	align-items:stretch;
 	margin:0 1em 1em 2em;
 }
@@ -80,6 +81,36 @@ body{
 }
 .allpage>details[open]>summary>svg{
 	transform:scale(1,-1);
+}
+/*content in details*/
+.allpage>details>.p{
+	width:min-content;
+	min-width:100%;
+	--rotateAway:rotate3d(-1,0,0,-90deg);/*for js*/
+	transform:var(--rotateAway);
+	transform-origin:0 2em -2em;
+	transition:transform 0.2s;
+}
+.allpage>details>.p>img{
+	display:block;
+	max-height:12em;
+	margin:0.5em 0 1em 0;
+}
+.allpage>details[open]>.p{
+	transform:rotate3d(-1,0,0,0deg);
+}
+#table1{
+	display:grid;
+	border-radius:0.25em;
+	overflow:clip;
+	grid-gap:1px;
+}
+#table1>b{
+	text-align:right;
+	padding:0.25em 0.25em 0.25em 0.5em;
+}
+#table1>span{
+	padding:0.25em 0.5em 0.25em 0.25em;
 }
 /*radios to display/hide 'allpages' */
 input[name="pageradios"]{
