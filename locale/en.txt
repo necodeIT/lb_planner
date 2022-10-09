@@ -20,7 +20,7 @@
 41,DOWNLOAD
 42,Docs
 43,Admin
-44,Learn More
+44,Learn more
 70,We offer a great variety of themes to customise your workspace to your liking!
 71,
 72,The dashboard gives you an overview of exams\, deadlines and modules at all times. We also offer automated status tracking (So you can never lie to yourself again - we know you do ☜(ﾟヮﾟ☜) ).

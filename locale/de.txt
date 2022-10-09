@@ -20,7 +20,7 @@
 41,DOWNLOAD
 42,Doku
 43,Admin
-44,mehr erfahren
+44,Mehr erfahren
 70,Wir bieten eine Vielfalt an Farbschemen an!
 71,
 72,Das Dashboard kann dir jederzeit eine Übersicht über Termine\, Fristen und Module bereitstellen. Wir bieten außerdem automatisierte Statusverfolgung (damit du dich nie mehr selbst belügen kannst - wir wissen\, dass du es auch tust ☜(ﾟヮﾟ☜) ). 
