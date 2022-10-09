@@ -17,11 +17,11 @@ for(let label of sidebar.children){
 }
 /* adding delay to details closing to let animation finish playing */
 for(let details of document.getElementsByTagName("details")){
-	details.onclick = function(event){
-		if(this.isExpanding || this.hasAttribute('open')){
+	details.children[0].onclick = function(event){
+		if(details.isExpanding || details.hasAttribute('open')){
 			event.preventDefault();
-			this.children[1].style["transform"]="var(--rotateAway)";
-			setTimeout(()=>{this.removeAttribute("open");this.children[1].style["transform"]=null},200);
+			details.children[1].style["transform"]="var(--rotateAway)";
+			setTimeout(()=>{details.removeAttribute("open");details.children[1].style["transform"]=null},200);
 		}
 	}
 }
