@@ -50,6 +50,7 @@ body{
 	width:fit-content;
 	min-width:33vw;
 	align-items:stretch;
+	justify-self:center;
 	margin:0 1em 1em 2em;
 }
 .allpage>details>summary{
