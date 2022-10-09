@@ -94,7 +94,8 @@ body{
 }
 .allpage>details>.p>img{
 	display:block;
-	max-height:12em;
+	max-height:20em;
+	max-width:100%;
 	margin:0.5em 0 1em 0;
 }
 .allpage>details[open]>.p{
@@ -112,6 +113,9 @@ body{
 }
 #table1>span{
 	padding:0.25em 0.5em 0.25em 0.25em;
+}
+.allpage>details>.p ol{
+	padding-left:1.25em;/*let's just hope nobody counts past 9*/
 }
 /*radios to display/hide 'allpages' */
 input[name="pageradios"]{
