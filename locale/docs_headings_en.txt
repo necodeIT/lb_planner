@@ -1,0 +1,28 @@
+00,0,Login
+01,0,Course Selection
+02,0,Dashboard
+03,0,Planning
+04,0,Module Overview
+05,0,Settings
+10,1,Dashboard
+11,1,Course Colors
+12,1,Notifications
+13,1,Open Module in Moodle
+14,1,Colors
+20,2,Invite Friends
+21,2,Change Plan Name
+22,2,Module Overview
+30,3,General
+31,3,Course Selection
+32,3,Themes
+33,3,Feedback
+40,4,How can I plan with my friends?
+41,4,What happens to my plan when I join another one?
+42,4,What happens to a shared plan when I leave it?
+43,4,Do teachers have access to my plan?
+44,4,Who can track my plan?
+45,4,When are new features coming?
+46,4,Will a new learning office planner be implemented?
+47,4,How does my current status get calculated?
+48,4,Can I have more than one plan?
+49,4,How can I give feedback to LB Planner?

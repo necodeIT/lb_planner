@@ -1,0 +1,28 @@
+00,0,Anmeldung
+01,0,Kursauswahl
+02,0,Dashboard
+03,0,Plan
+04,0,Modulübersicht
+05,0,Einstellungen
+10,1,Dashboard
+11,1,Kursfarben
+12,1,Benachrichtigungen
+13,1,Module in Moodle öffnen
+14,1,Farben
+20,2,Freunde einladen
+21,2,Plannamen ändern
+22,2,Modulübersicht
+30,3,Allgemein
+31,3,Kursauswahl
+32,3,Schemas
+33,3,Rückmeldung
+40,4,Wie kann ich mit meinen Freunden Planen?
+41,4,Was passiert mit meinem Plan wenn ich einem anderen beitrete?
+42,4,Was passiert mit dem gemeinsamen Plan wenn ich diesen verlasse?
+43,4,Haben Lehrer zugriff auf meinen Plan?
+44,4,Wer kann meinen Plan verfolgen?
+45,4,Wann kommen neue Features?
+46,4,Kommt ein Lernbürobuchungssystem?
+47,4,Wie wird mein derzeitiger Status berechnet?
+48,4,Kann ich mehr als einen Plan haben?
+49,4,Wie kann ich Rückmeldungen zum Planner abgeben?
