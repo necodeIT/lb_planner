@@ -39,11 +39,11 @@
 					echo '<details>';
 					echo '<summary>'.$heading;
 					include("../resources/dropdown_arrow.svg");
-					echo '</summary><p>';
+					echo '</summary><div class="p">';
 					foreach($texts as $text){
-						echo $text;
+						echo $text[0];
 					}
-					echo '</p>';
+					echo '</div>';
 					echo '</details>';
 				}
 				echo '</div>';
