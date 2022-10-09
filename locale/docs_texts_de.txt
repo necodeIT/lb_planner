@@ -33,6 +33,6 @@
 46,0,Grundsätzlich steht es auf unserem Plan solch ein System einzubauen\, jedoch können wir noch nicht genau sagen wann dies geschieht.
 47,0,Dein derzeitiger Status setzt sich aus <b>allen Modulen der von dir ausgewählten Kursen</b> zusammen. Dabei wird geschaut wie viele Module du abgeschlossen\, abgegeben\, versäumt oder noch nicht begonnen (und die Deadline noch nicht abgelaufen ist) h
 47,1,ast. <img src="/resources/docs/status_overview.png"/>
-48,0,Man kann <b>nur einen Plan</b> haben und diesen benutzen, egal ob alleine oder mit Freunden.
+48,0,Man kann <b>nur einen Plan</b> haben und diesen benutzen\, egal ob alleine oder mit Freunden.
 49,0,Unter Einstellungen findest du ein Textfeld bei welchem du Bugs\, Verbesserungsvorschläge\, etc. uns senden kannst. Dabei musst du zuerst den Type des Feedbacks auswählen und dann deine Nachricht in dem mit dem roten Pfeil markierten Textfeld schreib
 49,1,en und auf "Submit" klicken.<img src="/resources/docs/feedbackbox.png"/>
