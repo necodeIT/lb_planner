@@ -19,7 +19,7 @@
 40,4,Wie kann ich mit meinen Freunden Planen?
 41,4,Was passiert mit meinem Plan wenn ich einem anderen beitrete?
 42,4,Was passiert mit dem gemeinsamen Plan wenn ich diesen verlasse?
-43,4,Haben Lehrer zugriff auf meinen Plan?
+43,4,Haben Lehrer Zugriff auf meinen Plan?
 44,4,Wer kann meinen Plan verfolgen?
 45,4,Wann kommen neue Features?
 46,4,Kommt ein Lernbürobuchungssystem?
