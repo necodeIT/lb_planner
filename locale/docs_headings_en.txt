@@ -16,13 +16,25 @@
 31,3,Course Selection
 32,3,Themes
 33,3,Feedback
-40,4,How can I plan with my friends?
-41,4,What happens to my plan when I join another one?
-42,4,What happens to a shared plan when I leave it?
-43,4,Do teachers have access to my plan?
-44,4,Who can track my plan?
-45,4,When are new features coming?
-46,4,Will a new learning office planner be implemented?
-47,4,How does my current status get calculated?
-48,4,Can I have more than one plan?
-49,4,How can I give feedback to LB Planner?
+40,5,How can I plan with my friends?
+41,5,What happens to my plan when I join another one?
+42,5,What happens to a shared plan when I leave it?
+43,5,Do teachers have access to my plan?
+44,5,Who can track my plan?
+45,5,When are new features coming?
+46,5,Will a new learning office planner be implemented?
+47,5,How does my current status get calculated?
+48,5,Can I have more than one plan?
+49,5,How can I give feedback to LB Planner?
+50,4,Courses
+51,4,Grading key (optional)
+52,4,Modules
+53,4,Participation
+54,4,Basic Modules
+55,4,Extended Modules
+56,4,Exams / Tests
+57,4,Not visible to students in the app
+58,4,Deadlines
+59,4,Estimated work time
+60,4,Other
+61,4,NO GOs

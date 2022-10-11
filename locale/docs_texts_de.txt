@@ -37,3 +37,28 @@
 48,0,Man kann <b>nur einen Plan</b> haben und diesen benutzen\, egal ob alleine oder mit Freunden.
 49,0,Unter Einstellungen findest du ein Textfeld bei welchem du uns Bugs melden\, Verbesserungsvorschläge senden und mehr kannst. Dabei musst du zuerst die Art des Feedbacks auswählen und dann deine Nachricht in dem Textfeld
 49,1, schreiben und auf <i>Submit</i> klicken.<img src="/resources/docs/feedbackbox.png"/>Oder du schreibst uns eine <a href="mailto:lb-planner@tgm.ac.at">Mail</a> unter lb-planner@tgm.ac.at.
+50,0,<ul><li>Die Jahreszahl muss vorhanden sein z.B. (21/22)</li><li>Wenn diese <b>NICHT</b> vorhanden ist\, wird der Kurs nicht in der App angezeigt</li></ul>
+51,0,Notenschlüssel\, die Gesamtnote oder andere wichtige Informationen\, sollten in den jeweiligen Kursen als Markdown erläutert werden und mit dem Tag "<b>[INFO]</b>" versehen sein.
+51,1,Beispiel:<br><br><code># Notenschlüssel<br><br>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia\,<br><br>## Gesamtnote<br><br>- 1: x%<br><br>- 2: x%<br><br>- 3: x%<br><br>- 4: x%<br><br>- 5: x%<br><br>## Module<br><br>- 
+51,2,1: x%<br><br>- 2: x%<br><br>- 3: x%<br><br>- 4: x%<br><br>- 5: x%</code>
+52,0,Damit der LB Planner funktionieren kann müssen Module je nach deren Status (grundlegend\, erweitert und Schularbeiten)\, dementsprechend auch benannt werden. Hierfür muss ein Kürzel in der Benennung dieser mit eingebunden werden. 
+52,1,Wie dieses eingebaut wird ist vollkommen egal\, solange es im Modulnamen enthalten ist. Diese können auch in jeglicher Groß - und Kleinschreibung Variationen verwendet werden\, solange sie in eckigen Klammern sind.
+53,0,Grundlegende Module\, deren Stoff man zwar beherrschen muss\, aber nicht machen muss\, müssen mit dem Kürzel "[M]" versehen sein.<br><br><b>Nicht alle Fächer haben solche Module</b>
+53,1,<br><br>Beispiel:<br><br><code>[M] Ü 6a.0: Generischer Stack</code>
+54,0,Grundlegende Module müssen mit dem Kürzel "[GK]" versehen sein.
+54,1,<br><br>Beispiel:<br><br><code>[GK] Ü 6a.0: Generischer Stack</code>
+55,0,Erweiterte Module müssen mit dem Kürzel "[EK]" versehen sein.
+55,1,<br><br>Beispiel:<br><br><code>[EK] Ü 6a.0: Generischer Stack</code>
+56,0,Schularbeiten oder auch Tests müssen mit dem Kürzel "[Test]" oder "[SA]" versehen sein.
+56,1,<br><br>Beispiel:<br><br><code>[Test] Writing exam</code><br><br>oder<br><br><code>[SA] Bewertung 2.Schularbeit</code>
+57,0,Wenn kein vorher genannter Tag verwendet wird\, wird die Aufgabe / Modul\, nicht in der App angezeigt.
+58,0,Damit wir in der App eine Modulübersicht präsentieren können\, sollten Module ein erwartetes Abschlussdatum als <b>VORSCHLAG</b> enthalten (siehe Screenshot).<img src="/resources/docs/deadline.png"/>
+59,0,Am Ende des Modulnamen sollte eine geschätzte Arbeitsdauer der Lehrer hinzugefügt werden mit einem Abstand\, Minus\, Abstand und dann die Stundenanzahl mit einem h (für Stunden) am Ende. Bei Gleitkommazahlen ist ein <b>Punkt</b> zum trennen zu verwenden.
+59,1,<br><br>Beispiel:<br><br><code>[GK] Ü 6a.0: Generischer Stack - 4h</code><br><br>oder<br><br><code>Ü 6a.0 [GK]: Generischer Stack - 4.5h</code><br><br>oder<br><br><code>Ü 6a.0: Generischer Stack [GK] - 0.5h</code>
+60,0,Weiters\, muss bei der Bewertung der Module acht gegeben werden. Diese sollten entweder mit den dazugehörigen Status 
+60,1,(nicht erfüllt \,GK überwiegend\, GK vollständig\, EK überwiegend und EK vollständig) bewertet werden oder mit aufsteigenden Punkten bzw. Prozenten.
+60,2,<ul><li>Die Kürzel dürfen <b>NICHT</b> gemischt vorkommen ([GK] / [EK]).</li>
+60,3,<li>Quizes (<b>Lernfortschrittskontrollen\; Selfchecks\,...</b>) müssen die selben Regeln befolgen.</li>
+60,4,<li><b>Deadlines</b> müssen für jedes Modul\, für die Modulübersicht\, eingetragen sein.</li>
+60,5,<li><b>Geschätzte Arbeitsdauer</b> am Ende der Modulnamen hinzufügen.</li></ul>
+61,5,<ul><li>Noten von 1-5 als Punkte (1/5\, 2/5...)</li></ul> Dies kann von uns nämlich nicht erkannt werden und würde bei der Applikation für Probleme sorgen
