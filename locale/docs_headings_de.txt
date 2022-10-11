@@ -25,7 +25,7 @@
 46,5,Kommt ein Lernbürobuchungssystem?
 47,5,Wie wird mein derzeitiger Status berechnet?
 48,5,Kann ich mehr als einen Plan haben?
-49,5,Wie kann ich Rückmeldungen zum Planner abgeben?
+49,5,Wie kann ich Rückmeldungen zur App abgeben?
 50,4,Kurse
 51,4,Notenschlüssel und Gesamtnoten (optional)
 52,4,Module
