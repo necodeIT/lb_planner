@@ -132,7 +132,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "477b2780236313ea224bd9e121edc07338974060"
+      resolved-ref: f5581da5b9e9c9c7028118b42634b0f89690f386
       url: "https://github.com/ThexXTURBOXx/catcher.git"
     source: git
     version: "0.7.0"
@@ -226,7 +226,7 @@ packages:
       name: convert
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.2"
+    version: "3.1.0"
   cross_connectivity:
     dependency: transitive
     description:
@@ -261,7 +261,7 @@ packages:
       name: dart_code_metrics
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.20.0"
+    version: "4.21.0"
   dart_style:
     dependency: transitive
     description:
@@ -289,42 +289,42 @@ packages:
       name: device_info_plus
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.0.5"
+    version: "6.0.0"
   device_info_plus_linux:
     dependency: transitive
     description:
       name: device_info_plus_linux
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.0.2"
+    version: "5.0.0"
   device_info_plus_macos:
     dependency: transitive
     description:
       name: device_info_plus_macos
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.0.2"
+    version: "5.0.0"
   device_info_plus_platform_interface:
     dependency: transitive
     description:
       name: device_info_plus_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.0.1"
+    version: "5.0.0"
   device_info_plus_web:
     dependency: transitive
     description:
       name: device_info_plus_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.0.2"
+    version: "5.0.0"
   device_info_plus_windows:
     dependency: transitive
     description:
       name: device_info_plus_windows
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.0.2"
+    version: "6.0.0"
   dio:
     dependency: transitive
     description:
@@ -553,7 +553,7 @@ packages:
     description:
       path: "."
       ref: engine
-      resolved-ref: ba96bd00b88c0d1b5371fab91d693e5a98e667be
+      resolved-ref: e071ba18746074c3ad30c04c0ecf510bfe0dcb15
       url: "https://github.com/necodeIT/lb_planner.git"
     source: git
     version: "0.0.1"
@@ -854,7 +854,7 @@ packages:
       name: sentry
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.11.2"
+    version: "6.12.2"
   shimmer:
     dependency: "direct main"
     description:
