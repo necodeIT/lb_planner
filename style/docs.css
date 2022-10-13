@@ -1,6 +1,7 @@
 /*layout stuff to make sidebar work*/
 :root{
 	height:100%;
+	overflow:hidden;
 }
 body{
 	display:grid;
@@ -43,14 +44,29 @@ body{
 	color:var(--accent-color);
 }
 /*container for details*/
-.allpage{
+.scrollwrap{
 	display:none;
-	flex-direction:column;
+	justify-self:stretch;
+	justify-content:center;
 	grid-area:ap;
-	width:fit-content;
+	overflow:auto;
+	/*scroll shadow*/
+	background:
+		/* Shadow covers */
+		linear-gradient(var(--primary-color) 30%, #0000),
+		linear-gradient(#0000, var(--primary-color) 70%) 0 100%,
+		/* Shadows */
+		radial-gradient(farthest-side at 50% 0%, rgba(var(--text-color-asrgb),0.2), #0000),
+		radial-gradient(farthest-side at 50% 100%, rgba(var(--text-color-asrgb),0.2), #0000) 0 100%;
+	background-repeat: no-repeat;
+	background-size: 100% 40px, 100% 40px, 100% 14px, 100% 14px;
+	background-attachment: local, local, scroll, scroll;
+}
+.allpage{
+	display:flex;
+	flex-direction:column;
 	min-width:33vw;
 	align-items:stretch;
-	justify-self:center;
 	margin:0 1em 1em 2em;
 }
 .allpage>details>summary{
@@ -92,11 +108,15 @@ body{
 	transform-origin:0 2em -2em;
 	transition:transform 0.2s;
 }
-.allpage>details>.p>img{
+.allpage>details>.p img{
 	display:block;
 	max-height:20em;
 	max-width:100%;
 	margin:0.5em 0 1em 0;
+	/*making the scroll shadows be drawn on top of the images*/
+	/*TODO: starts working once the preprocessor is finished*/
+	position:relative;
+	z-index:-1;
 }
 .allpage>details[open]>.p{
 	transform:rotate3d(-1,0,0,0deg);
@@ -121,6 +141,6 @@ body{
 input[name="pageradios"]{
 	display:none;
 }
-input[name="pageradios"]:checked+.allpage{
+input[name="pageradios"]:checked+.scrollwrap{
 	display:flex;
 }

@@ -34,7 +34,7 @@
 				}else{
 					echo '" name="pageradios"/>';
 				}
-				echo '<div class="allpage">';
+				echo '<div class="scrollwrap"><div class="allpage">';
 				foreach($tmp as $heading=>$texts){
 					echo '<details>';
 					echo '<summary>'.$heading;
@@ -46,7 +46,7 @@
 					echo '</div>';
 					echo '</details>';
 				}
-				echo '</div>';
+				echo '</div></div>';
 			}
 			include('../snippets/foot.php');
 		?>
