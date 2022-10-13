@@ -15,7 +15,7 @@ import 'package:nekolib_utils/log.dart';
 /// Navigator key for [Catcher].
 final kNavigator = GlobalKey<NavigatorState>();
 
-/// How long to wait before a log file is deleted.
+/// How long log files are stored.
 const kMaxLogFileAge = Duration(days: 7);
 
 void main() async {
