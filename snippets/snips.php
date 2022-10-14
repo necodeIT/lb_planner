@@ -70,4 +70,12 @@
 		global $context_theme,$context_lang,$context_os;
 		return "theme=$context_theme&lang=$context_lang&os=$context_os";
 	}
+	/**
+	 * Helper function to escape text for attributes
+	 * @param text the input text
+	 * @return text that's been escaped and is fit for HTML attributes
+	 */
+	function attrescape($text){
+		return htmlentities($text,ENT_QUOTES | ENT_SUBSTITUTE | ENT_HTML5);
+	}
 ?>

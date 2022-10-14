@@ -45,7 +45,7 @@
 		}
 	}
 	//returns an array for docs which looks like this:
-	//{'title':{'heading':['text',…],…},…}
+	//{'title':{'heading':'text',…},…}
 	function db_get_docs_stuff(){
 		global $context_lang;
 		
@@ -58,7 +58,11 @@
 			$headings = _db_get_pq("SELECT id,text FROM DocsHeadings_$context_lang WHERE title_id=? ORDER BY id ASC",[$tid],[PDO::PARAM_INT])->fetchAll();
 			foreach($headings as list($hid,$heading)){
 				//getting corresponding texts
-				$tmp[$heading]=_db_get_pq("SELECT text FROM DocsTexts_$context_lang WHERE heading_id=? ORDER BY text_id",[$hid],[PDO::PARAM_INT])->fetchAll();
+				$tmp[$heading]='';
+				$texts=_db_get_pq("SELECT text FROM DocsTexts_$context_lang WHERE heading_id=? ORDER BY text_id",[$hid],[PDO::PARAM_INT])->fetchAll();
+				foreach($texts as $txt){
+					$tmp[$heading].=$txt[0];
+				}
 			}
 			$result[$title]=$tmp;
 		}

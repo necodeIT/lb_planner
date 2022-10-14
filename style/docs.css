@@ -66,6 +66,8 @@ body{
 	min-width:33vw;
 	align-items:stretch;
 	margin:0 1em 1em 2em;
+	/*making the scroll shadows be drawn on top of the images*/
+	mix-blend-mode:multiply;
 }
 .allpage>details>summary{
 	font-size:1.5rem;
@@ -106,15 +108,14 @@ body{
 	transform-origin:0 2em -2em;
 	transition:transform 0.2s;
 }
-.allpage>details>.p img{
-	display:block;
-	max-height:20em;
+.allpage>details>.p .card.img{
+	display:flex;
 	max-width:100%;
-	margin:0.5em 0 1em 0;
-	/*making the scroll shadows be drawn on top of the images*/
-	/*TODO: starts working once the preprocessor is finished*/
-	position:relative;
-	z-index:-1;
+	width:fit-content;
+	margin:2em 0 2em 0;
+}
+.allpage>details>.p img{
+	max-height:20em;
 }
 .allpage>details[open]>.p{
 	transform:rotate3d(-1,0,0,0deg);

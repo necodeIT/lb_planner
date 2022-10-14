@@ -4,6 +4,7 @@
 	
 	require_once('../snippets/snips.php');
 	require_once('../snippets/db.php');
+	require_once('../snippets/docs.php');
 	
 	setContext();
 	
@@ -35,14 +36,12 @@
 					echo '" name="pageradios"/>';
 				}
 				echo '<div class="scrollwrap"><div class="allpage">';
-				foreach($tmp as $heading=>$texts){
+				foreach($tmp as $heading=>$text){
 					echo '<details>';
 					echo '<summary>'.$heading;
 					include("../resources/dropdown_arrow.svg");
 					echo '</summary><div class="p">';
-					foreach($texts as $text){
-						echo $text[0];
-					}
+					docs_content_pp($text);
 					echo '</div>';
 					echo '</details>';
 				}

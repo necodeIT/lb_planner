@@ -199,6 +199,9 @@ a.card{
 	transform:translate(0,-0.5em);
 	box-shadow:0 0.33em 1.75em #0008;
 }
+.card.img{
+	overflow:clip;
+}
 /* responsive design */
 @media only screen and (max-aspect-ratio:1/1){
 	.screenpage{

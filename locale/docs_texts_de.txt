@@ -1,31 +1,32 @@
-00,0,Nach der Installation der App ist der erste Schritt das Anmelden. Du verwendest deinen Benutzernamen und dein Passwort\, die auch schon für Moodle (e-learning) verwendet werden.<img src="/resources/docs/login.png"/>
-01,0,Nach der Anmeldung wählst du jene Kurse aus\, die du bei deiner Planung berücksichtigen möchtest. Dabei kannst du auch mittels der 3 Punkte die Farbe des jeweiligen Kurses auswählen.<img src="/resources/docs/course_select.png"/>
+00,0,Nach der Installation der App ist der erste Schritt das Anmelden. Du verwendest deinen Benutzernamen und dein Passwort\, die auch schon für Moodle (e-learning) verwendet werden.!img[Loginseite|login]
+01,0,Nach der Anmeldung wählst du jene Kurse aus\, die du bei deiner Planung berücksichtigen möchtest. Dabei kannst du auch mittels der 3 Punkte die Farbe des jeweiligen Kurses auswählen.!img[Kursauswahl|course_select]
 02,0,Hast du alle Schritte bis hierhin gemeistert\, solltest du nun das Dashboard sehen. Auf diesem werden die Aufgaben angezeigt\, welche du dir für den heutigen Tag eingeteilt hast. In der Status Übersicht siehst du wie weit du derzeit in dem Semester b
-02,1,ist. Deine Schularbeitstermine hast du in der Test-Übersicht immer im Blick.<img src="/resources/docs/dashboard.png"/>
-03,0,Hier kannst du die Module\, die dir zugeteilt wurden per drag and drop in den Kalender einbinden. Das Menü um Module hinzuzufügen öffnest du mit den drei Punkten oben rechts.<img src="/resources/docs/calendar_modules.png"/>
-04,0,Über den Pfeil links oben neben <i>Plan</i> kannst du zwischen dem Plan und der Modulübersicht wechseln. Die Übersicht zeigt dir\, in welchem Monat welches Modul fällig ist.<img src="/resources/docs/calendar_modules_overview.png"/>
-05,0,Hier kannst du Sprache\, Themes und Kurse auswählen\, sowie uns ein Feedback hinterlassen\, um Bugs zu melden oder Verbesserungsmöglichkeiten einzubringen.<img src="/resources/docs/settings_overview.png"/>
+02,1,ist. Deine Schularbeitstermine hast du in der Test-Übersicht immer im Blick.!img[Dashboard|dashboard]
+03,0,Hier kannst du die Module\, die dir zugeteilt wurden per drag and drop in den Kalender einbinden. Das Menü um Module hinzuzufügen öffnest du mit den drei Punkten oben rechts.!img[Plan mit geöffnetem Modulpopup|calendar_modules]
+04,0,Über den Pfeil links oben neben <i>Plan</i> kannst du zwischen dem Plan und der Modulübersicht wechseln. Die Übersicht zeigt dir\, in welchem Monat welches Modul fällig ist.!img[Modulübersicht|calendar_modules_overview]
+05,0,Hier kannst du Sprache\, Themes und Kurse auswählen\, sowie uns ein Feedback hinterlassen\, um Bugs zu melden oder Verbesserungsmöglichkeiten einzubringen.!img[Seite mit Einstellungen|settings_overview]
 10,0,Auf dem Dashboard bekommt man die wichtigsten Informationen auf einmal angezeigt. Die <i>Today's tasks</i> zeigen einem an\, welche Module für den heutigen Tag eingeplant sind.  Den derzeitigen Fortschritt kann man außerdem an der
-10,1, <i>Status overview</i> ablesen und nahende Schularbeiten/Tests werden einem bei <i>Exams</i> angezeigt.<img src="/resources/docs/dashboard.png"/>
+10,1, <i>Status overview</i> ablesen und nahende Schularbeiten/Tests werden einem bei <i>Exams</i> angezeigt.!img[Hauptseite|dashboard]
 11,0,Sollte man eine andere Farbe oder Tag für den jeweiligen Kurs bevorzugen\, kann man diese mittels Knopfdruck auf das Symbol mit den drei Punkten auswählen. Hierbei sollte sich dann eine Farbauswahl öffnen (wie unten gezeigt). Den Tag ändert man indem
-11,1, man auf den Pinsel rechts oben klickt und dann den gewünschten Tag in das aufscheinende Textfeld eingibt. Zum Schluss muss man natürlich die Änderungen mit <i>Confirm</i> unten rechts bestätigen.<img src="/resources/docs/course_color.png"/>
+11,1, man auf den Pinsel rechts oben klickt und dann den gewünschten Tag in das aufscheinende Textfeld eingibt. Zum Schluss muss man natürlich die Änderungen mit <i>Confirm</i> unten rechts bestätigen.!img[Farbwähler|course_color]
 12,0,Man bekommt auf jeder Seite (ausgenommen <i>Login</i> und <i>Select courses</i>) die Benachrichtigungen rechts oben angezeigt. Hierbei erkennt man neben dem User eine Glocke\, auf die man klicken kann um sich Nachrichten\, welche man bekommen hat\, a
-12,1,nzeigen zu lassen. Hier sieht man weiters auch Einladungen zum gemeinsame Planen. <img src="/resources/docs/navbar_user.png"/> <img src="/resources/docs/notification_popup.png"/>
-13,0,Man kann alle Module\, welche in der App angezeigt sind\, auch in Moodle öffnen. Dazu muss man einfach nur Rechtsklick auf das Modul machen und dann auf <i>Show on Moodle</i> klicken. <img src="/resources/docs/module_in_moodle_popup.png"/>
-14,0,<ul><li><b>Grün:</b> Modul wurde positiv bewertet</li><li><b>Gelb/Orange:</b> Modul wurde abgegeben\, aber noch nicht bewertet</li><li><b>Rot:</b> Deadline ist abgelaufen oder Modul wurde negat
-14,1,iv bewertet</li><li><b>Grau:</b> Deadline ist noch nicht abgelaufen und Modul wurde noch nicht hochgeladen/bewertet</li></ul><image src="/resources/docs/status_overview.png"/>
-20,0,Als erstes muss du im Menü auf <i>Members</i> klicken:<img src="/resources/docs/calendar_sidebar.png"/>Dann auf <i>Invite Users</i>:<img src="/resources/docs/calendar_sidebar_members.png"/>Und klickst bei den gewünschten Personen auf <i>Invite</i>. W
-20,1,eiters kannst du auch Freunde in der Suchleiste suchen.<img src="/resources/docs/invite_users.png"/>
-21,0,Indem man auf den derzeitigen Plannamen (in diesem Fall "Plan for Max") doppelklickt\, öffnet sich ein Textfeld\, in welches man den gewünschten Namen eingeben kann.<img src="/resources/docs/calendar_sidebar_namechange.png"/>
-22,0,Über den Pfeil links oben neben <i>Plan</i> kannst du zwischen dem Plan und der Modulübersicht wechseln. Die Übersicht zeigt dir\, in welchem Monat welches Modul fällig ist.<img src="/resources/docs/calendar_modules_overview.png"/>
+12,1,nzeigen zu lassen. Hier sieht man weiters auch Einladungen zum gemeinsame Planen. !img[der Teil der Navigationsleiste mit der Glocke drin|navbar_user] !img[Nachrichtenpopup mit einer Nachricht darin|notification_popup]
+13,0,Man kann alle Module\, welche in der App angezeigt sind\, auch in Moodle öffnen. Dazu muss man einfach nur Rechtsklick auf das Modul machen und dann auf <i>Show on Moodle</i> klicken. !img[Dialogfenster "show in moodle"|module_in_moodle_popup]
+14,0,<ul><li><b>Grün:</b> Modul wurde positiv bewertet</li><li><b>Gelb/Orange:</b> Modul wurde abgegeben\, aber noch nicht bewertet</li><li><b>Rot:</b> Deadline ist abgelaufen oder Modul wurde negativ bewertet</li><li><b>Grau:</b> Deadline ist noch nicht 
+14,1,abgelaufen und Modul wurde noch nicht hochgeladen/bewertet</li></ul>!img[Statusübersicht mit der anzahl an abgeschlossenen\, abgegebenen\, negativen und zu machenden Modulen|status_overview]
+20,0,Als erstes muss du im Menü auf <i>Members</i> klicken:!img[Kontextmenü des Plans|calendar_sidebar]Dann auf <i>Invite Users</i>:!img[Kontextmenü des Plans im Tab "Members"|calendar_sidebar_members]Und klickst bei den gewünschten Personen auf <i>Invite
+20,1,</i>. Weiters kannst du auch Freunde in der Suchleiste suchen.!img[Popup mit Suchleiste zum Einladen von Freunden|invite_users]
+21,0,Indem man auf den derzeitigen Plannamen (in diesem Fall "Plan for Max") doppelklickt\, öffnet sich ein Textfeld\, in welches man den gewünschten Namen eingeben kann.
+21,1,!img[Kontextmenü vom Plan\, wobei der Planname editiert wird|calendar_sidebar_namechange]
+22,0,Über den Pfeil links oben neben <i>Plan</i> kannst du zwischen dem Plan und der Modulübersicht wechseln. Die Übersicht zeigt dir\, in welchem Monat welches Modul fällig ist.!img[Modulübersicht|calendar_modules_overview]
 30,0,<ol><li>Bei dem Punkt <i>Alpha v0.0.0</i> kann man mit dem Symbol rechts daneben seine App nach Updates überprüfen.</li><li>Darunter kann man den <i>Cache</i> (Zwischenspeicher) leeren\, damit die App flüssiger läuft.</li><li>Bei <i>Delete profile</i
-30,1,> kann man sein Profil löschen.</li><li>Beim letzten Punkt kann man sich die <i>Credits</i> (Impressum) anzeigen lassen</li></ol><img src="/resources/docs/settings.png"/>
-31,0,Hierbei kann man nach Kursen suchen und sie zu der App hinzufügen oder wieder abwählen. Die drei Punkte bewirken das selbe wie bei der <i>Course selection</i> am Anfang.<img src="/resources/docs/course_select_popup.png"/>
-32,0,Man kann das Aussehen der App mittels der Schemas ändern. Probiere einfach mal alle aus 😊<img src="/resources/docs/themes.png"/>
-33,0,Hier kannst du einen Grund für dein Feedback auswählen und es danach im Textfeld darunter schreiben\, sowie es uns mittels Knopfdruck auf den <i>Submit</i>-Knopf schicken.<img src="/resources/docs/feedback_type.png"/>
-40,0,Zuallererst musst du dich anmelden und dann auf die Kalenderpage gehen. Bei dieser klickst du dann auf die drei Punkte:<img src="/resources/docs/calendarmenu.png"/>Nun solltest du dieses Fenster sehen\, bei welchem du auf <i>Members</i> klickst:<img src="
-40,1,/resources/docs/calendar_sidebar_members2.png"/>Nun klickst du auf <i>Invite users</i> <img src="/resources/docs/freundesuche.png"/> und suchst in dem Popup nach der Person. Wenn du diese gefunden hast\, klickst du auf <i>Invite</i>
-40,2, und die Person erhält eine Einladung.<img src="/resources/docs/invite_users.png"/>
+30,1,> kann man sein Profil löschen.</li><li>Beim letzten Punkt kann man sich die <i>Credits</i> (Impressum) anzeigen lassen</li></ol>!img[Einstellungen|settings]
+31,0,Hierbei kann man nach Kursen suchen und sie zu der App hinzufügen oder wieder abwählen. Die drei Punkte bewirken das selbe wie bei der <i>Course selection</i> am Anfang.!img[Kursauswahl|course_select_popup]
+32,0,Man kann das Aussehen der App mittels der Schemas ändern. Probiere einfach mal alle aus 😊!img[Schema-auswahl|themes]
+33,0,Hier kannst du einen Grund für dein Feedback auswählen und es danach im Textfeld darunter schreiben\, sowie es uns mittels Knopfdruck auf den <i>Submit</i>-Knopf schicken.!img[Die Rückmeldebox mit geöffnetem Typenpopup|feedback_type]
+40,0,Zuallererst musst du dich anmelden und dann auf die Kalenderpage gehen. Bei dieser klickst du dann auf die drei Punkte:!img[Kalender mit rot markiertem Kontextknopf|calendarmenu]Nun solltest du dieses Fenster sehen\, bei welchem du auf <i>Members</i>
+40,1, klickst:!img[Kontextmenü des Plans mit markiertem Reiter "Members"|calendar_sidebar_members2]Nun klickst du auf <i>Invite users</i> !img[Reiter "Members" im Kontextmenü mit markiertem Knopf "Invite users"|freundesuche] und suchst in dem Popup nach d
+40,2,er Person. Wenn du diese gefunden hast\, klickst du auf <i>Invite</i> und die Person erhält eine Einladung.!img[Popup zur Einladung von Freunden|invite_users]
 41,0,Wenn du einem anderen Plan beitrittst geht dein <b>derzeitiger Plan leider verloren</b>\, jedoch bekommst du eine Warnung bevor du einem Plan beitrittst.
 42,0,Du bekommst eine <b>Kopie</b> des geteilten Plans und kannst mit diesem weiterhin planen.
 43,0,Lehrer haben <b>keinen Zugriff</b> auf deinen Plan oder grundsätzlichen Fortschritt.
@@ -33,10 +34,10 @@
 45,0,Es werden laufend neue Features eingebaut und Bugs behoben. Einen Zeitplan für neue Versionen gibt es allerdings nicht.
 46,0,Grundsätzlich steht es auf unserem Plan solch ein System einzubauen\, jedoch können wir noch nicht genau sagen wann dies geschieht.
 47,0,Dein derzeitiger Status setzt sich aus <b>allen Modulen der von dir ausgewählten Kursen</b> zusammen. Dabei wird geschaut wie viele Module du abgeschlossen\, abgegeben\, versäumt oder noch nicht begonnen (und die Deadline noch nicht abgelaufen ist) h
-47,1,ast. <img src="/resources/docs/status_overview.png"/>
+47,1,ast. !img[Statusübersicht mit der anzahl an abgeschlossenen\, abgegebenen\, negativen und zu machenden Modulen|status_overview]
 48,0,Man kann <b>nur einen Plan</b> haben und diesen benutzen\, egal ob alleine oder mit Freunden.
 49,0,Unter Einstellungen findest du ein Textfeld bei welchem du uns Bugs melden\, Verbesserungsvorschläge senden und mehr kannst. Dabei musst du zuerst die Art des Feedbacks auswählen und dann deine Nachricht in dem Textfeld
-49,1, schreiben und auf <i>Submit</i> klicken.<img src="/resources/docs/feedbackbox.png"/>Oder du schreibst uns eine <a href="mailto:lb-planner@tgm.ac.at">Mail</a> unter lb-planner@tgm.ac.at.
+49,1, schreiben und auf <i>Submit</i> klicken.!img[Einstellungen mit markierter Rückmeldebox|feedbackbox]Oder du schreibst uns eine <a href="mailto:lb-planner@tgm.ac.at">Mail</a> unter lb-planner@tgm.ac.at.
 50,0,<ul><li>Die Jahreszahl muss vorhanden sein z.B. (21/22)</li><li>Wenn diese <b>NICHT</b> vorhanden ist\, wird der Kurs nicht in der App angezeigt</li></ul>
 51,0,Notenschlüssel\, die Gesamtnote oder andere wichtige Informationen\, sollten in den jeweiligen Kursen als Markdown erläutert werden und mit dem Tag "<b>[INFO]</b>" versehen sein.
 51,1,Beispiel:<br><br><code># Notenschlüssel<br><br>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia\,<br><br>## Gesamtnote<br><br>- 1: x%<br><br>- 2: x%<br><br>- 3: x%<br><br>- 4: x%<br><br>- 5: x%<br><br>## Module<br><br>- 
@@ -52,9 +53,9 @@
 56,0,Schularbeiten oder auch Tests müssen mit dem Kürzel "[Test]" oder "[SA]" versehen sein.
 56,1,<br><br>Beispiel:<br><br><code>[Test] Writing exam</code><br><br>oder<br><br><code>[SA] Bewertung 2.Schularbeit</code>
 57,0,Wenn kein vorher genannter Tag verwendet wird\, wird die Aufgabe / Modul\, nicht in der App angezeigt.
-58,0,Damit wir in der App eine Modulübersicht präsentieren können\, sollten Module ein erwartetes Abschlussdatum als <b>VORSCHLAG</b> enthalten (siehe Screenshot).<img src="/resources/docs/deadline.png"/>
-59,0,Am Ende des Modulnamen sollte eine geschätzte Arbeitsdauer der Lehrer hinzugefügt werden mit einem Abstand\, Minus\, Abstand und dann die Stundenanzahl mit einem h (für Stunden) am Ende. Bei Gleitkommazahlen ist ein <b>Punkt</b> zum trennen zu verwenden.
-59,1,<br><br>Beispiel:<br><br><code>[GK] Ü 6a.0: Generischer Stack - 4h</code><br><br>oder<br><br><code>Ü 6a.0 [GK]: Generischer Stack - 4.5h</code><br><br>oder<br><br><code>Ü 6a.0: Generischer Stack [GK] - 0.5h</code>
+58,0,Damit wir in der App eine Modulübersicht präsentieren können\, sollten Module ein erwartetes Abschlussdatum als <b>VORSCHLAG</b> enthalten (siehe Screenshot).!img[Einstellung für Deadline eines Moduls|deadline]
+59,0,Am Ende des Modulnamen sollte eine geschätzte Arbeitsdauer der Lehrer hinzugefügt werden mit einem Abstand\, Minus\, Abstand und dann die Stundenanzahl mit einem h (für Stunden) am Ende. Bei Gleitkommazahlen ist ein <b>Punkt</b> zum trennen zu verwen
+59,1,den.<br><br>Beispiel:<br><br><code>[GK] Ü 6a.0: Generischer Stack - 4h</code><br><br>oder<br><br><code>Ü 6a.0 [GK]: Generischer Stack - 4.5h</code><br><br>oder<br><br><code>Ü 6a.0: Generischer Stack [GK] - 0.5h</code>
 60,0,Weiters\, muss bei der Bewertung der Module acht gegeben werden. Diese sollten entweder mit den dazugehörigen Status 
 60,1,(nicht erfüllt \,GK überwiegend\, GK vollständig\, EK überwiegend und EK vollständig) bewertet werden oder mit aufsteigenden Punkten bzw. Prozenten.
 60,2,<ul><li>Die Kürzel dürfen <b>NICHT</b> gemischt vorkommen ([GK] / [EK]).</li>
