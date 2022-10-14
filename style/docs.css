@@ -54,8 +54,8 @@ body{
 		linear-gradient(var(--primary-color) 30%, #0000),
 		linear-gradient(#0000, var(--primary-color) 70%) 0 100%,
 		/* Shadows */
-		radial-gradient(farthest-side at 50% 0%, rgba(var(--text-color-asrgb),0.2), #0000),
-		radial-gradient(farthest-side at 50% 100%, rgba(var(--text-color-asrgb),0.2), #0000) 0 100%;
+		radial-gradient(farthest-side at 50% 0%, #0002, #0000),
+		radial-gradient(farthest-side at 50% 100%, #0002, #0000) 0 100%;
 	background-repeat: no-repeat;
 	background-size: 100% 40px, 100% 40px, 100% 14px, 100% 14px;
 	background-attachment: local, local, scroll, scroll;
