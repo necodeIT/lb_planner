@@ -6,10 +6,10 @@
 body{
 	display:grid;
 	grid-template-areas:
-	"nav nav"
-	"sb ap"
-	"ft ft";
-	grid-template-columns:0fr 1fr;
+	"nav"
+	"ap"
+	"ft";
+	grid-template-columns:auto;
 	grid-template-rows:auto 1fr auto;
 	height:100%;
 }
@@ -19,13 +19,12 @@ body{
 #mainfoot{
 	grid-area:ft;
 }
-/*sidebar*/
+/*sidebar - TODO: desktop only*/
 #sidebar{
-	position:sticky;
+	position:absolute;
 	left:0;
-	height:100%;
+	top:4em;/*navbar is 4em high*/
 	width:min-content;
-	grid-area:sb;
 	display:flex;
 	flex-direction:column;
 	align-items:start;/*no stretchy*/
@@ -46,7 +45,6 @@ body{
 /*container for details*/
 .scrollwrap{
 	display:none;
-	justify-self:stretch;
 	justify-content:center;
 	grid-area:ap;
 	overflow:auto;
