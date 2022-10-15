@@ -143,7 +143,7 @@ body{
 }
 /* external references */
 .extref{
-	text-decoration:none;
+	text-decoration:underline;
 	color:var(--accent-color);
 	background-color:#0000;
 	font-weight:600;
@@ -163,6 +163,9 @@ body{
 	display:inline-block;
 	height:0.75em;
 	vertical-align:super;
+}
+.extref.btn{
+	text-decoration:none;
 }
 /* text stuff */
 h1{
