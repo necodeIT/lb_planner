@@ -143,3 +143,6 @@ input[name="pageradios"]{
 input[name="pageradios"]:checked+.scrollwrap{
 	display:flex;
 }
+.extref{
+	text-decoration: underline;
+}

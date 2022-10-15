@@ -37,7 +37,7 @@
 47,1,ast. !img[Statusübersicht mit der anzahl an abgeschlossenen\, abgegebenen\, negativen und zu machenden Modulen|status_overview]
 48,0,Man kann <b>nur einen Plan</b> haben und diesen benutzen\, egal ob alleine oder mit Freunden.
 49,0,Unter Einstellungen findest du ein Textfeld bei welchem du uns Bugs melden\, Verbesserungsvorschläge senden und mehr kannst. Dabei musst du zuerst die Art des Feedbacks auswählen und dann deine Nachricht in dem Textfeld
-49,1, schreiben und auf <i>Submit</i> klicken.!img[Einstellungen mit markierter Rückmeldebox|feedbackbox]Oder du schreibst uns eine <a href="mailto:lb-planner@tgm.ac.at">Mail</a> unter lb-planner@tgm.ac.at.
+49,1, schreiben und auf <i>Submit</i> klicken.!img[Einstellungen mit markierter Rückmeldebox|feedbackbox]Oder du schreibst uns eine !lnk[mailto:lb-planner@tgm.ac.at|Mail] unter lb-planner@tgm.ac.at.
 50,0,<ul><li>Die Jahreszahl muss vorhanden sein z.B. (21/22)</li><li>Wenn diese <b>NICHT</b> vorhanden ist\, wird der Kurs nicht in der App angezeigt</li></ul>
 51,0,Notenschlüssel\, die Gesamtnote oder andere wichtige Informationen\, sollten in den jeweiligen Kursen als Markdown erläutert werden und mit dem Tag "<b>[INFO]</b>" versehen sein.
 51,1,Beispiel:<br><br><code># Notenschlüssel<br><br>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia\,<br><br>## Gesamtnote<br><br>- 1: x%<br><br>- 2: x%<br><br>- 3: x%<br><br>- 4: x%<br><br>- 5: x%<br><br>## Module<br><br>- 
