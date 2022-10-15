@@ -21,7 +21,7 @@
 				$i+=3;
 				$is = _find_text_function_params($text,$i);
 				if($type=='img'){
-					echo '<div class="card img"><img alt="';
+					echo '<div class="img"><img alt="';
 					echo attrescape(substr($text,$i+1,$is[0]-$i-1));
 					echo '" src="/resources/docs/';
 					echo attrescape(substr($text,$is[0]+1,$is[1]-$is[0]-1));

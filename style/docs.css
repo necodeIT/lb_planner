@@ -66,9 +66,8 @@ body{
 	min-width:33vw;
 	align-items:stretch;
 	margin:0 1em 1em 2em;
-	/*making the scroll shadows be drawn on top of the images*/
-	mix-blend-mode:multiply;
 }
+/*detail heading*/
 .allpage>details>summary{
 	font-size:1.5rem;
 	font-weight:bold;
@@ -108,15 +107,6 @@ body{
 	transform-origin:0 2em -2em;
 	transition:transform 0.2s;
 }
-.allpage>details>.p .card.img{
-	display:flex;
-	max-width:100%;
-	width:fit-content;
-	margin:2em 0 2em 0;
-}
-.allpage>details>.p img{
-	max-height:20em;
-}
 .allpage>details[open]>.p{
 	transform:rotate3d(-1,0,0,0deg);
 }
@@ -135,6 +125,17 @@ body{
 }
 .allpage>details>.p ol{
 	padding-left:1.25em;/*let's just hope nobody counts past 9*/
+}
+/*card images*/
+.allpage>details>.p img{
+	max-height:20em;
+}
+.allpage>details>.p .img{
+	display:flex;
+	max-width:100%;
+	width:fit-content;
+	margin:2em 0 2em 0;
+	outline:solid 1px var(--tertiary-color);
 }
 /*radios to display/hide 'allpages' */
 input[name="pageradios"]{
