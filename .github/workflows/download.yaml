@@ -1,0 +1,55 @@
+name: dl_constants.php maintainer
+on:
+  release:
+    types: [published]
+    branches: ['app', 'moodle']
+jobs:
+  update-frontend-files:
+      if: github.event.release.target_commitish == 'app'
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout repo
+          uses: actions/checkout@v3
+          with:
+            ref: web
+
+        - name: Update linux url
+          run: sed -i '/linux/c\const dl_linux = "${{ github.server_url }}/${{ github.repository }}/releases/download/${{ github.event.release.tag_name }}/LB.Planner-x86_64.AppImage";' /home/runner/work/actions-test/actions-test/snippets/dl_constants.php
+        
+        - name: Update linux comment
+          run: sed -i '/Linux download url/c\ * Linux download url [@${{ github.event.release.tag_name }}](${{ github.server_url }}/${{ github.repository }}/releases/tag/${{ github.event.release.tag_name }}).' /home/runner/work/actions-test/actions-test/snippets/dl_constants.php
+
+        - name: Update windows url
+          run: sed -i '/windows/c\const dl_windows = "${{ github.server_url }}/${{ github.repository }}/releases/download/${{ github.event.release.tag_name }}/LB.Planner.Setup.exe";' /home/runner/work/actions-test/actions-test/snippets/dl_constants.php
+
+        - name: Update windows comment
+          run: sed -i '/Windows download url/c\ * Windows download url [@${{ github.event.release.tag_name }}](${{ github.server_url }}/${{ github.repository }}/releases/tag/${{ github.event.release.tag_name }}).' /home/runner/work/actions-test/actions-test/snippets/dl_constants.php
+
+        - name: Commit & Push
+          uses: Andro999b/push@v1.3
+          with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            branch: web
+            message: 'Github Actions - Updated dl_constants.php to ${{ github.event.release.tag_name }}'
+  update-backend-files:
+      if: github.event.release.target_commitish == 'moodle'
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout repo
+          uses: actions/checkout@v3
+          with:
+            ref: web
+
+        - name: Update plugin url
+          run: sed -i '/dl_plugin/c\const dl_plugin = "${{ github.server_url }}/${{ github.repository }}/releases/download/${{ github.event.release.tag_name }}/lb_planner.zip";' /home/runner/work/actions-test/actions-test/snippets/dl_constants.php
+
+        - name: Update plugin comment
+          run: sed -i '/Plugin download url/c\ * Plugin download url [@${{ github.event.release.tag_name }}](${{ github.server_url }}/${{ github.repository }}/releases/tag/${{ github.event.release.tag_name }}).' /home/runner/work/actions-test/actions-test/snippets/dl_constants.php
+
+        - name: Commit & Push
+          uses: Andro999b/push@v1.3
+          with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            branch: web
+            message: 'Github Actions - Updated dl_constants.php to ${{ github.event.release.tag_name }}'
+  
