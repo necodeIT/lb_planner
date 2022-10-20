@@ -1,7 +1,7 @@
 name: lbplanner_engine
 description: Implementation of the LB Planner API moodle plugin. Also provides all models and controllers + disk management for the LB Planner App.
 version: 0.0.1
-homepage: null
+homepage: https://github.com/necodeIT/lb_planner
 publish_to: none
 
 environment:
