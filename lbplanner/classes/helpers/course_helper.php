@@ -130,9 +130,11 @@ class course_helper {
      */
     public static function check_access($courseid, $userid) : bool {
         global $DB;
-        $enrolmentid = $DB->get_field(self::ENROL_TABLE, 'id', array('courseid' => $courseid));
-        if ($DB->record_exists(self::USER_ENROL_TABLE, array('enrolid' => $enrolmentid, 'userid' => $userid))) {
-            return true;
+        $enrolmentids = $DB->get_records(self::ENROL_TABLE, array('courseid' => $courseid), '', 'id');
+        foreach ($enrolmentids as $enrolmentid) {
+            if ($DB->record_exists(self::USER_ENROL_TABLE, array('enrolid' => $enrolmentid, 'userid' => $userid))) {
+                return true;
+            }
         }
         return false;
     }
