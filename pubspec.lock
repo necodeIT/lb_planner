@@ -112,7 +112,7 @@ packages:
       name: cached_network_image
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.2.2"
+    version: "3.2.3"
   cached_network_image_platform_interface:
     dependency: transitive
     description:
@@ -132,10 +132,10 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "23844d1aa7a0b00cb134f1f820da1e59eff95770"
+      resolved-ref: "01e48b42371a0c74cff2cebd003619b83660e0ad"
       url: "https://github.com/ThexXTURBOXx/catcher.git"
     source: git
-    version: "0.7.0"
+    version: "0.7.1"
   characters:
     dependency: transitive
     description:
@@ -289,14 +289,14 @@ packages:
       name: device_info_plus
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "7.0.1"
+    version: "8.0.0"
   device_info_plus_platform_interface:
     dependency: transitive
     description:
       name: device_info_plus_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.0.1"
+    version: "7.0.0"
   dio:
     dependency: transitive
     description:
@@ -442,7 +442,7 @@ packages:
       name: font_awesome_flutter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "10.2.1"
+    version: "10.3.0"
   freezed_annotation:
     dependency: transitive
     description:
@@ -456,7 +456,7 @@ packages:
       name: glob
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.0"
+    version: "2.1.1"
   google_fonts:
     dependency: transitive
     description:
@@ -525,7 +525,7 @@ packages:
     description:
       path: "."
       ref: engine
-      resolved-ref: dd280da891efa8d7b5b24da123fbaa39eac89d9a
+      resolved-ref: a250892a87bfd535de173087b69abff859da1346
       url: "https://github.com/necodeIT/lb_planner.git"
     source: git
     version: "0.0.1"
@@ -577,13 +577,13 @@ packages:
       name: mime
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.2"
+    version: "1.0.3"
   nekolib_ui:
     dependency: "direct main"
     description:
       path: ui
       ref: flutter3
-      resolved-ref: "0ba213d8d0b7e665eee562b18bbd85d2a8301294"
+      resolved-ref: "8d89aa7f18e5c40320429336e206abac6459f4f3"
       url: "https://github.com/necodeIT/nekolib.git"
     source: git
     version: "0.0.1"
@@ -592,7 +592,7 @@ packages:
     description:
       path: utils
       ref: flutter3
-      resolved-ref: "0ba213d8d0b7e665eee562b18bbd85d2a8301294"
+      resolved-ref: "8d89aa7f18e5c40320429336e206abac6459f4f3"
       url: "https://github.com/necodeIT/nekolib.git"
     source: git
     version: "0.0.1"
@@ -630,7 +630,7 @@ packages:
       name: package_info_plus
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.1"
+    version: "3.0.2"
   package_info_plus_platform_interface:
     dependency: transitive
     description:
@@ -672,7 +672,7 @@ packages:
       name: path_provider_android
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.21"
+    version: "2.0.22"
   path_provider_ios:
     dependency: transitive
     description:
@@ -749,14 +749,14 @@ packages:
       name: pub_semver
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.2"
+    version: "2.1.3"
   pub_updater:
     dependency: transitive
     description:
       name: pub_updater
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.2"
+    version: "0.2.3"
   pubspec_parse:
     dependency: transitive
     description:
@@ -784,7 +784,7 @@ packages:
       name: rxdart
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.27.5"
+    version: "0.27.7"
   screen_retriever:
     dependency: transitive
     description:
@@ -798,7 +798,7 @@ packages:
       name: sentry
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.14.0"
+    version: "6.18.0"
   shimmer:
     dependency: "direct main"
     description:
@@ -824,7 +824,7 @@ packages:
       name: sqflite
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.0+3"
+    version: "2.2.2"
   sqflite_common:
     dependency: transitive
     description:
@@ -908,14 +908,14 @@ packages:
       name: url_launcher
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.1.6"
+    version: "6.1.7"
   url_launcher_android:
     dependency: transitive
     description:
       name: url_launcher_android
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.0.21"
+    version: "6.0.22"
   url_launcher_ios:
     dependency: transitive
     description:
@@ -964,7 +964,7 @@ packages:
       name: uuid
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.6"
+    version: "3.0.7"
   value_layout_builder:
     dependency: transitive
     description:
@@ -992,14 +992,14 @@ packages:
       name: win32
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.1.0"
+    version: "3.1.2"
   window_manager:
     dependency: "direct main"
     description:
       name: window_manager
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.7"
+    version: "0.2.8"
   xdg_directories:
     dependency: transitive
     description:
