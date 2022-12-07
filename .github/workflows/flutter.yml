@@ -27,7 +27,7 @@ jobs:
       - name: Archive production artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: lb-planer-linux
+          name: lb-planner-linux
           path: build/linux/x64/release/bundle/*
   windows_build:
     name: "Windows build"
@@ -47,7 +47,7 @@ jobs:
       - name: Archive production artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: lb-planer-windows
+          name: lb-planner-windows
           path: build\windows\runner\Release\*
 #   macos_build:
 #     name: "MacOS build"
@@ -67,5 +67,5 @@ jobs:
 #       - name: Archive production artifacts
 #         uses: actions/upload-artifact@v3
 #         with:
-#           name: lb-planer-macos
+#           name: lb-planner-macos
 #           path: build/macos/Build/Products/Release/*
