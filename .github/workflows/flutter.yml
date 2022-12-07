@@ -1,6 +1,7 @@
 name: "Flutter build"
 on:
   release:
+    types: [published]
     branches: ['app']
   workflow_dispatch:
 jobs:
@@ -42,7 +43,7 @@ jobs:
       - name: "Build"
         run: |
           flutter config --enable-windows-desktop
-          flutter build linux --release --no-sound-null-safety
+          flutter build windows --release --no-sound-null-safety
       - name: Archive production artifacts
         uses: actions/upload-artifact@v3
         with:
@@ -62,7 +63,7 @@ jobs:
       - name: "Build"
         run: |
           flutter config --enable-macos-desktop
-          flutter build linux --release --no-sound-null-safety
+          flutter build macos --release --no-sound-null-safety
       - name: Archive production artifacts
         uses: actions/upload-artifact@v3
         with:
