@@ -48,7 +48,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: lb-planer-windows
-          path: build/windows/x64/release/bundle/*
+          path: build\windows\runner\Release\*
   macos_build:
     name: "MacOS build"
     runs-on: macos-latest
@@ -68,4 +68,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: lb-planer-macos
-          path: build/macos/x64/release/bundle/*
+          path: build/macos/Build/Products/Release/*
