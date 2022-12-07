@@ -3,8 +3,7 @@ part of lbplanner_engine;
 /// Provides basic methods to communicate with the moodle API
 class Api {
   /// The root url of the server.
-  //static const serverRoot = kReleaseMode ? "https://elearning.tgm.ac.at" : "https://projekte.tgm.ac.at/lbplaner4";
-  static const serverRoot = "https://elearning.tgm.ac.at";
+  static const serverRoot = kReleaseMode ? "https://elearning.tgm.ac.at" : "https://projekte.tgm.ac.at/lbplaner4";
   
   /// The base URL of the API
   static const apiEndpoint = "$serverRoot/webservice/rest/server.php";
