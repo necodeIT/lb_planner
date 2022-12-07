@@ -13,3 +13,6 @@ LB Planner App for tgm.
    - `windows` for Windows
    - `macos` for MacOS
    - `linux` for Linux
+7. cd [repo]/build/[os]/x64/release
+8. Run the executable
+   - On linux the executable is in the `bundle` subfolder of `release`   
