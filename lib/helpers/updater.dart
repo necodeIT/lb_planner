@@ -22,7 +22,7 @@ class UpdateProvider extends ChangeNotifier {
   String get latestVersionName => kUpdater.latestVersionName;
 
   /// The name of the current version
-  String get versionName => "Alpha v${kUpdater.currentVersion}";
+  String get versionName => "Closed Beta v${kUpdater.currentVersion}";
 
   /// The status of the update.
   UpdateStatus get status => _status;
@@ -137,7 +137,7 @@ class Updater extends GitHubUpdater {
   String get appName => "LB Planner";
 
   @override
-  String get currentVersion => "0.0.0";
+  String get currentVersion => "0.0.1";
 
   @override
   String get linuxFileName => throw UnimplementedError("Linux is not supported yet");
