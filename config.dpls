@@ -9,7 +9,7 @@
     },
     "config": {
         "appName": "LB Planner",
-        "version": "0.0.0",
+        "version": "0.0.1",
         "publisher": "necodeIT",
         "outputFileName": "Setup",
         "outputDir": "build",
@@ -20,6 +20,6 @@
         "postbuildCommands": {},
         "additionalFiles": {},
         "additionalDirectories": {},
-        "url": ""
+        "url": "https://github.com/necodeIT/lb_planner"
     }
 }

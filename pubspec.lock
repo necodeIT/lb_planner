@@ -583,7 +583,7 @@ packages:
     description:
       path: ui
       ref: flutter3
-      resolved-ref: "8d89aa7f18e5c40320429336e206abac6459f4f3"
+      resolved-ref: "3bf56bd82583031234528785554a8bb2f5075434"
       url: "https://github.com/necodeIT/nekolib.git"
     source: git
     version: "0.0.1"
@@ -592,7 +592,7 @@ packages:
     description:
       path: utils
       ref: flutter3
-      resolved-ref: "8d89aa7f18e5c40320429336e206abac6459f4f3"
+      resolved-ref: "3bf56bd82583031234528785554a8bb2f5075434"
       url: "https://github.com/necodeIT/nekolib.git"
     source: git
     version: "0.0.1"
