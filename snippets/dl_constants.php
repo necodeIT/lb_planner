@@ -2,16 +2,16 @@
 # AUTOMATICALLY MAINTAINED BY GITHUB ACTIONS — DO NOT EDIT
 
 /**
- * Linux download url [@f0.0.1](https://github.com/necodeIT/lb_planner/releases/tag/f0.0.1).
+ * Linux download url.
  */
-const dl_linux = "https://github.com/necodeIT/lb_planner/releases/download/f0.0.1/LB.Planner-x86_64.AppImage";
+const dl_linux = "";
 
 /**
- * Windows download url [@f0.0.1](https://github.com/necodeIT/lb_planner/releases/tag/f0.0.1).
+ * Windows download url.
  */
-const dl_windows = "https://github.com/necodeIT/lb_planner/releases/download/f0.0.1/LB.Planner.Setup.exe";
+const dl_windows = "";
 
 /**
- * Plugin download url [@p0.0.1](https://github.com/necodeIT/lb_planner/releases/tag/p0.0.1).
+ * Plugin download url.
  */
-const dl_plugin = "https://github.com/necodeIT/lb_planner/releases/download/p0.0.1/lb_planner.zip";
+const dl_plugin = "";
