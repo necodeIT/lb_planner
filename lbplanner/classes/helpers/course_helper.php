@@ -132,7 +132,7 @@ class course_helper {
         global $DB;
         $enrolmentids = $DB->get_records(self::ENROL_TABLE, array('courseid' => $courseid), '', 'id');
         foreach ($enrolmentids as $enrolmentid) {
-            if ($DB->record_exists(self::USER_ENROL_TABLE, array('enrolid' => $enrolmentid, 'userid' => $userid))) {
+            if ($DB->record_exists(self::USER_ENROL_TABLE, array('enrolid' => $enrolmentid->id, 'userid' => $userid))) {
                 return true;
             }
         }

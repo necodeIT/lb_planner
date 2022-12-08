@@ -112,7 +112,6 @@ class user_helper {
      */
     public static function assert_access(int $userid) {
         global $USER;
-        ;
         if ($USER->id != $userid) {
             throw new \moodle_exception('Access denied');
         }
