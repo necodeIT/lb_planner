@@ -10,6 +10,9 @@ class Disk {
     var dir = await getApplicationDocumentsDirectory();
 
     var path = '${dir.path}/$appFolderName';
+
+    if (kDebugMode) path += "/debug";
+
     var appDir = Directory(path);
 
     await appDir.create();
