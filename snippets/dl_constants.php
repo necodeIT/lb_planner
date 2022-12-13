@@ -12,6 +12,6 @@ const dl_linux = "";
 const dl_windows = "";
 
 /**
- * Plugin download url.
+ * Plugin download url [@p0.0.2](https://github.com/necodeIT/lb_planner/releases/tag/p0.0.2).
  */
-const dl_plugin = "";
+const dl_plugin = "https://github.com/necodeIT/lb_planner/releases/download/p0.0.2/lb_planner.zip";
