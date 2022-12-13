@@ -5,7 +5,7 @@ on:
     branches: ['app', 'moodle']
 jobs:
   update-frontend-files:
-      if: github.event.release.target_commitish == 'app'
+      if: github.event.release.target_commitish == 'app' && !github.event.release.prerelease
       runs-on: ubuntu-latest
       steps:
         - name: Checkout repo
@@ -32,7 +32,7 @@ jobs:
             branch: web
             message: 'Github Actions - Updated dl_constants.php to ${{ github.event.release.tag_name }}'
   update-backend-files:
-      if: github.event.release.target_commitish == 'moodle'
+      if: github.event.release.target_commitish == 'moodle' && !github.event.release.prerelease
       runs-on: ubuntu-latest
       steps:
         - name: Checkout repo
