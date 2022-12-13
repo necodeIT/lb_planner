@@ -110,7 +110,7 @@ class user_helper {
         $mdluser->username = $user->username;
         $mdluser->firstname = $user->firstname;
         $mdluser->lastname = $user->lastname;
-        $mdluser->profileimageurl = strval(moodle_url::make_pluginfile_url($contextid->id, 'user', 'icon', null, '/', 'f1.png'));
+        $mdluser->profileimageurl = strval(moodle_url::make_pluginfile_url($contextid->id, 'user', 'icon', null, '/boost_union/', 'f1.png'));
         $mdluser->vintage = $user->address;
 
         return $mdluser;
