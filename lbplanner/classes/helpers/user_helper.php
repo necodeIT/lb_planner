@@ -17,7 +17,10 @@
 namespace local_lbplanner\helpers;
 
 use context_system;
+use moodle1_converter;
+use moodle_database;
 use moodle_url;
+use moodleform;
 use stdClass;
 
 /**
@@ -66,6 +69,11 @@ class user_helper {
     const MOODLE_TABLE = 'user';
 
     /**
+     * The table where moodle stores the user context data.
+     */
+    const MOODLE_CONTEXT_TABLE = 'context';
+
+    /**
      * @deprecated Use user_helper::assert_access() instead
      * Checks if the current user has access to the given user id.
      *
@@ -92,12 +100,17 @@ class user_helper {
     public static function get_mdl_user_info(int $userid):stdClass {
         global $DB;
         $user = $DB->get_record(self::MOODLE_TABLE, array('id' => $userid), '*', MUST_EXIST);
-
+        $contextid = $DB->get_record(
+            self::MOODLE_CONTEXT_TABLE,
+            array('depth' => 2, 'contextlevel' => 30, 'instanceid' => $userid),
+            '*',
+            IGNORE_MISSING
+        );
         $mdluser = new stdClass();
         $mdluser->username = $user->username;
         $mdluser->firstname = $user->firstname;
         $mdluser->lastname = $user->lastname;
-        $mdluser->profileimageurl = strval(new moodle_url('/user/pix.php/'.$user->id.'/f1.jpg'));
+        $mdluser->profileimageurl = strval(moodle_url::make_pluginfile_url($contextid->id, 'user', 'icon', null, '/', 'f1.png'));
         $mdluser->vintage = $user->address;
 
         return $mdluser;
