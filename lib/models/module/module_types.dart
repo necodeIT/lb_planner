@@ -9,7 +9,10 @@ enum ModuleTypes {
   ek,
 
   /// Module type "Test/Schularbeit"
-  test
+  test,
+  
+  /// Module type "Mitarbeit"
+  m
 }
 
 /// Module types extensions.
