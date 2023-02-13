@@ -44,6 +44,7 @@ const _$ModuleTypesEnumMap = {
   ModuleTypes.gk: 'gk',
   ModuleTypes.ek: 'ek',
   ModuleTypes.test: 'test',
+  ModuleTypes.m: 'm',
 };
 
 const _$ModuleStatusEnumMap = {
