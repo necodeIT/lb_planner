@@ -48,18 +48,24 @@ class courses_get_all_courses extends external_api {
         user_helper::assert_access($userid);
 
         global $DB;
+        // Getting the Enrollments of the User.
         $enrollmentids = course_helper::get_enrollments($userid);
 
+        // Getting the Courses of the Enrollments.
         foreach ($enrollmentids as $enrollmentid) {
             $courses[] = $DB->get_record(course_helper::ENROL_TABLE, array('id' => $enrollmentid->enrolid), 'courseid', MUST_EXIST);
         }
+        // Remove Duplicates.
+        $courses = array_unique($courses, SORT_REGULAR);
 
         // Check this out: https://www.youtube.com/watch?v=z3Pzfi476HI .
         $catgirls = array();
 
         foreach ($courses as $course) {
+
             $courseid = $course->courseid;
             $name = course_helper::get_fullname($courseid);
+
             if (strpos($name, course_helper::get_current_year()) !== false) {
                 if ($DB->record_exists(
                     course_helper::LBPLANNER_COURSE_TABLE, array('courseid' => $courseid, 'userid' => $userid)
@@ -73,11 +79,11 @@ class courses_get_all_courses extends external_api {
                     $catgirls[] = $catgirl;
                     continue;
                 }
+                // Check this out: https://youtu.be/dQw4w9WgXcQ .
                 $shortname = substr(course_helper::get_mdl_course($courseid)->shortname, 0, 5);
                 if (strpos($shortname, ' ') !== false) {
                     $shortname = substr($shortname, 0, strpos($shortname, ' '));
                 }
-                // Check this out: https://youtu.be/dQw4w9WgXcQ .
                 $catgirl = (object) array(
                     'courseid' => $courseid,
                     'color' => course_helper::COLORS[array_rand(course_helper::COLORS)],

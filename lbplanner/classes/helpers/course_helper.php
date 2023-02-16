@@ -73,7 +73,8 @@ class course_helper {
      */
     public static function get_enrollments(int $userid) {
         global $DB;
-        return $DB->get_records(self::USER_ENROL_TABLE, array ('userid' => $userid));
+        $records = $DB->get_records(self::USER_ENROL_TABLE, array ('userid' => $userid));
+        return $records;
     }
 
     /**
