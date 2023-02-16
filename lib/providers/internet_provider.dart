@@ -41,6 +41,7 @@ class InternetProvider extends StateNotifier<bool> with IRefreshable {
   onRefresh() async {
     try {
       final result = await Connectivity().checkConnectivity();
+      // TODO: Use InternetAdress lookup
       _update(result);
     } catch (e) {
       _update(ConnectivityResult.none);

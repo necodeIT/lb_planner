@@ -4,7 +4,7 @@ part of lbplanner_engine;
 class Api {
   /// The root url of the server.
   static const serverRoot = kReleaseMode ? "https://elearning.tgm.ac.at" : "https://projekte.tgm.ac.at/lbplaner4";
-  
+
   /// The base URL of the API
   static const apiEndpoint = "$serverRoot/webservice/rest/server.php";
 
