@@ -20,15 +20,7 @@
 			<h3><?php EDS('span_main') ?></h3>
 			<span>
 				<?php
-					echo "<a id='downloadbtn' class='btn' href='/download/?os=$context_os'>";
-					if($context_os=='linux')
-						include("./resources/os_linux_small.svg");
-					else
-						include("./resources/os_$context_os.svg");
-					EDS('btn_download');
-					echo '</a>';
-				?>
-				<?php
+					genDownloadButton($context_os);
 					genExtRef(GDS('lnk_docs'),'/docs/?'.genContextURLParams());
 					genExtRef(GDS('lnk_admin'),'/docs/?'.genContextURLParams().'#admin');
 				?>

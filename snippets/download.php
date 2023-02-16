@@ -1,5 +1,6 @@
 <?php
 	require_once(root.'/snippets/db.php');
+	require_once(root.'/snippets/dl_constants.php');
 	function genThemeCard($theme){
 		global $context_theme;
 		if($theme==$context_theme){
@@ -32,10 +33,21 @@
 		}else{
 			$current='';
 		}
-		echo "<a class='card dl$current' id='${os}dlcard' href='/download?os=$os'>";
+		$dl_url = constant('dl_'.$os);
+		echo "<a class='card dl$current' id='${os}dlcard' href='{$dl_url}'>";
 			echo '<h4 class="sectionheader">'.GDS('title_download').'</h4>';
 			include(root."/resources/os_$os.svg");
 			echo "<span>$os</span>";
+		echo '</a>';
+	}
+	function genDownloadButton($os){
+		$dl_url = constant('dl_'.$os);
+		echo "<a id='downloadbtn' class='btn' href='$dl_url'>";
+		if($os=='linux')
+			include("./resources/os_linux_small.svg");
+		else
+			include("./resources/os_$os.svg");
+		EDS('btn_download');
 		echo '</a>';
 	}
 	function genFeatureSection($title,$paragraph){
