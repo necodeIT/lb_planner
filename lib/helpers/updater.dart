@@ -1,4 +1,7 @@
 part of lbplanner_helpers;
+//TODO: Add support for linux & macos
+//TODO: Move to engine branch
+//TODO: Transform to service-provider architecture
 
 /// Current updater read only.
 /// For updating use [updaterProvider].
