@@ -49,23 +49,28 @@ jobs:
         with:
           name: lb-planner-windows
           path: build\windows\runner\Release\*
-#   macos_build:
-#     name: "MacOS build"
-#     runs-on: macos-latest
-#     steps:
-#       - name: "Checkout repo"
-#         uses: actions/checkout@v3
-#       - name: "Setup flutter"
-#         uses: subosito/flutter-action@v2
-#         with:
-#           flutter-version: '3.3.3'
-#           architecture: x64
-#       - name: "Build"
-#         run: |
-#           flutter config --enable-macos-desktop
-#           flutter build macos --release --no-sound-null-safety
-#       - name: Archive production artifacts
-#         uses: actions/upload-artifact@v3
-#         with:
-#           name: lb-planner-macos
-#           path: build/macos/Build/Products/Release/*
+  macos_build:
+    name: "MacOS build"
+    runs-on: macos-latest
+    steps:
+      - name: "Checkout repo"
+        uses: actions/checkout@v3
+      - name: "Setup flutter"
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.3.3'
+          architecture: x64
+      - name: "Build"
+        run: |
+          flutter config --enable-macos-desktop
+          flutter build macos --release --no-sound-null-safety
+      - name: Create dmg
+        uses: QQxiaoming/create-dmg-action@v0.0.2
+        with:
+          name: 'LB.Planner.Setup'
+          srcdir: ''
+      - name: Upload
+        uses: djn24/add-asset-to-release@v1
+        with:
+          token: ${{secrets.GITHUB_TOKEN}}
+          path: 'path/to/binary'
