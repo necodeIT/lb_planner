@@ -22,7 +22,7 @@
 43,Admin
 44,Learn more
 70,We offer a great variety of themes to customise your workspace to your liking!
-71,
+71,,
 72,The dashboard gives you an overview of exams\, deadlines and modules at all times. We also offer automated status tracking (So you can never lie to yourself again - we know you do ☜(ﾟヮﾟ☜) ).
 73,This should help you to become even more successful in your school career!
 74,You will be able to plan your modules easily and efficiently thanks to our well thought-out planner. The individual modules are automatically ticked off as soon as you have received a positive assessment. 
