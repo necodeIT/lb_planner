@@ -19,7 +19,7 @@
 		$context_theme = $_tmp;
 	}
 	function genLearnCard($name,$i){
-		echo '<a class="card learn" href="'.urlroot.'/docs/'.genContextURLParams().'#'.$name.'">';
+		echo '<a class="card learn" href="'.urlroot.'/docs/?'.genContextURLParams().'#'.$name.'">';
 			include(root."/resources/feature_$name.svg");
 			echo '<h4>'.GDS('title_learn'.$i).'</h4>'.
 				'<p>'.GDS('p_learn'.$i).'</p>'.
