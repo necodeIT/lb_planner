@@ -60,17 +60,19 @@ jobs:
         with:
           flutter-version: '3.3.3'
           architecture: x64
-      - name: "Build"
-        run: |
-          flutter config --enable-macos-desktop
-          flutter build macos --release --no-sound-null-safety
-      - name: Create dmg
-        uses: QQxiaoming/create-dmg-action@v0.0.2
-        with:
-          name: 'LB.Planner.Setup'
-          srcdir: ''
-      - name: Upload
-        uses: djn24/add-asset-to-release@v1
-        with:
-          token: ${{secrets.GITHUB_TOKEN}}
-          path: 'path/to/binary'
+      - name: "Where am i"
+        run: pwd && ls
+      #- name: "Build"
+      #  run: |
+      #    flutter config --enable-macos-desktop
+      #    flutter build macos --release --no-sound-null-safety
+      #- name: Create dmg
+      #  uses: QQxiaoming/create-dmg-action@v0.0.2
+      #  with:
+      #    name: 'LB.Planner.Setup'
+      #    srcdir: ''
+      #- name: Upload
+      #  uses: djn24/add-asset-to-release@v1
+      #  with:
+      #    token: ${{secrets.GITHUB_TOKEN}}
+      #    path: 'path/to/binary'
