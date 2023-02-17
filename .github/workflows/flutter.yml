@@ -73,7 +73,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: lb-planner-linux
-          path: build/linux/x64/release/bundle/*
+          path: /Users/runner/work/lb_planner/lb_planner/LB.Planner.Setup.dmg
       #- name: Upload
       #  uses: djn24/add-asset-to-release@v1
       #  with:
