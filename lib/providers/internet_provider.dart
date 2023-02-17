@@ -1,7 +1,11 @@
 part of lbplanner_engine;
 
 /// Provides the current internet connection.
-final internetProvider = StateNotifierProvider<InternetProvider, bool>((_) => InternetProvider());
+final internetProvider = StateNotifierProvider<InternetProvider, bool>(
+  (_) => InternetProvider(
+    Platform.isLinux ? InternetAdressLookupService() : InternetConnectivityService(),
+  ),
+);
 
 /// Controller for the [internetProvider].
 final internetController = internetProvider.notifier;
@@ -10,20 +14,14 @@ final internetController = internetProvider.notifier;
 class InternetProvider extends StateNotifier<bool> with IRefreshable {
   static bool _connected = false;
 
-  /// Whether the device is currently connected to the internet.
-  static bool get connected => _connected;
+  /// The [InternetService] used for checking the internet connection.
+  final InternetService _internetService;
 
   /// Provides the current internet connection.
-  InternetProvider() : super(true);
+  InternetProvider(this._internetService) : super(true);
 
-  void _update(ConnectivityResult result) {
-    var connected = result != ConnectivityResult.none;
-
-    _connected = connected;
-    if (connected == state) return;
-
-    setState(connected);
-  }
+  /// Whether the device is currently connected to the internet.
+  static bool get connected => _connected;
 
   @override
   init() => startAutoRefresh();
@@ -39,13 +37,7 @@ class InternetProvider extends StateNotifier<bool> with IRefreshable {
 
   @override
   onRefresh() async {
-    try {
-      final result = await Connectivity().checkConnectivity();
-      // TODO: Use InternetAdress lookup
-      _update(result);
-    } catch (e) {
-      _update(ConnectivityResult.none);
-    }
+    state = _connected = await _internetService.checkConnection();
   }
 
   @override

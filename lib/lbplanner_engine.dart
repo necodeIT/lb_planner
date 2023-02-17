@@ -55,6 +55,12 @@ part 'models/invite/invite_status.dart';
 part 'models/feedback/feedback_types.dart';
 part 'models/feedback/feedback_status.dart';
 
+// Services
+
+part 'services/internet_service/internet_service.dart';
+part 'services/internet_service/internet_adress_lookup_service.dart';
+part 'services/internet_service/internet_connectivity_service.dart';
+
 // Providers
 
 part 'providers/user_provider.dart';
