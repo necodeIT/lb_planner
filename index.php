@@ -21,11 +21,11 @@
 			<span>
 				<?php
 					genDownloadButton($context_os);
-					genExtRef(GDS('lnk_docs'),'/docs/?'.genContextURLParams());
-					genExtRef(GDS('lnk_admin'),'/docs/?'.genContextURLParams().'#admin');
+					genExtRef(GDS('lnk_docs'),urlroot.'/docs/?'.genContextURLParams());
+					genExtRef(GDS('lnk_admin'),urlroot.'/docs/?'.genContextURLParams().'#admin');
 				?>
 			</span>
-			<img class="card" src="/resources/example_cal.png" alt="example screenshot"/>
+			<img class="card" src="<?=urlroot?>/resources/example_cal.png" alt="example screenshot"/>
 			<h1 class="sectionheader"><?php EDS('title_theme') ?></h1>
 			<div id="themebox">
 				<div>

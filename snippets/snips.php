@@ -1,6 +1,5 @@
 <?php
-	const supported_languages = array('en','de');
-	const supported_systems = array('linux','mac','windows');
+	require_once(root.'/CONSTANTS.php');
 	
 	function genExtRef($text,$href){
 		echo "<a class='extref btn' href='$href'><span>$text </span>";

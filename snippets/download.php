@@ -13,13 +13,13 @@
 		echo "<a class='card$current' href='./?";
 			echo genContextURLParams();
 			echo '\'>';
-			include("./resources/theme-$theme.svg");
+			include(root."/resources/theme-$theme.svg");
 			EDS('theme_'.$theme);
 		echo '</a>';
 		$context_theme = $_tmp;
 	}
 	function genLearnCard($name,$i){
-		echo '<a class="card learn" href="/docs/'.genContextURLParams().'#'.$name.'">';
+		echo '<a class="card learn" href="'.urlroot.'/docs/'.genContextURLParams().'#'.$name.'">';
 			include(root."/resources/feature_$name.svg");
 			echo '<h4>'.GDS('title_learn'.$i).'</h4>'.
 				'<p>'.GDS('p_learn'.$i).'</p>'.
@@ -52,7 +52,7 @@
 	}
 	function genFeatureSection($title,$paragraph){
 		echo '<section class="screenpage pagetype2">'.
-			'<img class="card" src="/resources/example_cal.png" alt="example screenshot"/>'.
+			'<img class="card" src="'.urlroot.'/resources/example_cal.png" alt="example screenshot"/>'.
 			"<h2>$title</h2>".
 			"<p>$paragraph</p>".
 		'</section>';

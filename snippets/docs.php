@@ -23,14 +23,19 @@
 				if($type=='img'){
 					echo '<div class="img"><img alt="';
 					echo attrescape(substr($text,$i+1,$is[0]-$i-1));
-					echo '" src="/resources/docs/';
+					echo '" src="'.urlroot.'/resources/docs/';
 					echo attrescape(substr($text,$is[0]+1,$is[1]-$is[0]-1));
 					echo '.png"/></div>';
 					//TODO: check if file exists & guess file extension
 					//TODO: optionally translated images
 				}else if($type=='lnk'){
 					echo '<a class="extref" href="';
-					echo attrescape(substr($text,$i+1,$is[0]-$i-1));
+					$lnk = attrescape(substr($text,$i+1,$is[0]-$i-1));
+					if($lnk[0]=='/'){//if link refers to root, prepend urlroot
+						echo urlroot.$lnk;
+					}else{
+						echo $lnk;
+					}
 					echo '">';
 					echo substr($text,$is[0]+1,$is[1]-$is[0]-1);
 					echo '</a>';
