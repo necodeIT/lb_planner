@@ -1,6 +1,6 @@
 <?php
-	//TODO: config for production environment
-	$GLOBALS['db'] = new PDO('mysql:host=localhost;dbname=lbpages','lbplanner');
+	require_once(root.'/CONSTANTS.php');
+	$GLOBALS['db'] = new PDO('mysql:host='.db_host.';dbname='.db_dbname,db_username,db_password);
 	$GLOBALS['db']->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	//helper method to reduce code duplication
 	function _db_get_pq($query,$args){
