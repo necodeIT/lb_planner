@@ -72,7 +72,7 @@ jobs:
       - name: Archive production artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: lb-planner-linux
+          name: lb-planner-macos
           path: /Users/runner/work/lb_planner/lb_planner/LB.Planner.Setup.dmg
       #- name: Upload
       #  uses: djn24/add-asset-to-release@v1
