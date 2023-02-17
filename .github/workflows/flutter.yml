@@ -68,7 +68,7 @@ jobs:
         uses: QQxiaoming/create-dmg-action@v0.0.2
         with:
           name: 'LB.Planner.Setup'
-          srcdir: '/Users/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/build/macos/Build//Products/Release'
+          srcdir: '/Users/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/build/macos/Build//Products/Release/desktop_build.app'
       - name: Archive production artifacts
         uses: actions/upload-artifact@v3
         with:
