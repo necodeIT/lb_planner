@@ -85,14 +85,11 @@ jobs:
   appimage_build:
     name: "AppImage build"
     runs-on: ubuntu-latest
+    dependencies:
+      - flutter_setup
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-      - name: Setup flutter
-        uses: subosito/flutter-action@v2
-        with:
-          flutter-version: '3.3.3'
-          architecture: x64
       - name: Update the system
         run: sudo apt-get update && sudo apt-get upgrade -y
       # - name: Install dependencies
@@ -150,8 +147,10 @@ jobs:
 
       - name: Create the AppImage
         run: |
-          ARCH=x86_64 appimagetool ~/App/LB_Planner.AppDir
+          ARCH=x86_64 appimagetool ~/App/LB_Planner.AppDir 
 
+          pwd
+          
           ls ~/App/LB_Planner.AppDir
 
       - name: Archive production artifacts
@@ -159,6 +158,23 @@ jobs:
         with:
           name: lb-planner-appimage
           path: ~/App/LB_Planner.AppDir/*.AppImage
+
+  flutter_setup:
+    - name: Setup Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.3.3'
+        architecture: x64
+
+  flutter_build:
+      - name: Flutter Build
+        run: |
+          flutter config --enable-linux-desktop
+          flutter build linux --release --no-sound-null-safety
+
+          
+
+
         
 
 
