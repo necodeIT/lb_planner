@@ -51,9 +51,40 @@ jobs:
   #       with:
   #         name: lb-planner-windows
   #         path: build\windows\runner\Release\*
-  macos_build:
-    name: "MacOS build"
-    runs-on: macos-latest
+  # macos_build:
+  #   name: "MacOS build"
+  #   runs-on: macos-latest
+  #   steps:
+  #     - name: "Checkout repo"
+  #       uses: actions/checkout@v3
+  #     - name: "Setup flutter"
+  #       uses: subosito/flutter-action@v2
+  #       with:
+  #         flutter-version: '3.3.3'
+  #         architecture: x64
+  #     - name: "Build"
+  #       run: |
+  #         flutter config --enable-macos-desktop
+  #         flutter build macos --release --no-sound-null-safety
+  #     - name: Create dmg
+  #       uses: QQxiaoming/create-dmg-action@v0.0.2
+  #       with:
+  #         name: 'LB.Planner.Setup'
+  #         srcdir: '/Users/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/build/macos/Build//Products/Release/desktop_build.app'
+  #     - name: Archive production artifacts
+  #       uses: actions/upload-artifact@v3
+  #       with:
+  #         name: lb-planner-macos
+  #         path: /Users/runner/work/lb_planner/lb_planner/LB.Planner.Setup.dmg
+  #     #- name: Upload
+  #     #  uses: djn24/add-asset-to-release@v1
+  #     #  with:
+  #     #    token: ${{secrets.GITHUB_TOKEN}}
+  #     #    path: 'path/to/binary'
+
+  appimage_build:
+    name: "AppImage build"
+    runs-on: ubuntu-latest
     steps:
       - name: "Checkout repo"
         uses: actions/checkout@v3
@@ -62,22 +93,58 @@ jobs:
         with:
           flutter-version: '3.3.3'
           architecture: x64
-      - name: "Build"
+      - name: "Update the system"
+        run: sudo apt-get update && sudo apt-get upgrade -y
+      - name: "Install dependencies"
+        run: sudo apt-get update && sudo apt-get install -y git cmake qt5-default
+
+      -name: "Build the Flutter app"
+        run: flutter build linux --release --no-sound-null-safety
+
+      - name: "Install AppImage Tool"
         run: |
-          flutter config --enable-macos-desktop
-          flutter build macos --release --no-sound-null-safety
-      - name: Create dmg
-        uses: QQxiaoming/create-dmg-action@v0.0.2
-        with:
-          name: 'LB.Planner.Setup'
-          srcdir: '/Users/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/build/macos/Build//Products/Release/desktop_build.app'
-      - name: Archive production artifacts
+          wget -c https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
+          chmod +x appimagetool-x86_64.AppImage
+          sudo mv appimagetool-x86_64.AppImage /usr/local/bin/appimagetool
+
+      - name: "Create the required directories and copy the binary files to the AppDir"
+        run: |
+          mkdir -p ~/App/LB_Planner.AppDir/usr/bin
+          
+          cp build/linux/x64/release/bundle/lb_planner ~/App/LB_Planner.AppDir/usr/bin/
+
+      - name: "Create the Desktop file"
+        run: | 
+        echo "[Desktop Entry]
+        Name=LB Planner
+        Exec=lb_planner
+        Icon=lb_planner
+        Type=Application
+        Categories=Utility;Student; " > ~/App/LB_Planner.AppDir/lb_planner.desktop
+
+        chmod +x ~/App/LB_Planner.AppDir/lb_planner.desktop
+
+      - name: "Create the AppRun file"
+        run: |
+          echo '#!/bin/bash
+          SELF=$(readlink -f "\$0")
+          HERE=${SELF%/*}
+          EXEC="${HERE}/usr/bin/lb_planner"
+          exec "${EXEC}" ' > ~/App/LB_Planner.AppDir/AppRun
+
+          chmod +x ~/App/LB_Planner.AppDir/AppRun
+
+      - name: "Create the AppImage"
+        run: |
+          cd ~/App/LB_Planner.AppDir
+          ARCH=x86_64 appimagetool .
+
+      - name: "Archive production artifacts"
         uses: actions/upload-artifact@v3
         with:
-          name: lb-planner-macos
-          path: /Users/runner/work/lb_planner/lb_planner/LB.Planner.Setup.dmg
-      #- name: Upload
-      #  uses: djn24/add-asset-to-release@v1
-      #  with:
-      #    token: ${{secrets.GITHUB_TOKEN}}
-      #    path: 'path/to/binary'
+          name: lb-planner-appimage
+          path: ~/App/LB_Planner.AppDir/*.AppImage
+        
+
+
+        
