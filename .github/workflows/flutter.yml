@@ -128,7 +128,7 @@ jobs:
           Exec=lb_planner
           Icon=lb_planner
           Type=Application
-          Categories=Education;Planning; " > ~/App/LB_Planner.AppDir/lb_planner.desktop
+          Categories=Education;Planning;" > ~/App/LB_Planner.AppDir/lb_planner.desktop
 
 
           chmod +x ~/App/LB_Planner.AppDir/lb_planner.desktop
