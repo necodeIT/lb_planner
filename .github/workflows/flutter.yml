@@ -122,6 +122,7 @@ jobs:
           Type=Application
           Categories=Utility;Student; " > ~/App/LB_Planner.AppDir/lb_planner.desktop
 
+
           chmod +x ~/App/LB_Planner.AppDir/lb_planner.desktop
 
       - name: Create the AppRun file
