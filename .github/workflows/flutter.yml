@@ -123,8 +123,8 @@ jobs:
 
       - name: Create the Desktop file
         run: |
-          echo "[Desktop Entry]
-          Name='LB Planner'
+          echo "[Desktop Entry
+          Name=LB Planner
           Exec=lb_planner
           Icon=lb_planner
           Type=Application
