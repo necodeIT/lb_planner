@@ -85,6 +85,7 @@ jobs:
   appimage_build:
     name: "AppImage build"
     runs-on: ubuntu-latest
+    working-directory: ${{github.workspace}}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
@@ -119,11 +120,11 @@ jobs:
 
       - name: Create the required directories and copy the binary files to the AppDir
         run: |
-          mkdir -p ~/App/LB_Planner.AppDir/usr/bin
+          mkdir -p ./LB_Planner.AppDir/usr/bin
           
-          cp build/linux/x64/release/bundle/lb_planner ~/App/LB_Planner.AppDir/usr/bin/
+          cp build/linux/x64/release/bundle/lb_planner ./LB_Planner.AppDir/usr/bin/
 
-          cp app_icon.png ~/App/LB_Planner.AppDir/app_icon.png
+          cp app_icon.png ./LB_Planner.AppDir/app_icon.png
 
       - name: Create the Desktop file
         run: |
@@ -132,10 +133,10 @@ jobs:
           Exec=lb_planner
           Icon=app_icon
           Type=Application
-          Categories=Education;" > ~/App/LB_Planner.AppDir/lb_planner.desktop
+          Categories=Education;" > ./LB_Planner.AppDir/lb_planner.desktop
 
 
-          chmod +x ~/App/LB_Planner.AppDir/lb_planner.desktop
+          chmod +x ./LB_Planner.AppDir/lb_planner.desktop
 
       - name: Create the AppRun file
         run: |
@@ -143,26 +144,26 @@ jobs:
           SELF=$(readlink -f "\$0")
           HERE=${SELF%/*}
           EXEC="${HERE}/usr/bin/lb_planner"
-          exec "${EXEC}" ' > ~/App/LB_Planner.AppDir/AppRun
+          exec "${EXEC}" ' > ./LB_Planner.AppDir/AppRun
 
 
-          chmod +x ~/App/LB_Planner.AppDir/AppRun
+          chmod +x ./LB_Planner.AppDir/AppRun
 
-          ls ~/App/LB_Planner.AppDir
+          ls ./LB_Planner.AppDir
 
       - name: Create the AppImage
         run: |
-          ARCH=x86_64 appimagetool ~/App/LB_Planner.AppDir 
+          ARCH=x86_64 appimagetool ./LB_Planner.AppDir 
 
           pwd
 
-          ls ~/App/LB_Planner.AppDir
+          ls 
 
       - name: Archive production artifacts
         uses: actions/upload-artifact@v3
         with:
           name: lb-planner-appimage
-          path: ~/App/LB_Planner.AppDir/*.AppImage
+          path: LB_Planner-x86_64.AppImage
 
   # flutter_setup:
   #   - name: Setup Flutter
