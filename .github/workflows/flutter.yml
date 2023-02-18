@@ -149,7 +149,10 @@ jobs:
           ls ~/App/LB_Planner.AppDir
 
       - name: Create the AppImage
-        run: ARCH=x86_64 appimagetool ~/App/LB_Planner.AppDir
+        run: |
+          ARCH=x86_64 appimagetool ~/App/LB_Planner.AppDir
+
+          ls ~/App/LB_Planner.AppDir
 
       - name: Archive production artifacts
         uses: actions/upload-artifact@v3
