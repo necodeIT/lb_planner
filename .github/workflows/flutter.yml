@@ -86,35 +86,35 @@ jobs:
     name: "AppImage build"
     runs-on: ubuntu-latest
     steps:
-      - name: "Checkout repo"
+      - name: Checkout repo
         uses: actions/checkout@v3
-      - name: "Setup flutter"
+      - name: Setup flutter
         uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.3.3'
           architecture: x64
-      - name: "Update the system"
+      - name: Update the system
         run: sudo apt-get update && sudo apt-get upgrade -y
-      - name: "Install dependencies"
+      - name: Install dependencies
         run: sudo apt-get update && sudo apt-get install -y git cmake qt5-default
 
-      -name: "Build the Flutter app"
+      - name: Build the Flutter app
         run: flutter build linux --release --no-sound-null-safety
 
-      - name: "Install AppImage Tool"
+      - name: Install AppImage Tool
         run: |
           wget -c https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
           chmod +x appimagetool-x86_64.AppImage
           sudo mv appimagetool-x86_64.AppImage /usr/local/bin/appimagetool
 
-      - name: "Create the required directories and copy the binary files to the AppDir"
+      - name: Create the required directories and copy the binary files to the AppDir
         run: |
           mkdir -p ~/App/LB_Planner.AppDir/usr/bin
           
           cp build/linux/x64/release/bundle/lb_planner ~/App/LB_Planner.AppDir/usr/bin/
 
-      - name: "Create the Desktop file"
-        run: | 
+      - name: Create the Desktop file
+        run: |
         echo "[Desktop Entry]
         Name=LB Planner
         Exec=lb_planner
@@ -124,7 +124,7 @@ jobs:
 
         chmod +x ~/App/LB_Planner.AppDir/lb_planner.desktop
 
-      - name: "Create the AppRun file"
+      - name: Create the AppRun file
         run: |
           echo '#!/bin/bash
           SELF=$(readlink -f "\$0")
@@ -134,12 +134,12 @@ jobs:
 
           chmod +x ~/App/LB_Planner.AppDir/AppRun
 
-      - name: "Create the AppImage"
+      - name: Create the AppImage
         run: |
           cd ~/App/LB_Planner.AppDir
           ARCH=x86_64 appimagetool .
 
-      - name: "Archive production artifacts"
+      - name: Archive production artifacts
         uses: actions/upload-artifact@v3
         with:
           name: lb-planner-appimage
