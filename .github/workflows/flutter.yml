@@ -95,8 +95,8 @@ jobs:
           architecture: x64
       - name: Update the system
         run: sudo apt-get update && sudo apt-get upgrade -y
-      - name: Install dependencies
-        run: sudo apt-get update && sudo apt-get install -y git cmake qt5-default
+      # - name: Install dependencies
+      #   run: sudo apt-get update && sudo apt-get install -y git cmake qt5-default
 
       - name: Build the Flutter app
         run: flutter build linux --release --no-sound-null-safety
