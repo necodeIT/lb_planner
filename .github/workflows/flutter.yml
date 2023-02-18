@@ -126,7 +126,6 @@ jobs:
           echo "[Desktop Entry]
           Name=LB Planner
           Exec=lb_planner
-          Icon=lb_planner
           Type=Application
           Categories=Education;" > ~/App/LB_Planner.AppDir/lb_planner.desktop
 
