@@ -121,11 +121,14 @@ jobs:
           
           cp build/linux/x64/release/bundle/lb_planner ~/App/LB_Planner.AppDir/usr/bin/
 
+          cp app_icon.png ~/App/LB_Planner.AppDir/app_icon.png
+
       - name: Create the Desktop file
         run: |
           echo "[Desktop Entry]
           Name=LB Planner
           Exec=lb_planner
+          Icon=app_icon.png
           Type=Application
           Categories=Education;" > ~/App/LB_Planner.AppDir/lb_planner.desktop
 
