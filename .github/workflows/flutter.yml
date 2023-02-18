@@ -85,7 +85,6 @@ jobs:
   appimage_build:
     name: "AppImage build"
     runs-on: ubuntu-latest
-    working-directory: ./app
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
