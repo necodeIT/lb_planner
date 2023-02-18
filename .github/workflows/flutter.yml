@@ -133,6 +133,7 @@ jobs:
           EXEC="${HERE}/usr/bin/lb_planner"
           exec "${EXEC}" ' > ~/App/LB_Planner.AppDir/AppRun
 
+
           chmod +x ~/App/LB_Planner.AppDir/AppRun
 
       - name: Create the AppImage
