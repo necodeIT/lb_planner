@@ -61,7 +61,7 @@ jobs:
             "title": "LB Planner",
             "icon": "app_icon.icns",
             "contents": [
-              {q
+              {
                 "x": 410,
                 "y": 150,
                 "type": "link",
