@@ -14,3 +14,8 @@
 13,0,All assignments that are displayed in the app can also be opened in Moodle. To do this\, you have to perform a right-click on top of the assignment and then click <i>Show on Moodle</i>. !img[popup for "show in moodle"|module_in_moodle_popup]
 14,0,<ul><li><b>Green:</b> Assignment was positively graded</li><li><b>Yellow/Orange:</b> Assignment was handed in\, but hasn't been graded yet</li><li><b>Red:</b> Assignment is overdue or was negatively graded</li><li><b>Grey:</b> None of the above</li>< 
 14,1,/ul>!img[status overview with the number of finished\, handed-in\, negative and to be done assignments|status_overview]
+20,0,First you click <i>Members</i>: !img[context menu of the plan|calendar_sidebar]Then click <i>Invite Users</i>:!img[context menu of the plans within the tab "Members"|calendar_sidebar_members]And finally click <i>Invite</i> on the correct profiles. 
+20,1,Furthermore\, you can search for your friends via the searching bar.!img[popup with search bar for inviting friends|invite_users]
+21,0,After clicking the current name of the plan (in this case "Plan for Max")\, it should transform into an editable text field.!img[context menu of the plan\, with the plan name in editing mode|calendar_sidebar_namechange]
+21,1,,
+22,0,You can switch between the <i>plan</i> and calendar views by using the arrow in the top left corner. The overview shows which assignments are due in which months.!img[assignment overview|calendar_modules_overview]
