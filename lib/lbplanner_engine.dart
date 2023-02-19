@@ -13,7 +13,7 @@ export 'models/course/course.dart';
 export 'models/statistics/statistics.dart';
 export 'models/feedback/feedback.dart';
 export 'models/deadline/deadline.dart';
-export 'models/version/version.dart';
+export 'models/updater/version.dart';
 
 // Dart imports:
 import 'dart:convert';
@@ -39,7 +39,7 @@ import 'models/plan/plan.dart';
 import 'models/user/user.dart';
 import 'models/deadline/deadline.dart';
 import 'models/invite/invite.dart';
-import 'models/version/version.dart';
+import 'models/updater/version.dart';
 
 // Models
 
@@ -54,12 +54,18 @@ part 'models/plan/plan_access_levels.dart';
 part 'models/invite/invite_status.dart';
 part 'models/feedback/feedback_types.dart';
 part 'models/feedback/feedback_status.dart';
+part 'models/updater/setup_type.dart';
 
 // Services
 
 part 'services/internet_service/internet_service.dart';
 part 'services/internet_service/internet_adress_lookup_service.dart';
 part 'services/internet_service/internet_connectivity_service.dart';
+part 'services/updater/updater_service.dart';
+part 'services/updater/app_image_updater.dart';
+part 'services/updater/dmg_updater.dart';
+part 'services/updater/yay_updater.dart';
+part 'services/updater/exe_updater.dart';
 
 // Providers
 
