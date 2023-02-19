@@ -79,13 +79,15 @@ jobs:
         
       - name: Create dmg
         run: |
-          appdmg ./dmg_build/config.json LB_Planner-Setup.dmg
+          appdmg ./dmg_build/config.json LB.Planner.Setup.dmg
 
       - name: Archive production artifactsqq
         uses: actions/upload-artifact@v3
         with:
           name: lb-planner-macos
-          path: LB_Planner-Setup.dmg
+          path: LB.Planner.Setup.dmg
+        
+
 
       # - name: Create dmg
       #   uses: QQxiaoming/create-dmg-action@v0.0.2
