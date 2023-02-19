@@ -62,10 +62,10 @@ part 'services/internet_service/internet_service.dart';
 part 'services/internet_service/internet_adress_lookup_service.dart';
 part 'services/internet_service/internet_connectivity_service.dart';
 part 'services/updater/updater_service.dart';
-part 'services/updater/app_image_updater.dart';
-part 'services/updater/dmg_updater.dart';
-part 'services/updater/yay_updater.dart';
-part 'services/updater/exe_updater.dart';
+part 'services/updater/app_image_updater_service.dart';
+part 'services/updater/dmg_updater_service.dart';
+part 'services/updater/yay_updater_service.dart';
+part 'services/updater/exe_updater_service.dart';
 
 // Providers
 
