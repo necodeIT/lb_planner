@@ -24,3 +24,17 @@
 31,0,Here you can search for courses and add or remove them to/from the app. The three dot menu does the same thing as the one in <i>Course selection</i> at the beginning.!img[course selection|course_select_popup]
 32,0,You can change the look of the app by selecting different themes. Pick the one you like best 😊!img[Schema-auswahl|themes]
 33,0,Here you can pick the type of feedback you'd like to send to us. Type your thoughts into the text field below and submit them by pressing <i>Submit</i>.!img[Die Rückmeldebox mit geöffnetem Typenpopup|feedback_type]
+40,0,First you have to login and go to the calendar page. There you click the three dot menu:!img[Calendar with context button\, marked in red|calendarmenu]Now you should be able to see this window\, where you click on <i>Members</i>:
+40,1,!img[Context menu of the plan with tab "Members" marked in red|calendar_sidebar_members2]Now you press <i>Invite users</i>!img[Tab "Members" inside the context menu with button "Invite users" marked in red|freundesuche] and search for the wanted prof
+40,2,ile within this popup. When you've found it\, press <i>Invite</i>. The person in question will receive the invite as soon as possible.!img[popup for plan invites|invite_users]
+41,0,When you join another plan\, <b>your current one gets deleted</b>. There's a dialogue window warning you before that happens though.
+42,0,You get a <b>copy</b> of the shared plan and can use it separately afterwards.
+43,0,Teachers <b>don't have any access</b> to your plan or overall progress.
+44,0,Only peers who you <b>share your plan with</b> can access your plan. If you plan alone\, nobody can see or change your data.
+45,0,We continously develop new features and fix bugs\, but there's no roadmap yet.
+46,0,We want to add this system at some point\, but there's no time estimates for when this will happen.
+47,0,Your current status is composed of <b>all assignments of the courses you selected</b>. Here\, we look at how many assignments are graded\, handed in or overdue.
+47,1,!img[status overview with the amount of graded\, handed-in\, negative and to be done assignments|status_overview]
+48,0,You can <b>only have one plan</b>\, regardless if it's shared or not.
+49,0,In the settings section\, there's a feedback form for bug reports\, feature requests and more. You can send it after choosing the type of feedback and entering some text.!img[settings with feedback box marked in red|feedbackbox]
+49,1,Alternatively\, you can write us a !lnk[mailto:lb-planner@tgm.ac.at|mail] at lb-planner@tgm.ac.at.
