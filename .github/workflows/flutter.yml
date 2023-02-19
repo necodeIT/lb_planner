@@ -62,25 +62,74 @@ jobs:
         with:
           flutter-version: '3.3.3'
           architecture: x64
-      - name: "Build"
+      - name: "Build for MacOS"
         run: |
           flutter config --enable-macos-desktop
           flutter build macos --release --no-sound-null-safety
-      - name: Create dmg
-        uses: QQxiaoming/create-dmg-action@v0.0.2
+      - name: Install node
+        uses: actions/setup-node@v2
         with:
-          name: 'LB.Planner.Setup'
-          srcdir: '/Users/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/build/macos/Build//Products/Release/desktop_build.app'
+          node-version: '16'
+        run: |
+          npm --version
+
+      - name: Install appdmg node module
+        run: |
+        npm install -g appdmg
+        appdmg  --version
+      
+      - name: Create a folder
+        run: mkdir -p ./dmg_build/config.json
+
+      - name: Create a config file
+        run: |
+        echo '{
+            "title": "LB Planner",
+            "icon": "app_icon.icns",
+            "contents": [
+                {
+                    "x": 410,
+                    "y": 150,
+                    "type": "link",
+                    "path": "/Applications"
+                },
+                {
+                    "x": 130,
+                    "y": 150,
+                    "type": "file",
+                    "path": "build/macos/Build/Products/Release/lb_planner.app"
+                }
+            ]
+        }' > ./dmg_build/config.json
+
+      - name: Create dmg
+
+        run: |
+        appdmg ./dmg_build/config.json LB_Planner-Setup.dmg
+
       - name: Archive production artifacts
         uses: actions/upload-artifact@v3
         with:
           name: lb-planner-macos
-          path: /Users/runner/work/lb_planner/lb_planner/LB.Planner.Setup.dmg
-      - name: Upload
-       uses: djn24/add-asset-to-release@v1
-       with:
-         token: ${{secrets.GITHUB_TOKEN}}
-         path: 'path/to/binary'
+          path: LB_Planner-Setup.dmg
+        
+
+
+      # - name: Create dmg
+      #   uses: QQxiaoming/create-dmg-action@v0.0.2
+      #   with:
+      #     name: 'LB.Planner.Setup'
+      #     srcdir: '/Users/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/build/macos/Build//Products/Release/desktop_build.app'
+      # - name: Archive production artifacts
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: lb-planner-macos
+      #     path: /Users/runner/work/lb_planner/lb_planner/LB.Planner.Setup.dmg
+      # - name: Upload
+      #  uses: djn24/add-asset-to-release@v1
+      #  with:
+      #    token: ${{secrets.GITHUB_TOKEN}}
+      #    path: 'path/to/binary'
 
   # appimage_build:
   #   name: "AppImage build"
