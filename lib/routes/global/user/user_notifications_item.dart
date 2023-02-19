@@ -185,20 +185,21 @@ class _UserNotificationsItemState extends State<UserNotificationsItem> {
 
             var userTheme = user.theme;
             var userLang = user.language;
+            var currentOS = Platform.operatingSystem;
 
             actions = [
               _Action(
                   text: t.user_notifications_userRegistered_docs,
                   // When pressed, open the docs in a browser
                   onPressed: () => {
+                        // ignore: deprecated_member_use
                         launch(
-                          'https://projekte.tgm.ac.at/lb-planner/docs/?theme=$userTheme&lang=[currentLang]&os=[currentOS]&section=1&heading=3',
+                          'https://projekte.tgm.ac.at/lb-planner/docs/?theme=$userTheme&lang=$userLang&os=$currentOS&section=1&heading=3',
                           forceSafariVC: false,
                           forceWebView: false,
                         )
                       })
             ];
-
             break;
         }
 

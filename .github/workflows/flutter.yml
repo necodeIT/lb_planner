@@ -57,6 +57,8 @@ jobs:
         
       - name: Create a config file
         run: |
+          ls /Users/runner/work/
+          ls /Users/runner/work/${{ github.event.repository.name }}
           
           echo '{
             "title": "LB Planner",
@@ -72,7 +74,7 @@ jobs:
                 "x": 130,
                 "y": 150,
                 "type": "file",
-                "path": "../../build/macos/Build/Products/Release/lb_planner.app"
+                "path": "${{ github.event.repository.name }}/build/macos/Build//Products/Release/desktop_build.app"
               }
             ]
           }' > ./dmg_build/config.json
