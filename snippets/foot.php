@@ -7,7 +7,7 @@
 		include(root.'/resources/logo.svg');
 		include(root.'/resources/tgm.svg');
 	?>
-	<span>© 2022 necodeIT | <a href="https://github.com/necodeIT/lb_planner/blob/pages/LICENSE.md"><?php EDS('foot_license') ?></a></span>
+	<span>© 2023 necodeIT | <a href="https://github.com/necodeIT/lb_planner/blob/pages/LICENSE.md"><?php EDS('foot_license') ?></a></span>
 	<?php
 		foreach(supported_languages as $lang){
 			if($lang==$context_lang){
