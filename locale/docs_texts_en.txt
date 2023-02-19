@@ -19,3 +19,8 @@
 21,0,After clicking the current name of the plan (in this case "Plan for Max")\, it should transform into an editable text field.!img[context menu of the plan\, with the plan name in editing mode|calendar_sidebar_namechange]
 21,1,,
 22,0,You can switch between the <i>plan</i> and calendar views by using the arrow in the top left corner. The overview shows which assignments are due in which months.!img[assignment overview|calendar_modules_overview]
+30,0,<ol><li>At <i>Alpha v0.0.0</i>\, you can check for updates.</li><li>Below that\, you can clear the application <i>Cache</i>\, so it runs smoother.</li><li>You can delete your profile at <i>Delete profile</i>.</li><li>The last one\, <i>Credits</i> sho
+30,1,ws the credits.</li></ol>!img[Einstellungen|settings]
+31,0,Here you can search for courses and add or remove them to/from the app. The three dot menu does the same thing as the one in <i>Course selection</i> at the beginning.!img[course selection|course_select_popup]
+32,0,You can change the look of the app by selecting different themes. Pick the one you like best 😊!img[Schema-auswahl|themes]
+33,0,Here you can pick the type of feedback you'd like to send to us. Type your thoughts into the text field below and submit them by pressing <i>Submit</i>.!img[Die Rückmeldebox mit geöffnetem Typenpopup|feedback_type]
