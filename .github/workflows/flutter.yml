@@ -149,6 +149,7 @@ jobs:
           chmod +x ./LB_Planner.AppDir/AppRun
 
           ls ./LB_Planner.AppDir
+          ls ./LB_Planner.AppDir/usr/bin
 
       - name: Create the AppImage
         run: |
