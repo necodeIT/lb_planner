@@ -1,0 +1,7 @@
+00,0,After installing the app\, you first have to login with your usual moodle credentials.!img[Loginseite|login]
+01,0,After logging in successfully\, you can select courses that you want to incorporate in your plan. To assign a color to a course\, you can use the three dot menu.!img[Kursauswahl|course_select]
+02,0,If everything worked as intended so far\, you should be able to see the dashboard now. Here you can see the assignments you set out to do today. If you want to see how close to done you are this semester\, you can take a look at the status overview. 
+02,1,Your test dates can be found in the test overview section.!img[Dashboard|dashboard]
+03,0,Here you can incorporate your assignments into the calendar via drag and drop. The three point menu in the top right is for adding new assignments.!img[Plan mit geöffnetem Modulpopup|calendar_modules]
+04,0,You can switch between the <i>plan</i> and calendar views by using the arrow in the top left corner. The overview shows which assignments are due in which months.!img[Modulübersicht|calendar_modules_overview]
+05,0,Here you can select your preferred language\, theme and courses\, as well as leave us some feedback to report bugs or suggest features.!img[Seite mit Einstellungen|settings_overview]
