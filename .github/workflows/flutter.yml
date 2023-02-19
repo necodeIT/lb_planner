@@ -51,39 +51,39 @@ jobs:
 
       - name: Install appdmg node module
         run: |
-        npm install -g appdmg
-        appdmg  --version
+          npm install -g appdmg
+          appdmg  --version
       
       - name: Create a folder
         run: mkdir -p ./dmg_build/config.json
 
       - name: Create a config file
         run: |
-        echo '{
+          echo '{
             "title": "LB Planner",
             "icon": "app_icon.icns",
+            "background": "background.png",
             "contents": [
-                {
-                    "x": 410,
-                    "y": 150,
-                    "type": "link",
-                    "path": "/Applications"
-                },
-                {
-                    "x": 130,
-                    "y": 150,
-                    "type": "file",
-                    "path": "build/macos/Build/Products/Release/lb_planner.app"
-                }
+              {
+                "x": 410,
+                "y": 150,
+                "type": "link",
+                "path": "/Applications"
+              },
+              {
+                "x": 130,
+                "y": 150,
+                "type": "file",
+                "path": "build/macos/Build/Products/Release/lb_planner.app"
+              }
             ]
-        }' > ./dmg_build/config.json
-
+          }' > ./dmg_build/config.json
+        
       - name: Create dmg
-
         run: |
-        appdmg ./dmg_build/config.json LB_Planner-Setup.dmg
+          appdmg ./dmg_build/config.json LB_Planner-Setup.dmg
 
-      - name: Archive production artifacts
+      - name: Archive production artifactsq
         uses: actions/upload-artifact@v3
         with:
           name: lb-planner-macos
