@@ -52,9 +52,9 @@ jobs:
           npm install -g appdmg
           appdmg  --version
       
-      - name: Create a folder
-        run: mkdir -p ./dmg_build/config.json
-
+      - name: Create a dmg_build folder for config
+        run:  mkdir ./dmg_build
+        
       - name: Create a config file
         run: |
           echo '{
@@ -86,8 +86,6 @@ jobs:
         with:
           name: lb-planner-macos
           path: LB_Planner-Setup.dmg
-        
-
 
       # - name: Create dmg
       #   uses: QQxiaoming/create-dmg-action@v0.0.2
