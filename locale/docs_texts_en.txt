@@ -38,3 +38,28 @@
 48,0,You can <b>only have one plan</b>\, regardless if it's shared or not.
 49,0,In the settings section\, there's a feedback form for bug reports\, feature requests and more. You can send it after choosing the type of feedback and entering some text.!img[settings with feedback box marked in red|feedbackbox]
 49,1,Alternatively\, you can write us a !lnk[mailto:lb-planner@tgm.ac.at|mail] at lb-planner@tgm.ac.at.
+50,0,<ul><li>The year has to be present e.g. (21/22)</li><li>If this is <b>NOT</b> present\, the course won't show up in the app.</li></ul>
+51,0,Grading keys\, the overall grade and other important information should be present in markdown syntax and be marked with "<b>[INFO]</b>" in the respective courses. 
+51,1,Example:<br><br><code># Grading key<br><br>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia\,<br><br>## Overall grade<br><br>- A: x%<br><br>- B: x%<br><br>- C: x%<br><br>- D: x%<br><br>- E: x%<br><br>- F: x%<br><br>## Assignme
+51,2,nts<br><br>- A: x%<br><br>- B: x%<br><br>- C: x%<br><br>- D: x%<br><br>- E: x%<br><br>- F: x%</code>
+52,0,Assignments have to be tagged to make the LB Planner work. The tag can be capitalized or not and at any point in the assignment's name\, but they have to be in square brackets.
+52,1,,
+53,0,Non-compulsory practice assignments for basic learning material have to be marked with "[M]".<br><b>Not all subjects have such assignments.</b>
+53,1,<br><br>Example:<br><br><code>[M] Ü 6a.0: Generic Stack</code>
+54,0,Basic assignments have to be marked as "[GK]"
+54,1,<br><br>Example:<br><br><code>[GK] Ü 6a.0: Generic Stack</code>
+55,0,Extended assignments have to be marked as "[EK]"
+55,1,<br><br>Example:<br><br><code>[EK] Ü 6a.0: Generic Stack</code>
+56,0,Exams and tests have to be marked as "[SA]" or "[Test]".
+56,1,<br><br>Example:<br><br><code>[Test] Writing exam</code><br><br>oder<br><br><code>[SA] Grade 2nd Test</code>
+57,0,If no tag is used within the assignment's name\, it won't show up in the app.
+58,0,To present an assignment overview in the app\, assignments should contain a <b>SUGGESTED</b> hand-in date (see screenshot).!img[Settings for the assignment deadline|deadline]
+59,0,An estimation of the time needed to complete the assignment should be appended to the end of its name. It has to be formatted in hours\, with the trailing h\, after a dash between two spaces. Please use a <b>point</b> as the denominator for floating-
+59,1,point numbers.<br><br>Example:<br><br><code>[GK] Ü 6a.0: Generic Stack - 4h</code><br><br>or<br><br><code>Ü 6a.0 [GK]: Generic Stack - 4.5h</code><br><br>or<br><br><code>Ü 6a.0: Generic Stack [GK] - 0.5h</code>
+60,0,Additionally\, you have to regard some important rules when grading assignments. Those either have to be graded with the appropriate status (not fulfilled\, GK sufficient\,GK complete\, EK sufficient and EK complete) 
+60,1,or with ascending points or percentages.
+60,2,<ul><li>These tags shall <b>NOT</b> be mixed ([GK] / [EK]).</li>
+60,3,<li>Quizzes (<b>study progress evaluations\; selfchecks\,...</b>) have to follow the same rules.</li>
+60,4,<li><b>Deadlines</b> have to be set for each assignment to make the assignment overview work properly.</li>
+60,5,<li>Append <b>estimated time to complete</b> to the end of the assignment name.</li></ul>
+61,5,<ul><li>Grades from 1 to 5 as Points (1/5\, 2/5...)</li></ul> That can't be correctly parsed by us and would cause problems for the app.
