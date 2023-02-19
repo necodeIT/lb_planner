@@ -183,10 +183,10 @@ class _UserNotificationsItemState extends State<UserNotificationsItem> {
 
             text = t.user_notifications_userRegistered_text(user.firstname);
 
-            var userTheme = user.theme;
+            var userTheme = (user.theme).toLowerCase();
             var userLang = user.language.isEn ? 'en' : 'de';
             var urlToLaunch =
-                'https://projekte.tgm.ac.at/lb-planner/docs/?theme=$userTheme&lang=$userLang&section=1&heading=3';
+                'https://projekte.tgm.ac.at/lb-planner/docs/?theme=$userTheme&lang=$userLang&section=0&heading=2';
 
             actions = [
               _Action(
