@@ -7,7 +7,7 @@
 05,0,Here you can select your preferred language\, theme and courses\, as well as leave us some feedback to report bugs or suggest features.!img[Seite mit Einstellungen|settings_overview]
 10,0,All of the most important information is shown within the dashboard. <i>Today's tasks</i> shows which modules are planned for today. <i>Status overview</i> displays your current progress. <i>Exams</i> shows upcoming exams - duh.
 10,1,!img[Main page|dashboard]
-11,0,Should you fancy a different color or label for a course\, you can change it by pressing the three dot button to open the course colour/label popup. To submit the changes, you have to press <i>Confirm</i> in the bottom right corner.
+11,0,Should you fancy a different color or label for a course\, you can change it by pressing the three dot button to open the course colour/label popup. To submit the changes\, you have to press <i>Confirm</i> in the bottom right corner.
 11,1,!img[Color Picker|course_color]
 12,0,On every page (besides <i>Login</i> and <i>Select courses</i>)\, there's a bell icon with which you can open the notifications popup. There you can see invites for plans other people sent you and other notifications.
 12,1,!img[the part of the navbar with the notification bell|navbar_user] !img[notification popup with a notification within|notification_popup]
