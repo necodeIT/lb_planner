@@ -12,6 +12,17 @@
 	$scripts = array("docs");
 	include('../snippets/head.php');
 	
+	if(key_exists('section',$_GET)){
+		$wanted_section = $_GET['section'];
+	}else{
+		$wanted_section = 0;
+	}
+	if(key_exists('heading',$_GET)){
+		$wanted_heading = $_GET['heading'];
+	}else{
+		$wanted_heading = -1;
+	}
+	
 	$stuff = db_get_docs_stuff();
 ?>
 	<body class="theme-<?php echo $context_theme; ?>">
@@ -20,30 +31,32 @@
 		?>
 		<div id="sidebar">
 			<?php
-				foreach($stuff as $title=>$tmp){
-					echo '<label for="radio_'.rawurlencode($title)."\">$title</label>";
+				foreach($stuff as $title){
+					echo "<label for=\"radio_title{$title->id}\">{$title->text}</label>";
 				}
 			?>
 		</div>
 		<?php
-			$first = true;
-			foreach($stuff as $title=>$tmp){
-				echo '<input type="radio" id="radio_'.rawurlencode($title);
-				if($first){
-					$first=false;
+			foreach($stuff as $title){
+				echo '<input type="radio" id="radio_title'.($title->id);
+				if($wanted_section==$title->id){
 					echo '" checked name="pageradios"/>';//page radios not pager adios
 				}else{
 					echo '" name="pageradios"/>';
 				}
 				echo '<div class="scrollwrap"><div class="allpage">';
-				foreach($tmp as $heading=>$text){
-					echo '<details>';
-					echo '<summary>'.$heading;
-					include("../resources/dropdown_arrow.svg");
-					echo '</summary><div class="p">';
-					docs_content_pp($text);
-					echo '</div>';
-					echo '</details>';
+				foreach($title->headings as $heading){
+					?>
+					<details<?=$wanted_heading==$heading->id?' open':''?>>
+						<summary><?php
+							echo $heading->text;
+							include("../resources/dropdown_arrow.svg");
+						?></summary>
+						<div class="p">
+							<?php docs_content_pp($heading->body);?>
+						</div>
+					</details>
+					<?php
 				}
 				echo '</div></div>';
 			}

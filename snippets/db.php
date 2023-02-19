@@ -44,29 +44,50 @@
 			EDS($key.$pf);
 		}
 	}
-	//returns an array for docs which looks like this:
-	//{'title':{'heading':'text',…},…}
+	//returns an array with DocTitle Objects
 	function db_get_docs_stuff(){
 		global $context_lang;
 		
 		//getting titles
 		$result = array();
 		$titles = _db_get_pq("SELECT id,text FROM DocsTitles_$context_lang ORDER BY id ASC",[])->fetchAll();
-		foreach($titles as list($tid,$title)){
+		foreach($titles as list($tid,$ttext)){
 			//getting corresponding headings
 			$tmp = array();
 			$headings = _db_get_pq("SELECT id,text FROM DocsHeadings_$context_lang WHERE title_id=? ORDER BY id ASC",[$tid],[PDO::PARAM_INT])->fetchAll();
-			foreach($headings as list($hid,$heading)){
+			foreach($headings as list($hid,$htext)){
 				//getting corresponding texts
-				$tmp[$heading]='';
+				$text = '';
 				$texts=_db_get_pq("SELECT text FROM DocsTexts_$context_lang WHERE heading_id=? ORDER BY text_id",[$hid],[PDO::PARAM_INT])->fetchAll();
 				foreach($texts as $txt){
-					$tmp[$heading].=$txt[0];
+					$text.=$txt[0];
 				}
+				$heading = new DocHeading($hid,$htext,$text);
+				array_push($tmp,$heading);
 			}
-			$result[$title]=$tmp;
+			array_push($result,new DocTitle($tid,$ttext,$tmp));
 		}
 		
 		return $result;
+	}
+	class DocTitle {
+		public $id;
+		public $text;
+		public $headings;
+		function __construct($id,$text,$headings) {
+			$this->id = $id;
+			$this->text = $text;
+			$this->headings = $headings;
+		}
+	}
+	class DocHeading {
+		public $id;
+		public $text;
+		public $body;
+		function __construct($id,$text,$body) {
+			$this->id = $id;
+			$this->text = $text;
+			$this->body = $body;
+		}
 	}
 ?>

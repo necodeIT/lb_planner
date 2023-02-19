@@ -53,9 +53,9 @@
 		<section class="screenpage" id="ofeat">
 			<h1 class="sectionheader"><?php EDS('title_features') ?></h1>
 			<?php
-				genLearnCard('plan',1);
-				genLearnCard('overview',2);
-				genLearnCard('sync',3);
+				genLearnCard('plan',1,0,3);
+				genLearnCard('overview',2,0,2);
+				genLearnCard('sync',3,0,5);
 			?>
 			<hr/>
 			<?php

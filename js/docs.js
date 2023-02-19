@@ -24,4 +24,9 @@ for(let details of document.getElementsByTagName("details")){
 			setTimeout(()=>{details.removeAttribute("open");details.children[1].style["transform"]=null},200);
 		}
 	}
+	if(details.hasAttribute('open')){
+		window.addEventListener('load',function(){
+			details.scrollIntoView();
+		});
+	}
 }
