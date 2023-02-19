@@ -57,6 +57,8 @@ jobs:
         
       - name: Create a config file
         run: |
+          ls build/macos/Build/Products/Release/
+          
           echo '{
             "title": "LB Planner",
             "icon": "app_icon.icns",
@@ -71,7 +73,7 @@ jobs:
                 "x": 130,
                 "y": 150,
                 "type": "file",
-                "path": "build/macos/Build/Products/Release/lb_planner.app"
+                "path": "build/macos/Build/Products/Release/desktop_build.app"
               }
             ]
           }' > ./dmg_build/config.json
