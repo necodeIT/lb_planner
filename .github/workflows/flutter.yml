@@ -62,7 +62,7 @@ jobs:
           
           echo '{
             "title": "LB Planner",
-            "icon": "app_icon.icns",
+            "icon": "../app_icon.icns",
             "contents": [
               {
                 "x": 410,
