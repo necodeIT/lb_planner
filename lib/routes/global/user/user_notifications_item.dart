@@ -187,7 +187,13 @@ class _UserNotificationsItemState extends State<UserNotificationsItem> {
               _Action(
                   text: t.user_notifications_userRegistered_docs,
                   // When pressed, open the docs in a browser
-                  onPressed: () => {})
+                  onPressed: () => {
+                        launch(
+                          'https://projekte.tgm.ac.at/lb-planner/docs/?theme=&lang=[currentLang]&os=[currentOS]&section=1&heading=3',
+                          forceSafariVC: false,
+                          forceWebView: false,
+                        )
+                      })
             ];
 
             break;
