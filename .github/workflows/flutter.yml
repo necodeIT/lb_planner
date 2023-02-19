@@ -136,19 +136,19 @@ jobs:
 
 
           chmod +x ./LB_Planner.AppDir/lb_planner.desktop
+          cat ./LB_Planner.AppDir/lb_planner.desktop
 
       - name: Create the AppRun file
         run: |
-          echo '#!/bin/bash
-          SELF=$(readlink -f "\$0")
-          HERE=${SELF%/*}
+          echo '#!/bin/sh
+          HERE="$(dirname "$(readlink -f "${0}")")"
           EXEC="${HERE}/usr/bin/lb_planner"
-          exec "${EXEC}" ' > ./LB_Planner.AppDir/AppRun
-
+          exec "${EXEC}"' > ./LB_Planner.AppDir/AppRun
+q
 
           chmod +x ./LB_Planner.AppDir/AppRun
+          cat ./LB_Planner.AppDir/AppRun
 
-          ls ./LB_Planner.AppDir
           ls ./LB_Planner.AppDir/usr/bin
 
       - name: Create the AppImage
