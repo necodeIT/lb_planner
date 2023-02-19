@@ -144,7 +144,6 @@ jobs:
           HERE="$(dirname "$(readlink -f "${0}")")"
           EXEC="${HERE}/usr/bin/lb_planner"
           exec "${EXEC}"' > ./LB_Planner.AppDir/AppRun
-q
 
           chmod +x ./LB_Planner.AppDir/AppRun
           cat ./LB_Planner.AppDir/AppRun
