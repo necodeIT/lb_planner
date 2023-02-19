@@ -72,7 +72,7 @@ jobs:
                 "x": 130,
                 "y": 150,
                 "type": "file",
-                "path": "../../build/macos/Build/Products/Release/lb_planner.app"
+                "path": "../build/macos/Build/Products/Release/lb_planner.app"
               }
             ]
           }' > ./dmg_build/config.json
