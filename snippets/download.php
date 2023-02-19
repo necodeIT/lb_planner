@@ -50,9 +50,9 @@
 		EDS('btn_download');
 		echo '</a>';
 	}
-	function genFeatureSection($title,$paragraph){
+	function genFeatureSection($title,$paragraph,$imgname){
 		echo '<section class="screenpage pagetype2">'.
-			'<img class="card" src="'.urlroot.'/resources/example_cal.png" alt="example screenshot"/>'.
+			'<img class="card" src="'.urlroot.'/resources/docs/'.$imgname.'.png" alt="example screenshot"/>'.
 			"<h2>$title</h2>".
 			"<p>$paragraph</p>".
 		'</section>';

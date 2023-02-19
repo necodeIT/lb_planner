@@ -44,10 +44,13 @@
 			<span><?php EDS('p_themes1');EDS('p_themes2') ?></span>
 		</section>
 		<?php
+			$images = array('dashboard','calendar','calendar_modules_overview');
 			foreach(array(1,2,3) as $i){
 				genFeatureSection(
 					GDS('title_demo'.$i),
-					MGDS("p_demo${i}",[1,2]));
+					MGDS("p_demo${i}",[1,2]),
+					$images[$i-1]
+				);
 			}
 		?>
 		<section class="screenpage" id="ofeat">
