@@ -1,8 +1,8 @@
 // Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'version/version.freezed.dart';
-part 'version/version.g.dart';
+part 'version.freezed.dart';
+part 'version.g.dart';
 
 /// Represents a version number in the format x.y.z
 ///
