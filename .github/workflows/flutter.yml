@@ -76,11 +76,11 @@ jobs:
         with:
           name: lb-planner-macos
           path: /Users/runner/work/lb_planner/lb_planner/LB.Planner.Setup.dmg
-      #- name: Upload
-      #  uses: djn24/add-asset-to-release@v1
-      #  with:
-      #    token: ${{secrets.GITHUB_TOKEN}}
-      #    path: 'path/to/binary'
+      - name: Upload
+       uses: djn24/add-asset-to-release@v1
+       with:
+         token: ${{secrets.GITHUB_TOKEN}}
+         path: 'path/to/binary'
 
   # appimage_build:
   #   name: "AppImage build"
