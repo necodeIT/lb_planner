@@ -46,8 +46,6 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '16'
-        run: |
-          npm --version
 
       - name: Install appdmg node module
         run: |
@@ -64,7 +62,7 @@ jobs:
             "icon": "app_icon.icns",
             "background": "background.png",
             "contents": [
-              {
+              {q
                 "x": 410,
                 "y": 150,
                 "type": "link",
@@ -83,7 +81,7 @@ jobs:
         run: |
           appdmg ./dmg_build/config.json LB_Planner-Setup.dmg
 
-      - name: Archive production artifactsq
+      - name: Archive production artifactsqq
         uses: actions/upload-artifact@v3
         with:
           name: lb-planner-macos
