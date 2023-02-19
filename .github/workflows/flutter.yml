@@ -79,7 +79,7 @@ jobs:
         
       - name: Create dmg
         run: |
-          appdmg ./dmg_build/config.json LB_Planner-Setup.dmg
+          appdmg ./dmg_build/config.json LB.Planner.Setup.dmg
 
       - name: Archive production artifactsqq
         uses: actions/upload-artifact@v3
