@@ -121,7 +121,7 @@ jobs:
         run: |
           mkdir -p ./LB_Planner.AppDir/usr/bin
           
-          cp build/linux/x64/release/bundle/lb_planner ./LB_Planner.AppDir/usr/bin/
+          cp -r build/linux/x64/release/bundle/* ./LB_Planner.AppDir/usr/bin/
 
           cp app_icon.png ./LB_Planner.AppDir/app_icon.png
 
@@ -155,9 +155,6 @@ jobs:
         run: |
           ARCH=x86_64 appimagetool ./LB_Planner.AppDir 
 
-          pwd
-
-          ls 
 
       - name: Archive production artifacts
         uses: actions/upload-artifact@v3
