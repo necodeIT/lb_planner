@@ -3,8 +3,7 @@ part of lbplanner_routes;
 /// User notifications item.
 class UserNotificationsItem extends StatefulWidget {
   /// User notifications item.
-  const UserNotificationsItem({Key? key, required this.notificationId})
-      : super(key: key);
+  const UserNotificationsItem({Key? key, required this.notificationId}) : super(key: key);
 
   /// The notification to display.
   final int notificationId;
@@ -40,8 +39,7 @@ class _UserNotificationsItemState extends State<UserNotificationsItem> {
   Widget build(context) {
     return Consumer(
       builder: (context, ref, _) {
-        var notification =
-            ref.watch(notificationsProvider)[widget.notificationId]!;
+        var notification = ref.watch(notificationsProvider)[widget.notificationId]!;
 
         String text = notification.toString();
         List<_Action> actions = [];
@@ -133,8 +131,7 @@ class _UserNotificationsItemState extends State<UserNotificationsItem> {
             text = t.user_notifications_inviteAccepted_text(user.fullname);
             break;
           case NotificationTypes.inviteDeclined:
-            var id = notification
-                .payload; // dunno why but "inviteid" is appearently a string
+            var id = notification.payload; // dunno why but "inviteid" is appearently a string
 
             var invite = ref.watch(invitesProvider)[id];
 
@@ -183,12 +180,10 @@ class _UserNotificationsItemState extends State<UserNotificationsItem> {
 
             text = t.user_notifications_userRegistered_text(user.firstname);
 
-            var userTheme =
-                user.theme == "桜" ? "sakura" : user.theme.toLowerCase();
+            var userTheme = NcThemes.current.name == sakuraTheme.name ? "sakura" : NcThemes.current.name.toLowerCase();
 
             var userLang = user.language.isEn ? 'en' : 'de';
-            var urlToLaunch =
-                'https://projekte.tgm.ac.at/lb-planner/docs/?theme=$userTheme&lang=$userLang&section=0&heading=2';
+            var urlToLaunch = 'https://projekte.tgm.ac.at/lb-planner/docs/?theme=$userTheme&lang=$userLang&section=0&heading=2';
 
             actions = [
               _Action(

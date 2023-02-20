@@ -70,7 +70,12 @@ class _UpdateRouteState extends State<UpdateRoute> {
                 width: UpdateRoute.loaderSize,
                 child: LpButton(
                   text: t.update_btn(updater.latestVersionName),
-                  onPressed: () => updater.upgrade(() {}),
+                  // TODO: onPressed: () => updater.upgrade(() {}),
+                  onPressed: () {
+                    var userTheme = NcThemes.current.name == sakuraTheme.name ? "sakura" : NcThemes.current.name.toLowerCase();
+
+                    var urlToLaunch = 'https://projekte.tgm.ac.at/lb-planner/docs/?theme=$userTheme&section=0&heading=2';
+                  },
                 ),
               ),
           ],
