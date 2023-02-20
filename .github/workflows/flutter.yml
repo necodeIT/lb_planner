@@ -137,8 +137,9 @@ jobs:
            ARCH=x86_64 appimagetool ./LB_Planner.AppDir 
            
            chmod +x ./LB_Planner-x86_64.AppImage
+           mv ./LB_Planner-x86_64.AppImage LB.Planner.AppImage
        - name: Upload AppImage
          uses: actions/upload-artifact@v3
          with:
            name: lb-planner-appimage
-           path: LB_Planner-x86_64.AppImage      
+           path: LB.Planner.AppImage      
