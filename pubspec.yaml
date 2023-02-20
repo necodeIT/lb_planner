@@ -48,6 +48,7 @@ dependencies:
   flutter_sticky_header: ^0.6.1
   flutter_vector_icons: ^1.0.0
   font_awesome_flutter: ^10.1.0
+  http: ^0.13.5
   intl: ^0.17.0
   lbplanner_engine:
     git:
@@ -84,7 +85,6 @@ dependency_overrides:
   # uncomment to test
   # nekolib_ui:
   #   path: ../nekolib/ui
-
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter.
