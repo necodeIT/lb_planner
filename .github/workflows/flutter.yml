@@ -38,10 +38,10 @@ jobs:
         with:
           flutter-version: '3.3.3'
           architecture: x64
-      - name: "Build for MacOS"
-        run: |
-          flutter config --enable-macos-desktop
-          flutter build macos --release --no-sound-null-safety
+      #- name: "Build for MacOS"
+      #  run: |
+      #    flutter config --enable-macos-desktop
+      #    flutter build macos --release --no-sound-null-safety
       - name: Install node
         uses: actions/setup-node@v2
         with:
