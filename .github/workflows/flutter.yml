@@ -141,12 +141,4 @@ jobs:
          uses: actions/upload-artifact@v3
          with:
            name: lb-planner-appimage
-           path: LB_Planner-x86_64.AppImage
-
-          
-
-
-        
-
-
-        
+           path: LB_Planner-x86_64.AppImage      
