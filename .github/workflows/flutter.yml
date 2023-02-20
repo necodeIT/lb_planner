@@ -92,7 +92,7 @@ jobs:
            flutter-version: '3.3.3'
            architecture: x64
        - name: Install dependencies
-         run: sudo apt-get update && sudo apt-get install -y git cmake qt5-default
+         run: sudo apt-get update && sudo apt-get install -y
        - name: Install dependencies
          run: |
            sudo apt-get update -y
