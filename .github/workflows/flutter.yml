@@ -50,16 +50,12 @@ jobs:
       - name: Install appdmg node module
         run: |
           npm install -g appdmg
-          appdmg  --version
-      
-      - name: Create a dmg_build folder for config
-        run:  mkdir ./dmg_build
-        
+          appdmg  --version        
       - name: Create a config file
         run: |          
           echo '{
             "title": "LB Planner",
-            "icon": "/Users/runner/work/lb_planner/lb_planner/app_icon.icns",
+            "icon": "app_icon.icns",
             "contents": [
               {
                 "x": 410,
@@ -71,15 +67,13 @@ jobs:
                 "x": 130,
                 "y": 150,
                 "type": "file",
-                "path": "/Users/runner/work/lb_planner/lb_planner/dmg_build/build/macos/Build/Products/Release/lb_planner.app"
+                "path": "build/macos/Build/Products/Release/lb_planner.app"
               }
             ]
-          }' > ./dmg_build/config.json
-      - run: ls
+          }' > ./dmg_config.json
       - name: Create dmg
         run: |
-          appdmg ./dmg_build/config.json LB.Planner.Setup.dmg
-
+          appdmg dmg_config.json LB.Planner.Setup.dmg
       - name: Archive production artifacts
         uses: actions/upload-artifact@v3
         with:
