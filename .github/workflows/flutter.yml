@@ -59,7 +59,7 @@ jobs:
         run: |          
           echo '{
             "title": "LB Planner",
-            "icon": "../app_icon.icns",
+            "icon": "/Users/runner/work/lb_planner/lb_planner/app_icon.icns",
             "contents": [
               {
                 "x": 410,
@@ -71,7 +71,7 @@ jobs:
                 "x": 130,
                 "y": 150,
                 "type": "file",
-                "path": "build/macos/Build/Products/Release/lb_planner.app"
+                "path": "/Users/runner/work/lb_planner/lb_planner/dmg_build/build/macos/Build/Products/Release/lb_planner.app"
               }
             ]
           }' > ./dmg_build/config.json
