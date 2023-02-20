@@ -25,7 +25,7 @@ class UpdateProvider extends ChangeNotifier {
   String get latestVersionName => kUpdater.latestVersionName;
 
   /// The name of the current version
-  String get versionName => "Closed Beta v${kUpdater.currentVersion}";
+  String get versionName => "Open Beta v${kUpdater.currentVersion}";
 
   /// The status of the update.
   UpdateStatus get status => _status;
@@ -140,41 +140,79 @@ class Updater extends GitHubUpdater {
   String get appName => "LB Planner";
 
   @override
-  String get currentVersion => "0.0.1";
+  String get currentVersion => "0.0.2";
 
   @override
-  String get linuxFileName => throw UnimplementedError("Linux is not supported yet");
+  String get linuxFileName => "LB.Planner.AppImage";
 
   @override
-  String get macFileName => throw UnimplementedError("Mac is not supported yet");
+  String get macFileName => "LB.Planner.Setup.dmg";
 
   @override
   String get repo => "lb_planner";
 
   @override
-  String get repoOwner => "necodeIT";
+  String get repoOwner => "bmceachnie";
 
   @override
-  String get windowsFileName => "Setup.exe";
+  String get windowsFileName => "LB.Planner.Setup.exe";
+
+  String _latestVersion = "";
+  String _latestReleaseName = "";
+  bool _updateAvailable = false;
 
   @override
-  bool get updateAvailable => false;
+  String get latestVersion => _latestVersion;
+
+  @override
+  String get latestVersionName => _latestReleaseName;
+
+  @override
+  bool get updateAvailable => _updateAvailable;
 
   @override
   Future<bool> update() async {
-    return true;
     if (gPluginVersion == null) {
       log("Failed checking for updates because plugin version is unkown!", LogTypes.error);
       return false;
     }
 
-    var gh = await super.update();
+    log("Checking for updates...", LogTypes.tracking);
 
-    if (!gh) return false;
+    if (!await connectivity.checkConnection()) {
+      error("Could not check for updates, you may be using an outadet version! Please check your internet connection");
+      log("Failed checking for updates: Missing internet connection", LogTypes.error);
+      return false;
+    }
 
-    var l = Version.fromString(latestVersion);
+    var client = Client();
 
-    return gPluginVersion!.majorVersion >= l.majorVersion;
+    try {
+      var response = await client.get(Uri.parse("$repoUrl/releases"));
+      var json = jsonDecode(response.body);
+
+      for (var release in json) {
+        if (release["prerelease"] == true) continue;
+        if (release["target_commitish"] != "app") continue;
+
+        _latestVersion = release["tag_name"].toString().replaceAll("f", "");
+        _latestReleaseName = release["name"];
+
+        break;
+      }
+
+      var l = Version.fromString(latestVersion);
+
+      _updateAvailable = gPluginVersion!.majorVersion >= l.majorVersion && latestVersion != currentVersion;
+
+      log(updateAvailable ? "New update available" : "No update available", LogTypes.success);
+
+      return updateAvailable;
+    } catch (e) {
+      log("Failed checking for updates: $e", LogTypes.error);
+
+      return false;
+    }
   }
 }
 
