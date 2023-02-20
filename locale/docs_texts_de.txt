@@ -64,6 +64,6 @@
 60,5,<li><b>Geschätzte Arbeitsdauer</b> am Ende der Modulnamen hinzufügen.</li></ul>
 61,0,<ul><li>Noten von 1-5 als Punkte (1/5\, 2/5...)</li></ul> Dies kann von uns nämlich nicht erkannt werden und würde bei der Applikation für Probleme sorgen.
 62,0,Der LB Planner wird von Virenscannern als schädlich eingestuft\, da wir die App nicht signieren können. Das Signieren der App würde uns ca. 500€ pro Jahr kosten\, was wir uns als non-profit Projekt leider nicht leisten können. Du kannst uns aber vert
-62,1,rauen\, dass wir keine Schadsoftware in unsere App einbauen 😉. Wenn du dich dessen vergewissern möchtest kannst du dir gerne den Source Code auf !link[https://github.com/necodeIT/lb_planner|GitHub] anschauen<br>Um die App trotz der Warnungen zu inst
+62,1,rauen\, dass wir keine Schadsoftware in unsere App einbauen 😉. Wenn du dich dessen vergewissern möchtest kannst du dir gerne den Source Code auf !lnk[https://github.com/necodeIT/lb_planner|GitHub] anschauen<br>Um die App trotz der Warnungen zu inst
 62,2,allieren folge bitte folgenden Schritten:<br><b>Für Windows</b><ol><li>Öffne die <i>LB.Planner.Setup.exe</i> Datei</li><li>Klicke auf <i>Weitere Informationen</i>!img[Der Computer wurde durch Windows geschützt|windows_virus_message_de]</li><li>Klicke
 62,3, auf <i>Trotzdem ausführen</i>!img[Trotzdem ausführen|windows_virus_message_run_de]</li></ol>

@@ -64,5 +64,5 @@
 60,5,<li>Append <b>estimated time to complete</b> to the end of the assignment name.</li></ul>
 61,0,<ul><li>Grades from 1 to 5 as Points (1/5\, 2/5...)</li></ul> That can't be correctly parsed by us and would cause problems for the app.
 62,0,LB Planner is detected as malware because we cannot sign the application. Singing an application can cost up to 500€ per year\, which is too expensive for a non-profit project. However\, you can trust us to not have any malware included in our softwa
-62,1,re 😉. You can even check out the source code on !link[https://github.com/necodeIT/lb_planner|GitHub] if you don't.<br>To install LB Planner regardless\, please follow these steps below:<br><b>On Windows</b><ol><li>Open <i>LB.Planner.Setup.exe</i></l
+62,1,re 😉. You can even check out the source code on !lnk[https://github.com/necodeIT/lb_planner|GitHub] if you don't.<br>To install LB Planner regardless\, please follow these steps below:<br><b>On Windows</b><ol><li>Open <i>LB.Planner.Setup.exe</i></l
 62,2,i><li>Click on<i>More info</i>!img[Windows protected your PC|windows_virus_message_en]</li><li>Click on <i>Run anyway</i>!img[Run anyway|windows_virus_message_run_en]</li></ol>
