@@ -75,6 +75,8 @@ class _UpdateRouteState extends State<UpdateRoute> {
                     var userTheme = NcThemes.current.name == sakuraTheme.name ? "sakura" : NcThemes.current.name.toLowerCase();
 
                     var urlToLaunch = 'https://projekte.tgm.ac.at/lb-planner/docs/?theme=$userTheme&section=0&heading=2';
+
+                    launchUrl(Uri.parse(urlToLaunch));
                   },
                 ),
               ),
