@@ -38,3 +38,4 @@
 59,4,Geschätzte Arbeitsdauer
 60,4,Sonstiges
 61,4,NO GOs
+62,5,Warum wird die App von Virenscannern als schädlich eingestuft?
