@@ -20,7 +20,7 @@ const kMaxLogFileAge = Duration(days: 7);
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
+
   Logger.init(autoSave: true, appStoragePath: (await Disk.appDir).path);
   await Logger.logFile; // I don't know why, but the log file is otherwise not created.
 
@@ -32,7 +32,6 @@ void main() async {
     releaseConfig: LpReportMode.config,
     debugConfig: LpReportMode.config,
     runAppFunction: () async {
-
       runThemedApp(
         appBuilder: App.builder,
         title: 'LB Planner',
