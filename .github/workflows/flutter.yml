@@ -1,4 +1,4 @@
-name: "Flutter build"
+name: "Create Setup files"
 on:
   release:
     types: [published]
