@@ -75,7 +75,7 @@ jobs:
               }
             ]
           }' > ./dmg_build/config.json
-        
+      - run: ls
       - name: Create dmg
         run: |
           appdmg ./dmg_build/config.json LB.Planner.Setup.dmg
