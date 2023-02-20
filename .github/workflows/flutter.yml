@@ -38,7 +38,7 @@ jobs:
         with:
           flutter-version: '3.3.3'
           architecture: x64
-      - name: "Build for MacOS"
+      - name: Build application
         run: |
           flutter config --enable-macos-desktop
           flutter build macos --release --no-sound-null-safety
@@ -46,12 +46,11 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '16'
-
       - name: Install appdmg node module
         run: |
           npm install -g appdmg
           appdmg  --version        
-      - name: Create a config file
+      - name: Create config file
         run: |          
           echo '{
             "title": "LB Planner",
@@ -74,123 +73,75 @@ jobs:
       - name: Create dmg
         run: |
           appdmg dmg_config.json LB.Planner.Setup.dmg
-      - name: Archive production artifacts
+      - name: Upload dmg
         uses: actions/upload-artifact@v3
         with:
           name: lb-planner-macos
           path: LB.Planner.Setup.dmg
-        
-
-
-      # - name: Create dmg
-      #   uses: QQxiaoming/create-dmg-action@v0.0.2
-      #   with:
-      #     name: 'LB.Planner.Setup'
-      #     srcdir: '/Users/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/build/macos/Build//Products/Release/desktop_build.app'
-      # - name: Archive production artifacts
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     name: lb-planner-macos
-      #     path: /Users/runner/work/lb_planner/lb_planner/LB.Planner.Setup.dmg
-      # - name: Upload
-      #  uses: djn24/add-asset-to-release@v1
-      #  with:
-      #    token: ${{secrets.GITHUB_TOKEN}}
-      #    path: 'path/to/binary'
-
-  # linux_build:
-  #   name: "Create AppImage"
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout repo
-  #       uses: actions/checkout@v3
-  #     - name: Update the system
-  #       run: sudo apt-get update && sudo apt-get upgrade -y
-  #     - name: Setup Flutter
-  #       uses: subosito/flutter-action@v2
-  #       with:
-  #         flutter-version: '3.3.3'
-  #         architecture: x64
- 
-        
-  #     # - name: Install dependencies
-  #     #   run: sudo apt-get update && sudo apt-get install -y git cmake qt5-default
-  #     - name: Install dependencies
-  #       run: |
-  #         sudo apt-get update -y
-  #         sudo apt-get install -y ninja-build libgtk-3-dev
-  #         sudo apt-get install fuse libfuse2
-  #         sudo apt-get install -y appstream
-
-  #     - name: Build the Flutter app
-  #       run: |
-  #         flutter config --enable-linux-desktop
-  #         flutter build linux --release --no-sound-null-safety
-
-  #     - name: Install AppImage Tool
-  #       run: |
-  #         wget -c https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
-  #         chmod +x appimagetool-x86_64.AppImage
-  #         sudo mv appimagetool-x86_64.AppImage /usr/local/bin/appimagetool
-
-  #     - name: Create the required directories and copy the binary files to the AppDir
-  #       run: |
-  #         mkdir -p ./LB_Planner.AppDir/usr/bin
           
-  #         cp -r build/linux/x64/release/bundle/* ./LB_Planner.AppDir/usr/bin/
+   linux_build:
+     name: "Create AppImage"
+     runs-on: ubuntu-latest
+     steps:
+       - name: Checkout repo
+         uses: actions/checkout@v3
+       - name: Update the system
+         run: sudo apt-get update && sudo apt-get upgrade -y
+       - name: Setup Flutter
+         uses: subosito/flutter-action@v2
+         with:
+           flutter-version: '3.3.3'
+           architecture: x64
+        - name: Install dependencies
+          run: sudo apt-get update && sudo apt-get install -y git cmake qt5-default
+       - name: Install dependencies
+         run: |
+           sudo apt-get update -y
+           sudo apt-get install -y ninja-build libgtk-3-dev
+           sudo apt-get install fuse libfuse2
+           sudo apt-get install -y appstream
+       - name: Build application
+         run: |
+           flutter config --enable-linux-desktop
+           flutter build linux --release --no-sound-null-safety
+       - name: Install AppImage Tool
+         run: |
+           wget -c https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
+           chmod +x appimagetool-x86_64.AppImage
+           sudo mv appimagetool-x86_64.AppImage /usr/local/bin/appimagetool
+       - name: Create the required directories and copy the binary files to the AppDir
+         run: |
+           mkdir -p ./LB_Planner.AppDir/usr/bin
+           cp -r build/linux/x64/release/bundle/* ./LB_Planner.AppDir/usr/bin/
+           cp app_icon.png ./LB_Planner.AppDir/app_icon.png
+       - name: Create the Desktop file
+         run: |
+           echo "[Desktop Entry]
+           Name=LB Planner
+           Exec=lb_planner
+           Icon=app_icon
+           Type=Application
+           Categories=Education;" > ./LB_Planner.AppDir/lb_planner.desktop
+           
+           chmod +x ./LB_Planner.AppDir/lb_planner.desktop
+       - name: Create the AppRun file
+         run: |
+           echo '#!/bin/sh
+           HERE="$(dirname "$(readlink -f "${0}")")"
+           EXEC="${HERE}/usr/bin/lb_planner"
+           exec "${EXEC}"' > ./LB_Planner.AppDir/AppRun
 
-  #         cp app_icon.png ./LB_Planner.AppDir/app_icon.png
-
-  #     - name: Create the Desktop file
-  #       run: |
-  #         echo "[Desktop Entry]
-  #         Name=LB Planner
-  #         Exec=lb_planner
-  #         Icon=app_icon
-  #         Type=Application
-  #         Categories=Education;" > ./LB_Planner.AppDir/lb_planner.desktop
-
-
-  #         chmod +x ./LB_Planner.AppDir/lb_planner.desktop
-  #         cat ./LB_Planner.AppDir/lb_planner.desktop
-
-  #     - name: Create the AppRun file
-  #       run: |
-  #         echo '#!/bin/sh
-  #         HERE="$(dirname "$(readlink -f "${0}")")"
-  #         EXEC="${HERE}/usr/bin/lb_planner"
-  #         exec "${EXEC}"' > ./LB_Planner.AppDir/AppRun
-
-  #         chmod +x ./LB_Planner.AppDir/AppRun
-  #         cat ./LB_Planner.AppDir/AppRun
-
-  #         ls ./LB_Planner.AppDir/usr/bin
-
-  #     - name: Create the AppImage
-  #       run: |
-  #         ARCH=x86_64 appimagetool ./LB_Planner.AppDir 
-
-            # chmod +x ./LB_Planner-x86_64.AppImage
-
-
-  #     - name: Archive production artifacts
-  #       uses: actions/upload-artifact@v3
-  #       with:
-  #         name: lb-planner-appimage
-  #         path: LB_Planner-x86_64.AppImage
-
-  # flutter_setup:
-  #   - name: Setup Flutter
-  #     uses: subosito/flutter-action@v2
-  #     with:
-  #       flutter-version: '3.3.3'
-  #       architecture: x64
-
-  # flutter_build:
-  #     - name: Flutter Build
-  #       run: |
-  #         flutter config --enable-linux-desktop
-  #         flutter build linux --release --no-sound-null-safety
+           chmod +x ./LB_Planner.AppDir/AppRun
+       - name: Create the AppImage
+         run: |
+           ARCH=x86_64 appimagetool ./LB_Planner.AppDir 
+           
+           chmod +x ./LB_Planner-x86_64.AppImage
+       - name: Upload AppImage
+         uses: actions/upload-artifact@v3
+         with:
+           name: lb-planner-appimage
+           path: LB_Planner-x86_64.AppImage
 
           
 
