@@ -15,6 +15,7 @@ export 'models/feedback/feedback.dart';
 export 'models/deadline/deadline.dart';
 export 'models/updater/version.dart';
 export 'models/updater/update.dart';
+export 'models/updater/update_status.dart';
 
 // Dart imports:
 import 'dart:async';
@@ -43,6 +44,7 @@ import 'models/deadline/deadline.dart';
 import 'models/invite/invite.dart';
 import 'models/updater/version.dart';
 import 'models/updater/update.dart';
+import 'models/updater/update_status.dart';
 
 // Models
 
@@ -68,7 +70,8 @@ part 'services/internet_service/internet_connectivity_service.dart';
 part 'services/updater/updater_service.dart';
 part 'services/updater/app_image_updater_service.dart';
 part 'services/updater/dmg_updater_service.dart';
-part 'services/updater/yay_updater_service.dart';
+part 'services/updater/aur_updater_service.dart';
+part 'services/updater/aur_git_updater_service.dart';
 part 'services/updater/exe_updater_service.dart';
 
 // Providers

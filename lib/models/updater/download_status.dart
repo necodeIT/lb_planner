@@ -5,9 +5,6 @@ enum DownloadStatus {
   /// No download or installation is in progress.
   idle,
 
-  /// Update must be downloaded and installed manually.
-  noAutoInstall,
-
   /// Update is being downloaded.
   downlaoding,
 

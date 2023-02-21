@@ -1,4 +1,4 @@
 part of lbplanner_engine;
 
-/// Service for updating the app from a Setup.dmg file.
+/// Service for updating the app, when installed from a Setup.dmg file.
 class DmgUpdaterService extends UpdaterService {}

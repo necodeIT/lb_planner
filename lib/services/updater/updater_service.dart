@@ -62,5 +62,5 @@ abstract class UpdaterService {
   }
 
   /// Downloads and installs the latest update given by [updateInfo].
-  Stream<Update> upgrade(Update info) async* {}
+  Stream<UpdateStatus> upgrade(Update info);
 }

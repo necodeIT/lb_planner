@@ -7,6 +7,8 @@ part 'update_status.freezed.dart';
 
 /// Contains information about the latest update and the download and installation status.
 class UpdateStatus with _$UpdateStatus {
+  const UpdateStatus._();
+
   /// Contains information about the latest update and the download and installation status.
   factory UpdateStatus({
     /// If true, an update is available.
@@ -23,9 +25,6 @@ class UpdateStatus with _$UpdateStatus {
 
     /// The progress of the download in percent (0-100) if [downloadStatus] is [DownloadStatus.downloading].
     @Default(0) int progress,
-
-    /// If false, the user has to manually download and install the update.
-    @Default(true) bool autoInstall,
 
     /// The error message if [downloadStatus] is [DownloadStatus.error].
     @Default("") String error,
