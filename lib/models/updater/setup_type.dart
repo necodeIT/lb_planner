@@ -1,24 +1,30 @@
 part of lbplanner_engine;
 
-/// Different types of setups used to install the app.
+/// Defines how the app was installed.
 enum SetupType {
   /// The app was installed from a Setup.dmg file.
-  dmg,
+  dmg(true),
 
   /// The app was installed through a Setup.exe file.
-  exe,
+  exe(true),
 
-  /// The app was not installed but is packed in an AppImage.
-  appImage,
+  /// The app is packed in an AppImage.
+  appImage(false),
 
   /// The app was installed from aur package.
-  aur,
+  aur(false),
 
   /// The app was installed from aur-git package.
-  aurGit,
+  aurGit(false),
 
   /// The app was compiled from source.
-  selfCompiled,
+  selfCompiled(false);
+
+  /// Whether the app can be auto-updated or not.
+  final bool canAutoUpdate;
+
+  /// Defines how the app was installed.
+  const SetupType(this.canAutoUpdate);
 }
 
 /// Provides a [fromString] method to convert a string to a [SetupType].

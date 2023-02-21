@@ -17,7 +17,11 @@ abstract class UpdaterService {
   /// The current version prefix of the app.
   static final String currentVersionName = "Open Beta v$currentVersion";
 
+  /// The name of the file to download when updating the app.
+  String get installerFileName;
+
   /// Checks for updates and returns information about the latest update.
+  @nonVirtual
   Future<Update> checkForUpdates(Version pluginVersion) async {
     var response = await http.get(Uri.parse("$repoApiUrl/releases"));
 
@@ -61,6 +65,114 @@ abstract class UpdaterService {
     );
   }
 
+  /// Returns a [File] object for the file specified in [installerFileName].
+  ///
+  /// Does not check if the file exists.
+  Future<File> getInstallerFile() async {
+    var dir = await getTemporaryDirectory();
+
+    return File("${dir.path}/$installerFileName");
+  }
+
+  /// Downloads the file specified in [installerFileName] from the url specified in [info] assets.
+  ///
+  /// Returns a stream of [UpdateStatus] with the download progress.
+  ///
+  /// Returns a stream of [UpdateStatus] with [DownloadStatus.error] if the file does not exist on the remote server.
+  Stream<UpdateStatus> download(Update info) async* {
+    if (!info.updateAvailable) return;
+
+    var status = info.toUpdateStatus().copyWith(fileName: installerFileName);
+
+    if (!info.assets.containsKey(installerFileName)) {
+      yield status.copyWith(downloadStatus: DownloadStatus.error, error: "Installer file not found on remote server.");
+
+      return;
+    }
+
+    var client = http.Client();
+
+    var request = http.Request("GET", Uri.parse(info.assets[status.fileName]!));
+
+    var response = await client.send(request);
+
+    var total = response.contentLength;
+
+    var bytes = <int>[];
+
+    await for (var chunk in response.stream) {
+      bytes.addAll(chunk);
+
+      var progress = (bytes.length / (total ?? bytes.length / 2) * 100).round();
+
+      yield status.copyWith(progress: progress, downloadStatus: DownloadStatus.downlaoding);
+    }
+
+    var file = await getInstallerFile();
+
+    await file.writeAsBytes(bytes);
+
+    yield status.copyWith(downloadStatus: DownloadStatus.installing);
+  }
+
+  /// Checks if the file specified in [status] exists.
+  ///
+  /// Returns [status] with [DownloadStatus.error] if the file does not exist.
+  ///
+  /// Returns [status] if the file exists.
+  UpdateStatus checkFile(UpdateStatus status) {
+    var file = File(status.fileName);
+
+    if (status.downloadStatus == DownloadStatus.error || !file.existsSync()) return status.copyWith(downloadStatus: DownloadStatus.error, error: "Failed to download file.");
+
+    return status;
+  }
+
   /// Downloads and installs the latest update given by [updateInfo].
-  Stream<UpdateStatus> upgrade(Update info);
+  ///
+  /// Overwrite this method to implement your own upgrade logic.
+  Stream<UpdateStatus> upgrade(Update info) async* {
+    if (!info.updateAvailable) return;
+
+    var status = info.toUpdateStatus();
+
+    await for (var status in download(info)) {
+      yield status;
+    }
+
+    if (status.downloadStatus == DownloadStatus.error) return;
+
+    yield status = checkFile(status);
+
+    if (status.downloadStatus == DownloadStatus.error) return;
+  }
+
+  /// Installs the update (called by [upgrade] unless [upgrade] was overwridden).
+  ///
+  /// Overwrite this method to implement your own installation logic.
+  Stream<UpdateStatus> install(UpdateStatus status) async* {
+    yield status = checkFile(status);
+
+    if (status.downloadStatus == DownloadStatus.error) return;
+
+    yield status.copyWith(downloadStatus: DownloadStatus.installing);
+
+    var f = await getInstallerFile();
+
+    await Process.start(f.path, []);
+
+    exit(0);
+  }
+}
+
+/// Converts an [Update] to an [UpdateStatus].
+extension UpdateToUpdateStatus on Update {
+  /// Converts an [Update] to an [UpdateStatus].
+  UpdateStatus toUpdateStatus() {
+    return UpdateStatus(
+      updateAvailable: updateAvailable,
+      latestVersionName: remoteVersionName,
+      patchNotes: patchNotes,
+    );
+  }
 }

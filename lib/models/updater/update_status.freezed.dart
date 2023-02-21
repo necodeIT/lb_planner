@@ -24,7 +24,6 @@ class _$UpdateStatusTearOff {
       String fileName = "",
       DownloadStatus downloadStatus = DownloadStatus.idle,
       int progress = 0,
-      bool autoInstall = true,
       String error = "",
       String patchNotes = "",
       String command = ""}) {
@@ -34,7 +33,6 @@ class _$UpdateStatusTearOff {
       fileName: fileName,
       downloadStatus: downloadStatus,
       progress: progress,
-      autoInstall: autoInstall,
       error: error,
       patchNotes: patchNotes,
       command: command,
@@ -62,9 +60,6 @@ mixin _$UpdateStatus {
   /// The progress of the download in percent (0-100) if [downloadStatus] is [DownloadStatus.downloading].
   int get progress => throw _privateConstructorUsedError;
 
-  /// If false, the user has to manually download and install the update.
-  bool get autoInstall => throw _privateConstructorUsedError;
-
   /// The error message if [downloadStatus] is [DownloadStatus.error].
   String get error => throw _privateConstructorUsedError;
 
@@ -90,7 +85,6 @@ abstract class $UpdateStatusCopyWith<$Res> {
       String fileName,
       DownloadStatus downloadStatus,
       int progress,
-      bool autoInstall,
       String error,
       String patchNotes,
       String command});
@@ -111,7 +105,6 @@ class _$UpdateStatusCopyWithImpl<$Res> implements $UpdateStatusCopyWith<$Res> {
     Object? fileName = freezed,
     Object? downloadStatus = freezed,
     Object? progress = freezed,
-    Object? autoInstall = freezed,
     Object? error = freezed,
     Object? patchNotes = freezed,
     Object? command = freezed,
@@ -137,10 +130,6 @@ class _$UpdateStatusCopyWithImpl<$Res> implements $UpdateStatusCopyWith<$Res> {
           ? _value.progress
           : progress // ignore: cast_nullable_to_non_nullable
               as int,
-      autoInstall: autoInstall == freezed
-          ? _value.autoInstall
-          : autoInstall // ignore: cast_nullable_to_non_nullable
-              as bool,
       error: error == freezed
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -170,7 +159,6 @@ abstract class _$UpdateStatusCopyWith<$Res>
       String fileName,
       DownloadStatus downloadStatus,
       int progress,
-      bool autoInstall,
       String error,
       String patchNotes,
       String command});
@@ -193,7 +181,6 @@ class __$UpdateStatusCopyWithImpl<$Res> extends _$UpdateStatusCopyWithImpl<$Res>
     Object? fileName = freezed,
     Object? downloadStatus = freezed,
     Object? progress = freezed,
-    Object? autoInstall = freezed,
     Object? error = freezed,
     Object? patchNotes = freezed,
     Object? command = freezed,
@@ -219,10 +206,6 @@ class __$UpdateStatusCopyWithImpl<$Res> extends _$UpdateStatusCopyWithImpl<$Res>
           ? _value.progress
           : progress // ignore: cast_nullable_to_non_nullable
               as int,
-      autoInstall: autoInstall == freezed
-          ? _value.autoInstall
-          : autoInstall // ignore: cast_nullable_to_non_nullable
-              as bool,
       error: error == freezed
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -248,7 +231,6 @@ class _$_UpdateStatus implements _UpdateStatus {
       this.fileName = "",
       this.downloadStatus = DownloadStatus.idle,
       this.progress = 0,
-      this.autoInstall = true,
       this.error = "",
       this.patchNotes = "",
       this.command = ""});
@@ -281,11 +263,6 @@ class _$_UpdateStatus implements _UpdateStatus {
   @JsonKey()
   @override
 
-  /// If false, the user has to manually download and install the update.
-  final bool autoInstall;
-  @JsonKey()
-  @override
-
   /// The error message if [downloadStatus] is [DownloadStatus.error].
   final String error;
   @JsonKey()
@@ -301,7 +278,7 @@ class _$_UpdateStatus implements _UpdateStatus {
 
   @override
   String toString() {
-    return 'UpdateStatus(updateAvailable: $updateAvailable, latestVersionName: $latestVersionName, fileName: $fileName, downloadStatus: $downloadStatus, progress: $progress, autoInstall: $autoInstall, error: $error, patchNotes: $patchNotes, command: $command)';
+    return 'UpdateStatus(updateAvailable: $updateAvailable, latestVersionName: $latestVersionName, fileName: $fileName, downloadStatus: $downloadStatus, progress: $progress, error: $error, patchNotes: $patchNotes, command: $command)';
   }
 
   @override
@@ -317,8 +294,6 @@ class _$_UpdateStatus implements _UpdateStatus {
             const DeepCollectionEquality()
                 .equals(other.downloadStatus, downloadStatus) &&
             const DeepCollectionEquality().equals(other.progress, progress) &&
-            const DeepCollectionEquality()
-                .equals(other.autoInstall, autoInstall) &&
             const DeepCollectionEquality().equals(other.error, error) &&
             const DeepCollectionEquality()
                 .equals(other.patchNotes, patchNotes) &&
@@ -333,7 +308,6 @@ class _$_UpdateStatus implements _UpdateStatus {
       const DeepCollectionEquality().hash(fileName),
       const DeepCollectionEquality().hash(downloadStatus),
       const DeepCollectionEquality().hash(progress),
-      const DeepCollectionEquality().hash(autoInstall),
       const DeepCollectionEquality().hash(error),
       const DeepCollectionEquality().hash(patchNotes),
       const DeepCollectionEquality().hash(command));
@@ -351,7 +325,6 @@ abstract class _UpdateStatus implements UpdateStatus {
       String fileName,
       DownloadStatus downloadStatus,
       int progress,
-      bool autoInstall,
       String error,
       String patchNotes,
       String command}) = _$_UpdateStatus;
@@ -376,10 +349,6 @@ abstract class _UpdateStatus implements UpdateStatus {
 
   /// The progress of the download in percent (0-100) if [downloadStatus] is [DownloadStatus.downloading].
   int get progress;
-  @override
-
-  /// If false, the user has to manually download and install the update.
-  bool get autoInstall;
   @override
 
   /// The error message if [downloadStatus] is [DownloadStatus.error].

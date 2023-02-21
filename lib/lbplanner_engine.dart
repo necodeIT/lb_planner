@@ -73,6 +73,7 @@ part 'services/updater/dmg_updater_service.dart';
 part 'services/updater/aur_updater_service.dart';
 part 'services/updater/aur_git_updater_service.dart';
 part 'services/updater/exe_updater_service.dart';
+part 'services/updater/self_compiled_updater_service.dart';
 
 // Providers
 
@@ -120,3 +121,6 @@ part 'disk/disk.dart';
 
 /// The rate with which the api refreshes underlying data
 const kApiRefreshRate = Duration(seconds: 10);
+
+/// Specifies how the app was installed and how it should be updated.
+final kSetupType = SetupTypeFromString.fromEnvironment();

@@ -7,8 +7,6 @@ part 'update_status.freezed.dart';
 
 /// Contains information about the latest update and the download and installation status.
 class UpdateStatus with _$UpdateStatus {
-  const UpdateStatus._();
-
   /// Contains information about the latest update and the download and installation status.
   factory UpdateStatus({
     /// If true, an update is available.
