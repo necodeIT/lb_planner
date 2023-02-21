@@ -14,8 +14,10 @@ export 'models/statistics/statistics.dart';
 export 'models/feedback/feedback.dart';
 export 'models/deadline/deadline.dart';
 export 'models/updater/version.dart';
+export 'models/updater/update.dart';
 
 // Dart imports:
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'dart:ui';
@@ -40,6 +42,7 @@ import 'models/user/user.dart';
 import 'models/deadline/deadline.dart';
 import 'models/invite/invite.dart';
 import 'models/updater/version.dart';
+import 'models/updater/update.dart';
 
 // Models
 
@@ -55,6 +58,7 @@ part 'models/invite/invite_status.dart';
 part 'models/feedback/feedback_types.dart';
 part 'models/feedback/feedback_status.dart';
 part 'models/updater/setup_type.dart';
+part 'models/updater/download_status.dart';
 
 // Services
 

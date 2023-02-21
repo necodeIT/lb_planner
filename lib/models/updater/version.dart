@@ -48,6 +48,32 @@ class Version with _$Version {
 
   /// Version from json
   factory Version.fromJson(Map<String, dynamic> json) => _$VersionFromJson(json);
+
+  @override
+  String toString() => "$majorVersion.$minorVersion.$patchVersion";
+
+  /// Checks if [this] version is lower than or equal to [other] version.
+  bool operator <=(Version other) => majorVersion <= other.majorVersion && minorVersion <= other.minorVersion && patchVersion <= other.patchVersion;
+
+  /// Checks if [this] version is higher than or equal to [other] version.
+  bool operator >=(Version other) => majorVersion >= other.majorVersion && minorVersion >= other.minorVersion && patchVersion >= other.patchVersion;
+
+  /// Checks if [this] version is lower than [other] version.
+  bool operator <(Version other) => majorVersion < other.majorVersion && minorVersion < other.minorVersion && patchVersion < other.patchVersion;
+
+  /// Checks if [this] version is higher than [other] version.
+  bool operator >(Version other) => majorVersion > other.majorVersion && minorVersion > other.minorVersion && patchVersion > other.patchVersion;
+
+  @override
+  operator ==(other) {
+    if (other is! Version) return false;
+
+    return majorVersion == other.majorVersion && minorVersion == other.minorVersion && patchVersion == other.patchVersion;
+  }
+
+  @override
+  // TODO: implement hashCode
+  int get hashCode => super.hashCode;
 }
 
 Version _VersionFromString(String version) {

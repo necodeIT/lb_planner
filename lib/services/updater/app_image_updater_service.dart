@@ -1,4 +1,4 @@
 part of lbplanner_engine;
 
 /// Service for updating the app from an AppImage.
-class AppImageUpdaterService implements UpdaterService {}
+class AppImageUpdaterService extends UpdaterService {}
