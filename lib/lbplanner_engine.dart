@@ -87,6 +87,7 @@ part 'providers/users_provider.dart';
 part 'providers/invites_provider.dart';
 part 'providers/plan_provider.dart';
 part 'providers/internet_provider.dart';
+part 'providers/update_provider.dart';
 
 // Api
 
