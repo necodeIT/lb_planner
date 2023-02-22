@@ -147,7 +147,7 @@ abstract class UpdaterService {
     if (status.downloadStatus == DownloadStatus.error) return;
     
     await for (status in install(status)){
-      yield status
+      yield status;
     }
   }
 
