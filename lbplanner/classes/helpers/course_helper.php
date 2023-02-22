@@ -69,12 +69,18 @@ class course_helper {
      * Get all the courses of the user
      * @param int userid The id of the user
      *
-     * @return
+     * @return array of EnrollIds
      */
     public static function get_enrollments(int $userid) {
         global $DB;
+        $enrollments = array();
         $records = $DB->get_records(self::USER_ENROL_TABLE, array ('userid' => $userid));
-        return $records;
+        foreach ($records as $record) {
+            if (in_array($record->enrolid, $enrollments) === false) {
+                $enrollments[] = $record->enrolid;
+            }
+        }
+        return $enrollments;
     }
 
     /**
@@ -148,5 +154,22 @@ class course_helper {
     public static function get_fullname($courseid) {
         global $DB;
         return $DB->get_record(self::COURSE_TABLE, array('id' => $courseid), '*', MUST_EXIST)->fullname;
+    }
+    /**
+     * Check if the course is from the current year
+     *
+     * @param int $courseid the course id
+     * @return bool true if the course is from the current year
+     */
+    public static function check_current_year($courseid) {
+        if (strpos(self::get_fullname($courseid), self::get_current_year()) !== false) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public static function get_courseid($enrolmentid) {
+        global $DB;
+        return $DB->get_record(self::ENROL_TABLE, array('id' => $enrolmentid), '*', MUST_EXIST)->courseid;
     }
 }

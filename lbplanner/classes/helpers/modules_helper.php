@@ -16,6 +16,7 @@
 
 namespace local_lbplanner\helpers;
 
+use block_accessreview\external\get_module_data;
 use external_function_parameters;
 use external_single_structure;
 use external_value;
