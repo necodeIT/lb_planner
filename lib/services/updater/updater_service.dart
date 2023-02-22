@@ -12,7 +12,7 @@ abstract class UpdaterService {
   static const String repoApiUrl = "https://api.github.com/repos/$repoOwner/$repoName";
 
   /// The current version of the app.
-  static const Version currentVersion = Version(majorVersion: 0, minorVersion: 0, patchVersion: 3);
+  static const Version currentVersion = Version(majorVersion: 0, minorVersion: 0, patchVersion: 0);
 
   /// The current version prefix of the app.
   static final String currentVersionName = "Open Beta v$currentVersion";
