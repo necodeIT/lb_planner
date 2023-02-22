@@ -26,53 +26,67 @@ class UpdateRoute extends StatefulWidget {
 }
 
 class _UpdateRouteState extends State<UpdateRoute> {
-  // @override
-  // initState() {
-  //   super.initState();
-
-  //   IRefreshable.pauseAll();
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Consumer(
       builder: (context, ref, _) {
-        var updater = ref.watch(updaterProvider);
+        var updater = ref.watch(updateController);
+        var update = ref.watch(updateProvider);
+
+        if (update.command.isNotEmpty) {
+          lpShowAlertDialog(
+            context,
+            title: t.update_dialog_title,
+            body: Column(
+              children: [
+                NcBodyText(kSetupType.canAutoUpdate ? t.update_dialog_helpNeeded : t.update_dialog_noAutoUpdate),
+                NcSpacing.large(),
+                LpTextField.filled(
+                  controller: TextEditingController(text: update.command),
+                  readOnly: true,
+                  suffix: IconButton(
+                    color: accentColor,
+                    onPressed: () => Clipboard.setData(ClipboardData(text: update.command)),
+                    icon: LpIcon(Icons.copy),
+                  ),
+                ),
+              ],
+            ),
+          );
+        }
 
         return Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(
-              width: UpdateRoute.loaderSize,
-              height: UpdateRoute.loaderSize,
-              child: Stack(
-                children: [
-                  if (updater.status.isIdle || updater.status.isDownloading) Center(child: LpLogo()),
-                  if (updater.status.isDone || updater.status.isDownloading)
-                    LpLoadingIndicator.circular(
-                      size: UpdateRoute.loaderSize,
-                      thickness: UpdateRoute.loaderThickness,
-                      // ignore: no-magic-number
-                      progress: updater.status.isDone ? null : updater.progress / 100,
-                    ),
-                  if (updater.status.isDone)
-                    Center(
-                      child: NcCaptionText(
-                        t.update_launching,
-                        fontSize: UpdateRoute.fontSize,
-                      ),
-                    ),
-                ],
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    NcVectorImage(code: kAppIcon),
+                    NcSpacing.small(),
+                    NcBodyText(update.latestVersionName),
+                  ],
+                ),
+                if (update.downloadStatus == DownloadStatus.idle)
+                  LpButton(
+                    onPressed: updater.upgrade,
+                    child: NcBodyText(t.update_btn),
+                  ),
+                if (update.downloadStatus == DownloadStatus.downlaoding)
+                  NcBodyText(
+                    t.update_downloading(update.fileName, update.progress),
+                  ),
+              ],
             ),
-            if (updater.status.isIdle)
-              SizedBox(
-                width: UpdateRoute.loaderSize,
-                child: LpButton(
-                  text: t.update_btn(updater.latestVersionName),
-                  onPressed: () => updater.upgrade(() {}),
+            NcSpacing.large(),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Markdown(
+                  data: update.patchNotes,
                 ),
               ),
+            ),
           ],
         );
       },

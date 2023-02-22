@@ -391,6 +391,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.2"
+  flutter_markdown:
+    dependency: "direct main"
+    description:
+      name: flutter_markdown
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.6.14"
   flutter_riverpod:
     dependency: "direct main"
     description:
@@ -524,8 +531,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: engine
-      resolved-ref: "8e3dfc0be6ac73d04b9d0176867120fd12d52c75"
+      ref: lb-35-Adapt-updater-to-different-installation-types-engine
+      resolved-ref: c32586efd21125d207229325b7171124b50406a3
       url: "https://github.com/necodeIT/lb_planner.git"
     source: git
     version: "0.0.1"
@@ -550,6 +557,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "5.3.0"
+  markdown:
+    dependency: transitive
+    description:
+      name: markdown
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "7.0.1"
   matcher:
     dependency: transitive
     description:

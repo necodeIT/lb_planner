@@ -44,6 +44,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_localized_locales: ^2.0.3
+  flutter_markdown: ^0.6.14
   flutter_riverpod: ^1.0.3
   flutter_sticky_header: ^0.6.1
   flutter_vector_icons: ^1.0.0
@@ -52,7 +53,7 @@ dependencies:
   lbplanner_engine:
     git:
       url: https://github.com/necodeIT/lb_planner.git
-      ref: engine
+      ref: lb-35-Adapt-updater-to-different-installation-types-engine
   nekolib_ui:
     git:
       url: https://github.com/necodeIT/nekolib.git
@@ -84,7 +85,6 @@ dependency_overrides:
   # uncomment to test
   # nekolib_ui:
   #   path: ../nekolib/ui
-
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter.

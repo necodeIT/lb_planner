@@ -23,6 +23,7 @@ class LpTextField extends StatefulWidget {
     this.onCancel,
     this.onUnfocus,
     this.textAlign = TextAlign.start,
+    this.readOnly = false,
   }) : super(key: key) {
     filled = false;
     multiline = false;
@@ -52,10 +53,14 @@ class LpTextField extends StatefulWidget {
     Color? fillColor,
     this.onUnfocus,
     this.textAlign = TextAlign.start,
+    this.readOnly = false,
   }) : super(key: key) {
     filled = true;
     this.fillColor = fillColor ?? secondaryColor;
   }
+
+  /// Whether the [TextField] is read only.
+  final bool readOnly;
 
   /// The controller of the [TextField].
   final TextEditingController? controller;
@@ -172,6 +177,7 @@ class _LpTextFieldState extends State<LpTextField> {
         }
       },
       child: TextField(
+        readOnly: widget.readOnly,
         autofocus: widget.autoFocus,
         obscureText: widget.obscureText,
         onSubmitted: widget.onSubmitted,
