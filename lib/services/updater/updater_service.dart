@@ -120,7 +120,7 @@ abstract class UpdaterService {
   /// Returns [status] with [DownloadStatus.error] if the file does not exist.
   ///
   /// Returns [status] if the file exists.
-  UpdateStatus checkFile(UpdateStatus status) async {
+  Future<UpdateStatus> checkFile(UpdateStatus status) async {
     var file = await getInstallerFile();
 
     if (status.downloadStatus == DownloadStatus.error || !file.existsSync()) return status.copyWith(downloadStatus: DownloadStatus.error, error: "Failed to download file.");
