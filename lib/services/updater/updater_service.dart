@@ -155,7 +155,7 @@ abstract class UpdaterService {
 
     if (status.downloadStatus == DownloadStatus.error) return;
 
-    yield status.copyWith(downloadStatus: DownloadStatus.installing);
+    yield status = status.copyWith(downloadStatus: DownloadStatus.installing);
 
     var f = await getInstallerFile();
 
