@@ -115,13 +115,13 @@ abstract class UpdaterService {
     yield status.copyWith(downloadStatus: DownloadStatus.installing);
   }
 
-  /// Checks if the file specified in [status] exists.
+  /// Checks if hte installer file downloaded via [download] exists.
   ///
   /// Returns [status] with [DownloadStatus.error] if the file does not exist.
   ///
   /// Returns [status] if the file exists.
-  UpdateStatus checkFile(UpdateStatus status) {
-    var file = File(status.fileName);
+  UpdateStatus checkFile(UpdateStatus status) async {
+    var file = await getInstallerFile();
 
     if (status.downloadStatus == DownloadStatus.error || !file.existsSync()) return status.copyWith(downloadStatus: DownloadStatus.error, error: "Failed to download file.");
 
@@ -142,7 +142,7 @@ abstract class UpdaterService {
 
     if (status.downloadStatus == DownloadStatus.error) return;
 
-    yield status = checkFile(status);
+    yield status = await checkFile(status);
 
     if (status.downloadStatus == DownloadStatus.error) return;
   }
@@ -151,7 +151,7 @@ abstract class UpdaterService {
   ///
   /// Overwrite this method to implement your own installation logic.
   Stream<UpdateStatus> install(UpdateStatus status) async* {
-    yield status = checkFile(status);
+    yield status = await checkFile(status);
 
     if (status.downloadStatus == DownloadStatus.error) return;
 
