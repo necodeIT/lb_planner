@@ -136,7 +136,7 @@ abstract class UpdaterService {
 
     var status = info.toUpdateStatus();
 
-    await for (var status in download(info)) {
+    await for (status in download(info)) {
       yield status;
     }
 
@@ -145,6 +145,10 @@ abstract class UpdaterService {
     yield status = await checkFile(status);
 
     if (status.downloadStatus == DownloadStatus.error) return;
+    
+    await for (status in install(status)){
+      yield status
+    }
   }
 
   /// Installs the update (called by [upgrade] unless [upgrade] was overwridden).
