@@ -58,7 +58,7 @@ class RouteWrapper extends StatelessWidget {
       initGuard(ref);
       var connected = ref.watch(internetProvider);
       var user = ref.watch(userProvider);
-      var update = ref.watch(updateProvider);
+      var update = ref.watch(updateProvider).copyWith(updateAvailable: true);
 
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (connected && currentRoute == OfflineRoute.info) (_cachedOnlineRoute ?? DashboardRoute.info).push(context, params: _cachedOnlineRouteArgs?.args);

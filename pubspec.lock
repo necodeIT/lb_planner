@@ -532,7 +532,7 @@ packages:
     description:
       path: "."
       ref: lb-35-Adapt-updater-to-different-installation-types-engine
-      resolved-ref: c32586efd21125d207229325b7171124b50406a3
+      resolved-ref: c6803702bc6052b4429b6cf9829db5edf4bb35be
       url: "https://github.com/necodeIT/lb_planner.git"
     source: git
     version: "0.0.1"
