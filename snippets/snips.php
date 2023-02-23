@@ -1,27 +1,37 @@
 <?php
 	require_once(root.'/CONSTANTS.php');
 	
+	ini_set('session.gc-maxlifetime',31536000);
+	ini_set('session.cookie_lifetime',31536000);
+	session_start();
+	
 	function genExtRef($text,$href){
 		echo "<a class='extref btn' href='$href'><span>$text </span>";
 		include("./resources/extref.svg");
 		echo '</a>';
 	}
 	function setContext(){
-		global $contextURLParams;
 		_setContext_helper('theme',array('light','dark','ocean','sakura'));
 		_setLangContext();
 		_setOSContext();
-		$contextURLParams = genContextURLParams();
+		foreach(array('os','lang','theme') as $pref){
+			$_SESSION['pref_'.$pref] = $GLOBALS['context_'.$pref];
+		}
 	}
 	function _setContext_helper($varname,$varvals){
 		$globalname = 'context_'.$varname;
+		$prefname = 'pref_'.$varname;
+		
 		if(array_key_exists($globalname,$GLOBALS)){
 			;
-		}else if(!array_key_exists($varname,$_GET)){
-			$GLOBALS[$globalname]=$varvals[0];
+		}else if(array_key_exists($varname,$_GET)){
+			$GLOBALS[$globalname]=$_GET[$varname];
+		}else if(array_key_exists($prefname,$_SESSION)){
+			$GLOBALS[$globalname]=$_SESSION[$prefname];
 			return;
 		}else{
-			$GLOBALS[$globalname]=$_GET[$varname];
+			$GLOBALS[$globalname]=$varvals[0];
+			return;
 		}
 		//checking if value is valid and setting to default if not
 		if(!in_array($GLOBALS[$globalname],$varvals)){
@@ -40,6 +50,7 @@
 		}else{
 			array_push($osarr,'windows');
 		}
+		
 		$osarr+=supported_systems;
 		
 		_setContext_helper('os',$osarr);
@@ -63,11 +74,6 @@
 		}
 		//context helper 😊
 		_setContext_helper('lang',$accepted);
-	}
-	/* generates URL parameters that correspond with the current context */
-	function genContextURLParams(){
-		global $context_theme,$context_lang,$context_os;
-		return "theme=$context_theme&lang=$context_lang&os=$context_os";
 	}
 	/**
 	 * Helper function to escape text for attributes

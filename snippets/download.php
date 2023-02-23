@@ -8,18 +8,13 @@
 		}else{
 			$current = '';
 		}
-		$_tmp = $context_theme;
-		$context_theme = $theme;
-		echo "<a class='card$current' href='./?";
-			echo genContextURLParams();
-			echo '\'>';
+		echo "<a class='card$current' href='./?theme=$theme'>";
 			include(root."/resources/theme-$theme.svg");
 			EDS('theme_'.$theme);
 		echo '</a>';
-		$context_theme = $_tmp;
 	}
 	function genLearnCard($name,$i,$sectionid,$headingid){
-		echo '<a class="card learn" href="'.urlroot.'/docs/?'.genContextURLParams()."&section=$sectionid&heading=$headingid\">";
+		echo '<a class="card learn" href="'.urlroot."/docs/?&section=$sectionid&heading=$headingid\">";
 			include(root."/resources/feature_$name.svg");
 			echo '<h4>'.GDS('title_learn'.$i).'</h4>'.
 				'<p>'.GDS('p_learn'.$i).'</p>'.

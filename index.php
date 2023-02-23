@@ -21,8 +21,8 @@
 			<span>
 				<?php
 					genDownloadButton($context_os);
-					genExtRef(GDS('lnk_docs'),urlroot.'/docs/?'.genContextURLParams());
-					#genExtRef(GDS('lnk_admin'),urlroot.'/docs/?'.genContextURLParams().'#admin');
+					genExtRef(GDS('lnk_docs'),urlroot.'/docs/');
+					#genExtRef(GDS('lnk_admin'),urlroot.'/docs/#admin');
 				?>
 			</span>
 			<img class="card" src="<?=urlroot?>/resources/example_cal.png" alt="example screenshot"/>

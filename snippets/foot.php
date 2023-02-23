@@ -15,11 +15,8 @@
 			}else{
 				$class = '';
 			}
-			$_tmp = $context_lang;
-			$context_lang = $lang;
 			$upperlang = strtoupper($lang);
-			echo "<a id='lang-$lang'$class href='./?".genContextURLParams()."'>$upperlang</a>";
-			$context_lang = $_tmp;
+			echo "<a id='lang-$lang'$class href='./?lang=$lang'>$upperlang</a>";
 		}
 	?>
 </footer>
