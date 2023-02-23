@@ -1,0 +1,72 @@
+# Push lbplanner-app from lb_planner app branch
+
+name: Push to organization repos
+on:
+  push:
+    branches:
+      - app
+  workflow_dispatch:
+
+
+jobs:
+  push-to-app-repo:
+    name: Push to lbplanner-app repo from app branch
+    runs-on: ubuntu-latest
+    steps:
+    - run: mv lb_planner /home/runner/work/lb_planner/lb_planner
+    - uses: cpina/github-action-push-to-another-repository@main
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      with:
+        source-directory: '/home/runner/work/lb_planner/'
+        destination-github-username: 'officialbishowb'
+        destination-repository-name: 'test_repo'
+        user-email: officialbishowb@gmail.com
+        target-branch: main
+        commit-message: 'Push from lb_planner app branch'
+
+  # # Push to lbplanner-moodle repo from moodle branch
+  # - name: Push to lbplanner-moodle repo from moodle branch
+  #   uses: cpina/github-action-push-to-another-repository@main
+  #   env:
+  #     API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+  #   with:
+  #       source-directory: 'lb_planner'
+  #       destination-github-username: 'TGM-HIT'
+  #       destination-repository-name: 'lbplanner-moodle'
+  #       user-email: officialbishowb@gmail.com
+  #       target-branch: main
+  #       source-branch: moodle
+
+# name: Push to organization repos
+# on:
+#   push:
+#     branches:
+#       - app
+#       - moodle
+
+# workflow_dispatch:
+# jobs:
+#   push-to-app-repo:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v2
+#       - name: Push to app repo
+#         uses: ad-m/github-push-action@master
+#         with:
+#           branch: app
+#           github_token: ${{ secrets.GITHUB_TOKEN }}
+#           repository: TGM-HIT/lbplanner-app
+          
+#   push-to-moodle-repo:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v2
+#       - name: Push to moodle repo
+#         uses: ad-m/github-push-action@master
+#         with:
+#           branch: moodle
+#           github_token: ${{ secrets.GITHUB_TOKEN }}
+#           repository: TGM-HIT/lbplanner-moodle
