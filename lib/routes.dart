@@ -5,6 +5,7 @@ import 'dart:math';
 import 'package:animations/animations.dart';
 import 'package:badges/badges.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:catcher/catcher.dart';
 import 'package:context_menus/context_menus.dart';
 import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flutter/foundation.dart';

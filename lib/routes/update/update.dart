@@ -30,14 +30,13 @@ class _UpdateRouteState extends State<UpdateRoute> {
         var updater = ref.watch(updateController);
         var update = ref.watch(updateProvider);
 
-        update = update;
-
-        if (update.command.isNotEmpty) {
+        void showCommand() {
           WidgetsBinding.instance.addPostFrameCallback((_) {
             lpShowAlertDialog(
               context,
               title: t.update_dialog_title,
               body: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   NcBodyText(
                     kSetupType.canAutoUpdate ? t.update_dialog_helpNeeded : t.update_dialog_noAutoUpdate,
@@ -49,6 +48,14 @@ class _UpdateRouteState extends State<UpdateRoute> {
               ),
             );
           });
+        }
+
+        if (update.command.isNotEmpty) {
+          showCommand();
+        }
+
+        if (update.downloadStatus == DownloadStatus.error) {
+          Catcher.reportCheckedError(kUpdateErrorKeyword + update.error, StackTrace.current);
         }
 
         // TODO: show error message if update failed
@@ -133,6 +140,11 @@ plangore regna cupressus et thalami neque inculpata.
                       onPressed: updater.upgrade,
                       text: t.update_btn,
                     ),
+                  if (update.downloadStatus == DownloadStatus.error)
+                    LpButton(
+                      onPressed: updater.upgrade,
+                      text: t.update_btnErr,
+                    ),
                   if (update.downloadStatus == DownloadStatus.downlaoding)
                     Row(
                       children: [
@@ -143,7 +155,8 @@ plangore regna cupressus et thalami neque inculpata.
                         LpLoadingIndicator.circular(),
                       ],
                     ),
-                  if (update.downloadStatus == DownloadStatus.installing) NcBodyText(t.update_installing),
+                  if (update.downloadStatus == DownloadStatus.installing && update.command.isEmpty) NcBodyText(t.update_installing),
+                  if (update.downloadStatus == DownloadStatus.installing && update.command.isNotEmpty) LpButton(onPressed: showCommand, text: t.update_btnInstall),
                 ],
               ),
               NcSpacing.large(),
