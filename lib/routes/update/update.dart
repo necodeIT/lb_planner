@@ -58,8 +58,6 @@ class _UpdateRouteState extends State<UpdateRoute> {
           Catcher.reportCheckedError(kUpdateErrorKeyword + update.error, StackTrace.current);
         }
 
-        // TODO: show error message if update failed
-
         // ! Testing only
         update = update.copyWith(updateAvailable: true, patchNotes: '''
 # Tollere bacis
