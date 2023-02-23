@@ -3,7 +3,7 @@ part of lbplanner_engine;
 /// Service for updating the app, when packed in an AppImage.
 class AppImageUpdaterService extends UpdaterService {
   @override
-  get installerFileName => "LB.Planner.AppImage";
+  get installerFileName => "LB.Planner-x86_64.AppImage";
 
   @override
   install(status) async* {
