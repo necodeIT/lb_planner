@@ -2,12 +2,10 @@
 
 name: Push to organization repos
 on:
-  push:
-    branches:
-      - app
+  release:
+    types: [published]
+    branches: ['app']
   workflow_dispatch:
-
-
 jobs:
   push-to-app-repo:
     name: Push to lbplanner-app repo from app branch
