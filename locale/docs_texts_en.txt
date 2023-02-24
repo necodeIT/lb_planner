@@ -66,3 +66,4 @@
 62,0,LB Planner is detected as malware because we cannot sign the application. Singing an application can cost up to 500€ per year\, which is too expensive for a non-profit project. However\, you can trust us to not have any malware included in our softwa
 62,1,re 😉. If you don't\, you can check out the source code on !lnk[https://github.com/necodeIT/lb_planner|GitHub].<br><br>To install LB Planner regardless\, please follow these steps below:<br><br><b>On Windows</b><ol><li>Open <i>LB.Planner.Setup.exe
 62,2,</i></li><li>Click on <i>More info</i>!img[Windows protected your PC|windows_virus_message_en]</li><li>Click on <i>Run anyway</i>!img[Run anyway|windows_virus_message_run_en]</li></ol>
+62,3,<br><br><b>On macOS</b><br>On macOS the app can be installed but not opened. Please follow !lnk[the guide from Apple|https://support.apple.com/guide/mac-help/open-a-mac-app-from-an-unidentified-developer-mh40616/mac] to open the app.
