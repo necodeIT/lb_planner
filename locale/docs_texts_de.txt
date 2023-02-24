@@ -67,4 +67,4 @@
 62,1,rauen\, dass wir keine Schadsoftware in unsere App einbauen 😉. Wenn du dich dessen vergewissern möchtest kannst du dir gerne den Source Code auf !lnk[https://github.com/necodeIT/lb_planner|GitHub] anschauen.
 62,2,<br><br>Um die App trotz der Warnungen zu installieren folge bitte folgenden Schritten:<br><br><b>Für Windows</b><ol><li>Öffne die <i>LB.Planner.Setup.exe</i> Datei</li><li>Klicke auf <i>Weitere Informationen</i>
 62,3,!img[Der Computer wurde durch Windows geschützt|windows_virus_message_de]</li><li>Klicke auf <i>Trotzdem ausführen</i>!img[Trotzdem ausführen|windows_virus_message_run_de]</li></ol><br><br><b>Für macOS</b><br> Bei macOS lässt sich die App zwar 
-62,4,installieren\, jedoch nicht öffnen. Um dieses Problem zu beheben folge bitte !lnk[der Anleitung von Apple|https://support.apple.com/guide/mac-help/open-a-mac-app-from-an-unidentified-developer-mh40616/mac].
+62,4,installieren\, jedoch nicht öffnen. Um dieses Problem zu beheben folge bitte !lnk[https://support.apple.com/guide/mac-help/open-a-mac-app-from-an-unidentified-developer-mh40616/mac|der Anleitung von Apple].
