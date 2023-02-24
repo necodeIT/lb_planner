@@ -4,6 +4,6 @@
     ],
     "dart.flutterRunAdditionalArgs": [
         "--no-sound-null-safety",
-        "--dart-define=LB_PLANNER_SETUP_TYPE=exe"
+        "--dart-define=LB_PLANNER_SETUP_TYPE=appimage"
     ],
 }

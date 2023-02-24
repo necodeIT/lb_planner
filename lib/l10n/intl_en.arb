@@ -255,6 +255,8 @@
   "tba_caption": "This section is still under development.",
   "tba_title": "TBA",
   "update_btn": "Update",
+  "update_btnErr": "Retry",
+  "update_btnInstall": "Install",
   "update_downloading": "Downloading {filename} ({progress}%)",
   "update_dialog_noAutoUpdate": "LB Planner cannot be updated automatically on this platform. Please run the command below to update.",
   "update_dialog_helpNeeded": "LB Planner needs manual intervention to update. Please run the command below to complete the update.",
