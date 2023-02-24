@@ -27,4 +27,4 @@ If you would like to contribute to the project, please feel free to contact us a
 
 ## License
 
-LB Planner is licensed under the [MIT License](https://github.com/necodeIT/lb_planner/blob/app/LICENSE.md).
+LB Planner is licensed under the [Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)](https://creativecommons.org/licenses/by-sa/4.0/) license.
