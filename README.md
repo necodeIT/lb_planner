@@ -18,10 +18,10 @@ Note: LB Planner uses `--no-sound-null-safety` because some of the third-party p
 ## Contributors
 LB Planner was created by [McQuenji](https://github.com/bmceachnie), [Muhi](https://github.com/mkocagoel), [Riedler](https://github.com/RiedleroD), [Bishow B](https://github.com/officialbishowb) and [Can Polat](https://github.com/cpolat-tgm). We would like to extend our appreciation to the following external contributors for their contributions to the project:
 
-- [Blobi blob](https://github.com/Blobii): for helping with the design
-- [jszuecs-tgm](https://github.com/Jszuecs): for helping with documentation on the website
-- [sproshut](https://github.com/sproshut): for "Workflow for automated build" ([#11](https://github.com/necodeIT/lb_planner/pull/11))
-- [melli736](https://github.com/melli736): for helping with macOS testing & development
+- [Blobi blob](https://github.com/Blobii) for helping with the design
+- [jszuecs-tgm](https://github.com/Jszuecs) for helping with documentation on the website
+- [sproshut](https://github.com/sproshut) for "Workflow for automated build" ([#11](https://github.com/necodeIT/lb_planner/pull/11))
+- [melli736](https://github.com/melli736) for helping with macOS testing & development
 
 If you would like to contribute to the project, please feel free to contact us at lb-planner@tgm.ac.at or create a pull request.
 
