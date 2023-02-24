@@ -106,6 +106,9 @@ In pulvere saepe exanimesque fortisque bibulis vos obsedit, elementa aeterna
 caerulus. Lumina Circaea illas, cum sub motus: excepit quam mandasset peremptam
 pedum, non latet rursusque adspexit pars Salamis. Aduncos inmisit involvitur
 plangore regna cupressus et thalami neque inculpata.
+
+- [ ] test
+- [x] test
 ''');
 
         return Padding(
@@ -164,6 +167,9 @@ plangore regna cupressus et thalami neque inculpata.
 
                     launchUrl(Uri.parse(href));
                   },
+                  checkboxBuilder: (checked) => LpCheckbox(
+                    value: checked,
+                  ),
                 ),
               ),
             ],
