@@ -64,6 +64,9 @@ dependencies:
       url: https://github.com/necodeIT/nekolib.git
       ref: flutter3
       path: utils
+  flutter_single_instance:
+    git:
+      url: https://github.com/necodeIT/flutter_single_instance.git
   nima: ^1.0.5
   rive: ^0.8.4
   shimmer: ^2.0.0
