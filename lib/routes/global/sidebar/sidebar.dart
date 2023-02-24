@@ -79,7 +79,8 @@ class Sidebar extends StatelessWidget {
                             icon: Icons.settings,
                             route: SettingsRoute.info,
                             routes: [
-                              SettingsGeneralCreditsRoute.info,
+                              SettingsGeneralAboutRoute.info,
+                              SettingsGeneralLicenseRoute.info,
                             ],
                           ),
                           NcSpacing.small(),

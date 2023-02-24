@@ -104,26 +104,7 @@ class _UpdateRouteState extends State<UpdateRoute> {
               ),
               NcSpacing.large(),
               Expanded(
-                child: Markdown(
-                  data: update.patchNotes,
-                  styleSheet: MarkdownStyleSheet.fromTheme(
-                    Theme.of(context),
-                  ).copyWith(
-                    blockquoteDecoration: BoxDecoration(
-                      color: primaryColor,
-                      borderRadius: BorderRadius.circular(kRadius),
-                    ),
-                    a: TextStyle(color: accentColor),
-                  ),
-                  onTapLink: (text, href, title) {
-                    if (href == null) return;
-
-                    launchUrl(Uri.parse(href));
-                  },
-                  checkboxBuilder: (checked) => LpCheckbox(
-                    value: checked,
-                  ),
-                ),
+                child: LpMarkdown(update.patchNotes),
               ),
             ],
           ),
