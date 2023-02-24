@@ -403,7 +403,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "43df7b78161549de2d766bb777e1e2780f132380"
+      resolved-ref: "97cec86fc4ab11bd4d5cb980be7677dbc837c7c6"
       url: "https://github.com/necodeIT/flutter_single_instance.git"
     source: git
     version: "0.0.1"

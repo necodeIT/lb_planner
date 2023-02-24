@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:catcher/catcher.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +26,10 @@ void main() async {
   Logger.init(autoSave: true, appStoragePath: (await Disk.appDir).path);
   await Logger.logFile; // I don't know why, but the log file is otherwise not created.
 
+  FlutterSingleInstancePlatform.debugMode = false;
+
   if (await FlutterSingleInstancePlatform.instance.isFirstInstance('lb_planner')) {
+    log("Starting app...");
     // Randomly selected outside of build for consistency of the animtion when applying the theme
     var animation = (kLoadingAnimations.toList()..shuffle()).first;
 
