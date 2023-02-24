@@ -180,11 +180,16 @@ class _UserNotificationsItemState extends State<UserNotificationsItem> {
 
             text = t.user_notifications_userRegistered_text(user.firstname);
 
+            var userTheme = NcThemes.current.name == sakuraTheme.name ? "sakura" : NcThemes.current.name.toLowerCase();
+
+            var userLang = user.language.isEn ? 'en' : 'de';
+            var urlToLaunch = 'https://projekte.tgm.ac.at/lb-planner/docs/?theme=$userTheme&lang=$userLang&section=0&heading=2';
+
             actions = [
               _Action(
-                text: t.user_notifications_userRegistered_docs,
-                onPressed: () {},
-              ),
+                  text: t.user_notifications_userRegistered_docs,
+                  // When pressed, open the docs in a browser
+                  onPressed: () => launchUrl(Uri.parse(urlToLaunch))),
             ];
 
             break;
