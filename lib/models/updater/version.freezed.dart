@@ -160,31 +160,6 @@ class _$_Version extends _Version {
   /// Patch version number
   final int patchVersion;
 
-  @override
-  String toString() {
-    return 'Version(majorVersion: $majorVersion, minorVersion: $minorVersion, patchVersion: $patchVersion)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _Version &&
-            const DeepCollectionEquality()
-                .equals(other.majorVersion, majorVersion) &&
-            const DeepCollectionEquality()
-                .equals(other.minorVersion, minorVersion) &&
-            const DeepCollectionEquality()
-                .equals(other.patchVersion, patchVersion));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(majorVersion),
-      const DeepCollectionEquality().hash(minorVersion),
-      const DeepCollectionEquality().hash(patchVersion));
-
   @JsonKey(ignore: true)
   @override
   _$VersionCopyWith<_Version> get copyWith =>

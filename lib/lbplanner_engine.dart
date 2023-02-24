@@ -13,9 +13,12 @@ export 'models/course/course.dart';
 export 'models/statistics/statistics.dart';
 export 'models/feedback/feedback.dart';
 export 'models/deadline/deadline.dart';
-export 'models/version/version.dart';
+export 'models/updater/version.dart';
+export 'models/updater/update.dart';
+export 'models/updater/update_status.dart';
 
 // Dart imports:
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'dart:ui';
@@ -39,7 +42,9 @@ import 'models/plan/plan.dart';
 import 'models/user/user.dart';
 import 'models/deadline/deadline.dart';
 import 'models/invite/invite.dart';
-import 'models/version/version.dart';
+import 'models/updater/version.dart';
+import 'models/updater/update.dart';
+import 'models/updater/update_status.dart';
 
 // Models
 
@@ -54,12 +59,21 @@ part 'models/plan/plan_access_levels.dart';
 part 'models/invite/invite_status.dart';
 part 'models/feedback/feedback_types.dart';
 part 'models/feedback/feedback_status.dart';
+part 'models/updater/setup_type.dart';
+part 'models/updater/download_status.dart';
 
 // Services
 
 part 'services/internet_service/internet_service.dart';
 part 'services/internet_service/internet_adress_lookup_service.dart';
 part 'services/internet_service/internet_connectivity_service.dart';
+part 'services/updater/updater_service.dart';
+part 'services/updater/app_image_updater_service.dart';
+part 'services/updater/dmg_updater_service.dart';
+part 'services/updater/aur_updater_service.dart';
+part 'services/updater/aur_git_updater_service.dart';
+part 'services/updater/exe_updater_service.dart';
+part 'services/updater/self_compiled_updater_service.dart';
 
 // Providers
 
@@ -73,6 +87,7 @@ part 'providers/users_provider.dart';
 part 'providers/invites_provider.dart';
 part 'providers/plan_provider.dart';
 part 'providers/internet_provider.dart';
+part 'providers/update_provider.dart';
 
 // Api
 
@@ -107,3 +122,6 @@ part 'disk/disk.dart';
 
 /// The rate with which the api refreshes underlying data
 const kApiRefreshRate = Duration(seconds: 10);
+
+/// Specifies how the app was installed and how it should be updated.
+final kSetupType = SetupTypeFromString.fromEnvironment();
