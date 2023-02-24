@@ -6,10 +6,12 @@ import 'package:context_menus/context_menus.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:intl/intl.dart';
 import 'package:lb_planner/assets.dart';
+import 'package:lb_planner/routes.dart';
 import 'package:lbplanner_engine/lbplanner_engine.dart';
 import 'package:nekolib_ui/core.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -19,6 +21,7 @@ import 'package:rive/rive.dart' as rive;
 import 'package:shimmer/shimmer.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:window_manager/window_manager.dart';
+import 'package:http/http.dart' as http;
 
 part 'widgets/button.dart';
 part 'widgets/textbutton.dart';
@@ -42,6 +45,7 @@ part 'widgets/gesture_detector.dart';
 part 'widgets/tba.dart';
 part 'widgets/card.dart';
 part 'widgets/snippet.dart';
+part 'widgets/markdown.dart';
 
 /// Radius for all rounded rectangles.
 const double kRadius = 5;

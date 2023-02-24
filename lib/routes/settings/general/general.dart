@@ -134,9 +134,15 @@ class _SettingsGeneralState extends State<SettingsGeneral> {
             // ),
             NcSpacing.xs(),
             SettingsGeneralItem(
-              title: t.settings_general_credits,
+              title: t.settings_general_about,
               icon: Icons.info_outline,
-              onTap: () => SettingsGeneralCreditsRoute.info.push(context),
+              onTap: () => SettingsGeneralAboutRoute.info.push(context),
+            ),
+            NcSpacing.xs(),
+            SettingsGeneralItem(
+              title: t.settings_general_license,
+              icon: Icons.description_outlined,
+              onTap: () => SettingsGeneralLicenseRoute.info.push(context),
             ),
           ],
         ),
