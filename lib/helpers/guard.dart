@@ -148,6 +148,9 @@ const _ignoreList = [
   "Bad state: Tried to use PlanProvider after `dispose` was called.",
 ];
 
+/// Keyword all update errors start with.
+const kUpdateErrorKeyword = "UPDATE_ERROR:";
+
 bool _filterError(String report) {
-  return !_ignoreList.any(report.containsCaseInsensitive) && currentRoute != UpdateRoute.info;
+  return (!_ignoreList.any(report.containsCaseInsensitive) && currentRoute != UpdateRoute.info) || (currentRoute == UpdateRoute.info && report.startsWith(kUpdateErrorKeyword));
 }

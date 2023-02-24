@@ -60,13 +60,6 @@ Future<void> load() async {
 
   if (UserDisk.data != null && !UserDisk.data!.invalid) {
     applyUserTheme(UserDisk.data!);
-
-    var r = await PluginConfigApi.getVersion(UserDisk.data!.token);
-
-    if (r.value != null) {
-      gPluginVersion = r.value;
-      await kUpdater.update();
-    }
   }
 
   var dir = await Logger.logDir;
@@ -92,6 +85,9 @@ class App extends StatelessWidget {
       child: Consumer(
         builder: (context, ref, _) {
           var user = ref.read(userProvider);
+          var updater = ref.read(updateController);
+
+          updater.checkForUpdates();
 
           return MaterialApp(
             navigatorKey: kNavigator,
