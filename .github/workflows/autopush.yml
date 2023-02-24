@@ -21,7 +21,6 @@ jobs:
         source-directory: '/home/runner/work/lb_planner/'
         destination-github-username: 'officialbishowb'
         destination-repository-name: 'test_repo'
-        user-email: officialbishowb@gmail.com
         target-branch: main
         commit-message: 'Push from lb_planner app branch'
 
