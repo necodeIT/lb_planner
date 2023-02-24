@@ -49,7 +49,7 @@ void main() async {
       },
     );
   } else {
-    log("Another instance of the app is already running. Exiting.");
+    await log("Another instance of the app is already running. Exiting.");
     exit(0);
   }
 }
