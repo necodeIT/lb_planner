@@ -25,23 +25,11 @@ class AdminFeedbackRoute extends StatefulWidget {
       (a, b) {
         var status = a.status.index.compareTo(b.status.index);
 
-        if (status == 1) return status;
+        if (status != 0) return status;
 
-        var type = a.type == b.type
-            ? 0
-            : a.type.isBug && b.type.isError
-                ? -1
-                : a.type.isError && b.type.isBug
-                    ? 1
-                    : a.type.isBug || a.type.isError
-                        ? -1
-                        : a.type.isSuggestion && !b.type.isOther
-                            ? 1
-                            : a.type.index.compareTo(b.type.index);
+        var timestamp = b.timestamp.compareTo(a.timestamp);
 
-        if (type == 0) return b.timestamp.compareTo(a.timestamp);
-
-        return type;
+        return timestamp;
       },
     );
 

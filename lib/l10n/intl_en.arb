@@ -53,8 +53,21 @@
       }
     }
   },
-  "@update_btn": {
-    "description": "Update btn text",
+  "@update_downloading": {
+    "description": "Update downloading text",
+    "placeholders": {
+      "filename": {
+        "example": "Setup.exe",
+        "type": "String"
+      },
+      "progress": {
+        "example": "50",
+        "type": "int"
+      }
+    }
+  },
+  "@update_patchNotes": {
+    "description": "Update patch notes title",
     "placeholders": {
       "version": {
         "example": "Version x.x.x",
@@ -120,6 +133,15 @@
     "placeholders": {
       "username": {
         "example": "Jane",
+        "type": "String"
+      }
+    }
+  },
+  "@widgets_markdown_networkError": {
+    "description": "Error message when the markdown widget fails to load the markdown file",
+    "placeholders": {
+      "url": {
+        "example": "example.com/markdown.md",
         "type": "String"
       }
     }
@@ -231,7 +253,8 @@
   "settings_general_clearCache_btn": "Clear cache",
   "settings_general_clearCache_msg": "Are you sure you want to clear the cache?\nThis will remove any locally stored data and you will be logged out.",
   "settings_general_clearCache_title": "Clear cache?",
-  "settings_general_credits": "About",
+  "settings_general_about": "About",
+  "settings_general_license": "License",
   "settings_general_deleteProfile_btn": "Delete profile",
   "settings_general_deleteProfile_msg": "Are you sure you want to delete your profile?\n\nThis will completely wipe any data stored by LB Planner about you. This cannot be undone, but you can re-register at any given time.",
   "settings_general_deleteProfile_title": "Delete profile?",
@@ -241,8 +264,15 @@
   "settings_title": "Settings",
   "tba_caption": "This section is still under development.",
   "tba_title": "TBA",
-  "update_btn": "Upgrade to {version}",
-  "update_launching": "Launching installer...",
+  "update_btn": "Update",
+  "update_btnErr": "Retry",
+  "update_btnInstall": "Install",
+  "update_downloading": "Downloading {filename} ({progress}%)",
+  "update_dialog_noAutoUpdate": "LB Planner cannot be updated automatically on this platform. Please run the command below to update.",
+  "update_dialog_helpNeeded": "LB Planner needs manual intervention to update. Please run the command below to complete the update.",
+  "update_dialog_title": "Manual steps required!",
+  "update_installing": "Installing...",
+  "update_patchNotes": "{version} Patch notes",
   "user_notifications_inviteAccepted_text": "{username} has joined your plan!",
   "user_notifications_inviteDeclined_text": "{username} has declined your offer to join your plan!",
   "user_notifications_invite_accept": "Join",
@@ -258,5 +288,7 @@
   "user_notifications_planRemoved": "You have been removed from {username}'s plan.",
   "user_notifications_planRemoved_text": "You have been removed from {username}'s plan.",
   "user_notifications_userRegistered_docs": "Need help?",
-  "user_notifications_userRegistered_text": "Welcome, {username}!\n\nIf you happen to face any issues, please let us know."
+  "user_notifications_userRegistered_text": "Welcome, {username}!\n\nIf you happen to face any issues, please let us know.",
+  "widgets_markdown_networkError": "Could not fetch {url}.\nYou may want to check out the contents of the file manually in your browser.",
+  "widgets_markdown_networkError_openInBrowser": "Open in browser"
 }

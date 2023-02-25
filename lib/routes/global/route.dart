@@ -58,7 +58,7 @@ class RouteWrapper extends StatelessWidget {
       initGuard(ref);
       var connected = ref.watch(internetProvider);
       var user = ref.watch(userProvider);
-      var updater = ref.watch(updaterProvider);
+      var update = ref.watch(updateProvider);
 
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (connected && currentRoute == OfflineRoute.info) (_cachedOnlineRoute ?? DashboardRoute.info).push(context, params: _cachedOnlineRouteArgs?.args);
@@ -68,8 +68,8 @@ class RouteWrapper extends StatelessWidget {
           OfflineRoute.info.push(context);
         }
 
-        if (user.invalid && currentRoute != LoginRoute.info && connected && !updater.updateAvailable) LoginRoute.info.push(context);
-        if (updater.updateAvailable && currentRoute != UpdateRoute.info && connected) UpdateRoute.info.push(context);
+        if (user.invalid && currentRoute != LoginRoute.info && connected && !update.updateAvailable) LoginRoute.info.push(context);
+        if (update.updateAvailable && currentRoute != UpdateRoute.info && connected) UpdateRoute.info.push(context);
       });
 
       return ContextMenuOverlay(

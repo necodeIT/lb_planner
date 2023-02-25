@@ -40,7 +40,7 @@ class _LoginRouteState extends State<LoginRoute> {
             left: LoginRoute.versionPadding,
             bottom: LoginRoute.versionPadding,
             child: NcBodyText(
-              ref.read(updaterProvider).versionName,
+              UpdaterService.currentVersionName,
               buttonText: true,
             ),
           );

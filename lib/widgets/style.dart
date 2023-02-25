@@ -42,6 +42,21 @@ ThemeData get appStyle => ThemeData(
         selectionColor: accentColor.withOpacity(.7),
         selectionHandleColor: accentColor,
       ),
+      textTheme: TextTheme(
+        headline1: TextStyle(color: textColor),
+        headline2: TextStyle(color: textColor),
+        headline3: TextStyle(color: textColor),
+        headline4: TextStyle(color: textColor),
+        headline5: TextStyle(color: textColor),
+        headline6: TextStyle(color: textColor),
+        subtitle1: TextStyle(color: textColor),
+        subtitle2: TextStyle(color: textColor),
+        bodyText1: TextStyle(color: textColor),
+        bodyText2: TextStyle(color: textColor),
+        caption: TextStyle(color: textColor),
+        button: TextStyle(color: textColor),
+        overline: TextStyle(color: textColor),
+      ),
       tooltipTheme: TooltipThemeData(
         textStyle: NcBaseText.style(fontSize: 12),
         decoration: BoxDecoration(

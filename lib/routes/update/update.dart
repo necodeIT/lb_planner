@@ -12,75 +12,102 @@ class UpdateRoute extends StatefulWidget {
     standalone: true,
   );
 
-  /// The size of the loading indicator.
-  static const double loaderSize = 320;
+  /// Factor multiplied by the screen width to get the padding.
+  static const paddingFactor = 0.1;
 
-  /// The thickness of the loading indicator.
-  static const double loaderThickness = 10;
-
-  /// The font size used for messages
-  static const double fontSize = 25;
+  /// Size of the app icon.
+  static const double iconSize = 60;
 
   @override
   State<UpdateRoute> createState() => _UpdateRouteState();
 }
 
 class _UpdateRouteState extends State<UpdateRoute> {
-  // @override
-  // initState() {
-  //   super.initState();
-
-  //   IRefreshable.pauseAll();
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Consumer(
       builder: (context, ref, _) {
-        var updater = ref.watch(updaterProvider);
+        var updater = ref.watch(updateController);
+        var update = ref.watch(updateProvider);
 
-        return Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              width: UpdateRoute.loaderSize,
-              height: UpdateRoute.loaderSize,
-              child: Stack(
+        void showCommand() {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            lpShowAlertDialog(
+              context,
+              title: t.update_dialog_title,
+              body: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  if (updater.status.isIdle || updater.status.isDownloading) Center(child: LpLogo()),
-                  if (updater.status.isDone || updater.status.isDownloading)
-                    LpLoadingIndicator.circular(
-                      size: UpdateRoute.loaderSize,
-                      thickness: UpdateRoute.loaderThickness,
-                      // ignore: no-magic-number
-                      progress: updater.status.isDone ? null : updater.progress / 100,
-                    ),
-                  if (updater.status.isDone)
-                    Center(
-                      child: NcCaptionText(
-                        t.update_launching,
-                        fontSize: UpdateRoute.fontSize,
-                      ),
-                    ),
+                  NcBodyText(
+                    kSetupType.canAutoUpdate ? t.update_dialog_helpNeeded : t.update_dialog_noAutoUpdate,
+                    overflow: TextOverflow.visible,
+                  ),
+                  NcSpacing.large(),
+                  LpSnippet(code: update.command),
                 ],
               ),
-            ),
-            if (updater.status.isIdle)
-              SizedBox(
-                width: UpdateRoute.loaderSize,
-                child: LpButton(
-                  text: t.update_btn(updater.latestVersionName),
-                  // TODO: onPressed: () => updater.upgrade(() {}),
-                  onPressed: () {
-                    var userTheme = NcThemes.current.name == sakuraTheme.name ? "sakura" : NcThemes.current.name.toLowerCase();
+            );
+          });
+        }
 
-                    var urlToLaunch = 'https://projekte.tgm.ac.at/lb-planner?theme=$userTheme';
+        if (update.command.isNotEmpty) {
+          showCommand();
+        }
 
-                    launchUrl(Uri.parse(urlToLaunch));
-                  },
-                ),
+        if (update.downloadStatus == DownloadStatus.error) {
+          Catcher.reportCheckedError(kUpdateErrorKeyword + update.error, StackTrace.current);
+        }
+
+        return Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: MediaQuery.of(context).size.width * UpdateRoute.paddingFactor,
+            vertical: MediaQuery.of(context).size.height * UpdateRoute.paddingFactor,
+          ),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      NcVectorImage(code: kAppIcon, height: UpdateRoute.iconSize),
+                      NcSpacing.small(),
+                      NcTitleText(
+                        t.update_patchNotes(update.latestVersionName),
+                        fontSize: RouteTitle.titleSize,
+                      ),
+                    ],
+                  ),
+                  if (update.downloadStatus == DownloadStatus.idle)
+                    LpButton(
+                      onPressed: updater.upgrade,
+                      text: t.update_btn,
+                    ),
+                  if (update.downloadStatus == DownloadStatus.error)
+                    LpButton(
+                      onPressed: updater.upgrade,
+                      text: t.update_btnErr,
+                    ),
+                  if (update.downloadStatus == DownloadStatus.downlaoding)
+                    Row(
+                      children: [
+                        NcBodyText(
+                          t.update_downloading(update.fileName, update.progress),
+                        ),
+                        NcSpacing.small(),
+                        LpLoadingIndicator.circular(),
+                      ],
+                    ),
+                  if (update.downloadStatus == DownloadStatus.installing && update.command.isEmpty) NcBodyText(t.update_installing),
+                  if (update.downloadStatus == DownloadStatus.installing && update.command.isNotEmpty) LpButton(onPressed: showCommand, text: t.update_btnInstall),
+                ],
               ),
-          ],
+              NcSpacing.large(),
+              Expanded(
+                child: LpMarkdown(update.patchNotes),
+              ),
+            ],
+          ),
         );
       },
     );

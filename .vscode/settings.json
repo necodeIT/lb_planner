@@ -3,6 +3,6 @@
         "--no-sound-null-safety"
     ],
     "dart.flutterRunAdditionalArgs": [
-        "--no-sound-null-safety"
+        "--no-sound-null-safety",
     ],
 }

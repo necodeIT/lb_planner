@@ -146,8 +146,15 @@ const _ignoreList = [
   "cached files cannot be used by the cache manageranymore.:",
   "connection timed out",
   "Bad state: Tried to use PlanProvider after `dispose` was called.",
+  "",
+  "Connection reset by peer",
+  "Wrtie failed",
+  "Failed host lookup: 'elearning.tgm.ac.at '",
 ];
 
+/// Keyword all update errors start with.
+const kUpdateErrorKeyword = "UPDATE_ERROR:";
+
 bool _filterError(String report) {
-  return !_ignoreList.any(report.containsCaseInsensitive) && currentRoute != UpdateRoute.info;
+  return (!_ignoreList.any(report.containsCaseInsensitive) && currentRoute != UpdateRoute.info) || (currentRoute == UpdateRoute.info && report.startsWith(kUpdateErrorKeyword));
 }

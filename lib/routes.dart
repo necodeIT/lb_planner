@@ -5,6 +5,7 @@ import 'dart:math';
 import 'package:animations/animations.dart';
 import 'package:badges/badges.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:catcher/catcher.dart';
 import 'package:context_menus/context_menus.dart';
 import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flutter/foundation.dart';
@@ -78,7 +79,7 @@ part 'routes/global/user/user_profile_img.dart';
 part 'routes/offline/offline.dart';
 part 'routes/settings/general/general.dart';
 part 'routes/settings/general/general_item.dart';
-part 'routes/settings/general/credits.dart';
+part 'routes/settings/general/about.dart';
 part 'routes/settings/courses/edit_dialog_body.dart';
 part 'routes/settings/courses/edit_dialog_header.dart';
 part 'routes/admin/dashboard/section.dart';
@@ -88,6 +89,7 @@ part 'routes/admin/feedback/feedback_item.dart';
 part 'routes/admin/feedback/feedback_page.dart';
 part 'routes/admin/feedback/feedback_status_tag.dart';
 part 'routes/update/update.dart';
+part 'routes/settings/general/license.dart';
 
 /// All routes the app has
 final Map<String, RouteInfo> kRoutes = {
@@ -100,7 +102,8 @@ final Map<String, RouteInfo> kRoutes = {
   AdminLoginRoute.info.routeName: AdminLoginRoute.info,
   OfflineRoute.info.routeName: OfflineRoute.info,
   AdminDashboardRoute.info.routeName: AdminDashboardRoute.info,
-  SettingsGeneralCreditsRoute.info.routeName: SettingsGeneralCreditsRoute.info,
+  SettingsGeneralAboutRoute.info.routeName: SettingsGeneralAboutRoute.info,
+  SettingsGeneralLicenseRoute.info.routeName: SettingsGeneralLicenseRoute.info,
   AdminFeedbackRoute.info.routeName: AdminFeedbackRoute.info,
   AdminFeedbackPageRoute.info.routeName: AdminFeedbackPageRoute.info,
   UpdateRoute.info.routeName: UpdateRoute.info,

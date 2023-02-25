@@ -36,11 +36,10 @@ class _SettingsGeneralState extends State<SettingsGeneral> {
   void _checkUpdates(WidgetRef ref) async {
     if (_checkUpdatesFuture != null) return;
 
-    var updater = ref.read(updaterProvider);
-    var user = ref.read(userProvider);
+    var updater = ref.read(updateController);
 
     setState(() {
-      _checkUpdatesFuture = updater.checkUpdates(user.token);
+      _checkUpdatesFuture = updater.checkForUpdates();
     });
 
     await _checkUpdatesFuture;
@@ -91,8 +90,6 @@ class _SettingsGeneralState extends State<SettingsGeneral> {
   @override
   Widget build(BuildContext context) {
     return Consumer(builder: (context, ref, _) {
-      var updater = ref.watch(updaterProvider);
-
       return LpContainer(
         title: t.settings_general_title,
         height: double.infinity,
@@ -100,7 +97,7 @@ class _SettingsGeneralState extends State<SettingsGeneral> {
           controller: ScrollController(),
           children: [
             SettingsGeneralItem(
-              title: updater.versionName,
+              title: UpdaterService.currentVersionName,
               icon: Icons.update,
               onTap: () => _checkUpdates(ref),
               loading: _checkUpdatesFuture != null,
@@ -137,9 +134,15 @@ class _SettingsGeneralState extends State<SettingsGeneral> {
             // ),
             NcSpacing.xs(),
             SettingsGeneralItem(
-              title: t.settings_general_credits,
+              title: t.settings_general_about,
               icon: Icons.info_outline,
-              onTap: () => SettingsGeneralCreditsRoute.info.push(context),
+              onTap: () => SettingsGeneralAboutRoute.info.push(context),
+            ),
+            NcSpacing.xs(),
+            SettingsGeneralItem(
+              title: t.settings_general_license,
+              icon: Icons.description_outlined,
+              onTap: () => SettingsGeneralLicenseRoute.info.push(context),
             ),
           ],
         ),
