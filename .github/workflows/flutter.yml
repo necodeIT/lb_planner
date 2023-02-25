@@ -108,9 +108,9 @@ jobs:
            sudo mv appimagetool-x86_64.AppImage /usr/local/bin/appimagetool
        - name: Create the required directories and copy the binary files to the AppDir
          run: |
-           mkdir -p ./LB_Planner.AppDir/usr/bin
-           cp -r build/linux/x64/release/bundle/* ./LB_Planner.AppDir/usr/bin/
-           cp app_icon.png ./LB_Planner.AppDir/app_icon.png
+           mkdir -p ./LB.Planner.AppDir/usr/bin
+           cp -r build/linux/x64/release/bundle/* ./LB.Planner.AppDir/usr/bin/
+           cp app_icon.png ./LB.Planner.AppDir/app_icon.png
        - name: Create Desktop file
          run: |
            echo "[Desktop Entry]
@@ -118,27 +118,27 @@ jobs:
            Exec=lb_planner
            Icon=app_icon
            Type=Application
-           Categories=Education;" > ./LB_Planner.AppDir/lb_planner.desktop
+           Categories=Education;" > ./LB.Planner.AppDir/lb_planner.desktop
            
-           chmod +x ./LB_Planner.AppDir/lb_planner.desktop
+           chmod +x ./LB.Planner.AppDir/lb_planner.desktop
        - name: Create AppRun file
          run: |
            echo '#!/bin/sh
            HERE="$(dirname "$(readlink -f "${0}")")"
            EXEC="${HERE}/usr/bin/lb_planner"
-           exec "${EXEC}"' > ./LB_Planner.AppDir/AppRun
+           exec "${EXEC}"' > ./LB.Planner.AppDir/AppRun
 
-           chmod +x ./LB_Planner.AppDir/AppRun
+           chmod +x ./LB.Planner.AppDir/AppRun
        - name: Create AppImage
          run: |
-           ARCH=x86_64 appimagetool ./LB_Planner.AppDir 
+           ARCH=x86_64 appimagetool ./LB.Planner.AppDir 
            
-           chmod +x ./LB_Planner-x86_64.AppImage
+           chmod +x ./LB.Planner-x86_64.AppImage
        - name: Upload AppImage
          uses: xresloader/upload-to-github-release@v1.3.11
          env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
          with:
-           file: LB_Planner-x86_64.AppImage
+           file: LB.Planner-x86_64.AppImage
            release_id: ${{ github.event.release.id }}
   
