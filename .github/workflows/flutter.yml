@@ -109,7 +109,7 @@ jobs:
            mkdir -p ./LB_Planner.AppDir/usr/bin
            cp -r build/linux/x64/release/bundle/* ./LB_Planner.AppDir/usr/bin/
            cp app_icon.png ./LB_Planner.AppDir/app_icon.png
-       - name: Create the Desktop file
+       - name: Create Desktop file
          run: |
            echo "[Desktop Entry]
            Name=LB Planner
@@ -119,7 +119,7 @@ jobs:
            Categories=Education;" > ./LB_Planner.AppDir/lb_planner.desktop
            
            chmod +x ./LB_Planner.AppDir/lb_planner.desktop
-       - name: Create the AppRun file
+       - name: Create AppRun file
          run: |
            echo '#!/bin/sh
            HERE="$(dirname "$(readlink -f "${0}")")"
@@ -127,7 +127,7 @@ jobs:
            exec "${EXEC}"' > ./LB_Planner.AppDir/AppRun
 
            chmod +x ./LB_Planner.AppDir/AppRun
-       - name: Create the AppImage
+       - name: Create AppImage
          run: |
            ARCH=x86_64 appimagetool ./LB_Planner.AppDir 
            
