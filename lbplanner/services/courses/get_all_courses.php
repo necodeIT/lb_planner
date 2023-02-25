@@ -57,7 +57,7 @@ class courses_get_all_courses extends external_api {
         foreach ($courses as $course) {
             $courseid = $course->id;
             $name = $course->fullname;
-            $shortname = substr($course->shortname,0,5);
+            $shortname = substr($course->shortname, 0, 5);
 
             if (strpos($shortname, ' ') !== false) {
                     $shortname = substr($shortname, 0, strpos($shortname, ' '));
@@ -66,7 +66,7 @@ class courses_get_all_courses extends external_api {
             if (!course_helper::check_current_year($courseid)) {
                 continue;
             }
-            if (!$DB->record_exists(
+            if ($DB->record_exists(
                 course_helper::LBPLANNER_COURSE_TABLE, array('courseid' => $courseid, 'userid' => $userid)
                 )) {
                 $fetchedcourse = $DB->get_record(
