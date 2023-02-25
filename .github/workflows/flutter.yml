@@ -3,7 +3,6 @@ on:
   release:
     types: [published]
     branches: ["app"]
-  workflow_dispatch:
 jobs:
   windows_build:
     name: Create Windows Setup file
