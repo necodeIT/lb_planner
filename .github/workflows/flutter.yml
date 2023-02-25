@@ -35,7 +35,7 @@ jobs:
             AppId=75c7586b-90c8-4f31-ad1d-dfb465f6941a
             AppName={#MyAppName}
             AppVersion={#MyAppVersion}
-            AppVerName=${{ github.event.release.name }}
+            AppVerName="${{ github.event.release.name }}"
             AppPublisher={#MyAppPublisher}
             AppPublisherURL={#MyAppURL}
             AppSupportURL={#MyAppURL}
