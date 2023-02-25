@@ -27,57 +27,59 @@ jobs:
   #       with:
   #         name: lb-planner-windows
   #         path: build\windows\runner\Release\*
-  # macos_build:
-  #   name: "Create DMG"
-  #   runs-on: macos-latest
-  #   steps:
-  #     - name: "Checkout repo"
-  #       uses: actions/checkout@v3
-  #     - name: "Setup flutter"
-  #       uses: subosito/flutter-action@v2
-  #       with:
-  #         flutter-version: '3.3.3'
-  #         architecture: x64
-  #     - name: Build application
-  #       run: |
-  #         flutter config --enable-macos-desktop
-  #         flutter build macos --release --no-sound-null-safety
-  #     - name: Install node
-  #       uses: actions/setup-node@v2
-  #       with:
-  #         node-version: '16'
-  #     - name: Install appdmg node module
-  #       run: |
-  #         npm install -g appdmg
-  #         appdmg  --version        
-  #     - name: Create config file
-  #       run: |          
-  #         echo '{
-  #           "title": "LB Planner",
-  #           "icon": "app_icon.icns",
-  #           "contents": [
-  #             {
-  #               "x": 410,
-  #               "y": 150,
-  #               "type": "link",
-  #               "path": "/Applications"
-  #             },
-  #             {
-  #               "x": 130,
-  #               "y": 150,
-  #               "type": "file",
-  #               "path": "build/macos/Build/Products/Release/LB Planner.app"
-  #             }
-  #           ]
-  #         }' > ./dmg_config.json
-  #     - name: Create dmg
-  #       run: |
-  #         appdmg dmg_config.json LB.Planner.Setup.dmg
-  #     - name: Upload dmg
-  #       uses: actions/upload-artifact@v3
-  #       with:
-  #         name: lb-planner-macos
-  #         path: LB.Planner.Setup.dmg
+  macos_build:
+    name: "Create DMG"
+    runs-on: macos-latest
+    steps:
+      - name: "Checkout repo"
+        uses: actions/checkout@v3
+      - name: "Setup flutter"
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.3.3'
+          architecture: x64
+      - name: Build application
+        run: |
+          flutter config --enable-macos-desktop
+          flutter build macos --release --no-sound-null-safety
+      - name: Install node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - name: Install appdmg node module
+        run: |
+          npm install -g appdmg
+          appdmg  --version        
+      - name: Create config file
+        run: |          
+          echo '{
+            "title": "LB Planner",
+            "icon": "app_icon.icns",
+            "contents": [
+              {
+                "x": 410,
+                "y": 150,
+                "type": "link",
+                "path": "/Applications"
+              },
+              {
+                "x": 130,
+                "y": 150,
+                "type": "file",
+                "path": "build/macos/Build/Products/Release/LB Planner.app"
+              }
+            ]
+          }' > ./dmg_config.json
+      - name: Create dmg
+        run: |
+          appdmg dmg_config.json LB.Planner.Setup.dmg
+      - name: Upload AppImage
+        uses: xresloader/upload-to-github-release@v1.3.11
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+           file: LB.Planner.Setup.dmg
+           release_id: ${{ github.event.release.id }}
   linux_build:
      name: "Create AppImage"
      runs-on: ubuntu-latest
