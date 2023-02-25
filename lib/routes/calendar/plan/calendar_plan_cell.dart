@@ -3,7 +3,9 @@ part of lbplanner_routes;
 /// Cell of the calendar view.
 class CalendarPlanCell extends StatefulWidget {
   /// Cell of the calendar view.
-  const CalendarPlanCell({Key? key, required this.day, required this.isCurrentMonth}) : super(key: key);
+  const CalendarPlanCell(
+      {Key? key, required this.day, required this.isCurrentMonth})
+      : super(key: key);
 
   /// The day this cell represents.
   final DateTime day;
@@ -69,7 +71,10 @@ class CalendarPlanCellState extends State<CalendarPlanCell> {
         var user = ref.watch(userProvider);
 
         var allModules = ref.watch(modulesProvider);
-        List<int> deadlines = plan.deadlines.values.where((deadline) => deadline.end.isSameDate(widget.day)).map((deadline) => deadline.moduleId).toList();
+        List<int> deadlines = plan.deadlines.values
+            .where((deadline) => deadline.end.isSameDate(widget.day))
+            .map((deadline) => deadline.moduleId)
+            .toList();
 
         var modules = allModules.keys.where(deadlines.contains).toList();
 
@@ -92,7 +97,10 @@ class CalendarPlanCellState extends State<CalendarPlanCell> {
                 onWillAccept: (module) => !modules.contains(module),
                 onAccept: (module) => _setDeadline(ref, module),
                 builder: (context, candidateData, rejectedData) {
-                  if (_controller.hasClients && (_addedModules.isNotEmpty || candidateData.isNotEmpty || _controller.position.outOfRange)) {
+                  if (_controller.hasClients &&
+                      (_addedModules.isNotEmpty ||
+                          candidateData.isNotEmpty ||
+                          _controller.position.outOfRange)) {
                     WidgetsBinding.instance.addPostFrameCallback(
                       (timeStamp) => _controller.animateTo(
                         _controller.position.maxScrollExtent,
@@ -118,15 +126,30 @@ class CalendarPlanCellState extends State<CalendarPlanCell> {
                                     // ignore: no-magic-number
                                     : textColor.withOpacity(0.7),
                               ),
-                            NcBodyText(
-                              _formatter.format(widget.day),
-                              textAlign: TextAlign.center,
-                              color: isToday
-                                  ? accentColor
-                                  : widget.isCurrentMonth
-                                      ? textColor
-                                      // ignore: no-magic-number
-                                      : textColor.withOpacity(0.7),
+                            Container(
+                              decoration: BoxDecoration(
+                                color:
+                                    isToday ? accentColor : Colors.transparent,
+                                // ignore: no-magic-number
+                                borderRadius: BorderRadius.circular(12.0),
+                                border: Border.all(
+                                  color: isToday
+                                      ? accentColor
+                                      : Colors.transparent,
+                                  // ignore: no-magic-number
+                                  width: 4.0,
+                                ),
+                              ),
+                              child: NcBodyText(
+                                _formatter.format(widget.day),
+                                textAlign: TextAlign.center,
+                                color: widget.isCurrentMonth
+                                    ? isToday
+                                        ? Colors.white
+                                        : textColor
+                                    // ignore: no-magic-number
+                                    : textColor.withOpacity(0.7),
+                              ),
                             ),
                           ],
                         ),
