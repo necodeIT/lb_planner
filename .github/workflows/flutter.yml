@@ -11,22 +11,22 @@ jobs:
     steps:
       - name: "Checkout repo"
         uses: actions/checkout@v3
-      - name: "Setup flutter"
-        uses: subosito/flutter-action@v2
-        with:
-          flutter-version: '3.3.3'
-          architecture: x64
-      - name: "Build"
-        run: |
-          flutter config --enable-windows-desktop
-          flutter build windows --release --no-sound-null-safety
+      # - name: "Setup flutter"
+      #   uses: subosito/flutter-action@v2
+      #   with:
+      #     flutter-version: '3.3.3'
+      #     architecture: x64
+      # - name: "Build"
+      #   run: |
+      #     flutter config --enable-windows-desktop
+      #     flutter build windows --release --no-sound-null-safety
       - name: Create iss file
         uses: DamianReeves/write-file-action@master
         with:
           path: config.iss
           contents: |
             #define MyAppName "LB Planner"
-            #define MyAppVersion $ {{ github.event.release.tag_name }}
+            #define MyAppVersion "${{  github.ref_name }}"
             #define MyAppPublisher "necodeIT"
             #define MyAppURL "https://projekte.tgm.ac.at/lb-planner/"
             #define MyAppExeName "lb_planner.exe"
