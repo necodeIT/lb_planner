@@ -45,7 +45,7 @@ jobs:
           username: ${{ secrets.SFTP_USER }}
           password: ${{ secrets.SFTP_PASSWORD }}
           uploads: |
-            snippets/dl_constants.php => htdocs/snippets/dl_constants.php
+            snippets/dl_constants.php => /htdocs/snippets/dl_constants.php
   update-backend-files:
     name: Update plugin version & download url
     if: github.event.release.target_commitish == 'moodle' && !github.event.release.prerelease
@@ -75,4 +75,4 @@ jobs:
           username: ${{ secrets.SFTP_USER }}
           password: ${{ secrets.SFTP_PASSWORD }}
           uploads: |
-            snippets/dl_constants.php => htdocs/snippets/dl_constants.php
+            snippets/dl_constants.php => /htdocs/snippets/dl_constants.php
