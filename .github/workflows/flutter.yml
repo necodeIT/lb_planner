@@ -5,31 +5,9 @@ on:
     branches: ['app']
   workflow_dispatch:
 jobs:
-  #windows_build:
-  #   name: "Windows build"
-  #   runs-on: windows-latest
-  #   steps:
-  #     - name: "Checkout repo"
-  #       uses: actions/checkout@v3
-  #     - name: "Setup flutter"
-  #       uses: subosito/flutter-action@v2
-  #       with:
-  #         flutter-version: '3.3.3'
-  #         architecture: x64
-  #     - name: "Build"
-  #       run: |
-  #         flutter config --enable-windows-desktop
-  #         flutter build windows --release --no-sound-null-safety
-  #     - name: "Inno Setup"
-  #       uses: callebstrom/inno-setup-cli@v6.2.1        
-  #     - name: Archive production artifacts
-  #       uses: actions/upload-artifact@v3
-  #       with:
-  #         name: lb-planner-windows
-  #         path: build\windows\runner\Release\*
-  macos_build:
-    name: "Create DMG"
-    runs-on: macos-latest
+  windows_build:
+    name: "Windows build"
+    runs-on: windows-latest
     steps:
       - name: "Checkout repo"
         uses: actions/checkout@v3
@@ -38,107 +16,178 @@ jobs:
         with:
           flutter-version: '3.3.3'
           architecture: x64
-      - name: Build application
+      - name: "Build"
         run: |
-          flutter config --enable-macos-desktop
-          flutter build macos --release --no-sound-null-safety
-      - name: Install node
-        uses: actions/setup-node@v2
+          flutter config --enable-windows-desktop
+          flutter build windows --release --no-sound-null-safety
+      - name: Create iss file
+        uses: DamianReeves/write-file-action@master
         with:
-          node-version: '16'
-      - name: Install appdmg node module
-        run: |
-          npm install -g appdmg
-          appdmg  --version        
-      - name: Create config file
-        run: |          
-          echo '{
-            "title": "LB Planner",
-            "icon": "app_icon.icns",
-            "contents": [
-              {
-                "x": 410,
-                "y": 150,
-                "type": "link",
-                "path": "/Applications"
-              },
-              {
-                "x": 130,
-                "y": 150,
-                "type": "file",
-                "path": "build/macos/Build/Products/Release/LB Planner.app"
-              }
-            ]
-          }' > ./dmg_config.json
-      - name: Create dmg
-        run: |
-          appdmg dmg_config.json LB.Planner.Setup.dmg
-      - name: Upload dmg
-        uses: xresloader/upload-to-github-release@v1.3.11
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-           file: LB.Planner.Setup.dmg
-           release_id: ${{ github.event.release.id }}
-  linux_build:
-     name: "Create AppImage"
-     runs-on: ubuntu-latest
-     steps:
-       - name: Checkout repo
-         uses: actions/checkout@v3
-       - name: Install dependencies
-         run: |
-           sudo apt-get update
-           sudo apt-get install -y ninja-build libgtk-3-dev
-           sudo apt-get install fuse libfuse2
-           sudo apt-get install -y appstream
-       - name: Setup Flutter
-         uses: subosito/flutter-action@v2
-         with:
-           flutter-version: '3.3.3'
-           architecture: x64
-       - name: Build application
-         run: |
-           flutter config --enable-linux-desktop
-           flutter build linux --release --no-sound-null-safety
-       - name: Install AppImage Tool
-         run: |
-           wget -c https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
-           chmod +x appimagetool-x86_64.AppImage
-           sudo mv appimagetool-x86_64.AppImage /usr/local/bin/appimagetool
-       - name: Create the required directories and copy the binary files to the AppDir
-         run: |
-           mkdir -p ./LB.Planner.AppDir/usr/bin
-           cp -r build/linux/x64/release/bundle/* ./LB.Planner.AppDir/usr/bin/
-           cp app_icon.png ./LB.Planner.AppDir/app_icon.png
-       - name: Create Desktop file
-         run: |
-           echo "[Desktop Entry]
-           Name=LB Planner
-           Exec=lb_planner
-           Icon=app_icon
-           Type=Application
-           Categories=Education;" > ./LB.Planner.AppDir/lb_planner.desktop
-           
-           chmod +x ./LB.Planner.AppDir/lb_planner.desktop
-       - name: Create AppRun file
-         run: |
-           echo '#!/bin/sh
-           HERE="$(dirname "$(readlink -f "${0}")")"
-           EXEC="${HERE}/usr/bin/lb_planner"
-           exec "${EXEC}"' > ./LB.Planner.AppDir/AppRun
+          path: config.iss
+          contents: |
+            #define MyAppName "LB Planner"
+            #define MyAppVersion "$ {{ github.event.release.tag_name }}"
+            #define MyAppPublisher "necodeIT"
+            #define MyAppURL "https://projekte.tgm.ac.at/lb-planner/"
+            #define MyAppExeName "lb_planner.exe"
 
-           chmod +x ./LB.Planner.AppDir/AppRun
-       - name: Create AppImage
-         run: |
-           ARCH=x86_64 appimagetool ./LB.Planner.AppDir 
+            [Setup]
+            AppId=75c7586b-90c8-4f31-ad1d-dfb465f6941a
+            AppName={#MyAppName}
+            AppVersion={#MyAppVersion}
+            AppVerName=${{ github.event.release.name }}
+            AppPublisher={#MyAppPublisher}
+            AppPublisherURL={#MyAppURL}
+            AppSupportURL={#MyAppURL}
+            AppUpdatesURL={#MyAppURL}
+            DefaultDirName={autopf}\{#MyAppName}
+            UninstallDisplayIcon={app}\lb_planner.exe
+            DisableProgramGroupPage=yes
+            OutputDir=.
+            OutputBaseFilename=LB.Planner.Setup
+            ;OutputBaseFilename=Setup
+            SetupIconFile=app_icon.png
+            Compression=lzma
+            SolidCompression=yes
+            WizardStyle=modern
+
+            [Languages]
+            Name: "english"; MessagesFile: "compiler:Default.isl"
+
+            [Tasks]
+            Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
+
+            [Files]
+            Source: "build\windows\runner\Release\*"; DestDir: "{app}"; Flags: ignoreversion
+            Source: "build\windows\runner\Release\data\*"; DestDir: "{app}\data"; Flags: ignoreversion recursesubdirs createallsubdirs
+
+            [Icons]
+            Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
+            Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
+
+            [Run]
+            Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: runascurrentuser nowait postinstall skipifsilent
+      - name: Create installer
+        uses: nadeemjazmawe/inno-setup-action-cli@v6.0.5
+        with:
+          filepath: config.iss
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: lb-planner-windows
+          path: LB.Planner.Setup.exe
+  # macos_build:
+  #   name: "Create DMG"
+  #   runs-on: macos-latest
+  #   steps:
+  #     - name: "Checkout repo"
+  #       uses: actions/checkout@v3
+  #     - name: "Setup flutter"
+  #       uses: subosito/flutter-action@v2
+  #       with:
+  #         flutter-version: '3.3.3'
+  #         architecture: x64
+  #     - name: Build application
+  #       run: |
+  #         flutter config --enable-macos-desktop
+  #         flutter build macos --release --no-sound-null-safety
+  #     - name: Install node
+  #       uses: actions/setup-node@v2
+  #       with:
+  #         node-version: '16'
+  #     - name: Install appdmg node module
+  #       run: |
+  #         npm install -g appdmg
+  #         appdmg  --version        
+  #     - name: Create config file
+  #       run: |          
+  #         echo '{
+  #           "title": "LB Planner",
+  #           "icon": "app_icon.icns",
+  #           "contents": [
+  #             {
+  #               "x": 410,
+  #               "y": 150,
+  #               "type": "link",
+  #               "path": "/Applications"
+  #             },
+  #             {
+  #               "x": 130,
+  #               "y": 150,
+  #               "type": "file",
+  #               "path": "build/macos/Build/Products/Release/LB Planner.app"
+  #             }
+  #           ]
+  #         }' > ./dmg_config.json
+  #     - name: Create dmg
+  #       run: |
+  #         appdmg dmg_config.json LB.Planner.Setup.dmg
+  #     - name: Upload dmg
+  #       uses: xresloader/upload-to-github-release@v1.3.11
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #       with:
+  #          file: LB.Planner.Setup.dmg
+  #          release_id: ${{ github.event.release.id }}
+  # linux_build:
+  #    name: "Create AppImage"
+  #    runs-on: ubuntu-latest
+  #    steps:
+  #      - name: Checkout repo
+  #        uses: actions/checkout@v3
+  #      - name: Install dependencies
+  #        run: |
+  #          sudo apt-get update
+  #          sudo apt-get install -y ninja-build libgtk-3-dev
+  #          sudo apt-get install fuse libfuse2
+  #          sudo apt-get install -y appstream
+  #      - name: Setup Flutter
+  #        uses: subosito/flutter-action@v2
+  #        with:
+  #          flutter-version: '3.3.3'
+  #          architecture: x64
+  #      - name: Build application
+  #        run: |
+  #          flutter config --enable-linux-desktop
+  #          flutter build linux --release --no-sound-null-safety
+  #      - name: Install AppImage Tool
+  #        run: |
+  #          wget -c https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
+  #          chmod +x appimagetool-x86_64.AppImage
+  #          sudo mv appimagetool-x86_64.AppImage /usr/local/bin/appimagetool
+  #      - name: Create the required directories and copy the binary files to the AppDir
+  #        run: |
+  #          mkdir -p ./LB.Planner.AppDir/usr/bin
+  #          cp -r build/linux/x64/release/bundle/* ./LB.Planner.AppDir/usr/bin/
+  #          cp app_icon.png ./LB.Planner.AppDir/app_icon.png
+  #      - name: Create Desktop file
+  #        run: |
+  #          echo "[Desktop Entry]
+  #          Name=LB Planner
+  #          Exec=lb_planner
+  #          Icon=app_icon
+  #          Type=Application
+  #          Categories=Education;" > ./LB.Planner.AppDir/lb_planner.desktop
            
-           chmod +x ./LB.Planner-x86_64.AppImage
-       - name: Upload AppImage
-         uses: xresloader/upload-to-github-release@v1.3.11
-         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-         with:
-           file: LB.Planner-x86_64.AppImage
-           release_id: ${{ github.event.release.id }}
+  #          chmod +x ./LB.Planner.AppDir/lb_planner.desktop
+  #      - name: Create AppRun file
+  #        run: |
+  #          echo '#!/bin/sh
+  #          HERE="$(dirname "$(readlink -f "${0}")")"
+  #          EXEC="${HERE}/usr/bin/lb_planner"
+  #          exec "${EXEC}"' > ./LB.Planner.AppDir/AppRun
+
+  #          chmod +x ./LB.Planner.AppDir/AppRun
+  #      - name: Create AppImage
+  #        run: |
+  #          ARCH=x86_64 appimagetool ./LB.Planner.AppDir 
+           
+  #          chmod +x ./LB.Planner-x86_64.AppImage
+  #      - name: Upload AppImage
+  #        uses: xresloader/upload-to-github-release@v1.3.11
+  #        env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #        with:
+  #          file: LB.Planner-x86_64.AppImage
+  #          release_id: ${{ github.event.release.id }}
   
