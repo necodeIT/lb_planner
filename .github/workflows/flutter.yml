@@ -11,12 +11,12 @@ jobs:
     steps:
       - name: "Checkout repo"
         uses: actions/checkout@v3
-      - name: "Setup flutter"
+      - name: "Setup Flutter"
         uses: subosito/flutter-action@v2
         with:
           flutter-version: "3.3.3"
           architecture: x64
-      - name: "Build"
+      - name: "Build application"
         run: |
           flutter config --enable-windows-desktop
           flutter build windows --release --no-sound-null-safety
@@ -120,10 +120,10 @@ jobs:
               }
             ]
           }' > ./dmg_config.json
-      - name: Create dmg
+      - name: Create Setup file
         run: |
           appdmg dmg_config.json LB.Planner.Setup.dmg
-      - name: Upload dmg
+      - name: Upload Setup file
         uses: xresloader/upload-to-github-release@v1.3.11
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
