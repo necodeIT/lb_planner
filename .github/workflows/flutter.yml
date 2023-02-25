@@ -73,7 +73,7 @@ jobs:
       - name: Create dmg
         run: |
           appdmg dmg_config.json LB.Planner.Setup.dmg
-      - name: Upload AppImage
+      - name: Upload dmg
         uses: xresloader/upload-to-github-release@v1.3.11
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
