@@ -26,7 +26,7 @@ void main() async {
   Logger.init(autoSave: true, appStoragePath: (await Disk.appDir).path);
   await Logger.logFile; // I don't know why, but the log file is otherwise not created.
 
-  if (await FlutterSingleInstancePlatform.instance.isFirstInstance('lb_planner')) {
+  if (await FlutterSingleInstance.platform.isFirstInstance()) {
     log("Starting app...");
     // Randomly selected outside of build for consistency of the animtion when applying the theme
     var animation = (kLoadingAnimations.toList()..shuffle()).first;
