@@ -22,6 +22,7 @@ LB Planner was created by [McQuenji](https://github.com/bmceachnie), [Muhi](http
 - [jszuecs-tgm](https://github.com/Jszuecs) for helping with documentation on the website
 - [sproshut](https://github.com/sproshut) for "Workflow for automated build" ([#11](https://github.com/necodeIT/lb_planner/pull/11))
 - [melli736](https://github.com/melli736) for helping with macOS testing & development
+- [mariusthaler](https://github.com/mariusthaler) for macOS testing
 
 If you would like to contribute to the project, please feel free to contact us at lb-planner@tgm.ac.at or create a pull request.
 
