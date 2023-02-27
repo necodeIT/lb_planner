@@ -84,10 +84,13 @@ class CalendarPlanCellState extends State<CalendarPlanCell> {
           padding: const EdgeInsets.all(NcSpacing.xsSpacing),
           duration: kNormalAnimationDuration,
           decoration: BoxDecoration(
+            // ignore: no-magic-number
+            color: isToday ? accentColor.withOpacity(.1) : Colors.transparent,
             border: Border.all(
-              color: tertiaryColor,
               // ignore: no-magic-number
-              width: widget.isCurrentMonth ? 0.5 : 0.2,
+              color: isToday ? accentColor : tertiaryColor,
+              // ignore: no-magic-number
+              width: widget.isCurrentMonth ? 0.7 : 0.2,
             ),
           ),
           child: LayoutBuilder(
@@ -126,31 +129,16 @@ class CalendarPlanCellState extends State<CalendarPlanCell> {
                                     // ignore: no-magic-number
                                     : textColor.withOpacity(0.7),
                               ),
-                            Container(
-                              decoration: BoxDecoration(
-                                color:
-                                    isToday ? accentColor : Colors.transparent,
-                                // ignore: no-magic-number
-                                borderRadius: BorderRadius.circular(12.0),
-                                border: Border.all(
-                                  color: isToday
-                                      ? accentColor
-                                      : Colors.transparent,
-                                  // ignore: no-magic-number
-                                  width: 4.0,
-                                ),
-                              ),
-                              child: NcBodyText(
-                                _formatter.format(widget.day),
-                                textAlign: TextAlign.center,
-                                color: widget.isCurrentMonth
-                                    ? isToday
-                                        ? Colors.white
-                                        : textColor
-                                    // ignore: no-magic-number
-                                    : textColor.withOpacity(0.7),
-                              ),
-                            ),
+                            NcBodyText(
+                              _formatter.format(widget.day),
+                              textAlign: TextAlign.center,
+                              color: isToday
+                                  ? accentColor
+                                  : widget.isCurrentMonth
+                                      ? textColor
+                                      // ignore: no-magic-number
+                                      : textColor.withOpacity(0.7),
+                            )
                           ],
                         ),
                       ),
