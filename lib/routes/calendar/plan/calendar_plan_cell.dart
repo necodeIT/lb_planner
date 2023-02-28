@@ -3,7 +3,9 @@ part of lbplanner_routes;
 /// Cell of the calendar view.
 class CalendarPlanCell extends StatefulWidget {
   /// Cell of the calendar view.
-  const CalendarPlanCell({Key? key, required this.day, required this.isCurrentMonth}) : super(key: key);
+  const CalendarPlanCell(
+      {Key? key, required this.day, required this.isCurrentMonth})
+      : super(key: key);
 
   /// The day this cell represents.
   final DateTime day;
@@ -69,7 +71,10 @@ class CalendarPlanCellState extends State<CalendarPlanCell> {
         var user = ref.watch(userProvider);
 
         var allModules = ref.watch(modulesProvider);
-        List<int> deadlines = plan.deadlines.values.where((deadline) => deadline.end.isSameDate(widget.day)).map((deadline) => deadline.moduleId).toList();
+        List<int> deadlines = plan.deadlines.values
+            .where((deadline) => deadline.end.isSameDate(widget.day))
+            .map((deadline) => deadline.moduleId)
+            .toList();
 
         var modules = allModules.keys.where(deadlines.contains).toList();
 
@@ -79,10 +84,13 @@ class CalendarPlanCellState extends State<CalendarPlanCell> {
           padding: const EdgeInsets.all(NcSpacing.xsSpacing),
           duration: kNormalAnimationDuration,
           decoration: BoxDecoration(
+            // ignore: no-magic-number
+            color: isToday ? accentColor.withOpacity(.1) : Colors.transparent,
             border: Border.all(
-              color: tertiaryColor,
               // ignore: no-magic-number
-              width: widget.isCurrentMonth ? 0.5 : 0.2,
+              color: isToday ? accentColor : tertiaryColor,
+              // ignore: no-magic-number
+              width: widget.isCurrentMonth ? 0.7 : 0.2,
             ),
           ),
           child: LayoutBuilder(
@@ -92,7 +100,10 @@ class CalendarPlanCellState extends State<CalendarPlanCell> {
                 onWillAccept: (module) => !modules.contains(module),
                 onAccept: (module) => _setDeadline(ref, module),
                 builder: (context, candidateData, rejectedData) {
-                  if (_controller.hasClients && (_addedModules.isNotEmpty || candidateData.isNotEmpty || _controller.position.outOfRange)) {
+                  if (_controller.hasClients &&
+                      (_addedModules.isNotEmpty ||
+                          candidateData.isNotEmpty ||
+                          _controller.position.outOfRange)) {
                     WidgetsBinding.instance.addPostFrameCallback(
                       (timeStamp) => _controller.animateTo(
                         _controller.position.maxScrollExtent,
@@ -127,7 +138,7 @@ class CalendarPlanCellState extends State<CalendarPlanCell> {
                                       ? textColor
                                       // ignore: no-magic-number
                                       : textColor.withOpacity(0.7),
-                            ),
+                            )
                           ],
                         ),
                       ),

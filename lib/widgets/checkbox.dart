@@ -3,7 +3,9 @@ part of lbplanner_widgets;
 /// Themed [CheckBox] widget.
 class LpCheckbox extends StatelessWidget {
   /// Themed [CheckBox] widget.
-  const LpCheckbox({Key? key, required this.value, this.onChanged, this.scale = 1}) : super(key: key);
+  const LpCheckbox(
+      {Key? key, required this.value, this.onChanged, this.scale = 1})
+      : super(key: key);
 
   /// The current value of the checkbox.
   final bool value;
@@ -26,7 +28,9 @@ class LpCheckbox extends StatelessWidget {
         // ignore: no-magic-number
         scale: onChanged != null ? 1.1 : 1,
         child: Checkbox(
-          mouseCursor: onChanged != null ? kDefaultHoverCursor : SystemMouseCursors.basic,
+          mouseCursor: onChanged != null
+              ? kDefaultHoverCursor
+              : SystemMouseCursors.basic,
           focusColor: accentColor,
           value: value,
           onChanged: (value) => onChanged?.call(value ?? false),
