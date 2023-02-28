@@ -18,7 +18,7 @@ jobs:
       - name: "Build application"
         run: |
           flutter config --enable-windows-desktop
-          flutter build windows --release --no-sound-null-safety
+          flutter build windows --release --no-sound-null-safety --dart-define=LB_PLANNER_SETUP_TYPE=exe
       - name: Create config.iss
         uses: DamianReeves/write-file-action@master
         with:
@@ -90,7 +90,7 @@ jobs:
       - name: Build application
         run: |
           flutter config --enable-macos-desktop
-          flutter build macos --release --no-sound-null-safety
+          flutter build macos --release --no-sound-null-safety --dart-define=LB_PLANNER_SETUP_TYPE=dmg
       - name: Install node
         uses: actions/setup-node@v2
         with:
@@ -149,7 +149,7 @@ jobs:
       - name: Build application
         run: |
           flutter config --enable-linux-desktop
-          flutter build linux --release --no-sound-null-safety
+          flutter build linux --release --no-sound-null-safety --dart-define=LB_PLANNER_SETUP_TYPE=appimage
       - name: Install AppImage Tool
         run: |
           wget -c https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
