@@ -258,7 +258,7 @@ $functions = array(
         'classpath' => 'local/lbplanner/services/feedback/get_feedback.php',
         'description' => 'Get the feedback of the given id',
         'type' => 'read',
-        'capabilities' => '',
+        'capabilities' => 'local/lb_planner:admin, local/lb_planner:manager',
         'ajax' => true,
     ),
     'local_lbplanner_feedback_get_all_feedbacks' => array(
@@ -267,7 +267,7 @@ $functions = array(
         'classpath' => 'local/lbplanner/services/feedback/get_all_feedbacks.php',
         'description' => 'Get all the feedback from the DB',
         'type' => 'read',
-        'capabilities' => '',
+        'capabilities' => 'local/lb_planner:admin, local/lb_planner:manager',
         'ajax' => true,
     ),
     'local_lbplanner_feedback_update_feedback' => array(
@@ -276,7 +276,7 @@ $functions = array(
         'classpath' => 'local/lbplanner/services/feedback/update_feedback.php',
         'description' => 'Update the feedback of the given id',
         'type' => 'write',
-        'capabilities' => '',
+        'capabilities' => 'local/lb_planner:admin, local/lb_planner:manager',
         'ajax' => true,
     ),
     'local_lbplanner_feedback_delete_feedback' => array(
@@ -285,7 +285,7 @@ $functions = array(
         'classpath' => 'local/lbplanner/services/feedback/delete_feedback.php',
         'description' => 'Delete the feedback of the given id',
         'type' => 'write',
-        'capabilities' => '',
+        'capabilities' => 'local/lb_planner:admin, local/lb_planner:manager',
         'ajax' => true,
     ),
     'local_lbplanner_plan_accept_invite' => array(

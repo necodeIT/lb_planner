@@ -16,19 +16,23 @@
 
 namespace local_lbplanner_services;
 
+use coding_exception;
+use dml_exception;
 use external_api;
 use external_function_parameters;
 use external_multiple_structure;
 use external_single_structure;
 use external_value;
+use invalid_parameter_exception;
 use local_lbplanner\helpers\user_helper;
 use local_lbplanner\helpers\course_helper;
+use moodle_exception;
 
 /**
  * Get all the courses of the current year.
  */
 class courses_get_all_courses extends external_api {
-    public static function get_all_courses_parameters() {
+    public static function get_all_courses_parameters(): external_function_parameters {
         return new external_function_parameters(array(
             'userid' => new external_value(
                 PARAM_INT,
@@ -40,14 +44,20 @@ class courses_get_all_courses extends external_api {
         ));
     }
 
-    public static function get_all_courses($userid) {
+    /**
+     * @throws coding_exception
+     * @throws dml_exception
+     * @throws moodle_exception
+     * @throws invalid_parameter_exception
+     */
+    public static function get_all_courses($userid): array {
         global $DB;
 
         self::validate_parameters(self::get_all_courses_parameters(), array('userid' => $userid));
 
         user_helper::assert_access($userid);
 
-        $courses = enrol_get_my_courses(null, null, 0, [], false, 0, []);
+        $courses = enrol_get_my_courses();
         // Remove Duplicates.
         $courses = array_unique($courses, SORT_REGULAR);
 
@@ -76,7 +86,6 @@ class courses_get_all_courses extends external_api {
                 );
                 $fetchedcourse->name = $name;
                 $catgirls[] = (object) $fetchedcourse;
-                continue;
             } else {
                 $catgirl = (object) array(
                  'courseid' => $courseid,
@@ -94,7 +103,7 @@ class courses_get_all_courses extends external_api {
             return $catgirls;
     }
 
-    public static function get_all_courses_returns() {
+    public static function get_all_courses_returns(): external_multiple_structure {
         return new external_multiple_structure(
         new external_single_structure(
             array(
