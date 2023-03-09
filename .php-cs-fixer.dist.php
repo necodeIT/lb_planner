@@ -1,5 +1,6 @@
 <?php
-# config file for code formatter plugin
+
+// config file for code formatter plugin
 
 use PhpCsFixer\{Finder, Config};
 
@@ -19,11 +20,11 @@ return $config->setIndent("\t")
 		'braces' => [
 			'position_after_functions_and_oop_constructs' => 'same',
 			'position_after_control_structures' => 'same',
-			'position_after_anonymous_constructs' => 'same'
+			'position_after_anonymous_constructs' => 'same',
 		],
 		'curly_braces_position' => [
 			'functions_opening_brace' => 'same_line',
-			'classes_opening_brace' => 'same_line'
+			'classes_opening_brace' => 'same_line',
 		],
 		'no_multiple_statements_per_line' => true,
 		'no_trailing_comma_in_singleline' => true,
@@ -40,14 +41,14 @@ return $config->setIndent("\t")
 		'no_unset_cast' => true,
 		'short_scalar_cast' => true,
 		'class_attributes_separation' => [
-			'elements' => []
+			'elements' => [],
 		],
 		'class_definition' => [
 			'single_line' => true,
 			'single_item_single_line' => true,
 			'multi_line_extends_each_single_line' => false,
 			'space_before_parenthesis' => false,
-			'inline_constructor_arguments' => true
+			'inline_constructor_arguments' => true,
 		],
 		'no_blank_lines_after_class_opening' => false,
 		'single_class_element_per_statement' => true,
@@ -58,7 +59,7 @@ return $config->setIndent("\t")
 		'no_superfluous_elseif' => false,
 		'function_declaration' => [
 			'closure_function_spacing' => 'none',
-			'closure_fn_spacing' => 'none'
+			'closure_fn_spacing' => 'none',
 		],
 		'nullable_type_declaration_for_default_null_value' => false,
 		'group_import' => true,
@@ -73,13 +74,15 @@ return $config->setIndent("\t")
 		'phpdoc_line_span' => [
 			'const' => 'single',
 			'property' => 'single',
-			'method' => 'multi'
+			'method' => 'multi',
 		],
 		'phpdoc_separation' => false,
 		'phpdoc_summary' => false,
+		'multiline_whitespace_before_semicolons' => ['strategy' => 'no_multi_line'],
+		'single_import_per_statement' => false,
 		'blank_line_before_statement' => false,
-		'blank_line_between_import_groups' => false, //prefer manual spacing
+		'blank_line_between_import_groups' => false, // prefer manual spacing
 		'no_whitespace_in_blank_line' => false,
-		'statement_indentation' => true
+		'statement_indentation' => true,
 	])
 	->setFinder($finder);
