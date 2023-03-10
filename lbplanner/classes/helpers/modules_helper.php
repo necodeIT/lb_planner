@@ -17,9 +17,11 @@
 namespace local_lbplanner\helpers;
 
 use block_accessreview\external\get_module_data;
+use core\plugininfo\mod;
 use external_function_parameters;
 use external_single_structure;
 use external_value;
+use mod_chat\event\course_module_instance_list_viewed;
 use moodle_url;
 
 /**

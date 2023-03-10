@@ -24,6 +24,7 @@ use local_lbplanner\helpers\course_helper;
 use local_lbplanner\helpers\modules_helper;
 use local_lbplanner\helpers\user_helper;
 use local_lbplanner\helpers\plan_helper;
+use mod_assign_external;
 
 
 /**
@@ -48,7 +49,6 @@ class modules_get_all_modules extends external_api {
         $courses = self::call_external_function('local_lbplanner_courses_get_all_courses', array('userid' => $userid));
         $plan = plan_helper::get_plan(plan_helper::get_plan_id($userid));
         $ekenabled = $plan["enableek"];
-
         foreach ($courses["data"] as $course) {
             if ($course["enabled"] == course_helper::DISABLED_COURSE) {
                 continue;

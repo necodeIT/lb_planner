@@ -1,3 +1,5 @@
 moodle
 *.zip
 lbplanner.dart/test/env.dart
+API_Output.json
+Moodle.xml
