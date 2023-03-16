@@ -44,7 +44,7 @@
 				echo '<div class="scrollwrap"><div class="allpage">';
 				foreach ($title->headings as $heading) {
 		?>
-					<details<?= $wanted_heading == $heading->id ? ' open' : ''; ?>>
+					<details<?= $wanted_heading == $heading->id ? ' open' : ''; ?> data-heading-id="<?= $heading->id ?>">
 						<summary><?php
 							echo $heading->text;
 							include('../resources/dropdown_arrow.svg');
