@@ -39,12 +39,8 @@
 		</div>
 		<?php
 			foreach ($stuff as $title) {
-				echo '<input type="radio" id="radio_title'.$title->id;
-				if ($wanted_section == $title->id) {
-					echo '" checked name="pageradios"/>'; // page radios not pager adios
-				} else {
-					echo '" name="pageradios"/>';
-				}
+				$check = $wanted_section==$title->id ? 'checked ' : '';
+				echo "<input type='radio' id='radio_title{$title->id}' {$check} name='pageradios'/>";
 				echo '<div class="scrollwrap"><div class="allpage">';
 				foreach ($title->headings as $heading) {
 		?>
