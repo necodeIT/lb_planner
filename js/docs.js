@@ -15,8 +15,9 @@ for(let label of sidebar.children){
 		label.classList.add("curpage");
 	}
 }
-/* adding delay to details closing to let animation finish playing */
+/* various details events */
 for(let details of document.getElementsByTagName("details")){
+	/* adding delay to details closing to let animation finish playing */
 	details.children[0].onclick = function(event){
 		if(details.isExpanding || details.hasAttribute('open')){
 			event.preventDefault();
@@ -24,6 +25,7 @@ for(let details of document.getElementsByTagName("details")){
 			setTimeout(()=>{details.removeAttribute("open");details.children[1].style["transform"]=null},200);
 		}
 	}
+	/* scroll details into view if open on load */
 	if(details.hasAttribute('open')){
 		window.addEventListener('load',function(){
 			details.scrollIntoView();
