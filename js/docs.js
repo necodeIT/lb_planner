@@ -1,3 +1,5 @@
+window.addEventListener('load',function(){
+
 /* making the labels go blue when they're selected */
 var sidebar = document.getElementById("sidebar");
 sidebar.addEventListener("click",function(event){
@@ -32,3 +34,5 @@ for(let details of document.getElementsByTagName("details")){
 		});
 	}
 }
+
+});
