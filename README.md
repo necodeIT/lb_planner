@@ -2,16 +2,16 @@
 
 LB Planner is an application designed to help students plan and organize their self-taught studying by tracking and managing their modules. It provides an easy-to-use interface that allows users to stay on top of their academic goals. For more information, please visit our [website](https://projekte.tgm.ac.at/lb-planner/).
 
-## Compile Steps
+## Compile Instructions
 
 1. Clone the repository to your local machine.
 2. Ensure that you have [FVM](https://fvm.app/docs/getting_started/installation/) installed on your machine.
 3. Navigate to the project directory in the terminal.
 4. Run `fvm use` to select the Flutter version.
-5. Run `flutter pub get` to install the required dependencies.
-6. To build the application for release on macOS, run `flutter build macos --release --no-sound-null-safety`. The built application can be found in the `build/macos/Build/Products/Release/` directory.
-7. To build the application for release on Windows, run `flutter build windows --release --no-sound-null-safety`. The built application can be found in the `build\windows\runner\Release\` directory.
-8. To build the application for release on Linux, run `flutter build linux --release --no-sound-null-safety`. The built application can be found in the `build/linux/release/bundle/` directory.
+5. Run `fvm flutter pub get` to install the required dependencies.
+6. To build the application for release on macOS, run `fvm flutter build macos --release --no-sound-null-safety`. The built application can be found in the `build/macos/Build/Products/Release/` directory.
+7. To build the application for release on Windows, run `fvm flutter build windows --release --no-sound-null-safety`. The built application can be found in the `build\windows\runner\Release\` directory.
+8. To build the application for release on Linux, run `fvm flutter build linux --release --no-sound-null-safety`. The built application can be found in the `build/linux/release/bundle/` directory.
 
 Note: LB Planner uses `--no-sound-null-safety` because some of the third-party packages used in the app do not yet support Flutter's null safety feature. If you encounter any issues while compiling or running the application, please refer to the official [Flutter documentation](https://flutter.dev/docs) or the [FVM documentation](https://fvm.app) for troubleshooting tips.
 
