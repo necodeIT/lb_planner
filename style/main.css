@@ -66,10 +66,17 @@ body{
 	background-color:var(--primary-color);
 	box-shadow:0 0 0.5em #0008;
 }
-#mainnav>svg{
-	margin:0.25em auto 0.45em 0;
+#mainnav>.logo{
+	display:flex;
+	padding:0.25em 0 0.45em 0;
+	margin-right:auto;
+	height:100%;
+	box-sizing:border-box;
 }
-#mainnav>a{
+#mainnav>.logo>svg{
+	height:100%;
+}
+#mainnav>.navlink{
 	position:relative;
 	display:inline-flex;
 	flex-direction:column;
@@ -79,7 +86,7 @@ body{
 	padding:0.25em 0.5em;
 	font-weight:600;
 }
-#mainnav>a::after{
+#mainnav>.navlink::after{
 	content:"";
 	position:absolute;
 	bottom:0.25em;
@@ -88,7 +95,7 @@ body{
 	width:80%;
 	transition:bottom 0.2s,background-color 0.2s;
 }
-#mainnav>a:is(.current,:hover)::after{
+#mainnav>.navlink:is(.current,:hover)::after{
 	background-color: var(--accent-color);
 	bottom:0;
 }
