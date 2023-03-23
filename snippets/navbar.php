@@ -4,7 +4,7 @@ require_once(root.'/snippets/db.php');
 	
 $c = ['', '', ''];
 $c[cursite - 1] = ' class="current"';
-echo '<nav id="mainnav"><a href="/" class="logo">';
+echo '<nav id="mainnav"><a href="'.urlroot.'" class="logo">';
 include(root.'/resources/wordmark.svg');
 echo '</a>';
 echo '<a class="navlink" href="'.urlroot.'/"'.$c[0].'>'.GDS('nav_dl').'</a>';
