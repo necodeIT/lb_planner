@@ -53,6 +53,7 @@ return $config->setIndent("\t")
 		'no_blank_lines_after_class_opening' => false,
 		'single_class_element_per_statement' => true,
 		'multiline_comment_opening_closing' => true,
+		'single_line_comment_style' => false,
 		'elseif' => false,
 		'include' => false,
 		'no_break_comment' => false,

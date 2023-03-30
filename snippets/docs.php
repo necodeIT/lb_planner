@@ -1,19 +1,19 @@
 <?php
 
 require_once(root.'/snippets/snips.php');
-	
+
 /**
  * preprocessor function for doc texts
  * prints directly instead of returning a string
  * @param string $text source string
- * the general structure of a function here is !fun[arg1|arg2]
- * insert images via !img[alt text|dateiname in /resources/docs]
- * insert external links via !lnk[text|link]
- * insert special chars like ! (and | and ] inside functions) with a preceding \
- * anything else just gets echoed like usual - html entities have to be escaped in the source text!
+ *                     the general structure of a function here is !fun[arg1|arg2]
+ *                     insert images via !img[alt text|dateiname in /resources/docs]
+ *                     insert external links via !lnk[text|link]
+ *                     insert special chars like ! (and | and ] inside functions) with a preceding \
+ *                     anything else just gets echoed like usual - html entities have to be escaped in the source text!
  * @internal if your formatting is wack, this might crash!
  */
-function docs_content_pp(string $text) : void{
+function docs_content_pp(string $text): void {
 	$len = strlen($text);
 	for ($i = 0; $i < $len;) {
 		$c = $text[$i];
@@ -53,13 +53,13 @@ function docs_content_pp(string $text) : void{
 }
 /**
  * Finds the indices of the parameters of a preprocessor function
- * @param string $text the string to search in
- * @param int $i where to start searching
- * @return int[] an array in the format [param1end,…,endindex]
- *            note that indices are placed on the control chars, so [a|bc] returns [2,5]
+ * @param  string $text the string to search in
+ * @param  int    $i    where to start searching
+ * @return int[]  an array in the format [param1end,…,endindex]
+ *                     note that indices are placed on the control chars, so [a|bc] returns [2,5]
  * @internal if your formatting is wack, this might crash!
  */
-function _find_text_function_params(string $text, int $i) : array{
+function _find_text_function_params(string $text, int $i): array {
 	$args = [];
 	while (true) {
 		$i++;

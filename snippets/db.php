@@ -5,11 +5,11 @@ $GLOBALS['db'] = new PDO('mysql:host='.db_host.';dbname='.db_dbname.';charset=ut
 $GLOBALS['db']->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 /**
  * prepares and executes a query
- * @param string $query the SQL query to execute
- * @param array $args the parameters to insert into the query
+ * @param  string       $query the SQL query to execute
+ * @param  array        $args  the parameters to insert into the query
  * @return PDOStatement the resulting values
  */
-function _db_get_pq(string $query, array $args) : PDOStatement {
+function _db_get_pq(string $query, array $args): PDOStatement {
 	/** @var PDO $db */
 	global $db;
 	$stmt = $db->prepare($query);
@@ -18,12 +18,12 @@ function _db_get_pq(string $query, array $args) : PDOStatement {
 }
 /**
  * prepares and executes a query with explicit types
- * @param string $query the SQL query to execute
- * @param string[] $args the parameters to insert into the query
- * @param string[] $types the parameter types
+ * @param  string       $query the SQL query to execute
+ * @param  string[]     $args  the parameters to insert into the query
+ * @param  string[]     $types the parameter types
  * @return PDOStatement the resulting values
  */
-function _db_get_tpq(string $query, array $args, array $types) : PDOStatement{
+function _db_get_tpq(string $query, array $args, array $types): PDOStatement {
 	/** @var PDO $db */
 	global $db;
 	$stmt = $db->prepare($query);
@@ -36,10 +36,10 @@ function _db_get_tpq(string $query, array $args, array $types) : PDOStatement{
 /**
  * returns a translated string matching the key string from the database
  * short for Get DB String
- * @param string $key the internal string key
+ * @param  string $key the internal string key
  * @return string the matching translation string from the database
  */
-function GDS(string $key) : string{
+function GDS(string $key): string {
 	global $context_lang;
 	return _db_get_pq(
 		'SELECT str FROM Translation_'.strtolower($context_lang).' as trans INNER JOIN TranslationKeys as tkeys ON trans.id=tkeys.id WHERE tkeys.name=?',
@@ -51,17 +51,17 @@ function GDS(string $key) : string{
  * short for Echo DB String
  * @param string $key the internal string key
  */
-function EDS(string $key) : void{
+function EDS(string $key): void {
 	echo GDS($key);
 }
 /**
  * returns translated strings matching the key string from the database plus the appended postfixes
  * short for Multiple Get DB String
- * @param string $key the first part of the internal string keys
- * @param array $postfixes the second parts of the internal string keys
+ * @param  string $key       the first part of the internal string keys
+ * @param  array  $postfixes the second parts of the internal string keys
  * @return string the matching translation strings from the database, concatenated
  */
-function MGDS(string $key, array $postfixes) : string{
+function MGDS(string $key, array $postfixes): string {
 	$result = '';
 	foreach ($postfixes as $pf) {
 		$result .= GDS($key.$pf);
@@ -71,10 +71,10 @@ function MGDS(string $key, array $postfixes) : string{
 /**
  * prints translated strings matching the key string from the database plus the appended postfixes
  * short for Multiple Echo DB String
- * @param string $key the first part of the internal string keys
- * @param array $postfixes the second parts of the internal string keys
+ * @param string $key       the first part of the internal string keys
+ * @param array  $postfixes the second parts of the internal string keys
  */
-function MEDS(string $key, array $postfixes) : void{
+function MEDS(string $key, array $postfixes): void {
 	foreach ($postfixes as $pf) {
 		EDS($key.$pf);
 	}
@@ -83,7 +83,7 @@ function MEDS(string $key, array $postfixes) : void{
  * gets doc titles, headings and texts (not preprocessed)
  * @return DocTitle[]
  */
-function db_get_docs_stuff() : array{
+function db_get_docs_stuff(): array {
 	global $context_lang;
 	
 	// getting titles
@@ -116,8 +116,8 @@ class DocTitle {
 	public $text;
 	public $headings;
 	/**
-	 * @param int $id the section ID
-	 * @param string $text the section title
+	 * @param int          $id       the section ID
+	 * @param string       $text     the section title
 	 * @param DocHeading[] $headings the headings contained within this section
 	 */
 	public function __construct(int $id, string $text, array $headings) {
@@ -134,7 +134,7 @@ class DocHeading {
 	public $text;
 	public $body;
 	/**
-	 * @param int $id the subsection ID
+	 * @param int    $id   the subsection ID
 	 * @param string $text the subsection title
 	 * @param string $body the subsection text
 	 */

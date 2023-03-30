@@ -6,7 +6,7 @@ require_once(root.'/snippets/dl_constants.php');
  * prints a card for theme switching
  * @param string $theme name of the theme
  */
-function genThemeCard(string $theme) : void{
+function genThemeCard(string $theme): void {
 	global $context_theme;
 	if ($theme == $context_theme) {
 		$current = ' current';
@@ -20,12 +20,12 @@ function genThemeCard(string $theme) : void{
 }
 /**
  * prints a learning card (has short title and links to a subsection in the docs)
- * @param string $name name of the image ( /resources/feature_{$name}.svg )
- * @param int $i ID of the translation string ( title_learn_{$i} )
- * @param int $sectionid ID of the doc section to link to
- * @param int $headingid ID of the doc subsection to link to
+ * @param string $name      name of the image ( /resources/feature_{$name}.svg )
+ * @param int    $i         ID of the translation string ( title_learn_{$i} )
+ * @param int    $sectionid ID of the doc section to link to
+ * @param int    $headingid ID of the doc subsection to link to
  */
-function genLearnCard(string $name, int $i, int $sectionid, int $headingid) : void {
+function genLearnCard(string $name, int $i, int $sectionid, int $headingid): void {
 	echo '<a class="card learn" href="'.urlroot."/docs/?&section={$sectionid}&heading={$headingid}\">";
 	include(root."/resources/feature_{$name}.svg");
 	echo '<h4>'.GDS('title_learn'.$i).'</h4>'.
@@ -37,7 +37,7 @@ function genLearnCard(string $name, int $i, int $sectionid, int $headingid) : vo
  * prints a card for downloading lbp builds
  * @param string $os name of the OS this card is for
  */
-function genDownloadCard(string $os) : void{
+function genDownloadCard(string $os): void {
 	global $context_os;
 	if ($os == $context_os) {
 		$current = ' current';
@@ -55,7 +55,7 @@ function genDownloadCard(string $os) : void{
  * prints a download button for downloading lbp builds
  * @param string $os name of the OS this button is for
  */
-function genDownloadButton(string $os) : void{
+function genDownloadButton(string $os): void {
 	$dl_url = constant('dl_'.$os);
 	echo "<a id='downloadbtn' class='btn' href='{$dl_url}'>";
 	if ('linux' == $os) {
@@ -68,9 +68,9 @@ function genDownloadButton(string $os) : void{
 }
 /**
  * prints short section that showcases a feature
- * @param string $title title to display above the paragraph
+ * @param string $title     title to display above the paragraph
  * @param string $paragraph short text that explains the feature
- * @param string $imgname name of the image ( /resources/docs/{$imgname}.png )
+ * @param string $imgname   name of the image ( /resources/docs/{$imgname}.png )
  */
 function genFeatureSection(string $title, string $paragraph, string $imgname) {
 	echo '<section class="screenpage pagetype2">'.
