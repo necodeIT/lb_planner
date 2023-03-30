@@ -7,6 +7,7 @@
 	--accent-bg-color:#27BCF315;
 	--text-color:#1D1D1D;
 	--button-text-color:#FFF;
+	color-scheme: only light;
 }
 .theme-dark{
 	--primary-color:#1D1D1D;
@@ -16,6 +17,7 @@
 	--accent-bg-color:#27BCF322;
 	--text-color:#FFF;
 	--button-text-color:#FFF;
+	color-scheme: only dark;
 }
 .theme-ocean{
 	--primary-color:#212942;
@@ -25,6 +27,7 @@
 	--accent-bg-color:#78A5FE22;
 	--text-color:#F8F2F2;
 	--button-text-color:#F8F2F2;
+	color-scheme: dark;
 }
 .theme-sakura{
 	--primary-color:#FCE9EB;
@@ -34,6 +37,7 @@
 	--accent-bg-color:#F3A39E22;
 	--text-color:#8C5E6B;
 	--button-text-color:#FCE9EB;
+	color-scheme: light;
 }
 /* body */
 body{
