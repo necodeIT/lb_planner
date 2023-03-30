@@ -46,7 +46,7 @@ do :
 done
 
 echo "DELETE FROM TranslationKeys;"
-loadTable './keys.txt' 'TranslationKeys'
+loadTable './keys.csv' 'TranslationKeys'
 
 #iterating over languages
 for ((i=0;i<"${#langs[@]}";i++));
@@ -54,6 +54,6 @@ do :
 	#reloading tables
 	for ((j=0;j<"${#transDBs[@]}";j++));
 	do :
-		loadTable "./${filepaths[$j]}${langs[$i]}.txt" "${transDBs[$j]}_${langs[$i]}"
+		loadTable "./${filepaths[$j]}${langs[$i]}.csv" "${transDBs[$j]}_${langs[$i]}"
 	done
 done
