@@ -3,15 +3,28 @@
 require_once(root.'/CONSTANTS.php');
 $GLOBALS['db'] = new PDO('mysql:host='.db_host.';dbname='.db_dbname.';charset=utf8mb4', db_username, db_password);
 $GLOBALS['db']->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-// helper method to reduce code duplication
-function _db_get_pq($query, $args) {
+/**
+ * prepares and executes a query
+ * @param string $query the SQL query to execute
+ * @param array $args the parameters to insert into the query
+ * @return PDOStatement the resulting values
+ */
+function _db_get_pq(string $query, array $args) : PDOStatement {
+	/** @var PDO $db */
 	global $db;
 	$stmt = $db->prepare($query);
 	$stmt->execute($args);
 	return $stmt;
 }
-// helper method; same as above, but with explicit types
-function _db_get_tpq($query, $args, $types) {
+/**
+ * prepares and executes a query with explicit types
+ * @param string $query the SQL query to execute
+ * @param string[] $args the parameters to insert into the query
+ * @param string[] $types the parameter types
+ * @return PDOStatement the resulting values
+ */
+function _db_get_tpq(string $query, array $args, array $types) : PDOStatement{
+	/** @var PDO $db */
 	global $db;
 	$stmt = $db->prepare($query);
 	for ($i = 0; $i < count($args); $i++) {
@@ -20,34 +33,57 @@ function _db_get_tpq($query, $args, $types) {
 	$stmt->execute();
 	return $stmt;
 }
-// returns a translated string matching the key string from the database
-// short for Get DB String
-function GDS($key) {
-	global $context_lang,$db;
+/**
+ * returns a translated string matching the key string from the database
+ * short for Get DB String
+ * @param string $key the internal string key
+ * @return string the matching translation string from the database
+ */
+function GDS(string $key) : string{
+	global $context_lang;
 	return _db_get_pq(
 		'SELECT str FROM Translation_'.strtolower($context_lang).' as trans INNER JOIN TranslationKeys as tkeys ON trans.id=tkeys.id WHERE tkeys.name=?',
 		[$key]
 	)->fetch()[0];
 }
-// shorthand for Echo DB String
-function EDS($key) {
+/**
+ * prints a translated string matching the key string from the database
+ * short for Echo DB String
+ * @param string $key the internal string key
+ */
+function EDS(string $key) : void{
 	echo GDS($key);
 }
-// shorthand for Multiple Get DB String and Multiple Echo DB String
-function MGDS($key, $postfixes) {
+/**
+ * returns translated strings matching the key string from the database plus the appended postfixes
+ * short for Multiple Get DB String
+ * @param string $key the first part of the internal string keys
+ * @param array $postfixes the second parts of the internal string keys
+ * @return string the matching translation strings from the database, concatenated
+ */
+function MGDS(string $key, array $postfixes) : string{
 	$result = '';
 	foreach ($postfixes as $pf) {
 		$result .= GDS($key.$pf);
 	}
 	return $result;
 }
-function MEDS($key, $postfixes) {
+/**
+ * prints translated strings matching the key string from the database plus the appended postfixes
+ * short for Multiple Echo DB String
+ * @param string $key the first part of the internal string keys
+ * @param array $postfixes the second parts of the internal string keys
+ */
+function MEDS(string $key, array $postfixes) : void{
 	foreach ($postfixes as $pf) {
 		EDS($key.$pf);
 	}
 }
-// returns an array with DocTitle Objects
-function db_get_docs_stuff() {
+/**
+ * gets doc titles, headings and texts (not preprocessed)
+ * @return DocTitle[]
+ */
+function db_get_docs_stuff() : array{
 	global $context_lang;
 	
 	// getting titles
@@ -72,21 +108,37 @@ function db_get_docs_stuff() {
 	
 	return $result;
 }
+/**
+ * Represents a docs section
+ */
 class DocTitle {
 	public $id;
 	public $text;
 	public $headings;
-	public function __construct($id, $text, $headings) {
+	/**
+	 * @param int $id the section ID
+	 * @param string $text the section title
+	 * @param DocHeading[] $headings the headings contained within this section
+	 */
+	public function __construct(int $id, string $text, array $headings) {
 		$this->id = $id;
 		$this->text = $text;
 		$this->headings = $headings;
 	}
 }
+/**
+ * Represents a docs subsection
+ */
 class DocHeading {
 	public $id;
 	public $text;
 	public $body;
-	public function __construct($id, $text, $body) {
+	/**
+	 * @param int $id the subsection ID
+	 * @param string $text the subsection title
+	 * @param string $body the subsection text
+	 */
+	public function __construct(int $id, string $text, string $body) {
 		$this->id = $id;
 		$this->text = $text;
 		$this->body = $body;
