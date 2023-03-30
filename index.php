@@ -9,6 +9,7 @@ require_once('./snippets/download.php');
 setContext();
 	
 $stylesheets = ['main', 'download'];
+$scripts = ['downloads'];
 include('./snippets/head.php');
 ?>
 	<body class="theme-<?= $context_theme; ?>">

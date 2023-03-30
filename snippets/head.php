@@ -12,8 +12,9 @@
 				}
 			}
 			if (isset($scripts)) {
+				array_push($scripts,'main');
 				foreach ($scripts as $script) {
-					echo '<script async src="'.urlroot."/js/{$script}.js\"></script>";
+					echo '<script async src="'.urlroot."/js/{$script}.js\" type=\"module\"></script>";
 				}
 			}
 		?>

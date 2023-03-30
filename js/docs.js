@@ -1,17 +1,7 @@
+import setURLParam from "./main.js";
+
 window.addEventListener('load',function(){
 
-/**
- * sets one URL parameter and updates the history and url field
- */
-function setURLParam(name,value){
-	let cururl = new URL(window.location.toString());
-	let params = cururl.searchParams;
-	if(value!=null)
-		params.set(name,value);
-	else
-		params.delete(name);
-	window.history.replaceState(params,"","?"+params.toString());
-}
 /* making the labels go blue when they're selected and updating URL params */
 var sidebar = document.getElementById("sidebar");
 sidebar.addEventListener("click",function(event){
