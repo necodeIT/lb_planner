@@ -1,17 +1,25 @@
 <?php
 
 require_once(root.'/CONSTANTS.php');
-	
+
 ini_set('session.gc-maxlifetime', 31536000);
 ini_set('session.cookie_lifetime', 31536000);
 session_start();
-	
-function genExtRef($text, $href) {
+
+/**
+ * prints external reference button
+ * @param string $text text to display inside button
+ * @param string $href link to link to
+ */
+function genExtRef(string $text, string $href): void {
 	echo "<a class='extref btn' href='{$href}'><span>{$text} </span>";
 	include('./resources/extref.svg');
 	echo '</a>';
 }
-function setContext() {
+/**
+ * initializes globals and session variables
+ */
+function setContext(): void {
 	_setContext_helper('theme', ['light', 'dark', 'ocean', 'sakura']);
 	_setLangContext();
 	_setOSContext();
@@ -19,7 +27,12 @@ function setContext() {
 		$_SESSION['pref_'.$pref] = $GLOBALS['context_'.$pref];
 	}
 }
-function _setContext_helper($varname, $varvals) {
+/**
+ * sets global var according to existing session equivalent and url parameter override
+ * @param string   $varname name of the variable
+ * @param string[] $varvals valid values for variable (first element gets used as fallback)
+ */
+function _setContext_helper(string $varname, array $varvals): void {
 	$globalname = 'context_'.$varname;
 	$prefname = 'pref_'.$varname;
 		
@@ -38,7 +51,10 @@ function _setContext_helper($varname, $varvals) {
 		$GLOBALS[$globalname] = $varvals[0];
 	}
 }
-function _setOSContext() {
+/**
+ * reads OS from user agent and sets the global var accordingly
+ */
+function _setOSContext(): void {
 	$user_agent = $_SERVER['HTTP_USER_AGENT'];
 		
 	$osarr = [];
@@ -55,6 +71,9 @@ function _setOSContext() {
 		
 	_setContext_helper('os', $osarr);
 }
+/**
+ * reads language from http header and sets the global var accordingly
+ */
 function _setLangContext() {
 	// getting priorities of langs supported by the website within the browser
 	$accepted = [];
@@ -77,10 +96,9 @@ function _setLangContext() {
 }
 /**
  * Helper function to escape text for attributes
- * @param text the input text
- * @param  mixed $text
- * @return text  that's been escaped and is fit for HTML attributes
+ * @param  string $text input text
+ * @return string text that's been escaped and is fit for HTML attributes
  */
-function attrescape($text) {
+function attrescape(string $text): string {
 	return htmlentities($text, ENT_QUOTES | ENT_SUBSTITUTE | ENT_HTML5);
 }
