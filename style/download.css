@@ -187,6 +187,9 @@
 	grid-row:4;
 	box-sizing:border-box;
 }
+#ofeat>.card.dl:focus-visible{
+	outline:1px solid var(--text-color)
+}
 #ofeat>.card.dl.current{
 	grid-column:2;
 	margin:1em;
