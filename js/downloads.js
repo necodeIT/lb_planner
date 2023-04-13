@@ -19,7 +19,13 @@ function onChangeTheme(e){
 		themecard = themecard.parentElement;
 	}
 	
-	let curtheme = getCurURLParam('theme');
+	let curtheme;
+	for(let bodyclass of document.body.classList){
+		if(bodyclass.startsWith('theme-')){
+			curtheme = bodyclass.slice(6);
+			break;
+		}
+	}
 	let newtheme = getURLParam(
 		'theme',
 		"http://localhost"+themecard.getAttribute('href').slice(1)
@@ -31,4 +37,7 @@ function onChangeTheme(e){
 	setURLParam('theme',newtheme);
 	document.body.classList.remove('theme-'+curtheme);
 	document.body.classList.add('theme-'+newtheme);
+	
+	// loading the new url to make change persistent
+	fetch(window.location.toString());
 }
