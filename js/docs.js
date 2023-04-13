@@ -1,4 +1,4 @@
-import setURLParam from "./main.js";
+import {setURLParam} from "./main.js";
 
 window.addEventListener('load',function(){
 
