@@ -136,6 +136,56 @@ body{
 	width:fit-content;
 	margin:2em 0 2em 0;
 	outline:solid 1px var(--tertiary-color);
+	cursor:zoom-in;
+	transition:border-radius 0.2s cubic-bezier(.22,.61,.36,1);
+	border-radius:0.5em;
+	overflow:hidden;
+}
+.allpage>details>.p .img:hover{
+	border-radius:0;
+}
+/*fullpage image*/
+#modalcontainer{
+	display:none;
+	cursor:zoom-out;
+}
+#modalcontainer.active{
+	display:flex;
+	position:fixed;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	z-index:200;
+	justify-content:center;
+	align-items:center;
+	background-color:#0008;
+}
+#modalcontainer>img{
+	max-width:90%;
+	max-height:90%;
+	cursor:default;
+}
+#modalcontainer>#modalclose{
+	appearance:none;
+	position:absolute;
+	top:0;
+	right:0;
+	width:2.5em;
+	height:2.5em;
+	padding:0.5em;
+	border:none;
+	outline:solid 1px var(--tertiary-color);
+	background-color:var(--secondary-color);
+	color:var(--error-color);
+	cursor:pointer;
+	border-radius:0 0 0 0.5em;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}
+#modalcontainer>#modalclose:hover svg{
+	filter:drop-shadow(0 0 1px var(--error-color));
 }
 /*radios to display/hide 'allpages' */
 input[name="pageradios"]{

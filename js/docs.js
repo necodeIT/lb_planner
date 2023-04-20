@@ -59,5 +59,40 @@ for(let details of document.getElementsByTagName("details")){
 		});
 	}
 }
+/* makes images fullscreen on click */
+let modalcontainer = document.getElementById('modalcontainer');
+let modalclose = document.getElementById('modalclose');
+let modalstate = {};
+for(let imgc of document.getElementsByClassName('img')){
+	imgc.addEventListener('click',function(event){
+		let img = imgc.children[0];
+		let placeholder = document.createElement('div');
+		placeholder.style.height=img.clientHeight+'px';
+		placeholder.style.width=img.clientWidth+'px';
+		img.remove();
+		imgc.appendChild(placeholder);
+		modalcontainer.appendChild(img);
+		modalcontainer.classList.add('active');
+		
+		modalstate.placeholder = placeholder;
+		modalstate.imgc = imgc;
+		modalstate.img = img;
+	});
+}
+modalclose.addEventListener('click',function(_event){
+	if(modalstate.imgc!=undefined){
+		modalstate.placeholder.remove();
+		modalstate.imgc.appendChild(modalstate.img);
+		modalcontainer.classList.remove('active');
+		
+		modalstate.placeholder=undefined;
+		modalstate.imgc=undefined;
+		modalstate.img=undefined;
+	}
+});
+modalcontainer.addEventListener('click',function(event){
+	if(event.target==modalcontainer)
+		modalclose.click();
+});
 
 });
