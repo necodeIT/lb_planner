@@ -59,7 +59,7 @@
 			}
 			include('../snippets/foot.php');
 		?>
-		<div id="modalcontainer">
+		<div id="modalcontainer" class="inactive">
 			<button id="modalclose">
 				<?php include('../resources/closex.svg');?>
 			</button>

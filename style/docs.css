@@ -146,10 +146,6 @@ body{
 }
 /*fullpage image*/
 #modalcontainer{
-	display:none;
-	cursor:zoom-out;
-}
-#modalcontainer.active{
 	display:flex;
 	position:fixed;
 	top:0;
@@ -159,12 +155,25 @@ body{
 	z-index:200;
 	justify-content:center;
 	align-items:center;
+	cursor:zoom-out;
+	background-color:#0000;
+	transition:background-color 0.2s;
+}
+#modalcontainer.active{
 	background-color:#0008;
+}
+#modalcontainer.inactive{
+	display:none;
 }
 #modalcontainer>img{
 	max-width:85%;
 	max-height:85%;
 	cursor:default;
+	transform-origin:top left;
+	transform:var(--origintransform);
+}
+#modalcontainer>img.untransform{
+	transform:translate(0px,0px) scale(1,1);
 }
 #modalcontainer>#modalclose{
 	appearance:none;
@@ -181,6 +190,11 @@ body{
 	display:flex;
 	justify-content:center;
 	align-items:center;
+	opacity:0;
+	transition:opacity 0.2s;
+}
+#modalcontainer.active>#modalclose{
+	opacity:1;
 }
 #modalcontainer>#modalclose:hover svg{
 	filter:drop-shadow(0 0 1px var(--error-color));
