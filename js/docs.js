@@ -94,5 +94,9 @@ modalcontainer.addEventListener('click',function(event){
 	if(event.target==modalcontainer)
 		modalclose.click();
 });
+document.addEventListener('keydown',function(event){
+	if(event.key=="Escape")
+		modalclose.click();
+});
 
 });
