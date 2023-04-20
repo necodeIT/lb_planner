@@ -162,24 +162,22 @@ body{
 	background-color:#0008;
 }
 #modalcontainer>img{
-	max-width:90%;
-	max-height:90%;
+	max-width:85%;
+	max-height:85%;
 	cursor:default;
 }
 #modalcontainer>#modalclose{
 	appearance:none;
 	position:absolute;
-	top:0;
-	right:0;
+	top:1em;
+	right:1em;
 	width:2.5em;
 	height:2.5em;
 	padding:0.5em;
 	border:none;
-	outline:solid 1px var(--tertiary-color);
-	background-color:var(--secondary-color);
+	background-color:#0000;
 	color:var(--error-color);
 	cursor:pointer;
-	border-radius:0 0 0 0.5em;
 	display:flex;
 	justify-content:center;
 	align-items:center;
