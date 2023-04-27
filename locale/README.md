@@ -53,5 +53,26 @@ One heading can have multiple texts associated with them. They're sorted by id i
 # Database requirements
 
 You need to have mysql/mariadb installed. The user `lbplanner` has to be granted `SELECT` for the website to work.
-For the locale update script `./reload.sh` to work, the user `lbplanner` has to be granted `FILE` and probably some others related to modifying tables. I recommend granting `ALL` temporarily.
-(`FILE` has to be granted separately & globally to work)
+
+# helper scripts
+
+## reload.sh
+
+this script prints a mysql script that reloads all of the translation strings. No parameters required!
+
+## commit.sh
+
+this is a short script that connects to the database and tries to execute the command specified in `reload.sh`. It needs four parameters:
+
+- server hostname
+- port
+- database name
+- username
+
+Additionally, it will read the user password from stdin. You can either enter it manually or use a pipe.
+
+**Example usage:**
+
+```bash
+echo passwd1 | ./commit.sh projekte.tgm.ac.at 3306 lbpages lbplanner
+```
