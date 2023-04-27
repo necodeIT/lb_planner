@@ -166,8 +166,9 @@ body{
 	display:none;
 }
 #modalcontainer>img{
-	max-width:85%;
-	max-height:85%;
+	width:85%;
+	height:85%;
+	object-fit:contain;
 	cursor:default;
 	transform-origin:top left;
 	transform:var(--origintransform);
