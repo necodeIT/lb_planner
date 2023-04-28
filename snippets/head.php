@@ -8,7 +8,7 @@
 		<?php
 			if (isset($stylesheets)) {
 				foreach ($stylesheets as $stylesheet) {
-					echo '<link rel="stylesheet" href="'.urlroot."/style/{$stylesheet}.css\">";
+					echo '<link rel="stylesheet" href="'.urlroot."/style/compile.php?filename={$stylesheet}\">";
 				}
 			}
 			if (isset($scripts)) {
