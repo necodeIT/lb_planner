@@ -44,7 +44,7 @@ function genDownloadCard(string $os): void {
 	} else {
 		$current = '';
 	}
-	$dl_url = constant('dl_'.$os);
+	$dl_url = appversions['stable']['downloads'][$os];
 	echo "<a class='card dl{$current}' id='{$os}dlcard' href='{$dl_url}'>";
 	echo '<h4 class="sectionheader">'.GDS('title_download').'</h4>';
 	include(root."/resources/os_{$os}.svg");
@@ -56,7 +56,7 @@ function genDownloadCard(string $os): void {
  * @param string $os name of the OS this button is for
  */
 function genDownloadButton(string $os): void {
-	$dl_url = constant('dl_'.$os);
+	$dl_url = appversions['stable']['downloads'][$os];
 	echo "<a id='downloadbtn' class='btn' href='{$dl_url}'>";
 	if ('linux' == $os) {
 		include('./resources/os_linux_small.svg');
