@@ -6,8 +6,8 @@ $provision = <<SCRIPT
 apt-get update
 apt-get install nginx mariadb-server php php-mysql php-fpm -y
 
-cp /vagrant/nginxfile /etc/nginx/sites-available/default
 rm /etc/nginx/sites-available/default -f
+cp /vagrant/nginxfile /etc/nginx/sites-available/default
 
 mysql -e "
 CREATE USER 'lbplanner'@'localhost';
@@ -67,8 +67,9 @@ create table DocsTexts_de(
 );
 "
 
-cd /vagrant/locale
-./reload.sh
+echo | /vagrant/locale/commit.sh localhost 3306 lbpages lbplanner
+
+sudo systemctl restart nginx
 
 SCRIPT
 
