@@ -71,6 +71,8 @@ echo | /vagrant/locale/commit.sh localhost 3306 lbpages lbplanner
 
 sudo systemctl restart nginx
 
+echo "don't forget to enable php error reporting in php.ini"
+
 SCRIPT
 
 Vagrant.configure("2") do |config|
