@@ -3,35 +3,37 @@
 require_once(root.'/snippets/snips.php');
 
 class PreprocessorCommand {
+	public string $type;
 	public array $params;
+	public int $lastindex;
 	/**
-	 * an array in the format [param1end,…,endindex]
-	 * note that indices are placed on the control chars, so [a|bc] returns [2,5]
-	 */
-	public array $indices;
-	/**
-	 * Finds the indices of the parameters of a preprocessor function
+	 * parses a preprocessor command like `!img[https://riedler.wien/|Riedler]`
 	 * @param  string $text the string to search in
-	 * @param  int    $i    where to start searching
+	 * @param  int    $i    index of the bang
 	 * @internal if your formatting is wack, this might crash!
 	 */
 	public function __construct(string $text, int $i) {
 		$this->params = [];
-		$this->indices = [];
-		$previ = $i;
+		$tmp = '';
+		
 		while (true) {
 			$i++;
 			$c = $text[$i];
 			if ('\\' == $c) {
 				$i++;
+				$tmp.=$text[$i];
+			} else if ('[' == $c) {
+				$this->type = $tmp;
+				$tmp = '';
 			} else if ('|' == $c) {
-				array_push($this->params, substr($text, $previ + 1, $i - $previ - 1));
-				array_push($this->indices, $i);
-				$previ = $i;
+				array_push($this->params,$tmp);
+				$tmp = '';
 			} else if (']' == $c) {
-				array_push($this->params, substr($text, $previ + 1, $i - $previ - 1));
-				array_push($this->indices, $i);
+				array_push($this->params,$tmp);
+				$this->lastindex = $i;
 				return;
+			} else {
+				$tmp.=$c;
 			}
 		}
 	}
@@ -52,12 +54,9 @@ function docs_content_pp(string $text): void {
 	$len = strlen($text);
 	for ($i = 0; $i < $len;) {
 		$c = $text[$i];
-		$i++;
 		if ('!' == $c) {
-			$type = substr($text, $i, 3);
-			$i += 3;
 			$pp = new PreprocessorCommand($text, $i);
-			if ('img' == $type) {
+			if ('img' == $pp->type) {
 				echo '<div class="img"><img alt="';
 				echo attrescape($pp->params[0]);
 				echo '" src="' . urlroot . '/resources/docs/';
@@ -65,7 +64,7 @@ function docs_content_pp(string $text): void {
 				echo '.png"/></div>';
 				// TODO: check if file exists & guess file extension
 				// TODO: optionally translated images
-			} else if ('lnk' == $type) {
+			} else if ('lnk' == $pp->type) {
 				echo '<a class="extref" href="';
 				$lnk = attrescape($pp->params[0]);
 				if ('/' == $lnk[0]) { // if link refers to root, prepend urlroot
@@ -77,12 +76,13 @@ function docs_content_pp(string $text): void {
 				echo $pp->params[1];
 				echo '</a>';
 			}
-			$i = end($pp->indices) + 1;
+			$i = $pp->lastindex + 1;
 		} else if ('\\' == $c) {
 			echo $text[$i];
 			$i++;
 		} else {
 			echo $c;
+			$i++;
 		}
 	}
 }
