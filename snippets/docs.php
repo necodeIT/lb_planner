@@ -2,6 +2,41 @@
 
 require_once(root.'/snippets/snips.php');
 
+class PreprocessorCommand {
+	public array $params;
+	/**
+	 * an array in the format [param1end,…,endindex]
+	 * note that indices are placed on the control chars, so [a|bc] returns [2,5]
+	 */
+	public array $indices;
+	/**
+	 * Finds the indices of the parameters of a preprocessor function
+	 * @param  string $text the string to search in
+	 * @param  int    $i    where to start searching
+	 * @internal if your formatting is wack, this might crash!
+	 */
+	public function __construct(string $text, int $i) {
+		$this->params = [];
+		$this->indices = [];
+		$previ = $i;
+		while (true) {
+			$i++;
+			$c = $text[$i];
+			if ('\\' == $c) {
+				$i++;
+			} else if ('|' == $c) {
+				array_push($this->params, substr($text, $previ + 1, $i - $previ - 1));
+				array_push($this->indices, $i);
+				$previ = $i;
+			} else if (']' == $c) {
+				array_push($this->params, substr($text, $previ + 1, $i - $previ - 1));
+				array_push($this->indices, $i);
+				return;
+			}
+		}
+	}
+}
+
 /**
  * preprocessor function for doc texts
  * prints directly instead of returning a string
@@ -21,56 +56,33 @@ function docs_content_pp(string $text): void {
 		if ('!' == $c) {
 			$type = substr($text, $i, 3);
 			$i += 3;
-			$is = _find_text_function_params($text, $i);
+			$pp = new PreprocessorCommand($text, $i);
 			if ('img' == $type) {
 				echo '<div class="img"><img alt="';
-				echo attrescape(substr($text, $i + 1, $is[0] - $i - 1));
-				echo '" src="'.urlroot.'/resources/docs/';
-				echo attrescape(substr($text, $is[0] + 1, $is[1] - $is[0] - 1));
+				echo attrescape($pp->params[0]);
+				echo '" src="' . urlroot . '/resources/docs/';
+				echo attrescape($pp->params[1]);
 				echo '.png"/></div>';
-			// TODO: check if file exists & guess file extension
-			// TODO: optionally translated images
+				// TODO: check if file exists & guess file extension
+				// TODO: optionally translated images
 			} else if ('lnk' == $type) {
 				echo '<a class="extref" href="';
-				$lnk = attrescape(substr($text, $i + 1, $is[0] - $i - 1));
-				if ('/' == $lnk[0]) {// if link refers to root, prepend urlroot
-					echo urlroot.$lnk;
+				$lnk = attrescape($pp->params[0]);
+				if ('/' == $lnk[0]) { // if link refers to root, prepend urlroot
+					echo urlroot . $lnk;
 				} else {
 					echo $lnk;
 				}
 				echo '">';
-				echo substr($text, $is[0] + 1, $is[1] - $is[0] - 1);
+				echo $pp->params[1];
 				echo '</a>';
 			}
-			$i = end($is) + 1;
+			$i = end($pp->indices) + 1;
 		} else if ('\\' == $c) {
 			echo $text[$i];
 			$i++;
 		} else {
 			echo $c;
-		}
-	}
-}
-/**
- * Finds the indices of the parameters of a preprocessor function
- * @param  string $text the string to search in
- * @param  int    $i    where to start searching
- * @return int[]  an array in the format [param1end,…,endindex]
- *                     note that indices are placed on the control chars, so [a|bc] returns [2,5]
- * @internal if your formatting is wack, this might crash!
- */
-function _find_text_function_params(string $text, int $i): array {
-	$args = [];
-	while (true) {
-		$i++;
-		$c = $text[$i];
-		if ('\\' == $c) {
-			$i++;
-		} else if ('|' == $c) {
-			array_push($args, $i);
-		} else if (']' == $c) {
-			array_push($args, $i);
-			return $args;
 		}
 	}
 }
