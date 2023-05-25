@@ -22,7 +22,7 @@ jobs:
           FILE_TO_UPDATE: /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/snippets/dl_constants.php
 
       - name: Remove the old dl_constants.php
-        run: rm -f  ${{env.FILE_TO_UPDATE}}
+      - run: rm -f  ${{env.FILE_TO_UPDATE}}
 
       - name: Write new version (current only stable) to dl_constants.php
       - run : |
