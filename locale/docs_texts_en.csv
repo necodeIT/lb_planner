@@ -12,15 +12,15 @@
 12,0,On every page (besides <i>Login</i> and <i>Select courses</i>)\, there's a bell icon with which you can open the notifications popup. There you can see invites for plans other people sent you and other notifications.
 12,1,!img[the part of the navbar with the notification bell|navbar_user] !img[notification popup with a notification within|notification_popup]
 13,0,All assignments that are displayed in the app can also be opened in Moodle. To do this\, you have to perform a right-click on top of the assignment and then click <i>Show on Moodle</i>. !img[popup for "show in moodle"|module_in_moodle_popup]
-14,0,<ul><li><b>Green:</b> Assignment was positively graded</li><li><b>Yellow/Orange:</b> Assignment was handed in\, but hasn't been graded yet</li><li><b>Red:</b> Assignment is overdue or was negatively graded</li><li><b>Grey:</b> None of the above</li><
-14,1,/ul>!img[status overview with the number of finished\, handed-in\, negative and to be done assignments|status_overview]
+14,0,!ul[<b>Green:</b> Assignment was positively graded|<b>Yellow/Orange:</b> Assignment was handed in\, but hasn't been graded yet|<b>Red:</b> Assignment is overdue or was negatively graded|<b>Grey:</b> None of the above]
+14,1,!img[status overview with the number of finished\, handed-in\, negative and to be done assignments|status_overview]
 20,0,First you click <i>Members</i>: !img[context menu of the plan|calendar_sidebar]Then click <i>Invite Users</i>:!img[context menu of the plans within the tab "Members"|calendar_sidebar_members]And finally click <i>Invite</i> on the correct profiles. 
 20,1,Furthermore\, you can search for your friends via the searching bar.!img[popup with search bar for inviting friends|invite_users]
 21,0,After clicking the current name of the plan (in this case "Plan for Max")\, it should transform into an editable text field.!img[context menu of the plan\, with the plan name in editing mode|calendar_sidebar_namechange]
 21,1,,
 22,0,You can switch between the <i>plan</i> and calendar views by using the arrow in the top left corner. The overview shows which assignments are due in which months.!img[assignment overview|calendar_modules_overview]
-30,0,<ol><li>At <i>Alpha v0.0.0</i>\, you can check for updates.</li><li>Below that\, you can clear the application <i>Cache</i>\, so it runs smoother.</li><li>You can delete your profile at <i>Delete profile</i>.</li><li>The last one\, <i>Credits</i> sho
-30,1,ws the credits.</li></ol>!img[Einstellungen|settings]
+30,0,!ol[At <i>Alpha v0.0.0</i>\, you can check for updates.|Below that\, you can clear the application <i>Cache</i>\, so it runs smoother.|You can delete your profile at <i>Delete profile</i>.|The last one\, <i>Credits</i> sho
+30,1,ws the credits.]!img[Einstellungen|settings]
 31,0,Here you can search for courses and add or remove them to/from the app. The three dot menu does the same thing as the one in <i>Course selection</i> at the beginning.!img[course selection|course_select_popup]
 32,0,You can change the look of the app by selecting different themes. Pick the one you like best 😊!img[Schema-auswahl|themes]
 33,0,Here you can pick the type of feedback you'd like to send to us. Type your thoughts into the text field below and submit them by pressing <i>Submit</i>.!img[Die Rückmeldebox mit geöffnetem Typenpopup|feedback_type]
@@ -38,7 +38,7 @@
 48,0,You can <b>only have one plan</b>\, regardless if it's shared or not.
 49,0,In the settings section\, there's a feedback form for bug reports\, feature requests and more. You can send it after choosing the type of feedback and entering some text.!img[settings with feedback box marked in red|feedbackbox]
 49,1,Alternatively\, you can write us a !lnk[mailto:lb-planner@tgm.ac.at|mail] at lb-planner@tgm.ac.at.
-50,0,<ul><li>The year has to be present e.g. (21/22)</li><li>If this is <b>NOT</b> present\, the course won't show up in the app.</li></ul>
+50,0,!ul[The year has to be present e.g. (21/22)|If this is <b>NOT</b> present\, the course won't show up in the app.]
 51,0,Grading keys\, the overall grade and other important information should be present in markdown syntax and be marked with "<b>[INFO]</b>" in the respective courses. 
 51,1,Example:<br><br><code># Grading key<br><br>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia\,<br><br>## Overall grade<br><br>- A: x%<br><br>- B: x%<br><br>- C: x%<br><br>- D: x%<br><br>- E: x%<br><br>- F: x%<br><br>## Assignme
 51,2,nts<br><br>- A: x%<br><br>- B: x%<br><br>- C: x%<br><br>- D: x%<br><br>- E: x%<br><br>- F: x%</code>
@@ -58,12 +58,12 @@
 59,1,point numbers.<br><br>Example:<br><br><code>[GK] Ü 6a.0: Generic Stack - 4h</code><br><br>or<br><br><code>Ü 6a.0 [GK]: Generic Stack - 4.5h</code><br><br>or<br><br><code>Ü 6a.0: Generic Stack [GK] - 0.5h</code>
 60,0,Additionally\, you have to regard some important rules when grading assignments. Those either have to be graded with the appropriate status (not fulfilled\, GK sufficient\,GK complete\, EK sufficient and EK complete) 
 60,1,or with ascending points or percentages.
-60,2,<ul><li>These tags shall <b>NOT</b> be mixed ([GK] / [EK]).</li>
-60,3,<li>Quizzes (<b>study progress evaluations\; selfchecks\,...</b>) have to follow the same rules.</li>
-60,4,<li><b>Deadlines</b> have to be set for each assignment to make the assignment overview work properly.</li>
-60,5,<li>Append <b>estimated time to complete</b> to the end of the assignment name.</li></ul>
-61,0,<ul><li>Grades from 1 to 5 as Points (1/5\, 2/5...)</li></ul> That can't be correctly parsed by us and would cause problems for the app.
+60,2,!ul[These tags shall <b>NOT</b> be mixed (\\[GK\\] / \\[EK\\]).
+60,3,|Quizzes (<b>study progress evaluations\; selfchecks\,...</b>) have to follow the same rules.
+60,4,|<b>Deadlines</b> have to be set for each assignment to make the assignment overview work properly.
+60,5,|Append <b>estimated time to complete</b> to the end of the assignment name.]
+61,0,!ul[Grades from 1 to 5 as Points (1/5\, 2/5...)] That can't be correctly parsed by us and would cause problems for the app.
 62,0,LB Planner is detected as malware because we cannot sign the application. Singing an application can cost up to 500€ per year\, which is too expensive for a non-profit project. However\, you can trust us to not have any malware included in our softwa
-62,1,re 😉. If you don't\, you can check out the source code on !lnk[https://github.com/necodeIT/lb_planner|GitHub].<br><br>To install LB Planner regardless\, please follow these steps below:<br><br><b>On Windows</b><ol><li>Open <i>LB.Planner.Setup.exe
-62,2,</i></li><li>Click on <i>More info</i>!img[Windows protected your PC|windows_virus_message_en]</li><li>Click on <i>Run anyway</i>!img[Run anyway|windows_virus_message_run_en]</li></ol>
+62,1,re 😉. If you don't\, you can check out the source code on !lnk[https://github.com/necodeIT/lb_planner|GitHub].<br><br>To install LB Planner regardless\, please follow these steps below:<br><br><b>On Windows</b>!ol[Open <i>LB.Planner.Setup.exe
+62,2,</i>|Click on <i>More info</i>!img[Windows protected your PC|windows_virus_message_en]|Click on <i>Run anyway</i>!img[Run anyway|windows_virus_message_run_en]]
 62,3,<br><br><b>On macOS</b><br>On macOS the app can be installed but not opened. Please follow !lnk[https://support.apple.com/guide/mac-help/open-a-mac-app-from-an-unidentified-developer-mh40616/mac|the guide from Apple] to open the app.

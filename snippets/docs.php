@@ -57,6 +57,12 @@ class PreprocessorCommand {
 				$prntlnk = $lnk;
 			}
 			return "<a class=\"extref\" href=\"{$prntlnk}\">{$this->params[1]}</a>";
+		} else if ('ol' == $this->type || 'ul' == $this->type) {
+			$tmp = "<{$this->type}>";
+			foreach($this->params as $param){
+				$tmp .= "<li>{$param}</li>";
+			}
+			return $tmp . "</{$this->type}>";
 		} else {
 			throw new Exception('Unknown command type: '.$this->type);
 		}
