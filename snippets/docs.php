@@ -21,7 +21,11 @@ class PreprocessorCommand {
 			$c = $text[$i];
 			if ('\\' == $c) {
 				$i++;
-				$tmp.=$text[$i];
+				$tmp .= $text[$i];
+			} else if ('!' == $c) {
+				$pp = new PreprocessorCommand($text,$i);
+				$tmp .= $pp;
+				$i = $pp->lastindex;
 			} else if ('[' == $c) {
 				$this->type = $tmp;
 				$tmp = '';
@@ -35,6 +39,26 @@ class PreprocessorCommand {
 			} else {
 				$tmp.=$c;
 			}
+		}
+	}
+	public function __toString(){
+		if ('img' == $this->type) {
+			return '<div class="img"><img alt="'
+				.attrescape($this->params[0])
+				.'" src="' . urlroot . '/resources/docs/'
+				.attrescape($this->params[1])
+				.'.png"/></div>';
+			// TODO: check if file exists & guess file extension
+		} else if ('lnk' == $this->type) {
+			$lnk = attrescape($this->params[0]);
+			if ('/' == $lnk[0]) { // if link refers to root, prepend urlroot
+				$prntlnk = urlroot . $lnk;
+			} else {
+				$prntlnk = $lnk;
+			}
+			return "<a class=\"extref\" href=\"{$prntlnk}\">{$this->params[1]}</a>";
+		} else {
+			throw new Exception('Unknown command type: '.$this->type);
 		}
 	}
 }
@@ -52,37 +76,16 @@ class PreprocessorCommand {
  */
 function docs_content_pp(string $text): void {
 	$len = strlen($text);
-	for ($i = 0; $i < $len;) {
+	for ($i = 0; $i < $len;$i++) {
 		$c = $text[$i];
 		if ('!' == $c) {
 			$pp = new PreprocessorCommand($text, $i);
-			if ('img' == $pp->type) {
-				echo '<div class="img"><img alt="';
-				echo attrescape($pp->params[0]);
-				echo '" src="' . urlroot . '/resources/docs/';
-				echo attrescape($pp->params[1]);
-				echo '.png"/></div>';
-				// TODO: check if file exists & guess file extension
-				// TODO: optionally translated images
-			} else if ('lnk' == $pp->type) {
-				echo '<a class="extref" href="';
-				$lnk = attrescape($pp->params[0]);
-				if ('/' == $lnk[0]) { // if link refers to root, prepend urlroot
-					echo urlroot . $lnk;
-				} else {
-					echo $lnk;
-				}
-				echo '">';
-				echo $pp->params[1];
-				echo '</a>';
-			}
-			$i = $pp->lastindex + 1;
+			echo $pp;
+			$i = $pp->lastindex;
 		} else if ('\\' == $c) {
 			echo $text[$i];
-			$i++;
 		} else {
 			echo $c;
-			$i++;
 		}
 	}
 }
