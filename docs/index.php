@@ -61,7 +61,7 @@
 		?>
 		<div id="modalcontainer" class="inactive">
 			<button id="modalclose">
-				<?php include('../resources/closex.svg');?>
+				Close
 			</button>
 		</div>
 	</body>
