@@ -8,7 +8,7 @@ export function setURLParam(name,value){
 		params.set(name,value);
 	else
 		params.delete(name);
-	window.history.replaceState(params,"","?"+params.toString());
+	window.history.replaceState(null,"","?"+params.toString());
 }
 export function getCurURLParam(name){
 	let cururl = new URL(window.location.toString());
