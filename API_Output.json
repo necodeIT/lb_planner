@@ -1,0 +1,837 @@
+array(1) {
+    [
+        0
+    ]=>
+  object(stdClass)#297 (46) {
+        [
+            "coursemodule"
+        ]=>
+    string(3) "397"
+    [
+            "id"
+        ]=>
+    string(1) "1"
+    [
+            "course"
+        ]=>
+    string(2) "12"
+    [
+            "name"
+        ]=>
+    string(9) "[GK] Quiz"
+    [
+            "intro"
+        ]=>
+    string(0) ""
+    [
+            "introformat"
+        ]=>
+    string(1) "1"
+    [
+            "timeopen"
+        ]=>
+    string(1) "0"
+    [
+            "timeclose"
+        ]=>
+    string(1) "0"
+    [
+            "timelimit"
+        ]=>
+    string(1) "0"
+    [
+            "overduehandling"
+        ]=>
+    string(10) "autosubmit"
+    [
+            "graceperiod"
+        ]=>
+    string(1) "0"
+    [
+            "preferredbehaviour"
+        ]=>
+    string(16) "deferredfeedback"
+    [
+            "canredoquestions"
+        ]=>
+    string(1) "0"
+    [
+            "attempts"
+        ]=>
+    string(1) "0"
+    [
+            "attemptonlast"
+        ]=>
+    string(1) "0"
+    [
+            "grademethod"
+        ]=>
+    string(1) "1"
+    [
+            "decimalpoints"
+        ]=>
+    string(1) "2"
+    [
+            "questiondecimalpoints"
+        ]=>
+    string(2) "-1"
+    [
+            "reviewattempt"
+        ]=>
+    string(5) "69888"
+    [
+            "reviewcorrectness"
+        ]=>
+    string(4) "4352"
+    [
+            "reviewmarks"
+        ]=>
+    string(4) "4352"
+    [
+            "reviewspecificfeedback"
+        ]=>
+    string(4) "4352"
+    [
+            "reviewgeneralfeedback"
+        ]=>
+    string(4) "4352"
+    [
+            "reviewrightanswer"
+        ]=>
+    string(4) "4352"
+    [
+            "reviewoverallfeedback"
+        ]=>
+    string(4) "4352"
+    [
+            "questionsperpage"
+        ]=>
+    string(1) "1"
+    [
+            "navmethod"
+        ]=>
+    string(4) "free"
+    [
+            "shuffleanswers"
+        ]=>
+    string(1) "1"
+    [
+            "sumgrades"
+        ]=>
+    string(7) "0.00000"
+    [
+            "grade"
+        ]=>
+    string(8) "10.00000"
+    [
+            "timecreated"
+        ]=>
+    string(10) "1677110812"
+    [
+            "timemodified"
+        ]=>
+    string(10) "1677110812"
+    [
+            "password"
+        ]=>
+    string(0) ""
+    [
+            "subnet"
+        ]=>
+    string(0) ""
+    [
+            "browsersecurity"
+        ]=>
+    string(1) "-"
+    [
+            "delay1"
+        ]=>
+    string(1) "0"
+    [
+            "delay2"
+        ]=>
+    string(1) "0"
+    [
+            "showuserpicture"
+        ]=>
+    string(1) "0"
+    [
+            "showblocks"
+        ]=>
+    string(1) "0"
+    [
+            "completionattemptsexhausted"
+        ]=>
+    string(1) "0"
+    [
+            "completionminattempts"
+        ]=>
+    string(1) "0"
+    [
+            "allowofflineattempts"
+        ]=>
+    string(1) "0"
+    [
+            "section"
+        ]=>
+    string(1) "6"
+    [
+            "visible"
+        ]=>
+    string(1) "1"
+    [
+            "groupmode"
+        ]=>
+    string(1) "0"
+    [
+            "groupingid"
+        ]=>
+    string(1) "0"
+    }
+}
+array(4) {
+    [
+        0
+    ]=>
+  object(stdClass)#281 (39) {
+        [
+            "coursemodule"
+        ]=>
+    string(3) "392"
+    [
+            "id"
+        ]=>
+    string(3) "100"
+    [
+            "course"
+        ]=>
+    string(2) "12"
+    [
+            "name"
+        ]=>
+    string(15) "[GK] Assignment"
+    [
+            "intro"
+        ]=>
+    string(0) ""
+    [
+            "introformat"
+        ]=>
+    string(1) "1"
+    [
+            "alwaysshowdescription"
+        ]=>
+    string(1) "1"
+    [
+            "nosubmissions"
+        ]=>
+    string(1) "0"
+    [
+            "submissiondrafts"
+        ]=>
+    string(1) "0"
+    [
+            "sendnotifications"
+        ]=>
+    string(1) "0"
+    [
+            "sendlatenotifications"
+        ]=>
+    string(1) "0"
+    [
+            "duedate"
+        ]=>
+    string(10) "1677369600"
+    [
+            "allowsubmissionsfromdate"
+        ]=>
+    string(10) "1676764800"
+    [
+            "grade"
+        ]=>
+    string(2) "-4"
+    [
+            "timemodified"
+        ]=>
+    string(10) "1676926990"
+    [
+            "requiresubmissionstatement"
+        ]=>
+    string(1) "0"
+    [
+            "completionsubmit"
+        ]=>
+    string(1) "1"
+    [
+            "cutoffdate"
+        ]=>
+    string(1) "0"
+    [
+            "gradingduedate"
+        ]=>
+    string(10) "1677974400"
+    [
+            "teamsubmission"
+        ]=>
+    string(1) "0"
+    [
+            "requireallteammemberssubmit"
+        ]=>
+    string(1) "0"
+    [
+            "teamsubmissiongroupingid"
+        ]=>
+    string(1) "0"
+    [
+            "blindmarking"
+        ]=>
+    string(1) "0"
+    [
+            "hidegrader"
+        ]=>
+    string(1) "0"
+    [
+            "revealidentities"
+        ]=>
+    string(1) "0"
+    [
+            "attemptreopenmethod"
+        ]=>
+    string(4) "none"
+    [
+            "maxattempts"
+        ]=>
+    string(2) "-1"
+    [
+            "markingworkflow"
+        ]=>
+    string(1) "0"
+    [
+            "markingallocation"
+        ]=>
+    string(1) "0"
+    [
+            "sendstudentnotifications"
+        ]=>
+    string(1) "1"
+    [
+            "preventsubmissionnotingroup"
+        ]=>
+    string(1) "0"
+    [
+            "activity"
+        ]=>
+    string(0) ""
+    [
+            "activityformat"
+        ]=>
+    string(1) "1"
+    [
+            "timelimit"
+        ]=>
+    string(1) "0"
+    [
+            "submissionattachments"
+        ]=>
+    string(1) "0"
+    [
+            "section"
+        ]=>
+    string(1) "1"
+    [
+            "visible"
+        ]=>
+    string(1) "1"
+    [
+            "groupmode"
+        ]=>
+    string(1) "0"
+    [
+            "groupingid"
+        ]=>
+    string(1) "0"
+    }
+  [
+        1
+    ]=>
+  object(stdClass)#282 (39) {
+        [
+            "coursemodule"
+        ]=>
+    string(3) "393"
+    [
+            "id"
+        ]=>
+    string(3) "101"
+    [
+            "course"
+        ]=>
+    string(2) "12"
+    [
+            "name"
+        ]=>
+    string(18) "[EK] EK-Assignment"
+    [
+            "intro"
+        ]=>
+    string(0) ""
+    [
+            "introformat"
+        ]=>
+    string(1) "1"
+    [
+            "alwaysshowdescription"
+        ]=>
+    string(1) "1"
+    [
+            "nosubmissions"
+        ]=>
+    string(1) "0"
+    [
+            "submissiondrafts"
+        ]=>
+    string(1) "0"
+    [
+            "sendnotifications"
+        ]=>
+    string(1) "0"
+    [
+            "sendlatenotifications"
+        ]=>
+    string(1) "0"
+    [
+            "duedate"
+        ]=>
+    string(10) "1677369600"
+    [
+            "allowsubmissionsfromdate"
+        ]=>
+    string(10) "1676764800"
+    [
+            "grade"
+        ]=>
+    string(3) "100"
+    [
+            "timemodified"
+        ]=>
+    string(10) "1676838003"
+    [
+            "requiresubmissionstatement"
+        ]=>
+    string(1) "0"
+    [
+            "completionsubmit"
+        ]=>
+    string(1) "1"
+    [
+            "cutoffdate"
+        ]=>
+    string(1) "0"
+    [
+            "gradingduedate"
+        ]=>
+    string(10) "1677974400"
+    [
+            "teamsubmission"
+        ]=>
+    string(1) "0"
+    [
+            "requireallteammemberssubmit"
+        ]=>
+    string(1) "0"
+    [
+            "teamsubmissiongroupingid"
+        ]=>
+    string(1) "0"
+    [
+            "blindmarking"
+        ]=>
+    string(1) "0"
+    [
+            "hidegrader"
+        ]=>
+    string(1) "0"
+    [
+            "revealidentities"
+        ]=>
+    string(1) "0"
+    [
+            "attemptreopenmethod"
+        ]=>
+    string(4) "none"
+    [
+            "maxattempts"
+        ]=>
+    string(2) "-1"
+    [
+            "markingworkflow"
+        ]=>
+    string(1) "0"
+    [
+            "markingallocation"
+        ]=>
+    string(1) "0"
+    [
+            "sendstudentnotifications"
+        ]=>
+    string(1) "1"
+    [
+            "preventsubmissionnotingroup"
+        ]=>
+    string(1) "0"
+    [
+            "activity"
+        ]=>
+    string(0) ""
+    [
+            "activityformat"
+        ]=>
+    string(1) "1"
+    [
+            "timelimit"
+        ]=>
+    string(1) "0"
+    [
+            "submissionattachments"
+        ]=>
+    string(1) "0"
+    [
+            "section"
+        ]=>
+    string(1) "2"
+    [
+            "visible"
+        ]=>
+    string(1) "1"
+    [
+            "groupmode"
+        ]=>
+    string(1) "0"
+    [
+            "groupingid"
+        ]=>
+    string(1) "0"
+    }
+  [
+        2
+    ]=>
+  object(stdClass)#283 (39) {
+        [
+            "coursemodule"
+        ]=>
+    string(3) "394"
+    [
+            "id"
+        ]=>
+    string(3) "102"
+    [
+            "course"
+        ]=>
+    string(2) "12"
+    [
+            "name"
+        ]=>
+    string(16) "[M] M-Assignment"
+    [
+            "intro"
+        ]=>
+    string(0) ""
+    [
+            "introformat"
+        ]=>
+    string(1) "1"
+    [
+            "alwaysshowdescription"
+        ]=>
+    string(1) "1"
+    [
+            "nosubmissions"
+        ]=>
+    string(1) "0"
+    [
+            "submissiondrafts"
+        ]=>
+    string(1) "0"
+    [
+            "sendnotifications"
+        ]=>
+    string(1) "0"
+    [
+            "sendlatenotifications"
+        ]=>
+    string(1) "0"
+    [
+            "duedate"
+        ]=>
+    string(10) "1677369600"
+    [
+            "allowsubmissionsfromdate"
+        ]=>
+    string(10) "1676764800"
+    [
+            "grade"
+        ]=>
+    string(3) "100"
+    [
+            "timemodified"
+        ]=>
+    string(10) "1676838113"
+    [
+            "requiresubmissionstatement"
+        ]=>
+    string(1) "0"
+    [
+            "completionsubmit"
+        ]=>
+    string(1) "1"
+    [
+            "cutoffdate"
+        ]=>
+    string(1) "0"
+    [
+            "gradingduedate"
+        ]=>
+    string(10) "1677974400"
+    [
+            "teamsubmission"
+        ]=>
+    string(1) "0"
+    [
+            "requireallteammemberssubmit"
+        ]=>
+    string(1) "0"
+    [
+            "teamsubmissiongroupingid"
+        ]=>
+    string(1) "0"
+    [
+            "blindmarking"
+        ]=>
+    string(1) "0"
+    [
+            "hidegrader"
+        ]=>
+    string(1) "0"
+    [
+            "revealidentities"
+        ]=>
+    string(1) "0"
+    [
+            "attemptreopenmethod"
+        ]=>
+    string(4) "none"
+    [
+            "maxattempts"
+        ]=>
+    string(2) "-1"
+    [
+            "markingworkflow"
+        ]=>
+    string(1) "0"
+    [
+            "markingallocation"
+        ]=>
+    string(1) "0"
+    [
+            "sendstudentnotifications"
+        ]=>
+    string(1) "1"
+    [
+            "preventsubmissionnotingroup"
+        ]=>
+    string(1) "0"
+    [
+            "activity"
+        ]=>
+    string(0) ""
+    [
+            "activityformat"
+        ]=>
+    string(1) "1"
+    [
+            "timelimit"
+        ]=>
+    string(1) "0"
+    [
+            "submissionattachments"
+        ]=>
+    string(1) "0"
+    [
+            "section"
+        ]=>
+    string(1) "3"
+    [
+            "visible"
+        ]=>
+    string(1) "1"
+    [
+            "groupmode"
+        ]=>
+    string(1) "0"
+    [
+            "groupingid"
+        ]=>
+    string(1) "0"
+    }
+  [
+        3
+    ]=>
+  object(stdClass)#284 (39) {
+        [
+            "coursemodule"
+        ]=>
+    string(3) "395"
+    [
+            "id"
+        ]=>
+    string(3) "103"
+    [
+            "course"
+        ]=>
+    string(2) "12"
+    [
+            "name"
+        ]=>
+    string(22) "[TEST] Test-Assignment"
+    [
+            "intro"
+        ]=>
+    string(0) ""
+    [
+            "introformat"
+        ]=>
+    string(1) "1"
+    [
+            "alwaysshowdescription"
+        ]=>
+    string(1) "1"
+    [
+            "nosubmissions"
+        ]=>
+    string(1) "0"
+    [
+            "submissiondrafts"
+        ]=>
+    string(1) "0"
+    [
+            "sendnotifications"
+        ]=>
+    string(1) "0"
+    [
+            "sendlatenotifications"
+        ]=>
+    string(1) "0"
+    [
+            "duedate"
+        ]=>
+    string(10) "1677369600"
+    [
+            "allowsubmissionsfromdate"
+        ]=>
+    string(10) "1676764800"
+    [
+            "grade"
+        ]=>
+    string(3) "100"
+    [
+            "timemodified"
+        ]=>
+    string(10) "1676838102"
+    [
+            "requiresubmissionstatement"
+        ]=>
+    string(1) "0"
+    [
+            "completionsubmit"
+        ]=>
+    string(1) "1"
+    [
+            "cutoffdate"
+        ]=>
+    string(1) "0"
+    [
+            "gradingduedate"
+        ]=>
+    string(10) "1677974400"
+    [
+            "teamsubmission"
+        ]=>
+    string(1) "0"
+    [
+            "requireallteammemberssubmit"
+        ]=>
+    string(1) "0"
+    [
+            "teamsubmissiongroupingid"
+        ]=>
+    string(1) "0"
+    [
+            "blindmarking"
+        ]=>
+    string(1) "0"
+    [
+            "hidegrader"
+        ]=>
+    string(1) "0"
+    [
+            "revealidentities"
+        ]=>
+    string(1) "0"
+    [
+            "attemptreopenmethod"
+        ]=>
+    string(4) "none"
+    [
+            "maxattempts"
+        ]=>
+    string(2) "-1"
+    [
+            "markingworkflow"
+        ]=>
+    string(1) "0"
+    [
+            "markingallocation"
+        ]=>
+    string(1) "0"
+    [
+            "sendstudentnotifications"
+        ]=>
+    string(1) "1"
+    [
+            "preventsubmissionnotingroup"
+        ]=>
+    string(1) "0"
+    [
+            "activity"
+        ]=>
+    string(0) ""
+    [
+            "activityformat"
+        ]=>
+    string(1) "1"
+    [
+            "timelimit"
+        ]=>
+    string(1) "0"
+    [
+            "submissionattachments"
+        ]=>
+    string(1) "0"
+    [
+            "section"
+        ]=>
+    string(1) "4"
+    [
+            "visible"
+        ]=>
+    string(1) "1"
+    [
+            "groupmode"
+        ]=>
+    string(1) "0"
+    [
+            "groupingid"
+        ]=>
+    string(1) "0"
+    }
+}
