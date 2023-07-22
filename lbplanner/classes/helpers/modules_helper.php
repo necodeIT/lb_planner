@@ -16,12 +16,9 @@
 
 namespace local_lbplanner\helpers;
 
-use block_accessreview\external\get_module_data;
-use core\plugininfo\mod;
-use external_function_parameters;
 use external_single_structure;
 use external_value;
-use mod_chat\event\course_module_instance_list_viewed;
+use mod_assignment\plugininfo\assignment;
 use moodle_url;
 
 /**
@@ -248,12 +245,12 @@ class modules_helper {
      */
     public static function get_module_url(int $moduleid, int $courseid) : string {
         global $DB;
+        // Get the module Url.
 
         $view = $DB->get_record(
             self::COURSE_MODULES_TABLE,
             array('course' => $courseid, 'instance' => $moduleid, 'module' => 1)
         );
-
         return strval(new moodle_url('/mod/assign/view.php?id='.$view->id));
     }
 

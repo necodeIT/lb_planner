@@ -16,7 +16,6 @@
 
 namespace local_lbplanner_services;
 
-use core_completion\activity_custom_completion;
 use external_api;
 use external_function_parameters;
 use external_multiple_structure;
@@ -24,10 +23,10 @@ use external_value;
 use invalid_parameter_exception;
 use local_lbplanner\helpers\modules_helper;
 use local_lbplanner\helpers\user_helper;
-use mod_assign\completion\custom_completion;
+use mod_assign\search\activity;
 use stdClass;
-use course_modinfo;
 use moodle_exception;
+use mod_url_external;
 
 /**
  * Get all the modules of the given course.
@@ -54,7 +53,7 @@ class modules_get_all_course_modules extends external_api {
      * @throws invalid_parameter_exception
      */
     public static function get_all_course_modules($courseid, $userid, $ekenabled) {
-        global $DB;
+        global $DB , $CFG;
 
         self::validate_parameters(
             self::get_all_course_modules_parameters(),
@@ -69,23 +68,29 @@ class modules_get_all_course_modules extends external_api {
         $quizzes = get_all_instances_in_course('quiz', $course);
         $allmodules = array_merge($assignments, $quizzes);
         $activities = array();
-        $activity = new stdClass();
+        die(var_dump($allmodules));
+
         foreach ($allmodules as $module) {
+            $activity = new stdClass();
             $activity->moduleid = $module->id;
             $activity->name = $module->name;
             $activity->courseid = $module->course;
             $activity->type = modules_helper::determin_type($module->name);
+            $activity->url = modules_helper::get_module_url($module->id, $userid);
+            if ( in_array($module, $assignments) ) {
+                $cm = assign_get_coursemodule_info($module);
+                die(var_dump($cm));
+            }
             if (!$ekenabled && $activity->type == modules_helper::TYPE_EK) {
                 continue;
             }
-            $cm = new course_modinfo($course, $userid);
-            $cm->get_cm($module->coursemodule);
-            $customcompletion = new custom_completion($cm->get_cm($module->coursemodule), $userid);
-
-            die(var_dump($customcompletion->get_overall_completion_state()));
+            // $cm = new course_modinfo($course, $userid);
+            // $cm->get_cm($module->coursemodule);
+            // $customcompletion = new custom_completion($cm->get_cm($module->coursemodule), $userid);
+            // die(var_dump($customcompletion->get_overall_completion_state()));
             $activities[] = $activity;
         }
-
+        die(var_dump($activities));
         return modules_helper::get_all_course_modules($courseid, $userid, $ekenabled);
     }
 
