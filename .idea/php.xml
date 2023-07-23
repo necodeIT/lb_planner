@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MessDetectorOptionsConfiguration">
+    <option name="transferred" value="true" />
+  </component>
+  <component name="PHPCSFixerOptionsConfiguration">
+    <option name="transferred" value="true" />
+  </component>
+  <component name="PHPCodeSnifferOptionsConfiguration">
+    <option name="highlightLevel" value="WARNING" />
+    <option name="transferred" value="true" />
+  </component>
+  <component name="PhpIncludePathManager">
+    <include_path>
+      <path value="$PROJECT_DIR$/moodle/vendor/nikic/php-parser" />
+      <path value="$PROJECT_DIR$/moodle/vendor/behat/mink-browserkit-driver" />
+      <path value="$PROJECT_DIR$/moodle/vendor/friends-of-behat/mink-extension" />
+      <path value="$PROJECT_DIR$/moodle/vendor/behat/mink-goutte-driver" />
+      <path value="$PROJECT_DIR$/moodle/vendor/behat/transliterator" />
+      <path value="$PROJECT_DIR$/moodle/vendor/behat/behat" />
+      <path value="$PROJECT_DIR$/moodle/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/moodle/vendor/behat/mink" />
+      <path value="$PROJECT_DIR$/moodle/vendor/symfony/string" />
+      <path value="$PROJECT_DIR$/moodle/vendor/behat/gherkin" />
+      <path value="$PROJECT_DIR$/moodle/vendor/symfony/dependency-injection" />
+      <path value="$PROJECT_DIR$/moodle/vendor/symfony/mime" />
+      <path value="$PROJECT_DIR$/moodle/vendor/symfony/service-contracts" />
+      <path value="$PROJECT_DIR$/moodle/vendor/symfony/browser-kit" />
+      <path value="$PROJECT_DIR$/moodle/vendor/symfony/polyfill-intl-idn" />
+      <path value="$PROJECT_DIR$/moodle/vendor/symfony/polyfill-php81" />
+      <path value="$PROJECT_DIR$/moodle/vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/moodle/vendor/symfony/dom-crawler" />
+      <path value="$PROJECT_DIR$/moodle/vendor/symfony/http-client-contracts" />
+      <path value="$PROJECT_DIR$/moodle/vendor/symfony/css-selector" />
+      <path value="$PROJECT_DIR$/moodle/vendor/symfony/event-dispatcher" />
+      <path value="$PROJECT_DIR$/moodle/vendor/symfony/event-dispatcher-contracts" />
+      <path value="$PROJECT_DIR$/moodle/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/moodle/vendor/symfony/yaml" />
+      <path value="$PROJECT_DIR$/moodle/vendor/symfony/polyfill-intl-grapheme" />
+      <path value="$PROJECT_DIR$/moodle/vendor/symfony/process" />
+      <path value="$PROJECT_DIR$/moodle/vendor/symfony/console" />
+      <path value="$PROJECT_DIR$/moodle/vendor/symfony/polyfill-php72" />
+      <path value="$PROJECT_DIR$/moodle/vendor/fabpot/goutte" />
+      <path value="$PROJECT_DIR$/moodle/vendor/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/moodle/vendor/symfony/http-client" />
+      <path value="$PROJECT_DIR$/moodle/vendor/symfony/filesystem" />
+      <path value="$PROJECT_DIR$/moodle/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/moodle/vendor/symfony/translation" />
+      <path value="$PROJECT_DIR$/moodle/vendor/symfony/config" />
+      <path value="$PROJECT_DIR$/moodle/vendor/symfony/translation-contracts" />
+      <path value="$PROJECT_DIR$/moodle/vendor/theseer/tokenizer" />
+      <path value="$PROJECT_DIR$/moodle/vendor/myclabs/deep-copy" />
+      <path value="$PROJECT_DIR$/moodle/vendor/phpunit/php-timer" />
+      <path value="$PROJECT_DIR$/moodle/vendor/oleg-andreyev/mink-phpwebdriver" />
+      <path value="$PROJECT_DIR$/moodle/vendor/phpunit/php-file-iterator" />
+      <path value="$PROJECT_DIR$/moodle/vendor/phpunit/php-invoker" />
+      <path value="$PROJECT_DIR$/moodle/vendor/phpunit/php-text-template" />
+      <path value="$PROJECT_DIR$/moodle/vendor/phpunit/phpunit" />
+      <path value="$PROJECT_DIR$/moodle/vendor/phpunit/php-code-coverage" />
+      <path value="$PROJECT_DIR$/moodle/vendor/sebastian/global-state" />
+      <path value="$PROJECT_DIR$/moodle/vendor/sebastian/recursion-context" />
+      <path value="$PROJECT_DIR$/moodle/vendor/sebastian/complexity" />
+      <path value="$PROJECT_DIR$/moodle/vendor/sebastian/object-enumerator" />
+      <path value="$PROJECT_DIR$/moodle/vendor/sebastian/object-reflector" />
+      <path value="$PROJECT_DIR$/moodle/vendor/sebastian/diff" />
+      <path value="$PROJECT_DIR$/moodle/vendor/sebastian/cli-parser" />
+      <path value="$PROJECT_DIR$/moodle/vendor/sebastian/type" />
+      <path value="$PROJECT_DIR$/moodle/vendor/sebastian/lines-of-code" />
+      <path value="$PROJECT_DIR$/moodle/vendor/sebastian/comparator" />
+      <path value="$PROJECT_DIR$/moodle/vendor/doctrine/instantiator" />
+      <path value="$PROJECT_DIR$/moodle/vendor/sebastian/version" />
+      <path value="$PROJECT_DIR$/moodle/vendor/sebastian/exporter" />
+      <path value="$PROJECT_DIR$/moodle/vendor/sebastian/environment" />
+      <path value="$PROJECT_DIR$/moodle/vendor/sebastian/resource-operations" />
+      <path value="$PROJECT_DIR$/moodle/vendor/sebastian/code-unit" />
+      <path value="$PROJECT_DIR$/moodle/vendor/sebastian/code-unit-reverse-lookup" />
+      <path value="$PROJECT_DIR$/moodle/vendor/composer" />
+      <path value="$PROJECT_DIR$/moodle/vendor/php-webdriver/webdriver" />
+      <path value="$PROJECT_DIR$/moodle/vendor/phar-io/manifest" />
+      <path value="$PROJECT_DIR$/moodle/vendor/phar-io/version" />
+      <path value="$PROJECT_DIR$/moodle/vendor/mikey179/vfsstream" />
+      <path value="$PROJECT_DIR$/moodle/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/moodle/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/moodle/vendor/psr/event-dispatcher" />
+    </include_path>
+  </component>
+  <component name="PhpProjectSharedConfiguration" php_language_level="8.0" />
+  <component name="PhpStanOptionsConfiguration">
+    <option name="transferred" value="true" />
+  </component>
+  <component name="PhpUnit">
+    <phpunit_settings>
+      <PhpUnitSettings configuration_file_path="$PROJECT_DIR$/moodle/phpunit.xml.dist" custom_loader_path="$PROJECT_DIR$/moodle/vendor/autoload.php" use_configuration_file="true" />
+    </phpunit_settings>
+  </component>
+  <component name="PsalmOptionsConfiguration">
+    <option name="transferred" value="true" />
+  </component>
+</project>

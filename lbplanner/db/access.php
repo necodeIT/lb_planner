@@ -36,7 +36,10 @@ $capabilities = array(
         'riskbitmask' => RISK_SPAM || RISK_PERSONAL,
         'captype' => 'write',
         'contextlevel' => CONTEXT_SYSTEM,
+    ),
+    'local/lb_planner:slotmaster' => array(
+        'riskbitmask' => RISK_SPAM || RISK_PERSONAL,
+        'captype' => 'write',
+        'contextlevel' => CONTEXT_SYSTEM,
     )
-
-
 );
