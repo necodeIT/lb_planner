@@ -1,9 +1,6 @@
 name: lb_planner
-description: A new Flutter project.
-
-# The following line prevents the package from being accidentally published to
-# pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: "none" # Remove this line if you wish to publish to pub.dev
+description: An application designed to help students plan and organize their self-taught studying by tracking and managing their modules.
+publish_to: "none"
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -18,67 +15,30 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.16.2 <3.0.0"
+  sdk: ">=2.19.6 <3.0.0"
 
-# Dependencies specify other packages that your package needs in order to work.
-# To automatically upgrade your package dependencies to the latest versions
-# consider running `flutter pub upgrade --major-versions`. Alternatively,
-# dependencies can be manually updated by changing the version numbers below to
-# the latest version available on pub.dev. To see which dependencies have newer
-# versions available, run `flutter pub outdated`.
 dependencies:
-  animations: ^2.0.2
-  badges: ^2.0.2
-  bitsdojo_window: ^0.1.5
-  cached_network_image: ^3.2.0
-  catcher: ^0.6.9
-  context_menus: 1.0.1
-  crypto: ^3.0.2
-  cupertino_icons: ^1.0.2
-  enum_to_string: ^2.0.1
-  flare_flutter: ^3.0.2
+  dio: ^5.3.2
   flutter:
     sdk: flutter
-  flutter_cache_manager: ^3.3.0
-  flutter_colorpicker: ^1.0.3
   flutter_localizations:
     sdk: flutter
-  flutter_localized_locales: ^2.0.3
   flutter_markdown: ^0.6.14
-  flutter_riverpod: ^1.0.3
-  flutter_sticky_header: ^0.6.1
-  flutter_vector_icons: ^1.0.0
-  font_awesome_flutter: ^10.1.0
-  http: ^0.13.5
-  intl: ^0.17.0
-  lbplanner_engine:
-    git:
-      url: https://github.com/necodeIT/lb_planner.git
-      ref: engine
-  nekolib_ui:
-    git:
-      url: https://github.com/necodeIT/nekolib.git
-      ref: flutter3
-      path: ui
-  nekolib_utils:
-    git:
-      url: https://github.com/necodeIT/nekolib.git
-      ref: flutter3
-      path: utils
+  flutter_riverpod: ^2.4.0
   flutter_single_instance: ^0.0.1
-  nima: ^1.0.5
-  rive: ^0.8.4
-  shimmer: ^2.0.0
-  timeago: ^3.2.2
+  freezed_annotation: ^2.4.1
+  intl: ^0.18.1
+  json_annotation: ^4.8.1
+  riverpod: ^2.4.0
   url_launcher: ^6.1.2
-  window_manager: ^0.2.2
 
 dev_dependencies:
-  dart_code_metrics: ^4.15.1
-  dependency_validator: ^3.2.0
+  build_runner: ^2.4.6
   flutter_lints: ^1.0.0
   flutter_test:
     sdk: flutter
+  freezed: ^2.2.0
+  json_serializable: ^6.7.1
 
 dependency_overrides:
   catcher:
