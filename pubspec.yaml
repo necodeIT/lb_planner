@@ -1,5 +1,6 @@
 name: lb_planner
-description: An application designed to help students plan and organize their self-taught studying by tracking and managing their modules.
+description: An application designed to help students plan and organize their
+  self-taught studying by tracking and managing their modules.
 publish_to: "none"
 
 # The following defines the version and build number for your application.
