@@ -23,7 +23,7 @@ class MoodleApiService extends ApiService {
       return HttpResponse<JSON>(statusCode: response.statusCode, body: response.body);
     }
 
-    log.severe("Error calling function $function: ${response.statusCode} ${response.body}");
+    log.warning("Error calling function $function: ${response.statusCode} ${response.body}");
 
     return HttpResponse<JSON>(statusCode: response.statusCode, body: response.body);
   }
