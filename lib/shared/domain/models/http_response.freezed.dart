@@ -15,30 +15,30 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$HttpResponse {
+mixin _$HttpResponse<T> {
   /// The HTTP status code.
   int? get statusCode => throw _privateConstructorUsedError;
 
   /// The HTTP response body.
-  dynamic get body => throw _privateConstructorUsedError;
+  T? get body => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $HttpResponseCopyWith<HttpResponse> get copyWith =>
+  $HttpResponseCopyWith<T, HttpResponse<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $HttpResponseCopyWith<$Res> {
+abstract class $HttpResponseCopyWith<T, $Res> {
   factory $HttpResponseCopyWith(
-          HttpResponse value, $Res Function(HttpResponse) then) =
-      _$HttpResponseCopyWithImpl<$Res, HttpResponse>;
+          HttpResponse<T> value, $Res Function(HttpResponse<T>) then) =
+      _$HttpResponseCopyWithImpl<T, $Res, HttpResponse<T>>;
   @useResult
-  $Res call({int? statusCode, dynamic body});
+  $Res call({int? statusCode, T? body});
 }
 
 /// @nodoc
-class _$HttpResponseCopyWithImpl<$Res, $Val extends HttpResponse>
-    implements $HttpResponseCopyWith<$Res> {
+class _$HttpResponseCopyWithImpl<T, $Res, $Val extends HttpResponse<T>>
+    implements $HttpResponseCopyWith<T, $Res> {
   _$HttpResponseCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -60,28 +60,28 @@ class _$HttpResponseCopyWithImpl<$Res, $Val extends HttpResponse>
       body: freezed == body
           ? _value.body
           : body // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as T?,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$_HttpResponseCopyWith<$Res>
-    implements $HttpResponseCopyWith<$Res> {
+abstract class _$$_HttpResponseCopyWith<T, $Res>
+    implements $HttpResponseCopyWith<T, $Res> {
   factory _$$_HttpResponseCopyWith(
-          _$_HttpResponse value, $Res Function(_$_HttpResponse) then) =
-      __$$_HttpResponseCopyWithImpl<$Res>;
+          _$_HttpResponse<T> value, $Res Function(_$_HttpResponse<T>) then) =
+      __$$_HttpResponseCopyWithImpl<T, $Res>;
   @override
   @useResult
-  $Res call({int? statusCode, dynamic body});
+  $Res call({int? statusCode, T? body});
 }
 
 /// @nodoc
-class __$$_HttpResponseCopyWithImpl<$Res>
-    extends _$HttpResponseCopyWithImpl<$Res, _$_HttpResponse>
-    implements _$$_HttpResponseCopyWith<$Res> {
+class __$$_HttpResponseCopyWithImpl<T, $Res>
+    extends _$HttpResponseCopyWithImpl<T, $Res, _$_HttpResponse<T>>
+    implements _$$_HttpResponseCopyWith<T, $Res> {
   __$$_HttpResponseCopyWithImpl(
-      _$_HttpResponse _value, $Res Function(_$_HttpResponse) _then)
+      _$_HttpResponse<T> _value, $Res Function(_$_HttpResponse<T>) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -90,7 +90,7 @@ class __$$_HttpResponseCopyWithImpl<$Res>
     Object? statusCode = freezed,
     Object? body = freezed,
   }) {
-    return _then(_$_HttpResponse(
+    return _then(_$_HttpResponse<T>(
       statusCode: freezed == statusCode
           ? _value.statusCode
           : statusCode // ignore: cast_nullable_to_non_nullable
@@ -98,14 +98,14 @@ class __$$_HttpResponseCopyWithImpl<$Res>
       body: freezed == body
           ? _value.body
           : body // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as T?,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_HttpResponse implements _HttpResponse {
+class _$_HttpResponse<T> implements _HttpResponse<T> {
   _$_HttpResponse({required this.statusCode, this.body});
 
   /// The HTTP status code.
@@ -114,18 +114,18 @@ class _$_HttpResponse implements _HttpResponse {
 
   /// The HTTP response body.
   @override
-  final dynamic body;
+  final T? body;
 
   @override
   String toString() {
-    return 'HttpResponse(statusCode: $statusCode, body: $body)';
+    return 'HttpResponse<$T>(statusCode: $statusCode, body: $body)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_HttpResponse &&
+            other is _$_HttpResponse<T> &&
             (identical(other.statusCode, statusCode) ||
                 other.statusCode == statusCode) &&
             const DeepCollectionEquality().equals(other.body, body));
@@ -138,13 +138,13 @@ class _$_HttpResponse implements _HttpResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_HttpResponseCopyWith<_$_HttpResponse> get copyWith =>
-      __$$_HttpResponseCopyWithImpl<_$_HttpResponse>(this, _$identity);
+  _$$_HttpResponseCopyWith<T, _$_HttpResponse<T>> get copyWith =>
+      __$$_HttpResponseCopyWithImpl<T, _$_HttpResponse<T>>(this, _$identity);
 }
 
-abstract class _HttpResponse implements HttpResponse {
-  factory _HttpResponse({required final int? statusCode, final dynamic body}) =
-      _$_HttpResponse;
+abstract class _HttpResponse<T> implements HttpResponse<T> {
+  factory _HttpResponse({required final int? statusCode, final T? body}) =
+      _$_HttpResponse<T>;
 
   @override
 
@@ -153,9 +153,9 @@ abstract class _HttpResponse implements HttpResponse {
   @override
 
   /// The HTTP response body.
-  dynamic get body;
+  T? get body;
   @override
   @JsonKey(ignore: true)
-  _$$_HttpResponseCopyWith<_$_HttpResponse> get copyWith =>
+  _$$_HttpResponseCopyWith<T, _$_HttpResponse<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
