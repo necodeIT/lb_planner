@@ -1,3 +1,4 @@
+/// Contains configs for all endpoints used by the app.
 library configs.endpoints;
 
 /// The url of the moodle server.
