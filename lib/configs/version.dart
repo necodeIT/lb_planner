@@ -21,6 +21,16 @@ const kAppVersionName =
 const kAppVersion =
     String.fromEnvironment("APP_VERSION", defaultValue: "0.0.0");
 
+/// Holds the build number as a string, sourced from the `BUILD_NUMBER` environment variable.
+///
+/// In [BuildChannel.dev] or [BuildChannel.beta], the version number usually stays the same until a stable release.
+/// The build number helps us and the users differentiate between different builds of the same version.
+///
+/// The value is read from the environment variable `BUILD_NUMBER`.
+///
+/// Defaults to `0` if the environment variable is not set.
+const kBuildNumber = String.fromEnvironment("BUILD_NUMBER", defaultValue: "0");
+
 /// Enum representing the different build channels the app can be in.
 enum BuildChannel {
   /// Development channel, usually the most up-to-date but least stable.
