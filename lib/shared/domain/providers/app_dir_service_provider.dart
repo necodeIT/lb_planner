@@ -8,7 +8,8 @@ import 'package:riverpod/riverpod.dart';
 
 /// Provides the current [AppDirService] instance.
 final appDirServiceProvider = Provider((ref) {
-  final appDirService = Platform.isLinux ? LinuxAppDirService() : DefaultAppDirService();
+  final appDirService =
+      Platform.isLinux ? LinuxAppDirService() : DefaultAppDirService();
 
   return kDebugMode ? DebugAppDirService(appDirService) : appDirService;
 });

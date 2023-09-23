@@ -16,5 +16,9 @@ abstract class ApiService {
   /// Calls the specified [function] on the Moodle-API.
   ///
   /// If [redact] is set to true, the response/request body will not be logged.
-  Future<HttpResponse<JSON>> callFunction({required String function, required String token, required body, bool redact = false});
+  Future<HttpResponse<JSON>> callFunction(
+      {required String function,
+      required String token,
+      required body,
+      bool redact = false});
 }

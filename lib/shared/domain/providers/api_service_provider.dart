@@ -21,7 +21,9 @@ class _ApiService {
   _ApiService(this.apiService, this.token);
 
   /// Calls the specified [function] with the given [body] and returns the response.
-  Future<HttpResponse<JSON>> callFunction({required String function, required body, bool redact = false}) {
-    return apiService.callFunction(function: function, token: token, body: body, redact: redact);
+  Future<HttpResponse<JSON>> callFunction(
+      {required String function, required body, bool redact = false}) {
+    return apiService.callFunction(
+        function: function, token: token, body: body, redact: redact);
   }
 }

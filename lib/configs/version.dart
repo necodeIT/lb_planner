@@ -11,13 +11,15 @@ const kAppName = String.fromEnvironment("APP_NAME", defaultValue: "LB Planner");
 /// The value is read from the environment variable `APP_VERSION_NAME`.
 ///
 /// Defaults to `Debug ver.` if the environment variable is not set.
-const kAppVersionName = String.fromEnvironment("APP_VERSION_NAME", defaultValue: "Debug ver.");
+const kAppVersionName =
+    String.fromEnvironment("APP_VERSION_NAME", defaultValue: "Debug ver.");
 
 /// Holds the version of the application as a string.
 /// The value is read from the environment variable `APP_VERSION`.
 ///
 /// Defaults to `0.0.0` if the environment variable is not set.
-const kAppVersion = String.fromEnvironment("APP_VERSION", defaultValue: "0.0.0");
+const kAppVersion =
+    String.fromEnvironment("APP_VERSION", defaultValue: "0.0.0");
 
 /// Enum representing the different build channels the app can be in.
 enum BuildChannel {
@@ -39,4 +41,5 @@ enum BuildChannel {
 /// Defaults to [BuildChannel.dev] if the environment variable is not set.
 final kBuildChannel = BuildChannel.values.byName(_kBuildChannel);
 
-const _kBuildChannel = String.fromEnvironment("BUILD_CHANNEL", defaultValue: "dev");
+const _kBuildChannel =
+    String.fromEnvironment("BUILD_CHANNEL", defaultValue: "dev");

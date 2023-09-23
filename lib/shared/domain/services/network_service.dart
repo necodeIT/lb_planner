@@ -13,12 +13,14 @@ abstract class NetworkService {
   /// Optionally, you can specify custom [headers] and [queryParameters].
   ///
   /// Returns a [Future] that completes with an [HttpResponse] when the request is complete.
-  Future<HttpResponse> get(String url, {Map<String, String>? headers, Map<String, String>? queryParameters});
+  Future<HttpResponse> get(String url,
+      {Map<String, String>? headers, Map<String, String>? queryParameters});
 
   /// Sends a POST request to the specified [url].
   ///
   /// Optionally, you can specify custom [headers] and a request [body].
   ///
   /// Returns a [Future] that completes with an [HttpResponse] when the request is complete.
-  Future<HttpResponse> post(String url, {Map<String, String>? headers, dynamic body});
+  Future<HttpResponse> post(String url,
+      {Map<String, String>? headers, dynamic body});
 }
