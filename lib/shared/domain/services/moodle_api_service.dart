@@ -11,7 +11,7 @@ class MoodleApiService extends ApiService {
   Future<HttpResponse<JSON>> callFunction(
       {required String function,
       required String token,
-      required body,
+      required JSON body,
       bool redact = false}) async {
     log.info(
         "Calling function $function ${redact ? "with [redacted body]" : "with body $body"}");

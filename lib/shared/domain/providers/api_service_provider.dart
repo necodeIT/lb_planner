@@ -6,7 +6,7 @@ import 'package:lb_planner/shared/domain/services/moodle_api_service.dart';
 import 'package:riverpod/riverpod.dart';
 import 'package:lb_planner/shared/domain/services/services.dart';
 
-/// Provides the current [ApiService] instance for the given [token].
+/// Provides the current [ApiService] instance for the given token.
 final apiServiceProvider = Provider.family<_ApiService, String>((ref, token) {
   final networkService = ref.watch(netwokServiceProvider);
   final apiService = MoodleApiService(networkService);

@@ -19,6 +19,6 @@ abstract class ApiService {
   Future<HttpResponse<JSON>> callFunction(
       {required String function,
       required String token,
-      required body,
+      required JSON body,
       bool redact = false});
 }
