@@ -30,12 +30,20 @@ linter:
     # prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule
     prefer_const_constructors: false
     public_member_api_docs: true
+    avoid_dynamic_calls: true
+    avoid_slow_async_io: true
+    avoid_type_to_string: true
+    avoid_types_as_parameter_names: true
+    cancel_subscriptions: true
+    close_sinks: true
+    comment_references: true
+    deprecated_member_use_from_same_package: true
 
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options
 dart_code_metrics:
   rules:
-    - no-magic-number: 
+    - no-magic-number:
         allowed: [0, 1, 0.5]
     - lines-of-code: 150
     - maintainability-index: 50
