@@ -60,4 +60,13 @@ abstract class LocalConfigService<T> {
   ///
   /// - [config]: The configuration data to save.
   Future<void> saveConfig(T config);
+
+  /// Returns a [Future] that resolves to `true` if the configuration can be loaded and `false` otherwise.
+  ///
+  /// Default implementation checks if the configuration file exists however this may be overridden.
+  Future<bool> canLoadConfig() async {
+    var configFile = await resolveConfigFile();
+
+    return configFile.existsSync();
+  }
 }
