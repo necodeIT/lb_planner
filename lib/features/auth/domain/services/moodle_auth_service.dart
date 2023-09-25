@@ -2,23 +2,23 @@ import 'package:lb_planner/features/auth/domain/services/services.dart';
 import 'package:lb_planner/shared/shared.dart';
 import 'package:lb_planner/configs/endpoints.dart' as config;
 
-/// Implements the [AuthService] for the Moodle Mobile App token.
-class MoodleMobileAppAuthService extends AuthService {
+/// Implements the [AuthService] using moodle api.
+class MoodleAuthService extends AuthService {
   /// The network service to use for requests.
   final NetworkService networkService;
 
-  /// The API service to use for verification.
-  final ApiService apiService;
+  /// The name of the moodle webservice to request the token for.
+  final String webservice;
 
   /// Implements the [AuthService] for the Moodle Mobile App token.
-  MoodleMobileAppAuthService(this.networkService, this.apiService);
+  MoodleAuthService(this.webservice, this.networkService);
 
   @override
   Future<String> requestToken(String username, String password) async {
     log.info("Requesting token for user $username");
 
-    const url =
-        "${config.kMoodleServerAdress}/login/token.php?service=moodle_mobile_app&moodlewsrestformat=json";
+    final url =
+        "${config.kMoodleServerAdress}/login/token.php?service=$webservice&moodlewsrestformat=json";
 
     var response = await networkService.post(
       url,
@@ -47,6 +47,8 @@ class MoodleMobileAppAuthService extends AuthService {
   Future<bool> verifyToken(String token) {
     log.info("Verifying token [redacted]....");
 
-    throw "dunno";
+    // TODO: figure out how to verify token
+
+    throw UnimplementedError();
   }
 }
