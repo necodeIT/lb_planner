@@ -8,7 +8,7 @@ import 'package:lb_planner/shared/domain/services/services.dart';
 
 /// Provides the current [ApiService] instance for the given token.
 final apiServiceProvider = Provider.family<_ApiService, String>((ref, token) {
-  final networkService = ref.watch(netwokServiceProvider);
+  final networkService = ref.watch(networkServiceProvider);
   final apiService = MoodleApiService(networkService);
 
   return _ApiService(apiService, token);

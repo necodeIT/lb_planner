@@ -6,7 +6,7 @@ import 'package:dio/dio.dart';
 /// Provides the current [NetworkService] instance.
 ///
 /// See [NetworkService] for more information.
-final netwokServiceProvider = Provider<NetworkService>((ref) {
+final networkServiceProvider = Provider<NetworkService>((ref) {
   final dio = Dio();
 
   return DioNetworkService(dio);

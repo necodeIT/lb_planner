@@ -10,6 +10,8 @@ abstract class AuthService {
   /// Returns a [Future] that resolves to a [String] containing the authentication token.
   Future<String> requestToken(String username, String password);
 
-  /// Verifies the validity of the given [token].
-  Future<bool> verifyToken(String token);
+  /// Checks if the given [token] is valid or not.
+  ///
+  /// Returns a [Future] that resolves to `true` if the token is valid, `false` otherwise.
+  Future<bool> validateToken(String token);
 }

@@ -7,18 +7,18 @@ class MoodleAuthService extends AuthService {
   /// The network service to use for requests.
   final NetworkService networkService;
 
-  /// The name of the moodle webservice to request the token for.
-  final String webservice;
+  /// The name of the moodle web service to request the token for.
+  final String webService;
 
   /// Implements the [AuthService] for the Moodle Mobile App token.
-  MoodleAuthService(this.webservice, this.networkService);
+  MoodleAuthService(this.webService, this.networkService);
 
   @override
   Future<String> requestToken(String username, String password) async {
     log.info("Requesting token for user $username");
 
     final url =
-        "${config.kMoodleServerAdress}/login/token.php?service=$webservice&moodlewsrestformat=json";
+        "${config.kMoodleServerAdress}/login/token.php?service=$webService&moodlewsrestformat=json";
 
     var response = await networkService.post(
       url,
@@ -44,7 +44,7 @@ class MoodleAuthService extends AuthService {
   }
 
   @override
-  Future<bool> verifyToken(String token) {
+  Future<bool> validateToken(String token) {
     log.info("Verifying token [redacted]....");
 
     // TODO: figure out how to verify token
