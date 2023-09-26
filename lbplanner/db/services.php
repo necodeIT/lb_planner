@@ -356,6 +356,6 @@ $services = array(
         ),
         'restrictedusers' => 0,
         'enabled' => 1,
-        'shortname' => 'lpa'
+        'shortname' => 'lb_planner_api'
     ),
 );
