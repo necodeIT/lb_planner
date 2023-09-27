@@ -1,10 +1,8 @@
 import 'dart:async';
 
-import 'package:lb_planner/shared/domain/models/models.dart';
-import 'package:lb_planner/shared/domain/providers/providers.dart';
-import 'package:lb_planner/shared/domain/services/moodle_api_service.dart';
+import 'package:lb_planner/shared/shared.dart';
+import 'package:lb_planner/shared/data/data.dart';
 import 'package:riverpod/riverpod.dart';
-import 'package:lb_planner/shared/domain/services/services.dart';
 
 /// Provides the current [ApiService] instance for the given token.
 final apiServiceProvider = Provider.family<_ApiService, String>((ref, token) {

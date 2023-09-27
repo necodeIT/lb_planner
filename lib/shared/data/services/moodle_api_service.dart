@@ -1,5 +1,5 @@
-import 'package:lb_planner/shared/domain/models/models.dart';
-import 'package:lb_planner/shared/domain/services/services.dart';
+import 'package:lb_planner/shared/domain/domain.dart';
+
 import 'package:lb_planner/configs/endpoints.dart' as config;
 
 /// Implements [ApiService] for the Moodle-API.

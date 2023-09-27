@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:lb_planner/shared/domain/services/app_dir_service.dart';
+import 'package:lb_planner/shared/domain/domain.dart';
 
 import 'package:lb_planner/configs/version.dart' as config;
 

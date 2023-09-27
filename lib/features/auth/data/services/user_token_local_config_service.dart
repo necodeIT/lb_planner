@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:lb_planner/features/auth/domain/models/user_token.dart';
+import 'package:lb_planner/features/auth/auth.dart';
 import 'package:lb_planner/shared/shared.dart';
 
 /// Implements [LocalConfigService] for [UserToken].

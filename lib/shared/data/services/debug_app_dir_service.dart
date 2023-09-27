@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:lb_planner/shared/domain/services/app_dir_service.dart';
+import 'package:lb_planner/shared/domain/domain.dart';
 
 /// `DebugAppDirService` is a specialized version of [AppDirService] that is designed for debugging purposes.
 /// It wraps an existing [AppDirService] instance and modifies its behavior to create a `/debug` subdirectory

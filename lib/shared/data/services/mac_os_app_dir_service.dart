@@ -1,8 +1,7 @@
 import 'dart:io';
 
 import 'package:path_provider/path_provider.dart';
-
-import 'app_dir_service.dart';
+import 'package:lb_planner/shared/domain/domain.dart';
 
 /// Implementation of [AppDirService] for macOS.
 ///

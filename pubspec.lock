@@ -170,6 +170,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.17.2"
+  color_blindness:
+    dependency: "direct main"
+    description:
+      name: color_blindness
+      sha256: "8e85c212aa21ed74e7067ed7ff0a3dce39a366023bd4ca17820981dc8681a6e6"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.2"
   convert:
     dependency: transitive
     description:

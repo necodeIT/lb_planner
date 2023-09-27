@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'connection_service.dart';
+import 'package:lb_planner/shared/domain/domain.dart';
 
 /// Implementation of [ConnectionService] that uses the [InternetAddress.lookup] method.
 class InternetAdressLookupConnectionService extends ConnectionService {
