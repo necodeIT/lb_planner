@@ -1,14 +1,18 @@
+import 'package:either_dart/src/either.dart';
 import 'package:lb_planner/shared/domain/domain.dart';
 
 import 'package:lb_planner/configs/endpoints.dart' as config;
 
 /// Implements [ApiService] for the Moodle-API.
 class MoodleApiService extends ApiService {
+  /// The [NetworkService] used to communicate with the Moodle-API.
+  final NetworkService networkService;
+
   /// Implements [ApiService] for the Moodle-API.
-  MoodleApiService(super.networkService);
+  MoodleApiService(this.networkService);
 
   @override
-  Future<HttpResponse<JSON>> callFunction(
+  Future<HttpResponse<Either<List<JSON>, JSON>>> callFunction(
       {required String function,
       required String token,
       required JSON body,
@@ -28,14 +32,12 @@ class MoodleApiService extends ApiService {
       log.info(
           "Function $function returned ${redact ? "[redacted body]" : "body ${response.body}"}");
 
-      return HttpResponse<JSON>(
-          statusCode: response.statusCode, body: response.body);
+      return HttpResponse(statusCode: response.statusCode, body: response.body);
     }
 
     log.warning(
         "Error calling function $function: ${response.statusCode} ${response.body}");
 
-    return HttpResponse<JSON>(
-        statusCode: response.statusCode, body: response.body);
+    return HttpResponse(statusCode: response.statusCode, body: response.body);
   }
 }
