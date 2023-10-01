@@ -78,6 +78,15 @@ class User with _$User {
   ///
   /// Based on [displayTaskCountInt].
   bool get displayTaskCount => displayTaskCountInt == 1;
+
+  /// Returns `true` if the user has the given [capability]. Otherwise `false`.
+  ///
+  /// See [UserCapabilitiesExtension.has] if you want to check for multiple capabilities.
+  bool hasCapability(UserCapability capability) =>
+      capabilities.contains(capability);
+
+  /// Returns `null` if this user i not valid i.e. [id] is `-1`.
+  User? get validOrNull => id == -1 ? null : this;
 }
 
 const _langToLocale = {
@@ -129,6 +138,10 @@ extension UserCapabilitiesExtension on List<UserCapability> {
 
   /// Returns `true` if the list contains [UserCapability.student]. Otherwise `false`.
   bool get hasStudent => contains(UserCapability.student);
+
+  /// Returns `true` if the list contains all of the given [capabilities]. Otherwise `false`.
+  bool has(List<UserCapability> capabilities) =>
+      capabilities.every((capability) => contains(capability));
 }
 
 /// Provides helper methods for [UserCapability].

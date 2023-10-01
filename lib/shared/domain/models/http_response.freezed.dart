@@ -105,8 +105,8 @@ class __$$_HttpResponseCopyWithImpl<T, $Res>
 
 /// @nodoc
 
-class _$_HttpResponse<T> implements _HttpResponse<T> {
-  _$_HttpResponse({required this.statusCode, this.body});
+class _$_HttpResponse<T> extends _HttpResponse<T> {
+  _$_HttpResponse({required this.statusCode, this.body}) : super._();
 
   /// The HTTP status code.
   @override
@@ -142,9 +142,10 @@ class _$_HttpResponse<T> implements _HttpResponse<T> {
       __$$_HttpResponseCopyWithImpl<T, _$_HttpResponse<T>>(this, _$identity);
 }
 
-abstract class _HttpResponse<T> implements HttpResponse<T> {
+abstract class _HttpResponse<T> extends HttpResponse<T> {
   factory _HttpResponse({required final int? statusCode, final T? body}) =
       _$_HttpResponse<T>;
+  _HttpResponse._() : super._();
 
   @override
 
