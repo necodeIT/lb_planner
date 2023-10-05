@@ -1,9 +1,10 @@
 import 'dart:async';
 
-import 'package:lb_planner/shared/domain/services/internet_address_lookup_connection_service.dart';
-import 'package:lb_planner/shared/utils/auto_refresh_state_notifier.dart';
 import 'package:riverpod/riverpod.dart';
-import 'package:lb_planner/shared/domain/services/services.dart';
+
+import 'package:lb_planner/shared/shared.dart';
+import 'package:lb_planner/shared/data/data.dart';
+import 'package:lb_planner/shared/utils/auto_refresh_state_notifier.dart';
 
 /// Provides the current connection status of the device.
 final connectionServiceProvider = Provider<_ConnectionProvider>((ref) {

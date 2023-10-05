@@ -1,6 +1,5 @@
-import 'services.dart';
+import 'package:lb_planner/shared/domain/domain.dart';
 
-import 'package:lb_planner/shared/domain/models/http_response.dart';
 import 'package:dio/dio.dart';
 
 /// Implements the [NetworkService] using the [Dio] package.

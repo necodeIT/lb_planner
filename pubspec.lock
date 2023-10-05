@@ -170,6 +170,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.17.2"
+  color_blindness:
+    dependency: "direct main"
+    description:
+      name: color_blindness
+      sha256: "8e85c212aa21ed74e7067ed7ff0a3dce39a366023bd4ca17820981dc8681a6e6"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.2"
   convert:
     dependency: transitive
     description:
@@ -218,6 +226,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.3.2"
+  either_dart:
+    dependency: "direct main"
+    description:
+      name: either_dart
+      sha256: "0b57f6a9410ce0ba2cc340220109f545bf4bad1b06b242219f0af11ab9e84f0e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   fake_async:
     dependency: transitive
     description:

@@ -12,6 +12,8 @@ include: package:flutter_lints/flutter.yaml
 analyzer:
   plugins:
     - dart_code_metrics
+  exclude:
+    - "**/*.g.dart"
 
 linter:
   # The lint rules applied to this project can be customized in the
