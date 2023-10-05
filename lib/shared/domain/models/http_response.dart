@@ -19,4 +19,7 @@ class HttpResponse<T> with _$HttpResponse<T> {
 
   /// `true` [statusCode] is 200.
   bool get isOk => statusCode == 200;
+
+  /// `true` [statusCode] is not 200.
+  bool get isNotOk => !isOk;
 }

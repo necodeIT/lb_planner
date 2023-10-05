@@ -44,11 +44,43 @@ class MoodleAuthService extends AuthService {
   }
 
   @override
-  Future<bool> validateToken(String token) {
+  Future<bool> validateToken(String token) async {
     log.info("Verifying token [redacted]....");
 
-    // TODO: figure out how to verify token
+    var response = await networkService.post(
+        "${config.kMoodleServerAdress}/webservice/rest/server.php",
+        body: {
+          "wstoken": token,
+          "moodlewsrestformat": "json",
+        });
 
-    throw UnimplementedError();
+    if (response.isNotOk) {
+      log.info(
+          "Got response ${response.statusCode} from token validation. Invaildating token by default.");
+
+      return false;
+    }
+
+    final body = response.body as JSON;
+
+    // if errorcode is 'accessexception' or 'invalidtoken' the token is invalid
+
+    var errorCode = body["errorcode"];
+
+    if (errorCode == "accessexception") {
+      log.info("Token expired");
+
+      return false;
+    }
+
+    if (errorCode == "invalidtoken") {
+      log.info("Token invalid");
+
+      return false;
+    }
+
+    log.info("Token is valid");
+
+    return true;
   }
 }
