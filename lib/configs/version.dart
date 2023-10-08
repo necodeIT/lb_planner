@@ -84,18 +84,6 @@ const kPatchAppVersion =
 /// ```
 const kBuildNumber = int.fromEnvironment("BUILD_NUMBER", defaultValue: 0);
 
-/// Enum representing the different build channels the app can be in.
-enum BuildChannel {
-  /// Development channel, usually the most up-to-date but least stable.
-  dev,
-
-  ///  Beta channel, more stable than `dev` but may still have issues.
-  beta,
-
-  /// Stable channel, the most stable version available for users.
-  stable,
-}
-
 /// Build Channel
 ///
 /// Holds the current build channel of the application.
@@ -119,5 +107,4 @@ final kAppVersion = Version(
   minor: kMinorAppVersion,
   patch: kPatchAppVersion,
   build: kBuildNumber,
-  channel: kBuildChannel,
 );

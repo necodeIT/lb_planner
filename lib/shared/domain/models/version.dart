@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:lb_planner/configs/version.dart';
 
 part 'version.freezed.dart';
 part 'version.g.dart';
@@ -22,29 +21,12 @@ class Version with _$Version {
 
     /// The build number.
     @Default(0) int build,
-
-    /// The build channel.
-    @Default(BuildChannel.stable) BuildChannel channel,
   }) = _Version;
 
   /// The version number as a string.
-  String get version => "$major.$minor.$patch";
-
-  /// The version number as a string, including the build number.
   ///
-  /// e.g.
-  ///
-  /// ```dart
-  /// Version(major: 1, minor: 2, patch: 3, build: 4, channel: BuildChannel.stable).versionName == "1.2.3+4-stable"
-  /// ```
-  ///
-  /// if the build number is 0, it is omitted.
-  ///
-  /// ```dart
-  /// Version(major: 1, minor: 2, patch: 3, build: 0, channel: BuildChannel.stable).versionName == "1.2.3-stable"
-  /// ```
-  String get versionName =>
-      "$version${build == 0 ? '' : '+$build'}${channel.name}";
+  /// e.g. `1.2.3+4`
+  String get version => "$major.$minor.$patch{build == 0 ? '' : '+$build'}";
 
   /// Version from JSON.
   factory Version.fromJson(Map<String, dynamic> json) =>
@@ -55,15 +37,15 @@ class Version with _$Version {
   /// e.g.
   ///
   /// ```dart
-  /// Version.fromString("1.2.3+4-stable") == Version(major: 1, minor: 2, patch: 3, build: 4, channel: BuildChannel.stable)
+  /// Version.fromString("1.2.3+4") == Version(major: 1, minor: 2, patch: 3, build: 4)
   /// ```
   factory Version.fromString(String string) {
     var versionString = string;
 
     // If the version string does not contain a build number, add a 0.
     if (!string.contains("+")) {
-      // e.g. 1.2.3-stable -> 1.2.3+0-stable
-      versionString = versionString.replaceAll("-", "+0-");
+      // e.g. 1.2.3 -> 1.2.3+0
+      versionString += "+0";
     }
 
     final version = versionString.split("+");
@@ -82,21 +64,59 @@ class Version with _$Version {
     var minor = int.parse(versionNumbers[1]);
     var patch = int.parse(versionNumbers[2]);
 
-    final buildAndChannel = version[1].split("-");
-
-    if (buildAndChannel.length < 2) {
-      throw FormatException("Invalid version string: $string");
-    }
-
-    var build = int.parse(buildAndChannel[0]);
-    var channel = BuildChannel.values.byName(buildAndChannel[1]);
+    var build = int.parse(version[1]);
 
     return Version(
       major: major,
       minor: minor,
       patch: patch,
       build: build,
-      channel: channel,
     );
   }
+
+  /// Returns `true` if this version is greater than [other].
+  bool operator >(Version other) {
+    if (this == other) {
+      return false;
+    }
+
+    if (major > other.major) {
+      return true;
+    } else if (major < other.major) {
+      return false;
+    }
+
+    if (minor > other.minor) {
+      return true;
+    } else if (minor < other.minor) {
+      return false;
+    }
+
+    if (patch > other.patch) {
+      return true;
+    } else if (patch < other.patch) {
+      return false;
+    }
+
+    if (build > other.build) {
+      return true;
+    }
+
+    return false;
+  }
+
+  /// Returns `true` if this version is less than [other].
+  bool operator <(Version other) => !(this > other) && this != other;
+}
+
+/// Enum representing the different build channels the app can be in.
+enum BuildChannel {
+  /// Development channel, usually the most up-to-date but least stable.
+  dev,
+
+  ///  Beta channel, more stable than `dev` but may still have issues.
+  beta,
+
+  /// Stable channel, the most stable version available for users.
+  stable,
 }

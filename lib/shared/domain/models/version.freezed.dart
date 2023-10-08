@@ -32,9 +32,6 @@ mixin _$Version {
   /// The build number.
   int get build => throw _privateConstructorUsedError;
 
-  /// The build channel.
-  BuildChannel get channel => throw _privateConstructorUsedError;
-
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $VersionCopyWith<Version> get copyWith => throw _privateConstructorUsedError;
@@ -45,7 +42,7 @@ abstract class $VersionCopyWith<$Res> {
   factory $VersionCopyWith(Version value, $Res Function(Version) then) =
       _$VersionCopyWithImpl<$Res, Version>;
   @useResult
-  $Res call({int major, int minor, int patch, int build, BuildChannel channel});
+  $Res call({int major, int minor, int patch, int build});
 }
 
 /// @nodoc
@@ -65,7 +62,6 @@ class _$VersionCopyWithImpl<$Res, $Val extends Version>
     Object? minor = null,
     Object? patch = null,
     Object? build = null,
-    Object? channel = null,
   }) {
     return _then(_value.copyWith(
       major: null == major
@@ -84,10 +80,6 @@ class _$VersionCopyWithImpl<$Res, $Val extends Version>
           ? _value.build
           : build // ignore: cast_nullable_to_non_nullable
               as int,
-      channel: null == channel
-          ? _value.channel
-          : channel // ignore: cast_nullable_to_non_nullable
-              as BuildChannel,
     ) as $Val);
   }
 }
@@ -99,7 +91,7 @@ abstract class _$$_VersionCopyWith<$Res> implements $VersionCopyWith<$Res> {
       __$$_VersionCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int major, int minor, int patch, int build, BuildChannel channel});
+  $Res call({int major, int minor, int patch, int build});
 }
 
 /// @nodoc
@@ -116,7 +108,6 @@ class __$$_VersionCopyWithImpl<$Res>
     Object? minor = null,
     Object? patch = null,
     Object? build = null,
-    Object? channel = null,
   }) {
     return _then(_$_Version(
       major: null == major
@@ -135,10 +126,6 @@ class __$$_VersionCopyWithImpl<$Res>
           ? _value.build
           : build // ignore: cast_nullable_to_non_nullable
               as int,
-      channel: null == channel
-          ? _value.channel
-          : channel // ignore: cast_nullable_to_non_nullable
-              as BuildChannel,
     ));
   }
 }
@@ -150,8 +137,7 @@ class _$_Version extends _Version {
       {required this.major,
       required this.minor,
       required this.patch,
-      this.build = 0,
-      this.channel = BuildChannel.stable})
+      this.build = 0})
       : super._();
 
   factory _$_Version.fromJson(Map<String, dynamic> json) =>
@@ -174,14 +160,9 @@ class _$_Version extends _Version {
   @JsonKey()
   final int build;
 
-  /// The build channel.
-  @override
-  @JsonKey()
-  final BuildChannel channel;
-
   @override
   String toString() {
-    return 'Version(major: $major, minor: $minor, patch: $patch, build: $build, channel: $channel)';
+    return 'Version(major: $major, minor: $minor, patch: $patch, build: $build)';
   }
 
   @override
@@ -192,14 +173,12 @@ class _$_Version extends _Version {
             (identical(other.major, major) || other.major == major) &&
             (identical(other.minor, minor) || other.minor == minor) &&
             (identical(other.patch, patch) || other.patch == patch) &&
-            (identical(other.build, build) || other.build == build) &&
-            (identical(other.channel, channel) || other.channel == channel));
+            (identical(other.build, build) || other.build == build));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, major, minor, patch, build, channel);
+  int get hashCode => Object.hash(runtimeType, major, minor, patch, build);
 
   @JsonKey(ignore: true)
   @override
@@ -220,8 +199,7 @@ abstract class _Version extends Version {
       {required final int major,
       required final int minor,
       required final int patch,
-      final int build,
-      final BuildChannel channel}) = _$_Version;
+      final int build}) = _$_Version;
   _Version._() : super._();
 
   factory _Version.fromJson(Map<String, dynamic> json) = _$_Version.fromJson;
@@ -242,10 +220,6 @@ abstract class _Version extends Version {
 
   /// The build number.
   int get build;
-  @override
-
-  /// The build channel.
-  BuildChannel get channel;
   @override
   @JsonKey(ignore: true)
   _$$_VersionCopyWith<_$_Version> get copyWith =>
