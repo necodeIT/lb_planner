@@ -13,6 +13,19 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
+        with:
+          ref: LP-156-Frontend-Refactor # This is temporary and will be replaced by `app` once the refactor is complete
+          path: app
+
+      - name: Checkout docs branch
+        uses: actions/checkout@v2
+        with:
+          ref: docs
+          clean: false
+          path: docs
+
+      - name: CD into app directory
+        run: cd app
 
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
@@ -24,13 +37,6 @@ jobs:
 
       - name: Generate Dart Docs
         run: dart doc
-
-      - name: Checkout docs branch
-        uses: actions/checkout@v2
-        with:
-          ref: docs
-          clean: false
-          path: ../docs
       
       - name: Clear old documentation in /app subdir
         run: |
@@ -41,7 +47,6 @@ jobs:
         run: | 
           cp -R doc/* ../docs/app/
           cd ../docs
-
         
       - name: Push new documentation to docs branch
         uses: Andro999b/push@v1.3
