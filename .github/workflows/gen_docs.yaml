@@ -12,20 +12,17 @@ jobs:
 
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           ref: LP-156-Frontend-Refactor # This is temporary and will be replaced by `app` once the refactor is complete
           path: app
 
       - name: Checkout docs branch
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           ref: docs
           clean: false
           path: docs
-
-      - name: CD into app directory
-        run: cd app
 
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
@@ -33,24 +30,27 @@ jobs:
           flutter-version: '3.13.4'
 
       - name: Get dependencies
+        working-directory: app
         run: flutter pub get
-
+        
       - name: Generate Dart Docs
+        working-directory: app
         run: dart doc
       
       - name: Clear old documentation in /app subdir
         run: |
-          rm -rf ../docs/app/*
-          mkdir -p ../docs/app
+          rm -rf docs/app/*
+          mkdir -p docs/app
 
       - name: Copy generated docs to /app subdir
         run: | 
-          cp -R doc/* ../docs/app/
-          cd ../docs
+          cp -R app/doc/* docs/app/
         
       - name: Push new documentation to docs branch
-        uses: Andro999b/push@v1.3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: docs
-          message: "Github Actions - Updated app docs to ${{ github.event.head_commit.id }}"
+        working-directory: docs
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "github-actions-bot@users.noreply.github.com"
+          git add -A
+          git commit -m "Update Flutter documentation"
+          git push
