@@ -30,17 +30,17 @@ jobs:
         with:
           ref: docs
           clean: false
-          path: .docs
+          path: ../docs
       
       - name: Clear old documentation in /app subdir
         run: |
-          rm -rf .docs/app/*
-          mkdir -p .docs/app
+          rm -rf ../docs/app/*
+          mkdir -p ../docs/app
 
       - name: Copy generated docs to /app subdir
         run: | 
-          cp -R doc/* .docs/app/
-          cd .docs
+          cp -R doc/* ../docs/app/
+          cd ../docs
 
         
       - name: Push new documentation to docs branch
