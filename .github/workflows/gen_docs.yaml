@@ -44,7 +44,7 @@ jobs:
 
       - name: Copy generated docs to /app subdir
         run: | 
-          cp -R app/doc/* docs/app/
+          cp -R app/doc/api/* docs/app/
         
       - name: Push new documentation to docs branch
         working-directory: docs
@@ -52,5 +52,5 @@ jobs:
           git config user.name "GitHub Actions Bot"
           git config user.email "github-actions-bot@users.noreply.github.com"
           git add -A
-          git commit -m "Update Flutter documentation"
+          git commit -m "GitHub Actions - Update client-side API documentation to ${{ github.sha }}"
           git push
