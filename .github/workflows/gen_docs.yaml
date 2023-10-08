@@ -1,0 +1,51 @@
+name: Generate API Docs
+
+on:
+  push:
+    branches:
+      - LP-156-Frontend-Refactor # This is temporary and will be replaced by `app` once the refactor is complete
+  workflow_dispatch: # For manual triggering
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.13.4'
+
+      - name: Get dependencies
+        run: flutter pub get
+
+      - name: Generate Dart Docs
+        run: dart doc
+
+      - name: Checkout docs branch
+        uses: actions/checkout@v2
+        with:
+          ref: docs
+          clean: false
+          path: .docs
+      
+      - name: Clear old documentation in /app subdir
+        run: |
+          rm -rf .docs/app/*
+          mkdir -p .docs/app
+
+      - name: Copy generated docs to /app subdir
+        run: | 
+          cp -R doc/* .docs/app/
+          cd .docs
+
+        
+      - name: Push new documentation to docs branch
+        uses: Andro999b/push@v1.3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: docs
+          message: "Github Actions - Updated app docs to ${{ github.event.head_commit.id }}"
