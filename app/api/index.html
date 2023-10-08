@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="generator" content="made with love by dartdoc 7.0.0-dev">
+  <meta name="description" content="lb_planner API docs, for the Dart programming language.">
+  <title>lb_planner - Dart API docs</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="static-assets/github.css?v1">
+  <link rel="stylesheet" href="static-assets/styles.css?v1">
+  <link rel="icon" href="static-assets/favicon.png?v1">
+
+  
+</head>
+
+
+<body data-base-href="" data-using-base-href="false" class="light-theme">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li class="self-crumb">lb_planner package</li>
+  </ol>
+  <div class="self-name">lb_planner</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <div class="toggle" id="theme-button">
+    <label for="theme">
+      <input type="checkbox" id="theme" value="light-theme">
+      <span id="dark-theme-button" class="material-symbols-outlined">
+        brightness_4
+      </span>
+      <span id="light-theme-button" class="material-symbols-outlined">
+        brightness_5
+      </span>
+    </label>
+  </div>
+</header>
+<main>
+
+  <div id="dartdoc-main-content" class="main-content">
+      
+<section class="desc markdown">
+  <h1 id="lb-planner">LB Planner</h1>
+<p>LB Planner is an application designed to help students plan and organize their self-taught studying by tracking and managing their modules. It provides an easy-to-use interface that allows users to stay on top of their academic goals. For more information, please visit our <a href="https://projekte.tgm.ac.at/lb-planner/">website</a>.</p>
+<h2 id="compile-instructions">Compile Instructions</h2>
+<ol>
+<li>Clone the repository to your local machine.</li>
+<li>Ensure that you have <a href="https://fvm.app/docs/getting_started/installation/">FVM</a> installed on your machine.</li>
+<li>Navigate to the project directory in the terminal.</li>
+<li>Run <code>fvm use</code> to select the Flutter version.</li>
+<li>Run <code>fvm flutter pub get</code> to install the required dependencies.</li>
+<li>To build the application for release on macOS, run <code>fvm flutter build macos --release --no-sound-null-safety</code>. The built application can be found in the <code>build/macos/Build/Products/Release/</code> directory.</li>
+<li>To build the application for release on Windows, run <code>fvm flutter build windows --release --no-sound-null-safety</code>. The built application can be found in the <code>build\windows\runner\Release\</code> directory.</li>
+<li>To build the application for release on Linux, run <code>fvm flutter build linux --release --no-sound-null-safety</code>. The built application can be found in the <code>build/linux/release/bundle/</code> directory.</li>
+</ol>
+<p>Note: LB Planner uses <code>--no-sound-null-safety</code> because some of the third-party packages used in the app do not yet support Flutter's null safety feature. If you encounter any issues while compiling or running the application, please refer to the official <a href="https://flutter.dev/docs">Flutter documentation</a> or the <a href="https://fvm.app">FVM documentation</a> for troubleshooting tips.</p>
+<h2 id="contributors">Contributors</h2>
+<p>LB Planner was created by <a href="https://github.com/bmceachnie">McQuenji</a>, <a href="https://github.com/mkocagoel">Muhi</a>, <a href="https://github.com/RiedleroD">Riedler</a>, <a href="https://github.com/officialbishowb">Bishow B</a> and <a href="https://github.com/cpolat-tgm">Can Polat</a>. We would like to extend our appreciation to the following external contributors for their contributions to the project:</p>
+<ul>
+<li><a href="https://github.com/Blobii">Blobi blob</a> for helping with the design</li>
+<li><a href="https://github.com/Jszuecs">jszuecs-tgm</a> for helping with documentation on the website</li>
+<li><a href="https://github.com/sproshut">sproshut</a> for "Workflow for automated build" (<a href="https://github.com/necodeIT/lb_planner/pull/11">#11</a>)</li>
+<li><a href="https://github.com/melli736">melli736</a> for helping with macOS testing &amp; development</li>
+<li><a href="https://github.com/mariusthaler">mariusthaler</a> for macOS testing</li>
+</ul>
+<p>If you would like to contribute to the project, please feel free to contact us at <a href="mailto:lb-planner@tgm.ac.at">lb-planner@tgm.ac.at</a> or create a pull request.</p>
+<h2 id="license">License</h2>
+<p>LB Planner is licensed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/">Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)</a> license.</p>
+</section>
+
+
+      <section class="summary">
+          <h2>Libraries</h2>
+        <dl>
+          <dt id="api_service">
+  <span class="name"><a href="shared_domain_services_api_service/shared_domain_services_api_service-library.html">api_service</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="api_service_provider">
+  <span class="name"><a href="shared_domain_providers_api_service_provider/shared_domain_providers_api_service_provider-library.html">api_service_provider</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="app_dir_service">
+  <span class="name"><a href="shared_domain_services_app_dir_service/shared_domain_services_app_dir_service-library.html">app_dir_service</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="app_dir_service_provider">
+  <span class="name"><a href="shared_domain_providers_app_dir_service_provider/shared_domain_providers_app_dir_service_provider-library.html">app_dir_service_provider</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="app_route">
+  <span class="name"><a href="app_route/app_route-library.html">app_route</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="auth">
+  <span class="name"><a href="features_auth_auth/features_auth_auth-library.html">auth</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="auth_service">
+  <span class="name"><a href="features_auth_domain_services_auth_service/features_auth_domain_services_auth_service-library.html">auth_service</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="auth_service_provider">
+  <span class="name"><a href="features_auth_domain_providers_auth_service_provider/features_auth_domain_providers_auth_service_provider-library.html">auth_service_provider</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="auto_refresh_state_notifier">
+  <span class="name"><a href="shared_utils_auto_refresh_state_notifier/shared_utils_auto_refresh_state_notifier-library.html">auto_refresh_state_notifier</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="configs.endpoints">
+  <span class="name"><a href="configs.endpoints/configs.endpoints-library.html">configs.endpoints</a></span> 
+
+</dt>
+<dd>Contains configs for all endpoints used by the app.
+</dd>
+
+          <dt id="configs.version">
+  <span class="name"><a href="configs.version/configs.version-library.html">configs.version</a></span> 
+
+</dt>
+<dd>This library contains configurations related to the version and build channel of the app.
+</dd>
+
+          <dt id="connection_service">
+  <span class="name"><a href="shared_domain_services_connection_service/shared_domain_services_connection_service-library.html">connection_service</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="connection_service_provider">
+  <span class="name"><a href="shared_domain_providers_connection_service_provider/shared_domain_providers_connection_service_provider-library.html">connection_service_provider</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="data">
+  <span class="name"><a href="shared_data_data/shared_data_data-library.html">data</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="data">
+  <span class="name"><a href="features_auth_data_data/features_auth_data_data-library.html">data</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="datasources">
+  <span class="name"><a href="features_auth_data_datasources_datasources/features_auth_data_datasources_datasources-library.html">datasources</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="datasources">
+  <span class="name"><a href="features_auth_domain_datasources_datasources/features_auth_domain_datasources_datasources-library.html">datasources</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="debug_app_dir_service">
+  <span class="name"><a href="shared_data_services_debug_app_dir_service/shared_data_services_debug_app_dir_service-library.html">debug_app_dir_service</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="dio_network_service">
+  <span class="name"><a href="shared_data_services_dio_network_service/shared_data_services_dio_network_service-library.html">dio_network_service</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="domain">
+  <span class="name"><a href="shared_domain_domain/shared_domain_domain-library.html">domain</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="domain">
+  <span class="name"><a href="features_auth_domain_domain/features_auth_domain_domain-library.html">domain</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="http_response">
+  <span class="name"><a href="shared_domain_models_http_response/shared_domain_models_http_response-library.html">http_response</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="impl_user_data_source">
+  <span class="name"><a href="features_auth_data_datasources_impl_user_data_source/features_auth_data_datasources_impl_user_data_source-library.html">impl_user_data_source</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="internet_address_lookup_connection_service">
+  <span class="name"><a href="shared_data_services_internet_address_lookup_connection_service/shared_data_services_internet_address_lookup_connection_service-library.html">internet_address_lookup_connection_service</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="linux_app_dir_service">
+  <span class="name"><a href="shared_data_services_linux_app_dir_service/shared_data_services_linux_app_dir_service-library.html">linux_app_dir_service</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="local_config_service">
+  <span class="name"><a href="shared_domain_services_local_config_service/shared_domain_services_local_config_service-library.html">local_config_service</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="mac_os_app_dir_service">
+  <span class="name"><a href="shared_data_services_mac_os_app_dir_service/shared_data_services_mac_os_app_dir_service-library.html">mac_os_app_dir_service</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="main">
+  <span class="name"><a href="main/main-library.html">main</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="models">
+  <span class="name"><a href="features_auth_domain_models_models/features_auth_domain_models_models-library.html">models</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="models">
+  <span class="name"><a href="shared_domain_models_models/shared_domain_models_models-library.html">models</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="moodle_api_service">
+  <span class="name"><a href="shared_data_services_moodle_api_service/shared_data_services_moodle_api_service-library.html">moodle_api_service</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="moodle_auth_service">
+  <span class="name"><a href="features_auth_data_services_moodle_auth_service/features_auth_data_services_moodle_auth_service-library.html">moodle_auth_service</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="network_service">
+  <span class="name"><a href="shared_domain_services_network_service/shared_domain_services_network_service-library.html">network_service</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="network_service_provider">
+  <span class="name"><a href="shared_domain_providers_network_service_provider/shared_domain_providers_network_service_provider-library.html">network_service_provider</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="providers">
+  <span class="name"><a href="shared_domain_providers_providers/shared_domain_providers_providers-library.html">providers</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="providers">
+  <span class="name"><a href="features_auth_domain_providers_providers/features_auth_domain_providers_providers-library.html">providers</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="services">
+  <span class="name"><a href="features_auth_data_services_services/features_auth_data_services_services-library.html">services</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="services">
+  <span class="name"><a href="features_auth_domain_services_services/features_auth_domain_services_services-library.html">services</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="services">
+  <span class="name"><a href="shared_domain_services_services/shared_domain_services_services-library.html">services</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="services">
+  <span class="name"><a href="shared_data_services_services/shared_data_services_services-library.html">services</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="shared">
+  <span class="name"><a href="shared_shared/shared_shared-library.html">shared</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="string_utils">
+  <span class="name"><a href="shared_utils_string_utils/shared_utils_string_utils-library.html">string_utils</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="token_unavailable_user_data_source">
+  <span class="name"><a href="features_auth_data_datasources_token_unavailable_user_data_source/features_auth_data_datasources_token_unavailable_user_data_source-library.html">token_unavailable_user_data_source</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="user">
+  <span class="name"><a href="features_auth_domain_models_user/features_auth_domain_models_user-library.html">user</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="user_data_source">
+  <span class="name"><a href="features_auth_domain_datasources_user_data_source/features_auth_domain_datasources_user_data_source-library.html">user_data_source</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="user_data_source_provider">
+  <span class="name"><a href="features_auth_domain_providers_user_data_source_provider/features_auth_domain_providers_user_data_source_provider-library.html">user_data_source_provider</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="user_provider">
+  <span class="name"><a href="features_auth_domain_providers_user_provider/features_auth_domain_providers_user_provider-library.html">user_provider</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="user_token">
+  <span class="name"><a href="features_auth_domain_models_user_token/features_auth_domain_models_user_token-library.html">user_token</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="user_token_local_config_service">
+  <span class="name"><a href="features_auth_data_services_user_token_local_config_service/features_auth_data_services_user_token_local_config_service-library.html">user_token_local_config_service</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="user_token_local_config_service">
+  <span class="name"><a href="features_auth_domain_providers_user_token_local_config_service/features_auth_domain_providers_user_token_local_config_service-library.html">user_token_local_config_service</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="user_token_provider">
+  <span class="name"><a href="features_auth_domain_providers_user_token_provider/features_auth_domain_providers_user_token_provider-library.html">user_token_provider</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="user_token_state">
+  <span class="name"><a href="features_auth_domain_providers_user_token_state/features_auth_domain_providers_user_token_state-library.html">user_token_state</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="users_provider">
+  <span class="name"><a href="features_auth_domain_providers_users_provider/features_auth_domain_providers_users_provider-library.html">users_provider</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="utils">
+  <span class="name"><a href="shared_utils_utils/shared_utils_utils-library.html">utils</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="windows_app_dir_service">
+  <span class="name"><a href="shared_data_services_windows_app_dir_service/shared_data_services_windows_app_dir_service-library.html">windows_app_dir_service</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+        </dl>
+      </section>
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li class="self-crumb">lb_planner package</li>
+</ol>
+
+
+    <h5 class="hidden-xs"><span class="package-name">lb_planner</span> <span class="package-kind">package</span></h5>
+    <ol>
+      <li class="section-title">Libraries</li>
+      <li><a href="shared_domain_services_api_service/shared_domain_services_api_service-library.html">api_service</a></li>
+      <li><a href="shared_domain_providers_api_service_provider/shared_domain_providers_api_service_provider-library.html">api_service_provider</a></li>
+      <li><a href="shared_domain_services_app_dir_service/shared_domain_services_app_dir_service-library.html">app_dir_service</a></li>
+      <li><a href="shared_domain_providers_app_dir_service_provider/shared_domain_providers_app_dir_service_provider-library.html">app_dir_service_provider</a></li>
+      <li><a href="app_route/app_route-library.html">app_route</a></li>
+      <li><a href="features_auth_auth/features_auth_auth-library.html">auth</a></li>
+      <li><a href="features_auth_domain_services_auth_service/features_auth_domain_services_auth_service-library.html">auth_service</a></li>
+      <li><a href="features_auth_domain_providers_auth_service_provider/features_auth_domain_providers_auth_service_provider-library.html">auth_service_provider</a></li>
+      <li><a href="shared_utils_auto_refresh_state_notifier/shared_utils_auto_refresh_state_notifier-library.html">auto_refresh_state_notifier</a></li>
+      <li><a href="configs.endpoints/configs.endpoints-library.html">configs.endpoints</a></li>
+      <li><a href="configs.version/configs.version-library.html">configs.version</a></li>
+      <li><a href="shared_domain_services_connection_service/shared_domain_services_connection_service-library.html">connection_service</a></li>
+      <li><a href="shared_domain_providers_connection_service_provider/shared_domain_providers_connection_service_provider-library.html">connection_service_provider</a></li>
+      <li><a href="shared_data_data/shared_data_data-library.html">data</a></li>
+      <li><a href="features_auth_data_data/features_auth_data_data-library.html">data</a></li>
+      <li><a href="features_auth_data_datasources_datasources/features_auth_data_datasources_datasources-library.html">datasources</a></li>
+      <li><a href="features_auth_domain_datasources_datasources/features_auth_domain_datasources_datasources-library.html">datasources</a></li>
+      <li><a href="shared_data_services_debug_app_dir_service/shared_data_services_debug_app_dir_service-library.html">debug_app_dir_service</a></li>
+      <li><a href="shared_data_services_dio_network_service/shared_data_services_dio_network_service-library.html">dio_network_service</a></li>
+      <li><a href="shared_domain_domain/shared_domain_domain-library.html">domain</a></li>
+      <li><a href="features_auth_domain_domain/features_auth_domain_domain-library.html">domain</a></li>
+      <li><a href="shared_domain_models_http_response/shared_domain_models_http_response-library.html">http_response</a></li>
+      <li><a href="features_auth_data_datasources_impl_user_data_source/features_auth_data_datasources_impl_user_data_source-library.html">impl_user_data_source</a></li>
+      <li><a href="shared_data_services_internet_address_lookup_connection_service/shared_data_services_internet_address_lookup_connection_service-library.html">internet_address_lookup_connection_service</a></li>
+      <li><a href="shared_data_services_linux_app_dir_service/shared_data_services_linux_app_dir_service-library.html">linux_app_dir_service</a></li>
+      <li><a href="shared_domain_services_local_config_service/shared_domain_services_local_config_service-library.html">local_config_service</a></li>
+      <li><a href="shared_data_services_mac_os_app_dir_service/shared_data_services_mac_os_app_dir_service-library.html">mac_os_app_dir_service</a></li>
+      <li><a href="main/main-library.html">main</a></li>
+      <li><a href="features_auth_domain_models_models/features_auth_domain_models_models-library.html">models</a></li>
+      <li><a href="shared_domain_models_models/shared_domain_models_models-library.html">models</a></li>
+      <li><a href="shared_data_services_moodle_api_service/shared_data_services_moodle_api_service-library.html">moodle_api_service</a></li>
+      <li><a href="features_auth_data_services_moodle_auth_service/features_auth_data_services_moodle_auth_service-library.html">moodle_auth_service</a></li>
+      <li><a href="shared_domain_services_network_service/shared_domain_services_network_service-library.html">network_service</a></li>
+      <li><a href="shared_domain_providers_network_service_provider/shared_domain_providers_network_service_provider-library.html">network_service_provider</a></li>
+      <li><a href="shared_domain_providers_providers/shared_domain_providers_providers-library.html">providers</a></li>
+      <li><a href="features_auth_domain_providers_providers/features_auth_domain_providers_providers-library.html">providers</a></li>
+      <li><a href="features_auth_data_services_services/features_auth_data_services_services-library.html">services</a></li>
+      <li><a href="features_auth_domain_services_services/features_auth_domain_services_services-library.html">services</a></li>
+      <li><a href="shared_domain_services_services/shared_domain_services_services-library.html">services</a></li>
+      <li><a href="shared_data_services_services/shared_data_services_services-library.html">services</a></li>
+      <li><a href="shared_shared/shared_shared-library.html">shared</a></li>
+      <li><a href="shared_utils_string_utils/shared_utils_string_utils-library.html">string_utils</a></li>
+      <li><a href="features_auth_data_datasources_token_unavailable_user_data_source/features_auth_data_datasources_token_unavailable_user_data_source-library.html">token_unavailable_user_data_source</a></li>
+      <li><a href="features_auth_domain_models_user/features_auth_domain_models_user-library.html">user</a></li>
+      <li><a href="features_auth_domain_datasources_user_data_source/features_auth_domain_datasources_user_data_source-library.html">user_data_source</a></li>
+      <li><a href="features_auth_domain_providers_user_data_source_provider/features_auth_domain_providers_user_data_source_provider-library.html">user_data_source_provider</a></li>
+      <li><a href="features_auth_domain_providers_user_provider/features_auth_domain_providers_user_provider-library.html">user_provider</a></li>
+      <li><a href="features_auth_domain_models_user_token/features_auth_domain_models_user_token-library.html">user_token</a></li>
+      <li><a href="features_auth_data_services_user_token_local_config_service/features_auth_data_services_user_token_local_config_service-library.html">user_token_local_config_service</a></li>
+      <li><a href="features_auth_domain_providers_user_token_local_config_service/features_auth_domain_providers_user_token_local_config_service-library.html">user_token_local_config_service</a></li>
+      <li><a href="features_auth_domain_providers_user_token_provider/features_auth_domain_providers_user_token_provider-library.html">user_token_provider</a></li>
+      <li><a href="features_auth_domain_providers_user_token_state/features_auth_domain_providers_user_token_state-library.html">user_token_state</a></li>
+      <li><a href="features_auth_domain_providers_users_provider/features_auth_domain_providers_users_provider-library.html">users_provider</a></li>
+      <li><a href="shared_utils_utils/shared_utils_utils-library.html">utils</a></li>
+      <li><a href="shared_data_services_windows_app_dir_service/shared_data_services_windows_app_dir_service-library.html">windows_app_dir_service</a></li>
+</ol>
+
+  </div>
+
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div>
+
+</main>
+
+<footer>
+  <span class="no-break">
+    lb_planner
+      1.0.0+1
+  </span>
+
+  
+</footer>
+
+
+
+<script src="static-assets/highlight.pack.js?v1"></script>
+<script src="static-assets/docs.dart.js"></script>
+
+
+
+</body>
+
+</html>
+
