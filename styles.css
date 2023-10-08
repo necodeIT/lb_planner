@@ -1,0 +1,100 @@
+body {
+  font-family: "Arial", sans-serif;
+  padding: 2rem;
+  text-align: center;
+  background-color: #f5f5f5;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  gap: 20px;
+}
+
+.doc-card {
+  border: 1px solid #e0e0e0;
+  padding: 20px;
+  width: 30%;
+  box-shadow: 2px 2px 12px #aaa;
+  transition: 0.3s;
+  border-radius: 15px;
+  background-color: #ffffff;
+  position: relative;
+  margin: 0 10px;
+}
+
+.doc-card:hover {
+  box-shadow: 4px 4px 14px #888;
+  transform: scale(1.03);
+}
+
+a {
+  text-decoration: none;
+  padding: 8px 12px;
+  transition: 0.3s;
+}
+
+h2 {
+  margin-top: 0;
+}
+
+.icon {
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+#logo {
+  max-width: 200px;
+  margin-bottom: 20px;
+}
+
+.doc-button {
+  color: white;
+  background-color: #42a5f5;
+  border-radius: 4px;
+  padding: 6px 10px;
+  display: inline-flex;
+  align-items: center;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
+}
+
+.doc-button:hover {
+  background-color: #2196f3;
+}
+
+.github-icon {
+  margin-right: 6px;
+}
+
+.github-button {
+  color: #42a5f5;
+  padding: 6px 10px;
+  display: inline-flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.github-button:hover {
+  text-decoration: underline;
+}
+
+footer {
+  width: 100%;
+  background-color: #2c3e50; /* Dark blue shade for contrast */
+  color: #ecf0f1; /* Off-white color for the text */
+  padding: 20px 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.footer-content {
+  max-width: 1200px; /* Adjust this value based on your site's maximum width or container size */
+  margin: 0 auto; /* Centers the content within the footer */
+  padding: 0 15px; /* Gives a little space on the left and right for responsiveness */
+  text-align: center;
+}
