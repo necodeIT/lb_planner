@@ -7,7 +7,7 @@ on:
   workflow_dispatch: # For manual triggering
 
 jobs:
-  build:
+  generate-api-docs:
     runs-on: ubuntu-latest
 
     steps:
@@ -33,7 +33,7 @@ jobs:
         working-directory: app
         run: flutter pub get
         
-      - name: Generate Dart Docs
+      - name: Generate API Docs
         working-directory: app
         run: dart doc
       
