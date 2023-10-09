@@ -24,11 +24,12 @@ jobs:
             - name: Get dependencies
               run: flutter pub get
             - name: Analyze code
-              # continue-on-error: true # Idk why, but the analysis fails with exit code 2 maybe this fixes it?
-              uses: zgosalvez/github-actions-analyze-dart@v1
+              uses: kitek/dartanalyzer-annotations-action@v1  
+              env:
+                GITHUB_TOKEN: ${{ github.token }}
               with:
-                fail-on-infos: true
-                fail-on-warnings: true
+                check_name: 'Check code style'
+                commit_sha: ${{ github.event.pull_request.head.sha }}
     Testing:
       runs-on: ubuntu-latest
       steps:
@@ -47,14 +48,10 @@ jobs:
               port: 3000
           - name: Run tests
             continue-on-error: true # Idk why, but `flutter test` always returns 1 even when tests pass
-            run: flutter test --machine > test-results.json
-          - name: Publish test results
-            uses: EnricoMi/publish-unit-test-result-action@v2
+            run: flutter test --file-reporter="json:test-report.json"
+          - name: Annotate files with test results
+            uses: rodrigost23/dart-test-annotations
             with:
-              files: test-results.json
-              github_token: ${{ secrets.GITHUB_TOKEN }}
-              # test_file_prefix: -/home/runner/work/lb_planner/lb_planner/
-              report_individual_runs: true
-                        
+              path: test-report.json
                 
                 
