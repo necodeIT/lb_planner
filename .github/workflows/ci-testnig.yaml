@@ -1,4 +1,4 @@
-name: Continuous Integration
+name: CI / Testing
 on:
   pull_request: 
     types: 
@@ -12,20 +12,7 @@ permissions:
     pull-requests: write
 
 jobs:
-    analyze:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v2
-            - name: Set up Flutter
-              uses: subosito/flutter-action@v1
-              with:
-                flutter-version: '3.13.4'
-            - name: Get dependencies
-              run: flutter pub get
-            - name: Analyze code
-              uses: zgosalvez/github-actions-analyze-dart@v2
-    test:
+    testing:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
@@ -50,6 +37,7 @@ jobs:
                 check_name: Unit Tests
                 files: test-results.json
                 github_token: ${{ secrets.GITHUB_TOKEN }}
-                test_file_prefix: /home/runner/work/lb_planner/lb_planner/
+                test_file_prefix: -/home/runner/work/lb_planner/lb_planner/
+                report_individual_runs: true
                 
                 
