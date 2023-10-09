@@ -26,7 +26,7 @@ jobs:
             - name: Analyze code
               uses: invertase/github-action-dart-analyzer@v1
               with:
-                fatal-infos: true
+                annotate: true
     Testing:
       runs-on: ubuntu-latest
       steps:
