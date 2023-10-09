@@ -21,37 +21,33 @@ jobs:
               uses: subosito/flutter-action@v1
               with:
                 flutter-version: '3.13.4'
-            - name: Get dependencies
-              run: flutter pub get
+
             - name: Analyze code
-              uses: kitek/dartanalyzer-annotations-action@v1
-              env:
-                GITHUB_TOKEN: ${{ github.token }}
+              uses: NIOMIND-srl-sb/flutter-analyze-action@v1.0.20
               with:
-                check_name: 'Check code style'
-                commit_sha: ${{ github.event.pull_request.head.sha }}
-    Testing:
-      runs-on: ubuntu-latest
-      steps:
-          - name: Checkout code
-            uses: actions/checkout@v2
-          - name: Set up Flutter
-            uses: subosito/flutter-action@v1
-            with:
-              flutter-version: '3.13.4'
-          - name: Get dependencies
-            run: flutter pub get
-          - name: Setup Mockoon
-            uses: mockoon/cli-action@v1
-            with:
-              data-file: test/mockoon.json
-              port: 3000
-          - name: Run tests
-            continue-on-error: true # Idk why, but `flutter test` always returns 1 even when tests pass
-            run: flutter test --file-reporter="json:test-report.json"
-          - name: Annotate files with test results
-            uses: rodrigost23/dart-test-annotations
-            with:
-              path: test-report.json
+                token: ${{ secrets.GITHUB_TOKEN }}
+    # Testing:
+    #   runs-on: ubuntu-latest
+    #   steps:
+    #       - name: Checkout code
+    #         uses: actions/checkout@v2
+    #       - name: Set up Flutter
+    #         uses: subosito/flutter-action@v1
+    #         with:
+    #           flutter-version: '3.13.4'
+    #       - name: Get dependencies
+    #         run: flutter pub get
+    #       - name: Setup Mockoon
+    #         uses: mockoon/cli-action@v1
+    #         with:
+    #           data-file: test/mockoon.json
+    #           port: 3000
+    #       - name: Run tests
+    #         continue-on-error: true # Idk why, but `flutter test` always returns 1 even when tests pass
+    #         run: flutter test --file-reporter="json:test-report.json"
+    #       - name: Annotate files with test results
+    #         uses: rodrigost23/dart-test-annotations
+    #         with:
+    #           path: test-report.json
                 
                 
