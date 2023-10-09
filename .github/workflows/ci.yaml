@@ -24,8 +24,11 @@ jobs:
             - name: Get dependencies
               run: flutter pub get
             - name: Analyze code
-              continue-on-error: true # Idk why, but the analysis fails with exit code 2 maybe this fixes it?
-              uses: zgosalvez/github-actions-analyze-dart@v2
+              # continue-on-error: true # Idk why, but the analysis fails with exit code 2 maybe this fixes it?
+              uses: zgosalvez/github-actions-analyze-dart@v1
+              with:
+                fail-on-infos: true
+                fail-on-warnings: true
     Testing:
       runs-on: ubuntu-latest
       steps:
@@ -48,10 +51,9 @@ jobs:
           - name: Publish test results
             uses: EnricoMi/publish-unit-test-result-action@v2
             with:
-              check_name: Unit Tests
               files: test-results.json
               github_token: ${{ secrets.GITHUB_TOKEN }}
-              test_file_prefix: -/home/runner/work/lb_planner/lb_planner/
+              # test_file_prefix: -/home/runner/work/lb_planner/lb_planner/
               report_individual_runs: true
                         
                 
