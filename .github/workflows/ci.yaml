@@ -6,7 +6,9 @@ on:
         - synchronize
     branches: 
         - LP-168-design-test-ci-suite # Temporary. Will be changed to `LP-156-Frontend-Refactor` when test suite is done and then `app` when refactor is complete
-  workflow_dispatch: # Temporary. Will be removed when test suite is done
+  push: # Temporary. Will be removed when test suite is done
+    branches: 
+        - LP-168-design-test-ci-suite
 
 permissions:
     checks: write
