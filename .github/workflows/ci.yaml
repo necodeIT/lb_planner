@@ -12,19 +12,21 @@ permissions:
     pull-requests: write
 
 jobs:
-    # Analysis:
-    #     runs-on: ubuntu-latest
-    #     steps:
-    #         - name: Checkout code
-    #           uses: actions/checkout@v2
-    #         - name: Set up Flutter
-    #           uses: subosito/flutter-action@v1
-    #           with:
-    #             flutter-version: '3.13.4'
-    #         - name: Get dependencies
-    #           run: flutter pub get
-    #         - name: Analyze code
-    #           uses: zgosalvez/github-actions-analyze-dart@v1
+    Analysis:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
+            - name: Set up Flutter
+              uses: subosito/flutter-action@v1
+              with:
+                flutter-version: '3.13.4'
+            - name: Get dependencies
+              run: flutter pub get
+            - name: Analyze code
+              uses: invertase/github-action-dart-analyzer@v1
+              with:
+                fatal-infos: true
     Testing:
       runs-on: ubuntu-latest
       steps:
