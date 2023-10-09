@@ -4,10 +4,10 @@ import 'package:riverpod/riverpod.dart';
 
 import 'package:lb_planner/shared/shared.dart';
 import 'package:lb_planner/shared/data/data.dart';
-import 'package:lb_planner/shared/utils/auto_refresh_state_notifier.dart';
 
 /// Provides the current connection status of the device.
-final connectionServiceProvider = Provider<_ConnectionProvider>((ref) {
+final connectionServiceProvider =
+    StateNotifierProvider<_ConnectionProvider, bool>((ref) {
   final connectionService = InternetAdressLookupConnectionService();
 
   return _ConnectionProvider(connectionService);
