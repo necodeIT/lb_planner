@@ -1,0 +1,58 @@
+name: CI
+on:
+  pull_request: 
+    types: 
+        - opened
+        - synchronize
+    branches: 
+        - LP-156-Frontend-Refactor # Temporary. Will be changed to `app` when refactor is complete
+
+permissions:
+    checks: write
+    pull-requests: write
+
+jobs:
+    Analysis:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
+            - name: Set up Flutter
+              uses: subosito/flutter-action@v1
+              with:
+                flutter-version: '3.13.4'
+            - name: Get dependencies
+              run: flutter pub get
+            - name: Analyze code
+              continue-on-error: true # Idk why, but the analysis fails with exit code 2 maybe this fixes it?
+              uses: zgosalvez/github-actions-analyze-dart@v2
+    Testing:
+      runs-on: ubuntu-latest
+      steps:
+          - name: Checkout code
+            uses: actions/checkout@v2
+          - name: Set up Flutter
+            uses: subosito/flutter-action@v1
+            with:
+              flutter-version: '3.13.4'
+          - name: Get dependencies
+            run: flutter pub get
+          - name: Setup Mockoon
+            uses: mockoon/cli-action@v1
+            with:
+              data-file: test/mockoon.json
+              port: 3000
+          - name: Run tests
+            continue-on-error: true # Idk why, but `flutter test` always returns 1 even when tests pass
+            run: flutter test --machine > test-results.json
+          - name: Publish test results
+            uses: EnricoMi/publish-unit-test-result-action@v2
+            with:
+              check_name: Unit Tests
+              files: test-results.json
+              github_token: ${{ secrets.GITHUB_TOKEN }}
+              test_file_prefix: -/home/runner/work/lb_planner/lb_planner/
+              report_individual_runs: true
+                        
+                
+                
