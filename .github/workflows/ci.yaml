@@ -24,8 +24,8 @@ jobs:
             - name: Get dependencies
               run: flutter pub get
             - name: Analyze code
-              uses: Gotiva-Games/github-action-dart-analyzer
-              
+              uses: Gotiva-Games/github-action-dart-analyzer@main
+
     Testing:
       runs-on: ubuntu-latest
       steps:
