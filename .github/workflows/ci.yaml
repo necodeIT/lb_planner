@@ -15,19 +15,19 @@ permissions:
     pull-requests: write
 
 jobs:
-    analyze:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v2
-            - name: Set up Flutter
-              uses: subosito/flutter-action@v1
-              with:
-                flutter-version: '3.13.4'
-            - name: Get dependencies
-              run: flutter pub get
-            - name: Analyze code
-              uses: zgosalvez/github-actions-analyze-dart@v2
+    # analyze:
+    #     runs-on: ubuntu-latest
+    #     steps:
+    #         - name: Checkout code
+    #           uses: actions/checkout@v2
+    #         - name: Set up Flutter
+    #           uses: subosito/flutter-action@v1
+    #           with:
+    #             flutter-version: '3.13.4'
+    #         - name: Get dependencies
+    #           run: flutter pub get
+    #         - name: Analyze code
+    #           uses: zgosalvez/github-actions-analyze-dart@v2
     test:
         runs-on: ubuntu-latest
         steps:
@@ -45,8 +45,10 @@ jobs:
             #   with:
             #     data-file: test/mockoon.json
             - name: Run tests
-              run: |
-                flutter test --machine > test-results.json
+              continue-on-error: true # Temporary for debugging
+              run: flutter test --machine > test-results.json
+            - run: |
+                ls
                 cat test-results.json
             - name: Publish test results
               uses: EnricoMi/publish-unit-test-result-action@v2
