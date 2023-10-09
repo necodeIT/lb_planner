@@ -5,7 +5,7 @@ on:
         - opened
         - synchronize
     branches: 
-        - LP-168-design-test-ci-suite # Temporary. Will be changed to `LP-156-Frontend-Refactor` when test suite is done and then `app` when refactor is complete
+        - LP-156-Frontend-Refactor # Temporary. Will be changed to `app` when refactor is complete
 
 permissions:
     checks: write
