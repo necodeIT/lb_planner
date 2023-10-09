@@ -62,7 +62,7 @@
 
         <section class="multi-line-signature">
           
-          <a href="https://pub.dev/documentation/riverpod/2.4.0/riverpod/Provider-class.html">Provider</a><span class="signature">&lt;<wbr><span class="type-parameter">_ConnectionProvider</span>&gt;</span>
+          <a href="https://pub.dev/documentation/riverpod/2.4.0/riverpod/StateNotifierProvider-class.html">StateNotifierProvider</a><span class="signature">&lt;<wbr><span class="type-parameter">_ConnectionProvider</span>, <span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>&gt;</span>
           <span class="name ">connectionServiceProvider</span>
           <div class="features"><span class="feature">final</span></div>
 
@@ -75,7 +75,8 @@
         
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">final connectionServiceProvider = Provider&lt;_ConnectionProvider&gt;((ref) {
+  <pre class="language-dart"><code class="language-dart">final connectionServiceProvider =
+    StateNotifierProvider&lt;_ConnectionProvider, bool&gt;((ref) {
   final connectionService = InternetAdressLookupConnectionService();
 
   return _ConnectionProvider(connectionService);
