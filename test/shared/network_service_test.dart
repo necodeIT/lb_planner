@@ -4,4 +4,10 @@ import 'package:flutter_test/flutter_test.dart';
 
 // TOOD: impl unit tests using https://randomuser.me/
 
-void main() {}
+void main() {
+  group('NetworkService', () {
+    test('true', () async {
+      expect(true, false);
+    });
+  });
+}

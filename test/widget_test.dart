@@ -9,4 +9,8 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   // testWidgets('Counter increments smoke test', (WidgetTester tester) async {});
+
+  group("Testytest", () {
+    test("True is true", () => expect(true, true));
+  });
 }
