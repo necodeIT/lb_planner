@@ -1,4 +1,4 @@
-import 'package:either_dart/src/either.dart';
+import 'package:either_dart/either.dart';
 import 'package:lb_planner/shared/domain/domain.dart';
 
 import 'package:lb_planner/configs/endpoints.dart' as config;

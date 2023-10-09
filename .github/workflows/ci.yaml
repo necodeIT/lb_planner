@@ -36,11 +36,11 @@ jobs:
                 flutter-version: '3.13.4'
             - name: Get dependencies
               run: flutter pub get
-            # Uncomment when actual tests are written
-            # - name: Setup Mockoon
-            #   uses: mockoon/cli-action@v1
-            #   with:
-            #     data-file: test/mockoon.json
+            - name: Setup Mockoon
+              uses: mockoon/cli-action@v1
+              with:
+                data-file: test/mockoon.json
+                port: 3000
             - name: Run tests
               continue-on-error: true # Idk why, but `flutter test` always returns 1 even when tests pass
               run: flutter test --machine > test-results.json
