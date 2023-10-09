@@ -5,6 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:lb_planner/shared/data/data.dart';
 import 'package:lb_planner/shared/shared.dart';
 import 'package:riverpod/riverpod.dart';
+import 'package:lb_planner/features/auth/auth.dart';
 
 void main() {
   final container = ProviderContainer();
