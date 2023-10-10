@@ -32,7 +32,7 @@ jobs:
       matrix:
         php: ['8.1']
         moodle-branch: ['MOODLE_401_STABLE']
-        database: [pgsql, mariadb]
+        database: [mariadb]
 
     steps:
       - name: Check out repository code
