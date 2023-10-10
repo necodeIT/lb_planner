@@ -61,7 +61,7 @@ class user_helper {
     /**
      * Name of the user database
      */
-    const TABLE = 'local_lbplanner_users';
+    const LB_PLANNER_USER_TABLE = 'local_lbplanner_users';
 
     /**
      * The table where moodle stores the user data.
@@ -99,13 +99,9 @@ class user_helper {
      */
     public static function get_mdl_user_info(int $userid):stdClass {
         global $DB;
-        $user = $DB->get_record(self::MOODLE_TABLE, array('id' => $userid), '*', MUST_EXIST);
-        $contextid = $DB->get_record(
-            self::MOODLE_CONTEXT_TABLE,
-            array('depth' => 2, 'contextlevel' => 30, 'instanceid' => $userid),
-            '*',
-            IGNORE_MISSING
-        );
+        global $USER;
+        $user = user_get_user_details($USER);
+        var_dump($USER . " \n \n \n \n \n \n \n \n \n" . $user);
         $mdluser = new stdClass();
         $mdluser->username = $user->username;
         $mdluser->firstname = $user->firstname;
@@ -172,14 +168,14 @@ class user_helper {
         return $capabilities;
     }
     /**
-     * Checks if the given user exists in the database.
+     * Checks if the given user exists in the LB_PLANNER_USER database.
      *
      * @param integer $userid The id of the user to check.
      * @return boolean True if the user exists, false otherwise.
      */
     public static function check_user_exists(int $userid): bool {
         global $DB;
-        return $DB->record_exists(self::TABLE, array('userid' => $userid));
+        return $DB->record_exists(self::LB_PLANNER_USER_TABLE, array('userid' => $userid));
     }
 
     /**
@@ -197,7 +193,7 @@ class user_helper {
      */
     public static function get_user(int $userid): stdClass {
         global $DB;
-        return $DB->get_record(self::TABLE, array('userid' => $userid), '*', MUST_EXIST);
+        return $DB->get_record(self::LB_PLANNER_USER_TABLE, array('userid' => $userid), '*', MUST_EXIST);
     }
 
     /**
