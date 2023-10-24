@@ -74,7 +74,6 @@ class user_helper {
     const MOODLE_CONTEXT_TABLE = 'context';
 
     /**
-     * @deprecated Use user_helper::assert_access() instead
      * Checks if the current user has access to the given user id.
      *
      * @param int $userid The id of the user to check access for.
@@ -83,33 +82,6 @@ class user_helper {
     public static function check_access(int $userid):bool {
         global $USER;
         return $USER->id == $userid;
-    }
-
-    /**
-     * Retrieves the user with the given id.
-     * ```php
-     * $mdluser->username // The username of the user.
-     * $mdluser->firstname // The firstname of the user.
-     * $mdluser->lastname // The lastname of the user.
-     * $mdluser->profileimageurl // The profile image url of the user.
-     * ```
-     *
-     * @param integer $userid The id of the user to retrieve.
-     * @return stdClass The user with the given id.
-     */
-    public static function get_mdl_user_info(int $userid):stdClass {
-        global $DB;
-        global $USER;
-        $user = user_get_user_details($USER);
-        var_dump($USER . " \n \n \n \n \n \n \n \n \n" . $user);
-        $mdluser = new stdClass();
-        $mdluser->username = $user->username;
-        $mdluser->firstname = $user->firstname;
-        $mdluser->lastname = $user->lastname;
-        $mdluser->profileimageurl = strval(moodle_url::make_pluginfile_url($contextid->id, 'user', 'icon', null, '/boost_union/', 'f1.png'));
-        $mdluser->vintage = $user->address;
-
-        return $mdluser;
     }
 
     /**
@@ -197,6 +169,7 @@ class user_helper {
     }
 
     /**
+     * @deprecated not in use currently
      * Retrieves the full name of the user with the given id.
      *
      * @param integer $userid The id of the user to retrieve the full name for.
