@@ -34,8 +34,8 @@ use stdClass;
 class user_register_user extends external_api {
     public static function register_user_parameters() {
         return new external_function_parameters(array(
-            'lang' => new external_value(PARAM_TEXT, 'The language the user has selected', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
-            'theme' => new external_value(PARAM_TEXT, 'The theme the user has selected', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
+            'lang' => new external_value(PARAM_TEXT, 'The language the user has selected', VALUE_DEFAULT, 'en', NULL_NOT_ALLOWED),
+            'theme' => new external_value(PARAM_TEXT, 'The theme the user has selected', VALUE_DEFAULT, 'Light', NULL_NOT_ALLOWED),
             'ekenabled' => new external_value(PARAM_INT, 'If the user wants to have EK-Enabled', VALUE_DEFAULT, 0, NULL_NOT_ALLOWED)
         ));
     }
@@ -48,14 +48,13 @@ class user_register_user extends external_api {
      * @throws moodle_exception
      * @throws invalid_parameter_exception
      */
-    public static function register_user($lang, $theme) {
+    public static function register_user(string $lang, string $theme) {
         global $DB, $USER;
 
         self::validate_parameters(
             self::register_user_parameters(),
             array('lang' => $lang, 'theme' => $theme)
         );
-
         $userid = $USER->id;
 
         user_helper::assert_access($userid);
@@ -69,6 +68,7 @@ class user_register_user extends external_api {
         $lbplanneruser->language = $lang;
         $lbplanneruser->theme = $theme;
         $lbplanneruser->colorblindness = "none";
+        $lbplanneruser->displaytaskcount = 1;
 
         $DB->insert_record(user_helper::LB_PLANNER_USER_TABLE, $lbplanneruser);
 
@@ -95,9 +95,10 @@ class user_register_user extends external_api {
             'capabilities' => user_helper::get_user_capability_bitmask($userid),
             'theme' => $lbplanneruser->theme,
             'lang' => $lbplanneruser->language,
-            'profileimageurl' => user_helper::get_user($userid),
+            'profileimageurl' => user_helper::get_mdl_user_picture($userid),
             'planid' => $planid,
             'colorblindness' => $lbplanneruser->colorblindness,
+            'displaytaskcount' => $lbplanneruser->displaytaskcount
         );
     }
 
@@ -114,6 +115,7 @@ class user_register_user extends external_api {
                 'profileimageurl' => new external_value(PARAM_URL, 'The url of the profile image'),
                 'planid' => new external_value(PARAM_INT, 'The id of the plan the user is assigned to'),
                 'colorblindness' => new external_value(PARAM_TEXT, 'The colorblindness of the user'),
+                'displaytaskcount' => new external_value(PARAM_INT, 'The displaytaskcount of the user')
             )
         );
     }

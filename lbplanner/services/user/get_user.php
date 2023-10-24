@@ -26,7 +26,6 @@ use local_lbplanner\helpers\plan_helper;
 use local_lbplanner\helpers\user_helper;
 use core_user;
 use moodle_exception;
-use user_picture;
 
 /**
  * Get the data for a user.
@@ -55,7 +54,7 @@ class user_get_user extends external_api {
      * @throws moodle_exception
      */
     public static function get_user(int $userid) {
-        global $USER, $CFG, $PAGE;
+        global $USER, $CFG;
         include_once("$CFG->dirroot/user/lib.php");
 
         self::validate_parameters(self::get_user_parameters(), array('userid' => $userid));
@@ -92,7 +91,7 @@ class user_get_user extends external_api {
                     'capabilities' => null,
                     'theme' => null,
                     'lang' => null,
-                    'profileimageurl' => get_mdl_user_picture($userid),
+                    'profileimageurl' => user_helper::get_mdl_user_picture($userid),
                     'planid' => null,
                     'colorblindness' => null,
                     'displaytaskcount' => null,

@@ -23,7 +23,7 @@ class notifications_helper {
     /**
      * Name of the notifications table.
      */
-    const TABLE = 'local_lbplanner_notification';
+    const LBPLANNER_NOTIFICATION_TABLE = 'local_lbplanner_notification';
 
     /**
      * Enum value for a read notification.
@@ -84,7 +84,7 @@ class notifications_helper {
         $notification->timestamp = time();
         $notification->timestamp_read = null;
 
-        $id = $DB->insert_record(self::TABLE, $notification);
+        $id = $DB->insert_record(self::LBPLANNER_NOTIFICATION_TABLE, $notification);
 
         return $id;
     }
