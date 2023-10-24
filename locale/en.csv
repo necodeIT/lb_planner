@@ -16,6 +16,7 @@
 27,Get an immediate overview
 28,Sync data across devices
 29,Download for
+30,Milestones
 40,Plan and always keep track!
 41,DOWNLOAD
 42,Docs
@@ -34,3 +35,11 @@
 80,Your settings are automatically applied to every device you log into\, so you're always ready to go\, anywhere.
 81,LICENSE AND PRIVACY TERMS<br/><br/>LB Planner collects anonymous usage data for statistics.<br/>
 82,By downloading and using LB Planner\, you agree to the license terms and privacy statement.
+90,Project Lead / Frontend
+91,Frontend
+92,Backend
+93,Backend / Website
+95,Client-side API / State-Management
+96,UI-Refactoring / Reservation-FE
+97,N/A
+98,Reservation-BE / Roadmap Webpage

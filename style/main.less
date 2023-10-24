@@ -218,15 +218,15 @@ h1{
 .card{
 	border-radius:0.5em;
 	box-shadow:0 0 1em fade(#000,50%);
-	cursor:pointer;
 	transition:box-shadow 0.2s,transform 0.2s;
 	a&{
 		color:var(--text-color);
 		text-decoration:none;
-	}
-	&:hover{
-		transform:translate(0,-0.5em);
-		box-shadow:0 0.33em 1.75em fade(#000,50%);
+		cursor:pointer;
+		&:hover{
+			transform:translate(0,-0.5em);
+			box-shadow:0 0.33em 1.75em fade(#000,50%);
+		}
 	}
 	&.img{
 		overflow:clip;

@@ -1,0 +1,119 @@
+.profiles {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	align-items: center;
+	margin:2em 1em;
+	&>.card {
+		display: flex;
+		flex-direction: column;
+		align-items:center;
+		padding: 1em 1em;
+		margin: 1em;
+		&>img {
+			width: 8em;
+			height: 8em;
+			overflow: hidden;
+			border-radius: 1em;
+			margin:0 0.5em 1em 0.5em;
+		}
+		&>h3,
+		&>b,
+		&>span{
+			margin:0.25em;
+		}
+		&>h3{
+			font-size:1.25rem;
+		}
+	}
+}
+
+.milestones {
+	&>h1 {
+		display: flex;
+		flex-direction: column;
+		align-items:center;
+		margin:1em auto;
+		width:fit-content;
+		&::after {
+			content: "";
+			border: solid 0.1rem var(--text-color);
+			border-radius: 0.1rem;
+			width: 80%;
+		}
+	}
+	.roadmap {
+		position: relative;
+		margin:0 auto;
+		&>.goal {
+			position: absolute;
+			display: flex;
+			padding: 1em 0.75em;
+			&.card{
+				flex-direction: column;
+			}
+			&:not(.card){
+				box-shadow: 0 0 1em fade(#000,50%);
+			}
+			h3 {
+				margin: 0;
+			}
+			ul {
+				list-style: none;
+				padding-inline-start: 0;
+				margin: 0;
+			}
+			li,
+			&:not(.card){
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+				align-items: center;
+				margin: 0.5em 0;
+				padding: 0.33em;
+				border-radius: 0.25em;
+				min-width: 20em;
+				&:last-of-type{margin-bottom: 0}
+			}
+			li{
+				background-color: var(--secondary-color);
+			}
+			span {
+				background-color: var(--accent-color);
+				color: var(--button-text-color);
+				padding: 0.25em 0.5em;
+				border-radius: 0.25em;
+				font-weight: bold;
+			}
+			svg {
+				background-color: var(--accent-color);
+				color: var(--button-text-color);
+				width: auto;
+				height: 1.2em;
+				margin-left: 0.25em;
+				border-radius: 0.33em;
+				aspect-ratio: 1/1;
+				box-sizing: border-box;
+				&:not([viewBox]){
+					background-color: #0000;
+					border: solid 0.1em var(--accent-color);
+				}
+			}
+		}
+		&>svg{
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			pointer-events: none;
+			&>path{
+				fill: none;
+				stroke: var(--accent-color);
+				stroke-width:0.2em;
+				stroke-dasharray: 4 6;
+				stroke-dashoffset: 4;
+				stroke-linecap: round;
+				filter: drop-shadow(0 0 1em #000);
+			}
+		}
+	}
+}

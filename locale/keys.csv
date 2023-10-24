@@ -16,6 +16,7 @@
 27,title_learn2
 28,title_learn3
 29,title_download
+30,title_goals
 40,span_main
 41,btn_download
 42,lnk_docs
@@ -34,3 +35,11 @@
 80,p_learn3
 81,p_download1
 82,p_download2
+90,job_mceachnie
+91,job_polat
+92,job_kocagoel
+93,job_riedler
+95,theme_mceachnie
+96,theme_polat
+97,theme_kocagoel
+98,theme_riedler

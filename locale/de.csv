@@ -16,6 +16,7 @@
 27,Verschaffe dir den Überblick
 28,Synchronisiere deine Daten zwischen Geräten
 29,Download für
+30,Meilensteine
 40,Behalte beim Planen alles im Blick!
 41,DOWNLOAD
 42,Doku
@@ -34,3 +35,11 @@
 80,Deine Einstellungen werden automatisch auf all deinen Geräten gleichgestellt. So kannst du immer und überall sofort loslegen.
 81,LIZENZ- UND PRIVATSPHÄREBESTIMMUNGEN<br/><br/>LB Planner sammelt anonymisierte Daten für unsere Statistiken<br/>
 82,Durch das Herunteladen von LB Planner stimmst du den Lizenzbedingungen und Datenschutzerklärung zu
+90,Projektleiter / Frontend
+91,Frontend
+92,Backend
+93,Backend / Website
+95,Client-side API / State-Management
+96,UI-Refactoring / Reservierungs-FE
+97,N/A
+98,Reservierungs-BE / Roadmap Webseite
