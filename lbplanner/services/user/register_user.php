@@ -16,13 +16,17 @@
 
 namespace local_lbplanner_services;
 
+use dml_exception;
 use external_api;
 use external_function_parameters;
 use external_single_structure;
 use external_value;
+use invalid_parameter_exception;
 use local_lbplanner\helpers\user_helper;
 use local_lbplanner\helpers\plan_helper;
 use local_lbplanner\helpers\notifications_helper;
+use moodle_exception;
+use stdClass;
 
 /**
  * Register a new user in the lbplanner app.
@@ -30,43 +34,51 @@ use local_lbplanner\helpers\notifications_helper;
 class user_register_user extends external_api {
     public static function register_user_parameters() {
         return new external_function_parameters(array(
-            'userid' => new external_value(PARAM_INT, 'The id of the user to register', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
             'lang' => new external_value(PARAM_TEXT, 'The language the user has selected', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
             'theme' => new external_value(PARAM_TEXT, 'The theme the user has selected', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
+            'ekenabled' => new external_value(PARAM_INT, 'If the user wants to have EK-Enabled', VALUE_DEFAULT, 0, NULL_NOT_ALLOWED)
         ));
     }
 
-    public static function register_user($userid, $lang, $theme) {
-        global $DB;
+    /**
+     * Registers the given user to the lbplanner DB
+     * @param string $lang language the user choose
+     * @param string $theme The theme the user has selected
+     * @throws dml_exception
+     * @throws moodle_exception
+     * @throws invalid_parameter_exception
+     */
+    public static function register_user($lang, $theme) {
+        global $DB, $USER;
 
         self::validate_parameters(
             self::register_user_parameters(),
-            array('userid' => $userid, 'lang' => $lang, 'theme' => $theme)
+            array('lang' => $lang, 'theme' => $theme)
         );
+
+        $userid = $USER->id;
 
         user_helper::assert_access($userid);
 
         if (user_helper::check_user_exists($userid)) {
-            throw new \moodle_exception('User already registered');
+            throw new moodle_exception('User already registered');
         }
 
-        $user = new \stdClass();
-        $user->userid = $userid;
-        $user->language = $lang;
-        $user->theme = $theme;
-        $user->colorblindness = "none";
+        $lbplanneruser = new stdClass();
+        $lbplanneruser->userid = $userid;
+        $lbplanneruser->language = $lang;
+        $lbplanneruser->theme = $theme;
+        $lbplanneruser->colorblindness = "none";
 
-        $DB->insert_record(user_helper::TABLE, $user);
+        $DB->insert_record(user_helper::LB_PLANNER_USER_TABLE, $lbplanneruser);
 
-        $mdluser = user_helper::get_mdl_user_info($userid);
-
-        $plan = new \stdClass();
-        $plan->name = 'Plan for ' . $mdluser->firstname;
+        $plan = new stdClass();
+        $plan->name = 'Plan for ' . $USER->username;
         $plan->enableek = plan_helper::EK_DISABLED;
 
         $planid = $DB->insert_record(plan_helper::TABLE, $plan);
 
-        $planaccess = new \stdClass();
+        $planaccess = new stdClass();
         $planaccess->userid = $userid;
         $planaccess->accesstype = plan_helper::ACCESS_TYPE_OWNER;
         $planaccess->planid = $planid;
@@ -76,16 +88,16 @@ class user_register_user extends external_api {
         notifications_helper::notify_user($userid, -1, notifications_helper::TRIGGER_USER_REGISTERED);
 
         return array(
-            'userid' => $user->userid,
-            'username' => $mdluser->username,
-            'firstname' => $mdluser->firstname,
-            'lastname' => $mdluser->lastname,
+            'userid' => $lbplanneruser->userid,
+            'username' => $USER->username,
+            'firstname' => $USER->firstname,
+            'lastname' => $USER->lastname,
             'capabilities' => user_helper::get_user_capability_bitmask($userid),
-            'theme' => $user->theme,
-            'lang' => $user->language,
-            'profileimageurl' => $mdluser->profileimageurl,
+            'theme' => $lbplanneruser->theme,
+            'lang' => $lbplanneruser->language,
+            'profileimageurl' => user_helper::get_user($userid),
             'planid' => $planid,
-            'colorblindness' => $user->colorblindness,
+            'colorblindness' => $lbplanneruser->colorblindness,
         );
     }
 

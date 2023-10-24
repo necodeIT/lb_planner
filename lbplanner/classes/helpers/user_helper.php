@@ -181,4 +181,11 @@ class user_helper {
         return $user->firstname . ' ' . $user->lastname;
     }
 
+    public static function get_mdl_user_picture($userid) {
+        $mdluser = core_user::get_user($userid, '*', MUST_EXIST);
+        $userpicture = new user_picture($mdluser);
+        $userpicture->size = 1; // Size f1.
+        return $userpicture->get_url($PAGE)->out(false);
+    }
+
 }

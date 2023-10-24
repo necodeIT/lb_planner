@@ -84,8 +84,6 @@ class user_get_user extends external_api {
             );
         } else {
             $mdluser = core_user::get_user($userid, '*', MUST_EXIST);
-            $userpicture = new user_picture($mdluser);
-            $userpicture->size = 1; // Size f1.
             return array(
                     'userid' => $mdluser->id,
                     'username' => $mdluser->username,
@@ -94,7 +92,7 @@ class user_get_user extends external_api {
                     'capabilities' => null,
                     'theme' => null,
                     'lang' => null,
-                    'profileimageurl' => $userpicture->get_url($PAGE)->out(false),
+                    'profileimageurl' => get_mdl_user_picture($userid),
                     'planid' => null,
                     'colorblindness' => null,
                     'displaytaskcount' => null,
