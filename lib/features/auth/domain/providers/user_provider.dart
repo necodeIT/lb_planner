@@ -9,7 +9,7 @@ import 'package:riverpod/riverpod.dart';
 ///
 /// Note: If the user is not logged in, this provider will return `null`.
 ///
-/// If you want to update the user, use [userProvider] instead.
+/// If you want to login the user, see [userTokenController].
 final userProvider = StateNotifierProvider<UserProvider, User?>((ref) {
   final userDataSource = ref.watch(userDataSourceProvider);
 
