@@ -48,14 +48,20 @@
     },
     {
       "uuid": "bc4ef17c-4c4f-433d-bd2c-691c92aa97f1",
-      "name": "Release Data Source Test",
-      "collapsed": false,
+      "name": "Public API",
+      "collapsed": true,
       "children": [
         {
           "type": "route",
           "uuid": "61963d62-2ecb-4a44-847b-288c71eb696c"
         }
       ]
+    },
+    {
+      "uuid": "e72a99b6-0a15-475b-bb4d-854b80902860",
+      "name": "Moodle API",
+      "collapsed": true,
+      "children": []
     }
   ],
   "routes": [
@@ -339,6 +345,10 @@
     {
       "type": "folder",
       "uuid": "bc4ef17c-4c4f-433d-bd2c-691c92aa97f1"
+    },
+    {
+      "type": "folder",
+      "uuid": "e72a99b6-0a15-475b-bb4d-854b80902860"
     }
   ],
   "proxyMode": false,
