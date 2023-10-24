@@ -50,3 +50,8 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# generated plugin stuff
+generated_plugin_registrant.*
+generated_plugins.*
+GeneratedPluginRegistrant.swift
