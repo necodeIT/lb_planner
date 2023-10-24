@@ -5,23 +5,23 @@ import 'package:lb_planner/configs/endpoints.dart';
 /// Standard implementation of [ReleaseDataSource].
 class StdReleaseDataSource extends ReleaseDataSource {
   /// The network service to use for fetching releases.
-  final NetworkService<JSON> networkService;
+  final NetworkService networkService;
 
   /// Standard implementation of [ReleaseDataSource].
   StdReleaseDataSource({required this.networkService});
 
   @override
   Future<Release> fetchRelease(BuildChannel channel) async {
-    var response =
-        await networkService.get("$kLBPlannerWebsiteAdress/api/releases");
+    var response = await networkService
+        .get("$kLBPlannerWebsiteAdress/api/get_app_versions.php");
 
     if (response.isNotOk) {
       throw Exception("Failed to fetch release: ${response.statusCode}");
     }
 
-    var json = response.body;
+    var json = response.body as JSON;
 
-    var channelRelease = json![channel.name] as JSON?;
+    var channelRelease = json[channel.name] as JSON?;
 
     if (channelRelease == null) {
       throw Exception("Failed to fetch release: No release for channel");
@@ -35,14 +35,14 @@ class StdReleaseDataSource extends ReleaseDataSource {
 
   @override
   Future<Map<BuildChannel, Release>> fetchReleases() async {
-    var response =
-        await networkService.get("$kLBPlannerWebsiteAdress/api/releases");
+    var response = await networkService
+        .get("$kLBPlannerWebsiteAdress/api/get_app_versions.php");
 
     if (response.isNotOk) {
       throw Exception("Failed to fetch releases: ${response.statusCode}");
     }
 
-    var json = response.body;
+    var json = response.body as JSON;
 
     var releases = <BuildChannel, Release>{};
 
