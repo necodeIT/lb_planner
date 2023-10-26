@@ -62,6 +62,12 @@
       "name": "Moodle API",
       "collapsed": true,
       "children": []
+    },
+    {
+      "uuid": "de7d6785-d939-4beb-a86a-3bff3fc21f49",
+      "name": "New folder",
+      "collapsed": false,
+      "children": []
     }
   ],
   "routes": [
@@ -349,6 +355,10 @@
     {
       "type": "folder",
       "uuid": "e72a99b6-0a15-475b-bb4d-854b80902860"
+    },
+    {
+      "type": "folder",
+      "uuid": "de7d6785-d939-4beb-a86a-3bff3fc21f49"
     }
   ],
   "proxyMode": false,

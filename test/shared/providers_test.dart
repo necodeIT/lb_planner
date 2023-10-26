@@ -6,6 +6,8 @@ import 'package:lb_planner/shared/data/data.dart';
 import 'package:lb_planner/shared/shared.dart';
 import 'package:riverpod/riverpod.dart';
 
+import '../hooks.dart';
+
 void main() {
   final container = ProviderContainer();
 
@@ -34,6 +36,16 @@ void main() {
   });
 
   group("appDirServiceProvider", () {
+    tearDownAll(() {
+      clearTestDir();
+    });
+
+    setUpAll(() {
+      useTestPathProviderPlatform();
+
+      clearTestDir();
+    });
+
     test("should be a AppDirService", () {
       final appDirService = container.read(appDirServiceProvider);
 
@@ -111,6 +123,15 @@ void main() {
         expect(
             debugAppDirService.appDirService, isNot(isA<MacOsAppDirService>()));
       }
+    });
+
+    test("resolveApplicationDirectory should return a directory that exists",
+        () async {
+      final appDirService = container.read(appDirServiceProvider);
+
+      var dir = await appDirService.resolveApplicationDirectory();
+
+      expect(dir.existsSync(), true);
     });
   });
 

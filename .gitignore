@@ -55,3 +55,6 @@ app.*.map.json
 generated_plugin_registrant.*
 generated_plugins.*
 GeneratedPluginRegistrant.swift
+
+# Files produced during unit testing
+testing/
