@@ -22,7 +22,7 @@ class DmgPatcherService extends PatcherService {
   }) async {
     final setup = await downloadService.download(
       release.downloads.macos,
-      "$kAppName Setup ${release.versionString}.exe",
+      "$kAppName ${release.versionString}.dmg",
       onProgress: (_, __, progess) => onProgress?.call(progess),
     );
 
