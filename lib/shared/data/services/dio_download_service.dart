@@ -25,7 +25,7 @@ class DioDownloadService extends DownloadService {
       url,
       file.path,
       onReceiveProgress: (count, total) {
-        if (onProgress != null) onProgress(total, count, count / total);
+        onProgress?.call(total, count, count / total);
       },
     );
 

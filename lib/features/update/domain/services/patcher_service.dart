@@ -9,10 +9,16 @@ import 'package:lb_planner/features/update/update.dart';
 abstract class PatcherService {
   /// Downloads and installs a given release.
   ///
-  /// Returns a stream of the download progress.
+  /// Use [onProgress] to get the progress of the download in percent. `progress` is a value between `0` and `1`.
   ///
   /// Throws an [UnsupportedError] if [canPatch] returns `false`.
-  Stream<double> patch(Release release);
+  Future<void> patch(
+    Release release, {
+    void Function(double progress)? onProgress,
+  }) =>
+      throw UnsupportedError(
+        "Can't patch, as patching is not supported.",
+      );
 
   /// Whether the app can be patched automatically.
   ///
@@ -23,6 +29,9 @@ abstract class PatcherService {
 
   /// Returns the instructions for manually installing a given release in markdown format.
   ///
-  /// If [canPatch] returns `true`, this will throw an [UnsupportedError].
-  String getInstructions(BuildContext context, Release release);
+  /// Throws an [UnsupportedError] if [canPatch] returns `true`.
+  String getInstructions(BuildContext context, Release release) =>
+      throw UnsupportedError(
+        "Can't get instructions for patching, as patching is supported.",
+      );
 }
