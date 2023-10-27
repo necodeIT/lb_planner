@@ -1,0 +1,152 @@
+{
+  "uuid": "f514ba10-d160-44c6-a80e-032591872344",
+  "lastMigration": 28,
+  "name": "Files",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 5000,
+  "hostname": "",
+  "folders": [
+    {
+      "uuid": "ccf80dde-3239-4826-905a-ec92f8fa3a0d",
+      "name": "Installers",
+      "collapsed": false,
+      "children": [
+        {
+          "type": "route",
+          "uuid": "b3def0ad-706a-4eb2-a527-6f839824a71a"
+        },
+        {
+          "type": "route",
+          "uuid": "5f45c5bd-4432-43cf-9f5e-4fe4fdf182ed"
+        },
+        {
+          "type": "route",
+          "uuid": "ab16c824-f2ed-4b6f-b27c-b291c042babb"
+        }
+      ]
+    }
+  ],
+  "routes": [
+    {
+      "uuid": "b3def0ad-706a-4eb2-a527-6f839824a71a",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "installers/windows",
+      "responses": [
+        {
+          "uuid": "75b12cbf-790c-4909-8b21-9ab0839c3eec",
+          "body": "b7065ef12f7ae39f9f4d0554512891c13af68f0e8b40986db7b9d14cdbb537d7\r\n2d57db558e566ce67e0794d461214242eee3c65b34f6d38508b6b37a9ab65a95\r\n8c9ae34ea026f7fa90d04de75bd32e7057644d8ce946b64ccf4b49a39fd8e5c0\r\ne3c29a30876e381906c3d0a81cf25225f51c708e92c5f4422ff0310896004f9f\r\nc54a34d8ea0bad93ca1d623eccc7c3e5e01b7ce241aa7b8680a35449650ee11a\r\n236f5ebfbf419bf435bae6b334ca186a0c25412395989dba8d6379dc7170ac11\r\nc1652f5dcf0ce171253ebd04a62f197d36e2b9b1724a609c79b78d9e40e538cf\r\n84bb7cfe1934f69f5d5889ce0e084d37be400005d01b0e7b8c3a5a19c153c306\r\n264cce1e85315ec17bc1a40e11af0ac983a70bc3a8098e65642de7b31dfc3dc2\r\nb0d97cd7c5cac5bc6c147d002da888a3b3bcec75036d1f7f5895ffb48097897f",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "5f45c5bd-4432-43cf-9f5e-4fe4fdf182ed",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "installers/linux",
+      "responses": [
+        {
+          "uuid": "37f02db5-5e44-455c-a009-04286781d6b7",
+          "body": "a5b0bb04d990f3903129ddbcda2c4bc660db85b20b50548bd694efa49b86fee4\r\n2abe53f609db5a5b86d5053e40f3b84cbaaaf49ccf24f7071abda46c31929efa\r\n7587ecdd779cdc08eec7e0903cae4daa8c5c6071fc187fff9d89e4047f13dd2f\r\n5515a90dcee4f5ce86f707670af2b8319a7d05e91235a7614c3076f849779ecf\r\n976ff60744dd4cf620553b644faa134358c2183f32f1b8aa8e53ae9ed82fb332\r\n63b266c51a277fd2ed4478daa03ad5f3fa165811e1ae4e6ef83b2f38f88242d5\r\nd50e93017f756d85bbdc24248c64eb1510cf02489c17332431b399d95ec5a2a8\r\nd630d6c685f2730006bee6a1a856fee2e60f72614aadcced29b3463d6fda89c5\r\n3225384e7348cb71f28b57fdc58f2cd7301e93a5e0996b977cc39a02bcaeee0a\r\n718fec743de14a510a7c8f3031fee1bdb7fa119f6e057d0fced9c2c232e27289",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "ab16c824-f2ed-4b6f-b27c-b291c042babb",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "installers/macos",
+      "responses": [
+        {
+          "uuid": "f0dbf7d6-16b8-4d55-b380-18690d4093d6",
+          "body": "94a93ec093871cd0b56cac6fa9528e75c13e1fa6880e254dd409e8aac4e95315\r\n5275a8e1a0597113600bfba57055ab357f3c10c926a69fb581e3b7a7bccd8ac1\r\n34fc1f134fd493fbb7f0978b7e18d9b15ad27691dc81369dea5b9784a605df97\r\ncd0e7c59316f1ae5f6e19395d4a2b92067ead19ca7c53c391350e40a4c5414f8\r\n27fdcbcefcbc89f076342ba2f09ba0e4337e928e3ca3ac62004f702a267c506a\r\na0f444fff6460e216e34a7c77384280f361e08bdc75f68331aa9d67d86e5370e\r\nc75348478439b77f477f14f28db26e8292b1e5efbc273dd8e7d3c444ef23bf19\r\ncc543e61164cc009379132ba093f2fb3b7060fd158494ee09b5f10eedde1fe05\r\nfafe9388e02fabfeff77dbc534ed1c4429e439ca4f8394e9d508329e97a9cc86\r\n6a1cb70e040ecb1c212337dee8c6009700c1430790d65d68499c87e559f9bfda",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "folder",
+      "uuid": "ccf80dde-3239-4826-905a-ec92f8fa3a0d"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": []
+}

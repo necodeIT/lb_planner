@@ -37,11 +37,26 @@ jobs:
               flutter-version: '3.13.4'
           - name: Get dependencies
             run: flutter pub get
-          - name: Setup Mockoon
+          - name: Start moodle mock server
             uses: mockoon/cli-action@v1
             with:
-              data-file: test/mockoon.json
+              data-file: mockoon/moodle.json
+              port: 6000
+          - name: Start public api mock server
+            uses: mockoon/cli-action@v1
+            with:
+              data-file: mockoon/public_api.json
+              port: 6008
+          - name: Start unit tests mock server
+            uses: mockoon/cli-action@v1
+            with:
+              data-file: mockoon/unit_tests.json
               port: 3000
+          - name: Start files mock server
+            uses: mockoon/cli-action@v1
+            with:
+              data-file: mockoon/files.json
+              port: 5000
           - name: Run tests
             continue-on-error: true # Idk why, but `flutter test` always returns 1 even when tests pass
             run: flutter test --machine > test-results.json

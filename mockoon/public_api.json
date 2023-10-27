@@ -1,0 +1,79 @@
+{
+  "uuid": "6bdd2121-a200-448f-b0f2-1da50b972fdc",
+  "lastMigration": 28,
+  "name": "Public API",
+  "endpointPrefix": "api",
+  "latency": 0,
+  "port": 6008,
+  "hostname": "",
+  "folders": [],
+  "routes": [
+    {
+      "uuid": "696a6988-124f-465f-98c7-3817e4e79495",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "get_app_versions.php",
+      "responses": [
+        {
+          "uuid": "662ef112-24b1-4133-b46c-d9b0d5e6f5d4",
+          "body": "{\n  \"stable\": {\n    \"version\": \"1.0.0\",\n    \"downloads\": {\n      \"windows\": \"http://localhost:5000/installers/windows\",\n      \"linux\": \"http://localhost:5000/installers/linux\",\n      \"mac\": \"http://localhost:5000/installers/macos\"\n    }\n  },\n  \"beta\": {\n    \"version\": \"1.0.3\",\n    \"downloads\": {\n      \"windows\": \"http://localhost:5000/installers/windows\",\n      \"linux\": \"http://localhost:5000/installers/linux\",\n      \"mac\": \"http://localhost:5000/installers/macos\"\n    }\n  },\n  \"dev\": {\n    \"version\": \"1.1.0+3\",\n    \"downloads\": {\n      \"windows\": \"http://localhost:5000/installers/windows\",\n      \"linux\": \"http://localhost:5000/installers/linux\",\n      \"mac\": \"http://localhost:5000/installers/macos\"\n    }\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "696a6988-124f-465f-98c7-3817e4e79495"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": []
+}
