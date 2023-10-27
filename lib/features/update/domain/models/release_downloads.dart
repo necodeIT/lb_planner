@@ -19,6 +19,7 @@ class ReleaseDownloads with _$ReleaseDownloads {
     required String linux,
   }) = _ReleaseDownloads;
 
+  /// ReleaseDownloads from JSON.
   factory ReleaseDownloads.fromJson(Map<String, dynamic> json) =>
       _$ReleaseDownloadsFromJson(json);
 }

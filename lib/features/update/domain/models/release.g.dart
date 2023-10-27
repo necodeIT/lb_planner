@@ -11,6 +11,7 @@ _$_Release _$$_ReleaseFromJson(Map<String, dynamic> json) => _$_Release(
       versionString: json['version'] as String,
       downloads:
           ReleaseDownloads.fromJson(json['downloads'] as Map<String, dynamic>),
+      changelog: json['changelog'] as String,
     );
 
 Map<String, dynamic> _$$_ReleaseToJson(_$_Release instance) =>
@@ -18,6 +19,7 @@ Map<String, dynamic> _$$_ReleaseToJson(_$_Release instance) =>
       'channel': _$BuildChannelEnumMap[instance.channel]!,
       'version': instance.versionString,
       'downloads': instance.downloads,
+      'changelog': instance.changelog,
     };
 
 const _$BuildChannelEnumMap = {

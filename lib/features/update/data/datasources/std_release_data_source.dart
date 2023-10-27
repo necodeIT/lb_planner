@@ -46,7 +46,7 @@ class StdReleaseDataSource extends ReleaseDataSource {
 
     var releases = <BuildChannel, Release>{};
 
-    for (var entry in json!.entries) {
+    for (var entry in json.entries) {
       var channel = BuildChannel.values.byName(entry.key);
 
       var body = entry.value as JSON;

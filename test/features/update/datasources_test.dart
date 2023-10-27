@@ -5,6 +5,27 @@ import '../../config.dart';
 import 'package:lb_planner/shared/data/data.dart';
 import 'package:lb_planner/shared/shared.dart';
 
+const String kStableChangelog = '''
+## Version 1.0.0 (Stable)
+- **Initial release** of the application.
+- Implemented core functionalities and features.
+- Bug fixes and performance improvements from the alpha version.''';
+
+const String kBetaChangelog = '''
+## Version 1.0.3 (Beta)
+- **Enhancements** to the user interface, making it more intuitive.
+- Added support for additional file formats.
+- Fixed minor bugs reported by the community.
+- Improved stability in various modules.''';
+
+const String kDevChangelog = '''
+## Version 1.1.0+3 (Dev)
+- **New Feature**: Integration with third-party APIs.
+- **UI Updates**: Introduced dark mode.
+- Fixed memory leak issues observed in the previous builds.
+- **Performance**: Optimized database queries for faster data retrieval.
+- Under the hood improvements for developers.''';
+
 void main() {
   group("ReleaseDataSource", () {
     final dio = Dio(
@@ -33,6 +54,7 @@ void main() {
         ),
       );
       expect(release.downloads, kReleaseDownloads);
+      expect(release.changelog, kStableChangelog);
     });
 
     test("fetchRelease(BuildChannel.beta) should return beta release",
@@ -49,6 +71,7 @@ void main() {
         ),
       );
       expect(release.downloads, kReleaseDownloads);
+      expect(release.changelog, kBetaChangelog);
     });
 
     test("fetchRelease(BuildChannel.dev) should return alpha release",
@@ -66,6 +89,7 @@ void main() {
         ),
       );
       expect(release.downloads, kReleaseDownloads);
+      expect(release.changelog, kDevChangelog);
     });
 
     test("fetchReleases should return all releases", () async {

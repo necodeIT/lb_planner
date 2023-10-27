@@ -33,6 +33,9 @@ mixin _$Release {
   /// The download links for the release.
   ReleaseDownloads get downloads => throw _privateConstructorUsedError;
 
+  /// The changelog for the release in markdown format.
+  String get changelog => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ReleaseCopyWith<Release> get copyWith => throw _privateConstructorUsedError;
@@ -46,7 +49,8 @@ abstract class $ReleaseCopyWith<$Res> {
   $Res call(
       {BuildChannel channel,
       @JsonKey(name: "version") String versionString,
-      ReleaseDownloads downloads});
+      ReleaseDownloads downloads,
+      String changelog});
 
   $ReleaseDownloadsCopyWith<$Res> get downloads;
 }
@@ -67,6 +71,7 @@ class _$ReleaseCopyWithImpl<$Res, $Val extends Release>
     Object? channel = null,
     Object? versionString = null,
     Object? downloads = null,
+    Object? changelog = null,
   }) {
     return _then(_value.copyWith(
       channel: null == channel
@@ -81,6 +86,10 @@ class _$ReleaseCopyWithImpl<$Res, $Val extends Release>
           ? _value.downloads
           : downloads // ignore: cast_nullable_to_non_nullable
               as ReleaseDownloads,
+      changelog: null == changelog
+          ? _value.changelog
+          : changelog // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 
@@ -103,7 +112,8 @@ abstract class _$$_ReleaseCopyWith<$Res> implements $ReleaseCopyWith<$Res> {
   $Res call(
       {BuildChannel channel,
       @JsonKey(name: "version") String versionString,
-      ReleaseDownloads downloads});
+      ReleaseDownloads downloads,
+      String changelog});
 
   @override
   $ReleaseDownloadsCopyWith<$Res> get downloads;
@@ -122,6 +132,7 @@ class __$$_ReleaseCopyWithImpl<$Res>
     Object? channel = null,
     Object? versionString = null,
     Object? downloads = null,
+    Object? changelog = null,
   }) {
     return _then(_$_Release(
       channel: null == channel
@@ -136,6 +147,10 @@ class __$$_ReleaseCopyWithImpl<$Res>
           ? _value.downloads
           : downloads // ignore: cast_nullable_to_non_nullable
               as ReleaseDownloads,
+      changelog: null == changelog
+          ? _value.changelog
+          : changelog // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -146,7 +161,8 @@ class _$_Release extends _Release {
   _$_Release(
       {required this.channel,
       @JsonKey(name: "version") required this.versionString,
-      required this.downloads})
+      required this.downloads,
+      required this.changelog})
       : super._();
 
   factory _$_Release.fromJson(Map<String, dynamic> json) =>
@@ -168,9 +184,13 @@ class _$_Release extends _Release {
   @override
   final ReleaseDownloads downloads;
 
+  /// The changelog for the release in markdown format.
+  @override
+  final String changelog;
+
   @override
   String toString() {
-    return 'Release(channel: $channel, versionString: $versionString, downloads: $downloads)';
+    return 'Release(channel: $channel, versionString: $versionString, downloads: $downloads, changelog: $changelog)';
   }
 
   @override
@@ -182,13 +202,15 @@ class _$_Release extends _Release {
             (identical(other.versionString, versionString) ||
                 other.versionString == versionString) &&
             (identical(other.downloads, downloads) ||
-                other.downloads == downloads));
+                other.downloads == downloads) &&
+            (identical(other.changelog, changelog) ||
+                other.changelog == changelog));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, channel, versionString, downloads);
+      Object.hash(runtimeType, channel, versionString, downloads, changelog);
 
   @JsonKey(ignore: true)
   @override
@@ -208,7 +230,8 @@ abstract class _Release extends Release {
   factory _Release(
       {required final BuildChannel channel,
       @JsonKey(name: "version") required final String versionString,
-      required final ReleaseDownloads downloads}) = _$_Release;
+      required final ReleaseDownloads downloads,
+      required final String changelog}) = _$_Release;
   _Release._() : super._();
 
   factory _Release.fromJson(Map<String, dynamic> json) = _$_Release.fromJson;
@@ -229,6 +252,10 @@ abstract class _Release extends Release {
 
   /// The download links for the release.
   ReleaseDownloads get downloads;
+  @override
+
+  /// The changelog for the release in markdown format.
+  String get changelog;
   @override
   @JsonKey(ignore: true)
   _$$_ReleaseCopyWith<_$_Release> get copyWith =>

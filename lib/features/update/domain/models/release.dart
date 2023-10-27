@@ -23,6 +23,9 @@ class Release with _$Release {
 
     /// The download links for the release.
     required ReleaseDownloads downloads,
+
+    /// The changelog for the release in markdown format.
+    required String changelog,
   }) = _Release;
 
   /// The version of the release as a [Version] object.

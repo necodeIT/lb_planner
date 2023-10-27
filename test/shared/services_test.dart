@@ -29,7 +29,7 @@ void main() {
     });
 
     test("get should return Ok response", () async {
-      final response = await networkService.get("$kMockoonAddress/ok");
+      final response = await networkService.get("$kUnitTestsMockoonAddress/ok");
 
       expect(
         response,
@@ -41,7 +41,8 @@ void main() {
     });
 
     test("post should return Ok response", () async {
-      final response = await networkService.post("$kMockoonAddress/ok");
+      final response =
+          await networkService.post("$kUnitTestsMockoonAddress/ok");
 
       expect(
         response,
@@ -53,14 +54,16 @@ void main() {
     });
 
     test("get should return not Ok response", () async {
-      final response = await networkService.get("$kMockoonAddress/notOk");
+      final response =
+          await networkService.get("$kUnitTestsMockoonAddress/notOk");
 
       expect(response, isA<HttpResponse>());
       expect(response.isOk, false);
       expect(response.isNotOk, true);
     });
     test("post should return not Ok response", () async {
-      final response = await networkService.post("$kMockoonAddress/notOk");
+      final response =
+          await networkService.post("$kUnitTestsMockoonAddress/notOk");
 
       expect(response, isA<HttpResponse>());
       expect(response.isOk, false);
@@ -68,28 +71,32 @@ void main() {
     });
 
     test("get should parse to json", () async {
-      final response = await networkService.get("$kMockoonAddress/json");
+      final response =
+          await networkService.get("$kUnitTestsMockoonAddress/json");
 
       expect(response, isA<HttpResponse>());
       expect(response.body, {"message": "ok"});
     });
 
     test("post should parse to json", () async {
-      final response = await networkService.post("$kMockoonAddress/json");
+      final response =
+          await networkService.post("$kUnitTestsMockoonAddress/json");
 
       expect(response, isA<HttpResponse>());
       expect(response.body, {"message": "ok"});
     });
 
     test("get should support non json response", () async {
-      final response = await networkService.get("$kMockoonAddress/nonJson");
+      final response =
+          await networkService.get("$kUnitTestsMockoonAddress/nonJson");
 
       expect(response, isA<HttpResponse>());
       expect(response.body, "ok");
     });
 
     test("post should support non json response", () async {
-      final response = await networkService.post("$kMockoonAddress/nonJson");
+      final response =
+          await networkService.post("$kUnitTestsMockoonAddress/nonJson");
 
       expect(response, isA<HttpResponse>());
       expect(response.body, "ok");
