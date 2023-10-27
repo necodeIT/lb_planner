@@ -34,7 +34,7 @@ void main() {
 
       test("getInstructions should not be supported", () {
         expect(
-          innoSetupPatcherService.getInstructions(context, release),
+          () => innoSetupPatcherService.getInstructions(context, release),
           throwsUnsupportedError,
         );
       });
@@ -49,7 +49,7 @@ void main() {
 
       test("getInstructions should not be supported", () {
         expect(
-          dmgPatcherService.getInstructions(context, release),
+          () => dmgPatcherService.getInstructions(context, release),
           throwsUnsupportedError,
         );
       });
@@ -64,7 +64,7 @@ void main() {
 
       test("patch should not be supportedc", () {
         expect(
-          appImagePatcherService.patch(release),
+          () => appImagePatcherService.patch(release),
           throwsUnsupportedError,
         );
       });
@@ -79,7 +79,7 @@ void main() {
 
       test("patch should not be supportedc", () {
         expect(
-          selfCompiledPatcherService.patch(release),
+          () => selfCompiledPatcherService.patch(release),
           throwsUnsupportedError,
         );
       });

@@ -7,10 +7,10 @@ void main() {
   group("isUpdateAvailableProvider", () {
     final container = ProviderContainer();
 
-    test("should be of type bool", () {
+    test("should be of type AsyncValue<bool>", () {
       final isUpdateAvailable = container.read(isUpdateAvailableProvider);
 
-      expect(isUpdateAvailable, isA<bool>());
+      expect(isUpdateAvailable, isA<AsyncValue<bool>>());
     });
 
     test("should be of type IsUpdateAvailableProviderState", () {
