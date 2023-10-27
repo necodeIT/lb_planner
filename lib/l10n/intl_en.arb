@@ -290,5 +290,8 @@
   "user_notifications_userRegistered_docs": "Need help?",
   "user_notifications_userRegistered_text": "Welcome, {username}!\n\nIf you happen to face any issues, please let us know.",
   "widgets_markdown_networkError": "Could not fetch {url}.\nYou may want to check out the contents of the file manually in your browser.",
-  "widgets_markdown_networkError_openInBrowser": "Open in browser"
+  "widgets_markdown_networkError_openInBrowser": "Open in browser",
+  "update_instructions_selfCompiled": "Navigate into the folder where you cloned the repository and run `git pull`. After that follow the [compile instructions](https://github.com/necodeIT/lb_planner/tree/app#compile-instructions).",
+  "update_instructions_aur": "Run `yay -Syu lb-planner-{buildChannel}` and restart the application.",
+  "update_instructions_appImage": "Run the following commands:\n```bash\nwget {url} -P {currentAppImage}\nsudo chmod +x {currentAppImage}```\nAnd restart the application."
 }

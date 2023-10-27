@@ -12,8 +12,8 @@ library configs.endpoints;
 /// ```bash
 /// flutter build [os] --dart-define=MOODLE_ENDPOINT=`VALUE`
 /// ```
-const kMoodleServerAdress =
-    String.fromEnvironment("MOODLE_ENDPOINT", defaultValue: "localhost:8080");
+const kMoodleServerAdress = String.fromEnvironment("MOODLE_ENDPOINT",
+    defaultValue: "http://localhost:6000");
 
 /// The url of the LB Planner website.
 ///
@@ -27,4 +27,4 @@ const kMoodleServerAdress =
 /// flutter build [os] --dart-define=LB_PLANNER_ENDPOINT=`VALUE`
 /// ```
 const kLBPlannerWebsiteAdress = String.fromEnvironment("LB_PLANNER_ENDPOINT",
-    defaultValue: "localhost:8081");
+    defaultValue: "http://localhost:6008");

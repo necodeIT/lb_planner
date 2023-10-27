@@ -1,62 +1,62 @@
 {
-  "uuid": "97cdddc1-5742-4527-8c6b-cd7cced1ea4e",
+  "uuid": "47a565f8-73b1-4ccd-b14c-19f721b843d4",
   "lastMigration": 28,
-  "name": "Mockoon",
+  "name": "Unit Tests",
   "endpointPrefix": "",
   "latency": 0,
   "port": 3000,
   "hostname": "",
   "folders": [
     {
-      "uuid": "142e5c86-ccc6-4cca-990e-6125d7aef49f",
+      "uuid": "5c820f64-1036-44b0-94ff-074aaf61ddc3",
       "name": "Network Service Tests",
-      "collapsed": false,
+      "collapsed": true,
       "children": [
         {
           "type": "route",
-          "uuid": "40e009a1-e4ee-4207-a3dd-31a3023a7a94"
+          "uuid": "d1950a5a-247c-4122-99f8-b10f8656ca7d"
         },
         {
           "type": "route",
-          "uuid": "fc2c3875-2185-451f-9588-35178c6a6a5d"
+          "uuid": "11453b14-2230-45b4-acf1-56f919e6a978"
         },
         {
           "type": "route",
-          "uuid": "7b3e17ed-dd8f-4b3f-b24e-ce096faa53c4"
+          "uuid": "3d2b90b6-3007-4742-ad3b-639d148d38ab"
         },
         {
           "type": "route",
-          "uuid": "ef47ca2e-deea-4fd4-8e95-f23a9dc862f0"
+          "uuid": "ddeed2e6-3d34-421d-ac46-19e1b21cfb92"
         },
         {
           "type": "route",
-          "uuid": "274ff1ea-59da-4a4a-9144-5ed161b75600"
+          "uuid": "c42e0762-00b1-4101-b295-99e65ef6de9a"
         },
         {
           "type": "route",
-          "uuid": "31d8086f-de17-4d27-8633-3e1926153828"
+          "uuid": "0feb2c8a-1b6a-4b65-8357-280b9f251b7e"
         },
         {
           "type": "route",
-          "uuid": "f5142de8-4c5c-4150-bb15-2f5567b647dc"
+          "uuid": "3686f4f5-0d13-4e22-bf94-431e188d4d2e"
         },
         {
           "type": "route",
-          "uuid": "6db1bf52-ddbc-4568-a833-e3ed3be25136"
+          "uuid": "17fc94b6-2896-40d5-8ddd-79c71eeefdcc"
         }
       ]
     }
   ],
   "routes": [
     {
-      "uuid": "40e009a1-e4ee-4207-a3dd-31a3023a7a94",
+      "uuid": "d1950a5a-247c-4122-99f8-b10f8656ca7d",
       "type": "http",
       "documentation": "Responds with status code 200",
       "method": "get",
       "endpoint": "ok",
       "responses": [
         {
-          "uuid": "a10566e0-c621-484e-89c3-e7282eba227c",
+          "uuid": "7615341c-593b-451c-936b-aa4e3914edbb",
           "body": "{\n  \"message\": \"ok\"\n}",
           "latency": 0,
           "statusCode": 200,
@@ -78,15 +78,15 @@
       "responseMode": null
     },
     {
-      "uuid": "7b3e17ed-dd8f-4b3f-b24e-ce096faa53c4",
+      "uuid": "3d2b90b6-3007-4742-ad3b-639d148d38ab",
       "type": "http",
       "documentation": "Responds with status code 400",
       "method": "get",
       "endpoint": "notOk",
       "responses": [
         {
-          "uuid": "bf7c1a22-d983-49d1-85c2-141fac87106d",
-          "body": "{\n  \"message\": \"ok\"\n}",
+          "uuid": "d5d67851-fa2d-4f45-a871-256b5cdcbccc",
+          "body": "",
           "latency": 0,
           "statusCode": 400,
           "label": "",
@@ -107,14 +107,14 @@
       "responseMode": null
     },
     {
-      "uuid": "274ff1ea-59da-4a4a-9144-5ed161b75600",
+      "uuid": "c42e0762-00b1-4101-b295-99e65ef6de9a",
       "type": "http",
       "documentation": "",
       "method": "get",
       "endpoint": "json",
       "responses": [
         {
-          "uuid": "0fb15c74-ec0e-4ce7-8437-31fd8ce97ce3",
+          "uuid": "8e581106-187f-4907-ae2d-aafa60dc9abc",
           "body": "{\n  \"message\": \"ok\"\n}",
           "latency": 0,
           "statusCode": 200,
@@ -136,14 +136,14 @@
       "responseMode": null
     },
     {
-      "uuid": "f5142de8-4c5c-4150-bb15-2f5567b647dc",
+      "uuid": "3686f4f5-0d13-4e22-bf94-431e188d4d2e",
       "type": "http",
       "documentation": "",
       "method": "get",
       "endpoint": "nonJson",
       "responses": [
         {
-          "uuid": "685bd19a-d0ed-4927-82e8-1d1874d07e0d",
+          "uuid": "d9b6b7de-ac18-44d7-99fb-7d9c63c73b29",
           "body": "ok",
           "latency": 0,
           "statusCode": 200,
@@ -170,14 +170,14 @@
       "responseMode": null
     },
     {
-      "uuid": "ef47ca2e-deea-4fd4-8e95-f23a9dc862f0",
+      "uuid": "ddeed2e6-3d34-421d-ac46-19e1b21cfb92",
       "type": "http",
       "documentation": "Responds with status code 400",
       "method": "post",
       "endpoint": "notOk",
       "responses": [
         {
-          "uuid": "d8df536e-f535-47dc-9ec5-835df805cdc2",
+          "uuid": "03348a77-c76c-4b8d-9c77-ce28a76fbe9e",
           "body": "{\n  \"message\": \"ok\"\n}",
           "latency": 0,
           "statusCode": 400,
@@ -199,14 +199,14 @@
       "responseMode": null
     },
     {
-      "uuid": "fc2c3875-2185-451f-9588-35178c6a6a5d",
+      "uuid": "11453b14-2230-45b4-acf1-56f919e6a978",
       "type": "http",
       "documentation": "Responds with status code 200",
       "method": "post",
       "endpoint": "ok",
       "responses": [
         {
-          "uuid": "4a196a85-ade7-45f0-a003-a1a7656d0973",
+          "uuid": "6d411e89-0af6-40a9-83cf-58d28f870628",
           "body": "{\n  \"message\": \"ok\"\n}",
           "latency": 0,
           "statusCode": 200,
@@ -228,14 +228,14 @@
       "responseMode": null
     },
     {
-      "uuid": "6db1bf52-ddbc-4568-a833-e3ed3be25136",
+      "uuid": "17fc94b6-2896-40d5-8ddd-79c71eeefdcc",
       "type": "http",
       "documentation": "",
       "method": "post",
       "endpoint": "nonJson",
       "responses": [
         {
-          "uuid": "6ec45a32-ddf9-405d-82df-d77921ded768",
+          "uuid": "4ac41ca8-0e3d-40f6-8d08-bcfb1c514a4c",
           "body": "ok",
           "latency": 0,
           "statusCode": 200,
@@ -262,14 +262,14 @@
       "responseMode": null
     },
     {
-      "uuid": "31d8086f-de17-4d27-8633-3e1926153828",
+      "uuid": "0feb2c8a-1b6a-4b65-8357-280b9f251b7e",
       "type": "http",
       "documentation": "",
       "method": "post",
       "endpoint": "json",
       "responses": [
         {
-          "uuid": "9fb7f3ab-6077-4b73-9191-2bc8fe78f9f4",
+          "uuid": "5b559fbc-b30d-4326-9713-57c7c02b3aa4",
           "body": "{\n  \"message\": \"ok\"\n}",
           "latency": 0,
           "statusCode": 200,
@@ -294,7 +294,7 @@
   "rootChildren": [
     {
       "type": "folder",
-      "uuid": "142e5c86-ccc6-4cca-990e-6125d7aef49f"
+      "uuid": "5c820f64-1036-44b0-94ff-074aaf61ddc3"
     }
   ],
   "proxyMode": false,

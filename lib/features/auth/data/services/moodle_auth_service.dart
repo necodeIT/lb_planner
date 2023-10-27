@@ -25,6 +25,7 @@ class MoodleAuthService extends AuthService {
       body: {
         "username": username,
         "password": password,
+        "moodlewsrestformat": "json",
       },
       headers: {"Content-Type": "application/x-www-form-urlencoded"},
     );

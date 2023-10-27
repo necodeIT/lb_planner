@@ -10,7 +10,7 @@ final userDataSourceProvider = Provider<UserDataSource>((ref) {
   final apiService = ref.watch(apiServiceProvider);
 
   return token.when(
-    data: (token) => UserDataSourceImpl(apiService, token),
+    data: (token) => StdUserDataSource(apiService, token),
     loading: () => TokenUnavailableUserDataSource(reason: "Token is loading"),
     error: (error, stackTrace) => TokenUnavailableUserDataSource(
       reason: "User is not logged in",

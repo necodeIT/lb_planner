@@ -1,0 +1,44 @@
+{
+  "uuid": "97cdddc1-5742-4527-8c6b-cd7cced1ea4e",
+  "lastMigration": 28,
+  "name": "Moodle",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 6000,
+  "hostname": "",
+  "folders": [],
+  "routes": [],
+  "rootChildren": [],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": []
+}
