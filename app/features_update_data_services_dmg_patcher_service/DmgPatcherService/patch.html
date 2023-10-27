@@ -96,7 +96,7 @@ Future&lt;void&gt; patch(
 }) async {
   final setup = await downloadService.download(
     release.downloads.macos,
-    &quot;$kAppName Setup ${release.versionString}.exe&quot;,
+    &quot;$kAppName ${release.versionString}.dmg&quot;,
     onProgress: (_, __, progess) =&gt; onProgress?.call(progess),
   );
 
