@@ -62,10 +62,14 @@ jobs:
             run: flutter test --machine > test-results.json
           - name: Annotate test results
             uses: dorny/test-reporter@v1
+            id: reporter
             with:
               name: Test Results
               path: test-results.json
               reporter: dart-json
+          - name: Comment results
+            run: echo "${{ steps.reporter.outputs.conclusion }}"
+            
             
             
                         
