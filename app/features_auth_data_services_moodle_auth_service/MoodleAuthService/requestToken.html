@@ -98,6 +98,7 @@ Future&lt;String&gt; requestToken(String username, String password) async {
     body: {
       &quot;username&quot;: username,
       &quot;password&quot;: password,
+      &quot;moodlewsrestformat&quot;: &quot;json&quot;,
     },
     headers: {&quot;Content-Type&quot;: &quot;application&#47;x-www-form-urlencoded&quot;},
   );

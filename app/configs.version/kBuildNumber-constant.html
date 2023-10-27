@@ -69,8 +69,9 @@
         </section>
         
 <section class="desc markdown">
-  <p>Holds the build number as a string, sourced from the <code>BUILD_NUMBER</code> compile-time variable.</p>
-<p>In <a href="../configs.version/BuildChannel.html">BuildChannel.dev</a> or <a href="../configs.version/BuildChannel.html">BuildChannel.beta</a>, the version number usually stays the same until a stable release.
+  <p>Holds the build number of the application.
+The value is read from the compile-time variable <code>BUILD_NUMBER</code>.</p>
+<p>In <a href="../shared_domain_models_version/BuildChannel.html">BuildChannel.dev</a> or <a href="../shared_domain_models_version/BuildChannel.html">BuildChannel.beta</a>, the version usually stays the same until a stable release.
 The build number helps us and the users differentiate between different builds of the same version.</p>
 <p>The value is read from the compile-time variable <code>BUILD_NUMBER</code>.</p>
 <p>Defaults to <code>0</code> if the compile-time variable is not set.</p>
