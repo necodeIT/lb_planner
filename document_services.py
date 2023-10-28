@@ -216,6 +216,9 @@ function displayFunctionDetails(func) {
     <p id="full-func-name">${func.function_name} <i class="fa-regular fa-copy" id="copy"></i></p>
     <hr />
     <p id="func_desc">${func.description}</p>
+    <h2>Capabilities</h2>
+    <hr />
+    <p>${func.capabilities}</p>
     <h2>Parmeters</h2>
     <hr />
     ${Object.keys(func.parameters).map(param => `
