@@ -132,6 +132,21 @@ function displayFunctionDetails(func) {
     copy.onclick = () => {
         navigator.clipboard.writeText(func.function_name);
     }
+
+    let returnValues = document.querySelectorAll('.value-name');
+    let params = document.querySelectorAll('.param-name');
+
+    for (let value of returnValues){
+        value.addEventListener('click', () => {
+            navigator.clipboard.writeText(value.innerText)
+        });
+    }
+
+    for (let param of params){
+        param.addEventListener('click', () => {
+            navigator.clipboard.writeText(param.innerText)
+        });
+    }
 }
 
 displayGroupsAndFunctions();
