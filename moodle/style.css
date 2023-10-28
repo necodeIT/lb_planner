@@ -109,6 +109,11 @@ html {
   color: var(--accent-color);
 }
 
+.param-name:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
 .param-required {
   color: var(--red);
   content: "required";
@@ -154,6 +159,11 @@ html {
   color: var(--accent-color);
 }
 
+.value-name:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
 .value-signature,
 .value-signature p {
   /*display in same line*/
@@ -169,10 +179,6 @@ html {
 .func-name {
   margin-left: 1rem;
   font-size: 0.8rem;
-}
-
-.func-name:last-child {
-  margin-bottom: 1rem;
 }
 
 .func-name:hover {
