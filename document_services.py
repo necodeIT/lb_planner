@@ -84,6 +84,7 @@ def convert_param_type_to_normal_type(param_type):
         "PARAM_INT": "int",
         "PARAM_TEXT": "String",
         "PARAM_URL": "String",
+        "PARAM_BOOL": "bool",
     }
 
     return CONVERSIONS.get(param_type, param_type)
