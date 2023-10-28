@@ -35,7 +35,7 @@ jobs:
 
       - name: Generate docs
         working-directory: moodle
-        run: python document_services.py ../moodle
+        run: python document_services.py ../docs/moodle
 
       - name: Push new documentation to docs branch
         working-directory: docs
