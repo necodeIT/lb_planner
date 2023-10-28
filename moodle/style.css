@@ -1,0 +1,196 @@
+:root {
+  --background-color: #f2f3f9;
+  --secondary-background-color: #fff;
+  --text-color: #1d1d1d;
+  --red: #e74c3c;
+  --green: #4fb930;
+  --accent-color: #27bcf3;
+  --accent-color--light: #acdaec;
+}
+
+body,
+html {
+  padding: 0;
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  overflow: hidden;
+}
+
+#search,
+#search::placeholder {
+  border: none;
+  background-color: var(--secondary-background-color);
+  color: var(--text-color);
+}
+
+#search:focus {
+  outline: none;
+}
+
+#searchBar {
+  background-color: var(--secondary-background-color);
+  border: none;
+  color: var(--text-color);
+  padding: 0.5rem;
+  width: 100%;
+  font-size: 1rem;
+}
+
+#container {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  max-width: 100%;
+}
+
+#sidebar {
+  background-color: var(--secondary-background-color);
+  color: var(--text-color);
+  flex: 1;
+}
+
+#func-details {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  padding: 1rem 5rem;
+  flex: 3;
+  right: 0;
+  overflow-y: scroll;
+}
+
+#func-details hr {
+  margin: 1rem 0;
+  border: 1px solid var(--accent-color--light);
+}
+
+#func-details h2 {
+  margin-top: 5rem;
+  margin-bottom: 2rem;
+  vertical-align: middle;
+}
+
+.param-signature,
+.param-signature p {
+  /*display in same line*/
+  display: inline;
+  vertical-align: middle;
+}
+
+/* The entire scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  background: transparent;
+}
+
+/* Track of the scrollbar */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle of the scrollbar */
+::-webkit-scrollbar-thumb {
+  background: var(--accent-color);
+  border-radius: 6px;
+  border: 3px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-color--light);
+}
+
+#func-details h1 {
+  text-transform: capitalize;
+}
+
+.param-name {
+  font-weight: bold;
+  color: var(--accent-color);
+}
+
+.param-required {
+  color: var(--red);
+  content: "required";
+}
+
+.param-optional {
+  color: var(--green);
+}
+
+.param-desc {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+}
+
+.badge {
+  background-color: var(--secondary-background-color);
+  border-radius: 7px;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  -ms-border-radius: 7px;
+  -o-border-radius: 7px;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid var(--accent-color--light);
+  width: fit-content;
+  display: inline-block;
+  margin: 0 0.5rem;
+  vertical-align: middle;
+  color: var(--accent-color);
+}
+
+#full-func-name {
+  font-family: "Roboto Mono", monospace;
+  font-size: 0.8rem;
+}
+
+.value-desc {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+}
+
+.value-name {
+  font-weight: bold;
+  color: var(--accent-color);
+}
+
+.value-signature,
+.value-signature p {
+  /*display in same line*/
+  display: inline;
+}
+
+.func-group h1 {
+  font-size: 1rem;
+  font-weight: normal;
+  text-transform: capitalize;
+}
+
+.func-name {
+  margin-left: 1rem;
+  font-size: 0.8rem;
+}
+
+.func-name:last-child {
+  margin-bottom: 1rem;
+}
+
+.func-name:hover {
+  color: var(--accent-color);
+  cursor: pointer;
+}
+
+.func-name:hover:not([active]) {
+  text-decoration: underline;
+}
+
+.func-name[active] {
+  color: var(--accent-color);
+}
+
+#func-groups {
+  overflow-y: scroll;
+  height: 100%;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+}
