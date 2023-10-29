@@ -13,6 +13,9 @@ class StdThemeService extends ThemeService<ThemeData> {
       primaryColor: themeBase.secondaryColor,
       dividerColor: themeBase.tertiaryColor,
       canvasColor: themeBase.primaryColor,
+      iconTheme: templateTheme.iconTheme.copyWith(
+        color: themeBase.textColor,
+      ),
       extensions: <ThemeExtension<dynamic>>[
         ModuleStatusTheme(
           pendingColor: themeBase.modulePendingColor,
