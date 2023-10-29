@@ -112,7 +112,7 @@ class user_get_user extends external_api {
                 'planid' => new external_value(PARAM_INT, 'The id of the plan the user is assigned to'),
                 'colorblindness' => new external_value(PARAM_TEXT, 'The colorblindness of the user'),
                 'displaytaskcount' => new external_value(PARAM_INT, 'The displaytaskcount of the user'),
-                'capabilities' => new external_value(PARAM_INT, 'The capability'),
+                'capabilities' => new external_value(PARAM_INT, 'The capability of the user'),
                 'vintage' => new external_value(PARAM_TEXT, 'The vintage of the user')
             )
         );

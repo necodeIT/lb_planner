@@ -29,10 +29,20 @@ use moodle_exception;
 
 /**
  * Removes all user data stored by the lbplanner app
+ * Admins can pass a userid to delete the user with the given id
  */
 class user_delete_user extends external_api {
     public static function delete_user_parameters(): external_function_parameters {
-        return new external_function_parameters(array());
+        global $USER;
+        return new external_function_parameters(
+            ['userid' => new external_value(
+                PARAM_INT,
+                'The Moodle id of the user to delete',
+                VALUE_DEFAULT,
+                $USER->id,
+                NULL_NOT_ALLOWED
+            )]
+        );
     }
 
     /**
@@ -41,11 +51,14 @@ class user_delete_user extends external_api {
      * @throws dml_exception
      * @throws moodle_exception
      */
-    public static function delete_user(): array {
+    public static function delete_user($userid): array {
         global $DB, $USER;
 
-        $userid = $USER->id;
-        user_helper::assert_access($userid);
+        self::validate_parameters(self::delete_user_parameters(), array('userid' => $userid));
+
+        if (!user_helper::is_admin($USER->id)) {
+            user_helper::assert_access($userid);
+        }
 
         // Check if User is in user table.
         if (!$DB->record_exists(user_helper::LB_PLANNER_USER_TABLE, array('userid' => $userid))) {

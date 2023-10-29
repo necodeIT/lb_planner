@@ -59,7 +59,7 @@ class user_helper {
         self::CAPABILITY_ADMIN => 1,
         self::CAPABILITY_MANAGER => 2,
         self::CAPABILITY_TEACHER => 4,
-        self::CAPABILITY_STUDENT => 8
+        self::CAPABILITY_STUDENT => 8,
     ];
 
     /**
@@ -93,6 +93,17 @@ class user_helper {
         }
     }
 
+    /**
+     * Checks if the given user is an admin.
+     * @param int $userid The id of the user to check.
+     * @return bool True if the given user is an admin, false otherwise.
+     * @throws coding_exception
+     * @throws dml_exception
+     */
+    public static function is_admin(int $userid): bool {
+        $context = context_system::instance();
+        return has_capability(self::CAPABILITY_ADMIN, $context, $userid, false);
+    }
     /**
      * Gives back a bitmask which represents the capabilities of the given user.
      * 0 = no capabilities
@@ -144,7 +155,7 @@ class user_helper {
      */
     public static function check_user_exists(int $userid): bool {
         global $DB;
-        return $DB->record_exists(self::LB_PLANNER_USER_TABLE, array('userid' => $userid));
+        return $DB->record_exists(self::LB_PLANNER_USER_TABLE, ['userid' => $userid]);
     }
 
     /**
@@ -163,12 +174,12 @@ class user_helper {
      */
     public static function get_user(int $userid): stdClass {
         global $DB;
-        return $DB->get_record(self::LB_PLANNER_USER_TABLE, array('userid' => $userid), '*', MUST_EXIST);
+        return $DB->get_record(self::LB_PLANNER_USER_TABLE, ['userid' => $userid], '*', MUST_EXIST);
     }
 
     /**
-     * @deprecated not in use
      * Retrieves the full name of the user with the given id.
+     * @deprecated not in use
      *
      * @return string The full name of the user with the given id.
      */
@@ -178,9 +189,11 @@ class user_helper {
     }
 
     /**
+     * This Function is used to get the user picture of a user.
      * @param int $userid The id of the user to retrieve the picture for.
      * @throws coding_exception
      * @throws dml_exception
+     * @return string The url of the user picture.
      */
     public static function get_mdl_user_picture(int $userid): string {
         global $PAGE;
