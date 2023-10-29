@@ -17,26 +17,22 @@
 namespace local_lbplanner\helpers;
 
 class config_helper {
-    public static function set_default_active_year() {
+    public static function set_default_active_year(): void {
+        $currentyear = idate('Y');
         $currentmonth = idate('m');
-        if ($currentmonth >= 8 && $currentmonth <= 12) {
+        if ($currentmonth >= 8) {
+            $nextyear = substr(intval($currentyear + 1), -2);
+            $defaultyear = substr($currentyear, -2) . '/' . $nextyear;
             // Adding the default active year, when the plugin is installed for the first time.
-            set_config(
-                'defaultactiveyear',
-                substr(strval(idate('Y')), 2)
-                .'/'.
-                substr(strval(idate('Y') + 1), 2),
-                'local_lbplanner'
-            );
         } else {
+            $previousyear = substr( intval($currentyear - 1), -2);
+            $defaultyear = $previousyear . '/' . substr($currentyear, -2);
             // Adding the default active year, when the plugin is installed for the first time.
-            set_config(
-                'defaultactiveyear',
-                substr(strval(idate('Y') - 1), 2)
-                .'/'.
-                substr(strval(idate('Y')), 2),
-                'local_lbplanner'
-            );
         }
+        set_config(
+            'defaultactiveyear',
+            $defaultyear,
+            'local_lbplanner'
+        );
     }
 }

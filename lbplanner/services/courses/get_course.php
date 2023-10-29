@@ -16,12 +16,15 @@
 
 namespace local_lbplanner_services;
 
+use dml_exception;
 use external_api;
 use external_function_parameters;
 use external_single_structure;
 use external_value;
+use invalid_parameter_exception;
 use local_lbplanner\helpers\user_helper;
 use local_lbplanner\helpers\course_helper;
+use moodle_exception;
 
 /**
  * Get the data for a course.
@@ -29,24 +32,30 @@ use local_lbplanner\helpers\course_helper;
 class courses_get_course extends external_api {
     public static function get_course_parameters() {
         return new external_function_parameters(array(
-            'courseid' => new external_value(PARAM_INT, 'The id of the course', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
-            'userid' => new external_value(PARAM_INT, 'The id of the user', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
+            'courseid' => new external_value(PARAM_INT, 'The id of the course', VALUE_REQUIRED, null, NULL_NOT_ALLOWED)
         ));
     }
 
+    /**
+     * @throws dml_exception
+     * @throws moodle_exception
+     * @throws invalid_parameter_exception
+     */
     public static function get_course($courseid, $userid) {
-        global $DB;
+        global $DB, $USER;
 
-        self::validate_parameters(self::get_course_parameters(), array('courseid' => $courseid, 'userid' => $userid));
+        $userid = $USER->id;
+
+        self::validate_parameters(self::get_course_parameters(), array('courseid' => $courseid));
 
         if (!$DB->record_exists('course', array('id' => $courseid))) {
-            throw new \moodle_exception('Course not found');
+            throw new moodle_exception('Course not found');
         }
 
         user_helper::assert_access($userid);
 
         if (!course_helper::check_access($courseid, $userid)) {
-            throw new \moodle_exception('Not Enrolled in course');
+            throw new moodle_exception('Not Enrolled in course');
         }
 
         $course = $DB->get_record(

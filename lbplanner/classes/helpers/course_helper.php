@@ -84,9 +84,11 @@ class course_helper {
     }
 
     /**
-     * Get the current year
+     * Get the current school year from the config
+     * Definition of a school year: 2020/2021
+     * Check in config_helper.php for more info how the date is set for defaultactiveyear
      *
-     * @return string the current year the last 2 digits (20(20))
+     * @return string the current year the last 2 digits (20/20)
      */
     public static function get_current_year() : string {
         if (strpos(get_config('local_lbplanner', 'activeyear'), '/' ) !== false) {

@@ -16,7 +16,7 @@
 
 use local_lbplanner\helpers\config_helper;
 
-function xmldb_local_lbplanner_upgrade($oldversion) {
+function xmldb_local_lbplanner_upgrade($oldversion): bool {
     config_helper::set_default_active_year();
     return true;
 }

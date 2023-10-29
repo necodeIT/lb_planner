@@ -24,6 +24,7 @@ use external_multiple_structure;
 use external_single_structure;
 use external_value;
 use invalid_parameter_exception;
+use local_lbplanner\helpers\config_helper;
 use local_lbplanner\helpers\user_helper;
 use local_lbplanner\helpers\course_helper;
 use moodle_exception;
@@ -33,15 +34,7 @@ use moodle_exception;
  */
 class courses_get_all_courses extends external_api {
     public static function get_all_courses_parameters(): external_function_parameters {
-        return new external_function_parameters(array(
-            'userid' => new external_value(
-                PARAM_INT,
-                'The id of the user to get the courses for',
-                VALUE_REQUIRED,
-                null,
-                NULL_NOT_ALLOWED
-            ),
-        ));
+        return new external_function_parameters(array());
     }
 
     /**
@@ -50,10 +43,10 @@ class courses_get_all_courses extends external_api {
      * @throws moodle_exception
      * @throws invalid_parameter_exception
      */
-    public static function get_all_courses($userid): array {
-        global $DB;
+    public static function get_all_courses(): array {
+        global $DB, $USER;
 
-        self::validate_parameters(self::get_all_courses_parameters(), array('userid' => $userid));
+        $userid = $USER->id;
 
         user_helper::assert_access($userid);
 
@@ -67,38 +60,31 @@ class courses_get_all_courses extends external_api {
         foreach ($courses as $course) {
             $courseid = $course->id;
             $name = $course->fullname;
-            $shortname = substr($course->shortname, 0, 5);
-
-            if (strpos($shortname, ' ') !== false) {
+            $shortname = $course->shortname;
+            // Check if the shortname contains a space.
+            if (str_contains($shortname, ' ')) {
                     $shortname = substr($shortname, 0, strpos($shortname, ' '));
             }
-
-            if (!course_helper::check_current_year($courseid)) {
-                continue;
+            // Check if the course is from the current year.
+            if (!str_contains($name, course_helper::get_current_year())) {
+                    continue;
             }
-            if ($DB->record_exists(
-                course_helper::LBPLANNER_COURSE_TABLE, array('courseid' => $courseid, 'userid' => $userid)
-                )) {
+            // Check if the course is already in the LB Planner database.
+            if ($DB->record_exists(course_helper::LBPLANNER_COURSE_TABLE, array('courseid' => $courseid, 'userid' => $userid))) {
                 $fetchedcourse = $DB->get_record(
-                    course_helper::LBPLANNER_COURSE_TABLE, array('courseid' => $courseid, 'userid' => $userid),
-                    '*',
-                    MUST_EXIST
-                );
-                $fetchedcourse->name = $name;
-                $catgirls[] = (object) $fetchedcourse;
+                    course_helper::LBPLANNER_COURSE_TABLE, array('courseid' => $courseid, 'userid' => $userid), MUST_EXIST);
             } else {
-                $catgirl = (object) array(
-                 'courseid' => $courseid,
-                 'color' => course_helper::COLORS[array_rand(course_helper::COLORS)],
-                 'shortname' => strtoupper($shortname),
-                 'enabled' => course_helper::DISABLED_COURSE,
-                 'userid' => $userid,
-                 );
-                 $DB->insert_record(course_helper::LBPLANNER_COURSE_TABLE, $catgirl);
-                 $catgirl->name = $name;
-                 $catgirls[] = $catgirl;
+                $fetchedcourse = (object) array(
+                    'courseid' => $courseid,
+                    'color' => course_helper::COLORS[array_rand(course_helper::COLORS)],
+                    'shortname' => strtoupper($shortname),
+                    'enabled' => course_helper::DISABLED_COURSE,
+                    'userid' => $userid,
+                );
+                $DB->insert_record(course_helper::LBPLANNER_COURSE_TABLE, $fetchedcourse);
             }
-
+            $fetchedcourse->name = $name;
+            $catgirls[] = $fetchedcourse;
         }
             return $catgirls;
     }
