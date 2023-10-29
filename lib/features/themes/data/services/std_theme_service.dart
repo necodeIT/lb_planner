@@ -5,26 +5,76 @@ import 'package:flutter/material.dart';
 class StdThemeService extends ThemeService<ThemeData> {
   @override
   ThemeData generateTheme(ThemeBase themeBase) {
-    // TODO: check if there are any other properties that need to be set
+    final templateTheme = ThemeData(brightness: themeBase.brightness);
+
     return ThemeData(
+      brightness: themeBase.brightness,
       useMaterial3: false,
-      unselectedWidgetColor: themeBase.tertiaryColor,
       primaryColor: themeBase.secondaryColor,
-      primaryColorDark: themeBase.primaryColor,
-      primaryColorLight: themeBase.tertiaryColor,
       dividerColor: themeBase.tertiaryColor,
+      canvasColor: themeBase.primaryColor,
+      extensions: <ThemeExtension<dynamic>>[
+        ModuleStatusTheme(
+          pendingColor: themeBase.modulePendingColor,
+          uploadedColor: themeBase.moduleUploadedColor,
+          lateColor: themeBase.errorColor,
+          doneColor: themeBase.moduleDoneColor,
+        )
+      ],
       colorScheme: ColorScheme(
-        primary: themeBase.secondaryColor,
-        secondary: themeBase.accentColor,
-        surface: themeBase.primaryColor,
-        background: themeBase.secondaryColor,
-        error: themeBase.errorColor,
+        primary: themeBase.accentColor,
         onPrimary: themeBase.onAccentColor,
+        secondary: themeBase.accentColor,
         onSecondary: themeBase.onAccentColor,
-        onSurface: themeBase.onAccentColor,
-        onBackground: themeBase.onAccentColor,
-        onError: themeBase.onAccentColor,
         brightness: themeBase.brightness,
+        error: themeBase.errorColor,
+        onError: themeBase.onAccentColor,
+        background: themeBase.secondaryColor,
+        onBackground: themeBase.textColor,
+        surface: themeBase.primaryColor,
+        onSurface: themeBase.textColor,
+      ),
+      scaffoldBackgroundColor: themeBase.secondaryColor,
+      textTheme: TextTheme(
+        displayLarge: templateTheme.textTheme.displayLarge?.copyWith(
+          color: themeBase.textColor,
+        ),
+        displayMedium: templateTheme.textTheme.displayMedium?.copyWith(
+          color: themeBase.textColor,
+        ),
+        displaySmall: templateTheme.textTheme.displaySmall?.copyWith(
+          color: themeBase.textColor,
+        ),
+        headlineMedium: templateTheme.textTheme.headlineMedium?.copyWith(
+          color: themeBase.textColor,
+        ),
+        headlineSmall: templateTheme.textTheme.headlineSmall?.copyWith(
+          color: themeBase.textColor,
+        ),
+        titleLarge: templateTheme.textTheme.titleLarge?.copyWith(
+          color: themeBase.textColor,
+        ),
+        titleMedium: templateTheme.textTheme.titleMedium?.copyWith(
+          color: themeBase.textColor,
+        ),
+        titleSmall: templateTheme.textTheme.titleSmall?.copyWith(
+          color: themeBase.textColor,
+        ),
+        bodyLarge: templateTheme.textTheme.bodyLarge?.copyWith(
+          color: themeBase.textColor,
+        ),
+        bodyMedium: templateTheme.textTheme.bodyMedium?.copyWith(
+          color: themeBase.textColor,
+        ),
+        bodySmall: templateTheme.textTheme.bodySmall?.copyWith(
+          color: themeBase.textColor,
+        ),
+        labelLarge: templateTheme.textTheme.labelLarge?.copyWith(
+          color: themeBase.textColor,
+        ),
+        labelSmall: templateTheme.textTheme.labelSmall?.copyWith(
+          color: themeBase.textColor,
+        ),
       ),
     );
   }

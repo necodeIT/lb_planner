@@ -26,11 +26,14 @@ class ThemeBase with _$ThemeBase {
     /// The color to use to indicate errors.
     required Color errorColor,
 
-    /// The color to use to indicate success.
-    required Color successColor,
+    /// The color to use for modules that are completed.
+    required Color moduleDoneColor,
 
-    /// The color to use for disabled components.
-    required Color disabledColor,
+    /// The color to use for modules that are pending.
+    required Color modulePendingColor,
+
+    /// The color to use for modules that have been uploaded.
+    required Color moduleUploadedColor,
 
     /// The color to use for text.
     required Color textColor,

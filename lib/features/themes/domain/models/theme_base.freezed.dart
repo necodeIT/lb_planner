@@ -34,11 +34,14 @@ mixin _$ThemeBase {
   /// The color to use to indicate errors.
   Color get errorColor => throw _privateConstructorUsedError;
 
-  /// The color to use to indicate success.
-  Color get successColor => throw _privateConstructorUsedError;
+  /// The color to use for modules that are completed.
+  Color get moduleDoneColor => throw _privateConstructorUsedError;
 
-  /// The color to use for disabled components.
-  Color get disabledColor => throw _privateConstructorUsedError;
+  /// The color to use for modules that are pending.
+  Color get modulePendingColor => throw _privateConstructorUsedError;
+
+  /// The color to use for modules that have been uploaded.
+  Color get moduleUploadedColor => throw _privateConstructorUsedError;
 
   /// The color to use for text.
   Color get textColor => throw _privateConstructorUsedError;
@@ -74,8 +77,9 @@ abstract class $ThemeBaseCopyWith<$Res> {
       Color accentColor,
       Color onAccentColor,
       Color errorColor,
-      Color successColor,
-      Color disabledColor,
+      Color moduleDoneColor,
+      Color modulePendingColor,
+      Color moduleUploadedColor,
       Color textColor,
       String name,
       IconData icon,
@@ -102,8 +106,9 @@ class _$ThemeBaseCopyWithImpl<$Res, $Val extends ThemeBase>
     Object? accentColor = null,
     Object? onAccentColor = null,
     Object? errorColor = null,
-    Object? successColor = null,
-    Object? disabledColor = null,
+    Object? moduleDoneColor = null,
+    Object? modulePendingColor = null,
+    Object? moduleUploadedColor = null,
     Object? textColor = null,
     Object? name = null,
     Object? icon = null,
@@ -135,13 +140,17 @@ class _$ThemeBaseCopyWithImpl<$Res, $Val extends ThemeBase>
           ? _value.errorColor
           : errorColor // ignore: cast_nullable_to_non_nullable
               as Color,
-      successColor: null == successColor
-          ? _value.successColor
-          : successColor // ignore: cast_nullable_to_non_nullable
+      moduleDoneColor: null == moduleDoneColor
+          ? _value.moduleDoneColor
+          : moduleDoneColor // ignore: cast_nullable_to_non_nullable
               as Color,
-      disabledColor: null == disabledColor
-          ? _value.disabledColor
-          : disabledColor // ignore: cast_nullable_to_non_nullable
+      modulePendingColor: null == modulePendingColor
+          ? _value.modulePendingColor
+          : modulePendingColor // ignore: cast_nullable_to_non_nullable
+              as Color,
+      moduleUploadedColor: null == moduleUploadedColor
+          ? _value.moduleUploadedColor
+          : moduleUploadedColor // ignore: cast_nullable_to_non_nullable
               as Color,
       textColor: null == textColor
           ? _value.textColor
@@ -181,8 +190,9 @@ abstract class _$$_ThemeBaseCopyWith<$Res> implements $ThemeBaseCopyWith<$Res> {
       Color accentColor,
       Color onAccentColor,
       Color errorColor,
-      Color successColor,
-      Color disabledColor,
+      Color moduleDoneColor,
+      Color modulePendingColor,
+      Color moduleUploadedColor,
       Color textColor,
       String name,
       IconData icon,
@@ -207,8 +217,9 @@ class __$$_ThemeBaseCopyWithImpl<$Res>
     Object? accentColor = null,
     Object? onAccentColor = null,
     Object? errorColor = null,
-    Object? successColor = null,
-    Object? disabledColor = null,
+    Object? moduleDoneColor = null,
+    Object? modulePendingColor = null,
+    Object? moduleUploadedColor = null,
     Object? textColor = null,
     Object? name = null,
     Object? icon = null,
@@ -240,13 +251,17 @@ class __$$_ThemeBaseCopyWithImpl<$Res>
           ? _value.errorColor
           : errorColor // ignore: cast_nullable_to_non_nullable
               as Color,
-      successColor: null == successColor
-          ? _value.successColor
-          : successColor // ignore: cast_nullable_to_non_nullable
+      moduleDoneColor: null == moduleDoneColor
+          ? _value.moduleDoneColor
+          : moduleDoneColor // ignore: cast_nullable_to_non_nullable
               as Color,
-      disabledColor: null == disabledColor
-          ? _value.disabledColor
-          : disabledColor // ignore: cast_nullable_to_non_nullable
+      modulePendingColor: null == modulePendingColor
+          ? _value.modulePendingColor
+          : modulePendingColor // ignore: cast_nullable_to_non_nullable
+              as Color,
+      moduleUploadedColor: null == moduleUploadedColor
+          ? _value.moduleUploadedColor
+          : moduleUploadedColor // ignore: cast_nullable_to_non_nullable
               as Color,
       textColor: null == textColor
           ? _value.textColor
@@ -282,8 +297,9 @@ class _$_ThemeBase implements _ThemeBase {
       required this.accentColor,
       required this.onAccentColor,
       required this.errorColor,
-      required this.successColor,
-      required this.disabledColor,
+      required this.moduleDoneColor,
+      required this.modulePendingColor,
+      required this.moduleUploadedColor,
       required this.textColor,
       required this.name,
       required this.icon,
@@ -314,13 +330,17 @@ class _$_ThemeBase implements _ThemeBase {
   @override
   final Color errorColor;
 
-  /// The color to use to indicate success.
+  /// The color to use for modules that are completed.
   @override
-  final Color successColor;
+  final Color moduleDoneColor;
 
-  /// The color to use for disabled components.
+  /// The color to use for modules that are pending.
   @override
-  final Color disabledColor;
+  final Color modulePendingColor;
+
+  /// The color to use for modules that have been uploaded.
+  @override
+  final Color moduleUploadedColor;
 
   /// The color to use for text.
   @override
@@ -346,7 +366,7 @@ class _$_ThemeBase implements _ThemeBase {
 
   @override
   String toString() {
-    return 'ThemeBase(primaryColor: $primaryColor, secondaryColor: $secondaryColor, tertiaryColor: $tertiaryColor, accentColor: $accentColor, onAccentColor: $onAccentColor, errorColor: $errorColor, successColor: $successColor, disabledColor: $disabledColor, textColor: $textColor, name: $name, icon: $icon, iconColor: $iconColor, brightness: $brightness)';
+    return 'ThemeBase(primaryColor: $primaryColor, secondaryColor: $secondaryColor, tertiaryColor: $tertiaryColor, accentColor: $accentColor, onAccentColor: $onAccentColor, errorColor: $errorColor, moduleDoneColor: $moduleDoneColor, modulePendingColor: $modulePendingColor, moduleUploadedColor: $moduleUploadedColor, textColor: $textColor, name: $name, icon: $icon, iconColor: $iconColor, brightness: $brightness)';
   }
 
   @override
@@ -366,10 +386,12 @@ class _$_ThemeBase implements _ThemeBase {
                 other.onAccentColor == onAccentColor) &&
             (identical(other.errorColor, errorColor) ||
                 other.errorColor == errorColor) &&
-            (identical(other.successColor, successColor) ||
-                other.successColor == successColor) &&
-            (identical(other.disabledColor, disabledColor) ||
-                other.disabledColor == disabledColor) &&
+            (identical(other.moduleDoneColor, moduleDoneColor) ||
+                other.moduleDoneColor == moduleDoneColor) &&
+            (identical(other.modulePendingColor, modulePendingColor) ||
+                other.modulePendingColor == modulePendingColor) &&
+            (identical(other.moduleUploadedColor, moduleUploadedColor) ||
+                other.moduleUploadedColor == moduleUploadedColor) &&
             (identical(other.textColor, textColor) ||
                 other.textColor == textColor) &&
             (identical(other.name, name) || other.name == name) &&
@@ -389,8 +411,9 @@ class _$_ThemeBase implements _ThemeBase {
       accentColor,
       onAccentColor,
       errorColor,
-      successColor,
-      disabledColor,
+      moduleDoneColor,
+      modulePendingColor,
+      moduleUploadedColor,
       textColor,
       name,
       icon,
@@ -412,8 +435,9 @@ abstract class _ThemeBase implements ThemeBase {
       required final Color accentColor,
       required final Color onAccentColor,
       required final Color errorColor,
-      required final Color successColor,
-      required final Color disabledColor,
+      required final Color moduleDoneColor,
+      required final Color modulePendingColor,
+      required final Color moduleUploadedColor,
       required final Color textColor,
       required final String name,
       required final IconData icon,
@@ -446,12 +470,16 @@ abstract class _ThemeBase implements ThemeBase {
   Color get errorColor;
   @override
 
-  /// The color to use to indicate success.
-  Color get successColor;
+  /// The color to use for modules that are completed.
+  Color get moduleDoneColor;
   @override
 
-  /// The color to use for disabled components.
-  Color get disabledColor;
+  /// The color to use for modules that are pending.
+  Color get modulePendingColor;
+  @override
+
+  /// The color to use for modules that have been uploaded.
+  Color get moduleUploadedColor;
   @override
 
   /// The color to use for text.
