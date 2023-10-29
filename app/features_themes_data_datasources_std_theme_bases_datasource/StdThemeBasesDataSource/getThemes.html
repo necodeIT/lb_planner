@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the getThemes method from the StdThemeBasesDataSource class, for the Dart programming language.">
+  <title>getThemes method - StdThemeBasesDataSource class - std_theme_bases_datasource library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../../static-assets/styles.css?v1">
+  <link rel="icon" href="../../static-assets/favicon.png?v1">
+
+  
+</head>
+
+
+<body data-base-href="../../" data-using-base-href="false" class="light-theme">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../../index.html">lb_planner</a></li>
+    <li><a href="../../features_themes_data_datasources_std_theme_bases_datasource/features_themes_data_datasources_std_theme_bases_datasource-library.html">std_theme_bases_datasource</a></li>
+    <li><a href="../../features_themes_data_datasources_std_theme_bases_datasource/StdThemeBasesDataSource-class.html">StdThemeBasesDataSource</a></li>
+    <li class="self-crumb">getThemes method</li>
+  </ol>
+  <div class="self-name">getThemes</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <div class="toggle" id="theme-button">
+    <label for="theme">
+      <input type="checkbox" id="theme" value="light-theme">
+      <span id="dark-theme-button" class="material-symbols-outlined">
+        brightness_4
+      </span>
+      <span id="light-theme-button" class="material-symbols-outlined">
+        brightness_5
+      </span>
+    </label>
+  </div>
+</header>
+<main>
+
+  <div
+      id="dartdoc-main-content"
+      class="main-content"
+      data-above-sidebar="features_themes_data_datasources_std_theme_bases_datasource&#47;StdThemeBasesDataSource-class-sidebar.html"
+      data-below-sidebar="">
+      <div>
+<h1><span class="kind-method">getThemes</span> method 
+</h1></div>
+
+    <section class="multi-line-signature">
+      
+  <div>
+    <ol class="annotation-list">
+        <li>@<a href="https://api.flutter.dev/flutter/dart-core/override-constant.html">override</a></li>
+    </ol>
+  </div>
+
+<span class="returntype"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../../features_themes_domain_models_theme_base/ThemeBase-class.html">ThemeBase</a></span>&gt;</span></span>
+<span class="name ">getThemes</span>(<wbr>)
+
+      <div class="features"><span class="feature">override</span></div>
+
+    </section>
+    
+<section class="desc markdown">
+  <p>Returns a list of <code>ThemeBase</code>s that can be used in the app.</p>
+</section>
+
+
+    
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">@override
+List&lt;ThemeBase&gt; getThemes() {
+  return [
+    defaultTheme,
+
+    &#47;&#47; Dark theme
+    ThemeBase(
+      primaryColor: Color(0xFF1D1D1D),
+      secondaryColor: Color(0xFF2C2C2C),
+      tertiaryColor: Color(0xFF3C3C3C),
+      accentColor: Color(0xFF27BCF3),
+      onAccentColor: Color(0xFFFFFFFF),
+      errorColor: Color(0xFFE74C3C),
+      moduleUploadedColor: Color(0xFFF1C40F),
+      moduleDoneColor: Color(0xFF4FB930),
+      modulePendingColor: Color(0xFF7F8C8D),
+      textColor: Color(0xFFFFFFFF),
+      name: &quot;Dark&quot;,
+      icon: Icons.nights_stay,
+      iconColor: Colors.blueGrey,
+      brightness: Brightness.dark,
+    ),
+
+    &#47;&#47; Ocean theme
+    ThemeBase(
+      brightness: Brightness.dark,
+      primaryColor: Color(0xFF212942),
+      secondaryColor: Color(0xFF262E48),
+      tertiaryColor: Color(0xFF3D4C80),
+      accentColor: Color(0xFF78A5FE),
+      textColor: Color(0xFFF8F2F2),
+      onAccentColor: Color(0xFFF8F2F2),
+      moduleDoneColor: Color(0xFF208767),
+      moduleUploadedColor: Color(0xFFCCB941),
+      errorColor: Color(0xFFD15C4F),
+      modulePendingColor: Color(0xFF626D6E),
+      name: &quot;Ocean&quot;,
+      icon: FontAwesome5Solid.tint,
+      iconColor: Color(0xFF78A5FE),
+    ),
+
+    &#47;&#47; 桜 theme
+    ThemeBase(
+      brightness: Brightness.light,
+      primaryColor: Color(0xFFFCE9EB),
+      secondaryColor: Color(0xFFF3DCDB),
+      tertiaryColor: Color(0xFFECBDB0),
+      accentColor: Color(0xFFF3A39E),
+      textColor: Color(0xFF8C5E6B),
+      onAccentColor: Color(0xFFFCE9EB),
+      moduleDoneColor: Color(0xFFB2C959),
+      moduleUploadedColor: Color(0xFFE5D75A),
+      errorColor: Color(0xFFC26161),
+      modulePendingColor: Color(0xFFE0BAC0),
+      icon: FontAwesome5Solid.tree,
+      name: &quot;桜&quot;,
+      iconColor: Color(0xFFF3A39E),
+    ),
+    ThemeBase(
+      primaryColor: Color(0xFFC2F0C2),
+      secondaryColor: Color(0xFFF2F2F2),
+      tertiaryColor: Color(0xFFE0E0E0),
+      accentColor: Color(0xFF89CFF0),
+      onAccentColor: Color(0xFFffffff),
+      errorColor: Color(0xFFF8D7DA),
+      moduleDoneColor: Color(0xFFD4EDDA),
+      modulePendingColor: Color(0xFFEDEDED),
+      moduleUploadedColor: Color(0xFFFFE8A1),
+      textColor: Color(0xFF000000),
+      name: &#39;Pastel&#39;,
+      icon: Icons.palette,
+      iconColor: Color(0xFFF8D7DA),
+      brightness: Brightness.light,
+    ),
+  ];
+}</code></pre>
+</section>
+
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li><a href="../../index.html">lb_planner</a></li>
+    <li><a href="../../features_themes_data_datasources_std_theme_bases_datasource/features_themes_data_datasources_std_theme_bases_datasource-library.html">std_theme_bases_datasource</a></li>
+    <li><a href="../../features_themes_data_datasources_std_theme_bases_datasource/StdThemeBasesDataSource-class.html">StdThemeBasesDataSource</a></li>
+    <li class="self-crumb">getThemes method</li>
+</ol>
+
+
+    <h5>StdThemeBasesDataSource class</h5>
+  </div><!--/.sidebar-offcanvas-->
+
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    lb_planner
+      1.0.0+1
+  </span>
+
+  
+</footer>
+
+
+
+<script src="../../static-assets/highlight.pack.js?v1"></script>
+<script src="../../static-assets/docs.dart.js"></script>
+
+
+
+</body>
+
+</html>
+

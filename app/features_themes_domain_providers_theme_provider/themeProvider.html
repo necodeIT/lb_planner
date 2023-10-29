@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the userRespositoryProvider property from the user_provider library, for the Dart programming language.">
-  <title>userRespositoryProvider property - user_provider library - Dart API</title>
+  <meta name="description" content="API docs for the themeProvider property from the theme_provider library, for the Dart programming language.">
+  <title>themeProvider property - theme_provider library - Dart API</title>
 
 
   
@@ -29,10 +29,10 @@
   <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../index.html">lb_planner</a></li>
-    <li><a href="../features_auth_domain_providers_user_provider/features_auth_domain_providers_user_provider-library.html">user_provider</a></li>
-    <li class="self-crumb">userRespositoryProvider property</li>
+    <li><a href="../features_themes_domain_providers_theme_provider/features_themes_domain_providers_theme_provider-library.html">theme_provider</a></li>
+    <li class="self-crumb">themeProvider property</li>
   </ol>
-  <div class="self-name">userRespositoryProvider</div>
+  <div class="self-name">themeProvider</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -53,31 +53,38 @@
   <div
       id="dartdoc-main-content"
       class="main-content"
-      data-above-sidebar="features_auth_domain_providers_user_provider&#47;features_auth_domain_providers_user_provider-library-sidebar.html"
+      data-above-sidebar="features_themes_domain_providers_theme_provider&#47;features_themes_domain_providers_theme_provider-library-sidebar.html"
       data-below-sidebar="">
       <div>
-<h1><span class="kind-top-level-property">userRespositoryProvider</span> top-level property 
+<h1><span class="kind-top-level-property">themeProvider</span> top-level property 
  
 </h1></div>
 
         <section class="multi-line-signature">
           
-          <a href="https://pub.dev/documentation/riverpod/2.4.0/riverpod/AlwaysAliveRefreshable-class.html">AlwaysAliveRefreshable</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../features_auth_domain_providers_user_provider/UserProvider-class.html">UserProvider</a></span>&gt;</span>
-          <span class="name ">userRespositoryProvider</span>
+          <a href="https://pub.dev/documentation/riverpod/2.4.0/riverpod/Provider-class.html">Provider</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/material/ThemeData-class.html">ThemeData</a></span>&gt;</span>
+          <span class="name ">themeProvider</span>
           <div class="features"><span class="feature">final</span></div>
 
         </section>
         
 <section class="desc markdown">
-  <p>Provides the repository for the currently logged in <a href="../features_auth_domain_models_user/User-class.html">User</a>.</p>
-<p>The repository provides methods for updating the user.</p>
-<p>If you only want to get the current user, use <a href="../features_auth_domain_providers_user_provider/userProvider.html">userProvider</a> instead.</p>
+  <p>Provides the current <code>ThemeData</code> based on the current user's theme.</p>
+<p>In order to change the theme, the user's theme name must be changed (see <a href="../features_auth_domain_providers_user_provider/userController.html">userController</a>).</p>
 </section>
 
         
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">final userRespositoryProvider = userProvider.notifier;</code></pre>
+  <pre class="language-dart"><code class="language-dart">final themeProvider = Provider&lt;ThemeData&gt;((ref) {
+  final themeService = ref.watch(themeServiceProvider);
+  final themeBasesRepository = ref.watch(themeBasesRepositoryProvider);
+  final user = ref.watch(userProvider);
+
+  final themeBase = themeBasesRepository.getThemeByName(user?.themeName ?? &quot;&quot;);
+
+  return themeService.generateTheme(themeBase);
+});</code></pre>
 </section>
 
 
@@ -94,12 +101,12 @@
 
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
     <li><a href="../index.html">lb_planner</a></li>
-    <li><a href="../features_auth_domain_providers_user_provider/features_auth_domain_providers_user_provider-library.html">user_provider</a></li>
-    <li class="self-crumb">userRespositoryProvider property</li>
+    <li><a href="../features_themes_domain_providers_theme_provider/features_themes_domain_providers_theme_provider-library.html">theme_provider</a></li>
+    <li class="self-crumb">themeProvider property</li>
 </ol>
 
 
-    <h5>user_provider library</h5>
+    <h5>theme_provider library</h5>
   </div><!--/.sidebar-offcanvas-left-->
 
   <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">

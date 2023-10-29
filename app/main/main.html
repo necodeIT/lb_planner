@@ -75,7 +75,11 @@
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">void main() async {}</code></pre>
+  <pre class="language-dart"><code class="language-dart">void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  runApp(ProviderScope(child: ThemeDevelopmentScreen()));
+}</code></pre>
 </section>
 
 
