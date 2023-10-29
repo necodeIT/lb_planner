@@ -26,6 +26,9 @@ use core_user;
 
 /**
  * Provides helper methods for user related stuff.
+ * @package local_lbplanner\helpers
+ * @copyright LB PLANNER
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class user_helper {
 
@@ -135,8 +138,8 @@ class user_helper {
     /**
      * Checks if the given user exists in the LB_PLANNER_USER database.
      *
-     * @param integer $userid The id of the user to check.
-     * @return boolean True if the user exists, false otherwise.
+     * @param int $userid The id of the user to check.
+     * @return bool True if the user exists, false otherwise.
      * @throws dml_exception
      */
     public static function check_user_exists(int $userid): bool {
@@ -154,7 +157,7 @@ class user_helper {
      * $user->language // The language the user has set for the app.
      * ```
      *
-     * @param integer $userid The id of the user to retrieve.
+     * @param int $userid The id of the user to retrieve.
      * @return stdClass The user with the given id.
      * @throws dml_exception
      */
@@ -175,10 +178,11 @@ class user_helper {
     }
 
     /**
+     * @param int $userid The id of the user to retrieve the picture for.
      * @throws coding_exception
      * @throws dml_exception
      */
-    public static function get_mdl_user_picture($userid): string {
+    public static function get_mdl_user_picture(int $userid): string {
         global $PAGE;
         $mdluser = core_user::get_user($userid, '*', MUST_EXIST);
         $userpicture = new user_picture($mdluser);
