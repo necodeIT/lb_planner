@@ -32,11 +32,28 @@ use stdClass;
  * Register a new user in the lbplanner app.
  */
 class user_register_user extends external_api {
-    public static function register_user_parameters() {
+    public static function register_user_parameters(): external_function_parameters {
         return new external_function_parameters(array(
-            'lang' => new external_value(PARAM_TEXT, 'The language the user has selected', VALUE_DEFAULT, 'en', NULL_NOT_ALLOWED),
-            'theme' => new external_value(PARAM_TEXT, 'The theme the user has selected', VALUE_DEFAULT, 'Light', NULL_NOT_ALLOWED),
-            'ekenabled' => new external_value(PARAM_INT, 'If the user wants to have EK-Enabled', VALUE_DEFAULT, 0, NULL_NOT_ALLOWED)
+            'lang' => new external_value(
+                PARAM_TEXT,
+                'The language the user has selected',
+                VALUE_DEFAULT,
+                'en',
+                NULL_NOT_ALLOWED
+            ),
+            'theme' => new external_value(
+                PARAM_TEXT,
+                'The theme the user has selected',
+                VALUE_DEFAULT,
+                'Light',
+                NULL_NOT_ALLOWED),
+            'ekenabled' => new external_value(
+                PARAM_INT,
+                'If the user wants to have EK-Enabled',
+                VALUE_DEFAULT,
+                0,
+                NULL_NOT_ALLOWED
+            )
         ));
     }
 
@@ -48,7 +65,7 @@ class user_register_user extends external_api {
      * @throws moodle_exception
      * @throws invalid_parameter_exception
      */
-    public static function register_user(string $lang, string $theme) {
+    public static function register_user(string $lang, string $theme): array {
         global $DB, $USER;
 
         self::validate_parameters(
@@ -102,14 +119,14 @@ class user_register_user extends external_api {
         );
     }
 
-    public static function register_user_returns() {
+    public static function register_user_returns(): external_single_structure {
         return new external_single_structure(
             array(
-                'userid' => new external_value(PARAM_INT, 'The id of the user'),
+                'userid' => new external_value(PARAM_INT, 'The Moodle id of the user'),
                 'username' => new external_value(PARAM_TEXT, 'The username of the user'),
                 'firstname' => new external_value(PARAM_TEXT, 'The firstname of the user'),
                 'lastname' => new external_value(PARAM_TEXT, 'The lastname of the user'),
-                'capabilities' => new external_value(PARAM_INT, 'The capability'),
+                'capabilities' => new external_value(PARAM_INT, 'The capability of the user'),
                 'theme' => new external_value(PARAM_TEXT, 'The theme the user has selected'),
                 'lang' => new external_value(PARAM_TEXT, 'The language the user has selected'),
                 'profileimageurl' => new external_value(PARAM_URL, 'The url of the profile image'),

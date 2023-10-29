@@ -31,9 +31,9 @@ use moodle_exception;
  * Gets all users registered by the lbplanner app.
  */
 class user_get_all_users extends external_api {
-    public static function get_all_users_parameters() {
+    public static function get_all_users_parameters(): external_function_parameters {
         return new external_function_parameters(array(
-            'vintage' => new external_value(PARAM_TEXT, 'The vintage of the users', VALUE_DEFAULT, null),
+            'vintage' => new external_value(PARAM_TEXT, 'The vintage to filter the users by', VALUE_DEFAULT, null),
         ));
     }
 
@@ -44,7 +44,7 @@ class user_get_all_users extends external_api {
      * @throws dml_exception
      * @throws invalid_parameter_exception
      */
-    public static function get_all_users($vintage) {
+    public static function get_all_users(string $vintage): array {
         global $DB, $USER;
 
         self::validate_parameters(self::get_all_users_parameters(), array('vintage' => $vintage));
@@ -76,7 +76,7 @@ class user_get_all_users extends external_api {
         return $result;
     }
 
-    public static function get_all_users_returns() {
+    public static function get_all_users_returns(): external_multiple_structure {
         return new external_multiple_structure(
             new external_single_structure(
                 array(

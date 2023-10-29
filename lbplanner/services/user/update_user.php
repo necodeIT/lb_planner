@@ -30,7 +30,7 @@ use moodle_exception;
  * Update the data for a user.
  */
 class user_update_user extends external_api {
-    public static function update_user_parameters() {
+    public static function update_user_parameters(): external_function_parameters {
         return new external_function_parameters(array(
             'lang' => new external_value(PARAM_TEXT, 'The language the user has selected', VALUE_DEFAULT, null),
             'theme' => new external_value(PARAM_TEXT, 'The theme the user has selected', VALUE_DEFAULT, null),
@@ -58,7 +58,7 @@ class user_update_user extends external_api {
      * @throws dml_exception
      * @throws invalid_parameter_exception
      */
-    public static function update_user($lang, $theme, $colorblindness, $displaytaskcount) {
+    public static function update_user($lang, $theme, $colorblindness, $displaytaskcount): array {
         global $DB, $USER;
 
         self::validate_parameters(
@@ -110,7 +110,7 @@ class user_update_user extends external_api {
         );
     }
 
-    public static function update_user_returns() {
+    public static function update_user_returns(): external_single_structure {
         return new external_single_structure(
             array(
                 'userid' => new external_value(PARAM_INT, 'The id of the user'),

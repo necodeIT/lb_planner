@@ -32,12 +32,12 @@ use moodle_exception;
  * param userid (optional) gives back the user data with the given ID
  */
 class user_get_user extends external_api {
-    public static function get_user_parameters() {
+    public static function get_user_parameters(): external_function_parameters {
         global $USER;
         return new external_function_parameters(array(
             'userid' => new external_value(
                 PARAM_INT,
-                'The id of the user to get the data for',
+                'The id of the user to get the data for. If not given userid is taken by Token',
                 VALUE_DEFAULT,
                 $USER->id,
                 NULL_NOT_ALLOWED
@@ -53,7 +53,7 @@ class user_get_user extends external_api {
      * @throws dml_exception
      * @throws moodle_exception
      */
-    public static function get_user(int $userid) {
+    public static function get_user(int $userid): array {
         global $USER, $CFG;
         include_once("$CFG->dirroot/user/lib.php");
 
@@ -99,7 +99,7 @@ class user_get_user extends external_api {
                 );
         }
     }
-    public static function get_user_returns() {
+    public static function get_user_returns(): external_single_structure {
         return new external_single_structure(
             array(
                 'userid' => new external_value(PARAM_INT, 'The id of the user'),

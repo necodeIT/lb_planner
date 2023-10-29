@@ -31,17 +31,17 @@ use moodle_exception;
  * Removes all user data stored by the lbplanner app
  */
 class user_delete_user extends external_api {
-    public static function delete_user_parameters() {
+    public static function delete_user_parameters(): external_function_parameters {
         return new external_function_parameters(array());
     }
 
     /**
-     * Returns description of method parameters
-     * @return string[]
+     * Removes all user data stored by the lbplanner app
+     * @return string[] Returns a message of the status
      * @throws dml_exception
      * @throws moodle_exception
      */
-    public static function delete_user() {
+    public static function delete_user(): array {
         global $DB, $USER;
 
         $userid = $USER->id;
@@ -88,7 +88,7 @@ class user_delete_user extends external_api {
         return array('message' => 'User deleted successfully');
     }
 
-    public static function delete_user_returns() {
+    public static function delete_user_returns(): external_single_structure {
         return new external_single_structure(
             array('message' => new external_value(PARAM_TEXT, 'The message to return to the user'))
         );
