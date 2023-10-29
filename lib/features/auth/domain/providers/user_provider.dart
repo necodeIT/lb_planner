@@ -9,19 +9,17 @@ import 'package:riverpod/riverpod.dart';
 ///
 /// Note: If the user is not logged in, this provider will return `null`.
 ///
-/// If you want to update the user, use [userProvider] instead.
+/// If you want to update the user, use [userController] instead.
 final userProvider = StateNotifierProvider<UserProvider, User?>((ref) {
   final userDataSource = ref.watch(userDataSourceProvider);
 
   return UserProvider(userDataSource);
 });
 
-/// Provides the repository for the currently logged in [User].
-///
-/// The repository provides methods for updating the user.
+/// Provides methods for manipulating logged in [User].
 ///
 /// If you only want to get the current user, use [userProvider] instead.
-final userRespositoryProvider = userProvider.notifier;
+final userController = userProvider.notifier;
 
 /// Provides the currently logged in [User].
 /// The user is inferred from the [UserToken] provided by [userTokenProvider] and will be updated automatically as changes occur.
