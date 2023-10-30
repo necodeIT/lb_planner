@@ -2,7 +2,7 @@ import 'package:lb_planner/features/auth/auth.dart';
 import 'package:lb_planner/shared/shared.dart';
 
 /// Standard implementation of [UserDataSource].
-class UserDataSourceImpl extends UserDataSource {
+class StdUserDataSource extends UserDataSource {
   /// The token to use for authentication.
   final UserToken userToken;
 
@@ -10,7 +10,7 @@ class UserDataSourceImpl extends UserDataSource {
   final ApiService apiService;
 
   /// Standard implementation of [UserDataSource].
-  UserDataSourceImpl(this.apiService, this.userToken);
+  StdUserDataSource(this.apiService, this.userToken);
 
   @override
   Future<List<User>> fetchAllUsers() async {
