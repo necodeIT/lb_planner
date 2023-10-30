@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'features/themes/themes.dart';
 
 part 'app_route.gr.dart';
 
@@ -10,6 +11,10 @@ class AppRouter extends _$AppRouter {
 
   @override
   List<AutoRoute> get routes => [
-        /// routes go here
+        AutoRoute(
+          page: ThemeDevelopmentRoute.page,
+          path: '/theme-development',
+          initial: true,
+        ),
       ];
 }
