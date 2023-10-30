@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lb_planner/features/auth/auth.dart';
@@ -41,81 +40,59 @@ class _LoginFormState extends ConsumerState<LoginForm> {
     final tokenController = ref.watch(userTokenController);
 
     final userToken = ref.watch(userTokenProvider);
-  
-    userToken.when(
-      data: (token) {
-        if (token != null) {
-          Navigator.of(context).pushReplacementNamed(DashboardRoute.name);
-        }
-      },
-      loading: () {
-        
-      },
 
-
-      error: (error, stackTrace) {
-
-      },
-    );
-
-
-        return ConstrainedBox(
-          constraints: BoxConstraints(maxWidth: LoginForm.width),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                LpLogo(size: LoginRoute.logoSize),
-                NcSpacing.xl(),
-                LpTextField(
-                  controller: _userNameController,
-                  placeholder: t.login_username,
-                  errorText: errorMessage,
-                  onSubmitted: (_) => _pwFocusNode.requestFocus(),
-                ),
-                NcSpacing.large(),
-                LpTextField(
-                  focusNode: _pwFocusNode,
-                  controller: _passwordController,
-                  obscureText: !_showPassword,
-                  placeholder: t.login_password,
-                  errorText: errorMessage,
-                  onSubmitted: (_) => tokenController.login(_userNameController.text, _passwordController.text),
-                  suffix: LpGestureDetector(
-                    child: LpIcon(
+    return ConstrainedBox(
+      constraints: BoxConstraints(maxWidth: LoginForm.width),
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Logo(
+              size: 80,
+            ),
+            SizedBox(width: 30, height: 30),
+            TextField(
+              controller: _userNameController,
+              decoration: InputDecoration(
+                helperText: t.login_username,
+                errorText: t.login_invalidUsernameOrPassword,
+              ),
+              onSubmitted: (_) => _pwFocusNode.requestFocus(),
+            ),
+            SizedBox(width: 25, height: 25),
+            TextField(
+              focusNode: _pwFocusNode,
+              controller: _passwordController,
+              obscureText: !_showPassword,
+              decoration: InputDecoration(
+                  helperText: t.login_username,
+                  errorText: t.login_invalidUsernameOrPassword,
+                  suffix: GestureDetector(
+                    child: Icon(
                       _showPassword ? Icons.visibility_off : Icons.visibility,
-                      size: LpTextField.defaultFontSize,
+                      size: 20,
                     ),
                     onTap: _togglePassword,
-                  ),
-                ),
-                NcSpacing.xl(),
-                SizedBox(
-                  width: LoginForm.width,
-                  child: ConditionalWrapper(
-                    condition: _loginFuture != null,
-                    wrapper: (context, _) => FutureBuilder(
-                      future: _loginFuture!,
-                      builder: (context, snapshot) => LpButton(
-                        onPressed: () {},
-                        child: SizedBox(
-                            width: LoginForm.width,
-                            child: LpLoadingIndicator.circular(
-                              color: buttonTextColor,
-                            )),
-                      ),
-                    ),
-                    child: ElevatedButton(
-                      child: Text(t.auth_loginForm_login),
-                      onPressed: () => tokenController.login(_userNameController.text, _passwordController.text),
-                    ),
-                  ),
-                ),
-              ],
+                  )),
+              onSubmitted: (_) => tokenController.login(
+                  _userNameController.text, _passwordController.text),
             ),
-          ),
-        );
-      
-  
+            SizedBox(width: 30, height: 30),
+            SizedBox(
+              width: LoginForm.width,
+              child: ElevatedButton(
+                child: userToken.isLoading
+                    ? SizedBox(
+                        width: LoginForm.width,
+                        child: CircularProgressIndicator())
+                    : Text(t.auth_loginForm_login),
+                onPressed: () => tokenController.login(
+                    _userNameController.text, _passwordController.text),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
