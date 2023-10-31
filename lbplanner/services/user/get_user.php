@@ -37,7 +37,7 @@ class user_get_user extends external_api {
         return new external_function_parameters(array(
             'userid' => new external_value(
                 PARAM_INT,
-                'The id of the user to get the data for. If not given userid is taken by Token',
+                'The Moodle id of the user to get the data for. If not given userid is taken by Token',
                 VALUE_DEFAULT,
                 $USER->id,
                 NULL_NOT_ALLOWED
@@ -102,7 +102,7 @@ class user_get_user extends external_api {
     public static function get_user_returns(): external_single_structure {
         return new external_single_structure(
             array(
-                'userid' => new external_value(PARAM_INT, 'The id of the user'),
+                'userid' => new external_value(PARAM_INT, 'The Moodle id of the user'),
                 'username' => new external_value(PARAM_TEXT, 'The username of the user'),
                 'firstname' => new external_value(PARAM_TEXT, 'The firstname of the user'),
                 'lastname' => new external_value(PARAM_TEXT, 'The lastname of the user'),
@@ -111,8 +111,8 @@ class user_get_user extends external_api {
                 'profileimageurl' => new external_value(PARAM_URL, 'The url of the profile image'),
                 'planid' => new external_value(PARAM_INT, 'The id of the plan the user is assigned to'),
                 'colorblindness' => new external_value(PARAM_TEXT, 'The colorblindness of the user'),
-                'displaytaskcount' => new external_value(PARAM_INT, 'The displaytaskcount of the user'),
-                'capabilities' => new external_value(PARAM_INT, 'The capability of the user'),
+                'displaytaskcount' => new external_value(PARAM_INT, 'If the user has the taskcount-enabled 1-yes 0-no'),
+                'capabilities' => new external_value(PARAM_INT, 'The capabilities of the user represented as a bitmask value'),
                 'vintage' => new external_value(PARAM_TEXT, 'The vintage of the user')
             )
         );

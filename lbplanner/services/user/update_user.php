@@ -41,7 +41,7 @@ class user_update_user extends external_api {
                 null),
             'displaytaskcount' => new external_value(
                 PARAM_INT,
-                'The displaytaskcount the user has selected',
+                'If the user has the taskcount-enabled 1-yes 0-no',
                 VALUE_DEFAULT,
                 null),
         ));
@@ -117,13 +117,13 @@ class user_update_user extends external_api {
                 'username' => new external_value(PARAM_TEXT, 'The username of the user'),
                 'firstname' => new external_value(PARAM_TEXT, 'The firstname of the user'),
                 'lastname' => new external_value(PARAM_TEXT, 'The lastname of the user'),
-                'capabilities' => new external_value(PARAM_INT, 'The role of the user'),
+                'capabilities' => new external_value(PARAM_INT, 'The capabilities of the user represented as a bitmask value'),
                 'theme' => new external_value(PARAM_TEXT, 'The theme the user has selected'),
                 'lang' => new external_value(PARAM_TEXT, 'The language the user has selected'),
                 'profileimageurl' => new external_value(PARAM_URL, 'The url of the profile image'),
                 'planid' => new external_value(PARAM_INT, 'The id of the plan the user is assigned to'),
                 'colorblindness' => new external_value(PARAM_TEXT, 'The colorblindness the user has selected'),
-                'displaytaskcount' => new external_value(PARAM_INT, 'The displaytaskcount the user has selected'),
+                'displaytaskcount' => new external_value(PARAM_INT, 'If the user has the taskcount-enabled 1-yes 0-no'),
                 'vintage' => new external_value(PARAM_TEXT, 'The vintage of the user')
             )
         );

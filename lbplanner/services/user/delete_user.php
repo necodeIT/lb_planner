@@ -47,11 +47,10 @@ class user_delete_user extends external_api {
 
     /**
      * Removes all user data stored by the lbplanner app
-     * @return string[] Returns a message of the status
      * @throws dml_exception
      * @throws moodle_exception
      */
-    public static function delete_user($userid): array {
+    public static function delete_user($userid) {
         global $DB, $USER;
 
         self::validate_parameters(self::delete_user_parameters(), array('userid' => $userid));
@@ -62,7 +61,7 @@ class user_delete_user extends external_api {
 
         // Check if User is in user table.
         if (!$DB->record_exists(user_helper::LB_PLANNER_USER_TABLE, array('userid' => $userid))) {
-            throw new moodle_exception('Access denied');
+            throw new moodle_exception('User is not registered in LB_Planner');
         }
 
         $planid = plan_helper::get_plan_id($userid);
@@ -97,13 +96,9 @@ class user_delete_user extends external_api {
         $DB->delete_records(course_helper::LBPLANNER_COURSE_TABLE, array('userid' => $userid));
         // Deleting User from User table.
         $DB->delete_records(user_helper::LB_PLANNER_USER_TABLE, array('userid' => $userid));
-
-        return array('message' => 'User deleted successfully');
     }
 
-    public static function delete_user_returns(): external_single_structure {
-        return new external_single_structure(
-            array('message' => new external_value(PARAM_TEXT, 'The message to return to the user'))
-        );
+    public static function delete_user_returns() {
+        return null;
     }
 }
