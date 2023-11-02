@@ -67,7 +67,7 @@ Contains all routes of the application.</p>
 <hr>
 <p>In order to add a route to the application, do the following:</p>
 <ol>
-<li>Add <code>@PageRoute()</code> to your screen widget:</li>
+<li>Add <code>@RoutePage()</code> to your screen widget:</li>
 </ol>
 <pre class="language-dart"><code class="language-dart">import 'package:lb_planner/shared/shared.dart';
 
@@ -86,7 +86,7 @@ class MyScreen extends StatelessWidget {
 }
 </code></pre>
 <ol start="2">
-<li>If you want the screen to have a sidebar, add <a href="../shared_presentation_widgets_sidebar/SidebarWrapperMixin-mixin.html">SidebarWrapperMixin</a> to your screen widget:#</li>
+<li>If you want the screen to have a sidebar, add <a href="../shared_presentation_widgets_sidebar/SidebarWrapperMixin-mixin.html">SidebarWrapperMixin</a> to your screen widget:</li>
 </ol>
 <pre class="language-dart"><code class="language-dart">import 'package:lb_planner/shared/shared.dart';
 
@@ -111,6 +111,11 @@ class MyScreen extends StatelessWidget with SidebarWrapperMixin  {
 <pre class="language-bash"><code class="language-bash">flutter pub run build_runner build --delete-conflicting-outputs
 </code></pre>
 <ol start="4">
+<li>Import your screen in <code>app_router.dart</code>:</li>
+</ol>
+<pre class="language-dart"><code class="language-dart">import 'package:lb_planner/path/to/my/screen.dart'
+</code></pre>
+<ol start="5">
 <li>Add the generated route to the <a href="../app_router/AppRouter/routes.html">routes</a> list:</li>
 </ol>
 <pre class="language-dart"><code class="language-dart">@override
@@ -125,7 +130,7 @@ List&lt;AutoRoute&gt; get routes =&gt; [
       ),
     ];
 </code></pre>
-<ol start="5">
+<ol start="6">
 <li>
 <p>If you want the rote to appear in the sidebar, see <a href="../shared_presentation_widgets_sidebar/Sidebar-class.html">Sidebar</a>.</p>
 </li>
@@ -140,7 +145,7 @@ List&lt;AutoRoute&gt; get routes =&gt; [
         path: '/theme-development',
       ),
       DefaultRoute(
-        page: MyRoute.page, // &lt;-- this is the generated route based off of [MyScreen]
+        page: MyRoute.page, // &lt;-- this is the generated route based on [MyScreen]
         path: '/theme-development/my-route', // in this example the parent path is '/theme-development', so [MyRoute] is a subroute of [ThemeDevelopmentRoute]
       ),
     ];
