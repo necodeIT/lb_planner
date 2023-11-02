@@ -29,14 +29,19 @@ jobs:
         with:
           flutter-version: '3.13.4'
 
+      - name: Setup Python
+        uses: actions/setup-python@v4.7.1
+        with:
+          python-version: '3.10'
+
       - name: Get dependencies
         working-directory: app
         run: flutter pub get
         
       - name: Generate API Docs
         working-directory: app
-        run: dart doc
-      
+        run: dart doc && python hide_libraries.py
+
       - name: Clear old documentation in /app subdir
         run: |
           rm -rf docs/app/*

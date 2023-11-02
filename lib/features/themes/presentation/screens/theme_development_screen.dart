@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lb_planner/features/themes/themes.dart';
+import 'package:lb_planner/shared/shared.dart';
 
 /// A screen that eases the development of themes, as it shows all the different elements of a theme.
 ///
 /// This screen is not meant to be used in production and should only be available when the app is in debug mode.
-class ThemeDevelopmentScreen extends ConsumerStatefulWidget {
+@RoutePage()
+class ThemeDevelopmentScreen extends ConsumerStatefulWidget
+    with SidebarWrapperMixin {
   /// A screen that eases the development of themes, as it shows all the different elements of a theme.
   ///
   /// This screen is not meant to be used in production and should only be available when the app is in debug mode.
@@ -30,34 +33,10 @@ class _ThemeDevelopmentScreenState
 
     selectedThemeBase ??= themeBasesRepository.defaultTheme;
 
-    return MaterialApp(
-      theme: themeService.generateTheme(selectedThemeBase!),
-      home: Builder(builder: (context) {
+    return Theme(
+      data: themeService.generateTheme(selectedThemeBase!),
+      child: Builder(builder: (context) {
         return Scaffold(
-          appBar: AppBar(
-            title: Text('Theme Previewer'),
-            actions: [
-              DropdownButton<ThemeBase>(
-                icon: Icon(
-                  selectedThemeBase!.icon,
-                  color: selectedThemeBase!.iconColor,
-                ),
-                value: selectedThemeBase,
-                onChanged: (themeBase) {
-                  setState(() {
-                    selectedThemeBase = themeBase;
-                  });
-                },
-                items: [
-                  for (final themeBase in themeBasesRepository.getThemes())
-                    DropdownMenuItem(
-                      value: themeBase,
-                      child: Text(themeBase.name),
-                    ),
-                ],
-              ),
-            ],
-          ),
           body: SingleChildScrollView(
             padding: EdgeInsets.all(16),
             child: SizedBox(
@@ -65,6 +44,34 @@ class _ThemeDevelopmentScreenState
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
+                  Row(
+                    children: [
+                      Icon(
+                        selectedThemeBase!.icon,
+                        color: selectedThemeBase!.iconColor,
+                      ),
+                      SizedBox(width: 8),
+                      Text(
+                        'Theme',
+                        style: Theme.of(context).textTheme.headlineMedium,
+                      ),
+                    ],
+                  ),
+                  DropdownButton<ThemeBase>(
+                    value: selectedThemeBase,
+                    onChanged: (themeBase) {
+                      setState(() {
+                        selectedThemeBase = themeBase;
+                      });
+                    },
+                    items: [
+                      for (final themeBase in themeBasesRepository.getThemes())
+                        DropdownMenuItem(
+                          value: themeBase,
+                          child: Text(themeBase.name),
+                        ),
+                    ],
+                  ),
                   Text(
                     'Typography',
                     style: Theme.of(context).textTheme.headlineMedium,

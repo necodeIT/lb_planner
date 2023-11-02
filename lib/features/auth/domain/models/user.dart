@@ -85,6 +85,11 @@ class User with _$User {
   bool hasCapability(UserCapability capability) =>
       capabilities.contains(capability);
 
+  /// Returns `true` if this user has elevated privileges (i.e. [UserCapability.dev] or [UserCapability.moderator]). Otherwise `false`.
+  bool get isElevated =>
+      hasCapability(UserCapability.dev) ||
+      hasCapability(UserCapability.moderator);
+
   /// Returns `null` if this user i not valid i.e. [id] is `-1`.
   User? get validOrNull => id == -1 ? null : this;
 }
@@ -142,6 +147,12 @@ extension UserCapabilitiesExtension on List<UserCapability> {
   /// Returns `true` if the list contains all of the given [capabilities]. Otherwise `false`.
   bool has(List<UserCapability> capabilities) =>
       capabilities.every((capability) => contains(capability));
+
+  /// Returns the highest [UserCapability] in the list.
+  ///
+  /// If the list is empty, [UserCapability.student] is returned.
+  UserCapability get highest =>
+      reduce((value, element) => value.index < element.index ? value : element);
 }
 
 /// Provides helper methods for [UserCapability].

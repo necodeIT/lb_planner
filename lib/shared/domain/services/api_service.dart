@@ -13,11 +13,12 @@ abstract class ApiService {
   /// Note: The [token] must have the required permissions use the web service that is providing the function you are trying to call.
   ///
   /// If [redact] is set to true, the response/request body will not be logged.
-  Future<HttpResponse<Either<List<JSON>, JSON>>> callFunction(
-      {required String function,
-      required String token,
-      required JSON body,
-      bool redact = false});
+  Future<HttpResponse<Either<List<JSON>, JSON>>> callFunction({
+    required String function,
+    required String token,
+    required JSON body,
+    bool redact = false,
+  });
 }
 
 /// Provides helper methods for [HttpResponse]s returned by [ApiService].

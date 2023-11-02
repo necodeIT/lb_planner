@@ -26,7 +26,7 @@ class Version with _$Version {
   /// The version number as a string.
   ///
   /// e.g. `1.2.3+4`
-  String get version => "$major.$minor.$patch{build == 0 ? '' : '+$build'}";
+  String get version => "$major.$minor.$patch${build == 0 ? '' : '+$build'}";
 
   /// Version from JSON.
   factory Version.fromJson(Map<String, dynamic> json) =>
