@@ -10,7 +10,7 @@ part 'app_router.gr.dart';
 /// ---
 /// In order to add a route to the application, do the following:
 ///
-/// 1. Add `@PageRoute()` to your screen widget:
+/// 1. Add `@RoutePage()` to your screen widget:
 ///
 /// ```dart
 /// import 'package:lb_planner/shared/shared.dart';
@@ -30,7 +30,7 @@ part 'app_router.gr.dart';
 /// }
 /// ```
 ///
-/// 2. If you want the screen to have a sidebar, add [SidebarWrapperMixin] to your screen widget:#
+/// 2. If you want the screen to have a sidebar, add [SidebarWrapperMixin] to your screen widget:
 ///
 /// ```dart
 /// import 'package:lb_planner/shared/shared.dart';
@@ -58,7 +58,13 @@ part 'app_router.gr.dart';
 /// flutter pub run build_runner build --delete-conflicting-outputs
 /// ```
 ///
-/// 4. Add the generated route to the [routes] list:
+/// 4. Import your screen in `app_router.dart`:
+///
+/// ```dart
+/// import 'package:lb_planner/path/to/my/screen.dart'
+/// ```
+///
+/// 5. Add the generated route to the [routes] list:
 ///
 /// ```dart
 /// @override
@@ -74,9 +80,9 @@ part 'app_router.gr.dart';
 ///     ];
 /// ```
 ///
-/// 5. If you want the rote to appear in the sidebar, see [Sidebar].
+/// 6. If you want the rote to appear in the sidebar, see [Sidebar].
 ///
-/// 6. For subroutes, just do the same and for the path use `parent-path/subroute-path`:
+/// 7. For subroutes, just do the same and for the path use `parent-path/subroute-path`:
 ///
 /// ```dart
 /// @override
@@ -86,7 +92,7 @@ part 'app_router.gr.dart';
 ///         path: '/theme-development',
 ///       ),
 ///       DefaultRoute(
-///         page: MyRoute.page, // <-- this is the generated route based off of [MyScreen]
+///         page: MyRoute.page, // <-- this is the generated route based on [MyScreen]
 ///         path: '/theme-development/my-route', // in this example the parent path is '/theme-development', so [MyRoute] is a subroute of [ThemeDevelopmentRoute]
 ///       ),
 ///     ];
