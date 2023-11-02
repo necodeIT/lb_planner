@@ -94,6 +94,9 @@ ThemeData generateTheme(ThemeBase themeBase) {
     primaryColor: themeBase.secondaryColor,
     dividerColor: themeBase.tertiaryColor,
     canvasColor: themeBase.primaryColor,
+    iconTheme: templateTheme.iconTheme.copyWith(
+      color: themeBase.textColor,
+    ),
     extensions: &lt;ThemeExtension&lt;dynamic&gt;&gt;[
       ModuleStatusTheme(
         pendingColor: themeBase.modulePendingColor,
@@ -114,6 +117,11 @@ ThemeData generateTheme(ThemeBase themeBase) {
       onBackground: themeBase.textColor,
       surface: themeBase.primaryColor,
       onSurface: themeBase.textColor,
+    ),
+    scrollbarTheme: ScrollbarThemeData(
+      thumbColor: MaterialStateProperty.all&lt;Color&gt;(themeBase.tertiaryColor),
+      trackColor: MaterialStateProperty.all&lt;Color&gt;(themeBase.secondaryColor),
+      thickness: MaterialStateProperty.all&lt;double&gt;(5.0),
     ),
     scaffoldBackgroundColor: themeBase.secondaryColor,
     textTheme: TextTheme(

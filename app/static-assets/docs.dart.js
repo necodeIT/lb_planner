@@ -6195,3 +6195,14 @@ var s=A.ng
 if(typeof dartMainRunner==="function")dartMainRunner(s,[])
 else s([])})})()
 //# sourceMappingURL=docs.dart.js.map
+
+
+let sidebar = document.querySelector("#dartdoc-sidebar-left")
+
+const allowed = ['shared', 'auth', 'themes', 'update', 'configs.endpoints', 'configs.install_medium', 'configs.version'];
+
+for (let child of sidebar.getElementsByTagName('a')) {
+  if (allowed.includes(child.innerText)) continue;
+
+  child.parentElement.style.display = "none";
+}

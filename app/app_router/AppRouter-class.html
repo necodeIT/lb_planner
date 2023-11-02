@@ -1,0 +1,1488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the AppRouter class from the app_router library, for the Dart programming language.">
+  <title>AppRouter class - app_router library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../static-assets/styles.css?v1">
+  <link rel="icon" href="../static-assets/favicon.png?v1">
+
+  
+</head>
+
+
+<body data-base-href="../" data-using-base-href="false" class="light-theme">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../index.html">lb_planner</a></li>
+    <li><a href="../app_router/app_router-library.html">app_router</a></li>
+    <li class="self-crumb">AppRouter class</li>
+  </ol>
+  <div class="self-name">AppRouter</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <div class="toggle" id="theme-button">
+    <label for="theme">
+      <input type="checkbox" id="theme" value="light-theme">
+      <span id="dark-theme-button" class="material-symbols-outlined">
+        brightness_4
+      </span>
+      <span id="light-theme-button" class="material-symbols-outlined">
+        brightness_5
+      </span>
+    </label>
+  </div>
+</header>
+<main>
+
+  <div
+      id="dartdoc-main-content"
+      class="main-content"
+      data-above-sidebar="app_router&#47;app_router-library-sidebar.html"
+      data-below-sidebar="app_router&#47;AppRouter-class-sidebar.html">
+      <div>
+<h1><span class="kind-class">AppRouter</span> class 
+ 
+</h1></div>
+
+    
+<section class="desc markdown">
+  <p>The application router.
+Contains all routes of the application.</p>
+<hr>
+<p>In order to add a route to the application, do the following:</p>
+<ol>
+<li>Add <code>@PageRoute()</code> to your screen widget:</li>
+</ol>
+<pre class="language-dart"><code class="language-dart">import 'package:lb_planner/shared/shared.dart';
+
+@PageRoute() // &lt;-- add this
+class MyScreen extends StatelessWidget {
+  const MyScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      body: Center(
+        child: Text('My Screen'),
+      ),
+   );
+ }
+}
+</code></pre>
+<ol start="2">
+<li>If you want the screen to have a sidebar, add <a href="../shared_presentation_widgets_sidebar/SidebarWrapperMixin-mixin.html">SidebarWrapperMixin</a> to your screen widget:#</li>
+</ol>
+<pre class="language-dart"><code class="language-dart">import 'package:lb_planner/shared/shared.dart';
+
+@PageRoute()
+class MyScreen extends StatelessWidget with SidebarWrapperMixin  {
+//                                          ^^^^^^^^^^^^^^^^^^^ &lt;-- add this
+  const MyScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      body: Center(
+        child: Text('My Screen'),
+      ),
+   );
+ }
+}
+</code></pre>
+<ol start="3">
+<li>Run <code>build_runner</code></li>
+</ol>
+<pre class="language-bash"><code class="language-bash">flutter pub run build_runner build --delete-conflicting-outputs
+</code></pre>
+<ol start="4">
+<li>Add the generated route to the <a href="../app_router/AppRouter/routes.html">routes</a> list:</li>
+</ol>
+<pre class="language-dart"><code class="language-dart">@override
+List&lt;AutoRoute&gt; get routes =&gt; [
+      DefaultRoute(
+        page: ThemeDevelopmentRoute.page,
+        path: '/theme-development',
+      ),
+      DefaultRoute(
+        page: MyRoute.page, // &lt;-- this is the generated route based off of [MyScreen]
+        path: '/my-route', // the path of the route
+      ),
+    ];
+</code></pre>
+<ol start="5">
+<li>
+<p>If you want the rote to appear in the sidebar, see <a href="../shared_presentation_widgets_sidebar/Sidebar-class.html">Sidebar</a>.</p>
+</li>
+<li>
+<p>For subroutes, just do the same and for the path use <code>parent-path/subroute-path</code>:</p>
+</li>
+</ol>
+<pre class="language-dart"><code class="language-dart">@override
+List&lt;AutoRoute&gt; get routes =&gt; [
+      DefaultRoute(
+        page: ThemeDevelopmentRoute.page,
+        path: '/theme-development',
+      ),
+      DefaultRoute(
+        page: MyRoute.page, // &lt;-- this is the generated route based off of [MyScreen]
+        path: '/theme-development/my-route', // in this example the parent path is '/theme-development', so [MyRoute] is a subroute of [ThemeDevelopmentRoute]
+      ),
+    ];
+</code></pre>
+<p>This is particularly useful when using the <a href="../shared_presentation_widgets_sidebar/Sidebar-class.html">Sidebar</a>. Consider having a main route like /admin accessible from the <a href="../shared_presentation_widgets_sidebar/Sidebar-class.html">Sidebar</a>, and under this main route, there might be additional pages not directly linked in the sidebar—subroutes. These subroutes, like /admin/sub-page, can be accessed through the main /admin route. To maintain a consistent navigation experience, the sidebar should highlight the admin item as active, even when navigating its subroutes.</p>
+</section>
+
+
+    <section>
+      <dl class="dl-horizontal">
+        
+  <dt>Inheritance</dt>
+  <dd>
+    <ul class="gt-separated dark clazz-relationships">
+      <li><a href="https://api.flutter.dev/flutter/dart-core/Object-class.html">Object</a></li>
+        <li><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RoutingController-class.html">RoutingController</a></li>
+        <li><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/StackRouter-class.html">StackRouter</a></li>
+        <li><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RootStackRouter-class.html">RootStackRouter</a></li>
+      <li>AppRouter</li>
+    </ul>
+  </dd>
+
+        
+        
+
+
+
+        
+  <dt>Annotations</dt>
+  <dd>
+    <ul class="annotation-list clazz-relationships">
+        <li>@<a href="https://pub.dev/documentation/auto_route/7.8.4/annotations/AutoRouterConfig-class.html">AutoRouterConfig</a>(replaceInRouteName: &#39;Screen,Route&#39;)</li>
+    </ul>
+  </dd>
+
+
+      </dl>
+    </section>
+
+    
+  <section class="summary offset-anchor" id="constructors">
+    <h2>Constructors</h2>
+
+    <dl class="constructor-summary-list">
+        <dt id="AppRouter" class="callable">
+          <span class="name"><a href="../app_router/AppRouter/AppRouter.html">AppRouter</a></span><span class="signature">()</span>
+        </dt>
+        <dd>
+          
+        </dd>
+    </dl>
+  </section>
+
+    <section class="summary offset-anchor" id="instance-properties">
+      <h2>Properties</h2>
+
+      <dl class="properties">
+        <dt id="activeGuardObserver" class="property inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/StackRouter/activeGuardObserver.html">activeGuardObserver</a></span>
+  <span class="signature">&#8594; <a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/ActiveGuardObserver-class.html">ActiveGuardObserver</a></span> 
+
+</dt>
+<dd class="inherited">
+  The active guards observer of this controller
+  <div class="features"><span class="feature">final</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="canNavigateBack" class="property inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RoutingController/canNavigateBack.html">canNavigateBack</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> 
+
+</dt>
+<dd class="inherited">
+  See <code>NavigationHistory.canNavigateBack</code>
+  <div class="features"><span class="feature">read-only</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="childControllers" class="property inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RoutingController/childControllers.html">childControllers</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RoutingController-class.html">RoutingController</a></span>&gt;</span></span> 
+
+</dt>
+<dd class="inherited">
+  Holds track of the list of attached child controllers
+  <div class="features"><span class="feature">read-only</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="current" class="property inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/StackRouter/current.html">current</a></span>
+  <span class="signature">&#8594; <a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RouteData-class.html">RouteData</a></span> 
+
+</dt>
+<dd class="inherited">
+  Returns <a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/StackRouter/currentChild.html">currentChild</a> if it's rendered
+otherwise returns parent <a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RootStackRouter/routeData.html">routeData</a>
+  <div class="features"><span class="feature">read-only</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="currentChild" class="property inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/StackRouter/currentChild.html">currentChild</a></span>
+  <span class="signature">&#8594; <a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RouteData-class.html">RouteData</a>?</span> 
+
+</dt>
+<dd class="inherited">
+  The active child representation of an implementation of this controller
+  <div class="features"><span class="feature">read-only</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="currentPath" class="property inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RoutingController/currentPath.html">currentPath</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> 
+
+</dt>
+<dd class="inherited">
+  Helper to access <code>NavigationHistory.urlState.path</code>
+  <div class="features"><span class="feature">read-only</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="currentSegments" class="property inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RoutingController/currentSegments.html">currentSegments</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RouteMatch-class.html">RouteMatch</a></span>&gt;</span></span> 
+
+</dt>
+<dd class="inherited">
+  Collects the top-most visitable current-child of
+every top-most nested controller considering this controller as root
+  <div class="features"><span class="feature">read-only</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="currentUrl" class="property inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RoutingController/currentUrl.html">currentUrl</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> 
+
+</dt>
+<dd class="inherited">
+  Helper to access <code>NavigationHistory.urlState.url</code>
+  <div class="features"><span class="feature">read-only</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="defaultRouteType" class="property inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RootStackRouter/defaultRouteType.html">defaultRouteType</a></span>
+  <span class="signature">&#8594; <a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RouteType-class.html">RouteType</a></span> 
+
+</dt>
+<dd class="inherited">
+  The default animation
+  <div class="features"><span class="feature">read-only</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="hasEntries" class="property inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RoutingController/hasEntries.html">hasEntries</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> 
+
+</dt>
+<dd class="inherited">
+  Whether this controller has rendered pages
+  <div class="features"><span class="feature">read-only</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="hashCode" class="property inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/dart-core/Object/hashCode.html">hashCode</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> 
+
+</dt>
+<dd class="inherited">
+  The hash code for this object.
+  <div class="features"><span class="feature">read-only</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="hasListeners" class="property inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/foundation/ChangeNotifier/hasListeners.html">hasListeners</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> 
+
+</dt>
+<dd class="inherited">
+  Whether any listeners are currently registered.
+  <div class="features"><span class="feature">read-only</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="hasPagelessTopRoute" class="property inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/StackRouter/hasPagelessTopRoute.html">hasPagelessTopRoute</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> 
+
+</dt>
+<dd class="inherited">
+  Whether the top-most route of this controller is page-less
+  <div class="features"><span class="feature">read-only</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="ignorePopCompleters" class="property inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RoutingController/ignorePopCompleters.html">ignorePopCompleters</a></span>
+  <span class="signature">&#8596; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> 
+
+</dt>
+<dd class="inherited">
+  Whether <a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/AutoRoutePage-class.html">AutoRoutePage</a> should await for pop-completer
+  <div class="features"><span class="feature">read / write</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="isRoot" class="property inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RoutingController/isRoot.html">isRoot</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> 
+
+</dt>
+<dd class="inherited">
+  Whether is controller is the root of all controllers
+  <div class="features"><span class="feature">read-only</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="isTopMost" class="property inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RoutingController/isTopMost.html">isTopMost</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> 
+
+</dt>
+<dd class="inherited">
+  Whether this controller has the top-most visible page
+  <div class="features"><span class="feature">read-only</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="key" class="property inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/StackRouter/key.html">key</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/foundation/LocalKey-class.html">LocalKey</a></span> 
+
+</dt>
+<dd class="inherited">
+  The Identifier key of this routing controller
+  <div class="features"><span class="feature">final</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="managedByWidget" class="property inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RootStackRouter/managedByWidget.html">managedByWidget</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> 
+
+</dt>
+<dd class="inherited">
+  Whether is router is used by a declarative-routing widget
+  <div class="features"><span class="feature">read-only</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="matcher" class="property inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RootStackRouter/matcher.html">matcher</a></span>
+  <span class="signature">&#8594; RouteMatcher</span> 
+
+</dt>
+<dd class="inherited">
+  The matcher used by this controller
+see <code>RouteMatcher</code>
+  <div class="features"><span class="feature">late</span><span class="feature">final</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="navigationHistory" class="property inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RootStackRouter/navigationHistory.html">navigationHistory</a></span>
+  <span class="signature">&#8594; NavigationHistory</span> 
+
+</dt>
+<dd class="inherited">
+  The instance of <code>NavigationHistory</code> to be used by this router
+  <div class="features"><span class="feature">read-only</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="navigatorKey" class="property inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/StackRouter/navigatorKey.html">navigatorKey</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/widgets/GlobalKey-class.html">GlobalKey</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/widgets/NavigatorState-class.html">NavigatorState</a></span>&gt;</span></span> 
+
+</dt>
+<dd class="inherited">
+  Navigator key passed to <a href="https://api.flutter.dev/flutter/widgets/Widget/key.html">Navigator.key</a>
+  <div class="features"><span class="feature">read-only</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="pageBuilder" class="property inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RootStackRouter/pageBuilder.html">pageBuilder</a></span>
+  <span class="signature">&#8594; <a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/PageBuilder.html">PageBuilder</a></span> 
+
+</dt>
+<dd class="inherited">
+  The builder used to build routable pages
+  <div class="features"><span class="feature">read-only</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="pageCount" class="property inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RoutingController/pageCount.html">pageCount</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> 
+
+</dt>
+<dd class="inherited">
+  The count of rendered pages
+  <div class="features"><span class="feature">read-only</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="pagelessRoutesObserver" class="property inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/StackRouter/pagelessRoutesObserver.html">pagelessRoutesObserver</a></span>
+  <span class="signature">&#8594; PagelessRoutesObserver</span> 
+
+</dt>
+<dd class="inherited">
+  The page-less route observer of this controller
+  <div class="features"><span class="feature">final</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="pagesMap" class="property inherited">
+  <span class="name"><a href="../app_router/AppRouter/pagesMap.html">pagesMap</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>, <span class="type-parameter"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/PageFactory.html">PageFactory</a></span>&gt;</span></span> 
+
+</dt>
+<dd class="inherited">
+  The map holding the page names and their factories
+  <div class="features"><span class="feature">final</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="parentAsStackRouter" class="property inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RoutingController/parentAsStackRouter.html">parentAsStackRouter</a></span>
+  <span class="signature">&#8594; <a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/StackRouter-class.html">StackRouter</a>?</span> 
+
+</dt>
+<dd class="inherited">
+  Returns parent route as <a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/StackRouter-class.html">StackRouter</a>
+  <div class="features"><span class="feature">read-only</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="pathState" class="property inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RoutingController/pathState.html">pathState</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/Object-class.html">Object</a>?</span> 
+
+</dt>
+<dd class="inherited">
+  See <code>NavigationHistory.pathState</code>
+  <div class="features"><span class="feature">read-only</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="pendingRoutesHandler" class="property inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/StackRouter/pendingRoutesHandler.html">pendingRoutesHandler</a></span>
+  <span class="signature">&#8594; <a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/PendingRoutesHandler-class.html">PendingRoutesHandler</a></span> 
+
+</dt>
+<dd class="inherited">
+  The pending routes handler for this controller
+  <div class="features"><span class="feature">late</span><span class="feature">final</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="root" class="property inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RoutingController/root.html">root</a></span>
+  <span class="signature">&#8594; <a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RootStackRouter-class.html">RootStackRouter</a></span> 
+
+</dt>
+<dd class="inherited">
+  Returns the root router as <a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RootStackRouter-class.html">RootStackRouter</a>
+  <div class="features"><span class="feature">read-only</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="routeCollection" class="property inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RootStackRouter/routeCollection.html">routeCollection</a></span>
+  <span class="signature">&#8594; <a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RouteCollection-class.html">RouteCollection</a></span> 
+
+</dt>
+<dd class="inherited">
+  The list of routes consumed by this controller
+  <div class="features"><span class="feature">late</span><span class="feature">final</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="routeData" class="property inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RootStackRouter/routeData.html">routeData</a></span>
+  <span class="signature">&#8594; <a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RouteData-class.html">RouteData</a></span> 
+
+</dt>
+<dd class="inherited">
+  The data of the parent route
+  <div class="features"><span class="feature">read-only</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="routes" class="property">
+  <span class="name"><a href="../app_router/AppRouter/routes.html">routes</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/AutoRoute-class.html">AutoRoute</a></span>&gt;</span></span> 
+
+</dt>
+<dd>
+  The list of route entries to match against
+  <div class="features"><span class="feature">read-only</span><span class="feature">override</span></div>
+
+</dd>
+
+        <dt id="runtimeType" class="property inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/dart-core/Object/runtimeType.html">runtimeType</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/Type-class.html">Type</a></span> 
+
+</dt>
+<dd class="inherited">
+  A representation of the runtime type of the object.
+  <div class="features"><span class="feature">read-only</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="stack" class="property inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/StackRouter/stack.html">stack</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/AutoRoutePage-class.html">AutoRoutePage</a></span>&gt;</span></span> 
+
+</dt>
+<dd class="inherited">
+  The current pages stack of this controller
+  <div class="features"><span class="feature">read-only</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="stackData" class="property inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RoutingController/stackData.html">stackData</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RouteData-class.html">RouteData</a></span>&gt;</span></span> 
+
+</dt>
+<dd class="inherited">
+  Returns an unmodifiable lis of current pages stack data
+  <div class="features"><span class="feature">read-only</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="stateHash" class="property inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/StackRouter/stateHash.html">stateHash</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> 
+
+</dt>
+<dd class="inherited">
+  Takes a state snapshot of the current segments
+  <div class="features"><span class="feature">read-only</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="topMatch" class="property inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RoutingController/topMatch.html">topMatch</a></span>
+  <span class="signature">&#8594; <a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RouteMatch-class.html">RouteMatch</a></span> 
+
+</dt>
+<dd class="inherited">
+  The top-most rendered or pending route match
+  <div class="features"><span class="feature">read-only</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="topPage" class="property inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RoutingController/topPage.html">topPage</a></span>
+  <span class="signature">&#8594; <a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/AutoRoutePage-class.html">AutoRoutePage</a>?</span> 
+
+</dt>
+<dd class="inherited">
+  The top-most visible page
+  <div class="features"><span class="feature">read-only</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="topRoute" class="property inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/StackRouter/topRoute.html">topRoute</a></span>
+  <span class="signature">&#8594; <a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RouteData-class.html">RouteData</a></span> 
+
+</dt>
+<dd class="inherited">
+  The top-most rendered route
+  <div class="features"><span class="feature">read-only</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="urlState" class="property inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RoutingController/urlState.html">urlState</a></span>
+  <span class="signature">&#8594; <a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/UrlState-class.html">UrlState</a></span> 
+
+</dt>
+<dd class="inherited">
+  Helper to access <code>NavigationHistory.urlState</code>
+  <div class="features"><span class="feature">read-only</span><span class="feature">inherited</span></div>
+
+</dd>
+
+      </dl>
+    </section>
+
+    
+  <section
+      class="summary offset-anchor inherited"
+      id="instance-methods">
+    <h2>Methods</h2>
+    <dl class="callables">
+        <dt id="addListener" class="callable inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/foundation/ChangeNotifier/addListener.html">addListener</a></span><span class="signature">(<wbr><span class="parameter" id="addListener-param-listener"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/VoidCallback.html">VoidCallback</a></span> <span class="parameter-name">listener</span></span>)
+    <span class="returntype parameter">&#8594; void</span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Register a closure to be called when the object changes.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="attachChildController" class="callable inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RoutingController/attachChildController.html">attachChildController</a></span><span class="signature">(<wbr><span class="parameter" id="attachChildController-param-childController"><span class="type-annotation"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RoutingController-class.html">RoutingController</a></span> <span class="parameter-name">childController</span></span>)
+    <span class="returntype parameter">&#8594; void</span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Adds the given controller to the list of <a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RoutingController/childControllers.html">childControllers</a>
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="back" class="callable inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RoutingController/back.html">back</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; void</span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  See <code>NavigationHistory.back</code>
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="buildPageRoute" class="callable inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RoutingController/buildPageRoute.html">buildPageRoute</a></span><span class="signature">(<wbr><span class="parameter" id="buildPageRoute-param-path"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">path</span>, </span><span class="parameter" id="buildPageRoute-param-includePrefixMatches">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">includePrefixMatches</span> = <span class="default-value">true</span>}</span>)
+    <span class="returntype parameter">&#8594; <a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/PageRouteInfo-class.html">PageRouteInfo</a>?</span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Finds match of <code>path</code> then returns a route-able entity
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="buildPageRoutesStack" class="callable inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RoutingController/buildPageRoutesStack.html">buildPageRoutesStack</a></span><span class="signature">(<wbr><span class="parameter" id="buildPageRoutesStack-param-path"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">path</span>, </span><span class="parameter" id="buildPageRoutesStack-param-includePrefixMatches">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">includePrefixMatches</span> = <span class="default-value">true</span>}</span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/PageRouteInfo-class.html">PageRouteInfo</a></span>&gt;</span>?</span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Finds matches of <code>path</code> then returns a list of route-able entities
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="canPop" class="callable inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/StackRouter/canPop.html">canPop</a></span><span class="signature">(<wbr><span class="parameter" id="canPop-param-ignoreChildRoutes">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">ignoreChildRoutes</span> = <span class="default-value">false</span>, </span><span class="parameter" id="canPop-param-ignoreParentRoutes"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">ignoreParentRoutes</span> = <span class="default-value">false</span>, </span><span class="parameter" id="canPop-param-ignorePagelessRoutes"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">ignorePagelessRoutes</span> = <span class="default-value">false</span>}</span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Whether this controller can preform <a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/StackRouter/pop.html">pop</a>
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="config" class="callable inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RootStackRouter/config.html">config</a></span><span class="signature">(<wbr><span class="parameter" id="config-param-initialRoutes">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/PageRouteInfo-class.html">PageRouteInfo</a></span>&gt;</span>?</span> <span class="parameter-name">initialRoutes</span>, </span><span class="parameter" id="config-param-initialDeepLink"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">initialDeepLink</span>, </span><span class="parameter" id="config-param-deepLinkBuilder"><span class="type-annotation"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/DeepLinkBuilder.html">DeepLinkBuilder</a>?</span> <span class="parameter-name">deepLinkBuilder</span>, </span><span class="parameter" id="config-param-navRestorationScopeId"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">navRestorationScopeId</span>, </span><span class="parameter" id="config-param-placeholder"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/WidgetBuilder.html">WidgetBuilder</a>?</span> <span class="parameter-name">placeholder</span>, </span><span class="parameter" id="config-param-navigatorObservers"><span class="type-annotation"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/NavigatorObserversBuilder.html">NavigatorObserversBuilder</a></span> <span class="parameter-name">navigatorObservers</span> = <span class="default-value">AutoRouterDelegate.defaultNavigatorObserversBuilder</span>, </span><span class="parameter" id="config-param-includePrefixMatches"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">includePrefixMatches</span> = <span class="default-value">!kIsWeb</span>, </span><span class="parameter" id="config-param-neglectWhen"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">neglectWhen</span>(<span class="parameter" id="param-location"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">location</span></span>)?, </span><span class="parameter" id="config-param-rebuildStackOnDeepLink"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">rebuildStackOnDeepLink</span> = <span class="default-value">false</span>, </span><span class="parameter" id="config-param-reevaluateListenable"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Listenable-class.html">Listenable</a>?</span> <span class="parameter-name">reevaluateListenable</span>}</span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/widgets/RouterConfig-class.html">RouterConfig</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/UrlState-class.html">UrlState</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Returns a <a href="https://api.flutter.dev/flutter/widgets/RouterConfig-class.html">RouterConfig</a> instead to be passed
+to <a href="https://api.flutter.dev/flutter/material/MaterialApp/MaterialApp.router.html">MaterialApp.router</a>
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="currentHierarchy" class="callable inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RoutingController/currentHierarchy.html">currentHierarchy</a></span><span class="signature">(<wbr><span class="parameter" id="currentHierarchy-param-asPath">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">asPath</span> = <span class="default-value">false</span>, </span><span class="parameter" id="currentHierarchy-param-ignorePending"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">ignorePending</span> = <span class="default-value">false</span>, </span><span class="parameter" id="currentHierarchy-param-ignoreParams"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">ignoreParams</span> = <span class="default-value">false</span>}</span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/HierarchySegment-class.html">HierarchySegment</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Builds a simplified hierarchy of current stacks
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="declarativeDelegate" class="callable inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RootStackRouter/declarativeDelegate.html">declarativeDelegate</a></span><span class="signature">(<wbr><span class="parameter" id="declarativeDelegate-param-routes">{<span>required</span> <span class="type-annotation"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RoutesBuilder.html">RoutesBuilder</a></span> <span class="parameter-name">routes</span>, </span><span class="parameter" id="declarativeDelegate-param-navRestorationScopeId"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">navRestorationScopeId</span>, </span><span class="parameter" id="declarativeDelegate-param-onPopRoute"><span class="type-annotation"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RoutePopCallBack.html">RoutePopCallBack</a>?</span> <span class="parameter-name">onPopRoute</span>, </span><span class="parameter" id="declarativeDelegate-param-initialDeepLink"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">initialDeepLink</span>, </span><span class="parameter" id="declarativeDelegate-param-onNavigate"><span class="type-annotation"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/OnNavigateCallBack.html">OnNavigateCallBack</a>?</span> <span class="parameter-name">onNavigate</span>, </span><span class="parameter" id="declarativeDelegate-param-deepLinkBuilder"><span class="type-annotation"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/DeepLinkBuilder.html">DeepLinkBuilder</a>?</span> <span class="parameter-name">deepLinkBuilder</span>, </span><span class="parameter" id="declarativeDelegate-param-navigatorObservers"><span class="type-annotation"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/NavigatorObserversBuilder.html">NavigatorObserversBuilder</a></span> <span class="parameter-name">navigatorObservers</span> = <span class="default-value">AutoRouterDelegate.defaultNavigatorObserversBuilder</span>}</span>)
+    <span class="returntype parameter">&#8594; <a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/AutoRouterDelegate-class.html">AutoRouterDelegate</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Builds a lazy instance of <a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/AutoRouterDelegate/AutoRouterDelegate.declarative.html">AutoRouterDelegate.declarative</a>
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="defaultRouteParser" class="callable inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RootStackRouter/defaultRouteParser.html">defaultRouteParser</a></span><span class="signature">(<wbr><span class="parameter" id="defaultRouteParser-param-includePrefixMatches">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">includePrefixMatches</span> = <span class="default-value">!kIsWeb</span>}</span>)
+    <span class="returntype parameter">&#8594; <a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/DefaultRouteParser-class.html">DefaultRouteParser</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Builds a lazy instance of <a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/DefaultRouteParser-class.html">DefaultRouteParser</a>
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="delegate" class="callable inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RootStackRouter/delegate.html">delegate</a></span><span class="signature">(<wbr><span class="parameter" id="delegate-param-initialRoutes">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/PageRouteInfo-class.html">PageRouteInfo</a></span>&gt;</span>?</span> <span class="parameter-name">initialRoutes</span>, </span><span class="parameter" id="delegate-param-initialDeepLink"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">initialDeepLink</span>, </span><span class="parameter" id="delegate-param-navRestorationScopeId"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">navRestorationScopeId</span>, </span><span class="parameter" id="delegate-param-placeholder"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/WidgetBuilder.html">WidgetBuilder</a>?</span> <span class="parameter-name">placeholder</span>, </span><span class="parameter" id="delegate-param-navigatorObservers"><span class="type-annotation"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/NavigatorObserversBuilder.html">NavigatorObserversBuilder</a></span> <span class="parameter-name">navigatorObservers</span> = <span class="default-value">AutoRouterDelegate.defaultNavigatorObserversBuilder</span>, </span><span class="parameter" id="delegate-param-deepLinkBuilder"><span class="type-annotation"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/DeepLinkBuilder.html">DeepLinkBuilder</a>?</span> <span class="parameter-name">deepLinkBuilder</span>, </span><span class="parameter" id="delegate-param-rebuildStackOnDeepLink"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">rebuildStackOnDeepLink</span> = <span class="default-value">false</span>, </span><span class="parameter" id="delegate-param-reevaluateListenable"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/foundation/Listenable-class.html">Listenable</a>?</span> <span class="parameter-name">reevaluateListenable</span>}</span>)
+    <span class="returntype parameter">&#8594; <a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/AutoRouterDelegate-class.html">AutoRouterDelegate</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Builds a lazy instance of <a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/AutoRouterDelegate-class.html">AutoRouterDelegate</a>
+_lazyRootDelegate is only built one time
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="dispose" class="callable inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/StackRouter/dispose.html">dispose</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; void</span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Discards any resources used by the object. After this is called, the
+object is not in a usable state and should be discarded (calls to
+<a href="https://api.flutter.dev/flutter/foundation/ChangeNotifier/addListener.html">addListener</a> will throw after the object is disposed).
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="innerRouterOf" class="callable inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RoutingController/innerRouterOf.html">innerRouterOf</a></span><span class="signature">&lt;<wbr><span class="type-parameter">T extends <a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RoutingController-class.html">RoutingController</a></span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="innerRouterOf-param-routeName"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">routeName</span></span>)
+    <span class="returntype parameter">&#8594; T?</span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Finds a child route corresponding to <code>routeName</code>
+and casts it to <code>T</code>
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="isPathActive" class="callable inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RoutingController/isPathActive.html">isPathActive</a></span><span class="signature">(<wbr><span class="parameter" id="isPathActive-param-path"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">path</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  See <code>NavigationHistory.isPathActive</code>
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="isRouteActive" class="callable inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RoutingController/isRouteActive.html">isRouteActive</a></span><span class="signature">(<wbr><span class="parameter" id="isRouteActive-param-routeName"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">routeName</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  See <code>NavigationHistory.isRouteActive</code>
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="isRouteDataActive" class="callable inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RoutingController/isRouteDataActive.html">isRouteDataActive</a></span><span class="signature">(<wbr><span class="parameter" id="isRouteDataActive-param-data"><span class="type-annotation"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RouteData-class.html">RouteData</a></span> <span class="parameter-name">data</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  See <code>NavigationHistory.isRouteDataActive</code>
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="markUrlStateForReplace" class="callable inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RoutingController/markUrlStateForReplace.html">markUrlStateForReplace</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; void</span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  See <code>NavigationHistory.markUrlStateForReplace</code>
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="match" class="callable inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RoutingController/match.html">match</a></span><span class="signature">(<wbr><span class="parameter" id="match-param-route"><span class="type-annotation"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/PageRouteInfo-class.html">PageRouteInfo</a></span> <span class="parameter-name">route</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RouteMatch-class.html">RouteMatch</a>?</span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Helper to find route match
+See <code>RouteMatcher.matchByRoute</code>
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="navigate" class="callable inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RoutingController/navigate.html">navigate</a></span><span class="signature">(<wbr><span class="parameter" id="navigate-param-route"><span class="type-annotation"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/PageRouteInfo-class.html">PageRouteInfo</a></span> <span class="parameter-name">route</span>, </span><span class="parameter" id="navigate-param-onFailure">{<span class="type-annotation"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/OnNavigationFailure.html">OnNavigationFailure</a>?</span> <span class="parameter-name">onFailure</span>}</span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Pops until given <code>route</code>, if it already exists in stack
+otherwise adds it to the stack (good for web Apps and to avoid duplicate entries).
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="navigateAll" class="callable inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/StackRouter/navigateAll.html">navigateAll</a></span><span class="signature">(<wbr><span class="parameter" id="navigateAll-param-routes"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RouteMatch-class.html">RouteMatch</a></span>&gt;</span></span> <span class="parameter-name">routes</span>, </span><span class="parameter" id="navigateAll-param-onFailure">{<span class="type-annotation"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/OnNavigationFailure.html">OnNavigationFailure</a>?</span> <span class="parameter-name">onFailure</span>}</span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">void</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Preforms pop-until finds cosponsoring route with <code>routes</code>.first
+then pushes all <code>routes</code>
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="navigateBack" class="callable inherited">
+  <span class="name deprecated"><a class="deprecated" href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RoutingController/navigateBack.html">navigateBack</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; void</span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  See <code>NavigationHistory.back</code>
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="navigateNamed" class="callable inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RoutingController/navigateNamed.html">navigateNamed</a></span><span class="signature">(<wbr><span class="parameter" id="navigateNamed-param-path"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">path</span>, </span><span class="parameter" id="navigateNamed-param-includePrefixMatches">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">includePrefixMatches</span> = <span class="default-value">false</span>, </span><span class="parameter" id="navigateNamed-param-onFailure"><span class="type-annotation"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/OnNavigationFailure.html">OnNavigationFailure</a>?</span> <span class="parameter-name">onFailure</span>}</span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">void</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Pops until given <code>path</code>, if it already exists in stack
+otherwise adds it to the stack
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="noSuchMethod" class="callable inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">noSuchMethod</a></span><span class="signature">(<wbr><span class="parameter" id="noSuchMethod-param-invocation"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Invocation-class.html">Invocation</a></span> <span class="parameter-name">invocation</span></span>)
+    <span class="returntype parameter">&#8594; dynamic</span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Invoked when a nonexistent method or property is accessed.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="notifyAll" class="callable inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RoutingController/notifyAll.html">notifyAll</a></span><span class="signature">(<wbr><span class="parameter" id="notifyAll-param-forceUrlRebuild">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">forceUrlRebuild</span> = <span class="default-value">false</span>}</span>)
+    <span class="returntype parameter">&#8594; void</span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Notify this controller for changes then notify root controller
+if they're not the same
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="notifyListeners" class="callable inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/foundation/ChangeNotifier/notifyListeners.html">notifyListeners</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; void</span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Call all the registered listeners.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="parent" class="callable inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RoutingController/parent.html">parent</a></span><span class="signature">&lt;<wbr><span class="type-parameter">T extends <a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RoutingController-class.html">RoutingController</a></span>&gt;</span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; T?</span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Casts parent controller to <code>T</code>
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="pop" class="callable inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/StackRouter/pop.html">pop</a></span><span class="signature">&lt;<wbr><span class="type-parameter">T extends <a href="https://api.flutter.dev/flutter/dart-core/Object-class.html">Object</a>?</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="pop-param-result">[<span class="type-annotation">T?</span> <span class="parameter-name">result</span>]</span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Clients can either pop their own <code>_pages</code> stack
+or defer the call to a parent controller
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="popAndPush" class="callable inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/StackRouter/popAndPush.html">popAndPush</a></span><span class="signature">&lt;<wbr><span class="type-parameter">T extends <a href="https://api.flutter.dev/flutter/dart-core/Object-class.html">Object</a>?</span>, <span class="type-parameter">TO extends <a href="https://api.flutter.dev/flutter/dart-core/Object-class.html">Object</a>?</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="popAndPush-param-route"><span class="type-annotation"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/PageRouteInfo-class.html">PageRouteInfo</a></span> <span class="parameter-name">route</span>, </span><span class="parameter" id="popAndPush-param-result">{<span class="type-annotation">TO?</span> <span class="parameter-name">result</span>, </span><span class="parameter" id="popAndPush-param-onFailure"><span class="type-annotation"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/OnNavigationFailure.html">OnNavigationFailure</a>?</span> <span class="parameter-name">onFailure</span>}</span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">T?</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Pop the current route off the navigator and push the given <code>route</code> in its place.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="popAndPushAll" class="callable inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/StackRouter/popAndPushAll.html">popAndPushAll</a></span><span class="signature">(<wbr><span class="parameter" id="popAndPushAll-param-routes"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/PageRouteInfo-class.html">PageRouteInfo</a></span>&gt;</span></span> <span class="parameter-name">routes</span>, </span><span class="parameter" id="popAndPushAll-param-onFailure">{<span class="type-annotation">dynamic</span> <span class="parameter-name">onFailure</span>}</span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">void</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Pop the current route off the navigator and push all given <code>routes</code> in its place.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="popForced" class="callable inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/StackRouter/popForced.html">popForced</a></span><span class="signature">&lt;<wbr><span class="type-parameter">T extends <a href="https://api.flutter.dev/flutter/dart-core/Object-class.html">Object</a>?</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="popForced-param-result">[<span class="type-annotation">T?</span> <span class="parameter-name">result</span>]</span>)
+    <span class="returntype parameter">&#8594; void</span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Pop current route regardless if it's the last
+route in stack or the result of it's willPopScopes
+see <a href="https://api.flutter.dev/flutter/widgets/Navigator/pop.html">Navigator.pop</a>
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="popTop" class="callable inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RoutingController/popTop.html">popTop</a></span><span class="signature">&lt;<wbr><span class="type-parameter">T extends <a href="https://api.flutter.dev/flutter/dart-core/Object-class.html">Object</a>?</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="popTop-param-result">[<span class="type-annotation">T?</span> <span class="parameter-name">result</span>]</span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Calls <a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/StackRouter/pop.html">pop</a> on the controller with the top-most visible page
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="popUntil" class="callable inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/StackRouter/popUntil.html">popUntil</a></span><span class="signature">(<wbr><span class="parameter" id="popUntil-param-predicate"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/RoutePredicate.html">RoutePredicate</a></span> <span class="parameter-name">predicate</span>, </span><span class="parameter" id="popUntil-param-scoped">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">scoped</span> = <span class="default-value">true</span>}</span>)
+    <span class="returntype parameter">&#8594; void</span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Calls <a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/StackRouter/pop.html">pop</a> repeatedly on the navigator until the predicate returns true.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="popUntilRoot" class="callable inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/StackRouter/popUntilRoot.html">popUntilRoot</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; void</span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Pop the whole stack except for the first entry
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="popUntilRouteWithName" class="callable inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/StackRouter/popUntilRouteWithName.html">popUntilRouteWithName</a></span><span class="signature">(<wbr><span class="parameter" id="popUntilRouteWithName-param-name"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">name</span>, </span><span class="parameter" id="popUntilRouteWithName-param-scoped">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">scoped</span> = <span class="default-value">true</span>}</span>)
+    <span class="returntype parameter">&#8594; void</span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Helper to pop all routes until route with <code>name</code> is found
+see <a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/StackRouter/popUntil.html">popUntil</a>
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="popUntilRouteWithPath" class="callable inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/StackRouter/popUntilRouteWithPath.html">popUntilRouteWithPath</a></span><span class="signature">(<wbr><span class="parameter" id="popUntilRouteWithPath-param-path"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">path</span>, </span><span class="parameter" id="popUntilRouteWithPath-param-scoped">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">scoped</span> = <span class="default-value">true</span>}</span>)
+    <span class="returntype parameter">&#8594; void</span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Helper to pop all routes until route with <code>path</code> is found
+see <a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/StackRouter/popUntil.html">popUntil</a>
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="push" class="callable inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/StackRouter/push.html">push</a></span><span class="signature">&lt;<wbr><span class="type-parameter">T extends <a href="https://api.flutter.dev/flutter/dart-core/Object-class.html">Object</a>?</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="push-param-route"><span class="type-annotation"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/PageRouteInfo-class.html">PageRouteInfo</a></span> <span class="parameter-name">route</span>, </span><span class="parameter" id="push-param-onFailure">{<span class="type-annotation"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/OnNavigationFailure.html">OnNavigationFailure</a>?</span> <span class="parameter-name">onFailure</span>}</span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">T?</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Adds the corresponding page to given <code>route</code> to the <code>_pages</code> stack
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="pushAll" class="callable inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/StackRouter/pushAll.html">pushAll</a></span><span class="signature">(<wbr><span class="parameter" id="pushAll-param-routes"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/PageRouteInfo-class.html">PageRouteInfo</a></span>&gt;</span></span> <span class="parameter-name">routes</span>, </span><span class="parameter" id="pushAll-param-onFailure">{<span class="type-annotation"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/OnNavigationFailure.html">OnNavigationFailure</a>?</span> <span class="parameter-name">onFailure</span>}</span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">void</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Adds the corresponding pages to given <code>routes</code> list to the <code>_pages</code> stack at once
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="pushAndPopUntil" class="callable inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/StackRouter/pushAndPopUntil.html">pushAndPopUntil</a></span><span class="signature">&lt;<wbr><span class="type-parameter">T extends <a href="https://api.flutter.dev/flutter/dart-core/Object-class.html">Object</a>?</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="pushAndPopUntil-param-route"><span class="type-annotation"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/PageRouteInfo-class.html">PageRouteInfo</a></span> <span class="parameter-name">route</span>, </span><span class="parameter" id="pushAndPopUntil-param-predicate">{<span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/RoutePredicate.html">RoutePredicate</a></span> <span class="parameter-name">predicate</span>, </span><span class="parameter" id="pushAndPopUntil-param-scopedPopUntil"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">scopedPopUntil</span> = <span class="default-value">true</span>, </span><span class="parameter" id="pushAndPopUntil-param-onFailure"><span class="type-annotation"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/OnNavigationFailure.html">OnNavigationFailure</a>?</span> <span class="parameter-name">onFailure</span>}</span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">T?</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Push the given <code>route</code> onto the navigator, and then <a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/StackRouter/pop.html">pop</a> all the previous
+routes until the <code>predicate</code> returns true.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="pushNamed" class="callable inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/StackRouter/pushNamed.html">pushNamed</a></span><span class="signature">&lt;<wbr><span class="type-parameter">T extends <a href="https://api.flutter.dev/flutter/dart-core/Object-class.html">Object</a>?</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="pushNamed-param-path"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">path</span>, </span><span class="parameter" id="pushNamed-param-includePrefixMatches">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">includePrefixMatches</span> = <span class="default-value">false</span>, </span><span class="parameter" id="pushNamed-param-onFailure"><span class="type-annotation"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/OnNavigationFailure.html">OnNavigationFailure</a>?</span> <span class="parameter-name">onFailure</span>}</span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">T?</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Adds corresponding page to given <code>path</code> to <code>_pages</code> stack
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="pushNativeRoute" class="callable inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/StackRouter/pushNativeRoute.html">pushNativeRoute</a></span><span class="signature">&lt;<wbr><span class="type-parameter">T extends <a href="https://api.flutter.dev/flutter/dart-core/Object-class.html">Object</a>?</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="pushNativeRoute-param-route"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/Route-class.html">Route</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">route</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">T?</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Pushes a <a href="https://api.flutter.dev/flutter/widgets/Route-class.html">Route</a> to <a href="https://api.flutter.dev/flutter/widgets/Navigator-class.html">Navigator</a>
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="pushPathState" class="callable inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RoutingController/pushPathState.html">pushPathState</a></span><span class="signature">(<wbr><span class="parameter" id="pushPathState-param-state"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Object-class.html">Object</a>?</span> <span class="parameter-name">state</span></span>)
+    <span class="returntype parameter">&#8594; void</span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  See <code>NavigationHistory.pushPathState</code>
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="pushWidget" class="callable inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/StackRouter/pushWidget.html">pushWidget</a></span><span class="signature">&lt;<wbr><span class="type-parameter">T extends <a href="https://api.flutter.dev/flutter/dart-core/Object-class.html">Object</a>?</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="pushWidget-param-widget"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/Widget-class.html">Widget</a></span> <span class="parameter-name">widget</span>, </span><span class="parameter" id="pushWidget-param-transitionBuilder">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/RouteTransitionsBuilder.html">RouteTransitionsBuilder</a>?</span> <span class="parameter-name">transitionBuilder</span>, </span><span class="parameter" id="pushWidget-param-fullscreenDialog"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">fullscreenDialog</span> = <span class="default-value">false</span>, </span><span class="parameter" id="pushWidget-param-transitionDuration"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Duration-class.html">Duration</a></span> <span class="parameter-name">transitionDuration</span> = <span class="default-value">const Duration(milliseconds: 300)</span>, </span><span class="parameter" id="pushWidget-param-opaque"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">opaque</span> = <span class="default-value">true</span>}</span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">T?</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Pushes a raw widget to <a href="https://api.flutter.dev/flutter/widgets/Navigator-class.html">Navigator</a>
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="reevaluateGuards" class="callable inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/StackRouter/reevaluateGuards.html">reevaluateGuards</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">void</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Re-builds all routes in stack and reevaluate guarded
+once by re-visiting the onNavigation method when evaluation logic changes
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="removeChildController" class="callable inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RoutingController/removeChildController.html">removeChildController</a></span><span class="signature">(<wbr><span class="parameter" id="removeChildController-param-childController"><span class="type-annotation"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RoutingController-class.html">RoutingController</a></span> <span class="parameter-name">childController</span></span>)
+    <span class="returntype parameter">&#8594; void</span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  removes the given controller from the list of <a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RoutingController/childControllers.html">childControllers</a>
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="removeLast" class="callable inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/StackRouter/removeLast.html">removeLast</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Removes the very last entry from <code>_pages</code>
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="removeListener" class="callable inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/foundation/ChangeNotifier/removeListener.html">removeListener</a></span><span class="signature">(<wbr><span class="parameter" id="removeListener-param-listener"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/VoidCallback.html">VoidCallback</a></span> <span class="parameter-name">listener</span></span>)
+    <span class="returntype parameter">&#8594; void</span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Remove a previously registered closure from the list of closures that are
+notified when the object changes.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="removeRoute" class="callable inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/StackRouter/removeRoute.html">removeRoute</a></span><span class="signature">(<wbr><span class="parameter" id="removeRoute-param-route"><span class="type-annotation"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RouteData-class.html">RouteData</a></span> <span class="parameter-name">route</span>, </span><span class="parameter" id="removeRoute-param-notify">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">notify</span> = <span class="default-value">true</span>}</span>)
+    <span class="returntype parameter">&#8594; void</span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Removes given <code>route</code> and any corresponding controllers or redirect-guards
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="removeUntil" class="callable inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/StackRouter/removeUntil.html">removeUntil</a></span><span class="signature">(<wbr><span class="parameter" id="removeUntil-param-predicate"><span class="type-annotation"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RouteDataPredicate.html">RouteDataPredicate</a></span> <span class="parameter-name">predicate</span>, </span><span class="parameter" id="removeUntil-param-scoped">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">scoped</span> = <span class="default-value">true</span>}</span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Calls <a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/StackRouter/removeRoute.html">removeRoute</a> repeatedly until the predicate returns true.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="removeWhere" class="callable inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/StackRouter/removeWhere.html">removeWhere</a></span><span class="signature">(<wbr><span class="parameter" id="removeWhere-param-predicate"><span class="type-annotation"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RouteDataPredicate.html">RouteDataPredicate</a></span> <span class="parameter-name">predicate</span>, </span><span class="parameter" id="removeWhere-param-notify">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">notify</span> = <span class="default-value">true</span>}</span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Removes any route that satisfied the <code>predicate</code>.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="replace" class="callable inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/StackRouter/replace.html">replace</a></span><span class="signature">&lt;<wbr><span class="type-parameter">T extends <a href="https://api.flutter.dev/flutter/dart-core/Object-class.html">Object</a>?</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="replace-param-route"><span class="type-annotation"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/PageRouteInfo-class.html">PageRouteInfo</a></span> <span class="parameter-name">route</span>, </span><span class="parameter" id="replace-param-onFailure">{<span class="type-annotation"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/OnNavigationFailure.html">OnNavigationFailure</a>?</span> <span class="parameter-name">onFailure</span>}</span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">T?</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Removes last entry in stack and pushes given <code>route</code>
+if last entry == <code>route</code> page will just be updated
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="replaceAll" class="callable inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/StackRouter/replaceAll.html">replaceAll</a></span><span class="signature">(<wbr><span class="parameter" id="replaceAll-param-routes"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/PageRouteInfo-class.html">PageRouteInfo</a></span>&gt;</span></span> <span class="parameter-name">routes</span>, </span><span class="parameter" id="replaceAll-param-onFailure">{<span class="type-annotation"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/OnNavigationFailure.html">OnNavigationFailure</a>?</span> <span class="parameter-name">onFailure</span>, </span><span class="parameter" id="replaceAll-param-updateExistingRoutes"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">updateExistingRoutes</span> = <span class="default-value">true</span>}</span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">void</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Remove the whole current pages stack and push all given <code>routes</code>
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="replaceNamed" class="callable inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/StackRouter/replaceNamed.html">replaceNamed</a></span><span class="signature">&lt;<wbr><span class="type-parameter">T extends <a href="https://api.flutter.dev/flutter/dart-core/Object-class.html">Object</a>?</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="replaceNamed-param-path"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">path</span>, </span><span class="parameter" id="replaceNamed-param-includePrefixMatches">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">includePrefixMatches</span> = <span class="default-value">false</span>, </span><span class="parameter" id="replaceNamed-param-onFailure"><span class="type-annotation"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/OnNavigationFailure.html">OnNavigationFailure</a>?</span> <span class="parameter-name">onFailure</span>}</span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">T?</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Removes last entry in stack and pushes given <code>path</code>
+if last entry.path == <code>path</code> page will just be updated
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="routeInfoProvider" class="callable inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RootStackRouter/routeInfoProvider.html">routeInfoProvider</a></span><span class="signature">(<wbr><span class="parameter" id="routeInfoProvider-param-initialRouteInformation">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/widgets/RouteInformation-class.html">RouteInformation</a>?</span> <span class="parameter-name">initialRouteInformation</span>, </span><span class="parameter" id="routeInfoProvider-param-neglectWhen"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">neglectWhen</span>(<span class="parameter" id="param-location"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">location</span></span>)?}</span>)
+    <span class="returntype parameter">&#8594; <a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/AutoRouteInformationProvider-class.html">AutoRouteInformationProvider</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Builds a lazy instance of <a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/AutoRouteInformationProvider-class.html">AutoRouteInformationProvider</a>
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="topMostRouter" class="callable inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RoutingController/topMostRouter.html">topMostRouter</a></span><span class="signature">(<wbr><span class="parameter" id="topMostRouter-param-ignorePagelessRoutes">{<span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">ignorePagelessRoutes</span> = <span class="default-value">false</span>}</span>)
+    <span class="returntype parameter">&#8594; <a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RoutingController-class.html">RoutingController</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Finds the router with top-most visible page
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="toString" class="callable inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RoutingController/toString.html">toString</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  A string representation of this object.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="updateDeclarativeRoutes" class="callable inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/StackRouter/updateDeclarativeRoutes.html">updateDeclarativeRoutes</a></span><span class="signature">(<wbr><span class="parameter" id="updateDeclarativeRoutes-param-routes"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/PageRouteInfo-class.html">PageRouteInfo</a></span>&gt;</span></span> <span class="parameter-name">routes</span></span>)
+    <span class="returntype parameter">&#8594; void</span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Replaces the list of <code>_pages</code> with given <code>routes</code> result
+used by declarative routing widgets
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="updateRouteData" class="callable inherited">
+  <span class="name"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RootStackRouter/updateRouteData.html">updateRouteData</a></span><span class="signature">(<wbr><span class="parameter" id="updateRouteData-param-data"><span class="type-annotation"><a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RouteData-class.html">RouteData</a></span> <span class="parameter-name">data</span></span>)
+    <span class="returntype parameter">&#8594; void</span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Updates the value of <a href="https://pub.dev/documentation/auto_route/7.8.4/auto_route/RootStackRouter/routeData.html">routeData</a>
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+    </dl>
+  </section>
+    
+  <section
+      class="summary offset-anchor inherited"
+      id="operators">
+    <h2>Operators</h2>
+    <dl class="callables">
+        <dt id="operator ==" class="callable inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/dart-core/Object/operator_equals.html">operator ==</a></span><span class="signature">(<wbr><span class="parameter" id="==-param-other"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Object-class.html">Object</a></span> <span class="parameter-name">other</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  The equality operator.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+    </dl>
+  </section>
+    
+    
+    
+
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li><a href="../index.html">lb_planner</a></li>
+    <li><a href="../app_router/app_router-library.html">app_router</a></li>
+    <li class="self-crumb">AppRouter class</li>
+</ol>
+
+
+    <!--<h5>app_router library</h5>-->
+    <div id="dartdoc-sidebar-left-content"></div>
+  </div>
+
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    lb_planner
+      1.0.0+1
+  </span>
+
+  
+</footer>
+
+
+
+<script src="../static-assets/highlight.pack.js?v1"></script>
+<script src="../static-assets/docs.dart.js"></script>
+
+
+
+</body>
+
+</html>
+
