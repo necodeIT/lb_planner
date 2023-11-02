@@ -49,7 +49,7 @@ class user_get_user extends external_api {
     }
 
     /**
-     * Gives back the data of a user
+     * Gives back the data of a user.
      * Default: The user who calls this function
      * @param integer $userid (optional) gives back the data of the given user
      * @throws coding_exception
