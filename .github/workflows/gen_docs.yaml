@@ -40,7 +40,7 @@ jobs:
         
       - name: Generate API Docs
         working-directory: app
-        run: dart doc && python hide_libraries.py
+        run: dart doc && python hide_libs.py
 
       - name: Clear old documentation in /app subdir
         run: |
