@@ -37,7 +37,7 @@ class user_delete_user extends external_api {
         return new external_function_parameters(
             ['userid' => new external_value(
                 PARAM_INT,
-                'The Moodle id of the user to delete',
+                'The id of the user to delete',
                 VALUE_DEFAULT,
                 $USER->id,
                 NULL_NOT_ALLOWED
@@ -61,7 +61,7 @@ class user_delete_user extends external_api {
 
         // Check if User is in user table.
         if (!$DB->record_exists(user_helper::LB_PLANNER_USER_TABLE, array('userid' => $userid))) {
-            throw new moodle_exception('User is not registered in LB_Planner');
+            throw new moodle_exception('User is not registered in LB Planner');
         }
 
         $planid = plan_helper::get_plan_id($userid);

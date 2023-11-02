@@ -80,7 +80,7 @@ class user_get_all_users extends external_api {
         return new external_multiple_structure(
             new external_single_structure(
                 array(
-                    'userid' => new external_value(PARAM_INT, 'The Moodle id of the user'),
+                    'userid' => new external_value(PARAM_INT, 'The id of the user'),
                     'username' => new external_value(PARAM_TEXT, 'The username of the user'),
                     'firstname' => new external_value(PARAM_TEXT, 'The firstname of the user'),
                     'lastname' => new external_value(PARAM_TEXT, 'The lastname of the user'),
