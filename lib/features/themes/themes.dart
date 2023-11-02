@@ -1,2 +1,2 @@
 export 'domain/domain.dart';
-export 'presentation.dart';
+export 'presentation/presentation.dart';

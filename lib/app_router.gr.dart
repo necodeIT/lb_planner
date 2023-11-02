@@ -7,7 +7,7 @@
 // ignore_for_file: type=lint
 // coverage:ignore-file
 
-part of 'app_route.dart';
+part of 'app_router.dart';
 
 abstract class _$AppRouter extends RootStackRouter {
   // ignore: unused_element
@@ -18,7 +18,7 @@ abstract class _$AppRouter extends RootStackRouter {
     ThemeDevelopmentRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const ThemeDevelopmentScreen(),
+        child: WrappedRoute(child: const ThemeDevelopmentScreen()),
       );
     }
   };

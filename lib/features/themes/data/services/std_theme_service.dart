@@ -37,6 +37,11 @@ class StdThemeService extends ThemeService<ThemeData> {
         surface: themeBase.primaryColor,
         onSurface: themeBase.textColor,
       ),
+      scrollbarTheme: ScrollbarThemeData(
+        thumbColor: MaterialStateProperty.all<Color>(themeBase.tertiaryColor),
+        trackColor: MaterialStateProperty.all<Color>(themeBase.secondaryColor),
+        thickness: MaterialStateProperty.all<double>(5.0),
+      ),
       scaffoldBackgroundColor: themeBase.secondaryColor,
       textTheme: TextTheme(
         displayLarge: templateTheme.textTheme.displayLarge?.copyWith(

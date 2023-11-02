@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lb_planner/features/themes/themes.dart';
@@ -8,7 +7,8 @@ import 'package:lb_planner/shared/shared.dart';
 ///
 /// This screen is not meant to be used in production and should only be available when the app is in debug mode.
 @RoutePage()
-class ThemeDevelopmentScreen extends ConsumerStatefulWidget {
+class ThemeDevelopmentScreen extends ConsumerStatefulWidget
+    with SidebarWrapperMixin {
   /// A screen that eases the development of themes, as it shows all the different elements of a theme.
   ///
   /// This screen is not meant to be used in production and should only be available when the app is in debug mode.
@@ -19,8 +19,8 @@ class ThemeDevelopmentScreen extends ConsumerStatefulWidget {
       _ThemeDevelopmentScreenState();
 }
 
-class _ThemeDevelopmentScreenState extends ConsumerState<ThemeDevelopmentScreen>
-    implements AutoRouteWrapper {
+class _ThemeDevelopmentScreenState
+    extends ConsumerState<ThemeDevelopmentScreen> {
   late ThemeService<ThemeData> themeService;
   late ThemeBasesRepository themeBasesRepository;
 
@@ -37,30 +37,6 @@ class _ThemeDevelopmentScreenState extends ConsumerState<ThemeDevelopmentScreen>
       data: themeService.generateTheme(selectedThemeBase!),
       child: Builder(builder: (context) {
         return Scaffold(
-          appBar: AppBar(
-            title: Text('Theme Previewer'),
-            actions: [
-              DropdownButton<ThemeBase>(
-                icon: Icon(
-                  selectedThemeBase!.icon,
-                  color: selectedThemeBase!.iconColor,
-                ),
-                value: selectedThemeBase,
-                onChanged: (themeBase) {
-                  setState(() {
-                    selectedThemeBase = themeBase;
-                  });
-                },
-                items: [
-                  for (final themeBase in themeBasesRepository.getThemes())
-                    DropdownMenuItem(
-                      value: themeBase,
-                      child: Text(themeBase.name),
-                    ),
-                ],
-              ),
-            ],
-          ),
           body: SingleChildScrollView(
             padding: EdgeInsets.all(16),
             child: SizedBox(
@@ -68,6 +44,34 @@ class _ThemeDevelopmentScreenState extends ConsumerState<ThemeDevelopmentScreen>
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
+                  Row(
+                    children: [
+                      Icon(
+                        selectedThemeBase!.icon,
+                        color: selectedThemeBase!.iconColor,
+                      ),
+                      SizedBox(width: 8),
+                      Text(
+                        'Theme',
+                        style: Theme.of(context).textTheme.headlineMedium,
+                      ),
+                    ],
+                  ),
+                  DropdownButton<ThemeBase>(
+                    value: selectedThemeBase,
+                    onChanged: (themeBase) {
+                      setState(() {
+                        selectedThemeBase = themeBase;
+                      });
+                    },
+                    items: [
+                      for (final themeBase in themeBasesRepository.getThemes())
+                        DropdownMenuItem(
+                          value: themeBase,
+                          child: Text(themeBase.name),
+                        ),
+                    ],
+                  ),
                   Text(
                     'Typography',
                     style: Theme.of(context).textTheme.headlineMedium,
@@ -201,10 +205,5 @@ class _ThemeDevelopmentScreenState extends ConsumerState<ThemeDevelopmentScreen>
         );
       }),
     );
-  }
-
-  @override
-  Widget wrappedRoute(BuildContext context) {
-    return Sidebar(body: widget);
   }
 }
