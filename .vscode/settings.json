@@ -1,4 +1,5 @@
 {
+    "cmake.configureOnOpen": false
     // "dart.flutterTestAdditionalArgs": [
     //     "--no-sound-null-safety"
     // ],

@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="863.078" height="1081.211" viewBox="0 0 863.078 1081.211">
   <g id="Group_64" data-name="Group 64" transform="translate(0.052 0.216)">
-    <path id="Path_113" data-name="Path 113" d="M13476.137,1514.384s27.448,97,83.17,198.937,129.542,200.906,191.774,250.989c75.894,61.077,255,147.89,255,147.89s135.638,106.573,189.893,195.706,73.152,183.718,67.44,286.786c-.109,1.977-3.561.113-8.323,0-7.595-.177-18.5,0-18.5,0h-760.408Z" transform="translate(-13476.188 -1514.599)" fill="${NcVectorImage.accentColor}"/>
+    <path id="Path_113" data-name="Path 113" d="M13476.137,1514.384s27.448,97,83.17,198.937,129.542,200.906,191.774,250.989c75.894,61.077,255,147.89,255,147.89s135.638,106.573,189.893,195.706,73.152,183.718,67.44,286.786c-.109,1.977-3.561.113-8.323,0-7.595-.177-18.5,0-18.5,0h-760.408Z" transform="translate(-13476.188 -1514.599)" fill="{accentcolor}"/>
     <g id="undraw_Code_thinking_re_gka2" transform="translate(70 451)">
       <path id="Path_260" data-name="Path 260" d="M303.176,473.093a7.585,7.585,0,1,0-15.1,1l-21.792,28.537a10.565,10.565,0,0,0,1.428,11.6l1.709,1.994,7.843-1.569,8.889-7.844-1.046-8.889,10.981-17.256-.014-.012A7.579,7.579,0,0,0,303.176,473.093Z" transform="translate(-129.111 -283.592)" fill="#ffb9b9"/>
       <path id="Path_261" data-name="Path 261" d="M29.025,413.482l-3.557-13.211,49.264-20.006,5.25,19.5Z" transform="translate(-5.657 -84.468)" fill="#ffb8b8"/>
@@ -26,13 +26,13 @@
       <rect id="Rectangle_24" data-name="Rectangle 24" width="488.029" height="275.299" transform="translate(256.612 24.193)" fill="#fff"/>
       <circle id="Ellipse_25" data-name="Ellipse 25" cx="5.005" cy="5.005" r="5.005" transform="translate(495.204 6.674)" fill="#fff"/>
       <path id="Path_276" data-name="Path 276" d="M678.351,306.4H329.89V31.1Z" transform="translate(-73.278 -6.909)" fill="#f2f2f2"/>
-      <circle id="Ellipse_26" data-name="Ellipse 26" cx="46.911" cy="46.911" r="46.911" transform="translate(286.063 185.069)" fill="${NcVectorImage.accentColor}"/>
+      <circle id="Ellipse_26" data-name="Ellipse 26" cx="46.911" cy="46.911" r="46.911" transform="translate(286.063 185.069)" fill="{accentcolor}"/>
       <path id="Path_277" data-name="Path 277" d="M515.078,541.884a58.353,58.353,0,1,1,58.353-58.353,58.353,58.353,0,0,1-58.353,58.353Zm0-115.942a57.59,57.59,0,1,0,57.59,57.59,57.59,57.59,0,0,0-57.59-57.59Z" transform="translate(-171.661 -274.646)" fill="#3f3d56"/>
       <rect id="Rectangle_25" data-name="Rectangle 25" width="45.587" height="9.526" transform="translate(586.076 167.219)" fill="#3f3d56"/>
       <rect id="Rectangle_26" data-name="Rectangle 26" width="131.847" height="4.082" transform="translate(542.947 115.612)" fill="#3f3d56"/>
       <rect id="Rectangle_27" data-name="Rectangle 27" width="131.847" height="4.082" transform="translate(542.947 131.651)" fill="#3f3d56"/>
       <rect id="Rectangle_28" data-name="Rectangle 28" width="131.847" height="4.082" transform="translate(542.947 147.691)" fill="#3f3d56"/>
-      <rect id="Rectangle_29" data-name="Rectangle 29" width="19.051" height="19.051" transform="translate(691.061 40.668)" fill="${NcVectorImage.accentColor}"/>
+      <rect id="Rectangle_29" data-name="Rectangle 29" width="19.051" height="19.051" transform="translate(691.061 40.668)" fill="{accentcolor}"/>
       <path id="Path_278" data-name="Path 278" d="M1007.914,313.2H984.78V290.064h23.134Zm-22.128-1.006h21.122V291.07H985.787Z" transform="translate(-288.958 -244.633)" fill="#ccc"/>
       <path id="Path_279" data-name="Path 279" d="M929.037,609.065H881.409v-3.432a.68.68,0,0,0-.68-.68H864.4a.68.68,0,0,0-.68.68v3.432H853.511v-3.432a.68.68,0,0,0-.68-.68H836.5a.68.68,0,0,0-.68.68h0v3.432H825.615v-3.432a.68.68,0,0,0-.68-.68H808.6a.68.68,0,0,0-.68.68h0v3.432H797.718v-3.432a.68.68,0,0,0-.68-.68H780.708a.68.68,0,0,0-.68.68v3.432H769.821v-3.432a.68.68,0,0,0-.68-.68H752.811a.68.68,0,0,0-.68.68h0v3.432H741.925v-3.432a.681.681,0,0,0-.68-.68h-16.33a.68.68,0,0,0-.68.68h0v3.432H714.028v-3.432a.68.68,0,0,0-.68-.68H585.431a.68.68,0,0,0-.68.68h0v3.432H574.544v-3.432a.68.68,0,0,0-.68-.68H557.535a.68.68,0,0,0-.68.68h0v3.432H546.648v-3.432a.68.68,0,0,0-.68-.68h-16.33a.68.68,0,0,0-.68.68h0v3.432H518.751v-3.432a.68.68,0,0,0-.68-.68H501.741a.68.68,0,0,0-.68.68h0v3.432H490.855v-3.432a.68.68,0,0,0-.68-.68h-16.33a.68.68,0,0,0-.68.68h0v3.432H462.958v-3.432a.68.68,0,0,0-.68-.68h-16.33a.68.68,0,0,0-.68.68v3.432H435.061v-3.432a.68.68,0,0,0-.68-.68h-16.33a.68.68,0,0,0-.68.68h0v3.432h-31.3a16.33,16.33,0,0,0-16.33,16.33v7.384a16.33,16.33,0,0,0,16.329,16.329H929.036a16.33,16.33,0,0,0,16.33-16.33v-7.384a16.33,16.33,0,0,0-16.329-16.33Z" transform="translate(-152.34 -314.579)" fill="#3f3d56"/>
     </g>

@@ -17,7 +17,7 @@ class VectorImage extends StatelessWidget {
       {Key? key, this.width, this.height, this.alignment = Alignment.center})
       : super(key: key);
 
-  /// The SVG code to render.
+  /// The path to the image.
   final String asset;
 
   /// The width of the image.
@@ -30,10 +30,10 @@ class VectorImage extends StatelessWidget {
   final Alignment alignment;
 
   /// Interpolate this into the SVG code to use the accent color of the current theme.
-  static const accentColor = "{ncaccentcolor}";
+  static const accentColor = "{accentcolor}";
 
   /// Interpolate this into the SVG code to use the text color of the current theme.
-  static const textColor = "{nctextcolor}";
+  static const textColor = "{textcolor}";
 
   /// Interpolate this into the SVG code to use the secondary color of the current theme.
   static const secondaryColor = "{secondarycolor}";
@@ -90,7 +90,7 @@ class VectorImage extends StatelessWidget {
           );
         }
         return SvgPicture.string(
-          svg(asset, context),
+          svg(snapshot.data!, context),
           width: width,
           height: height,
           alignment: alignment,

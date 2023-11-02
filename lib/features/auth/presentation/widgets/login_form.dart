@@ -41,56 +41,65 @@ class _LoginFormState extends ConsumerState<LoginForm> {
 
     final userToken = ref.watch(userTokenProvider);
 
-    return ConstrainedBox(
-      constraints: BoxConstraints(maxWidth: LoginForm.width),
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Logo(
-              size: 80,
-            ),
-            SizedBox(width: 30, height: 30),
-            TextField(
-              controller: _userNameController,
-              decoration: InputDecoration(
-                helperText: t.login_username,
-                errorText: t.login_invalidUsernameOrPassword,
+    return Material(
+      child: ConstrainedBox(
+        constraints: BoxConstraints(maxWidth: LoginForm.width),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Logo(
+                size: 80,
               ),
-              onSubmitted: (_) => _pwFocusNode.requestFocus(),
-            ),
-            SizedBox(width: 25, height: 25),
-            TextField(
-              focusNode: _pwFocusNode,
-              controller: _passwordController,
-              obscureText: !_showPassword,
-              decoration: InputDecoration(
+              SizedBox(width: 30, height: 30),
+              TextField(
+                controller: _userNameController,
+                decoration: InputDecoration(
                   helperText: t.login_username,
                   errorText: t.login_invalidUsernameOrPassword,
-                  suffix: GestureDetector(
-                    child: Icon(
-                      _showPassword ? Icons.visibility_off : Icons.visibility,
-                      size: 20,
-                    ),
-                    onTap: _togglePassword,
-                  )),
-              onSubmitted: (_) => tokenController.login(
-                  _userNameController.text, _passwordController.text),
-            ),
-            SizedBox(width: 30, height: 30),
-            SizedBox(
-              width: LoginForm.width,
-              child: ElevatedButton(
-                child: userToken.isLoading
-                    ? SizedBox(
-                        width: LoginForm.width,
-                        child: CircularProgressIndicator())
-                    : Text(t.auth_loginForm_login),
-                onPressed: () => tokenController.login(
+                ),
+                onSubmitted: (_) => _pwFocusNode.requestFocus(),
+              ),
+              SizedBox(width: 25, height: 25),
+              TextField(
+                focusNode: _pwFocusNode,
+                controller: _passwordController,
+                obscureText: !_showPassword,
+                decoration: InputDecoration(
+                    helperText: t.login_username,
+                    errorText: t.login_invalidUsernameOrPassword,
+                    suffix: GestureDetector(
+                      child: Icon(
+                        _showPassword ? Icons.visibility_off : Icons.visibility,
+                        size: 20,
+                      ),
+                      onTap: _togglePassword,
+                    )),
+                onSubmitted: (_) => tokenController.login(
                     _userNameController.text, _passwordController.text),
               ),
-            ),
-          ],
+              SizedBox(width: 30, height: 30),
+              SizedBox(
+                width: LoginForm.width,
+                child: ElevatedButton(
+                  child: userToken.isLoading
+                      ? SizedBox(
+                          width: 13,
+                          height: 13,
+                          child: Center(
+                            child: CircularProgressIndicator(
+                              strokeWidth: 2,
+                              color: context.theme.colorScheme.onPrimary,
+                            ),
+                          ),
+                        )
+                      : Text(t.auth_loginForm_login),
+                  onPressed: () => tokenController.login(
+                      _userNameController.text, _passwordController.text),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -16,7 +16,7 @@ class Logo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return VectorImage(
-      'assets/logo.svg',
+      'assets/svg/logo.svg',
       height: size,
       width: size,
       alignment: alignment,
