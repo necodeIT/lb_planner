@@ -28,7 +28,7 @@ use local_lbplanner\helpers\notifications_helper;
 use moodle_exception;
 
 /**
- * Removes all user data stored by the lbplanner app
+ * Removes all user data stored by the lbplanner app.
  * Admins can pass a userid to delete the user with the given id
  * @package    local_lbplanner
  * @copyright  2023 LB Planner
@@ -50,6 +50,7 @@ class user_delete_user extends external_api {
 
     /**
      * Removes all user data stored by the lbplanner app
+     * @param int $userid (optional) the id of the user to delete
      * @throws dml_exception
      * @throws moodle_exception
      */
