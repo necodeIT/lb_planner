@@ -13,6 +13,9 @@ class StdThemeService extends ThemeService<ThemeData> {
       primaryColor: themeBase.secondaryColor,
       dividerColor: themeBase.tertiaryColor,
       canvasColor: themeBase.primaryColor,
+      iconTheme: templateTheme.iconTheme.copyWith(
+        color: themeBase.textColor,
+      ),
       extensions: <ThemeExtension<dynamic>>[
         ModuleStatusTheme(
           pendingColor: themeBase.modulePendingColor,
@@ -33,6 +36,11 @@ class StdThemeService extends ThemeService<ThemeData> {
         onBackground: themeBase.textColor,
         surface: themeBase.primaryColor,
         onSurface: themeBase.textColor,
+      ),
+      scrollbarTheme: ScrollbarThemeData(
+        thumbColor: MaterialStateProperty.all<Color>(themeBase.tertiaryColor),
+        trackColor: MaterialStateProperty.all<Color>(themeBase.secondaryColor),
+        thickness: MaterialStateProperty.all<double>(5.0),
       ),
       scaffoldBackgroundColor: themeBase.secondaryColor,
       textTheme: TextTheme(

@@ -41,13 +41,3 @@ linter:
     close_sinks: true
     comment_references: true
     deprecated_member_use_from_same_package: true
-
-# Additional information about this file can be found at
-# https://dart.dev/guides/language/analysis-options
-dart_code_metrics:
-  rules:
-    - no-magic-number:
-        allowed: [0, 1, 0.5]
-    - lines-of-code: 150
-    - maintainability-index: 50
-    - binary-expression-operand-order: true
