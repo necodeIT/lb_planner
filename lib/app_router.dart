@@ -1,5 +1,6 @@
 import 'package:lb_planner/features/themes/themes.dart';
 import 'package:lb_planner/shared/shared.dart';
+import 'package:auto_route/auto_route.dart';
 
 part 'app_router.gr.dart';
 
