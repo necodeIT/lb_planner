@@ -28,6 +28,9 @@ use moodle_exception;
 
 /**
  * Update the data for a user.
+ * @package    local_lbplanner
+ * @copyright  2023 LB Planner
+ * @license    https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class user_update_user extends external_api {
     public static function update_user_parameters(): external_function_parameters {

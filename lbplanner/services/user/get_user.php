@@ -30,6 +30,9 @@ use moodle_exception;
 /**
  * Get the data for a user.
  * param userid (optional) gives back the user data with the given ID
+ * @package    local_lbplanner
+ * @copyright  2023 LB Planner
+ * @license    https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class user_get_user extends external_api {
     public static function get_user_parameters(): external_function_parameters {

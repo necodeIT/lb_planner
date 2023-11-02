@@ -29,6 +29,9 @@ use moodle_exception;
 
 /**
  * Gets all users registered by the lbplanner app.
+ * @package    local_lbplanner
+ * @copyright  2023 LB Planner
+ * @license    https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class user_get_all_users extends external_api {
     public static function get_all_users_parameters(): external_function_parameters {
