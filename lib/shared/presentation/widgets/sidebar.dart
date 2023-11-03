@@ -13,7 +13,7 @@ import 'package:lb_planner/shared/shared.dart';
 ///
 /// In order to add a route to the sidebar, do the following:
 ///
-/// 1. Follow the steps in [AppRouter] until step 5.
+/// 1. Follow the steps in [AppRouter] until step 6.
 ///
 /// 2. If you want to add the route at the top of the sidebar, add it to the [Column] with the comment "Top items" using [SidebarItem].
 ///
