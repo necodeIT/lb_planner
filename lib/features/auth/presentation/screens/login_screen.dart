@@ -5,6 +5,7 @@ import 'package:lb_planner/shared/shared.dart';
 import 'package:lb_planner/features/auth/auth.dart';
 
 /// Login route
+@RoutePage()
 class LoginScreen extends StatefulWidget {
   /// Login route
   const LoginScreen({Key? key}) : super(key: key);
@@ -25,35 +26,41 @@ class LoginScreen extends StatefulWidget {
 class _LoginRouteState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      fit: StackFit.expand,
-      children: [
-        Align(
-          alignment: Alignment.centerLeft,
-          child: VectorImage(
-            'assets/svg/login_background.svg',
-            height: MediaQuery.of(context).size.height,
+    return Container(
+      color: theme.colorScheme.background,
+      child: Stack(
+        fit: StackFit.expand,
+        children: [
+          Align(
             alignment: Alignment.centerLeft,
-          ),
-        ),
-        Consumer(builder: (context, ref, _) {
-          return Positioned(
-            left: LoginScreen.versionPadding,
-            bottom: LoginScreen.versionPadding,
-            child: Text(
-              "${kAppVersion.version}-${kBuildChannel.name}",
-              style: Theme.of(context).textTheme.bodyLarge,
+            child: VectorImage(
+              'assets/svg/login_background.svg',
+              height: MediaQuery.of(context).size.height,
+              alignment: Alignment.centerLeft,
             ),
-          );
-        }),
-        Align(
-          alignment: Alignment.centerRight,
-          child: Padding(
-            padding: const EdgeInsets.only(right: LoginScreen.formPadding),
-            child: LoginForm(),
           ),
-        ),
-      ],
+          Consumer(builder: (context, ref, _) {
+            return Positioned(
+              left: LoginScreen.versionPadding,
+              bottom: LoginScreen.versionPadding,
+              child: Text(
+                "${kBuildChannel.name}-${kAppVersion.version}",
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyLarge!
+                    .copyWith(color: theme.colorScheme.onPrimary),
+              ),
+            );
+          }),
+          Align(
+            alignment: Alignment.centerRight,
+            child: Padding(
+              padding: const EdgeInsets.only(right: LoginScreen.formPadding),
+              child: LoginForm(),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

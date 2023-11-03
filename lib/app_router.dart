@@ -1,6 +1,7 @@
 import 'package:lb_planner/features/themes/themes.dart';
 import 'package:lb_planner/shared/shared.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:lb_planner/features/auth/auth.dart';
 
 part 'app_router.gr.dart';
 
@@ -100,8 +101,14 @@ class AppRouter extends _$AppRouter {
         DefaultRoute(
           page: ThemeDevelopmentRoute.page,
           path: '/theme-development',
-          initial: true, // TODO: Temporary until dashboard is implemented
+
+          /// initial: true, // TODO: Temporary until dashboard is implemented
         ),
+        DefaultRoute(
+          page: LoginRoute.page,
+          path: '/login',
+          initial: true, // TODO: remove after testing
+        )
       ];
 }
 

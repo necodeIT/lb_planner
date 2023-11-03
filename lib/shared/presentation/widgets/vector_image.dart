@@ -61,7 +61,8 @@ class VectorImage extends StatelessWidget {
   }
 
   /// Converts the given [color] to a hex string..
-  static String _toHex(Color color) => "#${color.value.toRadixString(16)}";
+  static String _toHex(Color color) =>
+      "#${color.value.toRadixString(16).substring(2)}";
 
   @override
   Widget build(BuildContext context) {
