@@ -18,25 +18,25 @@ include('../snippets/head.php');
 		<main>
 			<section class="profiles">
 				<div class="card">
-					<img src=<?=urlroot?>"/resources/pfp_mceachnie.jpg"/>
+					<img src="<?=urlroot?>/resources/pfp_mceachnie.jpg"/>
 					<h3>Benjamin McEachnie</h3>
 					<b><?=GDS('job_mceachnie')?></b>
 					<span><?=GDS('theme_mceachnie')?></span>
 				</div>
 				<div class="card">
-					<img src=<?=urlroot?>"/resources/pfp_polat.jpg"/>
+					<img src="<?=urlroot?>/resources/pfp_polat.jpg"/>
 					<h3>Can Polat</h3>
 					<b><?=GDS('job_polat')?></b>
 					<span><?=GDS('theme_polat')?></span>
 				</div>
 				<div class="card">
-					<img src=<?=urlroot?>"/resources/pfp_kocagoel.jpg"/>
+					<img src="<?=urlroot?>/resources/pfp_kocagoel.jpg"/>
 					<h3>Muhammed Kocagöl</h3>
 					<b><?=GDS('job_kocagoel')?></b>
 					<span><?=GDS('theme_kocagoel')?></span>
 				</div>
 				<div class="card">
-					<img src=<?=urlroot?>"/resources/pfp_riedler.jpg"/>
+					<img src="<?=urlroot?>/resources/pfp_riedler.jpg"/>
 					<h3>Riedler David</h3>
 					<b><?=GDS('job_riedler')?></b>
 					<span><?=GDS('theme_riedler')?></span>
