@@ -113,7 +113,7 @@ class AppRouter extends _$AppRouter {
         DefaultRoute(
           page: LoginRoute.page,
           path: '/login',
-          initial: true, // TODO: remove after testing
+          initial: true,
         )
       ];
 }

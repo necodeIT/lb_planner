@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 
-/// Wraps the given [child] with the given [wrapper] if the given [condition] is true.
-/// Also provides an optional [falseWrapper] if the given [condition] is false.
+/// This widget allows you to conditionally wrap a child widget with
+/// one of two different wrappers based on a specified condition. You can provide a
+/// wrapper to use when the condition is `true` and an optional wrapper to use when
+/// the condition is `false`. This is useful for applying conditional styling or
+/// functionality to other widgets.
 class ConditionalWrapper extends StatelessWidget {
-  /// Wraps the given [child] with the given [wrapper] if the given [condition] is true.
-  /// Also provides an optional [falseWrapper] if the given [condition] is false.
+  /// This widget allows you to conditionally wrap a child widget with
+  /// one of two different wrappers based on a specified condition. You can provide a
+  /// wrapper to use when the condition is `true` and an optional wrapper to use when
+  /// the condition is `false`. This is useful for applying conditional styling or
+  /// functionality to other widgets.
   const ConditionalWrapper(
       {Key? key,
       required this.condition,

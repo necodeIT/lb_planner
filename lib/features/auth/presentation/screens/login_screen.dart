@@ -4,10 +4,10 @@ import 'package:lb_planner/configs/version.dart';
 import 'package:lb_planner/shared/shared.dart';
 import 'package:lb_planner/features/auth/auth.dart';
 
-/// Login route
+/// Uses the [LoginForm] in order to render a login screen, which allows the user to login.
 @RoutePage()
 class LoginScreen extends StatefulWidget {
-  /// Login route
+  /// Uses the [LoginForm] in order to render a login screen, which allows the user to login.
   const LoginScreen({Key? key}) : super(key: key);
 
   /// The padding of the login form.

@@ -12,7 +12,14 @@ import 'package:lb_planner/shared/shared.dart';
 /// - [VectorImage.textColor] &rarr; Interpolate this into the SVG code to use the text color of the  theme.
 
 class VectorImage extends StatelessWidget {
-  /// Takes the given SVG [asset] and interpolates the current theme colors into it.
+  /// Enables theming of vector graphics.
+  ///
+  /// Usage:
+  /// - [VectorImage.primaryColor] &rarr; Interpolate this into the SVG code to use the primary color of the [this.current] theme.
+  /// - [VectorImage.secondaryColor] &rarr; Interpolate this into the SVG code to use the secondary color of the theme.
+  /// - [VectorImage.tertiaryColor] &rarr; Interpolate this into the SVG code to use the tertiary color of the theme.
+  /// - [VectorImage.accentColor] &rarr; Interpolate this into the SVG code to use the accent color of the theme.
+  /// - [VectorImage.textColor] &rarr; Interpolate this into the SVG code to use the text color of the  theme.
   const VectorImage(this.asset,
       {Key? key, this.width, this.height, this.alignment = Alignment.center})
       : super(key: key);

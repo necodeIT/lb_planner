@@ -3,8 +3,22 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lb_planner/features/auth/auth.dart';
 import 'package:lb_planner/shared/shared.dart';
 
-/// Login form.
+/// A widget for user login.
+///
+/// This widget allows users to input their username and password,
+/// with the option to toggle password visibility. It includes error handling
+/// to display a message if login fails and provides a login button.
+///
+/// This widget is designed to be used as part of an login screen
+
 class LoginForm extends ConsumerStatefulWidget {
+  /// A widget for user login.
+  ///
+  /// This widget allows users to input their username and password,
+  /// with the option to toggle password visibility. It includes error handling
+  /// to display a message if login fails and provides a login button.
+  ///
+  /// This widget is designed to be used as part of an login screen
   const LoginForm({Key? key}) : super(key: key);
 
   /// The width of the login form.
@@ -20,8 +34,6 @@ class _LoginFormState extends ConsumerState<LoginForm> {
   bool _showPassword = false;
   final FocusNode _pwFocusNode = FocusNode();
 
-  /// Dispose of resources associated with this widget.
-
   @override
   void dispose() {
     _pwFocusNode.dispose();
@@ -29,13 +41,19 @@ class _LoginFormState extends ConsumerState<LoginForm> {
     super.dispose();
   }
 
-  /// Function to toggle the password visibility.
+  /// The _togglePassword method is used to toggle the visibility of the password field in the widget.
+  /// When it's called, it changes the value of the _showPassword variable, which determines whether the password is displayed 4
+  /// in plain text or as a hidden (obscured) text.
   _togglePassword() {
     setState(() {
       _showPassword = !_showPassword;
     });
   }
 
+  /// This method is used to initiate the login process. It interacts with a tokenController to send a login request
+  /// with the provided username and password.
+  ///
+  /// After that, it sets a hasAttemptedLogin flag to true, which indicates that a login attempt has been made.
   login() {
     final tokenController = ref.watch(userTokenController);
 
@@ -44,6 +62,7 @@ class _LoginFormState extends ConsumerState<LoginForm> {
     hasAttemptedLogin = true;
   }
 
+  /// This variable is used to track whether a login attempt has been made.
   bool hasAttemptedLogin = false;
 
   @override
@@ -66,6 +85,7 @@ class _LoginFormState extends ConsumerState<LoginForm> {
                 TextField(
                   controller: _userNameController,
                   decoration: InputDecoration(
+                    hintStyle: TextStyle(fontSize: 18),
                     hintText: t.login_username,
                     errorText: userToken.hasError && hasAttemptedLogin
                         ? t.login_invalidUsernameOrPassword
@@ -79,6 +99,7 @@ class _LoginFormState extends ConsumerState<LoginForm> {
                   controller: _passwordController,
                   obscureText: !_showPassword,
                   decoration: InputDecoration(
+                      hintStyle: TextStyle(fontSize: 18),
                       hintText: t.login_password,
                       errorText: userToken.hasError && hasAttemptedLogin
                           ? t.login_invalidUsernameOrPassword
@@ -95,7 +116,7 @@ class _LoginFormState extends ConsumerState<LoginForm> {
                           onTap: _togglePassword,
                         ),
                       )),
-                  onSubmitted: (_) => login,
+                  onSubmitted: (_) => login(),
                 ),
                 SizedBox(width: 30, height: 30),
                 SizedBox(
@@ -112,7 +133,8 @@ class _LoginFormState extends ConsumerState<LoginForm> {
                               ),
                             ),
                           )
-                        : Text(t.auth_loginForm_login),
+                        : Text(t.auth_loginForm_login,
+                            style: TextStyle(fontWeight: FontWeight.w600)),
                     onPressed: login,
                   ),
                 ),
