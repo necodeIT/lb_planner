@@ -49,6 +49,8 @@
 	.roadmap {
 		position: relative;
 		margin:0 auto;
+		height:30em;
+		width:80em;
 		&>.goal {
 			position: absolute;
 			display: flex;
@@ -118,6 +120,29 @@
 				stroke-linecap: round;
 				filter: drop-shadow(0 0 1em #000);
 			}
+		}
+	}
+}
+
+@media screen and (max-width: 80em) {
+	.milestones .roadmap {
+		position: static;
+		display: flex;
+		flex-direction: column;
+		align-items:center;
+		margin:0 1em 1em 1em;
+		height:auto;
+		width:auto;
+		&>.goal {
+			position: static;
+			width: fit-content;
+			margin:0 0 .75em 0;
+			&:not(.card){
+				margin:1em .75em;
+			}
+		}
+		&>svg{
+			display: none;//lmao
 		}
 	}
 }

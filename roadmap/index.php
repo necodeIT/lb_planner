@@ -44,7 +44,7 @@ include('../snippets/head.php');
 			</section>
 			<section class="milestones">
 				<h1><?=GDS('title_goals')?></h1>
-				<div class="roadmap" style="height:30em;width:80em">
+				<div class="roadmap">
 					<div class="card goal" style="top:6em;left:4em">
 						<h3>Refactor</h3>
 						<ul>
