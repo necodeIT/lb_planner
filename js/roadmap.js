@@ -1,4 +1,18 @@
 window.addEventListener('load',(event)=>{
+	/* profiles */
+	let profilesw = document.getElementsByClassName('profiles')[0];
+	let maxw = 0;
+	for(let card of profilesw.children){
+		let w = card.getClientRects()[0].width;
+		if(w>maxw){
+			maxw = w;
+		}
+	}
+	for(let card of profilesw.children){
+		card.style.width = maxw+'px';
+	}
+	
+	/* milestones */
 	let roadmap = document.getElementsByClassName('roadmap')[0];
 	let roadrect = roadmap.getClientRects()[0];
 	let goals = roadmap.getElementsByClassName('goal');
