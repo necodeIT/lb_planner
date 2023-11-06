@@ -1,6 +1,7 @@
 .profiles {
 	display: flex;
 	flex-direction: row;
+	flex-wrap: wrap;
 	justify-content: space-evenly;
 	align-items: center;
 	margin:2em 1em;
@@ -21,6 +22,7 @@
 		&>b,
 		&>span{
 			margin:0.25em;
+			white-space:nowrap;
 		}
 		&>h3{
 			font-size:1.25rem;
@@ -29,6 +31,8 @@
 }
 
 .milestones {
+	max-width:100%;
+	overflow:auto;
 	&>h1 {
 		display: flex;
 		flex-direction: column;
@@ -45,10 +49,14 @@
 	.roadmap {
 		position: relative;
 		margin:0 auto;
+		height:30em;
+		width:80em;
 		&>.goal {
 			position: absolute;
 			display: flex;
 			padding: 1em 0.75em;
+			background-color: var(--primary-color);
+			z-index: 1;
 			&.card{
 				flex-direction: column;
 			}
@@ -114,6 +122,29 @@
 				stroke-linecap: round;
 				filter: drop-shadow(0 0 1em #000);
 			}
+		}
+	}
+}
+
+@media screen and (max-width: 80em) {
+	.milestones .roadmap {
+		position: static;
+		display: flex;
+		flex-direction: column;
+		align-items:center;
+		margin:0 1em 1em 1em;
+		height:auto;
+		width:auto;
+		&>.goal {
+			position: static;
+			width: fit-content;
+			margin:0 0 .75em 0;
+			&:not(.card){
+				margin:1em .75em;
+			}
+		}
+		&>svg{
+			display: none;//lmao
 		}
 	}
 }
