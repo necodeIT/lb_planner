@@ -5,7 +5,7 @@ import 'package:riverpod/riverpod.dart';
 ///
 /// NOTE: Resolves to `null` if no patching is in progress.
 ///
-/// To start patching, use [patchingProgressController].
+/// To start patching or get instructions, use [patchingProgressController].
 final patchingProgressProvider =
     StateNotifierProvider<PatchingProgressProviderState, PatchingProgress?>(
   (ref) {

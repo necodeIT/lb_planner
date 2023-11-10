@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:lb_planner/features/update/update.dart';
 import 'package:riverpod/riverpod.dart';
 
@@ -17,7 +18,9 @@ class PatchingProgressProviderState extends StateNotifier<PatchingProgress?> {
   PatchingProgressProviderState(this.patcherService, this.releaseRepository)
       : super(null);
 
-  /// Starts patching the current app.
+  /// Downloads and installs the latest version of the app.
+  ///
+  /// Throws an [UnsupportedError] if [canPatch] returns `false`.
   Future<void> patch() async {
     var latest = await releaseRepository.getLatestRelease();
 
@@ -31,4 +34,17 @@ class PatchingProgressProviderState extends StateNotifier<PatchingProgress?> {
       },
     );
   }
+
+  /// Whether the app can be patched automatically.
+  ///
+  /// If this returns `false`, the user will have to manually install the update.
+  ///
+  /// In this case [patch] will throw an [UnsupportedError]. Use [getInstructions] to receive instructions for manually installing the update.
+  bool get canPatch => patcherService.canPatch;
+
+  /// Returns the instructions for manually installing a given release in markdown format.
+  ///
+  /// Throws an [UnsupportedError] if [canPatch] returns `true`.
+  String getInstructions(BuildContext context, Release release) =>
+      patcherService.getInstructions(context, release);
 }
