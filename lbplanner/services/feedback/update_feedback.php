@@ -20,7 +20,6 @@ use external_api;
 use external_function_parameters;
 use external_value;
 use gradereport_singleview\local\ui\feedback;
-use local_lbplanner\helpers\user_helper;
 use local_lbplanner\helpers\feedback_helper;
 
 /**
@@ -29,22 +28,20 @@ use local_lbplanner\helpers\feedback_helper;
 class feedback_update_feedback extends external_api {
     public static function update_feedback_parameters() {
         return new external_function_parameters(array(
-            'userid' => new external_value(PARAM_INT, 'The id of the user', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
             'feedbackid' => new external_value(PARAM_INT, 'The id of the course', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
             'notes' => new external_value(PARAM_TEXT, 'The notes of the feedback', VALUE_DEFAULT, null, NULL_ALLOWED),
             'status' => new external_value(PARAM_INT, 'The status of the feedback', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
         ));
     }
 
-    public static function update_feedback($userid, $feedbackid, $notes, $status) {
-        global $DB;
+    public static function update_feedback($feedbackid, $notes, $status) {
+        global $DB, $USER;
 
         self::validate_parameters(
             self::update_feedback_parameters(),
-            array('userid' => $userid , 'feedbackid' => $feedbackid, 'notes' => $notes, 'status' => $status)
+            array('feedbackid' => $feedbackid, 'notes' => $notes, 'status' => $status)
         );
 
-        user_helper::assert_access($userid);
         feedback_helper::assert_admin_access();
 
         if (!$DB->record_exists(feedback_helper::LBPLANNER_FEEDBACK_TABLE, array('id' => $feedbackid))) {
@@ -58,7 +55,7 @@ class feedback_update_feedback extends external_api {
         }
         $feedback->status = $status;
         $feedback->lastmodified = time();
-        $feedback->lastmodifiedby = $userid;
+        $feedback->lastmodifiedby = $USER->id;
 
         $DB->update_record(feedback_helper::LBPLANNER_FEEDBACK_TABLE, $feedback);
 
