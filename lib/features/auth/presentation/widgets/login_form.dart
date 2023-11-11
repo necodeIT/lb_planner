@@ -9,7 +9,7 @@ import 'package:lb_planner/shared/shared.dart';
 /// with the option to toggle password visibility. It includes error handling
 /// to display a message if login fails and provides a login button.
 ///
-/// This widget is designed to be used as part of an login screen
+/// This widget is designed to be used as part of an [LoginScreen]
 
 class LoginForm extends ConsumerStatefulWidget {
   /// A widget for user login.
@@ -18,7 +18,7 @@ class LoginForm extends ConsumerStatefulWidget {
   /// with the option to toggle password visibility. It includes error handling
   /// to display a message if login fails and provides a login button.
   ///
-  /// This widget is designed to be used as part of an login screen
+  /// This widget is designed to be used as part of an [LoginScreen]
   const LoginForm({Key? key}) : super(key: key);
 
   /// The width of the login form.
@@ -41,19 +41,14 @@ class _LoginFormState extends ConsumerState<LoginForm> {
     super.dispose();
   }
 
-  /// The _togglePassword method is used to toggle the visibility of the password field in the widget.
-  /// When it's called, it changes the value of the _showPassword variable, which determines whether the password is displayed 4
-  /// in plain text or as a hidden (obscured) text.
+  /// Switches the visibility of the password field in the widget.
   _togglePassword() {
     setState(() {
       _showPassword = !_showPassword;
     });
   }
 
-  /// This method is used to initiate the login process. It interacts with a tokenController to send a login request
-  /// with the provided username and password.
-  ///
-  /// After that, it sets a hasAttemptedLogin flag to true, which indicates that a login attempt has been made.
+  /// Trys to login a user
   login() {
     final tokenController = ref.watch(userTokenController);
 
@@ -62,7 +57,7 @@ class _LoginFormState extends ConsumerState<LoginForm> {
     hasAttemptedLogin = true;
   }
 
-  /// This variable is used to track whether a login attempt has been made.
+  /// tracks whether a login attempt has been made
   bool hasAttemptedLogin = false;
 
   @override
