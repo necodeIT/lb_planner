@@ -107,8 +107,6 @@ class AppRouter extends _$AppRouter {
         DefaultRoute(
           page: ThemeDevelopmentRoute.page,
           path: '/theme-development',
-
-          /// initial: true, // TODO: Temporary until dashboard is implemented
         ),
         DefaultRoute(
           page: LoginRoute.page,

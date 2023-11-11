@@ -41,14 +41,14 @@ class _LoginFormState extends ConsumerState<LoginForm> {
     super.dispose();
   }
 
-  /// Switches the visibility of the password field in the widget.
+  /// Show / not shows the password in plain text
   _togglePassword() {
     setState(() {
       _showPassword = !_showPassword;
     });
   }
 
-  /// Trys to login a user
+  /// Tries to login the user with the username and password entered in the form
   login() {
     final tokenController = ref.watch(userTokenController);
 
