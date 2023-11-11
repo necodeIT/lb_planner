@@ -19,8 +19,6 @@ namespace local_lbplanner_services;
 use external_api;
 use external_function_parameters;
 use external_multiple_structure;
-use external_value;
-use local_lbplanner\helpers\user_helper;
 use local_lbplanner\helpers\feedback_helper;
 
 /**
@@ -28,24 +26,12 @@ use local_lbplanner\helpers\feedback_helper;
  */
 class feedback_get_all_feedbacks extends external_api {
     public static function get_all_feedbacks_parameters() {
-        return new external_function_parameters(array(
-            'userid' => new external_value(PARAM_INT, 'The id of the user', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
-        ));
+        return new external_function_parameters(array());
     }
 
-    public static function get_all_feedbacks($userid) {
-        global $DB;
-
-        self::validate_parameters(
-            self::get_all_feedbacks_parameters(),
-            array('userid' => $userid)
-        );
-
-        user_helper::assert_access($userid);
-
+    public static function get_all_feedbacks(): array {
         feedback_helper::assert_admin_access();
-
-        return feedback_helper::get_all_feedbacks($userid);
+        return feedback_helper::get_all_feedbacks();
     }
 
     public static function get_all_feedbacks_returns() {
