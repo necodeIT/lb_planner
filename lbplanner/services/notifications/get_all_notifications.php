@@ -34,7 +34,7 @@ class notifications_get_all_notifications extends external_api {
     public static function get_all_notifications() {
         global $DB, $USER;
 
-        $dbnotifications = $DB->get_records(notifications_helper::TABLE, $USER->userid);
+        $dbnotifications = $DB->get_records(notifications_helper::TABLE, array('userid' => $USER->userid));
 
         $notifications = array();
 
