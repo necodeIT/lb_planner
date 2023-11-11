@@ -82,12 +82,18 @@
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">@override
 final Map&lt;String, PageFactory&gt; pagesMap = {
+  LoginRoute.name: (routeData) {
+    return AutoRoutePage&lt;dynamic&gt;(
+      routeData: routeData,
+      child: const LoginScreen(),
+    );
+  },
   ThemeDevelopmentRoute.name: (routeData) {
     return AutoRoutePage&lt;dynamic&gt;(
       routeData: routeData,
       child: WrappedRoute(child: const ThemeDevelopmentScreen()),
     );
-  }
+  },
 };</code></pre>
 </section>
 
