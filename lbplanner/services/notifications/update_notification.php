@@ -20,7 +20,6 @@ use external_api;
 use external_function_parameters;
 use external_single_structure;
 use external_value;
-use local_lbplanner\helpers\user_helper;
 use local_lbplanner\helpers\notifications_helper;
 
 /**
@@ -29,7 +28,6 @@ use local_lbplanner\helpers\notifications_helper;
 class notifications_update_notification extends external_api {
     public static function update_notification_parameters() {
         return new external_function_parameters(array(
-            'userid' => new external_value(PARAM_INT, 'User ID', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
             'status' => new external_value(
                 PARAM_INT,
                 'The status of the notification {0: unread, 1: read}',
@@ -41,15 +39,13 @@ class notifications_update_notification extends external_api {
         ));
     }
 
-    public static function update_notification($userid, $status, $notificationid) {
+    public static function update_notification($status, $notificationid) {
         global $DB;
 
         self::validate_parameters(
             self::update_notification_parameters(),
-            array('userid' => $userid, 'status' => $status, 'notificationid' => $notificationid)
+            array('status' => $status, 'notificationid' => $notificationid)
         );
-
-        user_helper::assert_access($userid);
 
         if (!$DB->record_exists(notifications_helper::TABLE, array('id' => $notificationid))) {
             throw new \moodle_exception('Notification does not exist');
