@@ -21,7 +21,6 @@ use external_function_parameters;
 use external_multiple_structure;
 use external_single_structure;
 use external_value;
-use local_lbplanner\helpers\user_helper;
 use local_lbplanner\helpers\notifications_helper;
 
 /**
@@ -29,19 +28,13 @@ use local_lbplanner\helpers\notifications_helper;
  */
 class notifications_get_all_notifications extends external_api {
     public static function get_all_notifications_parameters() {
-        return new external_function_parameters(array(
-            'userid' => new external_value(PARAM_INT, 'User ID', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
-        ));
+        return new external_function_parameters(array());
     }
 
-    public static function get_all_notifications($userid) {
-        global $DB;
+    public static function get_all_notifications() {
+        global $DB, $USER;
 
-        self::validate_parameters(self::get_all_notifications_parameters(), array('userid' => $userid));
-
-        user_helper::assert_access($userid);
-
-        $dbnotifications = $DB->get_records(notifications_helper::TABLE, array('userid' => $userid));
+        $dbnotifications = $DB->get_records(notifications_helper::TABLE, $USER->userid);
 
         $notifications = array();
 
