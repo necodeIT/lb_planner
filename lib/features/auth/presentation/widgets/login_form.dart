@@ -41,7 +41,7 @@ class _LoginFormState extends ConsumerState<LoginForm> {
     super.dispose();
   }
 
-  /// Show / not shows the password in plain text
+  /// Shows / not shows the password in plain text
   _togglePassword() {
     setState(() {
       _showPassword = !_showPassword;
