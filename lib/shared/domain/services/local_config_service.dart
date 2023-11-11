@@ -69,4 +69,11 @@ abstract class LocalConfigService<T> {
 
     return configFile.existsSync();
   }
+
+  /// Deletes the configuration file.
+  Future<void> deleteConfig() async {
+    var configFile = await resolveConfigFile();
+
+    await configFile.delete();
+  }
 }
