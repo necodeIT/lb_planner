@@ -27,6 +27,7 @@ use local_lbplanner\helpers\PLAN_INVITE_STATE;
 
 /**
  * THIS METHOD IS NOT USED ANYMORE. JUST TO KEEP OLD CODE FOR REFERENCE.
+ * TODO: delete
  */
 class plan_update_invite extends external_api {
     public static function update_invite_parameters() {
