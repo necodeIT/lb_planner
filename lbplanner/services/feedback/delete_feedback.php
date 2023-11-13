@@ -27,9 +27,9 @@ use local_lbplanner\helpers\feedback_helper;
  */
 class feedback_delete_feedback extends external_api {
     public static function delete_feedback_parameters() {
-        return new external_function_parameters(array(
+        return new external_function_parameters([
             'feedbackid' => new external_value(PARAM_INT, 'The id of the course', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
-        ));
+        ]);
     }
 
     public static function delete_feedback($feedbackid) {
@@ -37,16 +37,16 @@ class feedback_delete_feedback extends external_api {
 
         self::validate_parameters(
             self::delete_feedback_parameters(),
-            array('feedbackid' => $feedbackid)
+            ['feedbackid' => $feedbackid]
         );
 
-        if (!$DB->record_exists(feedback_helper::LBPLANNER_FEEDBACK_TABLE, array('id' => $feedbackid))) {
+        if (!$DB->record_exists(feedback_helper::LBPLANNER_FEEDBACK_TABLE, ['id' => $feedbackid])) {
             throw new \moodle_exception('feedback_not_found');
         }
 
         feedback_helper::assert_admin_access();
 
-        $DB->delete_records(feedback_helper::LBPLANNER_FEEDBACK_TABLE, array('id' => $feedbackid));
+        $DB->delete_records(feedback_helper::LBPLANNER_FEEDBACK_TABLE, ['id' => $feedbackid]);
 
         return feedback_helper::get_all_feedbacks($USER->id);
     }

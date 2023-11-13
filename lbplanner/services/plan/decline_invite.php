@@ -29,27 +29,27 @@ use local_lbplanner\helpers\PLAN_INVITE_STATE;
  */
 class plan_decline_invite extends external_api {
     public static function decline_invite_parameters() {
-        return new external_function_parameters(array(
-        'inviteid' => new external_value(PARAM_INT, 'The inviteid of the plan', VALUE_REQUIRED, null, NULL_NOT_ALLOWED)
-        ));
+        return new external_function_parameters([
+        'inviteid' => new external_value(PARAM_INT, 'The inviteid of the plan', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
+        ]);
     }
 
     public static function decline_invite($inviteid) {
         global $DB, $USER;
 
-        self::validate_parameters(self::decline_invite_parameters(), array(
-        'inviteid' => $inviteid
-        ));
+        self::validate_parameters(self::decline_invite_parameters(), [
+        'inviteid' => $inviteid,
+        ]);
 
-        if (!$DB->record_exists(plan_helper::INVITES_TABLE, array('id' => $inviteid, 'inviteeid' => $USER->id))) {
+        if (!$DB->record_exists(plan_helper::INVITES_TABLE, ['id' => $inviteid, 'inviteeid' => $USER->id])) {
             throw new \moodle_exception('Invite not found');
         }
 
         $invite = $DB->get_record(plan_helper::INVITES_TABLE,
-        array(
+        [
             'id' => $inviteid,
-            'inviteeid' => $USER->id
-        ),
+            'inviteeid' => $USER->id,
+        ],
         '*',
         MUST_EXIST
         );
@@ -69,27 +69,27 @@ class plan_decline_invite extends external_api {
 
         $DB->update_record(plan_helper::INVITES_TABLE, $invite);
 
-        return array(
+        return [
         'id' => $invite->id,
         'inviterid' => $invite->inviterid,
         'inviteeid' => $invite->inviteeid,
         'planid' => $invite->planid,
         'status' => $invite->status,
         'timestamp' => $invite->timestamp,
-        );
+        ];
     }
 
 
     public static function decline_invite_returns() {
         return new external_single_structure(
-            array(
+            [
                 'id' => new external_value(PARAM_INT, 'The id of the invite'),
                 'inviterid' => new external_value(PARAM_INT, 'The id of the owner user'),
                 'inviteeid' => new external_value(PARAM_INT, 'The id of the invited user'),
                 'planid' => new external_value(PARAM_INT, 'The id of the plan'),
                 'status' => new external_value(PARAM_INT, 'The Status of the invitation'),
                 'timestamp' => new external_value(PARAM_INT, 'The time when the invitation was send'),
-            )
+            ]
         );
     }
 }

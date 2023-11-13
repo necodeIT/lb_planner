@@ -31,31 +31,31 @@ use local_lbplanner\helpers\PLAN_INVITE_STATE;
  */
 class plan_update_invite extends external_api {
     public static function update_invite_parameters() {
-        return new external_function_parameters(array(
+        return new external_function_parameters([
         'planid' => new external_value(PARAM_INT, 'The id of the plan', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
         'status' => new external_value(PARAM_INT, 'The status of the invite', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
-        ));
+        ]);
     }
 
     public static function update_invite($planid, $status) {
         global $DB, $USER;
 
-        self::validate_parameters(self::update_invite_parameters(), array(
+        self::validate_parameters(self::update_invite_parameters(), [
         'planid' => $planid,
         'status' => $status,
-        ));
+        ]);
 
-        $status_obj = PLAN_INVITE_STATE::tryFrom($status);
+        $statusobj = PLAN_INVITE_STATE::tryFrom($status);
 
-        if ($status_obj === null) {
+        if ($statusobj === null) {
             throw new \moodle_exception('Invalid status');
         }
 
         $invite = $DB->get_record(plan_helper::INVITES_TABLE,
-        array(
+        [
             'planid' => $planid,
             'inviteeid' => $USER->id,
-        ),
+        ],
         '*',
         MUST_EXIST
         );
@@ -68,7 +68,7 @@ class plan_update_invite extends external_api {
 
         $DB->update_record(plan_helper::INVITES_TABLE, $invite);
 
-        $trigger = $status_obj === PLAN_INVITE_STATE::ACCEPTED ?
+        $trigger = $statusobj === PLAN_INVITE_STATE::ACCEPTED ?
         notifications_helper::TRIGGER_INVITE_ACCEPTED
         : notifications_helper::TRIGGER_INVITE_DECLINED;
 
@@ -76,7 +76,7 @@ class plan_update_invite extends external_api {
 
         // TODO: Change plan access and delete old plan if inivite is accepted.
 
-        if ($status_obj == PLAN_INVITE_STATE::ACCEPTED) {
+        if ($statusobj == PLAN_INVITE_STATE::ACCEPTED) {
             $oldplanid = plan_helper::get_plan_id($USER->id);
 
             if (plan_helper::get_owner($oldplanid) === $USER->id) {
@@ -86,17 +86,17 @@ class plan_update_invite extends external_api {
                         plan_leave_plan::leave_plan($member->userid, $oldplanid);
                     }
                 }
-                self::call_external_function('local_lbplanner_plan_clear_plan', array ($USER->id, $oldplanid));
+                self::call_external_function('local_lbplanner_plan_clear_plan',  [$USER->id, $oldplanid]);
 
-                $DB->delete_records(plan_helper::TABLE, array('id' => $oldplanid));
+                $DB->delete_records(plan_helper::TABLE, ['id' => $oldplanid]);
             }
 
             $planaccess = $DB->get_record(
                 plan_helper::ACCESS_TABLE,
-                array(
+                [
                     'planid' => $oldplanid,
-                    'userid' => $USER->id
-                ),
+                    'userid' => $USER->id,
+                ],
                 '*',
                 MUST_EXIST
             );
@@ -106,27 +106,27 @@ class plan_update_invite extends external_api {
 
             $DB->update_record(plan_helper::ACCESS_TABLE, $planaccess);
 
-            $DB->delete_records(plan_helper::INVITES_TABLE, array('id' => $invite->id));
+            $DB->delete_records(plan_helper::INVITES_TABLE, ['id' => $invite->id]);
         }
-        return array(
+        return [
             'inviterid' => $invite->inviterid,
             'inviteeid' => $invite->inviteeid,
             'planid' => $invite->planid,
             'status' => $invite->status,
             'timestamp' => $invite->timestamp,
-        );
+        ];
     }
 
 
     public static function update_invite_returns() {
         return new external_single_structure(
-            array(
+            [
                 'inviterid' => new external_value(PARAM_INT, 'The id of the owner user'),
                 'inviteeid' => new external_value(PARAM_INT, 'The id of the invited user'),
                 'planid' => new external_value(PARAM_INT, 'The id of the plan'),
                 'status' => new external_value(PARAM_INT, 'The Status of the invitation'),
                 'timestamp' => new external_value(PARAM_INT, 'The time when the invitation was send'),
-            )
+            ]
         );
     }
 }

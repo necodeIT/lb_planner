@@ -26,7 +26,7 @@ use local_lbplanner\helpers\plan_helper;
  */
 class plan_update_plan extends external_api {
     public static function update_plan_parameters() {
-        return new external_function_parameters(array(
+        return new external_function_parameters([
             'planname' => new external_value(
                 PARAM_TEXT,
                 'The Name of the Plan',
@@ -41,7 +41,7 @@ class plan_update_plan extends external_api {
                 null,
                 NULL_NOT_ALLOWED
             ),
-        ));
+        ]);
     }
 
     public static function update_plan($planname, $enableek) {
@@ -49,7 +49,7 @@ class plan_update_plan extends external_api {
 
         self::validate_parameters(
             self::update_plan_parameters(),
-            array('planname' => $planname, 'enableek' => $enableek)
+            ['planname' => $planname, 'enableek' => $enableek]
         );
 
         $planid = plan_helper::get_plan_id($USER->id);
@@ -58,7 +58,7 @@ class plan_update_plan extends external_api {
             throw new \Exception('Access denied');
         }
 
-        $plan = $DB->get_record(plan_helper::TABLE, array('id' => $planid), '*', MUST_EXIST);
+        $plan = $DB->get_record(plan_helper::TABLE, ['id' => $planid], '*', MUST_EXIST);
         $plan->name = $planname;
         $plan->enableek = $enableek;
 

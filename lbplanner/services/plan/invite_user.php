@@ -29,7 +29,7 @@ use local_lbplanner\helpers\PLAN_INVITE_STATE;
  */
 class plan_invite_user extends external_api {
     public static function invite_user_parameters() {
-        return new external_function_parameters(array(
+        return new external_function_parameters([
             'inviteeid' => new external_value(
                 PARAM_INT,
                 'The id of the user who gets invited',
@@ -37,7 +37,7 @@ class plan_invite_user extends external_api {
                 null,
                 NULL_NOT_ALLOWED
             ),
-        ));
+        ]);
     }
 
     public static function invite_user($inviteeid) {
@@ -45,7 +45,7 @@ class plan_invite_user extends external_api {
 
         self::validate_parameters(
             self::invite_user_parameters(),
-            array('inviteeid' => $inviteeid)
+            ['inviteeid' => $inviteeid]
         );
 
         $planid = plan_helper::get_plan_id($USER->id);
@@ -64,7 +64,7 @@ class plan_invite_user extends external_api {
 
         if ($DB->record_exists(
                 plan_helper::INVITES_TABLE,
-                array('inviteeid' => $inviteeid, 'planid' => $planid, 'status' => PLAN_INVITE_STATE::PENDING->value)
+                ['inviteeid' => $inviteeid, 'planid' => $planid, 'status' => PLAN_INVITE_STATE::PENDING->value]
             )) {
             throw new \moodle_exception('User is already invited');
         }
@@ -79,33 +79,33 @@ class plan_invite_user extends external_api {
 
         $invite->id = $DB->insert_record(plan_helper::INVITES_TABLE, $invite);
 
-        // Notify the invitee that they've been invited
+        // Notify the invitee that they've been invited.
         notifications_helper::notify_user(
             $inviteeid,
             $invite->id,
             notifications_helper::TRIGGER_INVITE
         );
 
-        return array(
+        return [
             'id' => $invite->id,
             'inviterid' => $USER->id,
             'inviteeid' => $inviteeid,
             'planid' => $planid,
             'timestamp' => $invite->timestamp,
-            'status' => $invite->status
-        );
+            'status' => $invite->status,
+        ];
     }
 
     public static function invite_user_returns() {
         return new external_single_structure(
-            array(
+            [
                 'id' => new external_value(PARAM_INT, 'The id of the invite'),
                 'inviterid' => new external_value(PARAM_INT, 'The id of the owner user'),
                 'inviteeid' => new external_value(PARAM_INT, 'The id of the invited user'),
                 'planid' => new external_value(PARAM_INT, 'The id of the plan'),
                 'status' => new external_value(PARAM_INT, 'The status of the invitation'),
                 'timestamp' => new external_value(PARAM_INT, 'The time when the invitation was send'),
-            )
+            ]
         );
     }
 }

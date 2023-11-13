@@ -27,7 +27,7 @@ use local_lbplanner\helpers\plan_helper;
  */
 class plan_update_access extends external_api {
     public static function update_access_parameters() {
-        return new external_function_parameters(array(
+        return new external_function_parameters([
             'accesstype' => new external_value(
                 PARAM_INT,
                 'The access type',
@@ -42,7 +42,7 @@ class plan_update_access extends external_api {
                 null,
                 NULL_NOT_ALLOWED
             ),
-        ));
+        ]);
     }
 
     public static function update_access($accesstype, $memberid) {
@@ -50,7 +50,7 @@ class plan_update_access extends external_api {
 
         self::validate_parameters(
             self::update_access_parameters(),
-            array('accesstype' => $accesstype, 'memberid' => $memberid)
+            ['accesstype' => $accesstype, 'memberid' => $memberid]
         );
 
         $planid = plan_helper::get_plan_id($USER->id);
@@ -59,9 +59,9 @@ class plan_update_access extends external_api {
             throw new \moodle_exception('Access denied');
         }
 
-        $accesstype_obj = PLAN_ACCESS_TYPE::tryFrom($accesstype);
+        $accesstypeobj = PLAN_ACCESS_TYPE::tryFrom($accesstype);
 
-        if ($accesstype_obj === null) {
+        if ($accesstypeobj === null) {
             throw new \moodle_exception('Access type not valid');
         }
 
@@ -73,11 +73,11 @@ class plan_update_access extends external_api {
             throw new \moodle_exception('Cannot change permissions for the plan owner');
         }
 
-        if ($accesstype_obj === PLAN_ACCESS_TYPE::OWNER) {
+        if ($accesstypeobj === PLAN_ACCESS_TYPE::OWNER) {
             throw new \moodle_exception('Cannot change permission to owner');
         }
 
-        $access = $DB->get_record(plan_helper::ACCESS_TABLE, array('planid' => $planid, 'userid' => $memberid), '*', MUST_EXIST);
+        $access = $DB->get_record(plan_helper::ACCESS_TABLE, ['planid' => $planid, 'userid' => $memberid], '*', MUST_EXIST);
         $access->accesstype = $accesstype;
 
         $DB->update_record(plan_helper::ACCESS_TABLE, $access);

@@ -26,7 +26,7 @@ use local_lbplanner\helpers\feedback_helper;
  */
 class feedback_get_all_feedbacks extends external_api {
     public static function get_all_feedbacks_parameters() {
-        return new external_function_parameters(array());
+        return new external_function_parameters([]);
     }
 
     public static function get_all_feedbacks(): array {

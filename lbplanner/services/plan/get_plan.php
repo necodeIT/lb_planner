@@ -25,7 +25,7 @@ use local_lbplanner\helpers\plan_helper;
  */
 class plan_get_plan extends external_api {
     public static function get_plan_parameters() {
-        return new external_function_parameters(array());
+        return new external_function_parameters([]);
     }
 
     public static function get_plan() {

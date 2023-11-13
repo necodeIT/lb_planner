@@ -27,7 +27,7 @@ use local_lbplanner\helpers\notifications_helper;
  */
 class notifications_update_notification extends external_api {
     public static function update_notification_parameters() {
-        return new external_function_parameters(array(
+        return new external_function_parameters([
             'status' => new external_value(
                 PARAM_INT,
                 'The status of the notification {0: unread, 1: read}',
@@ -36,7 +36,7 @@ class notifications_update_notification extends external_api {
                 NULL_NOT_ALLOWED
             ),
             'notificationid' => new external_value(PARAM_INT, 'The ID of the notification', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
-        ));
+        ]);
     }
 
     public static function update_notification($status, $notificationid) {
@@ -44,20 +44,20 @@ class notifications_update_notification extends external_api {
 
         self::validate_parameters(
             self::update_notification_parameters(),
-            array('status' => $status, 'notificationid' => $notificationid)
+            ['status' => $status, 'notificationid' => $notificationid]
         );
 
-        if (!$DB->record_exists(notifications_helper::TABLE, array('id' => $notificationid))) {
+        if (!$DB->record_exists(notifications_helper::TABLE, ['id' => $notificationid])) {
             throw new \moodle_exception('Notification does not exist');
         }
 
-        $notification = $DB->get_record(notifications_helper::TABLE, array('id' => $notificationid), '*', MUST_EXIST);
+        $notification = $DB->get_record(notifications_helper::TABLE, ['id' => $notificationid], '*', MUST_EXIST);
         $notification->status = $status;
         $notification->timestamp_read = time();
 
         $DB->update_record(notifications_helper::TABLE, $notification);
 
-        return array(
+        return [
             'status' => $notification->status,
             'type' => $notification->type,
             'info' => $notification->info,
@@ -65,12 +65,12 @@ class notifications_update_notification extends external_api {
             'notificationid' => $notification->id,
             'timestamp' => $notification->timestamp,
             'timestamp_read' => $notification->timestamp_read,
-        );
+        ];
     }
 
     public static function update_notification_returns() {
         return new external_single_structure(
-            array(
+            [
                 'status' => new external_value(PARAM_INT, 'The status of the notification {0: unread, 1: read}'),
                 'type' => new external_value(PARAM_INT, 'The type of the event that triggered the notification'),
                 'info' => new external_value(PARAM_INT, 'Additional information about the notification'),
@@ -78,7 +78,7 @@ class notifications_update_notification extends external_api {
                 'notificationid' => new external_value(PARAM_INT, 'The ID of the notification'),
                 'timestamp' => new external_value(PARAM_INT, 'The timestamp of the notification'),
                 'timestamp_read' => new external_value(PARAM_INT, 'The timestamp of the notification'),
-            )
+            ]
         );
     }
 }
