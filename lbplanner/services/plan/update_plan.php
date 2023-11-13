@@ -20,7 +20,6 @@ use external_api;
 use external_function_parameters;
 use external_value;
 use local_lbplanner\helpers\plan_helper;
-use local_lbplanner\helpers\user_helper;
 
 /**
  * Update the plan of the given user.
@@ -28,20 +27,6 @@ use local_lbplanner\helpers\user_helper;
 class plan_update_plan extends external_api {
     public static function update_plan_parameters() {
         return new external_function_parameters(array(
-            'userid' => new external_value(
-                PARAM_INT,
-                'The id of the user to get the data for',
-                VALUE_REQUIRED,
-                null,
-                NULL_NOT_ALLOWED
-            ),
-            'planid' => new external_value(
-                PARAM_INT,
-                'The id of the plan',
-                VALUE_REQUIRED,
-                null,
-                NULL_NOT_ALLOWED
-            ),
             'planname' => new external_value(
                 PARAM_TEXT,
                 'The Name of the Plan',
@@ -59,21 +44,19 @@ class plan_update_plan extends external_api {
         ));
     }
 
-    public static function update_plan($userid, $planid, $planname, $enableek) {
-        global $DB;
+    public static function update_plan($planname, $enableek) {
+        global $DB, $USER;
 
         self::validate_parameters(
             self::update_plan_parameters(),
-            array('userid' => $userid, 'planid' => $planid, 'planname' => $planname, 'enableek' => $enableek)
+            array('planname' => $planname, 'enableek' => $enableek)
         );
 
-        user_helper::assert_access($userid);
+        $planid = plan_helper::get_plan_id($USER->id);
 
-        if (!plan_helper::check_edit_permissions($planid, $userid)) {
+        if (!plan_helper::check_edit_permissions($planid, $USER->id)) {
             throw new \Exception('Access denied');
         }
-
-        $planid = plan_helper::get_plan_id($userid);
 
         $plan = $DB->get_record(plan_helper::TABLE, array('id' => $planid), '*', MUST_EXIST);
         $plan->name = $planname;
