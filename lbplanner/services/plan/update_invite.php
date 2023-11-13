@@ -23,6 +23,8 @@ use external_value;
 use local_lbplanner\helpers\user_helper;
 use local_lbplanner\helpers\plan_helper;
 use local_lbplanner\helpers\notifications_helper;
+use local_lbplanner\helpers\PLAN_ACCESS_TYPE;
+use local_lbplanner\helpers\PLAN_INVITE_STATE;
 
 /**
  * THIS METHOD IS NOT USED ANYMORE. JUST TO KEEP OLD CODE FOR REFERENCE.
@@ -47,7 +49,9 @@ class plan_update_invite extends external_api {
 
         user_helper::assert_access($userid);
 
-        if ($status != plan_helper::INVITE_ACCEPTED && $status != plan_helper::INVITE_DECLINED) {
+        $status_obj = PLAN_INVITE_STATE::tryFrom($status);
+
+        if ($status_obj === null) {
             throw new \moodle_exception('Invalid status');
         }
 
@@ -60,15 +64,15 @@ class plan_update_invite extends external_api {
         MUST_EXIST
         );
 
-        if ($invite->status != plan_helper::INVITE_PENDING) {
-            throw new \moodle_exception('Invalid status');
+        if ($invite->status != PLAN_INVITE_STATE::PENDING->value) {
+            throw new \moodle_exception('Can\'t update non-pending status');
         }
 
         $invite->status = $status;
 
         $DB->update_record(plan_helper::INVITES_TABLE, $invite);
 
-        $trigger = $status == plan_helper::INVITE_ACCEPTED ?
+        $trigger = $status_obj === PLAN_INVITE_STATE::ACCEPTED ?
         notifications_helper::TRIGGER_INVITE_ACCEPTED
         : notifications_helper::TRIGGER_INVITE_DECLINED;
 
@@ -76,7 +80,7 @@ class plan_update_invite extends external_api {
 
         // TODO: Change plan access and delete old plan if inivite is accepted.
 
-        if ($status == plan_helper::INVITE_ACCEPTED) {
+        if ($status_obj == PLAN_INVITE_STATE::ACCEPTED) {
             $oldplanid = plan_helper::get_plan_id($userid);
 
             if (plan_helper::get_owner($oldplanid) == $userid) {
@@ -101,7 +105,7 @@ class plan_update_invite extends external_api {
                 MUST_EXIST
             );
 
-            $planaccess->accesstype = plan_helper::ACCESS_TYPE_READ;
+            $planaccess->accesstype = PLAN_ACCESS_TYPE::READ->value;
             $planaccess->planid = $planid;
 
             $DB->update_record(plan_helper::ACCESS_TABLE, $planaccess);

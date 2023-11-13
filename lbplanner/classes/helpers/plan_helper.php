@@ -21,59 +21,37 @@ use external_value;
 use external_multiple_structure;
 
 /**
+ * Levels of access that a user can have for a plan
+ */
+enum PLAN_ACCESS_TYPE: int {
+    case OWNER = 0;
+    case WRITE = 1;
+    case READ = 2;
+    case NONE = -1;
+}
+
+/**
+ * Whether EK modules are enabled inside the planner
+ */
+enum PLAN_EK: int {
+    case DISABLED = 0;
+    case ENABLED = 1;
+}
+
+/**
+ * States an invite can be in
+ */
+enum PLAN_INVITE_STATE: int {
+    case PENDING = 0;
+    case ACCEPTED = 1;
+    case DECLINED = 2;
+    case EXPIRED = 3;
+}
+
+/**
  * Provides helper methods for any tables related with the planning function of the app.
  */
 class plan_helper {
-    /**
-     * Enum value for the plan owner.
-     */
-    const ACCESS_TYPE_OWNER = 0;
-
-    /**
-     * Enum value for plan members with write access to the plan.
-     */
-    const ACCESS_TYPE_WRITE = 1;
-
-    /**
-     * Enum value for plan members with read access to the plan.
-     */
-    const ACCESS_TYPE_READ = 2;
-
-    /**
-     * Enum value for plan members with no access to the plan.
-     */
-    const ACCESS_TYPE_NONE = -1;
-
-    /**
-     * Boolean value for ek-modules disabled.
-     */
-    const EK_DISABLED = 0;
-
-    /**
-     * Boolean value for ek-modules enabled.
-     */
-    const EK_ENABLED = 1;
-
-    /**
-     * Enum value for invites: The invite is pending and has not been accepted yet.
-     */
-    const INVITE_PENDING = 0;
-
-    /**
-     * Enum value for invites: The invite has been accepted.
-     */
-    const INVITE_ACCEPTED = 1;
-
-    /**
-     * Enum value for invites: The invite has been declined.
-     */
-    const INVITE_DECLINED = 2;
-
-    /**
-     * Enum value for invites: The invite has expired.
-     */
-    const INVITE_EXPIRED = 3;
-
     /**
      * local_lbplanner_plans table.
      */
@@ -117,7 +95,7 @@ class plan_helper {
 
         $owner = $DB->get_field(
             self::ACCESS_TABLE,
-            'userid', array('planid' => $planid, 'accesstype' => self::ACCESS_TYPE_OWNER)
+            'userid', array('planid' => $planid, 'accesstype' => PLAN_ACCESS_TYPE::OWNER->value)
         );
 
         return $owner;
@@ -138,31 +116,37 @@ class plan_helper {
     /**
      * Returns the access type of the given user for the given plan.
      *
-     * @param integer $planid The id of the plan.
-     * @param integer $userid The id of the user.
-     * @return integer The access type of the given user for the given plan.
+     * @param int $planid The id of the plan.
+     * @param int $userid The id of the user.
+     * @return PLAN_ACCESS_TYPE The access type of the given user for the given plan.
      */
-    public static function get_access_type(int $userid, int $planid):int {
+    public static function get_access_type(int $userid, int $planid): PLAN_ACCESS_TYPE {
         global $DB;
 
-        if ($DB->record_exists(self::ACCESS_TABLE, array('planid' => $planid, 'userid' => $userid))) {
-            return $DB->get_field(self::ACCESS_TABLE, 'accesstype', array('planid' => $planid, 'userid' => $userid));
+        $field = $DB->get_field(
+            self::ACCESS_TABLE,
+            'accesstype',
+            array('planid' => $planid, 'userid' => $userid)
+        );
+
+        if ($field === false) {
+            return PLAN_ACCESS_TYPE::NONE;
         } else {
-            return self::ACCESS_TYPE_NONE;
+            return PLAN_ACCESS_TYPE::from($field);
         }
     }
 
     /**
      * Checks if the given user has editing permissions for the given plan.
      *
-     * @param integer $planid The id of the plan.
-     * @param integer $userid The id of the user.
+     * @param int $planid The id of the plan.
+     * @param int $userid The id of the user.
      * @return boolean True if the given user has editing permissions for the given plan.
      */
     public static function check_edit_permissions(int $planid, int $userid):bool {
         $access = self::get_access_type($userid, $planid);
 
-        return $access == self::ACCESS_TYPE_OWNER || $access == self::ACCESS_TYPE_WRITE;
+        return $access === PLAN_ACCESS_TYPE::OWNER || $access === PLAN_ACCESS_TYPE::WRITE;
     }
 
     /**
@@ -301,7 +285,7 @@ class plan_helper {
             throw new \moodle_exception('Cannot remove yourself');
         }
 
-        if (self::get_access_type($removeuserid, $planid) == self::ACCESS_TYPE_OWNER) {
+        if (self::get_access_type($removeuserid, $planid) === PLAN_ACCESS_TYPE::OWNER) {
             throw new \moodle_exception('Cannot remove owner');
         }
 
@@ -313,7 +297,7 @@ class plan_helper {
         );
 
         $oldaccess->planid = $newplanid;
-        $oldaccess->accesstype = self::ACCESS_TYPE_OWNER;
+        $oldaccess->accesstype = PLAN_ACCESS_TYPE::OWNER->value;
 
         $DB->update_record(self::ACCESS_TABLE, $oldaccess);
 
