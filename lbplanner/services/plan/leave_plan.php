@@ -18,33 +18,24 @@ namespace local_lbplanner_services;
 
 use external_api;
 use external_function_parameters;
-use external_value;
 use local_lbplanner\helpers\plan_helper;
 use local_lbplanner\helpers\notifications_helper;
 use local_lbplanner\helpers\PLAN_ACCESS_TYPE;
 use local_lbplanner\helpers\PLAN_INVITE_STATE;
 
 /**
- * Leave a plan
+ * Leave your plan
  * if no other user exists in the plan, the user can't leave
  */
 class plan_leave_plan extends external_api {
     public static function leave_plan_parameters() {
-        return new external_function_parameters(array(
-            'planid' => new external_value(
-                PARAM_INT,
-                'The id of the plan',
-                VALUE_REQUIRED,
-                null,
-                NULL_NOT_ALLOWED
-            ),
-        ));
+        return new external_function_parameters(array());
     }
 
-    public static function leave_plan($planid) {
+    public static function leave_plan() {
         global $DB, $USER;
 
-        self::validate_parameters(self::leave_plan_parameters(), array('planid' => $planid));
+        $planid = plan_helper::get_plan_id($USER->id);
 
         if (plan_helper::get_access_type($USER->id, $planid) === PLAN_ACCESS_TYPE::NONE) {
             throw new \moodle_exception('User is not a member of this plan');
