@@ -30,13 +30,6 @@ use local_lbplanner\helpers\notifications_helper;
 class plan_invite_user extends external_api {
     public static function invite_user_parameters() {
         return new external_function_parameters(array(
-            'inviterid' => new external_value(
-                PARAM_INT,
-                'The id of the Owner of the plan',
-                VALUE_REQUIRED,
-                null,
-                NULL_NOT_ALLOWED
-            ),
             'inviteeid' => new external_value(
                 PARAM_INT,
                 'The id of the user who gets invited',
@@ -54,20 +47,19 @@ class plan_invite_user extends external_api {
         ));
     }
 
-    public static function invite_user($inviterid, $inviteeid , $planid) {
-        global $DB;
+    public static function invite_user($inviteeid , $planid) {
+        global $DB, $USER;
 
         self::validate_parameters(
             self::invite_user_parameters(),
-            array('inviterid' => $inviterid, 'inviteeid' => $inviteeid, 'planid' => $planid)
+            array('inviteeid' => $inviteeid, 'planid' => $planid)
         );
 
-        user_helper::assert_access($inviterid);
-        if (plan_helper::get_owner($planid) != $inviterid) {
+        if (plan_helper::get_owner($planid) !== $USER->id) {
             throw new \moodle_exception('Access denied');
         }
 
-        if ($inviterid == $inviteeid) {
+        if ($USER->id === $inviteeid) {
             throw new \moodle_exception('Cannot invite yourself');
         }
 
@@ -82,24 +74,17 @@ class plan_invite_user extends external_api {
             throw new \moodle_exception('User is already invited');
         }
 
-        $invitee = user_helper::get_mdl_user_info($inviteeid);
-        $inviter = user_helper::get_mdl_user_info($inviterid);
-
-        if ($invitee->address != $inviter->address) {
-            throw new \moodle_exception('Cannot invite user who is not in the same class');
-        }
-
         // Save the invite.
         $invite = new \stdClass();
         $invite->planid = $planid;
-        $invite->inviterid = $inviterid;
+        $invite->inviterid = $USER->id;
         $invite->inviteeid = $inviteeid;
         $invite->timestamp = time();
         $invite->status = plan_helper::INVITE_PENDING;
 
         $invite->id = $DB->insert_record(plan_helper::INVITES_TABLE, $invite);
 
-        // Notifiy the invitee that he/she/it/they/xier/* has been invited.
+        // Notify the invitee that they've been invited
         notifications_helper::notify_user(
             $inviteeid,
             $invite->id,
@@ -108,7 +93,7 @@ class plan_invite_user extends external_api {
 
         return array(
             'id' => $invite->id,
-            'inviterid' => $inviterid,
+            'inviterid' => $USER->id,
             'inviteeid' => $inviteeid,
             'planid' => $planid,
             'timestamp' => $invite->timestamp,
