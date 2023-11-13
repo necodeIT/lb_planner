@@ -25,7 +25,7 @@ use local_lbplanner\helpers\plan_helper;
  */
 class plan_clear_plan extends external_api {
     public static function clear_plan_parameters() {
-        return new external_function_parameters(array());
+        return new external_function_parameters([]);
     }
 
     public static function clear_plan() {
@@ -37,7 +37,7 @@ class plan_clear_plan extends external_api {
             throw new \Exception('Access denied');
         }
 
-        $DB->delete_records(plan_helper::DEADLINES_TABLE, array('planid' => $planid ));
+        $DB->delete_records(plan_helper::DEADLINES_TABLE, ['planid' => $planid ]);
 
         return plan_helper::get_plan($planid);
     }

@@ -29,7 +29,7 @@ use local_lbplanner\helpers\PLAN_INVITE_STATE;
  */
 class plan_leave_plan extends external_api {
     public static function leave_plan_parameters() {
-        return new external_function_parameters(array());
+        return new external_function_parameters([]);
     }
 
     public static function leave_plan() {
@@ -48,8 +48,8 @@ class plan_leave_plan extends external_api {
                 throw new \moodle_exception('Cannot Leave Plan: Plan must have at least one other member');
             }
 
-            $writemembers = array();
-            $allmembers = array();
+            $writemembers = [];
+            $allmembers = [];
             foreach ($members as $member) {
                 if ($member->userid == $USER->id) {
                     continue;
@@ -66,7 +66,7 @@ class plan_leave_plan extends external_api {
             }
             $newowneraccess = $DB->get_record(
                 plan_helper::ACCESS_TABLE,
-                array('planid' => $planid, 'userid' => $newowner), '*', MUST_EXIST
+                ['planid' => $planid, 'userid' => $newowner], '*', MUST_EXIST
             );
             $newowneraccess->accesstype = PLAN_ACCESS_TYPE::OWNER->value;
             $DB->update_record(plan_helper::ACCESS_TABLE, $newowneraccess);
@@ -76,7 +76,7 @@ class plan_leave_plan extends external_api {
 
         $oldaccess = $DB->get_record(
             plan_helper::ACCESS_TABLE,
-            array('planid' => $planid, 'userid' => $USER->id), '*', MUST_EXIST
+            ['planid' => $planid, 'userid' => $USER->id], '*', MUST_EXIST
         );
 
         $oldaccess->planid = $newplanid;

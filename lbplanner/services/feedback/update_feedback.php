@@ -27,11 +27,11 @@ use local_lbplanner\helpers\feedback_helper;
  */
 class feedback_update_feedback extends external_api {
     public static function update_feedback_parameters() {
-        return new external_function_parameters(array(
+        return new external_function_parameters([
             'feedbackid' => new external_value(PARAM_INT, 'The id of the course', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
             'notes' => new external_value(PARAM_TEXT, 'The notes of the feedback', VALUE_DEFAULT, null, NULL_ALLOWED),
             'status' => new external_value(PARAM_INT, 'The status of the feedback', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
-        ));
+        ]);
     }
 
     public static function update_feedback($feedbackid, $notes, $status) {
@@ -39,16 +39,16 @@ class feedback_update_feedback extends external_api {
 
         self::validate_parameters(
             self::update_feedback_parameters(),
-            array('feedbackid' => $feedbackid, 'notes' => $notes, 'status' => $status)
+            ['feedbackid' => $feedbackid, 'notes' => $notes, 'status' => $status]
         );
 
         feedback_helper::assert_admin_access();
 
-        if (!$DB->record_exists(feedback_helper::LBPLANNER_FEEDBACK_TABLE, array('id' => $feedbackid))) {
+        if (!$DB->record_exists(feedback_helper::LBPLANNER_FEEDBACK_TABLE, ['id' => $feedbackid])) {
             throw new \moodle_exception('feedback_not_found');
         }
 
-        $feedback = $DB->get_record(feedback_helper::LBPLANNER_FEEDBACK_TABLE, array('id' => $feedbackid), '*', MUST_EXIST);
+        $feedback = $DB->get_record(feedback_helper::LBPLANNER_FEEDBACK_TABLE, ['id' => $feedbackid], '*', MUST_EXIST);
         $feedback->notes = $notes;
         if ($status > 1 || $status < 0) {
             throw new \moodle_exception('Invalid status');

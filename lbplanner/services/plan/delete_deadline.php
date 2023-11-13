@@ -26,7 +26,7 @@ use local_lbplanner\helpers\plan_helper;
  */
 class plan_delete_deadline extends external_api {
     public static function delete_deadline_parameters() {
-        return new external_function_parameters(array(
+        return new external_function_parameters([
             'moduleid' => new external_value(
                 PARAM_INT,
                 'The ID of the Module',
@@ -34,7 +34,7 @@ class plan_delete_deadline extends external_api {
                 null,
                 NULL_NOT_ALLOWED
             ),
-        ));
+        ]);
     }
 
     public static function delete_deadline($moduleid) {
@@ -42,9 +42,9 @@ class plan_delete_deadline extends external_api {
 
         self::validate_parameters(
             self::delete_deadline_parameters(),
-            array(
+            [
                 'moduleid' => $moduleid,
-            )
+            ]
         );
 
         $planid = plan_helper::get_plan_id($USER->id);
@@ -55,10 +55,10 @@ class plan_delete_deadline extends external_api {
 
         $DB->delete_records(
             plan_helper::DEADLINES_TABLE,
-            array(
+            [
                 'planid' => $planid ,
-                'moduleid' => $moduleid
-            )
+                'moduleid' => $moduleid,
+            ]
         );
 
         return plan_helper::get_plan($planid);

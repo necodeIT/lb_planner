@@ -28,11 +28,11 @@ use local_lbplanner\helpers\feedback_helper;
 class feedback_submit_feedback extends external_api {
     public static function submit_feedback_parameters() {
         return new external_function_parameters(
-            array(
+            [
                 'type' => new external_value(PARAM_INT, 'The type ', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
                 'content' => new external_value(PARAM_TEXT, 'The content of the feedback', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
                 'logfile' => new external_value(PARAM_TEXT, 'The name of the logfile', VALUE_DEFAULT, null, NULL_NOT_ALLOWED ),
-            )
+            ]
         );
     }
 
@@ -41,17 +41,17 @@ class feedback_submit_feedback extends external_api {
 
         self::validate_parameters(
             self::submit_feedback_parameters(),
-            array('type' => $type, 'content' => $content, 'logfile' => $logfile)
+            ['type' => $type, 'content' => $content, 'logfile' => $logfile]
         );
 
-        $id = $DB->insert_record(feedback_helper::LBPLANNER_FEEDBACK_TABLE, array(
+        $id = $DB->insert_record(feedback_helper::LBPLANNER_FEEDBACK_TABLE, [
             'content' => $content,
             'userid' => $USER->id,
             'type' => $type,
             'status' => feedback_helper::STATUS_UNREAD,
             'timestamp' => time(),
             'logfile' => $logfile,
-        ));
+        ]);
 
         return feedback_helper::get_feedback($id);
     }

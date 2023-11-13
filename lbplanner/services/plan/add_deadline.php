@@ -26,7 +26,7 @@ use local_lbplanner\helpers\plan_helper;
  */
 class plan_add_deadline extends external_api {
     public static function add_deadline_parameters() {
-        return new external_function_parameters(array(
+        return new external_function_parameters([
             'moduleid' => new external_value(
                 PARAM_INT,
                 'The ID of the Module',
@@ -48,7 +48,7 @@ class plan_add_deadline extends external_api {
                 null,
                 NULL_NOT_ALLOWED
             ),
-        ));
+        ]);
     }
 
     public static function add_deadline($moduleid, $deadlinestart, $deadlineend) {
@@ -56,11 +56,11 @@ class plan_add_deadline extends external_api {
 
         self::validate_parameters(
             self::add_deadline_parameters(),
-            array(
+            [
                 'moduleid' => $moduleid,
                 'deadlinestart' => $deadlinestart,
                 'deadlineend' => $deadlineend,
-            )
+            ]
         );
 
         $planid = plan_helper::get_plan_id($USER->id);
@@ -69,7 +69,7 @@ class plan_add_deadline extends external_api {
             throw new \moodle_exception('Access denied');
         }
 
-        if ($DB->record_exists(plan_helper::DEADLINES_TABLE, array('moduleid' => $moduleid, 'planid' => $planid))) {
+        if ($DB->record_exists(plan_helper::DEADLINES_TABLE, ['moduleid' => $moduleid, 'planid' => $planid])) {
             throw new \moodle_exception('Deadline already exists');
         }
 

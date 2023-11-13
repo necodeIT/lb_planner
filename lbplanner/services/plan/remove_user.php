@@ -26,9 +26,9 @@ use local_lbplanner\helpers\plan_helper;
  */
 class plan_remove_user extends external_api {
     public static function remove_user_parameters() {
-        return new external_function_parameters(array(
+        return new external_function_parameters([
             'userid' => new external_value(PARAM_INT, 'The id of the user to remove', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
-        ));
+        ]);
     }
 
     public static function remove_user($userid, $planid) {
@@ -36,7 +36,7 @@ class plan_remove_user extends external_api {
 
         self::validate_parameters(
             self::remove_user_parameters(),
-            array('userid' => $userid)
+            ['userid' => $userid]
         );
 
         $planid = plan_helper::get_plan_id($USER->id);
