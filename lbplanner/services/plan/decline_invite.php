@@ -25,43 +25,40 @@ use local_lbplanner\helpers\plan_helper;
 use local_lbplanner\helpers\notifications_helper;
 
 /**
- * Update a invite from the plan.
+ * Decline an invite from the plan.
  */
 class plan_decline_invite extends external_api {
     public static function decline_invite_parameters() {
         return new external_function_parameters(array(
-        'inviteid' => new external_value(PARAM_INT, 'The inviteid of the plan', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
-        'userid' => new external_value(PARAM_INT, 'The id of the invited user', VALUE_REQUIRED, null, NULL_NOT_ALLOWED)
+        'inviteid' => new external_value(PARAM_INT, 'The inviteid of the plan', VALUE_REQUIRED, null, NULL_NOT_ALLOWED)
         ));
     }
 
-    public static function decline_invite($inviteid, $userid) {
-        global $DB;
+    public static function decline_invite($inviteid) {
+        global $DB, $USER;
 
         self::validate_parameters(self::decline_invite_parameters(), array(
-        'inviteid' => $inviteid,
-        'userid' => $userid,
+        'inviteid' => $inviteid
         ));
 
-        user_helper::assert_access($userid);
+        user_helper::assert_access($USER->id);
 
-        if (!$DB->record_exists(plan_helper::INVITES_TABLE, array('id' => $inviteid, 'inviteeid' => $userid))) {
+        if (!$DB->record_exists(plan_helper::INVITES_TABLE, array('id' => $inviteid, 'inviteeid' => $USER->id))) {
             throw new \moodle_exception('Invite not found');
-        }
-        if (!$DB->record_exists(plan_helper::INVITES_TABLE,
-        array('id' => $inviteid, 'inviteeid' => $userid, 'status' => plan_helper::INVITE_PENDING))) {
-            throw new \moodle_exception('Invite already accepted or declined');
         }
 
         $invite = $DB->get_record(plan_helper::INVITES_TABLE,
         array(
             'id' => $inviteid,
-            'inviteeid' => $userid,
-            'status' => plan_helper::INVITE_PENDING,
+            'inviteeid' => $USER->id
         ),
         '*',
         MUST_EXIST
         );
+
+        if ($invite->status === plan_helper::INVITE_PENDING) {
+            throw new \moodle_exception('Invite already accepted or declined');
+        }
 
         // Notify the user that invite has been declined.
         notifications_helper::notify_user(
