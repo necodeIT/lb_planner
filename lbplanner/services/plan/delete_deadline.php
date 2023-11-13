@@ -20,7 +20,6 @@ use external_api;
 use external_function_parameters;
 use external_value;
 use local_lbplanner\helpers\plan_helper;
-use local_lbplanner\helpers\user_helper;
 
 /**
  * Delete a deadline from the plan.
@@ -28,13 +27,6 @@ use local_lbplanner\helpers\user_helper;
 class plan_delete_deadline extends external_api {
     public static function delete_deadline_parameters() {
         return new external_function_parameters(array(
-            'userid' => new external_value(
-                PARAM_INT,
-                'The id of the user to get the data for',
-                VALUE_REQUIRED,
-                null,
-                NULL_NOT_ALLOWED
-            ),
             'planid' => new external_value(
                 PARAM_INT,
                 'The ID of the Plan',
@@ -52,21 +44,18 @@ class plan_delete_deadline extends external_api {
         ));
     }
 
-    public static function delete_deadline($userid, $planid, $moduleid) {
-        global $DB;
+    public static function delete_deadline($planid, $moduleid) {
+        global $DB, $USER;
 
         self::validate_parameters(
             self::delete_deadline_parameters(),
             array(
-                'userid' => $userid,
                 'planid' => $planid,
                 'moduleid' => $moduleid,
             )
         );
 
-        user_helper::assert_access($userid);
-
-        if (!plan_helper::check_edit_permissions($planid, $userid)) {
+        if (!plan_helper::check_edit_permissions($planid, $USER->id)) {
             throw new \Exception('Access denied');
         }
 
