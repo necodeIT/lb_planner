@@ -20,7 +20,6 @@ use external_api;
 use external_function_parameters;
 use external_single_structure;
 use external_value;
-use local_lbplanner\helpers\user_helper;
 use local_lbplanner\helpers\plan_helper;
 use local_lbplanner\helpers\notifications_helper;
 
@@ -30,33 +29,29 @@ use local_lbplanner\helpers\notifications_helper;
 class plan_accept_invite extends external_api {
     public static function accept_invite_parameters() {
         return new external_function_parameters(array(
-        'inviteid' => new external_value(PARAM_INT, 'The id of the plan', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
-        'userid' => new external_value(PARAM_INT, 'The id of the invited user', VALUE_REQUIRED, null, NULL_NOT_ALLOWED)
+        'inviteid' => new external_value(PARAM_INT, 'The id of the plan', VALUE_REQUIRED, null, NULL_NOT_ALLOWED)
         ));
     }
 
-    public static function accept_invite($inviteid, $userid) {
-        global $DB;
+    public static function accept_invite($inviteid) {
+        global $DB, $USER;
 
         self::validate_parameters(self::accept_invite_parameters(), array(
         'inviteid' => $inviteid,
-        'userid' => $userid,
         ));
 
-        user_helper::assert_access($userid);
-
-        if (!$DB->record_exists(plan_helper::INVITES_TABLE, array('id' => $inviteid, 'inviteeid' => $userid))) {
+        if (!$DB->record_exists(plan_helper::INVITES_TABLE, array('id' => $inviteid, 'inviteeid' => $USER->id))) {
             throw new \moodle_exception('Invite not found');
         }
         if (!$DB->record_exists(plan_helper::INVITES_TABLE,
-        array( 'id' => $inviteid, 'inviteeid' => $userid, 'status' => plan_helper::INVITE_PENDING))) {
+        array( 'id' => $inviteid, 'inviteeid' => $USER->id, 'status' => plan_helper::INVITE_PENDING))) {
             throw new \moodle_exception('Invite already accepted or declined');
         }
 
         $invite = $DB->get_record(plan_helper::INVITES_TABLE,
         array(
             'id' => $inviteid,
-            'inviteeid' => $userid,
+            'inviteeid' => $USER->id,
             'status' => plan_helper::INVITE_PENDING,
         ),
         '*',
@@ -70,12 +65,12 @@ class plan_accept_invite extends external_api {
             notifications_helper::TRIGGER_INVITE_ACCEPTED
         );
 
-        // If the User is the User has Member in his plan, then removes it.
-        $oldplanid = plan_helper::get_plan_id($userid);
-        if (plan_helper::get_owner($oldplanid) == $userid) {
+        // Deletes the old plan if the user is the owner of it
+        $oldplanid = plan_helper::get_plan_id($USER->id);
+        if (plan_helper::get_owner($oldplanid) == $USER->id) {
 
             foreach (plan_helper::get_plan_members($oldplanid) as $member) {
-                if ($member->userid != $userid) {
+                if ($member->userid != $USER->id) {
                     self::call_external_function('local_lbplanner_plan_remove_user', array(
                         'planid' => $oldplanid,
                         'userid' => $member->userid
@@ -84,7 +79,7 @@ class plan_accept_invite extends external_api {
             }
             self::call_external_function('local_lbplanner_plan_clear_plan', array(
                 'planid' => $oldplanid,
-                'userid' => $userid
+                'userid' => $USER->id
             ));
             $DB->delete_records(plan_helper::TABLE, array('id' => $oldplanid));
         }
@@ -93,7 +88,7 @@ class plan_accept_invite extends external_api {
             plan_helper::ACCESS_TABLE,
             array(
                 'planid' => $oldplanid,
-                'userid' => $userid
+                'userid' => $USER->id
             ),
             '*',
             MUST_EXIST
@@ -107,7 +102,7 @@ class plan_accept_invite extends external_api {
         $planaccess->planid = $invite->planid;
 
         $DB->update_record(plan_helper::ACCESS_TABLE, $planaccess);
-        $invites = plan_helper::get_invites_send($userid);
+        $invites = plan_helper::get_invites_send($USER->id);
         foreach ($invites as $invite) {
             if ($invite->status == plan_helper::INVITE_PENDING) {
                 $invite->status = plan_helper::INVITE_EXPIRED;
