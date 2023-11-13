@@ -27,13 +27,6 @@ use local_lbplanner\helpers\plan_helper;
 class plan_add_deadline extends external_api {
     public static function add_deadline_parameters() {
         return new external_function_parameters(array(
-            'planid' => new external_value(
-                PARAM_INT,
-                'The ID of the Plan',
-                VALUE_REQUIRED,
-                null,
-                NULL_NOT_ALLOWED
-            ),
             'moduleid' => new external_value(
                 PARAM_INT,
                 'The ID of the Module',
@@ -58,18 +51,19 @@ class plan_add_deadline extends external_api {
         ));
     }
 
-    public static function add_deadline($planid, $moduleid, $deadlinestart, $deadlineend) {
+    public static function add_deadline($moduleid, $deadlinestart, $deadlineend) {
         global $DB, $USER;
 
         self::validate_parameters(
             self::add_deadline_parameters(),
             array(
-                'planid' => $planid,
                 'moduleid' => $moduleid,
                 'deadlinestart' => $deadlinestart,
                 'deadlineend' => $deadlineend,
             )
         );
+
+        $planid = plan_helper::get_plan_id($USER->id);
 
         if ( !plan_helper::check_edit_permissions( $planid, $USER->id ) ) {
             throw new \moodle_exception('Access denied');

@@ -25,7 +25,7 @@ use local_lbplanner\helpers\notifications_helper;
 use local_lbplanner\helpers\PLAN_INVITE_STATE;
 
 /**
- * Invite a user to the plan.
+ * Invite a user to your plan
  */
 class plan_invite_user extends external_api {
     public static function invite_user_parameters() {
@@ -37,23 +37,18 @@ class plan_invite_user extends external_api {
                 null,
                 NULL_NOT_ALLOWED
             ),
-            'planid' => new external_value(
-                PARAM_INT,
-                'The id of the plan',
-                VALUE_REQUIRED,
-                null,
-                NULL_NOT_ALLOWED
-            ),
         ));
     }
 
-    public static function invite_user($inviteeid , $planid) {
+    public static function invite_user($inviteeid) {
         global $DB, $USER;
 
         self::validate_parameters(
             self::invite_user_parameters(),
-            array('inviteeid' => $inviteeid, 'planid' => $planid)
+            array('inviteeid' => $inviteeid)
         );
+
+        $planid = plan_helper::get_plan_id($USER->id);
 
         if (plan_helper::get_owner($planid) !== $USER->id) {
             throw new \moodle_exception('Access denied');

@@ -18,7 +18,6 @@ namespace local_lbplanner_services;
 
 use external_api;
 use external_function_parameters;
-use external_value;
 use local_lbplanner\helpers\plan_helper;
 
 /**
@@ -26,21 +25,13 @@ use local_lbplanner\helpers\plan_helper;
  */
 class plan_clear_plan extends external_api {
     public static function clear_plan_parameters() {
-        return new external_function_parameters(array(
-            'planid' => new external_value(
-                PARAM_INT,
-                'The id of the plan',
-                VALUE_REQUIRED,
-                null,
-                NULL_NOT_ALLOWED
-            ),
-        ));
+        return new external_function_parameters(array());
     }
 
-    public static function clear_plan($planid) {
+    public static function clear_plan() {
         global $DB, $USER;
 
-        self::validate_parameters(self::clear_plan_parameters(), array('planid' => $planid));
+        $planid = plan_helper::get_plan_id($USER->id);
 
         if (!plan_helper::check_edit_permissions($planid, $USER->id)) {
             throw new \Exception('Access denied');

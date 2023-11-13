@@ -22,18 +22,11 @@ use external_value;
 use local_lbplanner\helpers\plan_helper;
 
 /**
- * Delete a deadline from the plan.
+ * Delete a deadline from your plan
  */
 class plan_delete_deadline extends external_api {
     public static function delete_deadline_parameters() {
         return new external_function_parameters(array(
-            'planid' => new external_value(
-                PARAM_INT,
-                'The ID of the Plan',
-                VALUE_REQUIRED,
-                null,
-                NULL_NOT_ALLOWED
-            ),
             'moduleid' => new external_value(
                 PARAM_INT,
                 'The ID of the Module',
@@ -44,16 +37,17 @@ class plan_delete_deadline extends external_api {
         ));
     }
 
-    public static function delete_deadline($planid, $moduleid) {
+    public static function delete_deadline($moduleid) {
         global $DB, $USER;
 
         self::validate_parameters(
             self::delete_deadline_parameters(),
             array(
-                'planid' => $planid,
                 'moduleid' => $moduleid,
             )
         );
+
+        $planid = plan_helper::get_plan_id($USER->id);
 
         if (!plan_helper::check_edit_permissions($planid, $USER->id)) {
             throw new \Exception('Access denied');

@@ -28,13 +28,6 @@ use local_lbplanner\helpers\plan_helper;
 class plan_update_access extends external_api {
     public static function update_access_parameters() {
         return new external_function_parameters(array(
-            'planid' => new external_value(
-                PARAM_INT,
-                'The id of the plan',
-                VALUE_REQUIRED,
-                null,
-                NULL_NOT_ALLOWED
-            ),
             'accesstype' => new external_value(
                 PARAM_INT,
                 'The access type',
@@ -52,13 +45,15 @@ class plan_update_access extends external_api {
         ));
     }
 
-    public static function update_access($planid, $accesstype, $memberid) {
+    public static function update_access($accesstype, $memberid) {
         global $DB, $USER;
 
         self::validate_parameters(
             self::update_access_parameters(),
-            array('planid' => $planid, 'accesstype' => $accesstype, 'memberid' => $memberid)
+            array('accesstype' => $accesstype, 'memberid' => $memberid)
         );
+
+        $planid = plan_helper::get_plan_id($USER->id);
 
         if (plan_helper::get_owner($planid) !== $USER->id) {
             throw new \moodle_exception('Access denied');
