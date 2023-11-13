@@ -21,37 +21,21 @@ use external_function_parameters;
 use external_single_structure;
 use external_multiple_structure;
 use external_value;
-use local_lbplanner\helpers\user_helper;
 use local_lbplanner\helpers\plan_helper;
 
 /**
- * Get all the invites of the given user.
+ * Get all the invites of the current user.
  */
 class plan_get_invites extends external_api {
     public static function get_invites_parameters() {
-        return new external_function_parameters(array(
-            'userid' => new external_value(
-                PARAM_INT,
-                'The id of the Owner of the plan',
-                VALUE_REQUIRED,
-                null,
-                NULL_NOT_ALLOWED
-            ),
-        ));
+        return new external_function_parameters(array());
     }
 
-    public static function get_invites($userid) {
-        global $DB;
+    public static function get_invites() {
+        global $DB, $USER;
 
-        self::validate_parameters(
-            self::get_invites_parameters(),
-            array('userid' => $userid)
-        );
-
-        user_helper::assert_access($userid);
-
-        $invitesreceived = $DB->get_records(plan_helper::INVITES_TABLE, array('inviteeid' => $userid));
-        $invitessent = $DB->get_records(plan_helper::INVITES_TABLE, array('inviterid' => $userid));
+        $invitesreceived = $DB->get_records(plan_helper::INVITES_TABLE, array('inviteeid' => $USER->id));
+        $invitessent = $DB->get_records(plan_helper::INVITES_TABLE, array('inviterid' => $USER->id));
 
         $invites = array();
 
