@@ -21,7 +21,6 @@ use external_function_parameters;
 use external_value;
 use local_lbplanner\helpers\PLAN_ACCESS_TYPE;
 use local_lbplanner\helpers\plan_helper;
-use local_lbplanner\helpers\user_helper;
 
 /**
  * Update the access of the plan.
@@ -29,13 +28,6 @@ use local_lbplanner\helpers\user_helper;
 class plan_update_access extends external_api {
     public static function update_access_parameters() {
         return new external_function_parameters(array(
-            'userid' => new external_value(
-                PARAM_INT,
-                'The id of the user to get the data for',
-                VALUE_REQUIRED,
-                null,
-                NULL_NOT_ALLOWED
-            ),
             'planid' => new external_value(
                 PARAM_INT,
                 'The id of the plan',
@@ -60,17 +52,15 @@ class plan_update_access extends external_api {
         ));
     }
 
-    public static function update_access($userid, $planid, $accesstype, $memberid) {
-        global $DB;
+    public static function update_access($planid, $accesstype, $memberid) {
+        global $DB, $USER;
 
         self::validate_parameters(
             self::update_access_parameters(),
-            array('userid' => $userid, 'planid' => $planid, 'accesstype' => $accesstype, 'memberid' => $memberid)
+            array('planid' => $planid, 'accesstype' => $accesstype, 'memberid' => $memberid)
         );
 
-        user_helper::assert_access($userid);
-
-        if (plan_helper::get_owner($planid) != $userid) {
+        if (plan_helper::get_owner($planid) !== $USER->id) {
             throw new \moodle_exception('Access denied');
         }
 
@@ -80,7 +70,7 @@ class plan_update_access extends external_api {
             throw new \moodle_exception('Access type not valid');
         }
 
-        if ($userid == $memberid) {
+        if ($USER->id === $memberid) {
             throw new \moodle_exception('Cannot change own permissions');
         }
 
