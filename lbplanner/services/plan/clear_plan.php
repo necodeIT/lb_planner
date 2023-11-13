@@ -20,7 +20,6 @@ use external_api;
 use external_function_parameters;
 use external_value;
 use local_lbplanner\helpers\plan_helper;
-use local_lbplanner\helpers\user_helper;
 
 /**
  * Clear the plan for the given user.

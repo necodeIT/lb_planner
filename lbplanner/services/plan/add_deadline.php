@@ -19,7 +19,6 @@ namespace local_lbplanner_services;
 use external_api;
 use external_function_parameters;
 use external_value;
-use local_lbplanner\helpers\user_helper;
 use local_lbplanner\helpers\plan_helper;
 
 /**
