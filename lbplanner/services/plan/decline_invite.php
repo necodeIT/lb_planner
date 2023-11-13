@@ -20,7 +20,6 @@ use external_api;
 use external_function_parameters;
 use external_single_structure;
 use external_value;
-use local_lbplanner\helpers\user_helper;
 use local_lbplanner\helpers\plan_helper;
 use local_lbplanner\helpers\notifications_helper;
 use local_lbplanner\helpers\PLAN_INVITE_STATE;
@@ -41,8 +40,6 @@ class plan_decline_invite extends external_api {
         self::validate_parameters(self::decline_invite_parameters(), array(
         'inviteid' => $inviteid
         ));
-
-        user_helper::assert_access($USER->id);
 
         if (!$DB->record_exists(plan_helper::INVITES_TABLE, array('id' => $inviteid, 'inviteeid' => $USER->id))) {
             throw new \moodle_exception('Invite not found');
