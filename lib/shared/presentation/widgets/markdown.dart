@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:lb_planner/shared/shared.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-/// Themed [Markdown] widget.
+/// Themed [MarkdownView] widget.
 ///
 /// Also allows for loading files from the internet.
-class Markdown extends LocalizedWidget {
-  /// Themed [Markdown] widget.
-  const Markdown(this.data, {Key? key})
+class MarkdownView extends ConsumerWidget {
+  /// Themed [MarkdownView] widget.
+  const MarkdownView(this.data, {Key? key})
       : source = null,
         assert(data != null),
         super(key: key);
 
-  /// Themed [Markdown] widget.
+  /// Themed [MarkdownView] widget.
   ///
   /// Loads markdown from the given [source].
-  const Markdown.network(this.source, {Key? key})
+  const MarkdownView.network(this.source, {Key? key})
       : data = null,
         assert(source != null),
         super(key: key);
@@ -25,46 +30,48 @@ class Markdown extends LocalizedWidget {
   final Uri? source;
 
   @override
-  Widget build(context, t) {
+  Widget build(context, ref) {
+    final networkService = ref.watch(networkServiceProvider);
+
     return ConditionalWidget(
       condition: data == null,
-      trueWidget: (_) => FutureBuilder<http.Response>(
-        future: http.get(source!),
+      ifTrue: FutureBuilder<HttpResponse>(
+        future: networkService.get(source.toString()),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            // ignore: no-magic-number
-            if (snapshot.data!.statusCode == 200)
+            if (snapshot.data!.statusCode == 200) {
               return _buildMarkdown(context, snapshot.data!.body);
+            }
 
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                LpIcon(
+                Icon(
                   FontAwesome.exclamation_triangle,
-                  color: errorColor,
-                  size: UpdateRoute.iconSize,
+                  color: context.theme.colorScheme.error,
+                  size: 60,
                 ),
-                NcSpacing.small(),
-                NcCaptionText(
-                  t.widgets_markdown_networkError(source.toString()),
-                  textAlign: TextAlign.center,
-                ),
-                NcSpacing.large(),
-                LpButton(
-                  text: t.widgets_markdown_networkError_openInBrowser,
+                Spacing.small(),
+                Text(context.t.widgets_markdown_networkError(source.toString()),
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 12, letterSpacing: 0.4)),
+                Spacing.large(),
+                ElevatedButton(
+                  child: Text(
+                      context.t.widgets_markdown_networkError_openInBrowser),
                   onPressed: () => launchUrl(source!),
-                ),
+                )
               ],
             );
           } else {
             return Center(
-              child: LpLoadingIndicator.circular(),
+              child: CircularProgressIndicator(),
             );
           }
         },
       ),
-      falseWidget: (_) => _buildMarkdown(context, data!),
+      ifFalse: _buildMarkdown(context, data!),
     );
   }
 
@@ -75,19 +82,19 @@ class Markdown extends LocalizedWidget {
         Theme.of(context),
       ).copyWith(
         blockquoteDecoration: BoxDecoration(
-          color: primaryColor,
-          borderRadius: BorderRadius.circular(kRadius),
+          color: context.theme.colorScheme.primary,
+          borderRadius: BorderRadius.circular(5),
         ),
-        a: TextStyle(color: accentColor),
-        h1: NcBaseText.style(fontWeight: FontWeight.bold, fontSize: null),
-        h2: NcBaseText.style(fontWeight: FontWeight.bold, fontSize: null),
-        h3: NcBaseText.style(fontWeight: FontWeight.bold, fontSize: null),
-        h4: NcBaseText.style(fontWeight: FontWeight.bold, fontSize: null),
-        h5: NcBaseText.style(fontWeight: FontWeight.bold, fontSize: null),
-        h6: NcBaseText.style(fontWeight: FontWeight.bold, fontSize: null),
+        a: TextStyle(color: context.theme.colorScheme.primary),
+        h1: TextStyle(fontWeight: FontWeight.bold, fontSize: null),
+        h2: TextStyle(fontWeight: FontWeight.bold, fontSize: null),
+        h3: TextStyle(fontWeight: FontWeight.bold, fontSize: null),
+        h4: TextStyle(fontWeight: FontWeight.bold, fontSize: null),
+        h5: TextStyle(fontWeight: FontWeight.bold, fontSize: null),
+        h6: TextStyle(fontWeight: FontWeight.bold, fontSize: null),
         code: TextStyle(
-          color: textColor,
-          backgroundColor: primaryColor,
+          color: context.theme.textTheme.bodyLarge!.color!,
+          backgroundColor: context.theme.colorScheme.primary,
           fontWeight: FontWeight.bold,
           letterSpacing: 1,
         ),
@@ -97,9 +104,6 @@ class Markdown extends LocalizedWidget {
 
         launchUrl(Uri.parse(href));
       },
-      checkboxBuilder: (checked) => LpCheckbox(
-        value: checked,
-      ),
     );
   }
 }

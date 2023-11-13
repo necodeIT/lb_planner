@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lb_planner/shared/shared.dart';
+import 'package:lb_planner/features/update/update.dart';
 
 /// Update route.
 
@@ -24,12 +25,18 @@ class _UpdateScreenState extends State<UpdateScreen> {
   Widget build(BuildContext context) {
     return Consumer(
       builder: (context, ref, _) {
-        var updater = ref.watch(updateController);
-        var update = ref.watch(updateProvider);
+        //var updater = ref.watch(updateController);
+        //var update = ref.watch(updateProvider);
+        final patchingProgressController = patchingProgressProvider.notifier;
+
+        final isUpdateAvailableProvider =
+            AsyncNotifierProvider<IsUpdateAvailableProviderState, bool>(
+          () => IsUpdateAvailableProviderState(),
+        );
 
         void showCommand() {
           WidgetsBinding.instance.addPostFrameCallback((_) {
-            lpShowAlertDialog(
+            showAlertDialog(
               context,
               title: t.update_dialog_title,
               body: Column(
@@ -42,7 +49,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
                     overflow: TextOverflow.visible,
                   ),
                   Spacing.large(),
-                  LpSnippet(code: update.command),
+                  Snippet(code: update.command),
                 ],
               ),
             );
@@ -112,7 +119,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
               ),
               Spacing.large(),
               Expanded(
-                child: Markdown(update.patchNotes),
+                child: MarkdownView(update.patchNotes),
               ),
             ],
           ),
