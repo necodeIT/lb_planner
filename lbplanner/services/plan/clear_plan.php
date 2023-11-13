@@ -28,13 +28,6 @@ use local_lbplanner\helpers\user_helper;
 class plan_clear_plan extends external_api {
     public static function clear_plan_parameters() {
         return new external_function_parameters(array(
-            'userid' => new external_value(
-                PARAM_INT,
-                'The id of the user to get the data for',
-                VALUE_REQUIRED,
-                null,
-                NULL_NOT_ALLOWED
-            ),
             'planid' => new external_value(
                 PARAM_INT,
                 'The id of the plan',
@@ -45,20 +38,16 @@ class plan_clear_plan extends external_api {
         ));
     }
 
-    public static function clear_plan($userid, $planid) {
-        global $DB;
+    public static function clear_plan($planid) {
+        global $DB, $USER;
 
-        self::validate_parameters(self::clear_plan_parameters(), array('userid' => $userid, 'planid' => $planid));
+        self::validate_parameters(self::clear_plan_parameters(), array('planid' => $planid));
 
-        user_helper::assert_access($userid);
-
-        if (!plan_helper::check_edit_permissions($planid, $userid)) {
+        if (!plan_helper::check_edit_permissions($planid, $USER->id)) {
             throw new \Exception('Access denied');
         }
 
         $DB->delete_records(plan_helper::DEADLINES_TABLE, array('planid' => $planid ));
-
-        $plan = $DB->get_record(plan_helper::TABLE, array('id' => $planid));
 
         return plan_helper::get_plan($planid);
     }
