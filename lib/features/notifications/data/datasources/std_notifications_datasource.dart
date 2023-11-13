@@ -21,7 +21,7 @@ class StdNotificationsDataSource extends NotificationsDataSource {
       body: {},
     );
 
-    if (response.isNotOk) {
+    if (response.failed) {
       throw Exception(
         "Failed to fetch notifications with status code ${response.statusCode}",
       );
@@ -43,7 +43,7 @@ class StdNotificationsDataSource extends NotificationsDataSource {
       },
     );
 
-    if (response.isNotOk) {
+    if (response.failed) {
       throw Exception(
         "Failed to update notification with status code ${response.statusCode}",
       );

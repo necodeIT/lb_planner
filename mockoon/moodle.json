@@ -30,13 +30,6 @@
             {
               "target": "body",
               "modifier": "wstoken",
-              "value": "",
-              "invert": false,
-              "operator": "null"
-            },
-            {
-              "target": "body",
-              "modifier": "wstoken",
               "value": "JNR9LeuzJUOSlFJsmluTHMkmwvTGzh",
               "invert": true,
               "operator": "equals"
@@ -60,7 +53,7 @@
           "body": "{\n  \"error\": \"Notwendiger Parameter \\\"wsfunction\\\" fehlt\",\n  \"errorcode\": \"missingparam\",\n  \"stacktrace\": null,\n  \"debuginfo\": null,\n  \"reproductionlink\": null\n}",
           "latency": 0,
           "statusCode": 200,
-          "label": "Returns an error for missing parameter `wstoken`",
+          "label": "Returns an error for missing parameter `wsfunction`",
           "headers": [],
           "bodyType": "INLINE",
           "filePath": "",
@@ -160,6 +153,81 @@
               "value": "",
               "invert": false,
               "operator": "null"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id"
+        },
+        {
+          "uuid": "0cff1e26-fa9c-46b0-8407-dedcbc50e65b",
+          "body": "{\n  \"userid\": 0,\n  \"username\": \"debug\",\n  \"firstname\": \"Debug\",\n  \"lastname\": \"Mode\",\n  \"theme\": \"Light\",\n  \"lang\":\"en\",\n  \"profileimageurl\": \"https://i.pinimg.com/474x/13/3b/0a/133b0ab0142b8faf0e11ad289ff0749e.jpg\",\n  \"planid\":0,\n  \"colorblindness\":\"none\",\n  \"displaytaskcount\":1,\n  \"capabilities\":12,\n  \"vintage\": \"5AHIT\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "local_lbplanner_user_update_user",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "wsfunction",
+              "value": "local_lbplanner_user_update_user",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "moodlewsrestformat",
+              "value": "json",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "wstoken",
+              "value": "DpWjCjT5oaV7JFwQuwZgwMC53BcY2A",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "userid",
+              "value": "",
+              "invert": false,
+              "operator": "null"
+            },
+            {
+              "target": "body",
+              "modifier": "lang",
+              "value": "en",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "theme",
+              "value": "Light",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "colorblindness",
+              "value": "none",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "displayTaskCount",
+              "value": "1",
+              "invert": false,
+              "operator": "equals"
             }
           ],
           "rulesOperator": "AND",

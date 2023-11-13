@@ -52,10 +52,33 @@ extension ApiServiceResponseHelpers on HttpResponse<Either<List<JSON>, JSON>> {
       throw AssertionError("Response body is null");
     }
 
-    if (body!.isLeft) {
+    if (body!.isRight) {
       throw AssertionError("Expected array, got single object");
     }
 
     return body!.left;
   }
+
+  /// Returns `true` if the response indicates success. Otherwise `false`.
+  ///
+  /// Unlike [HttpResponse.isOk], this method also checks the response body for error codes.
+  bool get success {
+    if (!isOk) return false;
+
+    if (body != null && body!.isRight) {
+      final json = body!.right;
+
+      // check if "exception" or "errorcode" is present in the response body
+      if (json.containsKey("exception") || json.containsKey("errorcode")) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  /// Returns `true` if the response indicates failure. Otherwise `false`.
+  ///
+  /// Unlike [HttpResponse.isNotOk], this method also checks the response body for error codes.
+  bool get failed => !success;
 }

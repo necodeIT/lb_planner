@@ -19,7 +19,7 @@ class UserTokenState extends AsyncNotifier<UserToken> {
   FutureOr<UserToken> build() async {
     localConfigService = ref.watch(userTokenLocalConfigServiceProvider);
     moodleMobileAppAuthService =
-        ref.watch(authServiceProvider(kMoodleMobileAppApiServiceName));
+        ref.watch(authServiceProvider(kMoodleMobileAppServiceName));
     lbPlannerApiAuthService =
         ref.watch(authServiceProvider(kLbPlannerApiServiceName));
 

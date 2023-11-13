@@ -38,6 +38,7 @@ mixin _$User {
   int get capabilitiesBitMask => throw _privateConstructorUsedError;
 
   /// The name of the theme the user has selected
+  @JsonKey(name: "theme")
   String get themeName => throw _privateConstructorUsedError;
 
   /// The language the user has selected
@@ -79,7 +80,7 @@ abstract class $UserCopyWith<$Res> {
       String firstname,
       String lastname,
       @JsonKey(name: 'capabilities') int capabilitiesBitMask,
-      String themeName,
+      @JsonKey(name: "theme") String themeName,
       @JsonKey(name: 'lang') String language,
       @JsonKey(name: 'profileimageurl') String profileImageUrl,
       @JsonKey(name: 'planid') int planId,
@@ -179,7 +180,7 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       String firstname,
       String lastname,
       @JsonKey(name: 'capabilities') int capabilitiesBitMask,
-      String themeName,
+      @JsonKey(name: "theme") String themeName,
       @JsonKey(name: 'lang') String language,
       @JsonKey(name: 'profileimageurl') String profileImageUrl,
       @JsonKey(name: 'planid') int planId,
@@ -272,7 +273,7 @@ class _$_User extends _User {
       required this.firstname,
       required this.lastname,
       @JsonKey(name: 'capabilities') this.capabilitiesBitMask = -1,
-      this.themeName = "",
+      @JsonKey(name: "theme") this.themeName = "",
       @JsonKey(name: 'lang') this.language = "",
       @JsonKey(name: 'profileimageurl') this.profileImageUrl = "",
       @JsonKey(name: 'planid') this.planId = -1,
@@ -307,7 +308,7 @@ class _$_User extends _User {
 
   /// The name of the theme the user has selected
   @override
-  @JsonKey()
+  @JsonKey(name: "theme")
   final String themeName;
 
   /// The language the user has selected
@@ -411,7 +412,7 @@ abstract class _User extends User {
       required final String firstname,
       required final String lastname,
       @JsonKey(name: 'capabilities') final int capabilitiesBitMask,
-      final String themeName,
+      @JsonKey(name: "theme") final String themeName,
       @JsonKey(name: 'lang') final String language,
       @JsonKey(name: 'profileimageurl') final String profileImageUrl,
       @JsonKey(name: 'planid') final int planId,
@@ -447,6 +448,7 @@ abstract class _User extends User {
   @override
 
   /// The name of the theme the user has selected
+  @JsonKey(name: "theme")
   String get themeName;
   @override
 

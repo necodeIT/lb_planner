@@ -22,7 +22,7 @@ class NotificationsProviderState
     await notificationsRepository.markAllNotificationsAsRead();
   }
 
-  /// Filters the user's notifications by [type] and [read].
+  /// Filters the user's notifications by [type] and [read] status.
   ///
   /// If [type] is `null`, all types will be returned.
   /// If [read] is `null`, all read statuses will be returned.
