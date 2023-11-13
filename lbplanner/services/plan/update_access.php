@@ -19,6 +19,7 @@ namespace local_lbplanner_services;
 use external_api;
 use external_function_parameters;
 use external_value;
+use local_lbplanner\helpers\PLAN_ACCESS_TYPE;
 use local_lbplanner\helpers\plan_helper;
 use local_lbplanner\helpers\user_helper;
 
@@ -73,7 +74,9 @@ class plan_update_access extends external_api {
             throw new \moodle_exception('Access denied');
         }
 
-        if ($accesstype < 0 || $accesstype > 2) {
+        $accesstype_obj = PLAN_ACCESS_TYPE::tryFrom($accesstype);
+
+        if ($accesstype_obj === null) {
             throw new \moodle_exception('Access type not valid');
         }
 
@@ -85,8 +88,8 @@ class plan_update_access extends external_api {
             throw new \moodle_exception('Cannot change permissions for the plan owner');
         }
 
-        if ($accesstype == plan_helper::ACCESS_TYPE_OWNER) {
-            throw new \moodle_exception('Cannot change permissions to owner');
+        if ($accesstype_obj === PLAN_ACCESS_TYPE::OWNER) {
+            throw new \moodle_exception('Cannot change permission to owner');
         }
 
         $access = $DB->get_record(plan_helper::ACCESS_TABLE, array('planid' => $planid, 'userid' => $memberid), '*', MUST_EXIST);

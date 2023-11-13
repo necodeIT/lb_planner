@@ -23,6 +23,7 @@ use external_value;
 use local_lbplanner\helpers\plan_helper;
 use local_lbplanner\helpers\user_helper;
 use local_lbplanner\helpers\notifications_helper;
+use local_lbplanner\helpers\PLAN_INVITE_STATE;
 
 /**
  * Invite a user to the plan.
@@ -77,7 +78,7 @@ class plan_invite_user extends external_api {
 
         if ($DB->record_exists(
                 plan_helper::INVITES_TABLE,
-                array('inviteeid' => $inviteeid, 'planid' => $planid, 'status' => plan_helper::INVITE_PENDING)
+                array('inviteeid' => $inviteeid, 'planid' => $planid, 'status' => PLAN_INVITE_STATE::PENDING->value)
             )) {
             throw new \moodle_exception('User is already invited');
         }
@@ -95,7 +96,7 @@ class plan_invite_user extends external_api {
         $invite->inviterid = $inviterid;
         $invite->inviteeid = $inviteeid;
         $invite->timestamp = time();
-        $invite->status = plan_helper::INVITE_PENDING;
+        $invite->status = PLAN_INVITE_STATE::PENDING->value;
 
         $invite->id = $DB->insert_record(plan_helper::INVITES_TABLE, $invite);
 

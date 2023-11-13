@@ -25,6 +25,8 @@ use local_lbplanner\helpers\user_helper;
 use local_lbplanner\helpers\plan_helper;
 use local_lbplanner\helpers\course_helper;
 use local_lbplanner\helpers\notifications_helper;
+use local_lbplanner\helpers\PLAN_ACCESS_TYPE;
+use local_lbplanner\helpers\PLAN_INVITE_STATE;
 
 /**
  * Removes all user data stored by the lbplanner app
@@ -55,7 +57,7 @@ class user_delete_user extends external_api {
 
         $planid = plan_helper::get_plan_id($userid);
 
-        if (plan_helper::get_access_type($planid, $userid) == plan_helper::ACCESS_TYPE_OWNER) {
+        if (plan_helper::get_access_type($planid, $userid) === PLAN_ACCESS_TYPE::OWNER) {
             if (plan_helper::get_plan_members($planid) > 1) {
                 self::call_external_function('local_lbplanner_plan_leave_plan', array('userid' => $userid, 'planid' => $planid));
             } else {
@@ -71,8 +73,8 @@ class user_delete_user extends external_api {
 
         $invites = plan_helper::get_invites_send($userid);
         foreach ($invites as $invite) {
-            if ($invite->status == plan_helper::INVITE_PENDING) {
-                $invite->status = plan_helper::INVITE_EXPIRED;
+            if ($invite->status == PLAN_INVITE_STATE::PENDING->value) {
+                $invite->status = PLAN_INVITE_STATE::EXPIRED->value;
                 $DB->update_record(plan_helper::INVITES_TABLE, $invite);
             }
         }
