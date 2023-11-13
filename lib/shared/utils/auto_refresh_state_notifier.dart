@@ -12,7 +12,11 @@ abstract class AutoRefreshStateNotifier<T> extends StateNotifier<T> {
   /// The refresh rate of the data.
   Duration get refreshRate => const Duration(seconds: 10);
 
-  /// The function to call to refresh the data.
+  /// Refreshes the data and returns the new state.
+  ///
+  /// If the new state is the same as the old state, the state will not be updated.
+  ///
+  /// **NOTE**: Errors will not be caught.
   FutureOr<T> onRefresh();
 
   /// The timer to use to refresh the data.
