@@ -36,7 +36,7 @@ use stdClass;
  */
 class user_register_user extends external_api {
     public static function register_user_parameters(): external_function_parameters {
-        return new external_function_parameters(array(
+        return new external_function_parameters([
             'lang' => new external_value(
                 PARAM_TEXT,
                 'The language the user has selected',
@@ -57,7 +57,7 @@ class user_register_user extends external_api {
                 0,
                 NULL_NOT_ALLOWED
             )
-        ));
+        ]);
     }
 
     /**
@@ -73,7 +73,7 @@ class user_register_user extends external_api {
 
         self::validate_parameters(
             self::register_user_parameters(),
-            array('lang' => $lang, 'theme' => $theme)
+            ['lang' => $lang, 'theme' => $theme]
         );
         $userid = $USER->id;
 
@@ -107,7 +107,7 @@ class user_register_user extends external_api {
 
         notifications_helper::notify_user($userid, -1, notifications_helper::TRIGGER_USER_REGISTERED);
 
-        return array(
+        return [
             'userid' => $lbplanneruser->userid,
             'username' => $USER->username,
             'firstname' => $USER->firstname,
@@ -119,12 +119,12 @@ class user_register_user extends external_api {
             'planid' => $planid,
             'colorblindness' => $lbplanneruser->colorblindness,
             'displaytaskcount' => $lbplanneruser->displaytaskcount
-        );
+        ];
     }
 
     public static function register_user_returns(): external_single_structure {
         return new external_single_structure(
-            array(
+            [
                 'userid' => new external_value(PARAM_INT, 'The id of the user'),
                 'username' => new external_value(PARAM_TEXT, 'The username of the user'),
                 'firstname' => new external_value(PARAM_TEXT, 'The firstname of the user'),
@@ -136,7 +136,7 @@ class user_register_user extends external_api {
                 'planid' => new external_value(PARAM_INT, 'The id of the plan the user is assigned to'),
                 'colorblindness' => new external_value(PARAM_TEXT, 'The colorblindness of the user'),
                 'displaytaskcount' => new external_value(PARAM_INT, 'If the user has the taskcount-enabled 1-yes 0-no')
-            )
+            ]
         );
     }
 }

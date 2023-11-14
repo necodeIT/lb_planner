@@ -35,9 +35,9 @@ use moodle_exception;
  */
 class user_get_all_users extends external_api {
     public static function get_all_users_parameters(): external_function_parameters {
-        return new external_function_parameters(array(
+        return new external_function_parameters([
             'vintage' => new external_value(PARAM_TEXT, 'The vintage to filter the users by', VALUE_DEFAULT, null),
-        ));
+        ]);
     }
 
     /**
@@ -50,7 +50,7 @@ class user_get_all_users extends external_api {
     public static function get_all_users(string $vintage): array {
         global $DB, $USER;
 
-        self::validate_parameters(self::get_all_users_parameters(), array('vintage' => $vintage));
+        self::validate_parameters(self::get_all_users_parameters(), ['vintage' => $vintage]);
 
         // Check if token is allowed to access this function.
 
@@ -58,18 +58,18 @@ class user_get_all_users extends external_api {
 
         $users = $DB->get_records(user_helper::LB_PLANNER_USER_TABLE);
 
-        $result = array();
+        $result = [];
 
         foreach ($users as $user) {
             $mdluser = core_user::get_user($user->userid, '*', MUST_EXIST);
-            $result[] = array(
+            $result[] = [
                 'userid' => $user->userid,
                 'username' => $mdluser->username,
                 'firstname' => $mdluser->firstname,
                 'lastname' => $mdluser->lastname,
                 'profileimageurl' => user_helper::get_mdl_user_picture($mdluser->id),
                 'vintage' => $mdluser->address,
-            );
+            ];
         }
         if ($vintage != null) {
             $result = array_filter($result, function ($user) use ($vintage) {
@@ -82,14 +82,14 @@ class user_get_all_users extends external_api {
     public static function get_all_users_returns(): external_multiple_structure {
         return new external_multiple_structure(
             new external_single_structure(
-                array(
+                [
                     'userid' => new external_value(PARAM_INT, 'The id of the user'),
                     'username' => new external_value(PARAM_TEXT, 'The username of the user'),
                     'firstname' => new external_value(PARAM_TEXT, 'The firstname of the user'),
                     'lastname' => new external_value(PARAM_TEXT, 'The lastname of the user'),
                     'profileimageurl' => new external_value(PARAM_URL, 'The url of the profile image'),
                     'vintage' => new external_value(PARAM_TEXT, 'The vintage of the user')
-                )
+                ]
             )
         );
     }

@@ -34,7 +34,7 @@ use moodle_exception;
  */
 class user_update_user extends external_api {
     public static function update_user_parameters(): external_function_parameters {
-        return new external_function_parameters(array(
+        return new external_function_parameters([
             'lang' => new external_value(PARAM_TEXT, 'The language the user has selected', VALUE_DEFAULT, null),
             'theme' => new external_value(PARAM_TEXT, 'The theme the user has selected', VALUE_DEFAULT, null),
             'colorblindness' => new external_value(
@@ -47,7 +47,7 @@ class user_update_user extends external_api {
                 'If the user has the taskcount-enabled 1-yes 0-no',
                 VALUE_DEFAULT,
                 null),
-        ));
+        ]);
     }
 
     /**
@@ -66,12 +66,12 @@ class user_update_user extends external_api {
 
         self::validate_parameters(
             self::update_user_parameters(),
-            array(
+            [
                 'lang' => $lang,
                 'theme' => $theme,
                 'colorblindness' => $colorblindness,
                 'displaytaskcount' => $displaytaskcount
-            )
+            ]
         );
         $userid = $USER->id;
         user_helper::assert_access($userid);
@@ -96,7 +96,7 @@ class user_update_user extends external_api {
 
         $DB->update_record(user_helper::LB_PLANNER_USER_TABLE, $user);
 
-        return array(
+        return [
             'userid' => $userid,
             'lang' => $user->language,
             'theme' => $user->theme,
@@ -110,12 +110,12 @@ class user_update_user extends external_api {
             'displaytaskcount' => $user->displaytaskcount,
             'vintage' => $USER->address,
 
-        );
+        ];
     }
 
     public static function update_user_returns(): external_single_structure {
         return new external_single_structure(
-            array(
+            [
                 'userid' => new external_value(PARAM_INT, 'The id of the user'),
                 'username' => new external_value(PARAM_TEXT, 'The username of the user'),
                 'firstname' => new external_value(PARAM_TEXT, 'The firstname of the user'),
@@ -128,7 +128,7 @@ class user_update_user extends external_api {
                 'colorblindness' => new external_value(PARAM_TEXT, 'The colorblindness the user has selected'),
                 'displaytaskcount' => new external_value(PARAM_INT, 'If the user has the taskcount-enabled 1-yes 0-no'),
                 'vintage' => new external_value(PARAM_TEXT, 'The vintage of the user')
-            )
+            ]
         );
     }
 }

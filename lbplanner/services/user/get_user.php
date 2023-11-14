@@ -37,7 +37,7 @@ use moodle_exception;
 class user_get_user extends external_api {
     public static function get_user_parameters(): external_function_parameters {
         global $USER;
-        return new external_function_parameters(array(
+        return new external_function_parameters([
             'userid' => new external_value(
                 PARAM_INT,
                 'The Moodle id of the user to get the data for. If not given userid is taken by Token',
@@ -45,7 +45,7 @@ class user_get_user extends external_api {
                 $USER->id,
                 NULL_NOT_ALLOWED
             ),
-        ));
+        ]);
     }
 
     /**
@@ -60,8 +60,8 @@ class user_get_user extends external_api {
         global $USER, $CFG;
         include_once("$CFG->dirroot/user/lib.php");
 
-        self::validate_parameters(self::get_user_parameters(), array('userid' => $userid));
-        // Checks if the user is enrolled in LB_Planner.
+        self::validate_parameters(self::get_user_parameters(), ['userid' => $userid]);
+        // Checks if the user is enrolled in LB Planner.
         if (!user_helper::check_user_exists($userid)) {
             throw new moodle_exception('User does not exist');
         }
@@ -70,7 +70,7 @@ class user_get_user extends external_api {
         // Check if the user is allowed to get the data for this userid.
         if (user_helper::check_access($userid)) {
             $mdluser = (user_get_user_details($USER));
-            return array(
+            return [
                 'userid' => $USER->id,
                 'username' => $USER->username,
                 'firstname' => $USER->firstname,
@@ -83,10 +83,10 @@ class user_get_user extends external_api {
                 'colorblindness' => $lbplanneruser->colorblindness,
                 'displaytaskcount' => $lbplanneruser->displaytaskcount,
                 'vintage' => $USER->address,
-            );
+            ];
         } else {
             $mdluser = core_user::get_user($userid, '*', MUST_EXIST);
-            return array(
+            return [
                     'userid' => $mdluser->id,
                     'username' => $mdluser->username,
                     'firstname' => $mdluser->firstname,
@@ -99,12 +99,12 @@ class user_get_user extends external_api {
                     'colorblindness' => null,
                     'displaytaskcount' => null,
                     'vintage' => $mdluser->address,
-                );
+            ];
         }
     }
     public static function get_user_returns(): external_single_structure {
         return new external_single_structure(
-            array(
+            [
                 'userid' => new external_value(PARAM_INT, 'The id of the user'),
                 'username' => new external_value(PARAM_TEXT, 'The username of the user'),
                 'firstname' => new external_value(PARAM_TEXT, 'The firstname of the user'),
@@ -117,7 +117,7 @@ class user_get_user extends external_api {
                 'displaytaskcount' => new external_value(PARAM_INT, 'If the user has the taskcount-enabled 1-yes 0-no'),
                 'capabilities' => new external_value(PARAM_INT, 'The capabilities of the user represented as a bitmask value'),
                 'vintage' => new external_value(PARAM_TEXT, 'The vintage of the user')
-            )
+            ]
         );
     }
 }

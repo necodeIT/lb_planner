@@ -57,14 +57,14 @@ class user_delete_user extends external_api {
     public static function delete_user($userid) {
         global $DB, $USER;
 
-        self::validate_parameters(self::delete_user_parameters(), array('userid' => $userid));
+        self::validate_parameters(self::delete_user_parameters(), ['userid' => $userid]);
 
         if (!user_helper::is_admin($USER->id)) {
             user_helper::assert_access($userid);
         }
 
         // Check if User is in user table.
-        if (!$DB->record_exists(user_helper::LB_PLANNER_USER_TABLE, array('userid' => $userid))) {
+        if (!$DB->record_exists(user_helper::LB_PLANNER_USER_TABLE, ['userid' => $userid])) {
             throw new moodle_exception('User is not registered in LB Planner');
         }
 
@@ -76,14 +76,14 @@ class user_delete_user extends external_api {
             !(count(plan_helper::get_plan_members($planid)) == 1 )
             &&
             !(plan_helper::get_access_type($planid, $userid) == plan_helper::ACCESS_TYPE_OWNER)) {
-            self::call_external_function('local_lbplanner_plan_leave_plan', array('userid' => $userid, 'planid' => $planid));
+            self::call_external_function('local_lbplanner_plan_leave_plan', ['userid' => $userid, 'planid' => $planid]);
         }
-        $DB->delete_records(plan_helper::DEADLINES_TABLE, array('planid' => $planid));
-        $DB->delete_records(plan_helper::TABLE, array('id' => $planid));
+        $DB->delete_records(plan_helper::DEADLINES_TABLE, ['planid' => $planid]);
+        $DB->delete_records(plan_helper::TABLE, ['id' => $planid]);
 
         // Delete all Notifications.
-        if ($DB->record_exists(notifications_helper::LBPLANNER_NOTIFICATION_TABLE, array('userid' => $userid))) {
-            $DB->delete_records(notifications_helper::LBPLANNER_NOTIFICATION_TABLE, array('userid' => $userid));
+        if ($DB->record_exists(notifications_helper::LBPLANNER_NOTIFICATION_TABLE, ['userid' => $userid])) {
+            $DB->delete_records(notifications_helper::LBPLANNER_NOTIFICATION_TABLE, ['userid' => $userid]);
         }
 
         $invites = plan_helper::get_invites_send($userid);
@@ -94,12 +94,12 @@ class user_delete_user extends external_api {
             }
         }
         // Deleting associating with the plan.
-        $DB->delete_records(plan_helper::ACCESS_TABLE, array('userid' => $userid));
+        $DB->delete_records(plan_helper::ACCESS_TABLE, ['userid' => $userid]);
 
         // Deleting all Courses associated with the User.
-        $DB->delete_records(course_helper::LBPLANNER_COURSE_TABLE, array('userid' => $userid));
+        $DB->delete_records(course_helper::LBPLANNER_COURSE_TABLE, ['userid' => $userid]);
         // Deleting User from User table.
-        $DB->delete_records(user_helper::LB_PLANNER_USER_TABLE, array('userid' => $userid));
+        $DB->delete_records(user_helper::LB_PLANNER_USER_TABLE, ['userid' => $userid]);
     }
 
     public static function delete_user_returns() {
