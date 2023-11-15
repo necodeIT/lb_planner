@@ -18,9 +18,8 @@ namespace local_lbplanner_services;
 
 use external_api;
 use external_function_parameters;
-use external_single_structure;
 use external_multiple_structure;
-use external_value;
+use local_lbplanner\helpers\invite_helper;
 use local_lbplanner\helpers\plan_helper;
 
 /**
@@ -66,16 +65,7 @@ class plan_get_invites extends external_api {
 
     public static function get_invites_returns() {
         return new external_multiple_structure(
-            new external_single_structure(
-                [
-                    'id' => new external_value(PARAM_INT, 'The id of the invite'),
-                    'inviterid' => new external_value(PARAM_INT, 'The id of the owner user'),
-                    'inviteeid' => new external_value(PARAM_INT, 'The id of the invited user'),
-                    'planid' => new external_value(PARAM_INT, 'The id of the plan'),
-                    'status' => new external_value(PARAM_INT, 'The Status of the invitation'),
-                    'timestamp' => new external_value(PARAM_INT, 'The time when the invitation was send'),
-                ]
-            )
+            invite_helper::structure()
         );
     }
 }
