@@ -22,6 +22,12 @@ mixin _$PatchingProgress {
   /// The progress of the patching process.
   double get progress => throw _privateConstructorUsedError;
 
+  /// The error that occurred during patching, if any.
+  Object? get error => throw _privateConstructorUsedError;
+
+  /// The stack trace of the error that occurred during patching, if any.
+  StackTrace? get stackTrace => throw _privateConstructorUsedError;
+
   @JsonKey(ignore: true)
   $PatchingProgressCopyWith<PatchingProgress> get copyWith =>
       throw _privateConstructorUsedError;
@@ -33,7 +39,11 @@ abstract class $PatchingProgressCopyWith<$Res> {
           PatchingProgress value, $Res Function(PatchingProgress) then) =
       _$PatchingProgressCopyWithImpl<$Res, PatchingProgress>;
   @useResult
-  $Res call({Release release, double progress});
+  $Res call(
+      {Release release,
+      double progress,
+      Object? error,
+      StackTrace? stackTrace});
 
   $ReleaseCopyWith<$Res> get release;
 }
@@ -53,6 +63,8 @@ class _$PatchingProgressCopyWithImpl<$Res, $Val extends PatchingProgress>
   $Res call({
     Object? release = null,
     Object? progress = null,
+    Object? error = freezed,
+    Object? stackTrace = freezed,
   }) {
     return _then(_value.copyWith(
       release: null == release
@@ -63,6 +75,11 @@ class _$PatchingProgressCopyWithImpl<$Res, $Val extends PatchingProgress>
           ? _value.progress
           : progress // ignore: cast_nullable_to_non_nullable
               as double,
+      error: freezed == error ? _value.error : error,
+      stackTrace: freezed == stackTrace
+          ? _value.stackTrace
+          : stackTrace // ignore: cast_nullable_to_non_nullable
+              as StackTrace?,
     ) as $Val);
   }
 
@@ -83,7 +100,11 @@ abstract class _$$_PatchingProgressCopyWith<$Res>
       __$$_PatchingProgressCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Release release, double progress});
+  $Res call(
+      {Release release,
+      double progress,
+      Object? error,
+      StackTrace? stackTrace});
 
   @override
   $ReleaseCopyWith<$Res> get release;
@@ -102,6 +123,8 @@ class __$$_PatchingProgressCopyWithImpl<$Res>
   $Res call({
     Object? release = null,
     Object? progress = null,
+    Object? error = freezed,
+    Object? stackTrace = freezed,
   }) {
     return _then(_$_PatchingProgress(
       release: null == release
@@ -112,6 +135,11 @@ class __$$_PatchingProgressCopyWithImpl<$Res>
           ? _value.progress
           : progress // ignore: cast_nullable_to_non_nullable
               as double,
+      error: freezed == error ? _value.error : error,
+      stackTrace: freezed == stackTrace
+          ? _value.stackTrace
+          : stackTrace // ignore: cast_nullable_to_non_nullable
+              as StackTrace?,
     ));
   }
 }
@@ -119,7 +147,11 @@ class __$$_PatchingProgressCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_PatchingProgress implements _PatchingProgress {
-  _$_PatchingProgress({required this.release, required this.progress});
+  _$_PatchingProgress(
+      {required this.release,
+      required this.progress,
+      this.error,
+      this.stackTrace});
 
   /// The release that is currently being patched.
   @override
@@ -129,9 +161,17 @@ class _$_PatchingProgress implements _PatchingProgress {
   @override
   final double progress;
 
+  /// The error that occurred during patching, if any.
+  @override
+  final Object? error;
+
+  /// The stack trace of the error that occurred during patching, if any.
+  @override
+  final StackTrace? stackTrace;
+
   @override
   String toString() {
-    return 'PatchingProgress(release: $release, progress: $progress)';
+    return 'PatchingProgress(release: $release, progress: $progress, error: $error, stackTrace: $stackTrace)';
   }
 
   @override
@@ -141,11 +181,15 @@ class _$_PatchingProgress implements _PatchingProgress {
             other is _$_PatchingProgress &&
             (identical(other.release, release) || other.release == release) &&
             (identical(other.progress, progress) ||
-                other.progress == progress));
+                other.progress == progress) &&
+            const DeepCollectionEquality().equals(other.error, error) &&
+            (identical(other.stackTrace, stackTrace) ||
+                other.stackTrace == stackTrace));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, release, progress);
+  int get hashCode => Object.hash(runtimeType, release, progress,
+      const DeepCollectionEquality().hash(error), stackTrace);
 
   @JsonKey(ignore: true)
   @override
@@ -157,7 +201,9 @@ class _$_PatchingProgress implements _PatchingProgress {
 abstract class _PatchingProgress implements PatchingProgress {
   factory _PatchingProgress(
       {required final Release release,
-      required final double progress}) = _$_PatchingProgress;
+      required final double progress,
+      final Object? error,
+      final StackTrace? stackTrace}) = _$_PatchingProgress;
 
   @override
 
@@ -167,6 +213,14 @@ abstract class _PatchingProgress implements PatchingProgress {
 
   /// The progress of the patching process.
   double get progress;
+  @override
+
+  /// The error that occurred during patching, if any.
+  Object? get error;
+  @override
+
+  /// The stack trace of the error that occurred during patching, if any.
+  StackTrace? get stackTrace;
   @override
   @JsonKey(ignore: true)
   _$$_PatchingProgressCopyWith<_$_PatchingProgress> get copyWith =>

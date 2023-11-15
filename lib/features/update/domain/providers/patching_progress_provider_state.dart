@@ -21,15 +21,25 @@ class PatchingProgressProviderState extends StateNotifier<PatchingProgress?> {
   ///
   /// Throws an [UnsupportedError] if [canPatch] returns `false`.
   Future<void> patch() async {
-    await patcherService.patch(
-      latest,
-      onProgress: (progress) {
-        state = PatchingProgress(
-          release: latest,
-          progress: progress,
-        );
-      },
-    );
+    try {
+      await patcherService.patch(
+        latest,
+        onProgress: (progress) {
+          state = PatchingProgress(
+            release: latest,
+            progress: progress,
+          );
+        },
+      );
+    } catch (e, s) {
+      state = state?.copyWith(error: e, stackTrace: s) ??
+          PatchingProgress(
+            release: latest,
+            progress: -1,
+            error: e,
+            stackTrace: s,
+          );
+    }
   }
 
   /// Whether the app can be patched automatically.

@@ -13,5 +13,11 @@ class PatchingProgress with _$PatchingProgress {
 
     /// The progress of the patching process.
     required double progress,
+
+    /// The error that occurred during patching, if any.
+    Object? error,
+
+    /// The stack trace of the error that occurred during patching, if any.
+    StackTrace? stackTrace,
   }) = _PatchingProgress;
 }
