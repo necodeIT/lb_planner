@@ -47,13 +47,9 @@ class feedback_delete_feedback extends external_api {
         feedback_helper::assert_admin_access();
 
         $DB->delete_records(feedback_helper::LBPLANNER_FEEDBACK_TABLE, ['id' => $feedbackid]);
-
-        return feedback_helper::get_all_feedbacks($USER->id);
     }
 
     public static function delete_feedback_returns() {
-        return new external_multiple_structure(
-            feedback_helper::structure(),
-        );
+        return null;
     }
 }
