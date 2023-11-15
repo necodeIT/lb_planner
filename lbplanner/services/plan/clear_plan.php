@@ -38,11 +38,9 @@ class plan_clear_plan extends external_api {
         }
 
         $DB->delete_records(plan_helper::DEADLINES_TABLE, ['planid' => $planid ]);
-
-        return plan_helper::get_plan($planid);
     }
 
     public static function clear_plan_returns() {
-        return plan_helper::plan_structure();
+        return null;
     }
 }

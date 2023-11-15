@@ -81,11 +81,9 @@ class plan_update_access extends external_api {
         $access->accesstype = $accesstype;
 
         $DB->update_record(plan_helper::ACCESS_TABLE, $access);
-
-        return plan_helper::get_plan($planid);
     }
 
     public static function update_access_returns() {
-        return plan_helper::plan_structure();
+        return null;
     }
 }

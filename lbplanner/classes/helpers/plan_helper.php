@@ -269,9 +269,9 @@ class plan_helper {
      * @param integer $planid the plan id.
      * @param integer $userid the user id.
      * @param integer $removeuserid the user id to remove.
-     * @return array An array containing the new id of the plan
+     * @return int The ID of the new plan for the removed user
      */
-    public static function remove_user(int $planid, int $userid, int $removeuserid) : array {
+    public static function remove_user(int $planid, int $userid, int $removeuserid) : int {
         global $DB;
         if (self::get_owner($planid) != $userid) {
             throw new \moodle_exception('Access denied');
@@ -301,7 +301,7 @@ class plan_helper {
 
         $DB->update_record(self::ACCESS_TABLE, $oldaccess);
 
-        return self::get_plan($planid, $removeuserid);
+        return $newplanid;
     }
     public static function get_invites_send(int $userid):array {
         global $DB;
