@@ -3,11 +3,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lb_planner/shared/shared.dart';
 import 'package:lb_planner/features/update/update.dart';
 
-/// Update route.
+/// Renders an update screen, which allows the user to update the app.
 
 @RoutePage()
-class UpdateScreen extends StatefulWidget {
-  /// Update route.
+class UpdateScreen extends ConsumerStatefulWidget {
+  /// Renders an update screen, which allows the user to update the app.
   const UpdateScreen({Key? key}) : super(key: key);
 
   /// Factor multiplied by the screen width to get the padding.
@@ -17,22 +17,17 @@ class UpdateScreen extends StatefulWidget {
   static const double iconSize = 60;
 
   @override
-  State<UpdateScreen> createState() => _UpdateScreenState();
+  ConsumerState<UpdateScreen> createState() => _UpdateScreenState();
 }
 
-class _UpdateScreenState extends State<UpdateScreen> {
+class _UpdateScreenState extends ConsumerState<UpdateScreen> {
   @override
   Widget build(BuildContext context) {
     return Consumer(
       builder: (context, ref, _) {
-        //var updater = ref.watch(updateController);
-        //var update = ref.watch(updateProvider);
-        final patchingProgressController = patchingProgressProvider.notifier;
-
-        final isUpdateAvailableProvider =
-            AsyncNotifierProvider<IsUpdateAvailableProviderState, bool>(
-          () => IsUpdateAvailableProviderState(),
-        );
+        final progressController = ref.watch(patchingProgressController);
+        final patchingProgress = ref.watch(patchingProgressProvider);
+        final updateChecker = ref.watch(updateCheckerProvider);
 
         void showCommand() {
           WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -42,27 +37,22 @@ class _UpdateScreenState extends State<UpdateScreen> {
               body: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  NcBodyText(
-                    kSetupType.canAutoUpdate
+                  Text(
+                    progressController.canPatch
                         ? t.update_dialog_helpNeeded
                         : t.update_dialog_noAutoUpdate,
                     overflow: TextOverflow.visible,
                   ),
                   Spacing.large(),
-                  Snippet(code: update.command),
+                  Snippet(code: progressController.getInstructions(context)),
                 ],
               ),
             );
           });
         }
 
-        if (update.command.isNotEmpty) {
+        if (progressController.getInstructions(context).isNotEmpty) {
           showCommand();
-        }
-
-        if (update.downloadStatus == DownloadStatus.error) {
-          Catcher.reportCheckedError(
-              kUpdateErrorKeyword + update.error, StackTrace.current);
         }
 
         return Padding(
@@ -82,44 +72,46 @@ class _UpdateScreenState extends State<UpdateScreen> {
                       VectorImage('assets/svg/app_icon.svg',
                           height: UpdateScreen.iconSize),
                       Spacing.small(),
-                      NcTitleText(
-                        t.update_patchNotes(update.latestVersionName),
-                        fontSize: RouteTitle.titleSize,
+                      Text(
+                        t.update_patchNotes(progressController.latest.name),
+                        style: TextStyle(
+                            fontSize: 25, fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
-                  if (update.downloadStatus == DownloadStatus.idle)
-                    Button(
-                      onPressed: updater.upgrade,
-                      text: t.update_btn,
+                  if (patchingProgress?.error != null)
+                    ElevatedButton(
+                      onPressed: progressController.patch,
+                      child: Text(t.update_btnErr),
                     ),
-                  if (update.downloadStatus == DownloadStatus.error)
-                    Button(
-                      onPressed: updater.upgrade,
-                      text: t.update_btnErr,
-                    ),
-                  if (update.downloadStatus == DownloadStatus.downlaoding)
+                  if (patchingProgress != null)
                     Row(
                       children: [
-                        NcBodyText(
+                        Text(
                           t.update_downloading(
-                              update.fileName, update.progress),
+                              patchingProgress.progress.round()),
+                          style: TextStyle(fontWeight: FontWeight.normal),
                         ),
                         Spacing.small(),
                         CircularProgressIndicator(),
                       ],
                     ),
-                  if (update.downloadStatus == DownloadStatus.installing &&
-                      update.command.isEmpty)
-                    NcBodyText(t.update_installing),
-                  if (update.downloadStatus == DownloadStatus.installing &&
-                      update.command.isNotEmpty)
-                    LpButton(onPressed: showCommand, text: t.update_btnInstall),
+                  if (patchingProgress != null &&
+                      progressController.getInstructions(context).isEmpty)
+                    Text(
+                      t.update_installing,
+                      style: TextStyle(fontWeight: FontWeight.normal),
+                    ),
+                  if (patchingProgress != null &&
+                      progressController.getInstructions(context).isNotEmpty)
+                    ElevatedButton(
+                        onPressed: showCommand,
+                        child: Text(t.update_btnInstall)),
                 ],
               ),
               Spacing.large(),
               Expanded(
-                child: MarkdownView(update.patchNotes),
+                child: MarkdownView(progressController.latest.changelog),
               ),
             ],
           ),

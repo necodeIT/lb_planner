@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lb_planner/shared/shared.dart';
 
-/// Displays a snippet of code with a copy button.
-class Snippet extends LocalizedWidget {
-  /// Displays a snippet of code with a copy button.
+/// Displays code snippets with copy functionality.
+class Snippet extends StatelessWidget {
+  /// Displays code snippets with copy functionality.
   const Snippet({Key? key, required this.code}) : super(key: key);
 
   /// The code to display.
   final String code;
 
   @override
-  Widget build(context, t) {
+  Widget build(context) {
     var color = context.theme.colorScheme.primary.withOpacity(0.5);
 
     return Container(

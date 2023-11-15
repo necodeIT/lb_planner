@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lb_planner/shared/shared.dart';
 
-/// Themed [Dialog] widget.
+/// Shows custom dialogs
 class Dialog extends StatefulWidget {
-  /// Themed ConfirmDialog widget.
+  /// Creates the structure of the confirm dialog
   Dialog.confirm({
     Key? key,
     required this.header,
@@ -20,7 +20,7 @@ class Dialog extends StatefulWidget {
     confirmOnly = false;
   }
 
-  /// Themed [AlertDialog] widget with just one button.
+  /// Creates the structure of the alert dialog
   Dialog.alert({
     Key? key,
     required this.header,
@@ -100,11 +100,13 @@ class _DialogState extends State<Dialog> with TickerProviderStateMixin {
     focusNode.requestFocus();
   }
 
+  /// Removes the widget from the widget tree.
   Future close() async {
     await _controller.reverse();
     widget.removeFromWidgetTree();
   }
 
+  ///Ensures focus if the focusNode doesn't have focus.
   void _ensureFocus() async {
     if (focusNode.hasFocus) return;
 
@@ -129,7 +131,6 @@ class _DialogState extends State<Dialog> with TickerProviderStateMixin {
         }
       },
       child: FadeTransition(
-        // ignore: no-magic-number
         opacity: Tween<double>(begin: 0.4, end: 1).animate(
           CurvedAnimation(
             parent: _controller,
@@ -230,7 +231,7 @@ class _DialogState extends State<Dialog> with TickerProviderStateMixin {
   }
 }
 
-/// Themed ConfirmDialog widget.
+/// Shows an confirm dialog
 void showConfirmDialog(
   BuildContext context, {
   String? title,
@@ -291,7 +292,7 @@ void showConfirmDialog(
   Overlay.of(context).insert(dialogOverLay);
 }
 
-/// Themed [AlertDialog] widget.
+/// Shows an alert dialog
 void showAlertDialog(
   BuildContext context, {
   String? title,
@@ -345,6 +346,7 @@ void showAlertDialog(
   Overlay.of(context).insert(dialogOverLay);
 }
 
+/// generates a background overlay for dismissing the dialog
 OverlayEntry _generateBackground(Function() dismiss) {
   return OverlayEntry(
     builder: (context) => GestureDetector(

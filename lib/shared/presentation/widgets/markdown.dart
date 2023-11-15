@@ -5,25 +5,25 @@ import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:lb_planner/shared/shared.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-/// Themed [MarkdownView] widget.
+/// Renders a [MarkdownView]
 ///
-/// Also allows for loading files from the internet.
+/// Also allows to loading content from the internet.
 class MarkdownView extends ConsumerWidget {
-  /// Themed [MarkdownView] widget.
+  /// Renders a Markdown wit the [data]
   const MarkdownView(this.data, {Key? key})
       : source = null,
         assert(data != null),
         super(key: key);
 
-  /// Themed [MarkdownView] widget.
+  /// Renders a [MarkdownView]
   ///
-  /// Loads markdown from the given [source].
+  /// Also allows to loading content from the internet.
   const MarkdownView.network(this.source, {Key? key})
       : data = null,
         assert(source != null),
         super(key: key);
 
-  /// The markdown source to display.
+  /// The markdown content to display.
   final String? data;
 
   /// The url to load the markdown from.
@@ -75,6 +75,7 @@ class MarkdownView extends ConsumerWidget {
     );
   }
 
+  /// Builds the Markdown View with the specified [data] and style.
   Widget _buildMarkdown(BuildContext context, String data) {
     return Markdown(
       data: data,
