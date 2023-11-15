@@ -9,26 +9,23 @@ class PatchingProgressProviderState extends StateNotifier<PatchingProgress?> {
   /// The [PatcherService] instance to use for patching.
   final PatcherService patcherService;
 
-  /// The [ReleaseRepository] instance to use for fetching releases.
-  final ReleaseRepository releaseRepository;
+  /// The latest [Release] available.
+  final Release latest;
 
   /// Provides the current [PatchingProgress].
   ///
   /// NOTE: Resolves to `null` if no patching is in progress.
-  PatchingProgressProviderState(this.patcherService, this.releaseRepository)
-      : super(null);
+  PatchingProgressProviderState(this.patcherService, this.latest) : super(null);
 
   /// Downloads and installs the latest version of the app.
   ///
   /// Throws an [UnsupportedError] if [canPatch] returns `false`.
   Future<void> patch() async {
-    var latest = await releaseRepository.getLatestRelease();
-
     await patcherService.patch(
       latest,
       onProgress: (progress) {
         state = PatchingProgress(
-          version: latest.version,
+          release: latest,
           progress: progress,
         );
       },
@@ -45,6 +42,6 @@ class PatchingProgressProviderState extends StateNotifier<PatchingProgress?> {
   /// Returns the instructions for manually installing a given release in markdown format.
   ///
   /// Throws an [UnsupportedError] if [canPatch] returns `true`.
-  String getInstructions(BuildContext context, Release release) =>
-      patcherService.getInstructions(context, release);
+  String getInstructions(BuildContext context) =>
+      patcherService.getInstructions(context, latest);
 }

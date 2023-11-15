@@ -16,8 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$PatchingProgress {
-  /// The version that is being patched.
-  Version get version => throw _privateConstructorUsedError;
+  /// The release that is currently being patched.
+  Release get release => throw _privateConstructorUsedError;
 
   /// The progress of the patching process.
   double get progress => throw _privateConstructorUsedError;
@@ -33,9 +33,9 @@ abstract class $PatchingProgressCopyWith<$Res> {
           PatchingProgress value, $Res Function(PatchingProgress) then) =
       _$PatchingProgressCopyWithImpl<$Res, PatchingProgress>;
   @useResult
-  $Res call({Version version, double progress});
+  $Res call({Release release, double progress});
 
-  $VersionCopyWith<$Res> get version;
+  $ReleaseCopyWith<$Res> get release;
 }
 
 /// @nodoc
@@ -51,14 +51,14 @@ class _$PatchingProgressCopyWithImpl<$Res, $Val extends PatchingProgress>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? version = null,
+    Object? release = null,
     Object? progress = null,
   }) {
     return _then(_value.copyWith(
-      version: null == version
-          ? _value.version
-          : version // ignore: cast_nullable_to_non_nullable
-              as Version,
+      release: null == release
+          ? _value.release
+          : release // ignore: cast_nullable_to_non_nullable
+              as Release,
       progress: null == progress
           ? _value.progress
           : progress // ignore: cast_nullable_to_non_nullable
@@ -68,9 +68,9 @@ class _$PatchingProgressCopyWithImpl<$Res, $Val extends PatchingProgress>
 
   @override
   @pragma('vm:prefer-inline')
-  $VersionCopyWith<$Res> get version {
-    return $VersionCopyWith<$Res>(_value.version, (value) {
-      return _then(_value.copyWith(version: value) as $Val);
+  $ReleaseCopyWith<$Res> get release {
+    return $ReleaseCopyWith<$Res>(_value.release, (value) {
+      return _then(_value.copyWith(release: value) as $Val);
     });
   }
 }
@@ -83,10 +83,10 @@ abstract class _$$_PatchingProgressCopyWith<$Res>
       __$$_PatchingProgressCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Version version, double progress});
+  $Res call({Release release, double progress});
 
   @override
-  $VersionCopyWith<$Res> get version;
+  $ReleaseCopyWith<$Res> get release;
 }
 
 /// @nodoc
@@ -100,14 +100,14 @@ class __$$_PatchingProgressCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? version = null,
+    Object? release = null,
     Object? progress = null,
   }) {
     return _then(_$_PatchingProgress(
-      version: null == version
-          ? _value.version
-          : version // ignore: cast_nullable_to_non_nullable
-              as Version,
+      release: null == release
+          ? _value.release
+          : release // ignore: cast_nullable_to_non_nullable
+              as Release,
       progress: null == progress
           ? _value.progress
           : progress // ignore: cast_nullable_to_non_nullable
@@ -119,11 +119,11 @@ class __$$_PatchingProgressCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_PatchingProgress implements _PatchingProgress {
-  _$_PatchingProgress({required this.version, required this.progress});
+  _$_PatchingProgress({required this.release, required this.progress});
 
-  /// The version that is being patched.
+  /// The release that is currently being patched.
   @override
-  final Version version;
+  final Release release;
 
   /// The progress of the patching process.
   @override
@@ -131,7 +131,7 @@ class _$_PatchingProgress implements _PatchingProgress {
 
   @override
   String toString() {
-    return 'PatchingProgress(version: $version, progress: $progress)';
+    return 'PatchingProgress(release: $release, progress: $progress)';
   }
 
   @override
@@ -139,13 +139,13 @@ class _$_PatchingProgress implements _PatchingProgress {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_PatchingProgress &&
-            (identical(other.version, version) || other.version == version) &&
+            (identical(other.release, release) || other.release == release) &&
             (identical(other.progress, progress) ||
                 other.progress == progress));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, version, progress);
+  int get hashCode => Object.hash(runtimeType, release, progress);
 
   @JsonKey(ignore: true)
   @override
@@ -156,13 +156,13 @@ class _$_PatchingProgress implements _PatchingProgress {
 
 abstract class _PatchingProgress implements PatchingProgress {
   factory _PatchingProgress(
-      {required final Version version,
+      {required final Release release,
       required final double progress}) = _$_PatchingProgress;
 
   @override
 
-  /// The version that is being patched.
-  Version get version;
+  /// The release that is currently being patched.
+  Release get release;
   @override
 
   /// The progress of the patching process.
