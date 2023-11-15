@@ -80,12 +80,10 @@ class plan_add_deadline extends external_api {
         $deadline->deadlinestart = $deadlinestart;
         $deadline->deadlineend = $deadlineend;
 
-        $DB->insert_record(plan_helper::DEADLINES_TABLE, $deadline);
-
-        return plan_helper::get_plan($planid);
+        return $DB->insert_record(plan_helper::DEADLINES_TABLE, $deadline);
     }
 
     public static function add_deadline_returns() {
-        return plan_helper::plan_structure();
+        return new external_value(PARAM_INT,"The ID of the newly added deadline");
     }
 }
