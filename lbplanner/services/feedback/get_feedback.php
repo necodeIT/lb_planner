@@ -19,7 +19,6 @@ namespace local_lbplanner_services;
 use external_api;
 use external_function_parameters;
 use external_value;
-use local_lbplanner\helpers\user_helper;
 use local_lbplanner\helpers\feedback_helper;
 
 /**
@@ -27,24 +26,22 @@ use local_lbplanner\helpers\feedback_helper;
  */
 class feedback_get_feedback extends external_api {
     public static function get_feedback_parameters() {
-        return new external_function_parameters(array(
+        return new external_function_parameters([
             'feedbackid' => new external_value(PARAM_INT, 'The id of the course', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
-            'userid' => new external_value(PARAM_INT, 'The id of the user', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
-        ));
+        ]);
     }
 
-    public static function get_feedback($feedbackid, $userid) {
+    public static function get_feedback($feedbackid) {
         global $DB;
 
         self::validate_parameters(
             self::get_feedback_parameters(),
-            array('feedbackid' => $feedbackid, 'userid' => $userid)
+            ['feedbackid' => $feedbackid]
         );
 
-        user_helper::assert_access($userid);
         feedback_helper::assert_admin_access();
 
-        if (!$DB->record_exists(feedback_helper::LBPLANNER_FEEDBACK_TABLE, array('id' => $feedbackid))) {
+        if (!$DB->record_exists(feedback_helper::LBPLANNER_FEEDBACK_TABLE, ['id' => $feedbackid])) {
             throw new \moodle_exception('feedback_not_found');
         }
 

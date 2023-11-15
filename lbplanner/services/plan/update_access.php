@@ -21,28 +21,13 @@ use external_function_parameters;
 use external_value;
 use local_lbplanner\helpers\PLAN_ACCESS_TYPE;
 use local_lbplanner\helpers\plan_helper;
-use local_lbplanner\helpers\user_helper;
 
 /**
  * Update the access of the plan.
  */
 class plan_update_access extends external_api {
     public static function update_access_parameters() {
-        return new external_function_parameters(array(
-            'userid' => new external_value(
-                PARAM_INT,
-                'The id of the user to get the data for',
-                VALUE_REQUIRED,
-                null,
-                NULL_NOT_ALLOWED
-            ),
-            'planid' => new external_value(
-                PARAM_INT,
-                'The id of the plan',
-                VALUE_REQUIRED,
-                null,
-                NULL_NOT_ALLOWED
-            ),
+        return new external_function_parameters([
             'accesstype' => new external_value(
                 PARAM_INT,
                 'The access type',
@@ -57,30 +42,30 @@ class plan_update_access extends external_api {
                 null,
                 NULL_NOT_ALLOWED
             ),
-        ));
+        ]);
     }
 
-    public static function update_access($userid, $planid, $accesstype, $memberid) {
-        global $DB;
+    public static function update_access($accesstype, $memberid) {
+        global $DB, $USER;
 
         self::validate_parameters(
             self::update_access_parameters(),
-            array('userid' => $userid, 'planid' => $planid, 'accesstype' => $accesstype, 'memberid' => $memberid)
+            ['accesstype' => $accesstype, 'memberid' => $memberid]
         );
 
-        user_helper::assert_access($userid);
+        $planid = plan_helper::get_plan_id($USER->id);
 
-        if (plan_helper::get_owner($planid) != $userid) {
+        if (plan_helper::get_owner($planid) !== $USER->id) {
             throw new \moodle_exception('Access denied');
         }
 
-        $accesstype_obj = PLAN_ACCESS_TYPE::tryFrom($accesstype);
+        $accesstypeobj = PLAN_ACCESS_TYPE::tryFrom($accesstype);
 
-        if ($accesstype_obj === null) {
+        if ($accesstypeobj === null) {
             throw new \moodle_exception('Access type not valid');
         }
 
-        if ($userid == $memberid) {
+        if ($USER->id === $memberid) {
             throw new \moodle_exception('Cannot change own permissions');
         }
 
@@ -88,11 +73,11 @@ class plan_update_access extends external_api {
             throw new \moodle_exception('Cannot change permissions for the plan owner');
         }
 
-        if ($accesstype_obj === PLAN_ACCESS_TYPE::OWNER) {
+        if ($accesstypeobj === PLAN_ACCESS_TYPE::OWNER) {
             throw new \moodle_exception('Cannot change permission to owner');
         }
 
-        $access = $DB->get_record(plan_helper::ACCESS_TABLE, array('planid' => $planid, 'userid' => $memberid), '*', MUST_EXIST);
+        $access = $DB->get_record(plan_helper::ACCESS_TABLE, ['planid' => $planid, 'userid' => $memberid], '*', MUST_EXIST);
         $access->accesstype = $accesstype;
 
         $DB->update_record(plan_helper::ACCESS_TABLE, $access);

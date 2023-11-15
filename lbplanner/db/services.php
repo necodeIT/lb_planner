@@ -198,15 +198,6 @@ $functions = array(
         'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
     ),
-    'local_lbplanner_plan_get_access' => array(
-        'classname' => 'local_lbplanner_services\plan_get_access',
-        'methodname' => 'get_access',
-        'classpath' => 'local/lbplanner/services/plan/get_access.php',
-        'description' => 'Get the access type to the plan',
-        'type' => 'read',
-        'capabilities' => 'local/lb_planner:student',
-        'ajax' => true,
-    ),
     'local_lbplanner_plan_update_access' => array(
         'classname' => 'local_lbplanner_services\plan_update_access',
         'methodname' => 'update_access',
