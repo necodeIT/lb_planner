@@ -58,11 +58,9 @@ class feedback_update_feedback extends external_api {
         $feedback->lastmodifiedby = $USER->id;
 
         $DB->update_record(feedback_helper::LBPLANNER_FEEDBACK_TABLE, $feedback);
-
-        return $feedback;
     }
 
     public static function update_feedback_returns() {
-        return feedback_helper::structure();
+        return null;
     }
 }
