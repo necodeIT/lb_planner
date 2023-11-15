@@ -10,12 +10,9 @@ final patchingProgressProvider =
     StateNotifierProvider<PatchingProgressProviderState, PatchingProgress?>(
   (ref) {
     final patcherService = ref.watch(patcherServiceProvider);
-    final updateChecker = ref.watch(updateCheckerProvider);
+    final releaseRepository = ref.watch(releaseRepositoryProvider);
 
-    return PatchingProgressProviderState(
-      patcherService,
-      updateChecker.latestRelease,
-    );
+    return PatchingProgressProviderState(patcherService, releaseRepository);
   },
 );
 

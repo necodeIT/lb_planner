@@ -10,33 +10,17 @@ class IsUpdateAvailableProviderState extends AsyncNotifier<bool> {
   /// The [ReleaseRepository] instance to use.
   late final ReleaseRepository releaseRepository;
 
-  late Release _latestRelease;
-
-  /// The latest release available.
-  Release get latestRelease => _latestRelease;
-
   @override
   FutureOr<bool> build() async {
     releaseRepository = ref.watch(releaseRepositoryProvider);
 
-    return _checkForUpdates();
+    return releaseRepository.isUpdateAvailable();
   }
 
   /// Checks if a new release has been published.
   Future<void> checkForUpdates() async {
     state = AsyncLoading();
 
-    state = await AsyncValue.guard(_checkForUpdates);
-  }
-
-  /// INTERNAL USE ONLY!
-  ///
-  /// Checks whether an update is available.
-  ///
-  /// Called by [build] and [checkForUpdates].
-  Future<bool> _checkForUpdates() async {
-    _latestRelease = await releaseRepository.getLatestRelease();
-
-    return releaseRepository.isUpdateAvailable();
+    state = await AsyncValue.guard(releaseRepository.isUpdateAvailable);
   }
 }

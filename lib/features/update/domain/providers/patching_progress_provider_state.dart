@@ -9,18 +9,32 @@ class PatchingProgressProviderState extends StateNotifier<PatchingProgress?> {
   /// The [PatcherService] instance to use for patching.
   final PatcherService patcherService;
 
+  /// The [ReleaseRepository] instance to use for fetching the latest release.
+  final ReleaseRepository releaseRepository;
+
   /// The latest [Release] available.
-  final Release latest;
+  late final Release latest;
 
   /// Provides the current [PatchingProgress].
   ///
   /// NOTE: Resolves to `null` if no patching is in progress.
-  PatchingProgressProviderState(this.patcherService, this.latest) : super(null);
+  PatchingProgressProviderState(this.patcherService, this.releaseRepository)
+      : super(null) {
+    releaseRepository.getLatestRelease().then((value) => latest = value);
+  }
 
   /// Downloads and installs the latest version of the app.
   ///
   /// Throws an [UnsupportedError] if [canPatch] returns `false`.
+  ///
+  /// If the patching fails, the [PatchingProgress] will contain the error and stack trace.
   Future<void> patch() async {
+    if (!canPatch) {
+      throw UnsupportedError(
+        'Automatic patching is not supported with ${patcherService.runtimeType}',
+      );
+    }
+
     try {
       await patcherService.patch(
         latest,
