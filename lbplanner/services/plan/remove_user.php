@@ -41,10 +41,10 @@ class plan_remove_user extends external_api {
 
         $planid = plan_helper::get_plan_id($USER->id);
 
-        return plan_helper::remove_user($planid, $USER->id, $userid);
+        plan_helper::remove_user($planid, $USER->id, $userid);
     }
 
     public static function remove_user_returns() {
-        return plan_helper::plan_structure();
+        return null;
     }
 }

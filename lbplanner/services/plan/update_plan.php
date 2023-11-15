@@ -63,11 +63,9 @@ class plan_update_plan extends external_api {
         $plan->enableek = $enableek;
 
         $DB->update_record(plan_helper::TABLE, $plan);
-
-        return plan_helper::get_plan($planid);
     }
 
     public static function update_plan_returns() {
-        return plan_helper::plan_structure();
+        return null;
     }
 }
