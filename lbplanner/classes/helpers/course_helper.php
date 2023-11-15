@@ -16,7 +16,9 @@
 
 namespace local_lbplanner\helpers;
 
+use context_course;
 use stdClass;
+
 
 class course_helper {
 
@@ -138,14 +140,8 @@ class course_helper {
      * @return bool true if the user is enrolled
      */
     public static function check_access($courseid, $userid) : bool {
-        global $DB;
-        $enrolmentids = $DB->get_records(self::ENROL_TABLE, array('courseid' => $courseid), '', '*');
-        foreach ($enrolmentids as $enrolmentid) {
-            if ($DB->record_exists(self::USER_ENROL_TABLE, array('enrolid' => $enrolmentid->id, 'userid' => $userid))) {
-                return true;
-            }
-        }
-        return false;
+        $context = context_course::instance($courseid);
+        return is_enrolled($context, $userid, '', true);
     }
     /**
      * gets the fullname from a course
@@ -154,8 +150,7 @@ class course_helper {
      * @return string the fullname of the course
      */
     public static function get_fullname($courseid) {
-        global $DB;
-        return $DB->get_record(self::COURSE_TABLE, array('id' => $courseid), '*', MUST_EXIST)->fullname;
+        return get_course($courseid)->fullname;
     }
     /**
      * Check if the course is from the current year

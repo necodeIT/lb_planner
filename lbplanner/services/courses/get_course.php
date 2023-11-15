@@ -31,9 +31,9 @@ use moodle_exception;
  */
 class courses_get_course extends external_api {
     public static function get_course_parameters() {
-        return new external_function_parameters(array(
+        return new external_function_parameters([
             'courseid' => new external_value(PARAM_INT, 'The id of the course', VALUE_REQUIRED, null, NULL_NOT_ALLOWED)
-        ));
+        ]);
     }
 
     /**
@@ -41,23 +41,19 @@ class courses_get_course extends external_api {
      * @throws moodle_exception
      * @throws invalid_parameter_exception
      */
-    public static function get_course($courseid, $userid) {
+    public static function get_course($courseid) {
         global $DB, $USER;
-
+        // TODO: Fetch all courses first.
         $userid = $USER->id;
 
-        self::validate_parameters(self::get_course_parameters(), array('courseid' => $courseid));
-
-        if (!$DB->record_exists('course', array('id' => $courseid))) {
-            throw new moodle_exception('Course not found');
-        }
-
-        user_helper::assert_access($userid);
-
+        self::validate_parameters(self::get_course_parameters(), ['courseid' => $courseid]);
         if (!course_helper::check_access($courseid, $userid)) {
             throw new moodle_exception('Not Enrolled in course');
         }
 
+        if (!$DB->record_exists(course_helper::LBPLANNER_COURSE_TABLE, array('courseid' => $courseid, 'userid' => $userid))) {
+            throw new moodle_exception('You have to fetch all courses First');
+        }
         $course = $DB->get_record(
             course_helper::LBPLANNER_COURSE_TABLE,
             array('courseid' => $courseid, 'userid' => $userid),
@@ -65,6 +61,8 @@ class courses_get_course extends external_api {
             MUST_EXIST
         );
         $course->name = course_helper::get_fullname($course->courseid);
+        unset($course->userid);
+        unset($course->id);
         return $course;
     }
 
