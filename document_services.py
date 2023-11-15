@@ -1,7 +1,7 @@
 import json
 import re
 import sys
-
+from os import path
 
 def extract_function_info(file_content):
     function_info = []
@@ -63,9 +63,54 @@ def extract_php_functions(php_code):
 
     return parameters_function, returns_function
 
+def parse_imports(input_str: str, symbol: str) -> str:
+    use_pattern = fr"use ((?:\w+\\)+){symbol};"
+    uses: list[str] = re.findall(use_pattern, input_str)
 
-def parse_returns(input_str):
+    namespaces = {
+        "local_lbplanner": "classes"# not entirely true, but good enough for now
+    }
+    fp_l: list[str] = []
+    for use in uses:
+        p = use.split('\\')[:-1]
+
+        namespace = namespaces.get(p[0])
+        if namespace is not None:
+            p[0] = namespace
+
+        fp_l.append(path.join("lbplanner",*p,f"{symbol}.php"))
+
+    if len(fp_l) > 1:
+        raise Exception("found import collision?")
+    elif len(fp_l) == 0:
+        raise Exception(f"Couldn't find symbol: {symbol}")
+    else:
+        return fp_l[0]
+
+def parse_returns(input_str: str, file_content: str):
     pattern = r"'(\w+)' => new external_value\((\w+), '([^']+)'"
+    redir_pattern = r"(\w+)::(\w+)\(\)"
+
+    matches = re.findall(redir_pattern, input_str)
+    if len(matches) > 1:
+        raise Exception(f"Couldn't parse return values")
+
+    if len(matches) == 1:
+        match = matches[0]
+        meth_pattern = rf"public static function {match[1]}\(\)(?: ?: ?\w+)? ?{{(?P<body>.*?)}}"
+
+        fp = parse_imports(file_content, match[0])
+        with open(fp,"r") as f:
+            new_file_content = f.read()
+            matches = re.findall(meth_pattern,new_file_content,re.DOTALL)
+            if len(matches) == 0:
+                raise Exception(f"Couldn't find {match[0]}::{match[1]}() inside {fp}")
+            elif len(matches) > 1:
+                raise Exception(f"Found multiple definitions for {match[0]}::{match[1]}() inside {fp}")
+            else:
+                r= parse_returns(matches[0],new_file_content)
+                return r
+
     matches = re.findall(pattern, input_str)
 
     output_dict = {}
@@ -282,7 +327,7 @@ if __name__ == "__main__":
                 func_content = func_file.read()
                 params_func, returns_func = extract_php_functions(func_content)
 
-                returns, returns_multiple = parse_returns(returns_func)
+                returns, returns_multiple = parse_returns(returns_func,func_content)
 
                 incomplete_info = info
 
