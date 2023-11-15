@@ -3,7 +3,7 @@ name: Generate API Docs
 on:
   push:
     branches:
-      - LP-176-Backend-Refactor # This is temporary and will be replaced by `moodle` once the refactor is complete
+      - LP-55-Backend-Refactor # This is temporary and will be replaced by `moodle` once the refactor is complete
   workflow_dispatch: # For manual triggering
 
 jobs:
