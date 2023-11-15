@@ -23,6 +23,8 @@ use external_value;
 use local_lbplanner\helpers\user_helper;
 use local_lbplanner\helpers\plan_helper;
 use local_lbplanner\helpers\notifications_helper;
+use local_lbplanner\helpers\PLAN_ACCESS_TYPE;
+use local_lbplanner\helpers\PLAN_INVITE_STATE;
 
 /**
  * Update a invite from the plan.
@@ -49,7 +51,7 @@ class plan_accept_invite extends external_api {
             throw new \moodle_exception('Invite not found');
         }
         if (!$DB->record_exists(plan_helper::INVITES_TABLE,
-        array( 'id' => $inviteid, 'inviteeid' => $userid, 'status' => plan_helper::INVITE_PENDING))) {
+        array( 'id' => $inviteid, 'inviteeid' => $userid, 'status' => PLAN_INVITE_STATE::PENDING->value))) {
             throw new \moodle_exception('Invite already accepted or declined');
         }
 
@@ -57,7 +59,7 @@ class plan_accept_invite extends external_api {
         array(
             'id' => $inviteid,
             'inviteeid' => $userid,
-            'status' => plan_helper::INVITE_PENDING,
+            'status' => PLAN_INVITE_STATE::PENDING->value,
         ),
         '*',
         MUST_EXIST
@@ -99,18 +101,18 @@ class plan_accept_invite extends external_api {
             MUST_EXIST
         );
 
-        $invite->status = plan_helper::INVITE_ACCEPTED;
+        $invite->status = PLAN_INVITE_STATE::ACCEPTED->value;
 
         $DB->update_record(plan_helper::INVITES_TABLE, $invite);
 
-        $planaccess->accesstype = plan_helper::ACCESS_TYPE_READ;
+        $planaccess->accesstype = PLAN_ACCESS_TYPE::READ->value;
         $planaccess->planid = $invite->planid;
 
         $DB->update_record(plan_helper::ACCESS_TABLE, $planaccess);
         $invites = plan_helper::get_invites_send($userid);
         foreach ($invites as $invite) {
-            if ($invite->status == plan_helper::INVITE_PENDING) {
-                $invite->status = plan_helper::INVITE_EXPIRED;
+            if ($invite->status == PLAN_INVITE_STATE::PENDING->value) {
+                $invite->status = PLAN_INVITE_STATE::EXPIRED->value;
                 $DB->update_record(plan_helper::INVITES_TABLE, $invite);
             }
         }

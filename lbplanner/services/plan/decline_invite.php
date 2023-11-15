@@ -23,6 +23,7 @@ use external_value;
 use local_lbplanner\helpers\user_helper;
 use local_lbplanner\helpers\plan_helper;
 use local_lbplanner\helpers\notifications_helper;
+use local_lbplanner\helpers\PLAN_INVITE_STATE;
 
 /**
  * Update a invite from the plan.
@@ -49,7 +50,7 @@ class plan_decline_invite extends external_api {
             throw new \moodle_exception('Invite not found');
         }
         if (!$DB->record_exists(plan_helper::INVITES_TABLE,
-        array('id' => $inviteid, 'inviteeid' => $userid, 'status' => plan_helper::INVITE_PENDING))) {
+        array('id' => $inviteid, 'inviteeid' => $userid, 'status' => PLAN_INVITE_STATE::PENDING->value))) {
             throw new \moodle_exception('Invite already accepted or declined');
         }
 
@@ -57,7 +58,7 @@ class plan_decline_invite extends external_api {
         array(
             'id' => $inviteid,
             'inviteeid' => $userid,
-            'status' => plan_helper::INVITE_PENDING,
+            'status' => PLAN_INVITE_STATE::PENDING->value,
         ),
         '*',
         MUST_EXIST
@@ -70,7 +71,7 @@ class plan_decline_invite extends external_api {
             notifications_helper::TRIGGER_INVITE_DECLINED
         );
 
-        $invite->status = plan_helper::INVITE_DECLINED;
+        $invite->status = PLAN_INVITE_STATE::DECLINED->value;
 
         $DB->update_record(plan_helper::INVITES_TABLE, $invite);
 
