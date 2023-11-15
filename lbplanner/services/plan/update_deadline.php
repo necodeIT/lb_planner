@@ -78,12 +78,9 @@ class plan_update_deadline extends external_api {
         $deadline->deadlineend = $deadlineend;
 
         $DB->update_record(plan_helper::DEADLINES_TABLE, $deadline);
-
-        return plan_helper::get_plan($planid);
-
     }
 
     public static function update_deadline_returns() {
-        return plan_helper::plan_structure();
+        return null;
     }
 }
