@@ -55,8 +55,6 @@ class _UpdateScreenState extends ConsumerState<UpdateScreen> {
       showCommand();
     }
 
-    return patchingProgress.when(data: null, error: , loading: ,);
-
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal:
