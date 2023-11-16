@@ -1,23 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:lb_planner/features/notifications/notifications.dart';
+import 'package:lb_planner/features/notifications/presentation/widgets/widgets.dart';
+import 'package:lb_planner/shared/shared.dart';
 
 /// Popup that displays all notifications the user received.
-class UserNotifications extends StatefulWidget {
+class UserNotifications extends ConsumerStatefulWidget {
   /// Popup that displays all notifications the user received.
   const UserNotifications({Key? key}) : super(key: key);
 
   @override
-  State<UserNotifications> createState() => _UserNotificationsState();
+  ConsumerState<UserNotifications> createState() => _UserNotificationsState();
 }
 
-class _UserNotificationsState extends State<UserNotifications> {
+class _UserNotificationsState extends ConsumerState<UserNotifications> {
   bool _isShowing = false;
 
-  void _onShow(NotificationsProvider notificationsProvider) {
+  void _onShow(NotificationsProviderState read) {
     setState(() {
       _isShowing = true;
     });
 
-    notificationsProvider.markAllAsRead();
+    read.markAllAsRead();
   }
 
   void _onHide() {
@@ -28,33 +32,29 @@ class _UserNotificationsState extends State<UserNotifications> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer(
-      builder: (context, ref, _) {
-        var notifications = _isShowing
-            ? ref.read(notificationsProvider)
-            : ref.watch(notificationsProvider);
+    var notifications = _isShowing
+        ? ref.read(notificationsProvider)
+        : ref.watch(notificationsProvider);
 
-        var child = LpPopup(
-          onShow: () => _onShow(ref.read(notificationsController)),
-          onHide: _onHide,
-          child: LpIcon(Icons.notifications_outlined),
-          hoverChild: LpIcon(Icons.notifications_outlined, color: accentColor),
-          popupBuilder: UserNotificationsPopup.builder,
-          offset: const Offset(-10, 0),
-        );
+    var child = Popup(
+      onShow: () => _onShow(ref.read(notificationsController)),
+      onHide: _onHide,
+      child: Icon(Icons.notifications_outlined),
+      hoverChild:
+          Icon(Icons.notifications_outlined, color: context.theme.primaryColor),
+      popupBuilder: UserNotificationsPopup.builder,
+      offset: const Offset(-10, 0),
+    );
 
-        return ConditionalWrapper(
-          condition: notifications.values.any((notification) =>
-              notification.status == NotificationStatus.unread),
-          wrapper: (context, child) => Badge(
-            child: child,
-            badgeColor: accentColor,
-            // ignore: no-magic-number
-            position: BadgePosition.bottomEnd(bottom: -2, end: -2),
-          ),
-          child: child,
-        );
-      },
+    return ConditionalWrapper(
+      condition: notifications.any((notification) => !notification.read),
+      wrapper: (context, child) => Badge(
+        alignment: AlignmentDirectional.bottomEnd,
+        // position: BadgePosition.bottomEnd(bottom: -2, end: -2),
+        child: child,
+        backgroundColor: context.theme.primaryColor,
+      ),
+      child: child,
     );
   }
 }

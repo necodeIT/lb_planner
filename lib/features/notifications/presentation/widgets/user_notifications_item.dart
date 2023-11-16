@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 import '../../domain/domain.dart';
 
 /// User notifications item.
-class UserNotificationsItem extends StatefulWidget {
+class UserNotificationsItem extends ConsumerStatefulWidget {
   /// User notifications item.
   const UserNotificationsItem({Key? key, required this.notificationId})
       : super(key: key);
@@ -20,10 +20,11 @@ class UserNotificationsItem extends StatefulWidget {
   static final formatter = DateFormat.MMMEd();
 
   @override
-  State<UserNotificationsItem> createState() => _UserNotificationsItemState();
+  ConsumerState<UserNotificationsItem> createState() =>
+      _UserNotificationsItemState();
 }
 
-class _UserNotificationsItemState extends State<UserNotificationsItem> {
+class _UserNotificationsItemState extends ConsumerState<UserNotificationsItem> {
   Future? _future;
 
   void load(List<Future> tasks) async {
@@ -45,7 +46,7 @@ class _UserNotificationsItemState extends State<UserNotificationsItem> {
     return Consumer(
       builder: (context, ref, _) {
         var notification =
-            ref.watch(notificationsProvider)[widget.notificationId]!;
+            ref.watch(notificationsProvider)[widget.notificationId];
 
         String text = notification.toString();
         List<_Action> actions = [];
