@@ -41,4 +41,37 @@ class UserTokenState extends AsyncNotifier<UserToken> {
 
     return tokens;
   }
+
+  /// Logs the user out.
+  ///
+  /// If you want to log in the user see [login].
+  Future<void> logout() async {
+    state = AsyncLoading();
+
+    await localConfigService.deleteConfig();
+
+    state = AsyncError("User logged out", StackTrace.current);
+  }
+
+  /// Logs the user in.
+  ///
+  /// This method will attempt to log the user in with the given [username] and [password].
+  Future<void> login(String username, String password) async {
+    state = AsyncLoading();
+
+    state = await AsyncValue.guard(() async {
+      var moodleMobileAppToken =
+          await moodleMobileAppAuthService.requestToken(username, password);
+      var lbPlannerApiToken =
+          await lbPlannerApiAuthService.requestToken(username, password);
+
+      var tokens = UserToken(
+          moodleMobileAppToken: moodleMobileAppToken,
+          lbPlannerApiToken: lbPlannerApiToken);
+
+      await localConfigService.saveConfig(tokens);
+
+      return tokens;
+    });
+  }
 }

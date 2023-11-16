@@ -1,3 +1,7 @@
+export 'logo.dart';
+export 'vector_image.dart';
+export 'spacing.dart';
+export 'conditional_wrapper.dart';
 export 'sidebar.dart';
 export 'sidebar_item.dart';
 export 'screen_title_bar.dart';
