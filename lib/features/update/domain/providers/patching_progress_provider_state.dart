@@ -1,59 +1,69 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:lb_planner/features/update/update.dart';
 import 'package:riverpod/riverpod.dart';
 
-/// Provides the current [PatchingProgress].
+/// Provides the progress of the current patching process.
+///
+/// The progess is represented as double between `0.0` and `1.0`.
 ///
 /// NOTE: Resolves to `null` if no patching is in progress.
-class PatchingProgressProviderState extends StateNotifier<PatchingProgress?> {
-  /// The [PatcherService] instance to use for patching.
-  final PatcherService patcherService;
+///
+/// If this resolves to [AsyncLoading] the patcher is currently being initialized and it unsafe to use any properties or methods.
+///
+/// If this resolves to [AsyncError], there was an error while patching or an error during setup, which also makes it unsafe to call any methods or use any properties.
+class PatchingProgressProviderState extends AsyncNotifier<double?> {
+  late PatcherService _patcherService;
 
-  /// The [ReleaseRepository] instance to use for fetching the latest release.
-  final ReleaseRepository releaseRepository;
+  late ReleaseRepository _releaseRepository;
 
-  /// The latest [Release] available.
-  late final Release latest;
+  late Release _target;
+
+  /// The target release that should be installed.
+  Release get target => _target;
 
   /// Provides the current [PatchingProgress].
   ///
   /// NOTE: Resolves to `null` if no patching is in progress.
-  PatchingProgressProviderState(this.patcherService, this.releaseRepository)
-      : super(null) {
-    releaseRepository.getLatestRelease().then((value) => latest = value);
+  PatchingProgressProviderState();
+
+  @override
+  FutureOr<double?> build() async {
+    _patcherService = ref.read(patcherServiceProvider);
+
+    _releaseRepository = ref.read(releaseRepositoryProvider);
+
+    // watch `isUpdateAvailableProvider` so we refetch the lateste release when [IsUpdateAvailableProviderState.checkForUpdates] is called
+    //
+    // this way we ensure that we always have the latest release when patching
+    ref.watch(isUpdateAvailableProvider);
+
+    _target = await _releaseRepository.getLatestRelease();
+
+    return null;
   }
 
   /// Downloads and installs the latest version of the app.
   ///
-  /// Throws an [UnsupportedError] if [canPatch] returns `false`.
-  ///
-  /// If the patching fails, the [PatchingProgress] will contain the error and stack trace.
+  /// NOTE: [state] will resolve to an [AsyncError] if [canPatch] returns `false`.
   Future<void> patch() async {
-    if (!canPatch) {
-      throw UnsupportedError(
-        'Automatic patching is not supported with ${patcherService.runtimeType}',
-      );
-    }
+    state = await AsyncValue.guard(() async {
+      if (!canPatch) {
+        throw UnsupportedError(
+          '${_patcherService.runtimeType} does not support patching.',
+        );
+      }
 
-    try {
-      await patcherService.patch(
-        latest,
+      await _patcherService.patch(
+        target,
         onProgress: (progress) {
-          state = PatchingProgress(
-            release: latest,
-            progress: progress,
-          );
+          state = AsyncValue.data(progress);
         },
       );
-    } catch (e, s) {
-      state = state?.copyWith(error: e, stackTrace: s) ??
-          PatchingProgress(
-            release: latest,
-            progress: -1,
-            error: e,
-            stackTrace: s,
-          );
-    }
+
+      return null;
+    });
   }
 
   /// Whether the app can be patched automatically.
@@ -61,11 +71,11 @@ class PatchingProgressProviderState extends StateNotifier<PatchingProgress?> {
   /// If this returns `false`, the user will have to manually install the update.
   ///
   /// In this case [patch] will throw an [UnsupportedError]. Use [getInstructions] to receive instructions for manually installing the update.
-  bool get canPatch => patcherService.canPatch;
+  bool get canPatch => _patcherService.canPatch;
 
   /// Returns the instructions for manually installing a given release in markdown format.
   ///
-  /// Throws an [UnsupportedError] if [canPatch] returns `true`.
+  /// NOTE: [state] will resolve to an [AsyncError] if [canPatch] returns `true`.
   String getInstructions(BuildContext context) =>
-      patcherService.getInstructions(context, latest);
+      _patcherService.getInstructions(context, target);
 }

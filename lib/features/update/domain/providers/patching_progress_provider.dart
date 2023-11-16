@@ -1,22 +1,23 @@
 import 'package:lb_planner/features/update/update.dart';
 import 'package:riverpod/riverpod.dart';
 
-/// Provides the current [PatchingProgress].
+/// Provides the progress of the current patching process.
+///
+/// The progess is represented as double between `0.0` and `1.0`.
 ///
 /// NOTE: Resolves to `null` if no patching is in progress.
 ///
-/// To start patching or get instructions, use [patchingProgressController].
+/// If you want start a patching process, use [patchingProgressController].
 final patchingProgressProvider =
-    StateNotifierProvider<PatchingProgressProviderState, PatchingProgress?>(
-  (ref) {
-    final patcherService = ref.watch(patcherServiceProvider);
-    final releaseRepository = ref.watch(releaseRepositoryProvider);
-
-    return PatchingProgressProviderState(patcherService, releaseRepository);
-  },
+    AsyncNotifierProvider<PatchingProgressProviderState, double?>(
+  () => PatchingProgressProviderState(),
 );
 
-/// Expososes the controller for [patchingProgressProvider].
+/// Exposes methods for patching the app.
 ///
-/// To receive updates on the patching progress, use [patchingProgressProvider].
+/// If [patchingProgressProvider] resolves to [AsyncLoading], the patcher is currently being initialized and it unsafe to use any properties or methods.
+///
+/// If [patchingProgressProvider] resolves to [AsyncError], there was an error while patching or an error during setup, which also makes it unsafe to call any methods or use any properties.
+///
+/// If you want to read the current patching progress, use [patchingProgressProvider].
 final patchingProgressController = patchingProgressProvider.notifier;
