@@ -21,102 +21,100 @@ class UpdateScreen extends ConsumerStatefulWidget {
 }
 
 class _UpdateScreenState extends ConsumerState<UpdateScreen> {
+  void showCommand() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      showAlertDialog(
+        context,
+        title: t.update_dialog_title,
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              ref.read(patchingProgressController).canPatch
+                  ? t.update_dialog_helpNeeded
+                  : t.update_dialog_noAutoUpdate,
+              overflow: TextOverflow.visible,
+            ),
+            Spacing.large(),
+            Snippet(
+                code: ref
+                    .read(patchingProgressController)
+                    .getInstructions(context)),
+          ],
+        ),
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Consumer(
-      builder: (context, ref, _) {
-        final progressController = ref.watch(patchingProgressController);
-        final patchingProgress = ref.watch(patchingProgressProvider);
-        final updateChecker = ref.watch(updateCheckerProvider);
+    final progressController = ref.watch(patchingProgressController);
+    final patchingProgress = ref.watch(patchingProgressProvider);
 
-        void showCommand() {
-          WidgetsBinding.instance.addPostFrameCallback((_) {
-            showAlertDialog(
-              context,
-              title: t.update_dialog_title,
-              body: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    progressController.canPatch
-                        ? t.update_dialog_helpNeeded
-                        : t.update_dialog_noAutoUpdate,
-                    overflow: TextOverflow.visible,
-                  ),
-                  Spacing.large(),
-                  Snippet(code: progressController.getInstructions(context)),
-                ],
-              ),
-            );
-          });
-        }
+    if (!progressController.canPatch) {
+      showCommand();
+    }
 
-        if (progressController.getInstructions(context).isNotEmpty) {
-          showCommand();
-        }
+    return patchingProgress.when(data: null, error: , loading: ,);
 
-        return Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal:
-                MediaQuery.of(context).size.width * UpdateScreen.paddingFactor,
-            vertical:
-                MediaQuery.of(context).size.height * UpdateScreen.paddingFactor,
-          ),
-          child: Column(
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal:
+            MediaQuery.of(context).size.width * UpdateScreen.paddingFactor,
+        vertical:
+            MediaQuery.of(context).size.height * UpdateScreen.paddingFactor,
+      ),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Row(
-                    children: [
-                      VectorImage('assets/svg/app_icon.svg',
-                          height: UpdateScreen.iconSize),
-                      Spacing.small(),
-                      Text(
-                        t.update_patchNotes(progressController.latest.name),
-                        style: TextStyle(
-                            fontSize: 25, fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  ),
-                  if (patchingProgress?.error != null)
-                    ElevatedButton(
-                      onPressed: progressController.patch,
-                      child: Text(t.update_btnErr),
-                    ),
-                  if (patchingProgress != null)
-                    Row(
-                      children: [
-                        Text(
-                          t.update_downloading(
-                              patchingProgress.progress.round()),
-                          style: TextStyle(fontWeight: FontWeight.normal),
-                        ),
-                        Spacing.small(),
-                        CircularProgressIndicator(),
-                      ],
-                    ),
-                  if (patchingProgress != null &&
-                      progressController.getInstructions(context).isEmpty)
+                  VectorImage('assets/svg/app_icon.svg',
+                      height: UpdateScreen.iconSize),
+                  Spacing.small(),
+                  if (patchingProgress.hasValue)
                     Text(
-                      t.update_installing,
-                      style: TextStyle(fontWeight: FontWeight.normal),
+                      t.update_patchNotes(progressController.target.name),
+                      style:
+                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                     ),
-                  if (patchingProgress != null &&
-                      progressController.getInstructions(context).isNotEmpty)
-                    ElevatedButton(
-                        onPressed: showCommand,
-                        child: Text(t.update_btnInstall)),
                 ],
               ),
-              Spacing.large(),
-              Expanded(
-                child: MarkdownView(progressController.latest.changelog),
-              ),
+              if (patchingProgress.hasError)
+                ElevatedButton(
+                  onPressed: progressController.patch,
+                  child: Text(t.update_btnErr),
+                ),
+              if (patchingProgress.hasValue)
+                Row(
+                  children: [
+                    Text(
+                      t.update_downloading(patchingProgress.value!.round()),
+                      style: TextStyle(fontWeight: FontWeight.normal),
+                    ),
+                    Spacing.small(),
+                    CircularProgressIndicator(),
+                  ],
+                ),
+              if (patchingProgress.hasValue)
+                Text(
+                  t.update_installing,
+                  style: TextStyle(fontWeight: FontWeight.normal),
+                ),
+              if (!progressController.canPatch)
+                ElevatedButton(
+                    onPressed: showCommand, child: Text(t.update_btnInstall)),
             ],
           ),
-        );
-      },
+          Spacing.large(),
+          if (patchingProgress.hasValue)
+            Expanded(
+              child: MarkdownView(progressController.target.changelog),
+            ),
+        ],
+      ),
     );
   }
 }
