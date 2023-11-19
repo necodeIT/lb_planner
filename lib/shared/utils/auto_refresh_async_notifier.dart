@@ -2,10 +2,13 @@ import 'dart:async';
 
 import 'package:riverpod/riverpod.dart';
 
-/// A class to use instead of [StateNotifier] which provides a way to automatically refresh the [state].
-abstract class AutoRefreshStateNotifier<T> extends StateNotifier<T> {
-  /// A class to use instead of [StateNotifier] which provides a way to automatically refresh the [state].
-  AutoRefreshStateNotifier(super.state) {
+/// A class to use instead of [AsyncNotifier] which provides a way to automatically refresh the [state].
+abstract class AutoRefreshAsyncNotifier<T> extends AsyncNotifier<T> {
+  /// If this is `true` the state will be set to [AsyncValue.loading] when the data is refreshed.
+  final bool setStateToLoadingOnRefresh;
+
+  /// A class to use instead of [AsyncNotifier] which provides a way to automatically refresh the [state].
+  AutoRefreshAsyncNotifier(this.setStateToLoadingOnRefresh) {
     _kickStart();
   }
 
@@ -18,7 +21,7 @@ abstract class AutoRefreshStateNotifier<T> extends StateNotifier<T> {
   ///
   /// The value returned by this function will be set as the new state if it is different from the current state.
   ///
-  /// Errors thrown by this function will **not** be caught.
+  /// Execution of this function is guarded by [AsyncValue.guard].
   FutureOr<T> onRefresh();
 
   /// The timer to use to refresh the data.
@@ -29,17 +32,15 @@ abstract class AutoRefreshStateNotifier<T> extends StateNotifier<T> {
     if (_timer != null) throw StateError('The timer is already running.');
 
     _timer = Timer.periodic(refreshRate, (timer) async {
-      var newState = await onRefresh();
+      if (setStateToLoadingOnRefresh) {
+        state = AsyncValue.loading();
+      }
+
+      var newState = await AsyncValue.guard(() async => await onRefresh());
 
       if (newState != state) {
         state = newState;
       }
     });
-  }
-
-  @override
-  void dispose() {
-    _timer?.cancel();
-    super.dispose();
   }
 }

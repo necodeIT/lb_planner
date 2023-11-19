@@ -15,7 +15,7 @@ abstract class FeedbackRepository {
   /// Returns a list of every feedback submitted.
   ///
   /// If the user does not have the [UserCapability.moderator] or [UserCapability.dev] capability, an empty list will be returned.
-  Future<List<Feedback>> getAllFeedbacks();
+  Future<List<Feedback>> getFeedbacks();
 
   /// Deletes the given [feedback].
   ///

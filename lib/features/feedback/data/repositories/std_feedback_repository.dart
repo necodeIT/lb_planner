@@ -11,7 +11,7 @@ class StdFeedbackRepository extends FeedbackRepository {
   /// This is used to determine whether the user can perform certain actions.
   ///
   /// If any action cannot be performed, the corresponding method will return empty data.
-  /// Candidates for this are [getAllFeedbacks], [deleteFeedback] and [updateFeedback].
+  /// Candidates for this are [getFeedbacks], [deleteFeedback] and [updateFeedback].
   final List<UserCapability> capabilities;
 
   /// Standard implementation of [FeedbackRepository].
@@ -25,7 +25,7 @@ class StdFeedbackRepository extends FeedbackRepository {
   }
 
   @override
-  Future<List<Feedback>> getAllFeedbacks() async {
+  Future<List<Feedback>> getFeedbacks() async {
     if (!capabilities.hasDev && !capabilities.hasModerator) return [];
 
     return feedbackDataSource.fetchAllFeedbacks();
