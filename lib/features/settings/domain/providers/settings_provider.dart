@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:lb_planner/features/update/settings/settings.dart';
+import 'package:lb_planner/features/settings/settings.dart';
 import 'package:lb_planner/features/auth/auth.dart';
 
 /// Provides methods to change the [User]'s settings.
