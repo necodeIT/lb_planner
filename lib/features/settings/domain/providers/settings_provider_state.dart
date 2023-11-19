@@ -1,4 +1,3 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lb_planner/features/auth/auth.dart';
 import 'package:lb_planner/features/themes/themes.dart';
 import 'package:lb_planner/shared/shared.dart';
@@ -8,23 +7,24 @@ import 'package:lb_planner/shared/shared.dart';
 /// **NOTE:** This provider only provides methods to change the settings, as the current settings can be infered from the [User] object.
 ///
 /// If you want to get the current settings, see [userProvider].
-class SettingsProviderState extends Notifier {
+class SettingsProviderState {
   /// The user to change the settings of.
-  late User? _user;
+  late User? user;
 
   /// The controller used for updating the user.
-  late UserProvider _controller;
+  late UserProvider controller;
 
   /// The service used for accessing the app directory.
   ///
   /// Used for clearing the cache.
-  late AppDirService _appDirService;
+  late AppDirService appDirService;
 
-  @override
-  build() {
-    _user = ref.watch(userProvider);
-    _controller = ref.read(userProvider.notifier);
-  }
+  /// Provides methods to change the [User]'s settings.
+  ///
+  /// **NOTE:** This provider only provides methods to change the settings, as the current settings can be infered from the [User] object.
+  ///
+  /// If you want to get the current settings, see [userProvider].
+  SettingsProviderState(this.user, this.controller, this.appDirService);
 
   /// Clears the cache.
   ///
@@ -32,7 +32,7 @@ class SettingsProviderState extends Notifier {
   ///
   /// The user will have to log in again.
   Future<void> clearCache() async {
-    final dir = await _appDirService.resolveApplicationDirectory();
+    final dir = await appDirService.resolveApplicationDirectory();
 
     await dir.delete(recursive: true);
   }
@@ -45,7 +45,7 @@ class SettingsProviderState extends Notifier {
   Future<void> deleteAccount() async {
     _assertLoggedIn();
 
-    await _controller.deleteUser();
+    await controller.deleteUser();
 
     await clearCache();
   }
@@ -56,11 +56,11 @@ class SettingsProviderState extends Notifier {
   Future<void> setTheme(ThemeBase theme) async {
     _assertLoggedIn();
 
-    await _controller.updateUser(_user!.copyWith(themeName: theme.name));
+    await controller.updateUser(user!.copyWith(themeName: theme.name));
   }
 
   _assertLoggedIn() {
-    if (_user == null) {
+    if (user == null) {
       throw Exception("User is not logged in");
     }
   }
