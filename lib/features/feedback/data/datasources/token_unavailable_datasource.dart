@@ -14,7 +14,7 @@ class TokenUnavailableFeedbackDataSource extends FeedbackDataSource {
   Future<Feedback> fetchFeedback(int id) async => Feedback(
         id: -1,
         content: "",
-        userId: -1,
+        author: -1,
         type: FeedbackType.bug,
         readAsInt: 0,
         createdAtTimestamp: 0,

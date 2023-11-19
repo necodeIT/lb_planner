@@ -15,6 +15,23 @@ abstract class AutoRefreshAsyncNotifier<T> extends AsyncNotifier<T> {
   /// The refresh rate of the data.
   Duration get refreshRate => const Duration(seconds: 10);
 
+  /// Pauses auto refreshing.
+  ///
+  /// While paused, [onRefresh] will not be called.
+  void pause() {
+    _paused = true;
+  }
+
+  bool _paused = false;
+
+  /// Resumes auto refreshing.
+  void resume() {
+    _paused = false;
+  }
+
+  /// `true` if auto refreshing is paused.
+  bool get isPaused => _paused;
+
   /// Returns the new state.
   ///
   /// This function is called in an interval of [refreshRate].
@@ -32,6 +49,8 @@ abstract class AutoRefreshAsyncNotifier<T> extends AsyncNotifier<T> {
     if (_timer != null) throw StateError('The timer is already running.');
 
     _timer = Timer.periodic(refreshRate, (timer) async {
+      if (isPaused) return;
+
       if (setStateToLoadingOnRefresh) {
         state = AsyncValue.loading();
       }

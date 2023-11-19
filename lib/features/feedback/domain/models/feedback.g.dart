@@ -9,7 +9,7 @@ part of 'feedback.dart';
 _$_Feedback _$$_FeedbackFromJson(Map<String, dynamic> json) => _$_Feedback(
       id: json['id'] as int,
       content: json['content'] as String,
-      userId: json['userid'] as int,
+      author: json['userid'] as int,
       type: $enumDecode(_$FeedbackTypeEnumMap, json['type']),
       comment: json['notes'] as String? ?? "",
       readAsInt: json['status'] as int,
@@ -23,7 +23,7 @@ Map<String, dynamic> _$$_FeedbackToJson(_$_Feedback instance) =>
     <String, dynamic>{
       'id': instance.id,
       'content': instance.content,
-      'userid': instance.userId,
+      'userid': instance.author,
       'type': _$FeedbackTypeEnumMap[instance.type]!,
       'notes': instance.comment,
       'status': instance.readAsInt,

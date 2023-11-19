@@ -19,7 +19,7 @@ class Feedback with _$Feedback {
     required String content,
 
     /// The ID of the user who submitted this feedback.
-    @JsonKey(name: "userid") required int userId,
+    @JsonKey(name: "userid") required int author,
 
     /// The type of this feedback.
     required FeedbackType type,

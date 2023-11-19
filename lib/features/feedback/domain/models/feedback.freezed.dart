@@ -28,7 +28,7 @@ mixin _$Feedback {
 
   /// The ID of the user who submitted this feedback.
   @JsonKey(name: "userid")
-  int get userId => throw _privateConstructorUsedError;
+  int get author => throw _privateConstructorUsedError;
 
   /// The type of this feedback.
   FeedbackType get type => throw _privateConstructorUsedError;
@@ -79,7 +79,7 @@ abstract class $FeedbackCopyWith<$Res> {
   $Res call(
       {int id,
       String content,
-      @JsonKey(name: "userid") int userId,
+      @JsonKey(name: "userid") int author,
       FeedbackType type,
       @JsonKey(name: "notes") String comment,
       @JsonKey(name: "status") int readAsInt,
@@ -104,7 +104,7 @@ class _$FeedbackCopyWithImpl<$Res, $Val extends Feedback>
   $Res call({
     Object? id = null,
     Object? content = null,
-    Object? userId = null,
+    Object? author = null,
     Object? type = null,
     Object? comment = null,
     Object? readAsInt = null,
@@ -122,9 +122,9 @@ class _$FeedbackCopyWithImpl<$Res, $Val extends Feedback>
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
               as String,
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
+      author: null == author
+          ? _value.author
+          : author // ignore: cast_nullable_to_non_nullable
               as int,
       type: null == type
           ? _value.type
@@ -168,7 +168,7 @@ abstract class _$$_FeedbackCopyWith<$Res> implements $FeedbackCopyWith<$Res> {
   $Res call(
       {int id,
       String content,
-      @JsonKey(name: "userid") int userId,
+      @JsonKey(name: "userid") int author,
       FeedbackType type,
       @JsonKey(name: "notes") String comment,
       @JsonKey(name: "status") int readAsInt,
@@ -191,7 +191,7 @@ class __$$_FeedbackCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? content = null,
-    Object? userId = null,
+    Object? author = null,
     Object? type = null,
     Object? comment = null,
     Object? readAsInt = null,
@@ -209,9 +209,9 @@ class __$$_FeedbackCopyWithImpl<$Res>
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
               as String,
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
+      author: null == author
+          ? _value.author
+          : author // ignore: cast_nullable_to_non_nullable
               as int,
       type: null == type
           ? _value.type
@@ -251,7 +251,7 @@ class _$_Feedback extends _Feedback {
   _$_Feedback(
       {required this.id,
       required this.content,
-      @JsonKey(name: "userid") required this.userId,
+      @JsonKey(name: "userid") required this.author,
       required this.type,
       @JsonKey(name: "notes") this.comment = "",
       @JsonKey(name: "status") required this.readAsInt,
@@ -275,7 +275,7 @@ class _$_Feedback extends _Feedback {
   /// The ID of the user who submitted this feedback.
   @override
   @JsonKey(name: "userid")
-  final int userId;
+  final int author;
 
   /// The type of this feedback.
   @override
@@ -321,7 +321,7 @@ class _$_Feedback extends _Feedback {
 
   @override
   String toString() {
-    return 'Feedback(id: $id, content: $content, userId: $userId, type: $type, comment: $comment, readAsInt: $readAsInt, createdAtTimestamp: $createdAtTimestamp, modifiedAtTimestamp: $modifiedAtTimestamp, modifiedByUserId: $modifiedByUserId, logfile: $logfile)';
+    return 'Feedback(id: $id, content: $content, author: $author, type: $type, comment: $comment, readAsInt: $readAsInt, createdAtTimestamp: $createdAtTimestamp, modifiedAtTimestamp: $modifiedAtTimestamp, modifiedByUserId: $modifiedByUserId, logfile: $logfile)';
   }
 
   @override
@@ -331,7 +331,7 @@ class _$_Feedback extends _Feedback {
             other is _$_Feedback &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.content, content) || other.content == content) &&
-            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.author, author) || other.author == author) &&
             (identical(other.type, type) || other.type == type) &&
             (identical(other.comment, comment) || other.comment == comment) &&
             (identical(other.readAsInt, readAsInt) ||
@@ -351,7 +351,7 @@ class _$_Feedback extends _Feedback {
       runtimeType,
       id,
       content,
-      userId,
+      author,
       type,
       comment,
       readAsInt,
@@ -378,7 +378,7 @@ abstract class _Feedback extends Feedback {
   factory _Feedback(
       {required final int id,
       required final String content,
-      @JsonKey(name: "userid") required final int userId,
+      @JsonKey(name: "userid") required final int author,
       required final FeedbackType type,
       @JsonKey(name: "notes") final String comment,
       @JsonKey(name: "status") required final int readAsInt,
@@ -402,7 +402,7 @@ abstract class _Feedback extends Feedback {
 
   /// The ID of the user who submitted this feedback.
   @JsonKey(name: "userid")
-  int get userId;
+  int get author;
   @override
 
   /// The type of this feedback.

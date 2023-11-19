@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:lb_planner/features/feedback/feedback.dart';
 import 'package:lb_planner/shared/shared.dart';
+import 'package:riverpod/riverpod.dart';
 
 /// Provides a list of all [Feedback]s in the database.
 ///
@@ -36,11 +37,17 @@ class FeedbackProviderState extends AutoRefreshAsyncNotifier<List<Feedback>> {
     FeedbackType type, {
     String? logFilePath,
   }) async {
-    await _feedbackRepository.submitFeedback(
-      message,
-      type,
-      logFilePath,
+    pause();
+
+    await AsyncValue.guard(
+      () => _feedbackRepository.submitFeedback(
+        message,
+        type,
+        logFilePath,
+      ),
     );
+
+    resume();
   }
 
   /// Deletes the given [feedback].
@@ -54,9 +61,38 @@ class FeedbackProviderState extends AutoRefreshAsyncNotifier<List<Feedback>> {
   ///
   /// It is safe to call this method multiple times on the same [feedback] to update the [comment].
   Future<void> markFeedbackAsRead(Feedback feedback, {String? comment}) async {
-    await _feedbackRepository.updateFeedback(feedback.copyWith(
-      readAsInt: 1,
-      comment: comment ?? "",
-    ));
+    state = AsyncLoading();
+
+    await _feedbackRepository.updateFeedback(
+      feedback.copyWith(
+        readAsInt: 1,
+        comment: comment ?? "",
+      ),
+    );
+  }
+
+  /// Filters the feedbacks by the given parameters.
+  ///
+  /// Feedbacks will only be included if they match **all** non null parameters.
+  ///
+  /// If [state] is [AsyncLoading] or [AsyncError], an empty list will be returned.
+  List<Feedback> filterBy({
+    FeedbackType? type,
+    bool? read,
+    int? author,
+    int? modifiedBy,
+  }) {
+    if (!state.hasValue) return [];
+
+    return state.requireValue.where((feedback) {
+      if (type != null && feedback.type != type) return false;
+      if (read != null && feedback.read != read) return false;
+      if (author != null && feedback.author != author) return false;
+      if (modifiedBy != null && feedback.modifiedByUserId != modifiedBy) {
+        return false;
+      }
+
+      return true;
+    }).toList();
   }
 }
