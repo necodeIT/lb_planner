@@ -50,4 +50,13 @@ class UserProvider extends AutoRefreshStateNotifier<User?> {
 
     state = _user.validOrNull;
   }
+
+  /// Deletes the current user.
+  ///
+  /// As a result, the user will be logged out and [state] will be set to `null`.
+  Future<void> deleteUser() async {
+    await userDataSource.deleteUser(state!);
+
+    state = null;
+  }
 }

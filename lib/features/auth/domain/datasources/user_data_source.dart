@@ -10,4 +10,7 @@ abstract class UserDataSource {
 
   /// Sends the [user] to the server and returns the updated [User] from the server.
   Future<User> updateUser(User user);
+
+  /// Deletes the user from the server.
+  Future<void> deleteUser(User user);
 }

@@ -58,4 +58,19 @@ class StdUserDataSource extends UserDataSource {
 
     return User.fromJson(response.expectSingle());
   }
+
+  @override
+  Future<void> deleteUser(User user) async {
+    var response = await apiService.callFunction(
+      function: "local_lbplanner_user_delete_user",
+      token: userToken.lbPlannerApiToken,
+      body: {
+        "userid": user.id,
+      },
+    );
+
+    if (response.isNotOk) {
+      throw Exception("Failed to delete user");
+    }
+  }
 }
