@@ -18,7 +18,6 @@ namespace local_lbplanner_services;
 
 use external_api;
 use external_function_parameters;
-use external_single_structure;
 use external_value;
 use local_lbplanner\helpers\plan_helper;
 use local_lbplanner\helpers\notifications_helper;
@@ -68,28 +67,10 @@ class plan_decline_invite extends external_api {
         $invite->status = PLAN_INVITE_STATE::DECLINED->value;
 
         $DB->update_record(plan_helper::INVITES_TABLE, $invite);
-
-        return [
-        'id' => $invite->id,
-        'inviterid' => $invite->inviterid,
-        'inviteeid' => $invite->inviteeid,
-        'planid' => $invite->planid,
-        'status' => $invite->status,
-        'timestamp' => $invite->timestamp,
-        ];
     }
 
 
     public static function decline_invite_returns() {
-        return new external_single_structure(
-            [
-                'id' => new external_value(PARAM_INT, 'The id of the invite'),
-                'inviterid' => new external_value(PARAM_INT, 'The id of the owner user'),
-                'inviteeid' => new external_value(PARAM_INT, 'The id of the invited user'),
-                'planid' => new external_value(PARAM_INT, 'The id of the plan'),
-                'status' => new external_value(PARAM_INT, 'The Status of the invitation'),
-                'timestamp' => new external_value(PARAM_INT, 'The time when the invitation was send'),
-            ]
-        );
+        return null;
     }
 }

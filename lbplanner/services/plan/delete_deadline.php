@@ -60,11 +60,9 @@ class plan_delete_deadline extends external_api {
                 'moduleid' => $moduleid,
             ]
         );
-
-        return plan_helper::get_plan($planid);
     }
 
     public static function delete_deadline_returns() {
-        return plan_helper::plan_structure();
+        return null;
     }
 }

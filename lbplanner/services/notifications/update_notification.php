@@ -18,7 +18,6 @@ namespace local_lbplanner_services;
 
 use external_api;
 use external_function_parameters;
-use external_single_structure;
 use external_value;
 use local_lbplanner\helpers\notifications_helper;
 
@@ -56,29 +55,9 @@ class notifications_update_notification extends external_api {
         $notification->timestamp_read = time();
 
         $DB->update_record(notifications_helper::TABLE, $notification);
-
-        return [
-            'status' => $notification->status,
-            'type' => $notification->type,
-            'info' => $notification->info,
-            'userid' => $notification->userid,
-            'notificationid' => $notification->id,
-            'timestamp' => $notification->timestamp,
-            'timestamp_read' => $notification->timestamp_read,
-        ];
     }
 
     public static function update_notification_returns() {
-        return new external_single_structure(
-            [
-                'status' => new external_value(PARAM_INT, 'The status of the notification {0: unread, 1: read}'),
-                'type' => new external_value(PARAM_INT, 'The type of the event that triggered the notification'),
-                'info' => new external_value(PARAM_INT, 'Additional information about the notification'),
-                'userid' => new external_value(PARAM_INT, 'The ID of the user for whom the notification is for'),
-                'notificationid' => new external_value(PARAM_INT, 'The ID of the notification'),
-                'timestamp' => new external_value(PARAM_INT, 'The timestamp of the notification'),
-                'timestamp_read' => new external_value(PARAM_INT, 'The timestamp of the notification'),
-            ]
-        );
+        return null;
     }
 }

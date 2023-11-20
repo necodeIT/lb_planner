@@ -18,7 +18,6 @@ namespace local_lbplanner_services;
 
 use external_api;
 use external_function_parameters;
-use external_single_structure;
 use external_value;
 use local_lbplanner\helpers\feedback_helper;
 
@@ -53,10 +52,10 @@ class feedback_submit_feedback extends external_api {
             'logfile' => $logfile,
         ]);
 
-        return feedback_helper::get_feedback($id);
+        return $id;
     }
 
     public static function submit_feedback_returns() {
-        return feedback_helper::structure();
+        return new external_value(PARAM_INT, "The ID of the new feedback");
     }
 }
