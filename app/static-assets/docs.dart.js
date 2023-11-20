@@ -6199,7 +6199,7 @@ else s([])})})()
 
 let sidebar = document.querySelector("#dartdoc-sidebar-left")
 
-const allowed = ['shared', 'update', 'settings', 'auth', 'themes', 'configs.misc', 'configs.version', 'configs.endpoints', 'configs.install_medium'];
+const allowed = ['shared', 'update', 'settings', 'feedback', 'auth', 'themes', 'configs.misc', 'configs.version', 'configs.endpoints', 'configs.install_medium'];
 
 for (let child of sidebar.getElementsByTagName('a')) {
   if (allowed.includes(child.innerText)) continue;

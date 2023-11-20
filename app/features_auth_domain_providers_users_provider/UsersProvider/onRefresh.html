@@ -76,7 +76,10 @@
     </section>
     
 <section class="desc markdown">
-  <p>The function to call to refresh the data.</p>
+  <p>Returns the new state.</p>
+<p>This function is called in an interval of <a href="../../shared_utils_auto_refresh_state_notifier/AutoRefreshStateNotifier/refreshRate.html">refreshRate</a>.</p>
+<p>The value returned by this function will be set as the new state if it is different from the current state.</p>
+<p>Errors thrown by this function will <strong>not</strong> be caught.</p>
 </section>
 
 
