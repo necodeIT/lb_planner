@@ -47,24 +47,6 @@ class StdFeedbackDataSource extends FeedbackDataSource {
   }
 
   @override
-  Future<Feedback> fetchFeedback(int id) async {
-    final response = await apiService.callFunction(
-      function: "local_lbplanner_feedback_get_feedback",
-      token: token.lbPlannerApiToken,
-      body: {
-        "feedbackid": id,
-      },
-    );
-
-    // TODO: replace with `response.failed` once #52 is merged
-    if (response.isNotOk) {
-      throw Exception("Failed to fetch feedback: ${response.body}");
-    }
-
-    return Feedback.fromJson(response.expectSingle());
-  }
-
-  @override
   Future<void> submitFeedback(
     String message,
     FeedbackType type,

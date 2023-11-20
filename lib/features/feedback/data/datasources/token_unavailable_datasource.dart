@@ -11,16 +11,6 @@ class TokenUnavailableFeedbackDataSource extends FeedbackDataSource {
   Future<List<Feedback>> fetchAllFeedbacks() async => [];
 
   @override
-  Future<Feedback> fetchFeedback(int id) async => Feedback(
-        id: -1,
-        content: "",
-        author: -1,
-        type: FeedbackType.bug,
-        readAsInt: 0,
-        createdAtTimestamp: 0,
-      );
-
-  @override
   Future<void> submitFeedback(
       String message, FeedbackType type, String? logFilePath) async {}
 

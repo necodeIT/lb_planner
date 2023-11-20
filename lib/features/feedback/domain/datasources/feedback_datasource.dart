@@ -28,7 +28,4 @@ abstract class FeedbackDataSource {
   ///
   /// **Note:** This is only available to [UserCapability.moderator] and [UserCapability.dev] users.
   Future<void> updateFeedback(Feedback feedback);
-
-  /// Fetches the feedback with the given [id].
-  Future<Feedback> fetchFeedback(int id);
 }
