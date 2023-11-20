@@ -1,9 +1,15 @@
 name: Moodle Plugin CI
 
-on: [push, pull_request]
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+    branches:
+      - LP-55-Backend-Refactor # Temporary. Will be changed to `moodle` when refactor is complete
 
 jobs:
-  test:
+  Analysis:
     runs-on: ubuntu-22.04
 
     services:
