@@ -29,12 +29,12 @@ class notifications_update_notification extends external_api {
         return new external_function_parameters([
             'status' => new external_value(
                 PARAM_INT,
-                'The status of the notification {0: unread, 1: read}',
+                'notification status {0: unread, 1: read}',
                 VALUE_REQUIRED,
                 null,
                 NULL_NOT_ALLOWED
             ),
-            'notificationid' => new external_value(PARAM_INT, 'The ID of the notification', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
+            'notificationid' => new external_value(PARAM_INT, 'ID of the notification to be updated', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
         ]);
     }
 

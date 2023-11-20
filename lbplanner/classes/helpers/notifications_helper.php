@@ -72,18 +72,16 @@ class notifications_helper {
      * @return external_single_structure The data structure of a module.
      */
     public static function structure() : external_single_structure {
-        return new external_single_structure(
-        array(
-            'moduleid' => new external_value(PARAM_INT, 'The id of the module'),
-            'name' => new external_value(PARAM_TEXT, 'The name of the module'),
-            'courseid' => new external_value(PARAM_INT, 'The id of the course'),
-            'status' => new external_value(PARAM_INT, 'The status of the module'),
-            'type' => new external_value(PARAM_INT, 'The type of the module'),
-            'url' => new external_value(PARAM_TEXT, 'The url of the module in moodle'),
-            'grade' => new external_value(PARAM_INT, 'The grade of the module'),
-            'deadline' => new external_value(PARAM_INT, 'The deadline of the module set by the teacher'),
-        )
-        );
+        return new external_single_structure([
+            'moduleid' => new external_value(PARAM_INT, 'module ID'),
+            'name' => new external_value(PARAM_TEXT, 'module name'),
+            'courseid' => new external_value(PARAM_INT, 'course ID'),
+            'status' => new external_value(PARAM_INT, 'module status (pending, late, uploaded, done)'),
+            'type' => new external_value(PARAM_INT, 'module type (GK/EK)'),
+            'url' => new external_value(PARAM_TEXT, 'url to the module in moodle'),
+            'grade' => new external_value(PARAM_INT, 'module grade'),
+            'deadline' => new external_value(PARAM_INT, 'deadline of the module, as set by the teacher'),
+        ]);
     }
 
     /**
