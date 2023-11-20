@@ -108,25 +108,9 @@ class plan_update_invite extends external_api {
 
             $DB->delete_records(plan_helper::INVITES_TABLE, ['id' => $invite->id]);
         }
-        return [
-            'inviterid' => $invite->inviterid,
-            'inviteeid' => $invite->inviteeid,
-            'planid' => $invite->planid,
-            'status' => $invite->status,
-            'timestamp' => $invite->timestamp,
-        ];
     }
 
-
     public static function update_invite_returns() {
-        return new external_single_structure(
-            [
-                'inviterid' => new external_value(PARAM_INT, 'The id of the owner user'),
-                'inviteeid' => new external_value(PARAM_INT, 'The id of the invited user'),
-                'planid' => new external_value(PARAM_INT, 'The id of the plan'),
-                'status' => new external_value(PARAM_INT, 'The Status of the invitation'),
-                'timestamp' => new external_value(PARAM_INT, 'The time when the invitation was send'),
-            ]
-        );
+        return null;
     }
 }
