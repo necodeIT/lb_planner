@@ -23,83 +23,91 @@ use external_function_parameters;
 use external_multiple_structure;
 use external_single_structure;
 use external_value;
-use invalid_parameter_exception;
-use local_lbplanner\helpers\config_helper;
-use local_lbplanner\helpers\user_helper;
 use local_lbplanner\helpers\course_helper;
 use moodle_exception;
 
 /**
  * Get all the courses of the current year.
+ * Retrievs all the courses of the current school year.
+ * @package local_lbplanner_services
+ * @copyright LB Planner 2023
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class courses_get_all_courses extends external_api {
+
+    /**
+     * Has no Parameters
+     * @return external_function_parameters
+     */
     public static function get_all_courses_parameters(): external_function_parameters {
-        return new external_function_parameters(array());
+        return new external_function_parameters([]);
     }
 
     /**
+     * Get all the courses of the current year.
      * @throws coding_exception
      * @throws dml_exception
      * @throws moodle_exception
-     * @throws invalid_parameter_exception
      */
     public static function get_all_courses(): array {
         global $DB, $USER;
 
         $userid = $USER->id;
 
-        user_helper::assert_access($userid);
-
         $courses = enrol_get_my_courses();
         // Remove Duplicates.
         $courses = array_unique($courses, SORT_REGULAR);
-
         // Check this out: https://www.youtube.com/watch?v=z3Pzfi476HI .
-        $catgirls = array();
+        $catgirls = [];
 
         foreach ($courses as $course) {
             $courseid = $course->id;
             $name = $course->fullname;
             $shortname = $course->shortname;
             // Check if the shortname contains a space.
-            if (str_contains($shortname, ' ')) {
+            if (strpos($shortname, ' ') !== false) {
                     $shortname = substr($shortname, 0, strpos($shortname, ' '));
             }
             // Check if the course is from the current year.
-            if (!str_contains($name, course_helper::get_current_year())) {
+            if (!(strpos($name, course_helper::get_current_year()) !== false)) {
                     continue;
             }
             // Check if the course is already in the LB Planner database.
-            if ($DB->record_exists(course_helper::LBPLANNER_COURSE_TABLE, array('courseid' => $courseid, 'userid' => $userid))) {
+            if ($DB->record_exists(course_helper::LBPLANNER_COURSE_TABLE, ['courseid' => $courseid, 'userid' => $userid])) {
                 $fetchedcourse = $DB->get_record(
-                    course_helper::LBPLANNER_COURSE_TABLE, array('courseid' => $courseid, 'userid' => $userid), MUST_EXIST);
+                    course_helper::LBPLANNER_COURSE_TABLE, ['courseid' => $courseid, 'userid' => $userid], '*', MUST_EXIST);
             } else {
-                $fetchedcourse = (object) array(
+                // IF not create an Object to be put into the LB Planner database.
+                $fetchedcourse = (object) [
                     'courseid' => $courseid,
                     'color' => course_helper::COLORS[array_rand(course_helper::COLORS)],
                     'shortname' => strtoupper($shortname),
                     'enabled' => course_helper::DISABLED_COURSE,
                     'userid' => $userid,
-                );
+                ];
                 $DB->insert_record(course_helper::LBPLANNER_COURSE_TABLE, $fetchedcourse);
             }
+            // Add name to fetched Course.
             $fetchedcourse->name = $name;
             $catgirls[] = $fetchedcourse;
         }
             return $catgirls;
     }
 
+    /**
+     * Returns description of method result value
+     * @return external_multiple_structure description of method result value
+     */
     public static function get_all_courses_returns(): external_multiple_structure {
         return new external_multiple_structure(
         new external_single_structure(
-            array(
+            [
                 'courseid' => new external_value(PARAM_INT, 'The id of the course'),
                 'color' => new external_value(PARAM_TEXT, 'The color of the course'),
                 'name' => new external_value(PARAM_TEXT, 'The name of the course'),
                 'shortname' => new external_value(PARAM_TEXT, 'The shortname of the course'),
-            'enabled' => new external_value(PARAM_BOOL, 'Whether the course is enabled or not'),
-            'userid' => new external_value(PARAM_INT, 'The id of the user'),
-        )
+                'enabled' => new external_value(PARAM_BOOL, 'Whether the course is enabled or not'),
+            ]
         )
         );
     }
