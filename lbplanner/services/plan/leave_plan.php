@@ -98,10 +98,8 @@ class plan_leave_plan extends external_api {
             $USER->id,
             notifications_helper::TRIGGER_PLAN_LEFT
         );
-
-        return plan_helper::get_plan($planid, $USER->id);
     }
     public static function leave_plan_returns() {
-        return plan_helper::plan_structure();
+        return null;
     }
 }
