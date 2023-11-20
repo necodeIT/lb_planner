@@ -30,7 +30,7 @@ use moodle_exception;
  * Get all the courses of the current year.
  * Retrievs all the courses of the current school year.
  * @package local_lbplanner_services
- * @copyright LB Planner 2023
+ * @copyright 2023 NecodeIT
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class courses_get_all_courses extends external_api {
@@ -69,13 +69,12 @@ class courses_get_all_courses extends external_api {
                     $shortname = substr($shortname, 0, strpos($shortname, ' '));
             }
             // Check if the course is from the current year.
-            if (!(strpos($name, course_helper::get_current_year()) !== false)) {
+            if (course_helper::check_current_year($courseid)) {
                     continue;
             }
             // Check if the course is already in the LB Planner database.
             if ($DB->record_exists(course_helper::LBPLANNER_COURSE_TABLE, ['courseid' => $courseid, 'userid' => $userid])) {
-                $fetchedcourse = $DB->get_record(
-                    course_helper::LBPLANNER_COURSE_TABLE, ['courseid' => $courseid, 'userid' => $userid], '*', MUST_EXIST);
+                $fetchedcourse = course_helper::get_lbplanner_course($courseid, $userid);
             } else {
                 // IF not create an Object to be put into the LB Planner database.
                 $fetchedcourse = (object) [
