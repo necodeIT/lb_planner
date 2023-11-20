@@ -22,12 +22,15 @@ use external_function_parameters;
 use external_single_structure;
 use external_value;
 use invalid_parameter_exception;
-use local_lbplanner\helpers\user_helper;
 use local_lbplanner\helpers\course_helper;
 use moodle_exception;
 
 /**
  * Get the data for a course.
+ * Retrieves the data for a specific course.
+ * @package local_lbplanner_services
+ * @copyright 2023 NecodeIT
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class courses_get_course extends external_api {
     public static function get_course_parameters() {
@@ -51,12 +54,12 @@ class courses_get_course extends external_api {
             throw new moodle_exception('Not Enrolled in course');
         }
 
-        if (!$DB->record_exists(course_helper::LBPLANNER_COURSE_TABLE, array('courseid' => $courseid, 'userid' => $userid))) {
+        if (!$DB->record_exists(course_helper::LBPLANNER_COURSE_TABLE, ['courseid' => $courseid, 'userid' => $userid])) {
             throw new moodle_exception('You have to fetch all courses First');
         }
         $course = $DB->get_record(
             course_helper::LBPLANNER_COURSE_TABLE,
-            array('courseid' => $courseid, 'userid' => $userid),
+            ['courseid' => $courseid, 'userid' => $userid],
             '*',
             MUST_EXIST
         );
@@ -68,14 +71,13 @@ class courses_get_course extends external_api {
 
     public static function get_course_returns() {
         return new external_single_structure(
-            array(
+            [
                 'courseid' => new external_value(PARAM_INT, 'The id of the course'),
                 'color' => new external_value(PARAM_TEXT, 'The color of the course'),
                 'name' => new external_value(PARAM_TEXT, 'The name of the course'),
                 'shortname' => new external_value(PARAM_TEXT, 'The shortname of the course'),
                 'enabled' => new external_value(PARAM_BOOL, 'Whether the course is enabled or not'),
-                'userid' => new external_value(PARAM_INT, 'The id of the user'),
-            )
+            ]
         );
     }
 }
