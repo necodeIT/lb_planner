@@ -16,59 +16,68 @@
 
 namespace local_lbplanner_services;
 
+use dml_exception;
 use external_api;
 use external_function_parameters;
 use external_single_structure;
 use external_value;
-use local_lbplanner\helpers\user_helper;
+use invalid_parameter_exception;
 use local_lbplanner\helpers\course_helper;
+use moodle_exception;
 
 /**
  * Get the data for a course.
+ * Retrieves the data for a specific course.
+ * @package local_lbplanner_services
+ * @copyright 2023 NecodeIT
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class courses_get_course extends external_api {
     public static function get_course_parameters() {
-        return new external_function_parameters(array(
-            'courseid' => new external_value(PARAM_INT, 'The id of the course', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
-            'userid' => new external_value(PARAM_INT, 'The id of the user', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
-        ));
+        return new external_function_parameters([
+            'courseid' => new external_value(PARAM_INT, 'The id of the course', VALUE_REQUIRED, null, NULL_NOT_ALLOWED)
+        ]);
     }
 
-    public static function get_course($courseid, $userid) {
-        global $DB;
+    /**
+     * @throws dml_exception
+     * @throws moodle_exception
+     * @throws invalid_parameter_exception
+     */
+    public static function get_course($courseid) {
+        global $DB, $USER;
+        // TODO: Fetch all courses first.
+        $userid = $USER->id;
 
-        self::validate_parameters(self::get_course_parameters(), array('courseid' => $courseid, 'userid' => $userid));
-
-        if (!$DB->record_exists('course', array('id' => $courseid))) {
-            throw new \moodle_exception('Course not found');
-        }
-
-        user_helper::assert_access($userid);
-
+        self::validate_parameters(self::get_course_parameters(), ['courseid' => $courseid]);
         if (!course_helper::check_access($courseid, $userid)) {
-            throw new \moodle_exception('Not Enrolled in course');
+            throw new moodle_exception('Not Enrolled in course');
         }
 
+        if (!$DB->record_exists(course_helper::LBPLANNER_COURSE_TABLE, ['courseid' => $courseid, 'userid' => $userid])) {
+            throw new moodle_exception('You have to fetch all courses First');
+        }
         $course = $DB->get_record(
             course_helper::LBPLANNER_COURSE_TABLE,
-            array('courseid' => $courseid, 'userid' => $userid),
+            ['courseid' => $courseid, 'userid' => $userid],
             '*',
             MUST_EXIST
         );
         $course->name = course_helper::get_fullname($course->courseid);
+        unset($course->userid);
+        unset($course->id);
         return $course;
     }
 
     public static function get_course_returns() {
         return new external_single_structure(
-            array(
+            [
                 'courseid' => new external_value(PARAM_INT, 'The id of the course'),
                 'color' => new external_value(PARAM_TEXT, 'The color of the course'),
                 'name' => new external_value(PARAM_TEXT, 'The name of the course'),
                 'shortname' => new external_value(PARAM_TEXT, 'The shortname of the course'),
                 'enabled' => new external_value(PARAM_BOOL, 'Whether the course is enabled or not'),
-                'userid' => new external_value(PARAM_INT, 'The id of the user'),
-            )
+            ]
         );
     }
 }
