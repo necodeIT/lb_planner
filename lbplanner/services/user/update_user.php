@@ -28,8 +28,8 @@ use moodle_exception;
 
 /**
  * Update the data for a user.
- * @package    local_lbplanner
- * @copyright  2023 LB Planner
+ * @package    local_lbplanner_services
+ * @copyright  2023 NecodeIT
  * @license    https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class user_update_user extends external_api {
