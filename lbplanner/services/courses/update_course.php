@@ -30,7 +30,7 @@ use moodle_exception;
  * Updates the data for a specific course.
  * @package local_lbplanner
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- * @copyright 2023 ecodeIT
+ * @copyright 2023 necodeIT
  */
 class courses_update_course extends external_api {
     /**
