@@ -97,7 +97,7 @@ class user_get_all_users extends external_api {
                     'firstname' => new external_value(PARAM_TEXT, 'The firstname of the user'),
                     'lastname' => new external_value(PARAM_TEXT, 'The lastname of the user'),
                     'profileimageurl' => new external_value(PARAM_URL, 'The url of the profile image'),
-                    'vintage' => new external_value(PARAM_TEXT, 'The vintage of the user')
+                    'vintage' => new external_value(PARAM_TEXT, 'The vintage of the user'),
                 ]
             )
         );

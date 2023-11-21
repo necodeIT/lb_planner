@@ -75,7 +75,7 @@ class user_update_user extends external_api {
                 'lang' => $lang,
                 'theme' => $theme,
                 'colorblindness' => $colorblindness,
-                'displaytaskcount' => $displaytaskcount
+                'displaytaskcount' => $displaytaskcount,
             ]
         );
         $userid = $USER->id;
@@ -135,7 +135,7 @@ class user_update_user extends external_api {
                 'planid' => new external_value(PARAM_INT, 'The id of the plan the user is assigned to'),
                 'colorblindness' => new external_value(PARAM_TEXT, 'The colorblindness the user has selected'),
                 'displaytaskcount' => new external_value(PARAM_INT, 'If the user has the taskcount-enabled 1-yes 0-no'),
-                'vintage' => new external_value(PARAM_TEXT, 'The vintage of the user')
+                'vintage' => new external_value(PARAM_TEXT, 'The vintage of the user'),
             ]
         );
     }

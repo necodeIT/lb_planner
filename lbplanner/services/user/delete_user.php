@@ -48,7 +48,7 @@ class user_delete_user extends external_api {
                 'The id of the user to delete',
                 VALUE_DEFAULT,
                 $USER->id,
-                NULL_NOT_ALLOWED
+                NULL_NOT_ALLOWED,
             )]
         );
     }

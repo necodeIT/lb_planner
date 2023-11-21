@@ -22,6 +22,8 @@ use external_function_parameters;
 use external_single_structure;
 use external_value;
 use invalid_parameter_exception;
+use local_lbplanner\helpers\PLAN_ACCESS_TYPE;
+use local_lbplanner\helpers\PLAN_EK;
 use local_lbplanner\helpers\user_helper;
 use local_lbplanner\helpers\plan_helper;
 use local_lbplanner\helpers\notifications_helper;
@@ -60,7 +62,7 @@ class user_register_user extends external_api {
                 'If the user wants to have EK-Enabled',
                 VALUE_DEFAULT,
                 0,
-                NULL_NOT_ALLOWED
+                NULL_NOT_ALLOWED,
             )
         ]);
     }
@@ -98,7 +100,7 @@ class user_register_user extends external_api {
         $DB->insert_record(user_helper::LB_PLANNER_USER_TABLE, $lbplanneruser);
         $plan = new stdClass();
         $plan->name = 'Plan for ' . $USER->username;
-        $plan->enableek = plan_helper::EK_DISABLED;
+        $plan->enableek = plan_helper::EK_ENABLED;
 
         $planid = $DB->insert_record(plan_helper::TABLE, $plan);
 
@@ -122,7 +124,7 @@ class user_register_user extends external_api {
             'profileimageurl' => user_helper::get_mdl_user_picture($userid),
             'planid' => $planid,
             'colorblindness' => $lbplanneruser->colorblindness,
-            'displaytaskcount' => $lbplanneruser->displaytaskcount
+            'displaytaskcount' => $lbplanneruser->displaytaskcount,
         ];
     }
     /**
@@ -142,7 +144,7 @@ class user_register_user extends external_api {
                 'profileimageurl' => new external_value(PARAM_URL, 'The url of the profile image'),
                 'planid' => new external_value(PARAM_INT, 'The id of the plan the user is assigned to'),
                 'colorblindness' => new external_value(PARAM_TEXT, 'The colorblindness of the user'),
-                'displaytaskcount' => new external_value(PARAM_INT, 'If the user has the taskcount-enabled 1-yes 0-no')
+                'displaytaskcount' => new external_value(PARAM_INT, 'If the user has the taskcount-enabled 1-yes 0-no'),
             ]
         );
     }

@@ -48,7 +48,7 @@ class user_get_user extends external_api {
                 'The id of the user to get the data for. If not provided it will be inferred via the token',
                 VALUE_DEFAULT,
                 $USER->id,
-                NULL_NOT_ALLOWED
+                NULL_NOT_ALLOWED,
             ),
         ]);
     }
@@ -126,7 +126,7 @@ class user_get_user extends external_api {
                 'colorblindness' => new external_value(PARAM_TEXT, 'The colorblindness of the user'),
                 'displaytaskcount' => new external_value(PARAM_INT, 'If the user has the taskcount-enabled 1-yes 0-no'),
                 'capabilities' => new external_value(PARAM_INT, 'The capabilities of the user represented as a bitmask value'),
-                'vintage' => new external_value(PARAM_TEXT, 'The vintage of the user')
+                'vintage' => new external_value(PARAM_TEXT, 'The vintage of the user'),
             ]
         );
     }
