@@ -85,6 +85,12 @@
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">@override
 Future&lt;Directory&gt; resolveApplicationDirectory() async {
+  &#47;&#47; ugly, i know... however i dont know how to achieve this in a better way (yet)
+  &#47;&#47; return Directory(&quot;.&#47;testing&quot;) if we are running tests
+  if (Platform.environment.containsKey(&#39;FLUTTER_TEST&#39;)) {
+    return Directory(&quot;.&#47;testing&quot;);
+  }
+
   const path = &quot;~&#47;.config&#47;${config.kAppName}&quot;;
 
   return Directory(path).create(recursive: true);

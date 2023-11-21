@@ -99,6 +99,7 @@ Future&lt;String&gt; requestToken(String username, String password) async {
       &quot;username&quot;: username,
       &quot;password&quot;: password,
       &quot;moodlewsrestformat&quot;: &quot;json&quot;,
+      &quot;service&quot;: webService,
     },
     headers: {&quot;Content-Type&quot;: &quot;application&#47;x-www-form-urlencoded&quot;},
   );
@@ -108,7 +109,15 @@ Future&lt;String&gt; requestToken(String username, String password) async {
 
     final body = response.body as JSON;
 
-    return body[&quot;token&quot;];
+    final token = body[&quot;token&quot;];
+
+    if (token == null) {
+      log.severe(&quot;Token request failed: $body&quot;);
+
+      throw Exception(&quot;Failed to request token: $body&quot;);
+    }
+
+    return token;
   }
 
   log.severe(

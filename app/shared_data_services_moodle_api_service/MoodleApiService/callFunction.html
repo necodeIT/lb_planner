@@ -110,13 +110,34 @@ Future&lt;HttpResponse&lt;Either&lt;List&lt;JSON&gt;, JSON&gt;&gt;&gt; callFunct
     log.info(
         &quot;Function $function returned ${redact ? &quot;[redacted body]&quot; : &quot;body ${response.body}&quot;}&quot;);
 
-    return HttpResponse(statusCode: response.statusCode, body: response.body);
+    final responseTemplate = HttpResponse&lt;Either&lt;List&lt;JSON&gt;, JSON&gt;&gt;(
+        statusCode: response.statusCode, body: null);
+
+    if (response.body is List) {
+      &#47;&#47; convert List&lt;dynamic&gt; to List&lt;JSON&gt;
+      final List&lt;JSON&gt; jsonList = (response.body as List&lt;dynamic&gt;)
+          .map((dynamic e) =&gt; e as JSON)
+          .toList();
+
+      return responseTemplate.copyWith(
+        body: Left(jsonList),
+      );
+    }
+
+    return responseTemplate.copyWith(
+      body: Right(response.body),
+    );
   }
 
   log.warning(
       &quot;Error calling function $function: ${response.statusCode} ${response.body}&quot;);
 
-  return HttpResponse(statusCode: response.statusCode, body: response.body);
+  return HttpResponse(
+    statusCode: response.statusCode,
+    body: Right(
+      response.body,
+    ),
+  );
 }</code></pre>
 </section>
 

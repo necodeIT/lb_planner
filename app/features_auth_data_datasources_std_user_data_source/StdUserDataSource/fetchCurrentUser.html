@@ -86,12 +86,12 @@
   <pre class="language-dart"><code class="language-dart">@override
 Future&lt;User&gt; fetchCurrentUser() async {
   var response = await apiService.callFunction(
-    function: &quot;local_lbplanner_user_get_user &quot;,
+    function: &quot;local_lbplanner_user_get_user&quot;,
     token: userToken.lbPlannerApiToken,
     body: {},
   );
 
-  if (!response.isOk) {
+  if (response.failed) {
     throw Exception(&quot;Failed to fetch current user&quot;);
   }
 

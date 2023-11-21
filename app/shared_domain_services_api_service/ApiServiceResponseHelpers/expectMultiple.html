@@ -87,7 +87,7 @@
     throw AssertionError(&quot;Response body is null&quot;);
   }
 
-  if (body!.isLeft) {
+  if (body!.isRight) {
     throw AssertionError(&quot;Expected array, got single object&quot;);
   }
 

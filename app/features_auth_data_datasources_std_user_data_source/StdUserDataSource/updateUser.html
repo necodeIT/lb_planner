@@ -89,10 +89,15 @@ Future&lt;User&gt; updateUser(User user) async {
   var response = await apiService.callFunction(
     function: &quot;local_lbplanner_user_update_user&quot;,
     token: userToken.lbPlannerApiToken,
-    body: user.toJson(),
+    body: {
+      &quot;colorblindness&quot;: user.colorBlindnessString,
+      &quot;lang&quot;: user.language,
+      &quot;theme&quot;: user.themeName,
+      &quot;displaytaskcount&quot;: user.displayTaskCountInt,
+    },
   );
 
-  if (!response.isOk) {
+  if (response.failed) {
     throw Exception(&quot;Failed to update user&quot;);
   }
 

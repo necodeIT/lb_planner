@@ -94,7 +94,7 @@ will be caught and an <a href="https://pub.dev/documentation/riverpod/2.4.0/rive
 FutureOr&lt;UserToken&gt; build() async {
   localConfigService = ref.watch(userTokenLocalConfigServiceProvider);
   moodleMobileAppAuthService =
-      ref.watch(authServiceProvider(kMoodleMobileAppApiServiceName));
+      ref.watch(authServiceProvider(kMoodleMobileAppServiceName));
   lbPlannerApiAuthService =
       ref.watch(authServiceProvider(kLbPlannerApiServiceName));
 
