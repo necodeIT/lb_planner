@@ -39,7 +39,7 @@ class courses_update_course extends external_api {
     public static function update_course_parameters(): external_function_parameters {
         return new external_function_parameters([
             'courseid' => new external_value(PARAM_INT, 'The id of the course', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
-            'color' => new external_value(PARAM_TEXT, 'The color of the course', VALUE_DEFAULT, null),
+            'color' => new external_value(PARAM_TEXT, 'The color of the course in HEX', VALUE_DEFAULT, null),
             'shortname' => new external_value(PARAM_TEXT, 'The shortname of the course', VALUE_DEFAULT, null),
             'enabled' => new external_value(
                 PARAM_BOOL,

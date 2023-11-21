@@ -102,7 +102,7 @@ class courses_get_all_courses extends external_api {
         new external_single_structure(
             [
                 'courseid' => new external_value(PARAM_INT, 'The id of the course'),
-                'color' => new external_value(PARAM_TEXT, 'The color of the course'),
+                'color' => new external_value(PARAM_TEXT, 'The color of the course in HEX'),
                 'name' => new external_value(PARAM_TEXT, 'The name of the course'),
                 'shortname' => new external_value(PARAM_TEXT, 'The shortname of the course'),
                 'enabled' => new external_value(PARAM_BOOL, 'Whether the course is enabled or not'),
