@@ -72,7 +72,7 @@ jobs:
               path: test-results.json
               reporter: dart-json
           - name: Construct comment
-            run: python .github/workflows/construct_comment.py ${{ steps.reporter.outputs.url }} ${{ github.sha }} comment.txt
+            run: python construct_comment.py ${{ steps.reporter.outputs.url }} ${{ github.sha }} comment.txt
           - name: Post comment
             uses: peter-evans/create-or-update-comment@v3.1.0
             with:
