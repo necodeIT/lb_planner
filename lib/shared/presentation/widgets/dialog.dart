@@ -213,7 +213,7 @@ class _DialogState extends State<Dialog> with TickerProviderStateMixin {
                 ],
               )
             ],
-            backgroundColor: context.theme.colorScheme.primary,
+            backgroundColor: context.theme.colorScheme.surface,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(5)),
             ),

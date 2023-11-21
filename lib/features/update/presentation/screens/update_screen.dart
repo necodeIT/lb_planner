@@ -21,26 +21,31 @@ class UpdateScreen extends ConsumerStatefulWidget {
 }
 
 class _UpdateScreenState extends ConsumerState<UpdateScreen> {
-  void showCommand() {
+  void showInstructions() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       showAlertDialog(
         context,
         title: t.update_dialog_title,
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              ref.read(patchingProgressController).canPatch
-                  ? t.update_dialog_helpNeeded
-                  : t.update_dialog_noAutoUpdate,
-              overflow: TextOverflow.visible,
-            ),
-            Spacing.large(),
-            Snippet(
-                code: ref
-                    .read(patchingProgressController)
-                    .getInstructions(context)),
-          ],
+        message: t.update_dialog_noAutoUpdate,
+        body: SizedBox(
+          height: 150,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                ref.read(patchingProgressController).canPatch
+                    ? t.update_dialog_helpNeeded
+                    : t.update_dialog_noAutoUpdate,
+                overflow: TextOverflow.visible,
+              ),
+              Spacing.large(),
+              Expanded(
+                child: MarkdownView(
+                  ref.read(patchingProgressController).getInstructions(context),
+                ),
+              ),
+            ],
+          ),
         ),
       );
     });
@@ -51,67 +56,77 @@ class _UpdateScreenState extends ConsumerState<UpdateScreen> {
     final progressController = ref.watch(patchingProgressController);
     final patchingProgress = ref.watch(patchingProgressProvider);
 
-    if (!progressController.canPatch) {
-      showCommand();
+    if (patchingProgress.isLoading) {
+      return Container(
+        color: context.theme.colorScheme.background,
+        child: const Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
     }
 
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal:
-            MediaQuery.of(context).size.width * UpdateScreen.paddingFactor,
-        vertical:
-            MediaQuery.of(context).size.height * UpdateScreen.paddingFactor,
-      ),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  VectorImage('assets/svg/app_icon.svg',
-                      height: UpdateScreen.iconSize),
-                  Spacing.small(),
-                  if (patchingProgress.hasValue)
-                    Text(
-                      t.update_patchNotes(progressController.target.name),
-                      style:
-                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                    ),
-                ],
-              ),
-              if (patchingProgress.hasError)
-                ElevatedButton(
-                  onPressed: progressController.patch,
-                  child: Text(t.update_btnErr),
-                ),
-              if (patchingProgress.hasValue)
+    return Material(
+      child: Container(
+        color: context.theme.colorScheme.background,
+        padding: EdgeInsets.symmetric(
+          horizontal:
+              MediaQuery.of(context).size.width * UpdateScreen.paddingFactor,
+          vertical:
+              MediaQuery.of(context).size.height * UpdateScreen.paddingFactor,
+        ),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
                 Row(
                   children: [
-                    Text(
-                      t.update_downloading(patchingProgress.value!.round()),
-                      style: TextStyle(fontWeight: FontWeight.normal),
-                    ),
+                    VectorImage('assets/svg/app_icon.svg',
+                        height: UpdateScreen.iconSize),
                     Spacing.small(),
-                    CircularProgressIndicator(),
+                    if (patchingProgress.hasValue)
+                      Text(
+                        t.update_patchNotes(progressController.target.name),
+                        style: TextStyle(
+                            fontSize: 25, fontWeight: FontWeight.bold),
+                      ),
                   ],
                 ),
-              if (patchingProgress.hasValue)
-                Text(
-                  t.update_installing,
-                  style: TextStyle(fontWeight: FontWeight.normal),
-                ),
-              if (!progressController.canPatch)
-                ElevatedButton(
-                    onPressed: showCommand, child: Text(t.update_btnInstall)),
-            ],
-          ),
-          Spacing.large(),
-          if (patchingProgress.hasValue)
-            Expanded(
-              child: MarkdownView(progressController.target.changelog),
+                if (patchingProgress.hasError)
+                  ElevatedButton(
+                    onPressed: progressController.patch,
+                    child: Text(t.update_btnErr),
+                  ),
+                if (patchingProgress.hasValue && patchingProgress.value != null)
+                  Row(
+                    children: [
+                      Text(
+                        t.update_downloading(
+                            patchingProgress.value!.round() * 100),
+                        style: TextStyle(fontWeight: FontWeight.normal),
+                      ),
+                      Spacing.small(),
+                      CircularProgressIndicator(),
+                    ],
+                  ),
+                if (patchingProgress.hasValue && patchingProgress.value != null)
+                  Text(
+                    t.update_installing,
+                    style: TextStyle(fontWeight: FontWeight.normal),
+                  ),
+                if (!progressController.canPatch)
+                  ElevatedButton(
+                      onPressed: showInstructions,
+                      child: Text(t.update_btnInstall)),
+              ],
             ),
-        ],
+            Spacing.large(),
+            if (patchingProgress.hasValue)
+              Expanded(
+                child: MarkdownView(progressController.target.changelog),
+              ),
+          ],
+        ),
       ),
     );
   }
