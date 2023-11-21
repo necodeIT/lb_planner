@@ -49,7 +49,12 @@ class StdUserDataSource extends UserDataSource {
     var response = await apiService.callFunction(
       function: "local_lbplanner_user_update_user",
       token: userToken.lbPlannerApiToken,
-      body: user.toJson(),
+      body: {
+        "colorblindness": user.colorBlindnessString,
+        "lang": user.language,
+        "theme": user.themeName,
+        "displaytaskcount": user.displayTaskCountInt,
+      },
     );
 
     if (response.failed) {

@@ -6,7 +6,7 @@ import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 /// Sets up [PathProviderPlatform.instance] to use [TestPathProviderPlatform].
 void useTestPathProviderPlatform() {
-  TestWidgetsFlutterBinding.ensureInitialized();
+  // TestWidgetsFlutterBinding.ensureInitialized();
   PathProviderPlatform.instance = TestPathProviderPlatform();
 }
 
