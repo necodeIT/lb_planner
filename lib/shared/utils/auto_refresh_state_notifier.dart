@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:riverpod/riverpod.dart';
 
-/// A class to use instead of [StateNotifier] to automatically refresh the data.
+/// A class to use instead of [StateNotifier] which provides a way to automatically refresh the [state].
 abstract class AutoRefreshStateNotifier<T> extends StateNotifier<T> {
-  /// Initialze the state and start the timer.
+  /// A class to use instead of [StateNotifier] which provides a way to automatically refresh the [state].
   AutoRefreshStateNotifier(super.state) {
     _kickStart();
   }
@@ -12,11 +12,13 @@ abstract class AutoRefreshStateNotifier<T> extends StateNotifier<T> {
   /// The refresh rate of the data.
   Duration get refreshRate => const Duration(seconds: 10);
 
-  /// Refreshes the data and returns the new state.
+  /// Returns the new state.
   ///
-  /// If the new state is the same as the old state, the state will not be updated.
+  /// This function is called in an interval of [refreshRate].
   ///
-  /// **NOTE**: Errors will not be caught.
+  /// The value returned by this function will be set as the new state if it is different from the current state.
+  ///
+  /// Errors thrown by this function will **not** be caught.
   FutureOr<T> onRefresh();
 
   /// The timer to use to refresh the data.

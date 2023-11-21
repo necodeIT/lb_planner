@@ -52,4 +52,9 @@ class TokenUnavailableUserDataSource extends UserDataSource {
       "Called $method on TokenUnavailableUserDataSource: $reason",
       error,
       stackTrace);
+
+  @override
+  Future<void> deleteUser(User user) async {
+    _warn("deleteUser");
+  }
 }

@@ -10,6 +10,8 @@ import 'package:riverpod/riverpod.dart';
 /// Note: If the user is not logged in, this provider will return `null`.
 ///
 /// If you want to update the user, use [userController] instead.
+///
+/// If you want to login the user, see [userTokenController].
 final userProvider = StateNotifierProvider<UserProvider, User?>((ref) {
   final userDataSource = ref.watch(userDataSourceProvider);
 
@@ -47,5 +49,14 @@ class UserProvider extends AutoRefreshStateNotifier<User?> {
     var _user = await userDataSource.updateUser(user);
 
     state = _user.validOrNull;
+  }
+
+  /// Deletes the current user.
+  ///
+  /// As a result, the user will be logged out and [state] will be set to `null`.
+  Future<void> deleteUser() async {
+    await userDataSource.deleteUser(state!);
+
+    state = null;
   }
 }
