@@ -35,6 +35,10 @@ use moodle_exception;
  * @license    https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class user_delete_user extends external_api {
+    /**
+     * Parameters for delete_user
+     * @return external_function_parameters
+     */
     public static function delete_user_parameters(): external_function_parameters {
         global $USER;
         return new external_function_parameters(
@@ -101,6 +105,10 @@ class user_delete_user extends external_api {
         $DB->delete_records(user_helper::LB_PLANNER_USER_TABLE, ['userid' => $userid]);
     }
 
+    /**
+     * Returns the structure of the data returned by the delete_user function
+     * @return external_multiple_structure
+     */
     public static function delete_user_returns() {
         return null;
     }

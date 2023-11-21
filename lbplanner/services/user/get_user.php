@@ -35,12 +35,16 @@ use moodle_exception;
  * @license    https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class user_get_user extends external_api {
+    /**
+     * Parameters for get_user
+     * @return external_function_parameters
+     */
     public static function get_user_parameters(): external_function_parameters {
         global $USER;
         return new external_function_parameters([
             'userid' => new external_value(
                 PARAM_INT,
-                'The Moodle id of the user to get the data for. If not given userid is taken by Token',
+                'The id of the user to get the data for. If not provided it will be inferred via the token',
                 VALUE_DEFAULT,
                 $USER->id,
                 NULL_NOT_ALLOWED
@@ -55,6 +59,7 @@ class user_get_user extends external_api {
      * @throws coding_exception
      * @throws dml_exception
      * @throws moodle_exception
+     * @return array The data of the user
      */
     public static function get_user(int $userid): array {
         global $USER, $CFG;
@@ -102,6 +107,10 @@ class user_get_user extends external_api {
             ];
         }
     }
+    /**
+     * Returns the data of a user.
+     * @return external_single_structure
+     */
     public static function get_user_returns(): external_single_structure {
         return new external_single_structure(
             [

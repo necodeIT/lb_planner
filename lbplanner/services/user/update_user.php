@@ -33,6 +33,10 @@ use moodle_exception;
  * @license    https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class user_update_user extends external_api {
+    /**
+     * Parameters for update_user
+     * @return external_function_parameters
+     */
     public static function update_user_parameters(): external_function_parameters {
         return new external_function_parameters([
             'lang' => new external_value(PARAM_TEXT, 'The language the user has selected', VALUE_DEFAULT, null),
@@ -112,7 +116,10 @@ class user_update_user extends external_api {
 
         ];
     }
-
+    /**
+     * Returns the data of a user.
+     * @return external_single_structure
+     */
     public static function update_user_returns(): external_single_structure {
         return new external_single_structure(
             [

@@ -34,6 +34,10 @@ use moodle_exception;
  * @license    https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class user_get_all_users extends external_api {
+    /**
+     * Parameters for get_all_users
+     * @return external_function_parameters
+     */
     public static function get_all_users_parameters(): external_function_parameters {
         return new external_function_parameters([
             'vintage' => new external_value(PARAM_TEXT, 'The vintage to filter the users by', VALUE_DEFAULT, null),
@@ -79,6 +83,10 @@ class user_get_all_users extends external_api {
         return $result;
     }
 
+    /**
+     * Returns the structure of the data returned by the get_all_users function
+     * @return external_multiple_structure
+     */
     public static function get_all_users_returns(): external_multiple_structure {
         return new external_multiple_structure(
             new external_single_structure(

@@ -35,6 +35,10 @@ use stdClass;
  * @license    https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class user_register_user extends external_api {
+    /**
+     * Parameters for register_user
+     * @return external_function_parameters
+     */
     public static function register_user_parameters(): external_function_parameters {
         return new external_function_parameters([
             'lang' => new external_value(
@@ -120,7 +124,10 @@ class user_register_user extends external_api {
             'displaytaskcount' => $lbplanneruser->displaytaskcount
         ];
     }
-
+    /**
+     * Returns the data of a user.
+     * @return external_single_structure
+     */
     public static function register_user_returns(): external_single_structure {
         return new external_single_structure(
             [
