@@ -29,8 +29,9 @@ use moodle_exception;
 
 /**
  * Get the data for a user.
- * param userid (optional) gives back the user data with the given ID
- * @package    local_lbplanner_services
+ *
+ * Get the data for a user. param userid (optional) gives back the user data with the given ID
+ * @package    local_lbplanner
  * @copyright  2023 necodeIT
  * @license    https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

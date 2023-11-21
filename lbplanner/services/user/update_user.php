@@ -28,7 +28,8 @@ use moodle_exception;
 
 /**
  * Update the data for a user.
- * @package    local_lbplanner_services
+ *
+ * @package    local_lbplanner
  * @copyright  2023 necodeIT
  * @license    https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -85,16 +86,16 @@ class user_update_user extends external_api {
             throw new moodle_exception('User does not exist');
         }
         $user = user_helper::get_user($userid);
-        if (!is_null($lang)) {
+        if ($lang !== null) {
             $user->language = $lang;
         }
-        if (!is_null($colorblindness)) {
+        if ($colorblindness !== null) {
             $user->colorblindness = $colorblindness;
         }
-        if (!is_null($theme)) {
+        if ($theme !== null) {
             $user->theme = $theme;
         }
-        if (!is_null($displaytaskcount)) {
+        if ($displaytaskcount !== null) {
             $user->displaytaskcount = $displaytaskcount;
         }
 

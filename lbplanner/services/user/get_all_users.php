@@ -29,7 +29,8 @@ use moodle_exception;
 
 /**
  * Gets all users registered by the lbplanner app.
- * @package    local_lbplanner_services
+ *
+ * @package    local_lbplanner
  * @copyright  2023 necodeIT
  * @license    https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
