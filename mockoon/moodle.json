@@ -196,13 +196,6 @@
             },
             {
               "target": "body",
-              "modifier": "userid",
-              "value": "",
-              "invert": false,
-              "operator": "null"
-            },
-            {
-              "target": "body",
               "modifier": "lang",
               "value": "en",
               "invert": false,
@@ -224,10 +217,17 @@
             },
             {
               "target": "body",
-              "modifier": "displayTaskCount",
+              "modifier": "displaytaskcount",
               "value": "1",
               "invert": false,
               "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "userid",
+              "value": "",
+              "invert": false,
+              "operator": "null"
             }
           ],
           "rulesOperator": "AND",
@@ -238,10 +238,10 @@
         },
         {
           "uuid": "d8416d16-4f80-40e0-bcad-c87adff1bc82",
-          "body": "{\n  \"exception\": \"moodle_exception\",\n  \"errorcode\": \"invalidtoken\",\n  \"message\": \"Funktion nicht gefunden\"\n}",
+          "body": "{\n    \"exception\": \"dml_missing_record_exception\",\n    \"errorcode\": \"invalidrecord\",\n    \"message\": \"Can't find data record in database table external_functions. (SELECT * FROM {external_functions} WHERE name = ?\\n[array (\\n  0 => '',\\n)])\",\n    \"debuginfo\": \"SELECT * FROM {external_functions} WHERE name = ?\\n[array (\\n  0 => '',\\n)]\"\n}",
           "latency": 0,
           "statusCode": 200,
-          "label": "",
+          "label": "Function not found",
           "headers": [],
           "bodyType": "INLINE",
           "filePath": "",
