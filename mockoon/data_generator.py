@@ -5,7 +5,7 @@ import argparse
 
 """
 Data Generator
------------------------------------
+--------------
 This script is a command-line tool designed to generate an array of data objects based on a specified JSON template.
 It's particularly useful for creating test or sample data, with support for randomized values in specified fields.
 
