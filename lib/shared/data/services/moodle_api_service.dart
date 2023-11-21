@@ -32,12 +32,33 @@ class MoodleApiService extends ApiService {
       log.info(
           "Function $function returned ${redact ? "[redacted body]" : "body ${response.body}"}");
 
-      return HttpResponse(statusCode: response.statusCode, body: response.body);
+      final responseTemplate = HttpResponse<Either<List<JSON>, JSON>>(
+          statusCode: response.statusCode, body: null);
+
+      if (response.body is List) {
+        // convert List<dynamic> to List<JSON>
+        final List<JSON> jsonList = (response.body as List<dynamic>)
+            .map((dynamic e) => e as JSON)
+            .toList();
+
+        return responseTemplate.copyWith(
+          body: Left(jsonList),
+        );
+      }
+
+      return responseTemplate.copyWith(
+        body: Right(response.body),
+      );
     }
 
     log.warning(
         "Error calling function $function: ${response.statusCode} ${response.body}");
 
-    return HttpResponse(statusCode: response.statusCode, body: response.body);
+    return HttpResponse(
+      statusCode: response.statusCode,
+      body: Right(
+        response.body,
+      ),
+    );
   }
 }

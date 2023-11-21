@@ -7,8 +7,496 @@
   "port": 6000,
   "hostname": "",
   "folders": [],
-  "routes": [],
-  "rootChildren": [],
+  "routes": [
+    {
+      "uuid": "7c767b22-5978-4536-8218-779d42b75b17",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "webservice/rest/server.php",
+      "responses": [
+        {
+          "uuid": "704b9a5f-7600-4c11-a3eb-c28c03e0ecec",
+          "body": "{\n  \"exception\": \"moodle_exception\",\n  \"errorcode\": \"invalidtoken\",\n  \"message\": \"Ungültiges Token - Token wurde nicht gefunden\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Returns an error for invalid token",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "wstoken",
+              "value": "JNR9LeuzJUOSlFJsmluTHMkmwvTGzh",
+              "invert": true,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "wstoken",
+              "value": "DpWjCjT5oaV7JFwQuwZgwMC53BcY2A",
+              "invert": true,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id"
+        },
+        {
+          "uuid": "76ac84fe-1131-4379-a93f-8bfa4c27c5c5",
+          "body": "{\n  \"error\": \"Notwendiger Parameter \\\"wsfunction\\\" fehlt\",\n  \"errorcode\": \"missingparam\",\n  \"stacktrace\": null,\n  \"debuginfo\": null,\n  \"reproductionlink\": null\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Returns an error for missing parameter `wsfunction`",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "wsfunction",
+              "value": "",
+              "invert": false,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id"
+        },
+        {
+          "uuid": "de9ad632-c640-4f63-bf83-6aa3a5b56c26",
+          "body": "[\n  {\n    \"userid\": 0,\n    \"username\": \"debug\",\n    \"firstname\": \"Debug\",\n    \"lastname\": \"Mode\",\n    \"profileimageurl\": \"https://i.pinimg.com/474x/13/3b/0a/133b0ab0142b8faf0e11ad289ff0749e.jpg\",\n    \"vintage\": \"5AHIT\"\n  },\n  {\n    \"userid\": 42,\n    \"username\": \"YyqAjYfaWq\",\n    \"firstname\": \"IRojInsAxk\",\n    \"lastname\": \"ucYWikirmR\",\n    \"profileimageurl\": \"https://i.pinimg.com/474x/13/3b/0a/133b0ab0142b8faf0e11ad289ff0749e.jpg\",\n    \"vintage\": \"ymZjpceUYP\"\n  },\n  {\n    \"userid\": 61,\n    \"username\": \"NeIMeDPuiA\",\n    \"firstname\": \"rXUhJXneOm\",\n    \"lastname\": \"gMtCoJQJii\",\n    \"profileimageurl\": \"https://i.pinimg.com/474x/13/3b/0a/133b0ab0142b8faf0e11ad289ff0749e.jpg\",\n    \"vintage\": \"IOuQRgkqnq\"\n  },\n  {\n    \"userid\": 78,\n    \"username\": \"ojgfnNZYAu\",\n    \"firstname\": \"LDpukveXVk\",\n    \"lastname\": \"tlGblsrFUs\",\n    \"profileimageurl\": \"https://i.pinimg.com/474x/13/3b/0a/133b0ab0142b8faf0e11ad289ff0749e.jpg\",\n    \"vintage\": \"PwLrDnZcOH\"\n  },\n  {\n    \"userid\": 83,\n    \"username\": \"ulpKGrCxLL\",\n    \"firstname\": \"qxVmYcwfci\",\n    \"lastname\": \"DlMJNFNWhR\",\n    \"profileimageurl\": \"https://i.pinimg.com/474x/13/3b/0a/133b0ab0142b8faf0e11ad289ff0749e.jpg\",\n    \"vintage\": \"ETktsLiFSA\"\n  },\n  {\n    \"userid\": 68,\n    \"username\": \"FZmOvWDCdy\",\n    \"firstname\": \"WHOoxyPeDp\",\n    \"lastname\": \"nyihMcqyub\",\n    \"profileimageurl\": \"https://i.pinimg.com/474x/13/3b/0a/133b0ab0142b8faf0e11ad289ff0749e.jpg\",\n    \"vintage\": \"qfkuaRoWxV\"\n  },\n  {\n    \"userid\": 31,\n    \"username\": \"cQQgLCGKkD\",\n    \"firstname\": \"CqzkExePIZ\",\n    \"lastname\": \"LqhMGlFUfo\",\n    \"profileimageurl\": \"https://i.pinimg.com/474x/13/3b/0a/133b0ab0142b8faf0e11ad289ff0749e.jpg\",\n    \"vintage\": \"NPiXeqfHMf\"\n  },\n  {\n    \"userid\": 82,\n    \"username\": \"YcICSCdpDw\",\n    \"firstname\": \"dwjXsfvWJX\",\n    \"lastname\": \"tONVbEnNzi\",\n    \"profileimageurl\": \"https://i.pinimg.com/474x/13/3b/0a/133b0ab0142b8faf0e11ad289ff0749e.jpg\",\n    \"vintage\": \"yXVpPOiGNq\"\n  },\n  {\n    \"userid\": 22,\n    \"username\": \"ZMrdFFvVhf\",\n    \"firstname\": \"UONzxNVJMg\",\n    \"lastname\": \"mXvhTpFQYz\",\n    \"profileimageurl\": \"https://i.pinimg.com/474x/13/3b/0a/133b0ab0142b8faf0e11ad289ff0749e.jpg\",\n    \"vintage\": \"nDznCPWZUH\"\n  },\n  {\n    \"userid\": 8,\n    \"username\": \"MZWSkKabCn\",\n    \"firstname\": \"CWSFpQxNxw\",\n    \"lastname\": \"DFiqznAVSV\",\n    \"profileimageurl\": \"https://i.pinimg.com/474x/13/3b/0a/133b0ab0142b8faf0e11ad289ff0749e.jpg\",\n    \"vintage\": \"wucVeDWtWL\"\n  },\n  {\n    \"userid\": 20,\n    \"username\": \"UIVDEzBimD\",\n    \"firstname\": \"eGBYQzvvcd\",\n    \"lastname\": \"DYueTuIkGZ\",\n    \"profileimageurl\": \"https://i.pinimg.com/474x/13/3b/0a/133b0ab0142b8faf0e11ad289ff0749e.jpg\",\n    \"vintage\": \"RHRbPuLLjb\"\n  },\n  {\n    \"userid\": 17,\n    \"username\": \"TTJtRvVXZp\",\n    \"firstname\": \"PCwNwYayeI\",\n    \"lastname\": \"SwonYCWtrH\",\n    \"profileimageurl\": \"https://i.pinimg.com/474x/13/3b/0a/133b0ab0142b8faf0e11ad289ff0749e.jpg\",\n    \"vintage\": \"CyulfvLfKN\"\n  },\n  {\n    \"userid\": 66,\n    \"username\": \"FVcEuWfusx\",\n    \"firstname\": \"nctmOvxqyu\",\n    \"lastname\": \"MTkcjDCLQx\",\n    \"profileimageurl\": \"https://i.pinimg.com/474x/13/3b/0a/133b0ab0142b8faf0e11ad289ff0749e.jpg\",\n    \"vintage\": \"wNZAxBVcdz\"\n  },\n  {\n    \"userid\": 16,\n    \"username\": \"JuiYXVBGHy\",\n    \"firstname\": \"UPvvMIMUXP\",\n    \"lastname\": \"WNsMNyUkFa\",\n    \"profileimageurl\": \"https://i.pinimg.com/474x/13/3b/0a/133b0ab0142b8faf0e11ad289ff0749e.jpg\",\n    \"vintage\": \"HPnkCrFHTR\"\n  },\n  {\n    \"userid\": 91,\n    \"username\": \"PESTQbECwy\",\n    \"firstname\": \"UZnIVNtcXO\",\n    \"lastname\": \"WifDyiTZPr\",\n    \"profileimageurl\": \"https://i.pinimg.com/474x/13/3b/0a/133b0ab0142b8faf0e11ad289ff0749e.jpg\",\n    \"vintage\": \"eOTyaVDtkv\"\n  },\n  {\n    \"userid\": 76,\n    \"username\": \"QQbkPdHAZi\",\n    \"firstname\": \"UCuZmrrepD\",\n    \"lastname\": \"cFiCLytdIh\",\n    \"profileimageurl\": \"https://i.pinimg.com/474x/13/3b/0a/133b0ab0142b8faf0e11ad289ff0749e.jpg\",\n    \"vintage\": \"BHcdDtMFJF\"\n  },\n  {\n    \"userid\": 50,\n    \"username\": \"iFpZQkjqhE\",\n    \"firstname\": \"DauIHrBZKr\",\n    \"lastname\": \"uhPInJxBVi\",\n    \"profileimageurl\": \"https://i.pinimg.com/474x/13/3b/0a/133b0ab0142b8faf0e11ad289ff0749e.jpg\",\n    \"vintage\": \"MrkJOWkOnJ\"\n  },\n  {\n    \"userid\": 37,\n    \"username\": \"CVhoHgyPkd\",\n    \"firstname\": \"ouHoVyUBUa\",\n    \"lastname\": \"PFTUswllWE\",\n    \"profileimageurl\": \"https://i.pinimg.com/474x/13/3b/0a/133b0ab0142b8faf0e11ad289ff0749e.jpg\",\n    \"vintage\": \"YmaVXqavmv\"\n  },\n  {\n    \"userid\": 56,\n    \"username\": \"mzMcfaxPqd\",\n    \"firstname\": \"joyaDYnIgl\",\n    \"lastname\": \"NOpExYaelc\",\n    \"profileimageurl\": \"https://i.pinimg.com/474x/13/3b/0a/133b0ab0142b8faf0e11ad289ff0749e.jpg\",\n    \"vintage\": \"bJacnSNfnv\"\n  },\n  {\n    \"userid\": 42,\n    \"username\": \"hrNTtGXAIV\",\n    \"firstname\": \"ycugXqoMjS\",\n    \"lastname\": \"FjVamjPTmh\",\n    \"profileimageurl\": \"https://i.pinimg.com/474x/13/3b/0a/133b0ab0142b8faf0e11ad289ff0749e.jpg\",\n    \"vintage\": \"pwtjDzSJaF\"\n  },\n  {\n    \"userid\": 78,\n    \"username\": \"LodiNlsALj\",\n    \"firstname\": \"fGyUdqUjtR\",\n    \"lastname\": \"VwADwDoFQk\",\n    \"profileimageurl\": \"https://i.pinimg.com/474x/13/3b/0a/133b0ab0142b8faf0e11ad289ff0749e.jpg\",\n    \"vintage\": \"gYnWEpQeye\"\n  }\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "local_lbplanner_user_get_all_users",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "wsfunction",
+              "value": "local_lbplanner_user_get_all_users",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "moodlewsrestformat",
+              "value": "json",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "wstoken",
+              "value": "DpWjCjT5oaV7JFwQuwZgwMC53BcY2A",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id"
+        },
+        {
+          "uuid": "6bde0ae0-8375-43b4-8795-ef8a4eb24fab",
+          "body": "{\n  \"userid\": 0,\n  \"username\": \"debug\",\n  \"firstname\": \"Debug\",\n  \"lastname\": \"Mode\",\n  \"theme\": \"Light\",\n  \"lang\":\"en\",\n  \"profileimageurl\": \"https://i.pinimg.com/474x/13/3b/0a/133b0ab0142b8faf0e11ad289ff0749e.jpg\",\n  \"planid\":0,\n  \"colorblindness\":\"none\",\n  \"displaytaskcount\":1,\n  \"capabilities\":12,\n  \"vintage\": \"5AHIT\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "local_lbplanner_user_get_user",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "wsfunction",
+              "value": "local_lbplanner_user_get_user",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "moodlewsrestformat",
+              "value": "json",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "wstoken",
+              "value": "DpWjCjT5oaV7JFwQuwZgwMC53BcY2A",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "userid",
+              "value": "",
+              "invert": false,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id"
+        },
+        {
+          "uuid": "0cff1e26-fa9c-46b0-8407-dedcbc50e65b",
+          "body": "{\n  \"userid\": 0,\n  \"username\": \"debug\",\n  \"firstname\": \"Debug\",\n  \"lastname\": \"Mode\",\n  \"theme\": \"Light\",\n  \"lang\":\"en\",\n  \"profileimageurl\": \"https://i.pinimg.com/474x/13/3b/0a/133b0ab0142b8faf0e11ad289ff0749e.jpg\",\n  \"planid\":0,\n  \"colorblindness\":\"none\",\n  \"displaytaskcount\":1,\n  \"capabilities\":12,\n  \"vintage\": \"5AHIT\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "local_lbplanner_user_update_user",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "wsfunction",
+              "value": "local_lbplanner_user_update_user",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "moodlewsrestformat",
+              "value": "json",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "wstoken",
+              "value": "DpWjCjT5oaV7JFwQuwZgwMC53BcY2A",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "lang",
+              "value": "en",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "theme",
+              "value": "Light",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "colorblindness",
+              "value": "none",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "displaytaskcount",
+              "value": "1",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "userid",
+              "value": "",
+              "invert": false,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id"
+        },
+        {
+          "uuid": "d8416d16-4f80-40e0-bcad-c87adff1bc82",
+          "body": "{\n    \"exception\": \"dml_missing_record_exception\",\n    \"errorcode\": \"invalidrecord\",\n    \"message\": \"Can't find data record in database table external_functions. (SELECT * FROM {external_functions} WHERE name = ?\\n[array (\\n  0 => '',\\n)])\",\n    \"debuginfo\": \"SELECT * FROM {external_functions} WHERE name = ?\\n[array (\\n  0 => '',\\n)]\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Function not found",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "5203411d-40ad-4b2d-b9b0-df5d23600fb8",
+      "type": "http",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "login/token.php",
+      "responses": [
+        {
+          "uuid": "ae6bd250-e017-4a45-a704-a0cd8802f1a6",
+          "body": "{\n  \"token\":\"JNR9LeuzJUOSlFJsmluTHMkmwvTGzh\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Returns a token for moodle mobile app web service",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "username",
+              "value": "debug",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "password",
+              "value": "debug",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "service",
+              "value": "moodle_mobile_app",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id"
+        },
+        {
+          "uuid": "c0b34d03-9b43-4e7e-b1f8-47c2b1d4a358",
+          "body": "{\n  \"token\":\"DpWjCjT5oaV7JFwQuwZgwMC53BcY2A\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Returns a token for lb planner api web service",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "username",
+              "value": "debug",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "password",
+              "value": "debug",
+              "invert": false,
+              "operator": "equals"
+            },
+            {
+              "target": "body",
+              "modifier": "service",
+              "value": "lb_planner_api",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id"
+        },
+        {
+          "uuid": "3044ea34-9257-4174-a213-51f2b0f81cad",
+          "body": "{\n  \"error\": \"Ungültige Anmeldedaten. Versuchen Sie es noch einmal!\",\n  \"errorcode\": \"invalidlogin\",\n  \"stacktrace\": null,\n  \"debuginfo\": null,\n  \"reproductionlink\": null\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Returns an error with invalid login",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id"
+        },
+        {
+          "uuid": "79762ed7-bb79-4ec6-a664-2dd2e32e18b2",
+          "body": "{\n  \"error\": \"Notwendiger Parameter \\\"username\\\" fehlt\",\n  \"errorcode\": \"missingparam\",\n  \"stacktrace\": null,\n  \"debuginfo\": null,\n  \"reproductionlink\": null\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Returns an error for missing parameter `username`",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "username",
+              "value": "",
+              "invert": false,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id"
+        },
+        {
+          "uuid": "cc689ec3-4683-4f9e-adce-a0ccbc027f17",
+          "body": "{\n  \"error\": \"Notwendiger Parameter \\\"password\\\" fehlt\",\n  \"errorcode\": \"missingparam\",\n  \"stacktrace\": null,\n  \"debuginfo\": null,\n  \"reproductionlink\": null\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Returns an error for missing parameter `password`",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "password",
+              "value": "",
+              "invert": false,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id"
+        },
+        {
+          "uuid": "6a85c1e8-a259-473e-8bfd-df232b42e35a",
+          "body": "{\n  \"error\": \"Notwendiger Parameter \\\"service\\\" fehlt\",\n  \"errorcode\": \"missingparam\",\n  \"stacktrace\": null,\n  \"debuginfo\": null,\n  \"reproductionlink\": null\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Returns an error for missing parameter `service`",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "service",
+              "value": "",
+              "invert": false,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "442a7f81-7ba2-47c3-a9f2-1af78dbe1dd3",
+      "type": "http",
+      "documentation": "Returns an error for every request as GET should not be used for login",
+      "method": "get",
+      "endpoint": "login/token.php",
+      "responses": [
+        {
+          "uuid": "f7964633-48a8-48b0-85be-2c062ee89d30",
+          "body": "{\n  \"error\": \"Do not use GET for login\",\n  \"errorcode\": \"\",\n  \"stacktrace\": null,\n  \"debuginfo\": null,\n  \"reproductionlink\": null\n}",
+          "latency": 0,
+          "statusCode": 400,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "body",
+              "modifier": "password",
+              "value": "",
+              "invert": false,
+              "operator": "null"
+            }
+          ],
+          "rulesOperator": "AND",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "7c767b22-5978-4536-8218-779d42b75b17"
+    },
+    {
+      "type": "route",
+      "uuid": "5203411d-40ad-4b2d-b9b0-df5d23600fb8"
+    },
+    {
+      "type": "route",
+      "uuid": "442a7f81-7ba2-47c3-a9f2-1af78dbe1dd3"
+    }
+  ],
   "proxyMode": false,
   "proxyHost": "",
   "proxyRemovePrefix": false,

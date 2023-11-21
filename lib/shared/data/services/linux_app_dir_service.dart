@@ -10,6 +10,12 @@ import 'package:lb_planner/configs/version.dart' as config;
 class LinuxAppDirService extends AppDirService {
   @override
   Future<Directory> resolveApplicationDirectory() async {
+    // ugly, i know... however i dont know how to achieve this in a better way (yet)
+    // return Directory("./testing") if we are running tests
+    if (Platform.environment.containsKey('FLUTTER_TEST')) {
+      return Directory("./testing");
+    }
+
     const path = "~/.config/${config.kAppName}";
 
     return Directory(path).create(recursive: true);

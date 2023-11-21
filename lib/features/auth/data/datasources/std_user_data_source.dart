@@ -20,7 +20,7 @@ class StdUserDataSource extends UserDataSource {
       body: {},
     );
 
-    if (!response.isOk) {
+    if (response.failed) {
       throw Exception("Failed to fetch users");
     }
 
@@ -32,12 +32,12 @@ class StdUserDataSource extends UserDataSource {
   @override
   Future<User> fetchCurrentUser() async {
     var response = await apiService.callFunction(
-      function: "local_lbplanner_user_get_user ",
+      function: "local_lbplanner_user_get_user",
       token: userToken.lbPlannerApiToken,
       body: {},
     );
 
-    if (!response.isOk) {
+    if (response.failed) {
       throw Exception("Failed to fetch current user");
     }
 
@@ -49,10 +49,15 @@ class StdUserDataSource extends UserDataSource {
     var response = await apiService.callFunction(
       function: "local_lbplanner_user_update_user",
       token: userToken.lbPlannerApiToken,
-      body: user.toJson(),
+      body: {
+        "colorblindness": user.colorBlindnessString,
+        "lang": user.language,
+        "theme": user.themeName,
+        "displaytaskcount": user.displayTaskCountInt,
+      },
     );
 
-    if (!response.isOk) {
+    if (response.failed) {
       throw Exception("Failed to update user");
     }
 

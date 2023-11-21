@@ -30,7 +30,7 @@ class User with _$User {
     @Default(-1) @JsonKey(name: 'capabilities') int capabilitiesBitMask,
 
     /// The name of the theme the user has selected
-    @Default("") String themeName,
+    @Default("") @JsonKey(name: "theme") String themeName,
 
     /// The language the user has selected
     @Default("") @JsonKey(name: 'lang') String language,

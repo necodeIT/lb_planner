@@ -20,10 +20,11 @@ void main() {
     final context = FakeBuildContext();
 
     final release = Release(
-        channel: BuildChannel.stable,
-        versionString: Version(major: 1, minor: 0, patch: 0).version,
-        downloads: kReleaseDownloads,
-        changelog: kStableChangelog);
+      channel: BuildChannel.stable,
+      versionString: Version(major: 1, minor: 0, patch: 0).version,
+      downloads: kReleaseDownloads,
+      changelog: kStableChangelog,
+    );
 
     group("InnoSetupPatcherService", () {
       final innoSetupPatcherService = InnoSetupPatcherService(downloadService);
@@ -62,7 +63,7 @@ void main() {
         expect(appImagePatcherService.canPatch, false);
       });
 
-      test("patch should not be supportedc", () {
+      test("patch should not be supported", () {
         expect(
           () => appImagePatcherService.patch(release),
           throwsUnsupportedError,
@@ -77,7 +78,7 @@ void main() {
         expect(selfCompiledPatcherService.canPatch, false);
       });
 
-      test("patch should not be supportedc", () {
+      test("patch should not be supported", () {
         expect(
           () => selfCompiledPatcherService.patch(release),
           throwsUnsupportedError,

@@ -7,11 +7,11 @@ import 'package:riverpod/riverpod.dart';
 const kLbPlannerApiServiceName = 'lb_planner_api';
 
 /// The name of the web service for the Moodle Mobile App.
-const kMoodleMobileAppApiServiceName = 'moodle_mobile_app_api';
+const kMoodleMobileAppServiceName = 'moodle_mobile_app';
 
 /// Provides the current [AuthService] instance for the given web service name.
 ///
-/// Refer to [kLbPlannerApiServiceName] and [kMoodleMobileAppApiServiceName] for the available web service names.
+/// Refer to [kLbPlannerApiServiceName] and [kMoodleMobileAppServiceName] for the available web service names.
 final authServiceProvider =
     Provider.family<AuthService, String>((ref, webService) {
   final networkService = ref.watch(networkServiceProvider);

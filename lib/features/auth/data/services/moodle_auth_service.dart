@@ -26,6 +26,7 @@ class MoodleAuthService extends AuthService {
         "username": username,
         "password": password,
         "moodlewsrestformat": "json",
+        "service": webService,
       },
       headers: {"Content-Type": "application/x-www-form-urlencoded"},
     );
@@ -35,7 +36,15 @@ class MoodleAuthService extends AuthService {
 
       final body = response.body as JSON;
 
-      return body["token"];
+      final token = body["token"];
+
+      if (token == null) {
+        log.severe("Token request failed: $body");
+
+        throw Exception("Failed to request token: $body");
+      }
+
+      return token;
     }
 
     log.severe(
