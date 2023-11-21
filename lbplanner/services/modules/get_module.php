@@ -16,36 +16,36 @@
 
 namespace local_lbplanner_services;
 
+use core\context\user;
 use external_api;
 use external_function_parameters;
 use external_value;
 use local_lbplanner\helpers\modules_helper;
-use local_lbplanner\helpers\plan_helper;
-use local_lbplanner\helpers\user_helper;
+use context_module;
+use course_modinfo;
 
 /**
  * Get the data for a module.
  */
 class modules_get_module extends external_api {
     public static function get_module_parameters() {
-        return new external_function_parameters(array(
+        return new external_function_parameters([
             'moduleid' => new external_value(PARAM_INT, 'The id of the module', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
-            'userid' => new external_value(PARAM_INT, 'The id of the user', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
-        ));
+        ]);
     }
 
-    public static function get_module($moduleid, $userid) {
-        global $DB;
+    public static function get_module($moduleid) {
+        global $DB, $USER, $CFG;
+        require_once($CFG->dirroot . '/mod/assign/lib.php');
 
-        self::validate_parameters(self::get_module_parameters(), array('moduleid' => $moduleid, 'userid' => $userid));
+        self::validate_parameters(self::get_module_parameters(), ['moduleid' => $moduleid]);
+        var_dump(assign_get_coursemodule_info($moduleid));
 
-        user_helper::assert_access($userid);
-
-        if (!$DB->record_exists(modules_helper::MDL_ASSIGN_TABLE, array('id' => $moduleid))) {
+        /*if (!$DB->record_exists(modules_helper::MDL_ASSIGN_TABLE, array('id' => $moduleid))) {
             throw new \moodle_exception('Module not found');
-        }
+        }*/
 
-        return modules_helper::get_module($moduleid, $userid);
+        return null;
     }
 
     public static function get_module_returns() {

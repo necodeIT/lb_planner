@@ -26,37 +26,6 @@ use moodle_url;
  * Contains helper functions for working with modules.
  */
 class modules_helper {
-
-    /**
-     * Table where modules are stored.
-     */
-    const ASSIGN_TABLE = 'assign';
-
-    /**
-     * Table where max. and min. grades of the modules are stored.
-     */
-    const GRADE_ITEMS_TABLE = 'grade_items';
-
-    /**
-     * Table where course modules are stored.
-     */
-    const COURSE_MODULES_TABLE = 'course_modules';
-
-    /**
-     * Table where grades of the modules are stored.
-     */
-    const GRADES_TABLE = 'assign_grades';
-
-    /**
-     * Table where grading scales are stored.
-     */
-    const SCALE_TABLE = 'scale';
-
-    /**
-     * Table where submissions of the modules are stored.
-     */
-    const SUBMISSIONS_TABLE = 'assign_submission';
-
     /**
      * Submitted status name of a submission.
      */
