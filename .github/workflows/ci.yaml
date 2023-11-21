@@ -71,8 +71,9 @@ jobs:
               name: Test Results
               path: test-results.json
               reporter: dart-json
+          - run: pip install requests
           - name: Construct comment
-            run: python .github/workflows/construct_unit_test_comment.py ${{ steps.reporter.outputs.url }} ${{ github.sha }} comment.txt
+            run:  python .github/workflows/construct_unit_test_comment.py ${{ steps.reporter.outputs.url }} ${{ github.sha }} comment.txt
           - name: Post comment
             uses: peter-evans/create-or-update-comment@v3.1.0
             with:
