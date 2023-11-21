@@ -41,7 +41,7 @@ class modules_get_module extends external_api {
 
         user_helper::assert_access($userid);
 
-        if (!$DB->record_exists(modules_helper::ASSIGN_TABLE, array('id' => $moduleid))) {
+        if (!$DB->record_exists(modules_helper::MDL_ASSIGN_TABLE, array('id' => $moduleid))) {
             throw new \moodle_exception('Module not found');
         }
 
