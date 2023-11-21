@@ -16,6 +16,9 @@
 
 namespace local_lbplanner\helpers;
 
+use external_single_structure;
+use external_value;
+
 /**
  * Provides helper methods for notification related stuff.
  */
@@ -64,6 +67,24 @@ class notifications_helper {
      * Enum value for a notification triggered by a new user.
      */
     const TRIGGER_USER_REGISTERED = 5;
+
+    /**
+     * @return external_single_structure The data structure of a module.
+     */
+    public static function structure() : external_single_structure {
+        return new external_single_structure(
+        array(
+            'moduleid' => new external_value(PARAM_INT, 'The id of the module'),
+            'name' => new external_value(PARAM_TEXT, 'The name of the module'),
+            'courseid' => new external_value(PARAM_INT, 'The id of the course'),
+            'status' => new external_value(PARAM_INT, 'The status of the module'),
+            'type' => new external_value(PARAM_INT, 'The type of the module'),
+            'url' => new external_value(PARAM_TEXT, 'The url of the module in moodle'),
+            'grade' => new external_value(PARAM_INT, 'The grade of the module'),
+            'deadline' => new external_value(PARAM_INT, 'The deadline of the module set by the teacher'),
+        )
+        );
+    }
 
     /**
      * Notifies the given user about the given event, with the given info.

@@ -20,7 +20,6 @@ use external_api;
 use external_multiple_structure;
 use external_function_parameters;
 use external_value;
-use local_lbplanner\helpers\user_helper;
 use local_lbplanner\helpers\feedback_helper;
 
 /**
@@ -28,36 +27,29 @@ use local_lbplanner\helpers\feedback_helper;
  */
 class feedback_delete_feedback extends external_api {
     public static function delete_feedback_parameters() {
-        return new external_function_parameters(array(
-            'userid' => new external_value(PARAM_INT, 'The id of the user', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
+        return new external_function_parameters([
             'feedbackid' => new external_value(PARAM_INT, 'The id of the course', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
-        ));
+        ]);
     }
 
-    public static function delete_feedback($userid, $feedbackid) {
-        global $DB;
+    public static function delete_feedback($feedbackid) {
+        global $DB, $USER;
 
         self::validate_parameters(
             self::delete_feedback_parameters(),
-            array('userid' => $userid , 'feedbackid' => $feedbackid)
+            ['feedbackid' => $feedbackid]
         );
 
-        user_helper::assert_access($userid);
-
-        if (!$DB->record_exists(feedback_helper::LBPLANNER_FEEDBACK_TABLE, array('id' => $feedbackid))) {
+        if (!$DB->record_exists(feedback_helper::LBPLANNER_FEEDBACK_TABLE, ['id' => $feedbackid])) {
             throw new \moodle_exception('feedback_not_found');
         }
 
         feedback_helper::assert_admin_access();
 
-        $DB->delete_records(feedback_helper::LBPLANNER_FEEDBACK_TABLE, array('id' => $feedbackid));
-
-        return feedback_helper::get_all_feedbacks($userid);
+        $DB->delete_records(feedback_helper::LBPLANNER_FEEDBACK_TABLE, ['id' => $feedbackid]);
     }
 
     public static function delete_feedback_returns() {
-        return new external_multiple_structure(
-            feedback_helper::structure(),
-        );
+        return null;
     }
 }

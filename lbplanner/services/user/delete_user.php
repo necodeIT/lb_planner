@@ -69,7 +69,6 @@ class user_delete_user extends external_api {
         }
 
         $planid = plan_helper::get_plan_id($userid);
-
         // Check if User is in a plan. If yes, leave the plan first then delete the plan.
         // If the user is the only member of the plan, delete the plan.
         if (
@@ -88,8 +87,8 @@ class user_delete_user extends external_api {
 
         $invites = plan_helper::get_invites_send($userid);
         foreach ($invites as $invite) {
-            if ($invite->status == plan_helper::INVITE_PENDING) {
-                $invite->status = plan_helper::INVITE_EXPIRED;
+            if ($invite->status == PLAN_INVITE_STATE::PENDING->value) {
+                $invite->status = PLAN_INVITE_STATE::EXPIRED->value;
                 $DB->update_record(plan_helper::INVITES_TABLE, $invite);
             }
         }

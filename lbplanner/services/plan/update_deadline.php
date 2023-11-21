@@ -19,7 +19,6 @@ namespace local_lbplanner_services;
 use external_api;
 use external_function_parameters;
 use external_value;
-use local_lbplanner\helpers\user_helper;
 use local_lbplanner\helpers\plan_helper;
 
 /**
@@ -27,21 +26,7 @@ use local_lbplanner\helpers\plan_helper;
  */
 class plan_update_deadline extends external_api {
     public static function update_deadline_parameters() {
-        return new external_function_parameters(array(
-            'userid' => new external_value(
-                PARAM_INT,
-                'The id of the user to get the data for',
-                VALUE_REQUIRED,
-                null,
-                NULL_NOT_ALLOWED
-            ),
-            'planid' => new external_value(
-                PARAM_INT,
-                'The ID of the Plan',
-                VALUE_REQUIRED,
-                null,
-                NULL_NOT_ALLOWED
-            ),
+        return new external_function_parameters([
             'moduleid' => new external_value(
                 PARAM_INT,
                 'The ID of the Module',
@@ -63,44 +48,39 @@ class plan_update_deadline extends external_api {
                 null,
                 NULL_NOT_ALLOWED
             ),
-        ));
+        ]);
     }
 
-    public static function update_deadline($userid, $planid, $moduleid, $deadlinestart, $deadlineend) {
-        global $DB;
+    public static function update_deadline($moduleid, $deadlinestart, $deadlineend) {
+        global $DB, $USER;
 
         self::validate_parameters(
             self::update_deadline_parameters(),
-            array(
-                'userid' => $userid,
-                'planid' => $planid,
+            [
                 'moduleid' => $moduleid,
                 'deadlinestart' => $deadlinestart,
                 'deadlineend' => $deadlineend,
-            )
+            ]
         );
 
-        user_helper::assert_access($userid);
+        $planid = plan_helper::get_plan_id($USER->id);
 
-        if (!plan_helper::check_edit_permissions($planid, $userid)) {
+        if (!plan_helper::check_edit_permissions($planid, $USER->id)) {
             throw new \moodle_exception('Access denied');
         }
 
-        if (!$DB->record_exists(plan_helper::DEADLINES_TABLE, array('moduleid' => $moduleid, 'planid' => $planid))) {
+        if (!$DB->record_exists(plan_helper::DEADLINES_TABLE, ['moduleid' => $moduleid, 'planid' => $planid])) {
             throw new \moodle_exception('Deadline doesnt exists');
         }
-        $deadline = $DB->get_record(plan_helper::DEADLINES_TABLE, array('moduleid' => $moduleid, 'planid' => $planid));
+        $deadline = $DB->get_record(plan_helper::DEADLINES_TABLE, ['moduleid' => $moduleid, 'planid' => $planid]);
 
         $deadline->deadlinestart = $deadlinestart;
         $deadline->deadlineend = $deadlineend;
 
         $DB->update_record(plan_helper::DEADLINES_TABLE, $deadline);
-
-        return plan_helper::get_plan($planid);
-
     }
 
     public static function update_deadline_returns() {
-        return plan_helper::plan_structure();
+        return null;
     }
 }

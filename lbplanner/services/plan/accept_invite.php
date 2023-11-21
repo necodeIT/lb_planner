@@ -18,47 +18,43 @@ namespace local_lbplanner_services;
 
 use external_api;
 use external_function_parameters;
-use external_single_structure;
 use external_value;
-use local_lbplanner\helpers\user_helper;
 use local_lbplanner\helpers\plan_helper;
 use local_lbplanner\helpers\notifications_helper;
+use local_lbplanner\helpers\PLAN_ACCESS_TYPE;
+use local_lbplanner\helpers\PLAN_INVITE_STATE;
 
 /**
  * Update a invite from the plan.
  */
 class plan_accept_invite extends external_api {
     public static function accept_invite_parameters() {
-        return new external_function_parameters(array(
+        return new external_function_parameters([
         'inviteid' => new external_value(PARAM_INT, 'The id of the plan', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
-        'userid' => new external_value(PARAM_INT, 'The id of the invited user', VALUE_REQUIRED, null, NULL_NOT_ALLOWED)
-        ));
+        ]);
     }
 
-    public static function accept_invite($inviteid, $userid) {
-        global $DB;
+    public static function accept_invite($inviteid) {
+        global $DB, $USER;
 
-        self::validate_parameters(self::accept_invite_parameters(), array(
+        self::validate_parameters(self::accept_invite_parameters(), [
         'inviteid' => $inviteid,
-        'userid' => $userid,
-        ));
+        ]);
 
-        user_helper::assert_access($userid);
-
-        if (!$DB->record_exists(plan_helper::INVITES_TABLE, array('id' => $inviteid, 'inviteeid' => $userid))) {
+        if (!$DB->record_exists(plan_helper::INVITES_TABLE, ['id' => $inviteid, 'inviteeid' => $USER->id])) {
             throw new \moodle_exception('Invite not found');
         }
         if (!$DB->record_exists(plan_helper::INVITES_TABLE,
-        array( 'id' => $inviteid, 'inviteeid' => $userid, 'status' => plan_helper::INVITE_PENDING))) {
+        [ 'id' => $inviteid, 'inviteeid' => $USER->id, 'status' => PLAN_INVITE_STATE::PENDING->value])) {
             throw new \moodle_exception('Invite already accepted or declined');
         }
 
         $invite = $DB->get_record(plan_helper::INVITES_TABLE,
-        array(
+        [
             'id' => $inviteid,
-            'inviteeid' => $userid,
-            'status' => plan_helper::INVITE_PENDING,
-        ),
+            'inviteeid' => $USER->id,
+            'status' => PLAN_INVITE_STATE::PENDING->value,
+        ],
         '*',
         MUST_EXIST
         );
@@ -70,72 +66,54 @@ class plan_accept_invite extends external_api {
             notifications_helper::TRIGGER_INVITE_ACCEPTED
         );
 
-        // If the User is the User has Member in his plan, then removes it.
-        $oldplanid = plan_helper::get_plan_id($userid);
-        if (plan_helper::get_owner($oldplanid) == $userid) {
+        // Deletes the old plan if the user is the owner of it.
+        $oldplanid = plan_helper::get_plan_id($USER->id);
+        if (plan_helper::get_owner($oldplanid) == $USER->id) {
 
             foreach (plan_helper::get_plan_members($oldplanid) as $member) {
-                if ($member->userid != $userid) {
-                    self::call_external_function('local_lbplanner_plan_remove_user', array(
+                if ($member->userid != $USER->id) {
+                    self::call_external_function('local_lbplanner_plan_remove_user', [
                         'planid' => $oldplanid,
-                        'userid' => $member->userid
-                    ));
+                        'userid' => $member->userid,
+                    ]);
                 }
             }
-            self::call_external_function('local_lbplanner_plan_clear_plan', array(
+            self::call_external_function('local_lbplanner_plan_clear_plan', [
                 'planid' => $oldplanid,
-                'userid' => $userid
-            ));
-            $DB->delete_records(plan_helper::TABLE, array('id' => $oldplanid));
+                'userid' => $USER->id,
+            ]);
+            $DB->delete_records(plan_helper::TABLE, ['id' => $oldplanid]);
         }
         // Updates the plan access.
         $planaccess = $DB->get_record(
             plan_helper::ACCESS_TABLE,
-            array(
+            [
                 'planid' => $oldplanid,
-                'userid' => $userid
-            ),
+                'userid' => $USER->id,
+            ],
             '*',
             MUST_EXIST
         );
 
-        $invite->status = plan_helper::INVITE_ACCEPTED;
+        $invite->status = PLAN_INVITE_STATE::ACCEPTED->value;
 
         $DB->update_record(plan_helper::INVITES_TABLE, $invite);
 
-        $planaccess->accesstype = plan_helper::ACCESS_TYPE_READ;
+        $planaccess->accesstype = PLAN_ACCESS_TYPE::READ->value;
         $planaccess->planid = $invite->planid;
 
         $DB->update_record(plan_helper::ACCESS_TABLE, $planaccess);
-        $invites = plan_helper::get_invites_send($userid);
+        $invites = plan_helper::get_invites_send($USER->id);
         foreach ($invites as $invite) {
-            if ($invite->status == plan_helper::INVITE_PENDING) {
-                $invite->status = plan_helper::INVITE_EXPIRED;
+            if ($invite->status == PLAN_INVITE_STATE::PENDING->value) {
+                $invite->status = PLAN_INVITE_STATE::EXPIRED->value;
                 $DB->update_record(plan_helper::INVITES_TABLE, $invite);
             }
         }
-
-        return array(
-        'id' => $invite->id,
-        'inviterid' => $invite->inviterid,
-        'inviteeid' => $invite->inviteeid,
-        'planid' => $invite->planid,
-        'status' => $invite->status,
-        'timestamp' => $invite->timestamp,
-        );
     }
 
 
     public static function accept_invite_returns() {
-        return new external_single_structure(
-            array(
-                'id' => new external_value(PARAM_INT, 'The id of the invite'),
-                'inviterid' => new external_value(PARAM_INT, 'The id of the owner user'),
-                'inviteeid' => new external_value(PARAM_INT, 'The id of the invited user'),
-                'planid' => new external_value(PARAM_INT, 'The id of the plan'),
-                'status' => new external_value(PARAM_INT, 'The Status of the invitation'),
-                'timestamp' => new external_value(PARAM_INT, 'The time when the invitation was send'),
-            )
-        );
+        return null;
     }
 }
