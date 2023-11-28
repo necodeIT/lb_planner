@@ -25,12 +25,12 @@ use local_lbplanner\helpers\PLAN_ACCESS_TYPE;
 use local_lbplanner\helpers\PLAN_INVITE_STATE;
 
 /**
- * Update a invite from the plan.
+ * Accept an invite from the plan.
  */
 class plan_accept_invite extends external_api {
     public static function accept_invite_parameters() {
         return new external_function_parameters([
-        'inviteid' => new external_value(PARAM_INT, 'The id of the plan', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
+        'inviteid' => new external_value(PARAM_INT, 'the ID of the invite to be accepted', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
         ]);
     }
 

@@ -27,12 +27,12 @@ class invite_helper {
     public static function structure() : external_single_structure {
         return new external_single_structure(
             [
-                'id' => new external_value(PARAM_INT, 'The id of the invite'),
-                'inviterid' => new external_value(PARAM_INT, 'The id of the owner user'),
-                'inviteeid' => new external_value(PARAM_INT, 'The id of the invited user'),
-                'planid' => new external_value(PARAM_INT, 'The id of the plan'),
-                'status' => new external_value(PARAM_INT, 'The Status of the invitation'),
-                'timestamp' => new external_value(PARAM_INT, 'The time when the invitation was send'),
+                'id' => new external_value(PARAM_INT, 'invite ID'),
+                'inviterid' => new external_value(PARAM_INT, 'ID of the user who issued the invitation'),
+                'inviteeid' => new external_value(PARAM_INT, 'ID of the user who got invited'),
+                'planid' => new external_value(PARAM_INT, 'plan ID'),
+                'status' => new external_value(PARAM_INT, 'status of the invitation'),
+                'timestamp' => new external_value(PARAM_INT, 'time when the invitation was send'),
             ]
         );
     }
