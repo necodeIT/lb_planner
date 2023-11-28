@@ -164,7 +164,6 @@ class plan_helper {
 
         foreach ($dbdeadlines as $dbdeadline) {
             $deadlines[] = array(
-                'planid' => $dbdeadline->planid,
                 'deadlinestart' => $dbdeadline->deadlinestart,
                 'deadlineend' => $dbdeadline->deadlineend,
                 'moduleid' => $dbdeadline->moduleid,
@@ -210,15 +209,14 @@ class plan_helper {
     public static function plan_structure() : external_single_structure {
         return new external_single_structure(
             array(
-                'name' => new external_value(PARAM_TEXT, 'The name of the plan'),
-                'planid' => new external_value(PARAM_INT, 'The id of the plan'),
-                'enableek' => new external_value(PARAM_BOOL, 'If the plan is enabled for ek'),
+                'name' => new external_value(PARAM_TEXT, 'Name of the plan'),
+                'planid' => new external_value(PARAM_INT, 'ID of the plan'),
+                'enableek' => new external_value(PARAM_BOOL, 'Whether EK is enabled'),
                 'deadlines' => new external_multiple_structure(
                     new external_single_structure(
                         array(
-                            'planid' => new external_value(PARAM_INT, 'The id of the user'),
-                            'moduleid' => new external_value(PARAM_INT, 'The id of the user'),
-                            'deadlinestart' => new external_value(PARAM_INT, 'The id of the user'),
+                            'moduleid' => new external_value(PARAM_INT, 'ID of the module'),
+                            'deadlinestart' => new external_value(PARAM_INT, 'Start of the Deadline'),
                             'deadlineend' => new external_value(PARAM_INT, 'The id of the user'),
                         )
                     )
@@ -255,11 +253,9 @@ class plan_helper {
 
         $newplanid = $DB->insert_record(self::TABLE, $plan);
 
-        // Had to do it with insert and then update because the Variable didnt change in the Loop.
-        // I don't know why. It just works, so dont touch it 🚧.
         foreach ($deadlines as $deadline) {
-            $id = $DB->insert_record(self::DEADLINES_TABLE, $deadline);
-            $DB->update_record(self::DEADLINES_TABLE, array('id' => $id, 'planid' => $newplanid));
+            $deadline['planid'] = $newplanid;
+            $DB->insert_record(self::DEADLINES_TABLE, $deadline);
         }
         return $newplanid;
     }

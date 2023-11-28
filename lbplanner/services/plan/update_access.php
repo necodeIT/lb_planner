@@ -30,14 +30,14 @@ class plan_update_access extends external_api {
         return new external_function_parameters([
             'accesstype' => new external_value(
                 PARAM_INT,
-                'The access type',
+                'New access type',
                 VALUE_REQUIRED,
                 null,
                 NULL_NOT_ALLOWED
             ),
             'memberid' => new external_value(
                 PARAM_INT,
-                'The id of the member',
+                'ID of the member to have their access changed',
                 VALUE_REQUIRED,
                 null,
                 NULL_NOT_ALLOWED
