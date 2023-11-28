@@ -48,9 +48,6 @@ badge = summary.splitlines()[0]
 # Remove the badge from the summary
 summary = summary.replace(badge, "")
 
-# Construct the comment with the commit ID and test results summary
-comment = " + "\n---\n" + summary
-
 comment = f"""
 # Test Results for " + {COMMIT}
 
