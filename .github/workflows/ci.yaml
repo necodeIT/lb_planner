@@ -38,7 +38,6 @@ jobs:
               uses: peter-evans/commit-comment@v3.0.0
               with:
                 body-path: comment.txt
-                sha: ${{ github.event.pull_request.head.sha }}
             - name: Annotate results
               uses: invertase/github-action-dart-analyzer@v2.0.0
               
@@ -95,7 +94,6 @@ jobs:
             uses: peter-evans/commit-comment@v3.0.0
             with:
               body-path: comment.txt
-              sha: ${{ github.event.pull_request.number }}
             
             
                         
