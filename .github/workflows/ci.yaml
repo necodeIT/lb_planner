@@ -24,6 +24,7 @@ jobs:
             - name: Get dependencies
               run: flutter pub get
             - name: Analyze code
+              continue-on-error: true # The check will fail on the 'Annotate results' step if there are any errors
               run: flutter analyze --no-pub >> analysis.txt
             - name: Setup Python
               uses: actions/setup-python@v4.7.1
