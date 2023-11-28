@@ -216,8 +216,8 @@ class plan_helper {
                     new external_single_structure(
                         array(
                             'moduleid' => new external_value(PARAM_INT, 'ID of the module'),
-                            'deadlinestart' => new external_value(PARAM_INT, 'Start of the Deadline'),
-                            'deadlineend' => new external_value(PARAM_INT, 'The id of the user'),
+                            'deadlinestart' => new external_value(PARAM_INT, 'Start of the deadline as an UNIX timestamp'),
+                            'deadlineend' => new external_value(PARAM_INT, 'End of the deadline as an UNIX timestamp'),
                         )
                     )
                 ),
