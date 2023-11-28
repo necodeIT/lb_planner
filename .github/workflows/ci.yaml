@@ -24,7 +24,21 @@ jobs:
             - name: Get dependencies
               run: flutter pub get
             - name: Analyze code
+              run: flutter analyze --no-pub >> analysis.txt
+            - name: Setup Python
+              uses: actions/setup-python@v4.7.1
+              with:
+                python-version: '3.10'
+            - name: Comment results
+              run: python .github/workflows/construct_analysis_comment.py analysis.txt ${{ github.sha }} ${{ github.event.pull_request.url }} comment.txt
+            - name: Post comment
+              uses: peter-evans/create-or-update-comment@v3.1.0
+              with:
+                body-path: comment.txt
+                issue-number: ${{ github.event.pull_request.number }}
+            - name: Annotate results
               uses: invertase/github-action-dart-analyzer@v2.0.0
+              
 
     Testing:
       runs-on: ubuntu-latest
