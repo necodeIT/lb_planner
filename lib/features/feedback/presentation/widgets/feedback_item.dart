@@ -1,7 +1,15 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:lb_planner/features/auth/auth.dart';
+import 'package:lb_planner/features/themes/themes.dart';
+import 'package:lb_planner/shared/shared.dart';
+import 'package:lb_planner/features/feedback/domain/domain.dart';
+import 'package:lb_planner/features/feedback/presentation/presentation.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 /// Feedback item.
-class AdminFeedbackItem extends StatefulWidget {
+class AdminFeedbackItem extends ConsumerStatefulWidget {
   /// Feedback item.
   const AdminFeedbackItem({Key? key, required this.feedbackId})
       : super(key: key);
@@ -25,147 +33,169 @@ class AdminFeedbackItem extends StatefulWidget {
   static const double userTagFontSize = 17;
 
   @override
-  State<StatefulWidget> createState() {
-    // TODO: implement createState
-    throw UnimplementedError();
-  }
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _AdminFeedbackItemState();
+}
 
+class _AdminFeedbackItemState extends ConsumerState<AdminFeedbackItem> {
   @override
-  Widget build(BuildContext context, t) {
-    return Consumer(builder: (context, ref, _) {
-      var feedback = ref.watch(feedbackProvider)[feedbackId];
+  Widget build(BuildContext context) {
+    int feedbackId = widget.feedbackId;
+    var controller = ref.watch(feedbackController);
+    var feedback = controller.getFeedbackById(feedbackId);
 
-      if (feedback == null) return LpShimmer(height: height);
+    if (ref.read(feedbackProvider).isLoading) {
+      return ShimmerEffect(height: AdminFeedbackItem.height);
+    }
 
-      var user = ref.watch(usersProvider)[feedback.userId];
+    int author = feedback.author;
 
-      if (user == null) return LpShimmer(height: height);
+    int? modifyingUser = feedback.modifiedByUserId;
 
-      var modifyingUser = ref.watch(usersProvider)[feedback.lastModifiedBy];
-
-      return LpGestureDetector(
-        onTap: () => AdminFeedbackPageRoute.info
-            .push(context, params: {"id": feedbackId}),
-        child: LpCard(
-          child: Row(
-            children: [
-              Expanded(
-                child: Row(
-                  children: [
-                    UserProfileImg(size: imgSize, userId: feedback.userId),
-                    NcSpacing.small(),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        NcBodyText(
-                          user.fullname,
-                          fontSize: usernameFontSize,
+    return GestureDetector(
+      onTap: () => context.router.navigate(const LoginRoute())
+          AdminFeedbackPageRoute.info.push(context, params: {"id": feedbackId}),
+      child: Card(
+        child: Row(
+          children: [
+            Expanded(
+              child: Row(
+                children: [
+                  UserProfileImg(
+                      size: AdminFeedbackItem.imgSize, userId: author),
+                  Spacing.small(),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        ref.read(usersProvider)[author].fullname,
+                        style: TextStyle(
                           overflow: TextOverflow.fade,
+                          fontSize: AdminFeedbackItem.usernameFontSize,
                         ),
-                        NcBodyText(
-                          t.global_user_vintage(user.vintage),
-                          fontSize: userTagFontSize,
+                        textAlign: TextAlign.left,
+                      ),
+                      Text(
+                        t.global_user_vintage(
+                            ref.read(usersProvider)[author].vintage),
+                        style: TextStyle(
+                          overflow: TextOverflow.ellipsis,
+                          fontSize: AdminFeedbackItem.userTagFontSize,
                         ),
-                      ],
+                        textAlign: TextAlign.left,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: FeedbackStatusTag(
+                read: feedback.read,
+                fontSize: AdminFeedbackItem.fontSize,
+                label: true,
+              ),
+            ),
+            Expanded(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    feedback.type.icon,
+                    color: feedback.type.color(context),
+                    size: AdminFeedbackItem.fontSize * 1.2,
+                  ),
+                  Spacing.xs(),
+                  Text(
+                    feedback.type.title(context),
+                    style: TextStyle(
+                      overflow: TextOverflow.ellipsis,
+                      fontSize: AdminFeedbackItem.fontSize,
                     ),
-                  ],
-                ),
+                    textAlign: TextAlign.left,
+                  ),
+                ],
               ),
-              Expanded(
-                child: LpFeedbackStatusTag(
-                  status: feedback.status,
-                  fontSize: fontSize,
-                  label: true,
+            ),
+            Expanded(
+              child: Text(
+                feedback.modifiedAt != null
+                    ? timeago.format(feedback.modifiedAt!)
+                    : t.admin_feedback_null,
+                style: TextStyle(
+                  overflow: TextOverflow.ellipsis,
+                  fontSize: AdminFeedbackItem.fontSize,
                 ),
+                textAlign: TextAlign.center,
               ),
-              Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    LpIcon(
-                      feedback.type.icon,
-                      color: feedback.type.color,
-                      size: scaleIcon(fontSize),
-                    ),
-                    NcSpacing.xs(),
-                    NcBodyText(
-                      feedback.type.title(context),
-                      fontSize: fontSize,
-                    ),
-                  ],
+            ),
+            Expanded(
+              child: Text(
+                modifyingUser != null
+                    ? ref.read(usersProvider)[modifyingUser].fullname
+                    : t.admin_feedback_null,
+                style: TextStyle(
+                  overflow: TextOverflow.ellipsis,
+                  fontSize: AdminFeedbackItem.fontSize,
                 ),
+                textAlign: TextAlign.center,
               ),
-              Expanded(
-                child: NcBodyText(
-                  feedback.lastModified != null
-                      ? timeago.format(feedback.lastModified!)
-                      : t.admin_feedback_null,
-                  fontSize: fontSize,
-                  textAlign: TextAlign.center,
+            ),
+            Expanded(
+              child: Text(
+                timeago.format(feedback.createdAt),
+                style: TextStyle(
+                  overflow: TextOverflow.ellipsis,
+                  fontSize: AdminFeedbackItem.fontSize,
                 ),
+                textAlign: TextAlign.center,
               ),
-              Expanded(
-                child: NcBodyText(
-                  modifyingUser != null
-                      ? modifyingUser.fullname
-                      : t.admin_feedback_null,
-                  fontSize: fontSize,
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              Expanded(
-                child: NcBodyText(
-                  timeago.format(feedback.timestamp),
-                  fontSize: fontSize,
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
-      );
-    });
+      ),
+    );
   }
 }
 
-extension _AdminFeedbackItemHelper on FeedbackTypes {
+extension _AdminFeedbackItemHelper on FeedbackType {
   String title(BuildContext context) {
     var t = context.t;
 
     switch (this) {
-      case FeedbackTypes.bug:
+      case FeedbackType.bug:
         return t.admin_feedback_types_bug;
-      case FeedbackTypes.suggestion:
+      case FeedbackType.suggestion:
         return t.admin_feedback_types_suggestion;
-      case FeedbackTypes.error:
+      case FeedbackType.typo:
         return t.admin_feedback_types_error;
-      case FeedbackTypes.other:
+      case FeedbackType.other:
         return t.admin_feedback_types_other;
     }
   }
 
   IconData get icon {
     switch (this) {
-      case FeedbackTypes.bug:
+      case FeedbackType.bug:
         return Icons.bug_report;
-      case FeedbackTypes.suggestion:
+      case FeedbackType.suggestion:
         return Icons.lightbulb_outline;
-      case FeedbackTypes.error:
+      case FeedbackType.typo:
         return Icons.error;
-      case FeedbackTypes.other:
+      case FeedbackType.other:
         return Icons.help;
     }
   }
 
-  Color get color {
+  Color color(BuildContext context) {
     switch (this) {
-      case FeedbackTypes.bug:
-        return errorColor;
-      case FeedbackTypes.other:
-      case FeedbackTypes.suggestion:
-        return accentColor;
-      case FeedbackTypes.error:
-        return warningColor;
+      case FeedbackType.bug:
+        return context.theme.colorScheme.error;
+      case FeedbackType.other:
+      case FeedbackType.suggestion:
+        return context.theme.colorScheme.primary;
+      case FeedbackType.typo:
+        return ModuleStatusTheme.of(context).uploadedColor;
     }
   }
 }

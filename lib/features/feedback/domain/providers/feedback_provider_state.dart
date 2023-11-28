@@ -99,7 +99,7 @@ class FeedbackProviderState extends AutoRefreshAsyncNotifier<List<Feedback>> {
   /// Returns the [Feedback] with the given [id].
   ///
   /// If no feedback with the specified [id] can be found or [state.hasValue] is `false` this method will throw a [StateError].
-  getFeedbackById(int id){
+  Feedback getFeedbackById(int id){
     if(!state.hasValue) throw StateError("State is ${state.runtimeType}!");
 
     final feedback = state.requireValue.firstWhereOrNull((e) => e.id == id));

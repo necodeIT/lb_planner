@@ -85,6 +85,9 @@ class User with _$User {
   bool hasCapability(UserCapability capability) =>
       capabilities.contains(capability);
 
+  /// Returns the full name of the user.
+  String get fullname => '$firstname $lastname';
+
   /// Returns `true` if this user has elevated privileges (i.e. [UserCapability.dev] or [UserCapability.moderator]). Otherwise `false`.
   bool get isElevated =>
       hasCapability(UserCapability.dev) ||
