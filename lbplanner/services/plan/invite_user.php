@@ -64,7 +64,7 @@ class plan_invite_user extends external_api {
 
         if ($DB->record_exists(
                 plan_helper::INVITES_TABLE,
-                ['inviteeid' => $inviteeid, 'planid' => $planid, 'status' => PLAN_INVITE_STATE::PENDING->value]
+                ['inviteeid' => $inviteeid, 'planid' => $planid, 'status' => PLAN_INVITE_STATE::PENDING]
             )) {
             throw new \moodle_exception('User is already invited');
         }
@@ -75,7 +75,7 @@ class plan_invite_user extends external_api {
         $invite->inviterid = $USER->id;
         $invite->inviteeid = $inviteeid;
         $invite->timestamp = time();
-        $invite->status = PLAN_INVITE_STATE::PENDING->value;
+        $invite->status = PLAN_INVITE_STATE::PENDING;
 
         $invite->id = $DB->insert_record(plan_helper::INVITES_TABLE, $invite);
 

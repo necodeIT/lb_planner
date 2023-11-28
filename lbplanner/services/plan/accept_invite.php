@@ -45,7 +45,7 @@ class plan_accept_invite extends external_api {
             throw new \moodle_exception('Invite not found');
         }
         if (!$DB->record_exists(plan_helper::INVITES_TABLE,
-        [ 'id' => $inviteid, 'inviteeid' => $USER->id, 'status' => PLAN_INVITE_STATE::PENDING->value])) {
+        [ 'id' => $inviteid, 'inviteeid' => $USER->id, 'status' => PLAN_INVITE_STATE::PENDING])) {
             throw new \moodle_exception('Invite already accepted or declined');
         }
 
@@ -53,7 +53,7 @@ class plan_accept_invite extends external_api {
         [
             'id' => $inviteid,
             'inviteeid' => $USER->id,
-            'status' => PLAN_INVITE_STATE::PENDING->value,
+            'status' => PLAN_INVITE_STATE::PENDING,
         ],
         '*',
         MUST_EXIST
@@ -95,18 +95,18 @@ class plan_accept_invite extends external_api {
             MUST_EXIST
         );
 
-        $invite->status = PLAN_INVITE_STATE::ACCEPTED->value;
+        $invite->status = PLAN_INVITE_STATE::ACCEPTED;
 
         $DB->update_record(plan_helper::INVITES_TABLE, $invite);
 
-        $planaccess->accesstype = PLAN_ACCESS_TYPE::READ->value;
+        $planaccess->accesstype = PLAN_ACCESS_TYPE::READ;
         $planaccess->planid = $invite->planid;
 
         $DB->update_record(plan_helper::ACCESS_TABLE, $planaccess);
         $invites = plan_helper::get_invites_send($USER->id);
         foreach ($invites as $invite) {
-            if ($invite->status == PLAN_INVITE_STATE::PENDING->value) {
-                $invite->status = PLAN_INVITE_STATE::EXPIRED->value;
+            if ($invite->status == PLAN_INVITE_STATE::PENDING) {
+                $invite->status = PLAN_INVITE_STATE::EXPIRED;
                 $DB->update_record(plan_helper::INVITES_TABLE, $invite);
             }
         }
