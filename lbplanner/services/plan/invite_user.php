@@ -32,7 +32,7 @@ class plan_invite_user extends external_api {
         return new external_function_parameters([
             'inviteeid' => new external_value(
                 PARAM_INT,
-                'The id of the user who gets invited',
+                'ID of the user who gets invited',
                 VALUE_REQUIRED,
                 null,
                 NULL_NOT_ALLOWED

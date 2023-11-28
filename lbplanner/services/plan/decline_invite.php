@@ -29,7 +29,7 @@ use local_lbplanner\helpers\PLAN_INVITE_STATE;
 class plan_decline_invite extends external_api {
     public static function decline_invite_parameters() {
         return new external_function_parameters([
-        'inviteid' => new external_value(PARAM_INT, 'The inviteid of the plan', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
+        'inviteid' => new external_value(PARAM_INT, 'the ID of the invite to be declined', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
         ]);
     }
 
