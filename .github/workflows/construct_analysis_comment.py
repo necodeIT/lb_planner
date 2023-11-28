@@ -38,7 +38,7 @@ comment = f"""
 <details>
 <summary>Click to see the full report</summary>
 
-```bash
+```
 {chr(10).join(LINTS)}
 ```
 
