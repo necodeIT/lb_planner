@@ -31,14 +31,14 @@ jobs:
               with:
                 python-version: '3.10'
             - name: Comment results
-              run: python .github/workflows/construct_analysis_comment.py analysis.txt ${{ github.event.pull_request.head.sha }} ${{ github.event.number }} comment.txt
-              #                                                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
-              #                                        Apparently, GitHub automatically appends github.com/owner/repo/pull/ the url when rendering comments
+              run: python .github/workflows/construct_analysis_comment.py analysis.txt ${{ github.event.number }} comment.txt
+              #                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+              # Apparently, GitHub automatically appends github.com/owner/repo/pull/ the url when rendering comments
             - name: Post comment
-              uses: peter-evans/create-or-update-comment@v3.1.0
+              uses: peter-evans/commit-comment@v3.0.0
               with:
                 body-path: comment.txt
-                issue-number: ${{ github.event.pull_request.number }}
+                sha: ${{ github.event.pull_request.head.sha }}
             - name: Annotate results
               uses: invertase/github-action-dart-analyzer@v2.0.0
               
@@ -90,12 +90,12 @@ jobs:
               reporter: dart-json
           - run: pip install requests
           - name: Construct comment
-            run:  python .github/workflows/construct_unit_test_comment.py ${{ steps.reporter.outputs.url }} ${{ github.event.pull_request.head.sha }} comment.txt
+            run:  python .github/workflows/construct_unit_test_comment.py ${{ steps.reporter.outputs.url }} comment.txt
           - name: Post comment
-            uses: peter-evans/create-or-update-comment@v3.1.0
+            uses: peter-evans/commit-comment@v3.0.0
             with:
               body-path: comment.txt
-              issue-number: ${{ github.event.pull_request.number }}
+              sha: ${{ github.event.pull_request.number }}
             
             
                         

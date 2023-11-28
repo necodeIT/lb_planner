@@ -9,12 +9,11 @@ The final comment is written to a specified file and can be used by GitHub Actio
 Usage:
 ------
 ```bash
-python construct_unit_test_comment.py [URL] [COMMIT_ID] [OUT_FILE]
+python construct_unit_test_comment.py [URL] [OUT_FILE]
 ```
 
 Parameters:
 - URL: The endpoint from which the test result data is to be fetched. This should be a URL to a JSON file containing the test results.
-- COMMIT_ID: The unique identifier of the commit for which the test results are applicable.
 - OUT_FILE: The file to which the constructed comment is to be written.
 
 Example:
@@ -30,8 +29,7 @@ import sys
 
 # Retrieve the URL and commit ID from command-line arguments
 URL = sys.argv[1]
-COMMIT = sys.argv[2]
-OUT_FILE = sys.argv[3]
+OUT_FILE = sys.argv[2]
 
 # Fetch the test results from the provided URL
 response = r.get(URL)
@@ -39,11 +37,30 @@ response = r.get(URL)
 # Parse the JSON data from the response
 data = json.loads(response.text)
 
+title = data["output"]["title"]
+
 # Extract the summary of test results
 summary = data["output"]["summary"]
 
+# Extract the badge from the summary as the summary is wrapped in a `<details>` tag and we want to display the badge outside of it
+badge = summary.splitlines()[0]
+
+# Remove the badge from the summary
+summary = summary.replace(badge, "")
+
 # Construct the comment with the commit ID and test results summary
-comment = "# Test Results for " + COMMIT + "\n---\n" + summary
+comment = f"""
+<details>
+{title}
+
+{badge}
+
+<summary>Click to see the full report</summary>
+
+{summary}
+
+</details>
+"""
 
 # Write the comment to OUT_FILE
 with open(OUT_FILE, "w") as f:

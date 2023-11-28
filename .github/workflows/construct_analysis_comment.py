@@ -4,14 +4,13 @@ This script processes linting results and generates a formatted analysis report 
 Usage:
 ------
 ```bash
-python script_name.py [LINTS_FILE] [COMMIT_SHA] [PR_NUMBER] [OUTPUT_FILE]
+python script_name.py [LINTS_FILE] PR_NUMBER] [OUTPUT_FILE]
 ```
 
 Parameters:
-LINTS_FILE: The file path containing the linting results.
-COMMIT_SHA: The SHA of the commit being analyzed.
-PR_NUMBER: The number of the PR being analyzed.
-OUTPUT_FILE: The file path where the generated comment will be saved.
+- LINTS_FILE: The file path containing the linting results.
+- PR_NUMBER: The number of the PR being analyzed.
+- OUTPUT_FILE: The file path where the generated comment will be saved.
 
 Example:
 --------
@@ -23,9 +22,8 @@ python script_name.py "lint_results.txt" "abcd1234" "http://example.com/pr" "rep
 import sys
 
 LINTS_FILE = sys.argv[1]
-COMMIT_SHA = sys.argv[2]
-PR_NUMBER = sys.argv[3]
-OUTPUT_FILE = sys.argv[4]
+PR_NUMBER = sys.argv[2]
+OUTPUT_FILE = sys.argv[3]
 
 
 # Read the file
@@ -51,8 +49,6 @@ for line in LINTS:
         errors += 1
 
 comment = f"""
-# Analysis Report for {COMMIT_SHA}
-
 - **Infos**: {infos}
 - **Warnings**: {warnings}
 - **Errors**: {errors}
