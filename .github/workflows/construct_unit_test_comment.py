@@ -42,8 +42,27 @@ data = json.loads(response.text)
 # Extract the summary of test results
 summary = data["output"]["summary"]
 
+# Extract the badge from the summary as the summary is wrapped in a `<details>` tag and we want to display the badge outside of it
+badge = summary.splitlines()[0]
+
+# Remove the badge from the summary
+summary = summary.replace(badge, "")
+
 # Construct the comment with the commit ID and test results summary
-comment = "# Test Results for " + COMMIT + "\n---\n" + summary
+comment = " + "\n---\n" + summary
+
+comment = f"""
+# Test Results for " + {COMMIT}
+
+{badge}
+
+<details>
+<summary>Click to see the full report</summary>
+
+{summary}
+
+</details>
+"""
 
 # Write the comment to OUT_FILE
 with open(OUT_FILE, "w") as f:
