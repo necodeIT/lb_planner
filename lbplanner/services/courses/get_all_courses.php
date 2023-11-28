@@ -69,6 +69,9 @@ class courses_get_all_courses extends external_api {
             if (strpos($shortname, ' ') !== false) {
                     $shortname = substr($shortname, 0, strpos($shortname, ' '));
             }
+            if (strlen($shortname) >= 5) {
+                    $shortname = substr($shortname, 0, 5);
+            }
             // Check if the course is from the current year.
             if (course_helper::check_current_year($courseid)) {
                     continue;
