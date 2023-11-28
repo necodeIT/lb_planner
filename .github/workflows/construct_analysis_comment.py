@@ -29,7 +29,7 @@ for line in LINTS:
         errors += 1
 
 comment = f"""
-# Analysis Report ({COMMIT_SHA})
+# Analysis Report for {COMMIT_SHA}
 
 - **Infos**: {infos}
 - **Warnings**: {warnings}
