@@ -24,7 +24,24 @@ jobs:
             - name: Get dependencies
               run: flutter pub get
             - name: Analyze code
-              uses: Gotiva-Games/github-action-dart-analyzer@main
+              continue-on-error: true # The check will fail on the 'Annotate results' step if there are any errors
+              run: flutter analyze --no-pub >> analysis.txt
+            - name: Setup Python
+              uses: actions/setup-python@v4.7.1
+              with:
+                python-version: '3.10'
+            - name: Comment results
+              run: python .github/workflows/construct_analysis_comment.py analysis.txt ${{ github.event.pull_request.head.sha }} ${{ github.event.number }} comment.txt
+              #                                                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+              #                                        Apparently, GitHub automatically appends github.com/owner/repo/pull/ the url when rendering comments
+            - name: Post comment
+              uses: peter-evans/create-or-update-comment@v3.1.0
+              with:
+                body-path: comment.txt
+                issue-number: ${{ github.event.pull_request.number }}
+            - name: Annotate results
+              uses: invertase/github-action-dart-analyzer@v2.0.0
+              
 
     Testing:
       runs-on: ubuntu-latest
@@ -73,7 +90,7 @@ jobs:
               reporter: dart-json
           - run: pip install requests
           - name: Construct comment
-            run:  python .github/workflows/construct_unit_test_comment.py ${{ steps.reporter.outputs.url }} ${{ github.sha }} comment.txt
+            run:  python .github/workflows/construct_unit_test_comment.py ${{ steps.reporter.outputs.url }} ${{ github.event.pull_request.head.sha }} comment.txt
           - name: Post comment
             uses: peter-evans/create-or-update-comment@v3.1.0
             with:
