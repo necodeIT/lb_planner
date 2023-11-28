@@ -31,7 +31,7 @@ jobs:
               with:
                 python-version: '3.10'
             - name: Comment results
-              run: python .github/workflows/construct_analysis_comment.py analysis.txt ${{ github.sha }} ${{ github.event.pull_request.url }} comment.txt
+              run: python .github/workflows/construct_analysis_comment.py analysis.txt ${{ github.sha }} github.com/${{ github.repository }}/${{ github.event.number }} comment.txt
             - name: Post comment
               uses: peter-evans/create-or-update-comment@v3.1.0
               with:
