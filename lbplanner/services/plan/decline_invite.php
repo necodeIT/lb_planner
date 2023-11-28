@@ -53,7 +53,7 @@ class plan_decline_invite extends external_api {
         MUST_EXIST
         );
 
-        if ($invite->status !== PLAN_INVITE_STATE::PENDING->value) {
+        if ($invite->status !== PLAN_INVITE_STATE::PENDING) {
             throw new \moodle_exception('Invite already accepted or declined');
         }
 
@@ -64,7 +64,7 @@ class plan_decline_invite extends external_api {
             notifications_helper::TRIGGER_INVITE_DECLINED
         );
 
-        $invite->status = PLAN_INVITE_STATE::DECLINED->value;
+        $invite->status = PLAN_INVITE_STATE::DECLINED;
 
         $DB->update_record(plan_helper::INVITES_TABLE, $invite);
     }

@@ -100,13 +100,13 @@ class user_register_user extends external_api {
         $DB->insert_record(user_helper::LB_PLANNER_USER_TABLE, $lbplanneruser);
         $plan = new stdClass();
         $plan->name = 'Plan for ' . $USER->username;
-        $plan->enableek = plan_helper::EK_ENABLED;
+        $plan->enableek = PLAN_EK::ENABLED;
 
         $planid = $DB->insert_record(plan_helper::TABLE, $plan);
 
         $planaccess = new stdClass();
         $planaccess->userid = $userid;
-        $planaccess->accesstype = PLAN_ACCESS_TYPE::OWNER->value;
+        $planaccess->accesstype = PLAN_ACCESS_TYPE::OWNER;
         $planaccess->planid = $planid;
 
         $DB->insert_record(plan_helper::ACCESS_TABLE, $planaccess);
