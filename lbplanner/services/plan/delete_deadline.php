@@ -29,7 +29,7 @@ class plan_delete_deadline extends external_api {
         return new external_function_parameters([
             'moduleid' => new external_value(
                 PARAM_INT,
-                'The ID of the Module',
+                'ID of the Module',
                 VALUE_REQUIRED,
                 null,
                 NULL_NOT_ALLOWED
@@ -56,7 +56,7 @@ class plan_delete_deadline extends external_api {
         $DB->delete_records(
             plan_helper::DEADLINES_TABLE,
             [
-                'planid' => $planid ,
+                'planid' => $planid,
                 'moduleid' => $moduleid,
             ]
         );

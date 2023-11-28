@@ -29,21 +29,21 @@ class plan_update_deadline extends external_api {
         return new external_function_parameters([
             'moduleid' => new external_value(
                 PARAM_INT,
-                'The ID of the Module',
+                'ID of the Module',
                 VALUE_REQUIRED,
                 null,
                 NULL_NOT_ALLOWED
             ),
             'deadlinestart' => new external_value(
                 PARAM_INT,
-                'The start of the Module',
+                'Start of the deadline',
                 VALUE_REQUIRED,
                 null,
                 NULL_NOT_ALLOWED
             ),
             'deadlineend' => new external_value(
                 PARAM_INT,
-                'The End of the Module',
+                'End of the deadline',
                 VALUE_REQUIRED,
                 null,
                 NULL_NOT_ALLOWED
@@ -70,7 +70,7 @@ class plan_update_deadline extends external_api {
         }
 
         if (!$DB->record_exists(plan_helper::DEADLINES_TABLE, ['moduleid' => $moduleid, 'planid' => $planid])) {
-            throw new \moodle_exception('Deadline doesnt exists');
+            throw new \moodle_exception('Deadline doesnt exist');
         }
         $deadline = $DB->get_record(plan_helper::DEADLINES_TABLE, ['moduleid' => $moduleid, 'planid' => $planid]);
 

@@ -29,21 +29,21 @@ class plan_add_deadline extends external_api {
         return new external_function_parameters([
             'moduleid' => new external_value(
                 PARAM_INT,
-                'The ID of the Module',
+                'ID of the Module',
                 VALUE_REQUIRED,
                 null,
                 NULL_NOT_ALLOWED
             ),
             'deadlinestart' => new external_value(
                 PARAM_INT,
-                'The Start of the Module',
+                'Start of the deadline range',
                 VALUE_REQUIRED,
                 null,
                 NULL_NOT_ALLOWED
             ),
             'deadlineend' => new external_value(
                 PARAM_INT,
-                'The End of the Module',
+                'End of the deadline',
                 VALUE_REQUIRED,
                 null,
                 NULL_NOT_ALLOWED
@@ -84,6 +84,6 @@ class plan_add_deadline extends external_api {
     }
 
     public static function add_deadline_returns() {
-        return new external_value(PARAM_INT,"The ID of the newly added deadline");
+        return new external_value(PARAM_INT,"ID of the newly added deadline");
     }
 }
