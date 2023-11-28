@@ -49,7 +49,7 @@ badge = summary.splitlines()[0]
 summary = summary.replace(badge, "")
 
 comment = f"""
-# Test Results for " + {COMMIT}
+# Test Results for {COMMIT}
 
 {badge}
 
