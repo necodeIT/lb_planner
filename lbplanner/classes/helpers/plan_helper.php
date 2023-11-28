@@ -107,7 +107,7 @@ class plan_helper {
 
         $owner = $DB->get_field(
             self::ACCESS_TABLE,
-            'userid', array('planid' => $planid, 'accesstype' => PLAN_ACCESS_TYPE::OWNER->value)
+            'userid', array('planid' => $planid, 'accesstype' => PLAN_ACCESS_TYPE::OWNER)
         );
 
         return $owner;
@@ -309,7 +309,7 @@ class plan_helper {
         );
 
         $oldaccess->planid = $newplanid;
-        $oldaccess->accesstype = PLAN_ACCESS_TYPE::OWNER->value;
+        $oldaccess->accesstype = PLAN_ACCESS_TYPE::OWNER;
 
         $DB->update_record(self::ACCESS_TABLE, $oldaccess);
 
