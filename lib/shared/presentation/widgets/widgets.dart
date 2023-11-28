@@ -14,3 +14,4 @@ export 'shimmer.dart';
 export 'color_utils.dart';
 export 'user_profile_img.dart';
 export 'conditional_widget.dart';
+export 'container.dart';

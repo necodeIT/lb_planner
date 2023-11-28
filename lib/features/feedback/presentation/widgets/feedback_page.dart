@@ -1,6 +1,9 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lb_planner/features/feedback/domain/domain.dart';
+import 'package:lb_planner/features/themes/domain/models/module_status_theme.dart';
+import 'package:lb_planner/shared/shared.dart';
+import 'package:lb_planner/features/feedback/presentation/widgets/widgets.dart';
 
 /// Admin feedback page displaying details about feedback.
 class AdminFeedbackPageRoute extends StatefulWidget {
@@ -20,16 +23,11 @@ class _AdminFeedbackPageRouteState extends State<AdminFeedbackPageRoute> {
 
   bool _commenmtInit = false;
 
-  Future<RawApiResponse>? _updateFuture;
-  Future<RawApiResponse>? _deleteFuture;
-
   _updateFeedback(WidgetRef ref, Feedback feedback) async {
-    if (_updateFuture != null) return;
-
     final controller = ref.watch(feedbackController);
     var feedbacks = ref.read(feedbackProvider);
 
-    if (feedback.status.isUnread) {
+    if (feedback.unread) {
       setState(() {
         _updateFuture =
             controller.updateFeedbackStatus(feedback.id, FeedbackStatus.read);
@@ -99,29 +97,33 @@ class _AdminFeedbackPageRouteState extends State<AdminFeedbackPageRoute> {
   Widget build(BuildContext context) {
     return Consumer(
       builder: (context, ref, _) {
-        var feedback = ref.watch(feedbackProvider)[widget.feedbackId];
+        int feedbackId = widget.feedbackId;
 
-        if (feedback == null)
-          return LpShimmer(height: AdminFeedbackItem.height);
+        var controller = ref.watch(feedbackController);
+        var feedback = controller.getFeedbackById(feedbackId);
+
+        if (ref.read(feedbackProvider).isLoading) {
+          return ShimmerEffect(height: AdminFeedbackItem.height);
+        }
 
         if (!_commenmtInit) {
           commentController.text = feedback.comment;
           _commenmtInit = true;
         }
 
-        var user = ref.watch(usersProvider)[feedback.userId];
-
-        if (user == null) return LpShimmer(height: AdminFeedbackItem.height);
+        int user = feedback.author;
 
         return LpContainer(
           title: feedback.type.title(context),
-          leading: LpIcon(feedback.type.icon, color: feedback.type.color),
+          leading: Icon(feedback.type.icon, color: feedback.type.color),
           trailing: ConditionalWidget(
             condition: _deleteFuture == null,
             trueWidget: (_) => HoverBuilder(
-              builder: (context, hover) => LpIcon(
+              builder: (context, hover) => Icon(
                 Icons.delete,
-                color: hover ? errorColor : neutralColor,
+                color: hover
+                    ? context.theme.colorScheme.error
+                    : ModuleStatusTheme.of(context).pendingColor,
               ),
               onTap: () => lpShowConfirmDialog(
                 context,
@@ -131,22 +133,44 @@ class _AdminFeedbackPageRouteState extends State<AdminFeedbackPageRoute> {
                 onConfirm: () => _deleteFeedback(ref, feedback),
               ),
             ),
-            falseWidget: (_) => LpLoadingIndicator.circular(color: errorColor),
+            falseWidget: (_) => CircularProgressIndicator(
+                color: context.theme.colorScheme.error),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              NcSpacing.small(),
-              LpFeedbackStatusTag(status: feedback.status),
-              NcSpacing.small(),
-              NcCaptionText(t.admin_feedback_page_author(user.fullname),
-                  fontSize: AdminFeedbackItem.fontSize, selectable: true),
+              Spacing.small(),
+              FeedbackStatusTag(read: feedback.read),
+              Spacing.small(),
+              Text(
+                t.admin_feedback_page_author(user.fullname),
+                style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  overflow: TextOverflow.ellipsis,
+                  fontSize: AdminFeedbackItem.fontSize,
+                ),
+                textAlign: TextAlign.left,
+              ),
               if (feedback.type.isBug)
-                NcCaptionText(t.admin_feedback_page_logFile(feedback.logFile),
-                    fontSize: AdminFeedbackItem.fontSize, selectable: true),
-              NcCaptionText(t.admin_feedback_page_id(feedback.id),
-                  fontSize: AdminFeedbackItem.fontSize, selectable: true),
-              NcSpacing.large(),
+                Text(
+                  t.admin_feedback_page_logFile(feedback.logFile),
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    overflow: TextOverflow.ellipsis,
+                    fontSize: AdminFeedbackItem.fontSize,
+                  ),
+                  textAlign: TextAlign.left,
+                ),
+              Text(
+                t.admin_feedback_page_id(feedback.id),
+                style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  overflow: TextOverflow.ellipsis,
+                  fontSize: AdminFeedbackItem.fontSize,
+                ),
+                textAlign: TextAlign.left,
+              ),
+              Spacing.large(),
               Expanded(
                 child: CustomScrollView(
                   controller: ScrollController(),
@@ -157,10 +181,14 @@ class _AdminFeedbackPageRouteState extends State<AdminFeedbackPageRoute> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Expanded(
-                            child: NcBodyText(
+                            child: Text(
                               feedback.content,
-                              fontSize: AdminFeedbackItem.fontSize,
-                              selectable: true,
+                              style: TextStyle(
+                                fontWeight: FontWeight.normal,
+                                overflow: TextOverflow.ellipsis,
+                                fontSize: AdminFeedbackItem.fontSize,
+                              ),
+                              textAlign: TextAlign.left,
                             ),
                           ),
                         ],
@@ -169,7 +197,7 @@ class _AdminFeedbackPageRouteState extends State<AdminFeedbackPageRoute> {
                   ],
                 ),
               ),
-              NcSpacing.large(),
+              Spacing.large(),
               Expanded(
                 child: LpTextField.filled(
                   multiline: true,
@@ -177,7 +205,7 @@ class _AdminFeedbackPageRouteState extends State<AdminFeedbackPageRoute> {
                   placeholder: t.admin_feedback_page_comment,
                 ),
               ),
-              NcSpacing.large(),
+              Spacing.large(),
               Align(
                 alignment: Alignment.centerRight,
                 child: ConditionalWidget(
@@ -185,13 +213,19 @@ class _AdminFeedbackPageRouteState extends State<AdminFeedbackPageRoute> {
                   trueWidget: (_) => Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      NcCaptionText(
-                          feedback.status.isRead
-                              ? t.admin_feedback_page_update
-                              : t.admin_feedback_page_markRead,
-                          fontSize: AdminFeedbackItem.fontSize),
-                      NcSpacing.small(),
-                      LpLoadingIndicator.circular(),
+                      Text(
+                        feedback.status.isRead
+                            ? t.admin_feedback_page_update
+                            : t.admin_feedback_page_markRead,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          overflow: TextOverflow.ellipsis,
+                          fontSize: AdminFeedbackItem.fontSize,
+                        ),
+                        textAlign: TextAlign.left,
+                      ),
+                      Spacing.small(),
+                      CircularProgressIndicator(),
                     ],
                   ),
                   falseWidget: (context) => LpTextButton(
