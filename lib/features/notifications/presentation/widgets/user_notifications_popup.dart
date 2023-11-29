@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:lb_planner/shared/shared.dart';
 
 /// Popup that displays all notifications the user received.
 class UserNotificationsPopup extends StatefulWidget {
@@ -22,9 +24,13 @@ class UserNotificationsPopup extends StatefulWidget {
 
   /// The max. age of the notifications to display.
   static const maxNotificationAge = Duration(days: 3);
-
   @override
-  Widget build(context, t) {
+  State<UserNotificationsPopup> createState() => _UserNotificationsPopupState();
+}
+
+class _UserNotificationsPopupState extends State<UserNotificationsPopup> {
+  @override
+  Widget build(context) {
     return Consumer(builder: (context, ref, _) {
       var notifications = ref
           .watch(notificationsProvider)
@@ -38,14 +44,14 @@ class UserNotificationsPopup extends StatefulWidget {
         spacing: true,
         leading: NcCaptionText(
             t.user_notifications_notifications(notifications.length)),
-        trailing: LpGestureDetector(
+        trailing: GestureDetector(
           onTap: () {
             ref.read(notificationsController).markAllAsRead();
             close();
           },
-          child: LpIcon(
+          child: Icon(
             Icons.close,
-            color: errorColor,
+            color: context.theme.colorScheme.error,
           ),
         ),
         child: ConditionalWidget(
@@ -54,7 +60,7 @@ class UserNotificationsPopup extends StatefulWidget {
             children: [
               for (var notification in notifications) ...[
                 UserNotificationsItem(notificationId: notification.id),
-                NcSpacing.small(),
+                Spacing.small(),
               ]
             ],
           ),
