@@ -228,7 +228,7 @@ class plan_helper {
                     new external_single_structure(
                         array(
                             'userid' => new external_value(PARAM_INT, 'The id of the user'),
-                            'accesstype' => new external_value(PARAM_INT, 'The role of the user'),
+                            'accesstype' => new external_value(PARAM_INT, 'The role of the user '.apidocs_helper::enumCases_to_Doc(PLAN_ACCESS_TYPE::cases())),
                         )
                     )
                 ),
