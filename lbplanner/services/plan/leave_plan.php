@@ -54,7 +54,7 @@ class plan_leave_plan extends external_api {
                 if ($member->userid == $USER->id) {
                     continue;
                 }
-                if ($member->accesstype == PLAN_ACCESS_TYPE::WRITE->value) {
+                if ($member->accesstype == PLAN_ACCESS_TYPE::WRITE) {
                     $writemembers[] = $member;
                 }
                 $allmembers[] = $member;
@@ -68,7 +68,7 @@ class plan_leave_plan extends external_api {
                 plan_helper::ACCESS_TABLE,
                 ['planid' => $planid, 'userid' => $newowner], '*', MUST_EXIST
             );
-            $newowneraccess->accesstype = PLAN_ACCESS_TYPE::OWNER->value;
+            $newowneraccess->accesstype = PLAN_ACCESS_TYPE::OWNER;
             $DB->update_record(plan_helper::ACCESS_TABLE, $newowneraccess);
         }
 
@@ -80,15 +80,15 @@ class plan_leave_plan extends external_api {
         );
 
         $oldaccess->planid = $newplanid;
-        $oldaccess->accesstype = PLAN_ACCESS_TYPE::OWNER->value;
+        $oldaccess->accesstype = PLAN_ACCESS_TYPE::OWNER;
 
         $DB->update_record(plan_helper::ACCESS_TABLE, $oldaccess);
 
         // Notify plan owner that user has left his plan.
         $invites = plan_helper::get_invites_send($USER->id);
         foreach ($invites as $invite) {
-            if ($invite->status == PLAN_INVITE_STATE::PENDING->value) {
-                $invite->status = PLAN_INVITE_STATE::EXPIRED->value;
+            if ($invite->status == PLAN_INVITE_STATE::PENDING) {
+                $invite->status = PLAN_INVITE_STATE::EXPIRED;
                 $DB->update_record(plan_helper::INVITES_TABLE, $invite);
             }
         }

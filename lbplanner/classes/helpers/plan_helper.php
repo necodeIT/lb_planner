@@ -19,33 +19,45 @@ namespace local_lbplanner\helpers;
 use external_single_structure;
 use external_value;
 use external_multiple_structure;
+use local_lbplanner\polyfill\enum;
+
+// TODO: revert to native enums once we migrate to php8
 
 /**
  * Levels of access that a user can have for a plan
  */
-enum PLAN_ACCESS_TYPE: int {
-    case OWNER = 0;
-    case WRITE = 1;
-    case READ = 2;
-    case NONE = -1;
+class PLAN_ACCESS_TYPE extends Enum {
+    const OWNER = 0;
+    const WRITE = 1;
+    const READ = 2;
+    const NONE = -1;
+    public static function get_classname(): string {
+        return __CLASS__;
+    }
 }
 
 /**
  * Whether EK modules are enabled inside the planner
  */
-enum PLAN_EK: int {
-    case DISABLED = 0;
-    case ENABLED = 1;
+class PLAN_EK extends Enum {
+    const DISABLED = 0;
+    const ENABLED = 1;
+    public static function get_classname(): string {
+        return __CLASS__;
+    }
 }
 
 /**
  * States an invite can be in
  */
-enum PLAN_INVITE_STATE: int {
-    case PENDING = 0;
-    case ACCEPTED = 1;
-    case DECLINED = 2;
-    case EXPIRED = 3;
+class PLAN_INVITE_STATE extends Enum {
+    const PENDING = 0;
+    const ACCEPTED = 1;
+    const DECLINED = 2;
+    const EXPIRED = 3;
+    public static function get_classname(): string {
+        return __CLASS__;
+    }
 }
 
 /**
@@ -95,7 +107,7 @@ class plan_helper {
 
         $owner = $DB->get_field(
             self::ACCESS_TABLE,
-            'userid', array('planid' => $planid, 'accesstype' => PLAN_ACCESS_TYPE::OWNER->value)
+            'userid', array('planid' => $planid, 'accesstype' => PLAN_ACCESS_TYPE::OWNER)
         );
 
         return $owner;
@@ -297,7 +309,7 @@ class plan_helper {
         );
 
         $oldaccess->planid = $newplanid;
-        $oldaccess->accesstype = PLAN_ACCESS_TYPE::OWNER->value;
+        $oldaccess->accesstype = PLAN_ACCESS_TYPE::OWNER;
 
         $DB->update_record(self::ACCESS_TABLE, $oldaccess);
 
