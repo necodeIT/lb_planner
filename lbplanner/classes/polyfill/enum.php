@@ -16,10 +16,32 @@
 
 namespace local_lbplanner\polyfill;
 
+use ValueError;
+
 abstract class Enum {
+	/**
+	 * tries to match the passed value to one of the enum values
+	 * @param $value the value to be matched
+	 * @return either the matching enum value or null if not found
+	 */
 	public static function tryFrom(mixed $value): ?mixed {
 		$cases = get_class_vars(static::get_classname());
 		return in_array($value,$cases,true) ? $value : null;
+	}
+	/**
+	 * tries to match the passed value to one of the enum values
+	 * @param $value the value to be matched
+	 * @return the matching enum value
+	 * @throws ValueError if not found
+	 */
+	public static function from(mixed $value): mixed {
+		$cases = get_class_vars(static::get_classname());
+		
+		if(!in_array($value,$cases,true)){
+			throw new ValueError("value {$value} cannot be represented as a value in enum ".static::get_classname());
+		}
+		
+		return $value;
 	}
 	public abstract static function get_classname(): string;
 }
