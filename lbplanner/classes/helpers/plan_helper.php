@@ -19,7 +19,7 @@ namespace local_lbplanner\helpers;
 use external_single_structure;
 use external_value;
 use external_multiple_structure;
-use local_lbplanner\polyfill\enum;
+use local_lbplanner\polyfill\Enum;
 
 // TODO: revert to native enums once we migrate to php8
 
@@ -31,9 +31,6 @@ class PLAN_ACCESS_TYPE extends Enum {
     const WRITE = 1;
     const READ = 2;
     const NONE = -1;
-    public static function get_classname(): string {
-        return __CLASS__;
-    }
 }
 
 /**
@@ -42,9 +39,6 @@ class PLAN_ACCESS_TYPE extends Enum {
 class PLAN_EK extends Enum {
     const DISABLED = 0;
     const ENABLED = 1;
-    public static function get_classname(): string {
-        return __CLASS__;
-    }
 }
 
 /**
@@ -55,9 +49,6 @@ class PLAN_INVITE_STATE extends Enum {
     const ACCEPTED = 1;
     const DECLINED = 2;
     const EXPIRED = 3;
-    public static function get_classname(): string {
-        return __CLASS__;
-    }
 }
 
 /**
@@ -130,9 +121,9 @@ class plan_helper {
      *
      * @param int $planid The id of the plan.
      * @param int $userid The id of the user.
-     * @return PLAN_ACCESS_TYPE The access type of the given user for the given plan.
+     * @return int The access type of the given user for the given plan.
      */
-    public static function get_access_type(int $userid, int $planid): PLAN_ACCESS_TYPE {
+    public static function get_access_type(int $userid, int $planid): int {
         global $DB;
 
         $field = $DB->get_field(
