@@ -45,19 +45,19 @@ include('../snippets/head.php');
 			<section class="milestones">
 				<h1><?=GDS('title_goals')?></h1>
 				<div class="roadmap">
-					<div class="card goal" style="top:6em;left:4em">
+					<div class="card goal overdue" style="top:6em;left:4em">
 						<h3>Refactor</h3>
 						<ul>
 							<!--
 								when one of these is done, replace <svg></svg> with
 								<?php include('../resources/check.svg');?>
 							-->
-							<li><span>18.11.23</span>Frontend Refactor<svg></svg></li>
-							<li><span>18.11.23</span>Backend Refactor<svg></svg></li>
+							<li><span>18.11.23</span>Frontend Refactor<?php include('../resources/exclamation.svg');?></li>
+							<li><span>18.11.23</span>Backend Refactor<?php include('../resources/exclamation.svg');?></li>
 						</ul>
 					</div>
-					<div class="goal" style="top:1em;left:32em">
-						<span>26.11.23</span>Course Overview<svg></svg>
+					<div class="goal overdue" style="top:1em;left:32em">
+						<span>26.11.23</span>Course Overview<?php include('../resources/exclamation.svg');?>
 					</div>
 					<div class="goal" style="top:13em;left:50em">
 						<span>14.01.24</span>Slot Booking Tool<svg></svg>
