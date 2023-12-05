@@ -1,9 +1,13 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart' hide Feedback;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:lb_planner/features/feedback/domain/domain.dart';
+import 'package:lb_planner/features/feedback/presentation/widgets/feedback.dart';
 import 'package:lb_planner/features/themes/domain/models/module_status_theme.dart';
 import 'package:lb_planner/shared/shared.dart';
 import 'package:lb_planner/features/feedback/presentation/widgets/widgets.dart';
+
+@RoutePage()
 
 /// Admin feedback page displaying details about feedback.
 class AdminFeedbackPageRoute extends StatefulWidget {
@@ -21,80 +25,48 @@ class AdminFeedbackPageRoute extends StatefulWidget {
 class _AdminFeedbackPageRouteState extends State<AdminFeedbackPageRoute> {
   final commentController = TextEditingController();
 
-  bool _commenmtInit = false;
+  late int updated;
+  late int deleted;
 
   _updateFeedback(WidgetRef ref, Feedback feedback) async {
     final controller = ref.watch(feedbackController);
-    var feedbacks = ref.read(feedbackProvider);
 
     if (feedback.unread) {
-      setState(() {
-        _updateFuture =
-            controller.updateFeedbackStatus(feedback.id, FeedbackStatus.read);
-      });
-
-      var response = await _updateFuture;
-
-      if (response!.failed) {
-        if (mounted) {
-          setState(() {
-            _updateFuture = null;
-          });
-        }
-
-        return;
-      }
+      controller.markFeedbackAsRead(feedback, comment: commentController.text);
+      updated = 1;
     }
 
-    setState(() {
-      _updateFuture =
-          controller.updateFeedbackComment(feedback.id, commentController.text);
-    });
+    updated = 0;
 
-    var response = await _updateFuture;
-
-    if (mounted) {
-      setState(() {
-        _updateFuture = null;
-      });
-
-      if (response!.succeeded) _pushNext(feedbacks, feedback);
-    }
+    _pushNext(feedback);
   }
 
-  _pushNext(Map<int, Feedback> feedbacks, Feedback feedback) {
-    var sorted = AdminFeedbackRoute.sortFeedbacks(feedbacks.values.toList());
-    var currentIndex = sorted.indexOf(feedback);
+  _pushNext(BuildContext context, WidgetRef ref, feedback) {
+    var sorted = AdminFeedbackRoute.sortFeedbacks(ref.read(feedbackProvider));
+    var currentIndex = sorted?.indexOf(feedback);
 
-    if (sorted.length - 1 > currentIndex && currentIndex >= 0) {
+    if (sorted!.length - 1 > currentIndex! && currentIndex >= 0) {
       var nextFeedback = sorted[currentIndex + 1];
-      AdminFeedbackPageRoute.info
-          .push(context, params: {"id": nextFeedback.id});
+      context.router.push(context, params: {"id": nextFeedback.id});
     } else {
       AdminFeedbackRoute.info.push(context);
     }
   }
 
-  _deleteFeedback(WidgetRef ref, Feedback feedback) async {
-    if (_deleteFuture != null) return;
+  _deleteFeedback(
+      BuildContext context, WidgetRef ref, Feedback feedbackToDelete) async {
+    ref.read(feedbackController).deleteFeedback(feedbackToDelete);
+    deleted = 1;
 
-    setState(() {
-      _deleteFuture = ref.read(feedbackController).deleteFeedback(feedback.id);
-    });
+    deleted = 0;
 
-    var response = await _deleteFuture;
-
-    if (mounted) {
-      setState(() {
-        _deleteFuture = null;
-      });
-
-      if (response!.succeeded) _pushNext(ref.read(feedbackProvider), feedback);
-    }
+    _pushNext(context, ref, ref.read(feedbackProvider));
   }
 
   @override
   Widget build(BuildContext context) {
+    bool _commenmtInit = false;
+
     return Consumer(
       builder: (context, ref, _) {
         int feedbackId = widget.feedbackId;
@@ -117,7 +89,7 @@ class _AdminFeedbackPageRouteState extends State<AdminFeedbackPageRoute> {
           title: feedback.type.title(context),
           leading: Icon(feedback.type.icon, color: feedback.type.color),
           trailing: ConditionalWidget(
-            condition: _deleteFuture == null,
+            condition: deleted == 0,
             trueWidget: (_) => HoverBuilder(
               builder: (context, hover) => Icon(
                 Icons.delete,
@@ -125,7 +97,7 @@ class _AdminFeedbackPageRouteState extends State<AdminFeedbackPageRoute> {
                     ? context.theme.colorScheme.error
                     : ModuleStatusTheme.of(context).pendingColor,
               ),
-              onTap: () => lpShowConfirmDialog(
+              onTap: () => ShowConfirmDialog(
                 context,
                 title: t.admin_feedback_page_deleteTitle,
                 message: t.admin_feedback_page_deleteText,
@@ -209,12 +181,12 @@ class _AdminFeedbackPageRouteState extends State<AdminFeedbackPageRoute> {
               Align(
                 alignment: Alignment.centerRight,
                 child: ConditionalWidget(
-                  condition: _updateFuture != null,
+                  condition: updated != 0,
                   trueWidget: (_) => Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        feedback.status.isRead
+                        feedback.read
                             ? t.admin_feedback_page_update
                             : t.admin_feedback_page_markRead,
                         style: TextStyle(
@@ -229,7 +201,7 @@ class _AdminFeedbackPageRouteState extends State<AdminFeedbackPageRoute> {
                     ],
                   ),
                   falseWidget: (context) => LpTextButton(
-                    text: feedback.status.isRead
+                    text: feedback.read
                         ? t.admin_feedback_page_update
                         : t.admin_feedback_page_markRead,
                     fontSize: AdminFeedbackItem.fontSize,
