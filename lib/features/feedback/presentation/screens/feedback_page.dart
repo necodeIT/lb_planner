@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart' hide Feedback;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:lb_planner/features/auth/domain/domain.dart';
 import 'package:lb_planner/features/feedback/domain/domain.dart';
 import 'package:lb_planner/features/feedback/presentation/widgets/feedback.dart';
 import 'package:lb_planner/features/themes/domain/models/module_status_theme.dart';
@@ -47,7 +48,8 @@ class _AdminFeedbackPageRouteState extends State<AdminFeedbackPageRoute> {
 
     if (sorted!.length - 1 > currentIndex! && currentIndex >= 0) {
       var nextFeedback = sorted[currentIndex + 1];
-      context.router.push(context, params: {"id": nextFeedback.id});
+      context.router.push(AdminFeedbackPageRoute(
+          feedbackId: nextFeedback.id, key: ValueKey(nextFeedback.id)));
     } else {
       AdminFeedbackRoute.info.push(context);
     }
@@ -115,7 +117,7 @@ class _AdminFeedbackPageRouteState extends State<AdminFeedbackPageRoute> {
               FeedbackStatusTag(read: feedback.read),
               Spacing.small(),
               Text(
-                t.admin_feedback_page_author(user.fullname),
+                t.admin_feedback_page_author(user),
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
                   overflow: TextOverflow.ellipsis,
@@ -123,9 +125,9 @@ class _AdminFeedbackPageRouteState extends State<AdminFeedbackPageRoute> {
                 ),
                 textAlign: TextAlign.left,
               ),
-              if (feedback.type.isBug)
+              if (feedback.type == FeedbackType.bug)
                 Text(
-                  t.admin_feedback_page_logFile(feedback.logFile),
+                  t.admin_feedback_page_logFile(feedback.logfile!),
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
                     overflow: TextOverflow.ellipsis,
@@ -171,11 +173,13 @@ class _AdminFeedbackPageRouteState extends State<AdminFeedbackPageRoute> {
               ),
               Spacing.large(),
               Expanded(
-                child: LpTextField.filled(
-                  multiline: true,
-                  controller: commentController,
-                  placeholder: t.admin_feedback_page_comment,
-                ),
+                child: TextField(
+                    keyboardType: TextInputType.multiline,
+                    controller: commentController,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: t.admin_feedback_page_comment,
+                    )),
               ),
               Spacing.large(),
               Align(
@@ -200,13 +204,14 @@ class _AdminFeedbackPageRouteState extends State<AdminFeedbackPageRoute> {
                       CircularProgressIndicator(),
                     ],
                   ),
-                  falseWidget: (context) => LpTextButton(
-                    text: feedback.read
+                  falseWidget: (context) => TextButton.icon(
+                    label: Text(feedback.read
                         ? t.admin_feedback_page_update
-                        : t.admin_feedback_page_markRead,
-                    fontSize: AdminFeedbackItem.fontSize,
-                    trailingIcon: Feather.arrow_right_circle,
+                        : t.admin_feedback_page_markRead),
                     onPressed: () => _updateFeedback(ref, feedback),
+                    icon: Icon(Feather.arrow_right_circle,
+                        size: AdminFeedbackItem.fontSize * 1.2,
+                        color: context.theme.colorScheme.primary),
                   ),
                 ),
               ),
