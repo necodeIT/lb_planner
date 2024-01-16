@@ -59,8 +59,8 @@ include('../snippets/head.php');
 					<div class="goal overdue" style="top:1em;left:32em">
 						<span>26.11.23</span>Course Overview<?php include('../resources/exclamation.svg');?>
 					</div>
-					<div class="goal" style="top:13em;left:50em">
-						<span>14.01.24</span>Slot Booking Tool<svg></svg>
+					<div class="goal overdue" style="top:13em;left:50em">
+						<span>14.01.24</span>Slot Booking Tool<?php include('../resources/exclamation.svg');?>
 					</div>
 					<div class="goal" style="top:23em;left:27em">
 						<span>28.01.24</span>Quality Assurance<svg></svg>
