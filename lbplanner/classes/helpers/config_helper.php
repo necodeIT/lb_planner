@@ -16,7 +16,11 @@
 
 namespace local_lbplanner\helpers;
 
-class config_helper {
+use core_customfield\category_controller;
+use customfield_select\data_controller;
+use customfield_select\field_controller;
+use local_modcustomfields\customfield\mod_handler as mod_handler;
+class   config_helper {
     public static function set_default_active_year() {
         $currentmonth = idate('m');
         if ($currentmonth >= 8 && $currentmonth <= 12) {
@@ -37,6 +41,28 @@ class config_helper {
                 substr(strval(idate('Y')), 2),
                 'local_lbplanner'
             );
+        }
+    }
+
+    /**
+     * @throws \moodle_exception
+     * @throws \coding_exception
+     */
+    public static function add_customfield() {
+        if (in_array('modcustomfields', get_list_of_plugins('local'))) {
+            $handler = mod_handler::create();
+            $categoryid = $handler->create_category('lb-planner');
+            $categorycontroller = category_controller::create($categoryid, null, $handler);
+            $categorycontroller->save();
+            $record = new \stdClass();
+            $record->type = 'select';
+            $fieldcontroller = field_controller::create(0, $record, $categorycontroller);
+            $fieldcontroller->set('name', 'gk');
+            $fieldcontroller->set('description', 'GK');
+            $fieldcontroller->set('type', 'select');
+            $fieldcontroller->set('configdata', json_encode(['options' => ['GK', 'EK']]));
+            $fieldcontroller->set('shortname', 'lb_planner_gk_ek');
+            $fieldcontroller->save();
         }
     }
 }
