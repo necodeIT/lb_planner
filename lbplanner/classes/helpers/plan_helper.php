@@ -13,6 +13,14 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+/**
+ * Provides helper classes for any tables related with the planning function of the app
+ *
+ * @package local_lbplanner
+ * @subpackage helpers
+ * @copyright 2024 NecodeIT
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 
 namespace local_lbplanner\helpers;
 
@@ -29,9 +37,21 @@ use local_lbplanner\polyfill\Enum;
  * Levels of access that a user can have for a plan
  */
 class PLAN_ACCESS_TYPE extends Enum {
+    /**
+     * owning the plan
+     */
     const OWNER = 0;
+    /**
+     * allowed to modify the plan
+     */
     const WRITE = 1;
+    /**
+     * allowed to look at the plan
+     */
     const READ = 2;
+    /**
+     * disallowed
+     */
     const NONE = -1;
 }
 
@@ -39,7 +59,13 @@ class PLAN_ACCESS_TYPE extends Enum {
  * Whether EK modules are enabled inside the planner
  */
 class PLAN_EK extends Enum {
+    /**
+     * EK hidden
+     */
     const DISABLED = 0;
+    /**
+     * EK visible
+     */
     const ENABLED = 1;
 }
 
@@ -47,19 +73,26 @@ class PLAN_EK extends Enum {
  * States an invite can be in
  */
 class PLAN_INVITE_STATE extends Enum {
+    /**
+     * pending invite
+     */
     const PENDING = 0;
+    /**
+     * accepted invite
+     */
     const ACCEPTED = 1;
+    /**
+     * declined invite
+     */
     const DECLINED = 2;
+    /**
+     * expired invite
+     */
     const EXPIRED = 3;
 }
 
 /**
  * Provides helper methods for any tables related with the planning function of the app
- *
- * @package local_lbplanner
- * @subpackage helpers
- * @copyright 2024 NecodeIT
- * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class plan_helper {
     /**
