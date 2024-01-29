@@ -174,10 +174,10 @@ class modules_helper {
     /**
      * Determins the enum value for a grade.
      *
-     * @param integer $grade The grade of the module.
-     * @param integer $maxgrade The max. grade of the module.
-     * @param integer $mingrade The min. grade of the module.
-     * @param integer $gradepass The grade to pass the module.
+     * @param int $grade The grade of the module.
+     * @param int $maxgrade The max. grade of the module.
+     * @param int $mingrade The min. grade of the module.
+     * @param int $gradepass The grade to pass the module.
      * @return integer The enum value for the grade.
      */
     public static function determin_uinified_grade(int $grade, int $maxgrade, int $mingrade, int $gradepass) : int {
@@ -205,9 +205,9 @@ class modules_helper {
     /**
      * Maps the given info to a module status.
      *
-     * @param boolean $submitted Whether the module is submitted.
-     * @param boolean $done Whether the module is completed.
-     * @param boolean $late Whether the module is late.
+     * @param bool $submitted Whether the module is submitted.
+     * @param bool $done Whether the module is completed.
+     * @param bool $late Whether the module is late.
      * @return integer The enum value for the module status.
      */
     public static function map_status(bool $submitted, bool $done, bool $late) : int {
@@ -258,8 +258,8 @@ class modules_helper {
     /**
      * Returns the url of the module.
      *
-     * @param integer $moduleid The id of the module.
-     * @param integer $courseid The id of the course.
+     * @param int $moduleid The id of the module.
+     * @param int $courseid The id of the course.
      * @return string The url of the module.
      */
     public static function get_module_url(int $moduleid, int $courseid) : string {
@@ -276,8 +276,8 @@ class modules_helper {
     /**
      * Retrieves a module of the given id for the given user.
      *
-     * @param integer $moduleid The id of the module.
-     * @param integer $userid The id of the user.
+     * @param int $moduleid The id of the module.
+     * @param int $userid The id of the user.
      * @return array The module.
      */
     public static function get_module(int $moduleid, int $userid) : array {
@@ -360,8 +360,8 @@ class modules_helper {
     /**
      * Reteruns all modules for the given course id.
      *
-     * @param integer $courseid The id of the course.
-     * @param integer $userid The id of the user.
+     * @param int $courseid The id of the course.
+     * @param int $userid The id of the user.
      * @return array The modules.
      */
     public static function get_all_course_modules(int $courseid, int $userid, bool $ekenabled) : array {

@@ -118,7 +118,7 @@ class plan_helper {
     /**
      * Returns a list of user id's that are members of the plan.
      *
-     * @param integer $planid The id of the plan.
+     * @param int $planid The id of the plan.
      * @return array An array of user id's.
      */
     public static function get_plan_members(int $planid):array {
@@ -130,7 +130,7 @@ class plan_helper {
     /**
      * Returns the user id of the owner of the plan.
      *
-     * @param integer $planid The id of the plan.
+     * @param int $planid The id of the plan.
      * @return integer The user id of the owner.
      */
     public static function get_owner(int $planid):int {
@@ -147,7 +147,7 @@ class plan_helper {
     /**
      * Returns the id of the plan that the given user is a member of.
      *
-     * @param integer $userid The id of the user.
+     * @param int $userid The id of the user.
      * @return integer The id of the plan the given user is a member of.
      */
     public static function get_plan_id(int $userid):int {
@@ -195,7 +195,7 @@ class plan_helper {
     /**
      * Returns a list of all deadlines for the given plan.
      *
-     * @param integer $planid The id of the plan.
+     * @param int $planid The id of the plan.
      * @return array A list of all deadlines for the given plan.
      */
     public static function get_deadlines(int $planid): array {
@@ -219,7 +219,7 @@ class plan_helper {
     /**
      * Retrieves all the information available about the given plan.
      *
-     * @param integer $planid The id of the plan.
+     * @param int $planid The id of the plan.
      * @return array An array containing all the information available about the given plan.
      */
     public static function get_plan(int $planid) : array {
@@ -279,8 +279,8 @@ class plan_helper {
     /**
      * Copies the given plan to the given user.
      *
-     * @param integer $planid The id of the plan.
-     * @param integer $userid The id of the user.
+     * @param int $planid The id of the plan.
+     * @param int $userid The id of the user.
      * @return integer The id of the new copy of the plan.
      */
     public static function copy_plan(int $planid, int $userid) : int {
@@ -305,9 +305,9 @@ class plan_helper {
     /**
      * Removes the user from the given plan.
      *
-     * @param integer $planid the plan id.
-     * @param integer $userid the user id.
-     * @param integer $removeuserid the user id to remove.
+     * @param int $planid the plan id.
+     * @param int $userid the user id.
+     * @param int $removeuserid the user id to remove.
      * @return int The ID of the new plan for the removed user
      */
     public static function remove_user(int $planid, int $userid, int $removeuserid) : int {

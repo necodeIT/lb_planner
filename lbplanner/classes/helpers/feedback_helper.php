@@ -63,7 +63,7 @@ class feedback_helper {
     /**
      * Gives back the feedback of the given feedbackid
      *
-     * @param integer $feedbackid The id of the feedback
+     * @param int $feedbackid The id of the feedback
      * @return stdClass The feedback
      */
     public static function get_feedback(int $feedbackid) : stdClass {
@@ -73,7 +73,7 @@ class feedback_helper {
     /**
      * Checks if the user has access to feedback
      *
-     * @param integer $userid The id of the user
+     * @param int $userid The id of the user
      * @return void Throws an exception if the user has no access
      */
     public static function assert_admin_access() {
