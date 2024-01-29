@@ -23,8 +23,9 @@ use stdClass;
 /**
  * Helper class for courses
  *
- * @package local_lbplanner_helpers
- * @copyright 2023 NecodeIT
+ * @package local_lbplanner
+ * @subpackage helpers
+ * @copyright 2024 NecodeIT
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class course_helper {

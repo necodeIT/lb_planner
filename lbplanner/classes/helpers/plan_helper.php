@@ -54,7 +54,12 @@ class PLAN_INVITE_STATE extends Enum {
 }
 
 /**
- * Provides helper methods for any tables related with the planning function of the app.
+ * Provides helper methods for any tables related with the planning function of the app
+ *
+ * @package local_lbplanner
+ * @subpackage helpers
+ * @copyright 2024 NecodeIT
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class plan_helper {
     /**

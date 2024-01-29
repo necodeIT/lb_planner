@@ -22,7 +22,8 @@ use external_value;
 /**
  * Helper class for plan invites
  *
- * @package local_lbplanner_helpers
+ * @package local_lbplanner
+ * @subpackage helpers
  * @copyright 2024 NecodeIT
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

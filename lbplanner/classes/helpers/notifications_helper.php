@@ -46,7 +46,12 @@ class NOTIF_TRIGGER extends Enum {
 }
 
 /**
- * Provides helper methods for notification related stuff.
+ * Provides helper methods for notification related stuff
+ *
+ * @package local_lbplanner
+ * @subpackage helpers
+ * @copyright 2024 NecodeIT
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class notifications_helper {
     /**

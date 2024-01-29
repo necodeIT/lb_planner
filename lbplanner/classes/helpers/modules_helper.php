@@ -63,6 +63,11 @@ class MODULE_TYPE extends Enum {
 
 /**
  * Contains helper functions for working with modules.
+ *
+ * @package local_lbplanner
+ * @subpackage helpers
+ * @copyright 2024 NecodeIT
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class modules_helper {
 
