@@ -29,8 +29,9 @@ abstract class Enum {
      */
     public static function tryFrom(mixed $value): mixed {
         foreach (static::cases() as $case) {
-            if($case->value === $value)
+            if($case->value === $value){
                 return $value;
+            }
         }
         return null;
     }
@@ -42,8 +43,9 @@ abstract class Enum {
      */
     public static function from(mixed $value): mixed {
         foreach (static::cases() as $case) {
-            if($case->value === $value)
+            if($case->value === $value){
                 return $value;
+            }
         }
 
         throw new ValueError("value {$value} cannot be represented as a value in enum ".static::class);
