@@ -16,6 +16,8 @@
 
 namespace local_lbplanner\helpers;
 
+defined('MOODLE_INTERNAL') || die();
+
 use external_single_structure;
 use external_value;
 use external_multiple_structure;

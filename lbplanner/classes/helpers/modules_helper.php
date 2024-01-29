@@ -16,6 +16,8 @@
 
 namespace local_lbplanner\helpers;
 
+defined('MOODLE_INTERNAL') || die();
+
 use block_accessreview\external\get_module_data;
 use external_function_parameters;
 use external_single_structure;
