@@ -19,6 +19,7 @@ namespace local_lbplanner_services;
 use external_api;
 use external_function_parameters;
 use external_value;
+use local_lbplanner\helpers\NOTIF_TRIGGER;
 use local_lbplanner\helpers\plan_helper;
 use local_lbplanner\helpers\notifications_helper;
 use local_lbplanner\helpers\PLAN_INVITE_STATE;
@@ -61,7 +62,7 @@ class plan_decline_invite extends external_api {
         notifications_helper::notify_user(
             $invite->inviterid,
             $invite->id,
-            notifications_helper::TRIGGER_INVITE_DECLINED
+            NOTIF_TRIGGER::INVITE_DECLINED
         );
 
         $invite->status = PLAN_INVITE_STATE::DECLINED;
