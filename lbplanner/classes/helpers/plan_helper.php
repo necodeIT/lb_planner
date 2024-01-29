@@ -159,8 +159,8 @@ class plan_helper {
     /**
      * Returns the access type of the given user for the given plan.
      *
-     * @param int $planid The id of the plan.
      * @param int $userid The id of the user.
+     * @param int $planid The id of the plan.
      * @return int The access type of the given user for the given plan.
      */
     public static function get_access_type(int $userid, int $planid): int {
@@ -342,11 +342,23 @@ class plan_helper {
 
         return $newplanid;
     }
+    /**
+     * Get all invites that have been sent by the user.
+     *
+     * @param int $userid ID of the sender
+     * @return array an array of invites sent by the user
+     */
     public static function get_invites_send(int $userid):array {
         global $DB;
         $invites = $DB->get_records(self::INVITES_TABLE, ['inviterid' => $userid]);
         return $invites;
     }
+    /**
+     * Get all invites that have been received by the user.
+     *
+     * @param int $userid ID of the receiver
+     * @return array an array of invites received by the user
+     */
     public static function get_invites_received(int $userid):array {
         global $DB;
         $invites = $DB->get_records(self::INVITES_TABLE, ['inviteeid' => $userid]);
