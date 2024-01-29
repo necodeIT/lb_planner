@@ -6,7 +6,7 @@ on:
       - opened
       - synchronize
     branches:
-      - LP-55-Backend-Refactor # Temporary. Will be changed to `moodle` when refactor is complete
+      - LP-195-api-docs # TODO: revert before merging into 55
 
 jobs:
   Analysis:
