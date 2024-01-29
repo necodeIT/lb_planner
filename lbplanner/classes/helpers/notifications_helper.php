@@ -13,6 +13,14 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+/**
+ * Provides helper classes for notification related stuff
+ *
+ * @package local_lbplanner
+ * @subpackage helpers
+ * @copyright 2024 NecodeIT
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 
 namespace local_lbplanner\helpers;
 
@@ -29,7 +37,13 @@ use local_lbplanner\polyfill\Enum;
  * Stati a notification can be in
  */
 class NOTIF_STATUS extends Enum {
+    /**
+     * unread notification
+     */
     const UNREAD = 0;
+    /**
+     * read notification
+     */
     const READ = 1;
 }
 
@@ -37,21 +51,34 @@ class NOTIF_STATUS extends Enum {
  * Possible triggers for sending a notification
  */
 class NOTIF_TRIGGER extends Enum {
+    /**
+     * Invitation sent
+     */
     const INVITE = 0;
+    /**
+     * Invitation accepted
+     */
     const INVITE_ACCEPTED = 1;
+    /**
+     * Invitation declined
+     */
     const INVITE_DECLINED = 2;
+    /**
+     * User left the plan
+     */
     const PLAN_LEFT = 3;
+    /**
+     * User got removed from the plan
+     */
     const PLAN_REMOVED = 4;
+    /**
+     * User registered
+     */
     const USER_REGISTERED = 5;
 }
 
 /**
  * Provides helper methods for notification related stuff
- *
- * @package local_lbplanner
- * @subpackage helpers
- * @copyright 2024 NecodeIT
- * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class notifications_helper {
     /**
