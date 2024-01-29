@@ -27,7 +27,7 @@ abstract class Enum {
      * @param mixed $value the value to be matched
      * @return mixed either the matching enum value or null if not found
      */
-    public static function tryFrom(mixed $value): mixed {
+    public static function try_from(mixed $value): mixed {
         foreach (static::cases() as $case) {
             if($case->value === $value){
                 return $value;

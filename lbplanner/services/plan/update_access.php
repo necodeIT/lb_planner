@@ -59,7 +59,7 @@ class plan_update_access extends external_api {
             throw new \moodle_exception('Access denied');
         }
 
-        $accesstypeobj = PLAN_ACCESS_TYPE::tryFrom($accesstype);
+        $accesstypeobj = PLAN_ACCESS_TYPE::try_from($accesstype);
 
         if ($accesstypeobj === null) {
             throw new \moodle_exception('Access type not valid');
