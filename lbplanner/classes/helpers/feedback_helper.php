@@ -32,11 +32,20 @@ use local_lbplanner\helpers\user_helper;
  */
 class feedback_helper {
 
+    /**
+     * Unread Feedback
+     */
     const STATUS_UNREAD = 0;
 
+    /**
+     * Read Feedback
+     */
     const STATUS_READ = 1;
 
 
+    /**
+     * The name of the table which is used by LP to store feedback in
+     */
     const LBPLANNER_FEEDBACK_TABLE = 'local_lbplanner_feedback';
 
     /**
@@ -83,6 +92,10 @@ class feedback_helper {
         }
     }
 
+    /**
+     * Returns all feedback records.
+     * @return array all feedback records
+     */
     public static function get_all_feedbacks() : array {
         global $DB;
         return $DB->get_records(self::LBPLANNER_FEEDBACK_TABLE);
