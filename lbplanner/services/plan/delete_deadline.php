@@ -23,6 +23,11 @@ use local_lbplanner\helpers\plan_helper;
 
 /**
  * Delete a deadline from your plan
+ *
+ * @package local_lbplanner
+ * @subpackage services_plan
+ * @copyright 2024 necodeIT
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class plan_delete_deadline extends external_api {
     public static function delete_deadline_parameters() {

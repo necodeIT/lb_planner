@@ -22,6 +22,11 @@ use local_lbplanner\helpers\plan_helper;
 
 /**
  * Get the plan of the given user.
+ *
+ * @package local_lbplanner
+ * @subpackage services_plan
+ * @copyright 2024 necodeIT
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class plan_get_plan extends external_api {
     public static function get_plan_parameters() {

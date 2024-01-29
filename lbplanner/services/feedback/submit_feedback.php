@@ -23,6 +23,11 @@ use local_lbplanner\helpers\feedback_helper;
 
 /**
  * Add feedback to the database.
+ *
+ * @package local_lbplanner
+ * @subpackage services_feedback
+ * @copyright 2024 necodeIT
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class feedback_submit_feedback extends external_api {
     public static function submit_feedback_parameters() {

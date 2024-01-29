@@ -25,6 +25,11 @@ use local_lbplanner\helpers\user_helper;
 
 /**
  * Get the data for a module.
+ *
+ * @package local_lbplanner
+ * @subpackage services_modules
+ * @copyright 2024 necodeIT
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class modules_get_module extends external_api {
     public static function get_module_parameters() {

@@ -24,6 +24,11 @@ use local_lbplanner\helpers\feedback_helper;
 
 /**
  * Deletes feedback from the database.
+ *
+ * @package local_lbplanner
+ * @subpackage services_feedback
+ * @copyright 2024 necodeIT
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class feedback_delete_feedback extends external_api {
     public static function delete_feedback_parameters() {

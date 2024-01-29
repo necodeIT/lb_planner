@@ -24,6 +24,11 @@ use local_lbplanner\helpers\plan_helper;
 
 /**
  * Get all the invites of the current user.
+ *
+ * @package local_lbplanner
+ * @subpackage services_plan
+ * @copyright 2024 necodeIT
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class plan_get_invites extends external_api {
     public static function get_invites_parameters() {

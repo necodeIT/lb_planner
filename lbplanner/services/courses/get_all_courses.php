@@ -29,9 +29,9 @@ use moodle_exception;
 /**
  * Get all the courses of the current year.
  *
- * Retrievs all the courses of the current school year.
  * @package local_lbplanner
- * @copyright 2023 necodeIT
+ * @subpackage services_courses
+ * @copyright 2024 necodeIT
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class courses_get_all_courses extends external_api {

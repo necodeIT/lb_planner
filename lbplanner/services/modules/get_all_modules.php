@@ -28,6 +28,11 @@ use local_lbplanner\helpers\plan_helper;
 
 /**
  * Get all the modules of the current year.
+ *
+ * @package local_lbplanner
+ * @subpackage services_modules
+ * @copyright 2024 necodeIT
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class modules_get_all_modules extends external_api {
     public static function get_all_modules_parameters() {

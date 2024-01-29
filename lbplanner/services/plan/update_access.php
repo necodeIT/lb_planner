@@ -24,6 +24,11 @@ use local_lbplanner\helpers\plan_helper;
 
 /**
  * Update the access of the plan.
+ *
+ * @package local_lbplanner
+ * @subpackage services_plan
+ * @copyright 2024 necodeIT
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class plan_update_access extends external_api {
     public static function update_access_parameters() {

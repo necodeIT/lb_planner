@@ -25,6 +25,11 @@ use local_lbplanner\helpers\user_helper;
 
 /**
  * Get all the modules of the given course.
+ *
+ * @package local_lbplanner
+ * @subpackage services_modules
+ * @copyright 2024 necodeIT
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class modules_get_all_course_modules extends external_api {
     public static function get_all_course_modules_parameters() {

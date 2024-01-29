@@ -27,6 +27,11 @@ use local_lbplanner\helpers\PLAN_INVITE_STATE;
 
 /**
  * Invite a user to your plan
+ *
+ * @package local_lbplanner
+ * @subpackage services_plan
+ * @copyright 2024 necodeIT
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class plan_invite_user extends external_api {
     public static function invite_user_parameters() {

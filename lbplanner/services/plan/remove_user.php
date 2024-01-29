@@ -23,6 +23,11 @@ use local_lbplanner\helpers\plan_helper;
 
 /**
  * Remove a user from your plan
+ *
+ * @package local_lbplanner
+ * @subpackage services_plan
+ * @copyright 2024 necodeIT
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class plan_remove_user extends external_api {
     public static function remove_user_parameters() {

@@ -27,6 +27,11 @@ use local_lbplanner\helpers\NOTIF_TRIGGER;
 
 /**
  * Accept an invite to the plan.
+ *
+ * @package local_lbplanner
+ * @subpackage services_plan
+ * @copyright 2024 necodeIT
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class plan_accept_invite extends external_api {
     public static function accept_invite_parameters() {

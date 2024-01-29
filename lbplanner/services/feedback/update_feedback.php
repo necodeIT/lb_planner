@@ -24,6 +24,11 @@ use local_lbplanner\helpers\feedback_helper;
 
 /**
  * Updates feedback from the database.
+ *
+ * @package local_lbplanner
+ * @subpackage services_feedback
+ * @copyright 2024 necodeIT
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class feedback_update_feedback extends external_api {
     public static function update_feedback_parameters() {

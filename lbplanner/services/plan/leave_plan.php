@@ -28,6 +28,11 @@ use local_lbplanner\helpers\PLAN_INVITE_STATE;
  * Leave your plan
  *
  * if no other user exists in the plan, the user can't leave
+ *
+ * @package local_lbplanner
+ * @subpackage services_plan
+ * @copyright 2024 necodeIT
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class plan_leave_plan extends external_api {
     public static function leave_plan_parameters() {

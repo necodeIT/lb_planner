@@ -23,6 +23,11 @@ use external_value;
 
 /**
  * Get version service.
+ *
+ * @package local_lbplanner
+ * @subpackage services_config
+ * @copyright 2024 necodeIT
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class config_get_version extends external_api {
     public static function get_version_parameters() {

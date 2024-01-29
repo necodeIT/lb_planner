@@ -23,6 +23,11 @@ use local_lbplanner\helpers\notifications_helper;
 
 /**
  * Update the notification status of the given user and id.
+ *
+ * @package local_lbplanner
+ * @subpackage services_notifications
+ * @copyright 2024 necodeIT
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class notifications_update_notification extends external_api {
     public static function update_notification_parameters() {

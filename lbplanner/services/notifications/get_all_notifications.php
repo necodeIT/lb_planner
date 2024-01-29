@@ -23,6 +23,11 @@ use local_lbplanner\helpers\notifications_helper;
 
 /**
  * Get all the notifications of the given user.
+ *
+ * @package local_lbplanner
+ * @subpackage services_notifications
+ * @copyright 2024 necodeIT
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class notifications_get_all_notifications extends external_api {
     public static function get_all_notifications_parameters() {

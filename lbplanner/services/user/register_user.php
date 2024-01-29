@@ -34,9 +34,10 @@ use stdClass;
 /**
  * Register a new user in the lbplanner app.
  *
- * @package    local_lbplanner
- * @copyright  2023 necodeIT
- * @license    https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package local_lbplanner
+ * @subpackage services_user
+ * @copyright 2024 necodeIT
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class user_register_user extends external_api {
     /**
