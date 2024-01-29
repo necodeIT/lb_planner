@@ -30,8 +30,14 @@ use stdClass;
  */
 class course_helper {
 
+    /**
+     * The course table used by the LP
+     */
     const LBPLANNER_COURSE_TABLE = 'local_lbplanner_courses';
 
+    /**
+     * A list of nice colors to choose from :)
+     */
     const COLORS = [
         "#f50057",
         "#536dfe",
@@ -49,7 +55,13 @@ class course_helper {
         "#8B37CA",
         "#CA37B9",
     ];
+    /**
+     * constant that represents a disabled course
+     */
     const DISABLED_COURSE = 0;
+    /**
+     * constant that represents an enabled course
+     */
     const ENABLED_COURSE = 1;
 
     /**
