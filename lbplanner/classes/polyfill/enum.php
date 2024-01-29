@@ -59,6 +59,21 @@ abstract class Enum {
 		}
 		return $cases;
 	}
+	/**
+	 * Formats all possible enum values into a string
+	 * Example:
+	 * (31=>RED,32=>GREEN,33=>YELLOW)
+	 * @return string the resulting string
+	 */
+	public static function format(): string {
+		$result = "[";
+		$cases = static::cases();
+		foreach($cases as $case) {
+			$result .= "{$case->value}=>{$case->name},";
+		}
+		$result[-1] = ']';
+		return $result;
+	}
 }
 
 class EnumCase {
