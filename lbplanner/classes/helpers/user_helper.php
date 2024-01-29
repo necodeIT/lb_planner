@@ -26,7 +26,7 @@ use core_user;
 
 /**
  * Provides helper methods for user related stuff.
- * @package local_lbplanner\helpers
+ * @package lbplanner_helpers
  * @copyright LB PLANNER
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
