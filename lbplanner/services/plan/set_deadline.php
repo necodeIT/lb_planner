@@ -22,10 +22,10 @@ use external_value;
 use local_lbplanner\helpers\plan_helper;
 
 /**
- * Update a deadline from the plan.
+ * Set the deadline for a module
  */
-class plan_update_deadline extends external_api {
-    public static function update_deadline_parameters() {
+class plan_set_deadline extends external_api {
+    public static function set_deadline_parameters() {
         return new external_function_parameters([
             'moduleid' => new external_value(
                 PARAM_INT,
@@ -51,11 +51,11 @@ class plan_update_deadline extends external_api {
         ]);
     }
 
-    public static function update_deadline($moduleid, $deadlinestart, $deadlineend) {
+    public static function set_deadline($moduleid, $deadlinestart, $deadlineend) {
         global $DB, $USER;
 
         self::validate_parameters(
-            self::update_deadline_parameters(),
+            self::set_deadline_parameters(),
             [
                 'moduleid' => $moduleid,
                 'deadlinestart' => $deadlinestart,
@@ -69,18 +69,29 @@ class plan_update_deadline extends external_api {
             throw new \moodle_exception('Access denied');
         }
 
+        // if a deadline already exists,
         if (!$DB->record_exists(plan_helper::DEADLINES_TABLE, ['moduleid' => $moduleid, 'planid' => $planid])) {
-            throw new \moodle_exception('Deadline doesnt exists');
+            // update the existing deadline
+            $deadline = $DB->get_record(plan_helper::DEADLINES_TABLE, ['moduleid' => $moduleid, 'planid' => $planid]);
+
+            $deadline->deadlinestart = $deadlinestart;
+            $deadline->deadlineend = $deadlineend;
+
+            $DB->update_record(plan_helper::DEADLINES_TABLE, $deadline);
+        } else {
+            // otherwise insert a new one
+            $deadline = new \stdClass();
+
+            $deadline->planid = $planid;
+            $deadline->moduleid = $moduleid;
+            $deadline->deadlinestart = $deadlinestart;
+            $deadline->deadlineend = $deadlineend;
+
+            $DB->insert_record(plan_helper::DEADLINES_TABLE, $deadline);
         }
-        $deadline = $DB->get_record(plan_helper::DEADLINES_TABLE, ['moduleid' => $moduleid, 'planid' => $planid]);
-
-        $deadline->deadlinestart = $deadlinestart;
-        $deadline->deadlineend = $deadlineend;
-
-        $DB->update_record(plan_helper::DEADLINES_TABLE, $deadline);
     }
 
-    public static function update_deadline_returns() {
+    public static function set_deadline_returns() {
         return null;
     }
 }
