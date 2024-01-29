@@ -22,6 +22,13 @@ use external_value;
 use stdClass;
 use local_lbplanner\helpers\user_helper;
 
+/**
+ * Helper class for feedback
+ *
+ * @package local_lbplanner_helpers
+ * @copyright 2024 NecodeIT
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 class feedback_helper {
 
     const STATUS_UNREAD = 0;

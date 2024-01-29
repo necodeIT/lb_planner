@@ -26,6 +26,7 @@ use local_lbplanner\helpers\PLAN_INVITE_STATE;
 
 /**
  * Leave your plan
+ *
  * if no other user exists in the plan, the user can't leave
  */
 class plan_leave_plan extends external_api {

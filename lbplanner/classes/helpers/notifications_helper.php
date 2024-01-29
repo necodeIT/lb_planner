@@ -33,6 +33,9 @@ class NOTIF_STATUS extends Enum {
     const READ = 1;
 }
 
+/**
+ * Possible triggers for sending a notification
+ */
 class NOTIF_TRIGGER extends Enum {
     const INVITE = 0;
     const INVITE_ACCEPTED = 1;

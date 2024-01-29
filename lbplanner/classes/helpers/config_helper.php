@@ -16,6 +16,13 @@
 
 namespace local_lbplanner\helpers;
 
+/**
+ * Helper class for config
+ *
+ * @package local_lbplanner_helpers
+ * @copyright 2024 NecodeIT
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 class config_helper {
     public static function set_default_active_year() {
         $currentmonth = idate('m');

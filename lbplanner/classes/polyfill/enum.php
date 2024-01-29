@@ -21,6 +21,13 @@ defined('MOODLE_INTERNAL') || die();
 use ReflectionClass;
 use ValueError;
 
+/**
+ * Class which is meant to serve as a substitute for native enums.
+ *
+ * @package local_lbplanner_polyfill
+ * @copyright 2024 NecodeIT
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 abstract class Enum {
     /**
      * tries to match the passed value to one of the enum values
@@ -77,6 +84,13 @@ abstract class Enum {
     }
 }
 
+/**
+ * This represents a single case within an Enum
+ *
+ * @package local_lbplanner_polyfill
+ * @copyright 2024 NecodeIT
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 class EnumCase {
     public string $name;
     public mixed $value;
