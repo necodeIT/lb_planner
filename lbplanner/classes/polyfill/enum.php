@@ -29,7 +29,7 @@ abstract class Enum {
      */
     public static function try_from(mixed $value): mixed {
         foreach (static::cases() as $case) {
-            if($case->value === $value){
+            if ($case->value === $value) {
                 return $value;
             }
         }
@@ -43,7 +43,7 @@ abstract class Enum {
      */
     public static function from(mixed $value): mixed {
         foreach (static::cases() as $case) {
-            if($case->value === $value){
+            if ($case->value === $value) {
                 return $value;
             }
         }
