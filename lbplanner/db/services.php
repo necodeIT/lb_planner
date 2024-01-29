@@ -18,7 +18,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $functions = array(
-    'local_lbplanner_user_get_user' => array(
+    'local_lbplanner_user_get_user' => [
         'classname' => 'local_lbplanner_services\user_get_user',
         'methodname' => 'get_user',
         'classpath' => 'local/lbplanner/services/user/get_user.php',
@@ -26,8 +26,8 @@ $functions = array(
         'type' => 'read',
         'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
-    ),
-    'local_lbplanner_user_get_all_users' => array(
+    ],
+    'local_lbplanner_user_get_all_users' => [
         'classname' => 'local_lbplanner_services\user_get_all_users',
         'methodname' => 'get_all_users',
         'classpath' => 'local/lbplanner/services/user/get_all_users.php',
@@ -35,8 +35,8 @@ $functions = array(
         'type' => 'read',
         'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
-    ),
-    'local_lbplanner_user_register_user' => array(
+    ],
+    'local_lbplanner_user_register_user' => [
         'classname' => 'local_lbplanner_services\user_register_user',
         'methodname' => 'register_user',
         'classpath' => 'local/lbplanner/services/user/register_user.php',
@@ -44,8 +44,8 @@ $functions = array(
         'type' => 'write',
         'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
-    ),
-    'local_lbplanner_user_update_user' => array(
+    ],
+    'local_lbplanner_user_update_user' => [
         'classname' => 'local_lbplanner_services\user_update_user',
         'methodname' => 'update_user',
         'classpath' => 'local/lbplanner/services/user/update_user.php',
@@ -53,8 +53,8 @@ $functions = array(
         'type' => 'write',
         'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
-    ),
-    'local_lbplanner_courses_get_course' => array(
+    ],
+    'local_lbplanner_courses_get_course' => [
         'classname' => 'local_lbplanner_services\courses_get_course',
         'methodname' => 'get_course',
         'classpath' => 'local/lbplanner/services/courses/get_course.php',
@@ -62,8 +62,8 @@ $functions = array(
         'type' => 'read',
         'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
-    ),
-    'local_lbplanner_courses_get_all_courses' => array(
+    ],
+    'local_lbplanner_courses_get_all_courses' => [
         'classname' => 'local_lbplanner_services\courses_get_all_courses',
         'methodname' => 'get_all_courses',
         'classpath' => 'local/lbplanner/services/courses/get_all_courses.php',
@@ -71,8 +71,8 @@ $functions = array(
         'type' => 'read',
         'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
-    ),
-    'local_lbplanner_courses_update_course' => array(
+    ],
+    'local_lbplanner_courses_update_course' => [
         'classname' => 'local_lbplanner_services\courses_update_course',
         'methodname' => 'update_course',
         'classpath' => 'local/lbplanner/services/courses/update_course.php',
@@ -80,8 +80,8 @@ $functions = array(
         'type' => 'write',
         'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
-    ),
-    'local_lbplanner_modules_get_module' => array(
+    ],
+    'local_lbplanner_modules_get_module' => [
         'classname' => 'local_lbplanner_services\modules_get_module',
         'methodname' => 'get_module',
         'classpath' => 'local/lbplanner/services/modules/get_module.php',
@@ -89,8 +89,8 @@ $functions = array(
         'type' => 'read',
         'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
-    ),
-    'local_lbplanner_modules_get_all_modules' => array(
+    ],
+    'local_lbplanner_modules_get_all_modules' => [
         'classname' => 'local_lbplanner_services\modules_get_all_modules',
         'methodname' => 'get_all_modules',
         'classpath' => 'local/lbplanner/services/modules/get_all_modules.php',
@@ -98,8 +98,8 @@ $functions = array(
         'type' => 'read',
         'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
-    ),
-    'local_lbplanner_modules_get_all_course_modules' => array(
+    ],
+    'local_lbplanner_modules_get_all_course_modules' => [
         'classname' => 'local_lbplanner_services\modules_get_all_course_modules',
         'methodname' => 'get_all_course_modules',
         'classpath' => 'local/lbplanner/services/modules/get_all_course_modules.php',
@@ -107,8 +107,8 @@ $functions = array(
         'type' => 'read',
         'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
-    ),
-    'local_lbplanner_plan_clear_plan' => array(
+    ],
+    'local_lbplanner_plan_clear_plan' => [
         'classname' => 'local_lbplanner_services\plan_clear_plan',
         'methodname' => 'clear_plan',
         'classpath' => 'local/lbplanner/services/plan/clear_plan.php',
@@ -116,8 +116,8 @@ $functions = array(
         'type' => 'write',
         'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
-    ),
-    'local_lbplanner_plan_get_plan' => array(
+    ],
+    'local_lbplanner_plan_get_plan' => [
         'classname' => 'local_lbplanner_services\plan_get_plan',
         'methodname' => 'get_plan',
         'classpath' => 'local/lbplanner/services/plan/get_plan.php',
@@ -125,8 +125,8 @@ $functions = array(
         'type' => 'read',
         'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
-    ),
-    'local_lbplanner_plan_invite_user' => array(
+    ],
+    'local_lbplanner_plan_invite_user' => [
         'classname' => 'local_lbplanner_services\plan_invite_user',
         'methodname' => 'invite_user',
         'classpath' => 'local/lbplanner/services/plan/invite_user.php',
@@ -134,8 +134,8 @@ $functions = array(
         'type' => 'write',
         'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
-    ),
-    'local_lbplanner_plan_remove_user' => array(
+    ],
+    'local_lbplanner_plan_remove_user' => [
         'classname' => 'local_lbplanner_services\plan_remove_user',
         'methodname' => 'remove_user',
         'classpath' => 'local/lbplanner/services/plan/remove_user.php',
@@ -143,8 +143,8 @@ $functions = array(
         'type' => 'write',
         'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
-    ),
-    'local_lbplanner_plan_update_plan' => array(
+    ],
+    'local_lbplanner_plan_update_plan' => [
         'classname' => 'local_lbplanner_services\plan_update_plan',
         'methodname' => 'update_plan',
         'classpath' => 'local/lbplanner/services/plan/update_plan.php',
@@ -152,8 +152,8 @@ $functions = array(
         'type' => 'write',
         'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
-    ),
-    'local_lbplanner_plan_leave_plan' => array(
+    ],
+    'local_lbplanner_plan_leave_plan' => [
         'classname' => 'local_lbplanner_services\plan_leave_plan',
         'methodname' => 'leave_plan',
         'classpath' => 'local/lbplanner/services/plan/leave_plan.php',
@@ -161,8 +161,8 @@ $functions = array(
         'type' => 'write',
         'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
-    ),
-    'local_lbplanner_plan_add_deadline' => array(
+    ],
+    'local_lbplanner_plan_add_deadline' => [
         'classname' => 'local_lbplanner_services\plan_add_deadline',
         'methodname' => 'add_deadline',
         'classpath' => 'local/lbplanner/services/plan/add_deadline.php',
@@ -170,8 +170,8 @@ $functions = array(
         'type' => 'write',
         'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
-    ),
-    'local_lbplanner_plan_delete_deadline' => array(
+    ],
+    'local_lbplanner_plan_delete_deadline' => [
         'classname' => 'local_lbplanner_services\plan_delete_deadline',
         'methodname' => 'delete_deadline',
         'classpath' => 'local/lbplanner/services/plan/delete_deadline.php',
@@ -179,8 +179,8 @@ $functions = array(
         'type' => 'write',
         'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
-    ),
-    'local_lbplanner_user_delete_user' => array(
+    ],
+    'local_lbplanner_user_delete_user' => [
         'classname' => 'local_lbplanner_services\user_delete_user',
         'methodname' => 'delete_user',
         'classpath' => 'local/lbplanner/services/user/delete_user.php',
@@ -188,8 +188,8 @@ $functions = array(
         'type' => 'write',
         'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
-    ),
-    'local_lbplanner_plan_update_deadline' => array(
+    ],
+    'local_lbplanner_plan_update_deadline' => [
         'classname' => 'local_lbplanner_services\plan_update_deadline',
         'methodname' => 'update_deadline',
         'classpath' => 'local/lbplanner/services/plan/update_deadline.php',
@@ -197,8 +197,8 @@ $functions = array(
         'type' => 'write',
         'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
-    ),
-    'local_lbplanner_plan_update_access' => array(
+    ],
+    'local_lbplanner_plan_update_access' => [
         'classname' => 'local_lbplanner_services\plan_update_access',
         'methodname' => 'update_access',
         'classpath' => 'local/lbplanner/services/plan/update_access.php',
@@ -206,8 +206,8 @@ $functions = array(
         'type' => 'write',
         'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
-    ),
-    'local_lbplanner_plan_get_invites' => array(
+    ],
+    'local_lbplanner_plan_get_invites' => [
         'classname' => 'local_lbplanner_services\plan_get_invites',
         'methodname' => 'get_invites',
         'classpath' => 'local/lbplanner/services/plan/get_invites.php',
@@ -215,8 +215,8 @@ $functions = array(
         'type' => 'read',
         'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
-    ),
-    'local_lbplanner_notifications_get_all_notifications' => array(
+    ],
+    'local_lbplanner_notifications_get_all_notifications' => [
         'classname' => 'local_lbplanner_services\notifications_get_all_notifications',
         'methodname' => 'get_all_notifications',
         'classpath' => 'local/lbplanner/services/notifications/get_all_notifications.php',
@@ -224,8 +224,8 @@ $functions = array(
         'type' => 'read',
         'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
-    ),
-    'local_lbplanner_notifications_update_notification' => array(
+    ],
+    'local_lbplanner_notifications_update_notification' => [
         'classname' => 'local_lbplanner_services\notifications_update_notification',
         'methodname' => 'update_notification',
         'classpath' => 'local/lbplanner/services/notifications/update_notification.php',
@@ -233,8 +233,8 @@ $functions = array(
         'type' => 'write',
         'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
-    ),
-    'local_lbplanner_feedback_submit_feedback' => array(
+    ],
+    'local_lbplanner_feedback_submit_feedback' => [
         'classname' => 'local_lbplanner_services\feedback_submit_feedback',
         'methodname' => 'submit_feedback',
         'classpath' => 'local/lbplanner/services/feedback/submit_feedback.php',
@@ -242,8 +242,8 @@ $functions = array(
         'type' => 'write',
         'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
-    ),
-    'local_lbplanner_feedback_get_feedback' => array(
+    ],
+    'local_lbplanner_feedback_get_feedback' => [
         'classname' => 'local_lbplanner_services\feedback_get_feedback',
         'methodname' => 'get_feedback',
         'classpath' => 'local/lbplanner/services/feedback/get_feedback.php',
@@ -251,8 +251,8 @@ $functions = array(
         'type' => 'read',
         'capabilities' => 'local/lb_planner:admin, local/lb_planner:manager',
         'ajax' => true,
-    ),
-    'local_lbplanner_feedback_get_all_feedbacks' => array(
+    ],
+    'local_lbplanner_feedback_get_all_feedbacks' => [
         'classname' => 'local_lbplanner_services\feedback_get_all_feedbacks',
         'methodname' => 'get_all_feedbacks',
         'classpath' => 'local/lbplanner/services/feedback/get_all_feedbacks.php',
@@ -260,8 +260,8 @@ $functions = array(
         'type' => 'read',
         'capabilities' => 'local/lb_planner:admin, local/lb_planner:manager',
         'ajax' => true,
-    ),
-    'local_lbplanner_feedback_update_feedback' => array(
+    ],
+    'local_lbplanner_feedback_update_feedback' => [
         'classname' => 'local_lbplanner_services\feedback_update_feedback',
         'methodname' => 'update_feedback',
         'classpath' => 'local/lbplanner/services/feedback/update_feedback.php',
@@ -269,8 +269,8 @@ $functions = array(
         'type' => 'write',
         'capabilities' => 'local/lb_planner:admin, local/lb_planner:manager',
         'ajax' => true,
-    ),
-    'local_lbplanner_feedback_delete_feedback' => array(
+    ],
+    'local_lbplanner_feedback_delete_feedback' => [
         'classname' => 'local_lbplanner_services\feedback_delete_feedback',
         'methodname' => 'delete_feedback',
         'classpath' => 'local/lbplanner/services/feedback/delete_feedback.php',
@@ -278,8 +278,8 @@ $functions = array(
         'type' => 'write',
         'capabilities' => 'local/lb_planner:admin, local/lb_planner:manager',
         'ajax' => true,
-    ),
-    'local_lbplanner_plan_accept_invite' => array(
+    ],
+    'local_lbplanner_plan_accept_invite' => [
         'classname' => 'local_lbplanner_services\plan_accept_invite',
         'methodname' => 'accept_invite',
         'classpath' => 'local/lbplanner/services/plan/accept_invite.php',
@@ -287,8 +287,8 @@ $functions = array(
         'type' => 'write',
         'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
-    ),
-    'local_lbplanner_plan_decline_invite' => array(
+    ],
+    'local_lbplanner_plan_decline_invite' => [
         'classname' => 'local_lbplanner_services\plan_decline_invite',
         'methodname' => 'decline_invite',
         'classpath' => 'local/lbplanner/services/plan/decline_invite.php',
@@ -296,8 +296,8 @@ $functions = array(
         'type' => 'write',
         'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
-    ),
-    'local_lbplanner_config_get_version' => array(
+    ],
+    'local_lbplanner_config_get_version' => [
         'classname' => 'local_lbplanner_services\config_get_version',
         'methodname' => 'get_version',
         'classpath' => 'local/lbplanner/services/config/get_version.php',
@@ -305,12 +305,12 @@ $functions = array(
         'type' => 'read',
         'capabilities' => '',
         'ajax' => true,
-    ),
+    ],
 );
 
 $services = array(
-    'LB Planner API' => array(
-        'functions' => array(
+    'LB Planner API' => [
+        'functions' => [
             'local_lbplanner_user_get_user',
             'local_lbplanner_user_get_all_users',
             'local_lbplanner_user_register_user',
@@ -344,9 +344,9 @@ $services = array(
             'local_lbplanner_plan_accept_invite',
             'local_lbplanner_plan_decline_invite',
             'local_lbplanner_config_get_version',
-        ),
+        ],
         'restrictedusers' => 0,
         'enabled' => 1,
         'shortname' => 'lb_planner_api'
-    ),
+    ],
 );

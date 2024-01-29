@@ -38,7 +38,7 @@ class feedback_helper {
      */
     public static function structure() : external_single_structure {
         return new external_single_structure(
-            array(
+            [
                 'content' => new external_value(PARAM_TEXT, 'Content of the feedback'),
                 'userid' => new external_value(PARAM_INT, 'The id of the user'),
                 'type' => new external_value(PARAM_INT, 'The Type of the feedback'),
@@ -49,7 +49,7 @@ class feedback_helper {
                 'lastmodified' => new external_value(PARAM_INT, 'The time when the feedback was last modified'),
                 'lastmodifiedby' => new external_value(PARAM_INT, 'The id of the user who last modified the feedback'),
                 'logfile' => new external_value(PARAM_TEXT, 'The logs of the feedback'),
-            )
+            ]
         );
     }
     /**

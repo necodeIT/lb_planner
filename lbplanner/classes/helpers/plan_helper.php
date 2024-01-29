@@ -83,7 +83,7 @@ class plan_helper {
      */
     public static function get_plan_members(int $planid):array {
         global $DB;
-        $members = $DB->get_records(self::ACCESS_TABLE, array('planid' => $planid));
+        $members = $DB->get_records(self::ACCESS_TABLE, ['planid' => $planid]);
         return $members;
     }
 
@@ -98,7 +98,7 @@ class plan_helper {
 
         $owner = $DB->get_field(
             self::ACCESS_TABLE,
-            'userid', array('planid' => $planid, 'accesstype' => PLAN_ACCESS_TYPE::OWNER)
+            'userid', ['planid' => $planid, 'accesstype' => PLAN_ACCESS_TYPE::OWNER]
         );
 
         return $owner;
@@ -112,7 +112,7 @@ class plan_helper {
      */
     public static function get_plan_id(int $userid):int {
         global $DB;
-        $planid = $DB->get_field(self::ACCESS_TABLE, 'planid', array('userid' => $userid));
+        $planid = $DB->get_field(self::ACCESS_TABLE, 'planid', ['userid' => $userid]);
         return $planid;
     }
 
@@ -129,7 +129,7 @@ class plan_helper {
         $field = $DB->get_field(
             self::ACCESS_TABLE,
             'accesstype',
-            array('planid' => $planid, 'userid' => $userid)
+            ['planid' => $planid, 'userid' => $userid]
         );
 
         if ($field === false) {
@@ -161,16 +161,16 @@ class plan_helper {
     public static function get_deadlines(int $planid): array {
         global $DB;
 
-        $dbdeadlines = $DB->get_records(self::DEADLINES_TABLE, array('planid' => $planid));
+        $dbdeadlines = $DB->get_records(self::DEADLINES_TABLE, ['planid' => $planid]);
 
-        $deadlines = array();
+        $deadlines = [];
 
         foreach ($dbdeadlines as $dbdeadline) {
-            $deadlines[] = array(
+            $deadlines[] = [
                 'deadlinestart' => $dbdeadline->deadlinestart,
                 'deadlineend' => $dbdeadline->deadlineend,
                 'moduleid' => $dbdeadline->moduleid,
-            );
+            ];
         }
 
         return $deadlines;
@@ -185,23 +185,23 @@ class plan_helper {
     public static function get_plan(int $planid) : array {
         global $DB;
 
-        $plan = $DB->get_record(self::TABLE, array('id' => $planid));
-        $members = array();
+        $plan = $DB->get_record(self::TABLE, ['id' => $planid]);
+        $members = [];
 
         foreach (self::get_plan_members($planid) as $member) {
-            $members[] = array(
+            $members[] = [
                 'userid' => $member->userid,
                 'accesstype' => $member->accesstype,
-            );
+            ];
         }
 
-        return array(
+        return [
             'name' => $plan->name,
             'planid' => $planid,
             'enableek' => $plan->enableek,
             'deadlines' => self::get_deadlines($planid),
             'members' => $members,
-        );
+        ];
     }
 
     /**
@@ -211,28 +211,28 @@ class plan_helper {
      */
     public static function plan_structure() : external_single_structure {
         return new external_single_structure(
-            array(
+            [
                 'name' => new external_value(PARAM_TEXT, 'Name of the plan'),
                 'planid' => new external_value(PARAM_INT, 'ID of the plan'),
                 'enableek' => new external_value(PARAM_BOOL, 'Whether EK is enabled'),
                 'deadlines' => new external_multiple_structure(
                     new external_single_structure(
-                        array(
+                        [
                             'moduleid' => new external_value(PARAM_INT, 'ID of the module'),
                             'deadlinestart' => new external_value(PARAM_INT, 'Start of the deadline as an UNIX timestamp'),
                             'deadlineend' => new external_value(PARAM_INT, 'End of the deadline as an UNIX timestamp'),
-                        )
+                        ]
                     )
                 ),
                 'members' => new external_multiple_structure(
                     new external_single_structure(
-                        array(
+                        [
                             'userid' => new external_value(PARAM_INT, 'The id of the user'),
                             'accesstype' => new external_value(PARAM_INT, 'The role of the user '.PLAN_ACCESS_TYPE::format()),
-                        )
+                        ]
                     )
                 ),
-            )
+            ]
         );
     }
 
@@ -248,7 +248,7 @@ class plan_helper {
 
         $user = user_helper::get_mdl_user_info($userid);
 
-        $plan = $DB->get_record(self::TABLE, array('id' => $planid));
+        $plan = $DB->get_record(self::TABLE, ['id' => $planid]);
         $plan->name = $plan->name . ' (' . $user->username . ')';
         $plan->id = null;
 
@@ -292,7 +292,7 @@ class plan_helper {
 
         $oldaccess = $DB->get_record(
             self::ACCESS_TABLE,
-            array('planid' => $planid, 'userid' => $removeuserid), '*', MUST_EXIST
+            ['planid' => $planid, 'userid' => $removeuserid], '*', MUST_EXIST
         );
 
         $oldaccess->planid = $newplanid;
@@ -304,12 +304,12 @@ class plan_helper {
     }
     public static function get_invites_send(int $userid):array {
         global $DB;
-        $invites = $DB->get_records(self::INVITES_TABLE, array('inviterid' => $userid));
+        $invites = $DB->get_records(self::INVITES_TABLE, ['inviterid' => $userid]);
         return $invites;
     }
     public static function get_invites_received(int $userid):array {
         global $DB;
-        $invites = $DB->get_records(self::INVITES_TABLE, array('inviteeid' => $userid));
+        $invites = $DB->get_records(self::INVITES_TABLE, ['inviteeid' => $userid]);
         return $invites;
     }
 }

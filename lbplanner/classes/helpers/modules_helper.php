@@ -106,7 +106,7 @@ class modules_helper {
      */
     public static function structure() : external_single_structure {
         return new external_single_structure(
-        array(
+        [
             'moduleid' => new external_value(PARAM_INT, 'Module ID'),
             'name' => new external_value(PARAM_TEXT, 'Module name'),
             'courseid' => new external_value(PARAM_INT, 'Course ID'),
@@ -115,7 +115,7 @@ class modules_helper {
             'url' => new external_value(PARAM_TEXT, 'URL to moodle page for module'),
             'grade' => new external_value(PARAM_INT, 'The grade of the module '.MODULE_GRADE::format()),
             'deadline' => new external_value(PARAM_INT, 'The deadline of the module set by the teacher'),
-        )
+        ]
         );
     }
 
@@ -215,7 +215,7 @@ class modules_helper {
 
         $view = $DB->get_record(
             self::COURSE_MODULES_TABLE,
-            array('course' => $courseid, 'instance' => $moduleid, 'module' => 1)
+            ['course' => $courseid, 'instance' => $moduleid, 'module' => 1]
         );
 
         return strval(new moodle_url('/mod/assign/view.php?id='.$view->id));
@@ -233,22 +233,22 @@ class modules_helper {
         date_default_timezone_set('UTC');
 
         // Get module data.
-        $module = $DB->get_record(self::ASSIGN_TABLE, array('id' => $moduleid));
+        $module = $DB->get_record(self::ASSIGN_TABLE, ['id' => $moduleid]);
 
         // Determine module type.
         $type = self::determin_type($module->name);
 
         if ($type == MODULE_TYPE::NONE) {
-            return array();
+            return [];
         }
         // Check if there are any submissions or feedbacks for this module.
 
         $submitted = false;
 
-        if ($DB->record_exists(self::SUBMISSIONS_TABLE, array('assignment' => $moduleid, 'userid' => $userid))) {
+        if ($DB->record_exists(self::SUBMISSIONS_TABLE, ['assignment' => $moduleid, 'userid' => $userid])) {
             $submission = $DB->get_record(
                 self::SUBMISSIONS_TABLE,
-                array('assignment' => $moduleid, 'userid' => $userid)
+                ['assignment' => $moduleid, 'userid' => $userid]
             );
 
             $submitted = strval($submission->status) == self::SUBMISSION_STATUS_SUBMITTED;
@@ -257,12 +257,12 @@ class modules_helper {
         $done = false;
         $grade = null;
 
-        if ($DB->record_exists(self::GRADES_TABLE, array('assignment' => $moduleid, 'userid' => $userid))) {
-            $moduleboundaries = $DB->get_record(self::GRADE_ITEMS_TABLE, array('iteminstance' => $moduleid));
+        if ($DB->record_exists(self::GRADES_TABLE, ['assignment' => $moduleid, 'userid' => $userid])) {
+            $moduleboundaries = $DB->get_record(self::GRADE_ITEMS_TABLE, ['iteminstance' => $moduleid]);
 
             $mdlgrades = $DB->get_records(
                 self::GRADES_TABLE,
-                array('assignment' => $moduleid, 'userid' => $userid)
+                ['assignment' => $moduleid, 'userid' => $userid]
             );
 
             $mdlgrade = end($mdlgrades);
@@ -284,8 +284,8 @@ class modules_helper {
         $late = false;
         $planid = plan_helper::get_plan_id($userid);
 
-        if ($DB->record_exists(plan_helper::DEADLINES_TABLE, array('planid' => $planid, 'moduleid' => $moduleid))) {
-            $deadline = $DB->get_record(plan_helper::DEADLINES_TABLE, array('planid' => $planid, 'moduleid' => $moduleid));
+        if ($DB->record_exists(plan_helper::DEADLINES_TABLE, ['planid' => $planid, 'moduleid' => $moduleid])) {
+            $deadline = $DB->get_record(plan_helper::DEADLINES_TABLE, ['planid' => $planid, 'moduleid' => $moduleid]);
             $late = intval(date("Ymd", $deadline->deadlineend)) < intval(date("Ymd")) && !$done;
         }
 
@@ -293,7 +293,7 @@ class modules_helper {
 
         // Return the appropriate data.
 
-        return array(
+        return [
             'moduleid' => $moduleid,
             'name' => $module->name,
             'courseid' => $module->course,
@@ -302,7 +302,7 @@ class modules_helper {
             'url' => self::get_module_url($moduleid, $module->course),
             'grade' => $grade,
             'deadline' => $module->duedate > 0 ? $module->duedate : null,
-        );
+        ];
     }
 
     /**
@@ -315,9 +315,9 @@ class modules_helper {
     public static function get_all_course_modules(int $courseid, int $userid, bool $ekenabled) : array {
         global $DB;
 
-        $mdlmodules = $DB->get_records(self::ASSIGN_TABLE, array('course' => $courseid));
+        $mdlmodules = $DB->get_records(self::ASSIGN_TABLE, ['course' => $courseid]);
 
-        $modules = array();
+        $modules = [];
 
         foreach ($mdlmodules as $mdlmodule) {
             if (!$ekenabled && self::determin_type($mdlmodule->name) == MODULE_TYPE::EK) {

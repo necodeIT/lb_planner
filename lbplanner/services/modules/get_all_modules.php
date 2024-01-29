@@ -31,21 +31,21 @@ use local_lbplanner\helpers\plan_helper;
  */
 class modules_get_all_modules extends external_api {
     public static function get_all_modules_parameters() {
-        return new external_function_parameters(array(
+        return new external_function_parameters([
             'userid' => new external_value(PARAM_INT, 'The id of the user', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
-        ));
+        ]);
     }
 
     public static function get_all_modules($userid) {
         global $DB;
 
-        self::validate_parameters(self::get_all_modules_parameters(), array('userid' => $userid));
+        self::validate_parameters(self::get_all_modules_parameters(), ['userid' => $userid]);
 
         user_helper::assert_access($userid);
 
-        $modules = array();
+        $modules = [];
 
-        $courses = self::call_external_function('local_lbplanner_courses_get_all_courses', array('userid' => $userid));
+        $courses = self::call_external_function('local_lbplanner_courses_get_all_courses', ['userid' => $userid]);
         $plan = plan_helper::get_plan(plan_helper::get_plan_id($userid));
         $ekenabled = $plan["enableek"];
 

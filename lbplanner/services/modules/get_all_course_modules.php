@@ -28,7 +28,7 @@ use local_lbplanner\helpers\user_helper;
  */
 class modules_get_all_course_modules extends external_api {
     public static function get_all_course_modules_parameters() {
-        return new external_function_parameters(array(
+        return new external_function_parameters([
             'courseid' => new external_value(PARAM_INT, 'The id of the course', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
             'userid' => new external_value(PARAM_INT, 'The id of the user', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
             'ekenabled' => new external_value(
@@ -37,7 +37,7 @@ class modules_get_all_course_modules extends external_api {
             VALUE_REQUIRED,
             false,
             NULL_NOT_ALLOWED),
-        ));
+        ]);
     }
 
     public static function get_all_course_modules($courseid, $userid, $ekenabled) {
@@ -45,7 +45,7 @@ class modules_get_all_course_modules extends external_api {
 
         self::validate_parameters(
             self::get_all_course_modules_parameters(),
-            array('courseid' => $courseid, 'userid' => $userid, 'ekenabled' => $ekenabled)
+            ['courseid' => $courseid, 'userid' => $userid, 'ekenabled' => $ekenabled]
         );
 
         user_helper::assert_access($userid);

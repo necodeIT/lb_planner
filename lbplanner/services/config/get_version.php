@@ -27,21 +27,22 @@ use external_value;
 class config_get_version extends external_api {
     public static function get_version_parameters() {
         return new external_function_parameters(
-            array()
+            []
         );
     }
 
     public static function get_version() {
         $release = get_config('local_lbplanner', 'release');
-        return array(
-            'release' => get_config('local_lbplanner', 'release'));
+        return [
+            'release' => get_config('local_lbplanner', 'release')
+        ];
     }
 
     public static function get_version_returns() {
         return new external_single_structure(
-            array(
+            [
                 'release' => new external_value(PARAM_TEXT, 'the current LBPlanner version'),
-            )
+            ]
         );
     }
 }

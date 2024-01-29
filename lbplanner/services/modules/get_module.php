@@ -28,20 +28,20 @@ use local_lbplanner\helpers\user_helper;
  */
 class modules_get_module extends external_api {
     public static function get_module_parameters() {
-        return new external_function_parameters(array(
+        return new external_function_parameters([
             'moduleid' => new external_value(PARAM_INT, 'The id of the module', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
             'userid' => new external_value(PARAM_INT, 'The id of the user', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
-        ));
+        ]);
     }
 
     public static function get_module($moduleid, $userid) {
         global $DB;
 
-        self::validate_parameters(self::get_module_parameters(), array('moduleid' => $moduleid, 'userid' => $userid));
+        self::validate_parameters(self::get_module_parameters(), ['moduleid' => $moduleid, 'userid' => $userid]);
 
         user_helper::assert_access($userid);
 
-        if (!$DB->record_exists(modules_helper::MDL_ASSIGN_TABLE, array('id' => $moduleid))) {
+        if (!$DB->record_exists(modules_helper::MDL_ASSIGN_TABLE, ['id' => $moduleid])) {
             throw new \moodle_exception('Module not found');
         }
 

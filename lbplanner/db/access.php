@@ -16,27 +16,25 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$capabilities = array(
-    'local/lb_planner:student' => array(
+$capabilities = [
+    'local/lb_planner:student' => [
         'riskbitmask' => RISK_SPAM,
         'captype' => 'write',
         'contextlevel' => CONTEXT_SYSTEM,
-    ),
-    'local/lb_planner:teacher' => array(
+    ],
+    'local/lb_planner:teacher' => [
         'riskbitmask' => RISK_SPAM || RISK_PERSONAL,
         'captype' => 'write',
         'contextlevel' => CONTEXT_SYSTEM,
-    ),
-    'local/lb_planner:admin' => array(
+    ],
+    'local/lb_planner:admin' => [
         'riskbitmask' => RISK_SPAM || RISK_PERSONAL,
         'captype' => 'write',
         'contextlevel' => CONTEXT_SYSTEM,
-    ),
-    'local/lb_planner:manager' => array(
+    ],
+    'local/lb_planner:manager' => [
         'riskbitmask' => RISK_SPAM || RISK_PERSONAL,
         'captype' => 'write',
         'contextlevel' => CONTEXT_SYSTEM,
-    )
-
-
-);
+    ],
+];
