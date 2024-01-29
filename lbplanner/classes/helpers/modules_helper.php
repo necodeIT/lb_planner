@@ -13,6 +13,14 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+/**
+ * Collection of helper classes for handling modules
+ *
+ * @package local_lbplanner
+ * @subpackage helpers
+ * @copyright 2024 NecodeIT
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 
 namespace local_lbplanner\helpers;
 
@@ -33,9 +41,21 @@ use local_lbplanner\polyfill\Enum;
  * Stati a module can be in
  */
 class MODULE_STATUS extends Enum {
+    /**
+     * Finished module.
+     */
     const DONE = 0;
+    /**
+     * Uploaded module.
+     */
     const UPLOADED = 1;
+    /**
+     * Overdue module.
+     */
     const LATE = 2;
+    /**
+     * Todo module.
+     */
     const PENDING = 3;
 }
 
@@ -43,10 +63,25 @@ class MODULE_STATUS extends Enum {
  * Grades a module can receive
  */
 class MODULE_GRADE extends Enum {
+    /**
+     * Erweiterte Kompetenz vollständig.
+     */
     const EKV = 0;
+    /**
+     * Erweiterte Kompetenz überwiegend.
+     */
     const EK  = 1;
+    /**
+     * Grundlegende Kompetenz vollständig.
+     */
     const GKV = 2;
+    /**
+     * Grundlegende Kompetenz überwiegend.
+     */
     const GK  = 3;
+    /**
+     * Negative grade.
+     */
     const RIP = 4;
 }
 
@@ -54,20 +89,30 @@ class MODULE_GRADE extends Enum {
  * Module Types
  */
 class MODULE_TYPE extends Enum {
+    /**
+     * Grundlegende Kompetenz.
+     */
     const GK = 0;
+    /**
+     * Erweiterte Kompetenz.
+     */
     const EK  = 1;
+    /**
+     * Test i.e. exam.
+     */
     const TEST = 2;
+    /**
+     * TODO: ???
+     */
     const M  = 3;
+    /**
+     * TODO: ???
+     */
     const NONE = 4;
 }
 
 /**
  * Contains helper functions for working with modules.
- *
- * @package local_lbplanner
- * @subpackage helpers
- * @copyright 2024 NecodeIT
- * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class modules_helper {
 
