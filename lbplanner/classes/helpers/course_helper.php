@@ -71,10 +71,11 @@ class course_helper {
      * Get course from lbpanner DB
      *
      * @param int $courseid id of the course in lbplanner
+     * @param int $userid id of the user
      * @return stdClass course from lbplanner
      * @throws dml_exception
      */
-    public static function get_lbplanner_course(int $courseid, $userid) : stdClass {
+    public static function get_lbplanner_course(int $courseid, int $userid) : stdClass {
         global $DB;
         return $DB->get_record(self::LBPLANNER_COURSE_TABLE, ['courseid' => $courseid, 'userid' => $userid]);
     }

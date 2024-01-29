@@ -30,6 +30,7 @@ use external_value;
 class invite_helper {
 
     /**
+     * Returns the data structure of an invite.
      * @return external_single_structure The data structure of an invite.
      */
     public static function structure() : external_single_structure {
