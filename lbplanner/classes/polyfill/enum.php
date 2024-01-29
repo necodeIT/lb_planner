@@ -13,6 +13,14 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+/**
+ * polyfill for php8 enums
+ *
+ * @package local_lbplanner
+ * @subpackage polyfill
+ * @copyright 2024 NecodeIT
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 
 namespace local_lbplanner\polyfill;
 
@@ -23,10 +31,6 @@ use ValueError;
 
 /**
  * Class which is meant to serve as a substitute for native enums.
- *
- * @package local_lbplanner_polyfill
- * @copyright 2024 NecodeIT
- * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 abstract class Enum {
     /**
@@ -86,15 +90,19 @@ abstract class Enum {
 
 /**
  * This represents a single case within an Enum
- *
- * @package local_lbplanner_polyfill
- * @copyright 2024 NecodeIT
- * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class EnumCase {
+    /** @var string the name of the case */
     public string $name;
+    /** @var string the value of the case */
     public mixed $value;
-    public function __construct($name, $value) {
+    /**
+     * Constructs an EnumCase
+     *
+     * @param string $name the name of the case
+     * @param mixed $value the value of the case
+     */
+    public function __construct(string $name, mixed $value) {
         $this->name = $name;
         $this->value = $value;
     }
