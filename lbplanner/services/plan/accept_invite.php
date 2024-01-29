@@ -26,7 +26,7 @@ use local_lbplanner\helpers\PLAN_INVITE_STATE;
 use local_lbplanner\helpers\NOTIF_TRIGGER;
 
 /**
- * Accept an invite from the plan.
+ * Accept an invite to the plan.
  */
 class plan_accept_invite extends external_api {
     public static function accept_invite_parameters() {
