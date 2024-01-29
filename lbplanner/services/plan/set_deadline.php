@@ -29,21 +29,21 @@ class plan_set_deadline extends external_api {
         return new external_function_parameters([
             'moduleid' => new external_value(
                 PARAM_INT,
-                'The ID of the Module',
+                'The ID of the module the deadline is for',
                 VALUE_REQUIRED,
                 null,
                 NULL_NOT_ALLOWED
             ),
             'deadlinestart' => new external_value(
                 PARAM_INT,
-                'The start of the Module',
+                'The start of the deadline',
                 VALUE_REQUIRED,
                 null,
                 NULL_NOT_ALLOWED
             ),
             'deadlineend' => new external_value(
                 PARAM_INT,
-                'The End of the Module',
+                'The End of the deadline',
                 VALUE_REQUIRED,
                 null,
                 NULL_NOT_ALLOWED
