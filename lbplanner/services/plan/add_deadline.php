@@ -84,6 +84,6 @@ class plan_add_deadline extends external_api {
     }
 
     public static function add_deadline_returns() {
-        return new external_value(PARAM_INT,"ID of the newly added deadline");
+        return new external_value(PARAM_INT, "ID of the newly added deadline");
     }
 }

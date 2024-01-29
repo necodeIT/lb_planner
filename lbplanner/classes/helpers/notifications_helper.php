@@ -19,7 +19,7 @@ namespace local_lbplanner\helpers;
 use external_single_structure;
 use external_value;
 
-// TODO: revert to native enums once we migrate to php8
+// TODO: revert to native enums once we migrate to php8.
 
 use local_lbplanner\polyfill\Enum;
 
@@ -55,7 +55,8 @@ class notifications_helper {
     public static function structure() : external_single_structure {
         return new external_single_structure([
             'status' => new external_value(PARAM_INT, 'The status of the notification '.NOTIF_STATUS::format()),
-            'type' => new external_value(PARAM_INT, 'The type of the event that triggered the notification '.NOTIF_TRIGGER::format()),
+            'type' =>
+                new external_value(PARAM_INT, 'The type of the event that triggered the notification '.NOTIF_TRIGGER::format()),
             'info' => new external_value(PARAM_INT, 'Additional information about the notification'),
             'userid' => new external_value(PARAM_INT, 'The ID of the user for whom the notification is for'),
             'notificationid' => new external_value(PARAM_INT, 'The ID of the notification', NULL_NOT_ALLOWED),

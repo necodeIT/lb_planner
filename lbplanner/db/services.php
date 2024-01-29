@@ -17,7 +17,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$functions = array(
+$functions = [
     'local_lbplanner_user_get_user' => [
         'classname' => 'local_lbplanner_services\user_get_user',
         'methodname' => 'get_user',
@@ -306,9 +306,9 @@ $functions = array(
         'capabilities' => '',
         'ajax' => true,
     ],
-);
+];
 
-$services = array(
+$services = [
     'LB Planner API' => [
         'functions' => [
             'local_lbplanner_user_get_user',
@@ -347,6 +347,6 @@ $services = array(
         ],
         'restrictedusers' => 0,
         'enabled' => 1,
-        'shortname' => 'lb_planner_api'
+        'shortname' => 'lb_planner_api',
     ],
-);
+];

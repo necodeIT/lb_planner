@@ -28,7 +28,8 @@ use local_lbplanner\helpers\feedback_helper;
 class feedback_update_feedback extends external_api {
     public static function update_feedback_parameters() {
         return new external_function_parameters([
-            'feedbackid' => new external_value(PARAM_INT, 'ID of the feedback to be updated', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
+            'feedbackid' =>
+                new external_value(PARAM_INT, 'ID of the feedback to be updated', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
             'notes' => new external_value(PARAM_TEXT, 'updated notes', VALUE_DEFAULT, null, NULL_ALLOWED),
             'status' => new external_value(PARAM_INT, 'updated status', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
         ]);

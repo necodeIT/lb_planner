@@ -22,8 +22,8 @@ use external_value;
 class invite_helper {
 
     /**
-    * @return external_single_structure The data structure of an invite.
-    */
+     * @return external_single_structure The data structure of an invite.
+     */
     public static function structure() : external_single_structure {
         return new external_single_structure(
             [

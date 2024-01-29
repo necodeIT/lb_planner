@@ -21,27 +21,27 @@ use ValueError;
 
 abstract class Enum {
     /**
-        * tries to match the passed value to one of the enum values
-        * @param mixed $value the value to be matched
-        * @return mixed either the matching enum value or null if not found
-        */
+     * tries to match the passed value to one of the enum values
+     * @param mixed $value the value to be matched
+     * @return mixed either the matching enum value or null if not found
+     */
     public static function tryFrom(mixed $value): mixed {
         $cases = static::cases();
-        foreach($cases as $case){
+        foreach ($cases as $case) {
             if($case->value === $value)
                 return $value;
         }
         return null;
     }
     /**
-        * tries to match the passed value to one of the enum values
-        * @param mixed $value the value to be matched
-        * @return mixed the matching enum value
-        * @throws ValueError if not found
-        */
+     * tries to match the passed value to one of the enum values
+     * @param mixed $value the value to be matched
+     * @return mixed the matching enum value
+     * @throws ValueError if not found
+     */
     public static function from(mixed $value): mixed {
         $cases = static::cases();
-        foreach($cases as $case){
+        foreach ($cases as $case) {
             if($case->value === $value)
                 return $value;
         }
@@ -49,26 +49,26 @@ abstract class Enum {
         throw new ValueError("value {$value} cannot be represented as a value in enum ".static::class);
     }
     /**
-        * @return EnumCase[] array of cases inside this enum
-        */
+     * @return EnumCase[] array of cases inside this enum
+     */
     public static function cases(): array {
         $reflection = new ReflectionClass(static::class);
         $cases = [];
-        foreach($reflection->getConstants() as $name=>$val){
-            array_push($cases,new EnumCase($name,$val));
+        foreach($reflection->getConstants() as $name => $val){
+            array_push($cases, new EnumCase($name,$val));
         }
         return $cases;
     }
     /**
-        * Formats all possible enum values into a string
-        * Example:
-        * (31=>RED,32=>GREEN,33=>YELLOW)
-        * @return string the resulting string
-        */
+     * Formats all possible enum values into a string
+     * Example:
+     * (31=>RED,32=>GREEN,33=>YELLOW)
+     * @return string the resulting string
+     */
     public static function format(): string {
         $result = "[";
         $cases = static::cases();
-        foreach($cases as $case) {
+        foreach ($cases as $case) {
             $result .= "{$case->value}=>{$case->name},";
         }
         $result[-1] = ']';
@@ -79,7 +79,7 @@ abstract class Enum {
 class EnumCase {
     public string $name;
     public mixed $value;
-    public function __construct($name,$value){
+    public function __construct($name,$value) {
         $this->name = $name;
         $this->value = $value;
     }

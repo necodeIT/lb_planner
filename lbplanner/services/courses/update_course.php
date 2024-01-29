@@ -47,7 +47,7 @@ class courses_update_course extends external_api {
                 'Whether the course is enabled or not',
                 VALUE_DEFAULT,
                 null
-            )
+            ),
         ]);
     }
 

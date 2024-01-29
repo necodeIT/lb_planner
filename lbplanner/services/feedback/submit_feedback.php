@@ -28,9 +28,27 @@ class feedback_submit_feedback extends external_api {
     public static function submit_feedback_parameters() {
         return new external_function_parameters(
             [
-                'type' => new external_value(PARAM_INT, 'type of Feedback (bug, typo, feature, other)', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
-                'content' => new external_value(PARAM_TEXT, 'feedback contents', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
-                'logfile' => new external_value(PARAM_TEXT, 'file name of the associated log file', VALUE_DEFAULT, null, NULL_NOT_ALLOWED ),
+                'type' => new external_value(
+                    PARAM_INT,
+                    'type of Feedback (bug, typo, feature, other)',
+                    VALUE_REQUIRED,
+                    null,
+                    NULL_NOT_ALLOWED,
+                ),
+                'content' => new external_value(
+                    PARAM_TEXT,
+                    'feedback contents',
+                    VALUE_REQUIRED,
+                    null,
+                    NULL_NOT_ALLOWED,
+                ),
+                'logfile' => new external_value(
+                    PARAM_TEXT,
+                    'file name of the associated log file',
+                    VALUE_DEFAULT,
+                    null,
+                    NULL_NOT_ALLOWED,
+                ),
             ]
         );
     }

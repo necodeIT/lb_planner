@@ -25,7 +25,7 @@ use moodle_url;
 use local_lbplanner\polyfill\Enum;
 
 
-// TODO: revert to native enums once we migrate to php8
+// TODO: revert to native enums once we migrate to php8.
 
 /**
  * Stati a module can be in

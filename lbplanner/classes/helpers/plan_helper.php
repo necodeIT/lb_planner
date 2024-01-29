@@ -21,7 +21,7 @@ use external_value;
 use external_multiple_structure;
 use local_lbplanner\polyfill\Enum;
 
-// TODO: revert to native enums once we migrate to php8
+// TODO: revert to native enums once we migrate to php8.
 
 /**
  * Levels of access that a user can have for a plan

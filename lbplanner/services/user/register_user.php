@@ -64,7 +64,7 @@ class user_register_user extends external_api {
                 VALUE_DEFAULT,
                 0,
                 NULL_NOT_ALLOWED,
-            )
+            ),
         ]);
     }
 
