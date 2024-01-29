@@ -28,8 +28,7 @@ abstract class Enum {
      * @return mixed either the matching enum value or null if not found
      */
     public static function tryFrom(mixed $value): mixed {
-        $cases = static::cases();
-        foreach ($cases as $case) {
+        foreach (static::cases() as $case) {
             if($case->value === $value)
                 return $value;
         }
@@ -42,8 +41,7 @@ abstract class Enum {
      * @throws ValueError if not found
      */
     public static function from(mixed $value): mixed {
-        $cases = static::cases();
-        foreach ($cases as $case) {
+        foreach (static::cases() as $case) {
             if($case->value === $value)
                 return $value;
         }
@@ -69,8 +67,7 @@ abstract class Enum {
      */
     public static function format(): string {
         $result = "[";
-        $cases = static::cases();
-        foreach ($cases as $case) {
+        foreach (static::cases() as $case) {
             $result .= "{$case->value}=>{$case->name},";
         }
         $result[-1] = ']';
