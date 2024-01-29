@@ -34,7 +34,7 @@ class config_get_version extends external_api {
     public static function get_version() {
         $release = get_config('local_lbplanner', 'release');
         return [
-            'release' => get_config('local_lbplanner', 'release')
+            'release' => get_config('local_lbplanner', 'release'),
         ];
     }
 

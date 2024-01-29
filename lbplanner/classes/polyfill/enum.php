@@ -45,7 +45,7 @@ abstract class Enum {
             if($case->value === $value)
                 return $value;
         }
-        
+
         throw new ValueError("value {$value} cannot be represented as a value in enum ".static::class);
     }
     /**
@@ -54,8 +54,8 @@ abstract class Enum {
     public static function cases(): array {
         $reflection = new ReflectionClass(static::class);
         $cases = [];
-        foreach($reflection->getConstants() as $name => $val){
-            array_push($cases, new EnumCase($name,$val));
+        foreach ($reflection->getConstants() as $name => $val) {
+            array_push($cases, new EnumCase($name, $val));
         }
         return $cases;
     }
@@ -78,7 +78,7 @@ abstract class Enum {
 class EnumCase {
     public string $name;
     public mixed $value;
-    public function __construct($name,$value) {
+    public function __construct($name, $value) {
         $this->name = $name;
         $this->value = $value;
     }
