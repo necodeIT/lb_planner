@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart' hide Feedback;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
-import 'package:lb_planner/features/auth/domain/domain.dart';
 import 'package:lb_planner/features/feedback/domain/domain.dart';
 import 'package:lb_planner/features/feedback/presentation/widgets/feedback.dart';
 import 'package:lb_planner/features/themes/domain/models/module_status_theme.dart';
@@ -39,7 +38,7 @@ class _AdminFeedbackPageRouteState extends State<AdminFeedbackPageRoute> {
 
     updated = 0;
 
-    _pushNext(feedback);
+    _pushNext(context, ref, feedback);
   }
 
   _pushNext(BuildContext context, WidgetRef ref, feedback) {
@@ -104,7 +103,7 @@ class _AdminFeedbackPageRouteState extends State<AdminFeedbackPageRoute> {
                 title: t.admin_feedback_page_deleteTitle,
                 message: t.admin_feedback_page_deleteText,
                 confirmIsBad: true,
-                onConfirm: () => _deleteFeedback(ref, feedback),
+                onConfirm: () => _deleteFeedback(context, ref, feedback),
               ),
             ),
             falseWidget: (_) => CircularProgressIndicator(
