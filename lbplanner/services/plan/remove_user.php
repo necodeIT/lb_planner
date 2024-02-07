@@ -27,7 +27,7 @@ use local_lbplanner\helpers\plan_helper;
 class plan_remove_user extends external_api {
     public static function remove_user_parameters() {
         return new external_function_parameters([
-            'userid' => new external_value(PARAM_INT, 'The id of the user to remove', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
+            'userid' => new external_value(PARAM_INT, 'ID of the user to remove', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
         ]);
     }
 

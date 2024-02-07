@@ -153,15 +153,6 @@ $functions = array(
         'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
     ),
-    'local_lbplanner_plan_add_deadline' => array(
-        'classname' => 'local_lbplanner_services\plan_add_deadline',
-        'methodname' => 'add_deadline',
-        'classpath' => 'local/lbplanner/services/plan/add_deadline.php',
-        'description' => 'Add a deadline to the plan',
-        'type' => 'write',
-        'capabilities' => 'local/lb_planner:student',
-        'ajax' => true,
-    ),
     'local_lbplanner_plan_delete_deadline' => array(
         'classname' => 'local_lbplanner_services\plan_delete_deadline',
         'methodname' => 'delete_deadline',
@@ -180,11 +171,11 @@ $functions = array(
         'capabilities' => 'local/lb_planner:student',
         'ajax' => true,
     ),
-    'local_lbplanner_plan_update_deadline' => array(
-        'classname' => 'local_lbplanner_services\plan_update_deadline',
-        'methodname' => 'update_deadline',
-        'classpath' => 'local/lbplanner/services/plan/update_deadline.php',
-        'description' => 'Update a deadline from the plan',
+    'local_lbplanner_plan_set_deadline' => array(
+        'classname' => 'local_lbplanner_services\plan_set_deadline',
+        'methodname' => 'set_deadline',
+        'classpath' => 'local/lbplanner/services/plan/set_deadline.php',
+        'description' => 'Set a deadline from the plan',
         'type' => 'write',
         'capabilities' => 'local/lb_planner:student',
         'ajax' => true,

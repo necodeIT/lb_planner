@@ -20,6 +20,7 @@ use external_api;
 use external_function_parameters;
 use external_value;
 use local_lbplanner\helpers\invite_helper;
+use local_lbplanner\helpers\NOTIF_TRIGGER;
 use local_lbplanner\helpers\plan_helper;
 use local_lbplanner\helpers\notifications_helper;
 use local_lbplanner\helpers\PLAN_INVITE_STATE;
@@ -32,7 +33,7 @@ class plan_invite_user extends external_api {
         return new external_function_parameters([
             'inviteeid' => new external_value(
                 PARAM_INT,
-                'The id of the user who gets invited',
+                'ID of the user who gets invited',
                 VALUE_REQUIRED,
                 null,
                 NULL_NOT_ALLOWED
@@ -83,7 +84,7 @@ class plan_invite_user extends external_api {
         notifications_helper::notify_user(
             $inviteeid,
             $invite->id,
-            notifications_helper::TRIGGER_INVITE
+            NOTIF_TRIGGER::INVITE
         );
 
         return $invite;

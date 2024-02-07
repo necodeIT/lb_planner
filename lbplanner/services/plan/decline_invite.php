@@ -19,6 +19,7 @@ namespace local_lbplanner_services;
 use external_api;
 use external_function_parameters;
 use external_value;
+use local_lbplanner\helpers\NOTIF_TRIGGER;
 use local_lbplanner\helpers\plan_helper;
 use local_lbplanner\helpers\notifications_helper;
 use local_lbplanner\helpers\PLAN_INVITE_STATE;
@@ -29,7 +30,7 @@ use local_lbplanner\helpers\PLAN_INVITE_STATE;
 class plan_decline_invite extends external_api {
     public static function decline_invite_parameters() {
         return new external_function_parameters([
-        'inviteid' => new external_value(PARAM_INT, 'The inviteid of the plan', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
+        'inviteid' => new external_value(PARAM_INT, 'the ID of the invite to be declined', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
         ]);
     }
 
@@ -61,7 +62,7 @@ class plan_decline_invite extends external_api {
         notifications_helper::notify_user(
             $invite->inviterid,
             $invite->id,
-            notifications_helper::TRIGGER_INVITE_DECLINED
+            NOTIF_TRIGGER::INVITE_DECLINED
         );
 
         $invite->status = PLAN_INVITE_STATE::DECLINED;

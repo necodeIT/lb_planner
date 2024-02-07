@@ -23,14 +23,15 @@ use local_lbplanner\helpers\plan_helper;
 use local_lbplanner\helpers\notifications_helper;
 use local_lbplanner\helpers\PLAN_ACCESS_TYPE;
 use local_lbplanner\helpers\PLAN_INVITE_STATE;
+use local_lbplanner\helpers\NOTIF_TRIGGER;
 
 /**
- * Update a invite from the plan.
+ * Accept an invite to the plan.
  */
 class plan_accept_invite extends external_api {
     public static function accept_invite_parameters() {
         return new external_function_parameters([
-        'inviteid' => new external_value(PARAM_INT, 'The id of the plan', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
+        'inviteid' => new external_value(PARAM_INT, 'the ID of the invite to be accepted', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
         ]);
     }
 
@@ -63,7 +64,7 @@ class plan_accept_invite extends external_api {
         notifications_helper::notify_user(
             $invite->inviterid,
             $invite->id,
-            notifications_helper::TRIGGER_INVITE_ACCEPTED
+            NOTIF_TRIGGER::INVITE_ACCEPTED
         );
 
         // Deletes the old plan if the user is the owner of it.

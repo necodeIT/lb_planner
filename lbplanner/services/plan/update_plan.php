@@ -29,14 +29,14 @@ class plan_update_plan extends external_api {
         return new external_function_parameters([
             'planname' => new external_value(
                 PARAM_TEXT,
-                'The Name of the Plan',
+                'Name of the Plan',
                 VALUE_REQUIRED,
                 null,
                 NULL_NOT_ALLOWED
             ),
             'enableek' => new external_value(
                 PARAM_BOOL,
-                'If the plan is enabled for ek',
+                'Whether EK is enabled for the plan',
                 VALUE_REQUIRED,
                 null,
                 NULL_NOT_ALLOWED

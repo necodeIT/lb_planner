@@ -22,6 +22,43 @@ use external_single_structure;
 use external_value;
 use moodle_url;
 
+use local_lbplanner\polyfill\Enum;
+
+
+// TODO: revert to native enums once we migrate to php8
+
+/**
+ * Stati a module can be in
+ */
+class MODULE_STATUS extends Enum {
+    const DONE = 0;
+    const UPLOADED = 1;
+    const LATE = 2;
+    const PENDING = 3;
+}
+
+/**
+ * Grades a module can receive
+ */
+class MODULE_GRADE extends Enum {
+    const EKV = 0;
+    const EK  = 1;
+    const GKV = 2;
+    const GK  = 3;
+    const RIP = 4;
+}
+
+/**
+ * Module Types
+ */
+class MODULE_TYPE extends Enum {
+    const GK = 0;
+    const EK  = 1;
+    const TEST = 2;
+    const M  = 3;
+    const NONE = 4;
+}
+
 /**
  * Contains helper functions for working with modules.
  */
@@ -63,77 +100,6 @@ class modules_helper {
     const SUBMISSION_STATUS_SUBMITTED = 'submitted';
 
     /**
-     * Enum value for grade 'Nicht erfüllt'.
-     */
-    const GRADE_RIP = 4;
-
-    /**
-     * Enum value for grade 'GK überwiegend'.
-     */
-    const GRADE_GK = 3;
-
-    /**
-     * Enum value for grade 'GK vollständig'.
-     */
-    const GRADE_GKV = 2;
-
-
-    /**
-     * Enum value for grade 'EK überwiegend'.
-     */
-    const GRADE_EK = 1;
-
-    /**
-     * Enum value for grade 'EK vollständig'.
-     */
-    const GRADE_EKV = 0;
-
-    /**
-     * Enum value for completed module.
-     */
-    const STATUS_DONE = 0;
-
-    /**
-     * Enum value for uploaded module.
-     */
-    const STATUS_UPLOADED = 1;
-
-    /**
-     * Enum value for not completed module.
-     */
-    const STATUS_LATE = 2;
-
-    /**
-     * Enum value for pending module.
-     */
-    const STATUS_PENDING = 3;
-
-    /**
-     * Enum value for modules of type 'GK'.
-     */
-    const TYPE_GK = 0;
-
-    /**
-     * Enum value for modules of type 'EK'.
-     */
-    const TYPE_EK = 1;
-
-    /**
-     * Enum value for modules of type 'TEST'.
-     */
-    const TYPE_TEST = 2;
-
-    /**
-     * Enum value for modules of type 'M'.
-     */
-    const TYPE_M = 3;
-
-    /**
-     * Enum value for non
-     */
-    const TYPE_NONE = 4;
-
-    /**
      * The return structure of a module.
      *
      * @return external_single_structure The structure of a module.
@@ -141,13 +107,13 @@ class modules_helper {
     public static function structure() : external_single_structure {
         return new external_single_structure(
         array(
-            'moduleid' => new external_value(PARAM_INT, 'The id of the module'),
-            'name' => new external_value(PARAM_TEXT, 'The name of the module'),
-            'courseid' => new external_value(PARAM_INT, 'The id of the course'),
-            'status' => new external_value(PARAM_INT, 'The status of the module'),
-            'type' => new external_value(PARAM_INT, 'The type of the module'),
-            'url' => new external_value(PARAM_TEXT, 'The url of the module in moodle'),
-            'grade' => new external_value(PARAM_INT, 'The grade of the module'),
+            'moduleid' => new external_value(PARAM_INT, 'Module ID'),
+            'name' => new external_value(PARAM_TEXT, 'Shortened module name (max. 5 chars)'),
+            'courseid' => new external_value(PARAM_INT, 'Course ID'),
+            'status' => new external_value(PARAM_INT, 'Module status '.MODULE_STATUS::format()),
+            'type' => new external_value(PARAM_INT, 'Module type '.MODULE_TYPE::format()),
+            'url' => new external_value(PARAM_TEXT, 'URL to moodle page for module'),
+            'grade' => new external_value(PARAM_INT, 'The grade of the module '.MODULE_GRADE::format()),
             'deadline' => new external_value(PARAM_INT, 'The deadline of the module set by the teacher'),
         )
         );
@@ -164,7 +130,7 @@ class modules_helper {
      */
     public static function determin_uinified_grade(int $grade, int $maxgrade, int $mingrade, int $gradepass) : int {
         if ($grade < $gradepass) {
-            return self::GRADE_RIP;
+            return MODULE_GRADE::RIP;
         }
 
         $maxgrade = $maxgrade - $mingrade;
@@ -172,15 +138,15 @@ class modules_helper {
         $p = $grade / $maxgrade;
 
         if ($p >= 0.9) {
-            return self::GRADE_EKV;
+            return MODULE_GRADE::EKV;
         } else if ($p >= 0.8) {
-            return self::GRADE_EK;
+            return MODULE_GRADE::EK;
         } else if ($p >= 0.7) {
-            return self::GRADE_GKV;
+            return MODULE_GRADE::GKV;
         } else if ($p >= 0.4) {
-            return self::GRADE_GK;
+            return MODULE_GRADE::GK;
         } else {
-            return self::GRADE_RIP;
+            return MODULE_GRADE::RIP;
         }
     }
 
@@ -194,13 +160,13 @@ class modules_helper {
      */
     public static function map_status(bool $submitted, bool $done, bool $late) : int {
         if ($done) {
-            return self::STATUS_DONE;
+            return MODULE_STATUS::DONE;
         } else if ($submitted) {
-            return self::STATUS_UPLOADED;
+            return MODULE_STATUS::UPLOADED;
         } else if ($late) {
-            return self::STATUS_LATE;
+            return MODULE_STATUS::LATE;
         } else {
-            return self::STATUS_PENDING;
+            return MODULE_STATUS::PENDING;
         }
     }
 
@@ -216,25 +182,25 @@ class modules_helper {
 
         // Return TYPE_TEST if the name contains 'test' or 'sa'.
         if (strpos($modulename, '[TEST]') !== false || strpos($modulename, '[SA]') !== false) {
-            return self::TYPE_TEST;
+            return MODULE_TYPE::TEST;
         }
         // Return TYPE_GK if the name contains 'GK'.
 
         if (strpos($modulename, '[GK]') !== false) {
-            return self::TYPE_GK;
+            return MODULE_TYPE::GK;
         }
 
         if (strpos($modulename, '[EK]') !== false) {
-            return self::TYPE_EK;
+            return MODULE_TYPE::EK;
         }
 
         // Return TYPE_EK if the name contains 'M'.
         if (strpos($modulename, '[M]') !== false) {
-            return self::TYPE_M;
+            return MODULE_TYPE::M;
         }
 
         // Return TYPE_NONE elswise.
-        return self::TYPE_NONE;
+        return MODULE_TYPE::NONE;
     }
 
     /**
@@ -272,7 +238,7 @@ class modules_helper {
         // Determine module type.
         $type = self::determin_type($module->name);
 
-        if ($type == self::TYPE_NONE) {
+        if ($type == MODULE_TYPE::NONE) {
             return array();
         }
         // Check if there are any submissions or feedbacks for this module.
@@ -310,7 +276,7 @@ class modules_helper {
                 $moduleboundaries->gradepass
                 );
 
-                $done = $grade != self::GRADE_RIP;
+                $done = $grade != MODULE_GRADE::RIP;
             }
         }
         // Check if the module is late.
@@ -354,7 +320,7 @@ class modules_helper {
         $modules = array();
 
         foreach ($mdlmodules as $mdlmodule) {
-            if (!$ekenabled && self::determin_type($mdlmodule->name) == self::TYPE_EK) {
+            if (!$ekenabled && self::determin_type($mdlmodule->name) == MODULE_TYPE::EK) {
                 continue;
             }
             $module = self::get_module($mdlmodule->id, $userid);

@@ -18,6 +18,7 @@ namespace local_lbplanner_services;
 
 use external_api;
 use external_function_parameters;
+use local_lbplanner\helpers\NOTIF_TRIGGER;
 use local_lbplanner\helpers\plan_helper;
 use local_lbplanner\helpers\notifications_helper;
 use local_lbplanner\helpers\PLAN_ACCESS_TYPE;
@@ -96,7 +97,7 @@ class plan_leave_plan extends external_api {
         notifications_helper::notify_user(
             plan_helper::get_owner($planid),
             $USER->id,
-            notifications_helper::TRIGGER_PLAN_LEFT
+            NOTIF_TRIGGER::PLAN_LEFT
         );
     }
     public static function leave_plan_returns() {

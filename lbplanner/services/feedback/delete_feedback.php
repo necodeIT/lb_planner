@@ -28,7 +28,7 @@ use local_lbplanner\helpers\feedback_helper;
 class feedback_delete_feedback extends external_api {
     public static function delete_feedback_parameters() {
         return new external_function_parameters([
-            'feedbackid' => new external_value(PARAM_INT, 'The id of the course', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
+            'feedbackid' => new external_value(PARAM_INT, 'ID of the feedback to delete', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
         ]);
     }
 

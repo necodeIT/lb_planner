@@ -22,6 +22,7 @@ use external_function_parameters;
 use external_single_structure;
 use external_value;
 use invalid_parameter_exception;
+use local_lbplanner\helpers\NOTIF_TRIGGER;
 use local_lbplanner\helpers\PLAN_ACCESS_TYPE;
 use local_lbplanner\helpers\PLAN_EK;
 use local_lbplanner\helpers\user_helper;
@@ -111,7 +112,7 @@ class user_register_user extends external_api {
 
         $DB->insert_record(plan_helper::ACCESS_TABLE, $planaccess);
 
-        notifications_helper::notify_user($userid, -1, notifications_helper::TRIGGER_USER_REGISTERED);
+        notifications_helper::notify_user($userid, -1, NOTIF_TRIGGER::USER_REGISTERED);
 
         return [
             'userid' => $lbplanneruser->userid,
