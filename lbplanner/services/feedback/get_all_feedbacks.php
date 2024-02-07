@@ -30,16 +30,29 @@ use local_lbplanner\helpers\feedback_helper;
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class feedback_get_all_feedbacks extends external_api {
-    public static function get_all_feedbacks_parameters() {
+    /**
+     * Parameters for get_all_feedbacks.
+     * @return external_function_parameters
+     */
+    public static function get_all_feedbacks_parameters(): external_function_parameters {
         return new external_function_parameters([]);
     }
 
+    /**
+     * Returns all feedbacks from the database.
+     *
+     * @return array all feedback objects
+     */
     public static function get_all_feedbacks(): array {
         feedback_helper::assert_admin_access();
         return feedback_helper::get_all_feedbacks();
     }
 
-    public static function get_all_feedbacks_returns() {
+    /**
+     * Returns the structure of the array of feedbacks.
+     * @return external_multiple_structure
+     */
+    public static function get_all_feedbacks_returns(): external_multiple_structure {
         return new external_multiple_structure(
             feedback_helper::structure(),
         );
