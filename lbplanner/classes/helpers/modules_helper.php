@@ -160,7 +160,7 @@ class modules_helper {
         return new external_single_structure(
         [
             'moduleid' => new external_value(PARAM_INT, 'Module ID'),
-            'name' => new external_value(PARAM_TEXT, 'Module name'),
+            'name' => new external_value(PARAM_TEXT, 'Shortened module name (max. 5 chars)'),
             'courseid' => new external_value(PARAM_INT, 'Course ID'),
             'status' => new external_value(PARAM_INT, 'Module status '.MODULE_STATUS::format()),
             'type' => new external_value(PARAM_INT, 'Module type '.MODULE_TYPE::format()),
