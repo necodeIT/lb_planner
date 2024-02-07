@@ -87,7 +87,9 @@ class notifications_helper {
     const LBPLANNER_NOTIFICATION_TABLE = 'local_lbplanner_notification';
 
     /**
-     * @return external_single_structure The data structure of a module.
+     * Returns the data structure of a notification
+     *
+     * @return external_single_structure The data structure of a notification.
      */
     public static function structure() : external_single_structure {
         return new external_single_structure([

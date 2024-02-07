@@ -62,6 +62,8 @@ abstract class Enum {
         throw new ValueError("value {$value} cannot be represented as a value in enum ".static::class);
     }
     /**
+     * Returns an array of all the cases that exist in this enum
+     *
      * @return EnumCase[] array of cases inside this enum
      */
     public static function cases(): array {

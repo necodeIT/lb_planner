@@ -82,8 +82,7 @@ class feedback_helper {
     /**
      * Checks if the user has access to feedback
      *
-     * @param int $userid The id of the user
-     * @return void Throws an exception if the user has no access
+     * @throws \moodle_exception when the user has no access
      */
     public static function assert_admin_access() {
         if (!has_capability(user_helper::CAPABILITY_ADMIN, \context_system::instance()) &&

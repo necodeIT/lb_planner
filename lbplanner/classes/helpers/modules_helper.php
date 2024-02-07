@@ -362,7 +362,7 @@ class modules_helper {
      *
      * @param int $courseid The id of the course.
      * @param int $userid The id of the user.
-     * @param int $ekenabled Whether EK modules should be included.
+     * @param bool $ekenabled Whether EK modules should be included.
      * @return array The modules.
      */
     public static function get_all_course_modules(int $courseid, int $userid, bool $ekenabled) : array {
