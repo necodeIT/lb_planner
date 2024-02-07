@@ -31,11 +31,15 @@ use local_lbplanner\helpers\plan_helper;
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class plan_update_access extends external_api {
-    public static function update_access_parameters() {
+    /**
+     * Parameters for update_access.
+     * @return external_function_parameters
+     */
+    public static function update_access_parameters(): external_function_parameters {
         return new external_function_parameters([
             'accesstype' => new external_value(
                 PARAM_INT,
-                'New access type',
+                'New access type '.PLAN_ACCESS_TYPE::format(),
                 VALUE_REQUIRED,
                 null,
                 NULL_NOT_ALLOWED
@@ -50,7 +54,16 @@ class plan_update_access extends external_api {
         ]);
     }
 
-    public static function update_access($accesstype, $memberid) {
+    /**
+     * Update the access of the plan.
+     *
+     * @param int $accesstype new access type
+     * @see PLAN_ACCESS_TYPE
+     * @param int $memberid ID of the member to have their access changed
+     * @return void
+     * @throws \moodle_exception when access denied, type not valid or insufficient permissions
+     */
+    public static function update_access(int $accesstype, int $memberid) {
         global $DB, $USER;
 
         self::validate_parameters(
@@ -88,6 +101,10 @@ class plan_update_access extends external_api {
         $DB->update_record(plan_helper::ACCESS_TABLE, $access);
     }
 
+    /**
+     * Returns the structure of nothing.
+     * @return null
+     */
     public static function update_access_returns() {
         return null;
     }

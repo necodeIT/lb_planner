@@ -35,15 +35,26 @@ use local_lbplanner\helpers\PLAN_INVITE_STATE;
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class plan_leave_plan extends external_api {
-    public static function leave_plan_parameters() {
+    /**
+     * Parameters for leave_plan.
+     * @return external_function_parameters
+     */
+    public static function leave_plan_parameters(): external_function_parameters {
         return new external_function_parameters([]);
     }
 
+    /**
+     * Leave your plan
+     *
+     * @return void
+     * @throws \moodle_exception when user is only member left in plan
+     */
     public static function leave_plan() {
         global $DB, $USER;
 
         $planid = plan_helper::get_plan_id($USER->id);
 
+        //TODO: remove useless check
         if (plan_helper::get_access_type($USER->id, $planid) === PLAN_ACCESS_TYPE::NONE) {
             throw new \moodle_exception('User is not a member of this plan');
         }
@@ -106,6 +117,11 @@ class plan_leave_plan extends external_api {
             NOTIF_TRIGGER::PLAN_LEFT
         );
     }
+
+    /**
+     * Returns the structure of nothing.
+     * @return null
+     */
     public static function leave_plan_returns() {
         return null;
     }

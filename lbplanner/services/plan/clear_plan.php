@@ -29,10 +29,20 @@ use local_lbplanner\helpers\plan_helper;
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class plan_clear_plan extends external_api {
-    public static function clear_plan_parameters() {
+    /**
+     * Parameters for clear_plan.
+     * @return external_function_parameters
+     */
+    public static function clear_plan_parameters(): external_function_parameters {
         return new external_function_parameters([]);
     }
 
+    /**
+     * Clear the plan.
+     *
+     * @return void
+     * @throws Exception when access denied
+     */
     public static function clear_plan() {
         global $DB, $USER;
 
@@ -45,6 +55,10 @@ class plan_clear_plan extends external_api {
         $DB->delete_records(plan_helper::DEADLINES_TABLE, ['planid' => $planid ]);
     }
 
+    /**
+     * Returns the structure of nothing.
+     * @return null
+     */
     public static function clear_plan_returns() {
         return null;
     }

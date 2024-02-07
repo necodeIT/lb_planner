@@ -31,11 +31,20 @@ use local_lbplanner\helpers\plan_helper;
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class plan_get_invites extends external_api {
-    public static function get_invites_parameters() {
+    /**
+     * Parameters for get_invites.
+     * @return external_function_parameters
+     */
+    public static function get_invites_parameters(): external_function_parameters {
         return new external_function_parameters([]);
     }
 
-    public static function get_invites() {
+    /**
+     * Returns all invites of the current user.
+     *
+     * @return array
+     */
+    public static function get_invites(): array {
         global $DB, $USER;
 
         $invitesreceived = $DB->get_records(plan_helper::INVITES_TABLE, ['inviteeid' => $USER->id]);
@@ -68,7 +77,11 @@ class plan_get_invites extends external_api {
         return $invites;
     }
 
-    public static function get_invites_returns() {
+    /**
+     * Returns the structure of the array of invites.
+     * @return external_multiple_structure
+     */
+    public static function get_invites_returns(): external_multiple_structure {
         return new external_multiple_structure(
             invite_helper::structure()
         );

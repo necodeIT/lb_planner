@@ -30,6 +30,10 @@ use local_lbplanner\helpers\plan_helper;
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class plan_set_deadline extends external_api {
+    /**
+     * Parameters for set_deadline.
+     * @return external_function_parameters
+     */
     public static function set_deadline_parameters() {
         return new external_function_parameters([
             'moduleid' => new external_value(
@@ -56,7 +60,16 @@ class plan_set_deadline extends external_api {
         ]);
     }
 
-    public static function set_deadline($moduleid, $deadlinestart, $deadlineend) {
+    /**
+     * Set the deadline for a module
+     *
+     * @param int $moduleid ID of the module the deadline is for
+     * @param int $deadlinestart Start of the deadline
+     * @param int $deadlineend End of the deadline
+     * @return void
+     * @throws \moodle_exception when access denied
+     */
+    public static function set_deadline(int $moduleid, int $deadlinestart, int $deadlineend): external_function_parameters {
         global $DB, $USER;
 
         self::validate_parameters(
@@ -96,6 +109,10 @@ class plan_set_deadline extends external_api {
         }
     }
 
+    /**
+     * Returns the structure of nothing.
+     * @return null
+     */
     public static function set_deadline_returns() {
         return null;
     }
