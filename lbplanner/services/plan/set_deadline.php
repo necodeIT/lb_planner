@@ -22,28 +22,28 @@ use external_value;
 use local_lbplanner\helpers\plan_helper;
 
 /**
- * Add a deadline to the plan.
+ * Set the deadline for a module
  */
-class plan_add_deadline extends external_api {
-    public static function add_deadline_parameters() {
+class plan_set_deadline extends external_api {
+    public static function set_deadline_parameters() {
         return new external_function_parameters([
             'moduleid' => new external_value(
                 PARAM_INT,
-                'ID of the Module',
+                'The ID of the module the deadline is for',
                 VALUE_REQUIRED,
                 null,
                 NULL_NOT_ALLOWED
             ),
             'deadlinestart' => new external_value(
                 PARAM_INT,
-                'Start of the deadline range',
+                'The start of the deadline',
                 VALUE_REQUIRED,
                 null,
                 NULL_NOT_ALLOWED
             ),
             'deadlineend' => new external_value(
                 PARAM_INT,
-                'End of the deadline',
+                'The end of the deadline',
                 VALUE_REQUIRED,
                 null,
                 NULL_NOT_ALLOWED
@@ -51,11 +51,11 @@ class plan_add_deadline extends external_api {
         ]);
     }
 
-    public static function add_deadline($moduleid, $deadlinestart, $deadlineend) {
+    public static function set_deadline($moduleid, $deadlinestart, $deadlineend) {
         global $DB, $USER;
 
         self::validate_parameters(
-            self::add_deadline_parameters(),
+            self::set_deadline_parameters(),
             [
                 'moduleid' => $moduleid,
                 'deadlinestart' => $deadlinestart,
@@ -65,25 +65,33 @@ class plan_add_deadline extends external_api {
 
         $planid = plan_helper::get_plan_id($USER->id);
 
-        if ( !plan_helper::check_edit_permissions( $planid, $USER->id ) ) {
+        if (!plan_helper::check_edit_permissions($planid, $USER->id)) {
             throw new \moodle_exception('Access denied');
         }
 
-        if ($DB->record_exists(plan_helper::DEADLINES_TABLE, ['moduleid' => $moduleid, 'planid' => $planid])) {
-            throw new \moodle_exception('Deadline already exists');
+        // if a deadline already exists,
+        if (!$DB->record_exists(plan_helper::DEADLINES_TABLE, ['moduleid' => $moduleid, 'planid' => $planid])) {
+            // update the existing deadline
+            $deadline = $DB->get_record(plan_helper::DEADLINES_TABLE, ['moduleid' => $moduleid, 'planid' => $planid]);
+
+            $deadline->deadlinestart = $deadlinestart;
+            $deadline->deadlineend = $deadlineend;
+
+            $DB->update_record(plan_helper::DEADLINES_TABLE, $deadline);
+        } else {
+            // otherwise insert a new one
+            $deadline = new \stdClass();
+
+            $deadline->planid = $planid;
+            $deadline->moduleid = $moduleid;
+            $deadline->deadlinestart = $deadlinestart;
+            $deadline->deadlineend = $deadlineend;
+
+            $DB->insert_record(plan_helper::DEADLINES_TABLE, $deadline);
         }
-
-        $deadline = new \stdClass();
-
-        $deadline->planid = $planid;
-        $deadline->moduleid = $moduleid;
-        $deadline->deadlinestart = $deadlinestart;
-        $deadline->deadlineend = $deadlineend;
-
-        return $DB->insert_record(plan_helper::DEADLINES_TABLE, $deadline);
     }
 
-    public static function add_deadline_returns() {
-        return new external_value(PARAM_INT,"ID of the newly added deadline");
+    public static function set_deadline_returns() {
+        return null;
     }
 }
