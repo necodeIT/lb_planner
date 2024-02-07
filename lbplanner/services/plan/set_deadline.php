@@ -43,7 +43,7 @@ class plan_set_deadline extends external_api {
             ),
             'deadlineend' => new external_value(
                 PARAM_INT,
-                'The End of the deadline',
+                'The end of the deadline',
                 VALUE_REQUIRED,
                 null,
                 NULL_NOT_ALLOWED
