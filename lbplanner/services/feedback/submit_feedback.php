@@ -39,7 +39,7 @@ class feedback_submit_feedback extends external_api {
             [
                 'type' => new external_value(
                     PARAM_INT,
-                    'type of Feedback (bug, typo, feature, other)', //TODO: use enums.
+                    'type of Feedback (bug, typo, feature, other)', // TODO: use enums.
                     VALUE_REQUIRED,
                     null,
                     NULL_NOT_ALLOWED,
@@ -79,7 +79,7 @@ class feedback_submit_feedback extends external_api {
             ['type' => $type, 'content' => $content, 'logfile' => $logfile]
         );
 
-        //TODO: validate $type.
+        // TODO: validate $type.
 
         $id = $DB->insert_record(feedback_helper::LBPLANNER_FEEDBACK_TABLE, [
             'content' => $content,

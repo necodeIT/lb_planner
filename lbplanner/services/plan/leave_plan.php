@@ -54,7 +54,7 @@ class plan_leave_plan extends external_api {
 
         $planid = plan_helper::get_plan_id($USER->id);
 
-        //TODO: remove useless check
+        // TODO: remove useless check.
         if (plan_helper::get_access_type($USER->id, $planid) === PLAN_ACCESS_TYPE::NONE) {
             throw new \moodle_exception('User is not a member of this plan');
         }

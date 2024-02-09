@@ -22,6 +22,8 @@ use external_value;
 use stdClass;
 use local_lbplanner\helpers\user_helper;
 
+// TODO: use enums.
+
 /**
  * Helper class for feedback
  *

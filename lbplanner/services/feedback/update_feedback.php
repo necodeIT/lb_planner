@@ -70,7 +70,7 @@ class feedback_update_feedback extends external_api {
 
         $feedback = $DB->get_record(feedback_helper::LBPLANNER_FEEDBACK_TABLE, ['id' => $feedbackid], '*', MUST_EXIST);
         $feedback->notes = $notes;
-        if ($status > 1 || $status < 0) { //TODO: use enum to validate.
+        if ($status > 1 || $status < 0) { // TODO: use enum to validate.
             throw new \moodle_exception('Invalid status');
         }
         $feedback->status = $status;
