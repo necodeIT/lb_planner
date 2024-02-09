@@ -23,14 +23,21 @@ use stdClass;
 /**
  * Helper class for courses
  *
- * @package local_lbplanner_helpers
- * @copyright 2023 NecodeIT
+ * @package local_lbplanner
+ * @subpackage helpers
+ * @copyright 2024 NecodeIT
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class course_helper {
 
+    /**
+     * The course table used by the LP
+     */
     const LBPLANNER_COURSE_TABLE = 'local_lbplanner_courses';
 
+    /**
+     * A list of nice colors to choose from :)
+     */
     const COLORS = [
         "#f50057",
         "#536dfe",
@@ -48,7 +55,13 @@ class course_helper {
         "#8B37CA",
         "#CA37B9",
     ];
+    /**
+     * constant that represents a disabled course
+     */
     const DISABLED_COURSE = 0;
+    /**
+     * constant that represents an enabled course
+     */
     const ENABLED_COURSE = 1;
 
     /**
@@ -70,10 +83,11 @@ class course_helper {
      * Get course from lbpanner DB
      *
      * @param int $courseid id of the course in lbplanner
+     * @param int $userid id of the user
      * @return stdClass course from lbplanner
      * @throws dml_exception
      */
-    public static function get_lbplanner_course(int $courseid, $userid) : stdClass {
+    public static function get_lbplanner_course(int $courseid, int $userid) : stdClass {
         global $DB;
         return $DB->get_record(self::LBPLANNER_COURSE_TABLE, ['courseid' => $courseid, 'userid' => $userid]);
     }

@@ -19,9 +19,18 @@ namespace local_lbplanner\helpers;
 use external_single_structure;
 use external_value;
 
+/**
+ * Helper class for plan invites
+ *
+ * @package local_lbplanner
+ * @subpackage helpers
+ * @copyright 2024 NecodeIT
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 class invite_helper {
 
-	/**
+    /**
+     * Returns the data structure of an invite.
      * @return external_single_structure The data structure of an invite.
      */
     public static function structure() : external_single_structure {

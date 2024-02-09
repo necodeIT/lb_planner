@@ -13,74 +13,99 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+/**
+ * polyfill for php8 enums
+ *
+ * @package local_lbplanner
+ * @subpackage polyfill
+ * @copyright 2024 NecodeIT
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 
 namespace local_lbplanner\polyfill;
+
+defined('MOODLE_INTERNAL') || die();
 
 use ReflectionClass;
 use ValueError;
 
+/**
+ * Class which is meant to serve as a substitute for native enums.
+ */
 abstract class Enum {
-	/**
-	 * tries to match the passed value to one of the enum values
-	 * @param mixed $value the value to be matched
-	 * @return mixed either the matching enum value or null if not found
-	 */
-	public static function tryFrom(mixed $value): mixed {
-		$cases = static::cases();
-		foreach($cases as $case){
-			if($case->value === $value)
-				return $value;
-		}
-		return null;
-	}
-	/**
-	 * tries to match the passed value to one of the enum values
-	 * @param mixed $value the value to be matched
-	 * @return mixed the matching enum value
-	 * @throws ValueError if not found
-	 */
-	public static function from(mixed $value): mixed {
-		$cases = static::cases();
-		foreach($cases as $case){
-			if($case->value === $value)
-				return $value;
-		}
-		
-		throw new ValueError("value {$value} cannot be represented as a value in enum ".static::class);
-	}
-	/**
-	 * @return EnumCase[] array of cases inside this enum
-	 */
-	public static function cases(): array {
-		$reflection = new ReflectionClass(static::class);
-		$cases = [];
-		foreach($reflection->getConstants() as $name=>$val){
-			array_push($cases,new EnumCase($name,$val));
-		}
-		return $cases;
-	}
-	/**
-	 * Formats all possible enum values into a string
-	 * Example:
-	 * (31=>RED,32=>GREEN,33=>YELLOW)
-	 * @return string the resulting string
-	 */
-	public static function format(): string {
-		$result = "[";
-		$cases = static::cases();
-		foreach($cases as $case) {
-			$result .= "{$case->value}=>{$case->name},";
-		}
-		$result[-1] = ']';
-		return $result;
-	}
+    /**
+     * tries to match the passed value to one of the enum values
+     * @param mixed $value the value to be matched
+     * @return mixed either the matching enum value or null if not found
+     */
+    public static function try_from(mixed $value): mixed {
+        foreach (static::cases() as $case) {
+            if ($case->value === $value) {
+                return $value;
+            }
+        }
+        return null;
+    }
+    /**
+     * tries to match the passed value to one of the enum values
+     * @param mixed $value the value to be matched
+     * @return mixed the matching enum value
+     * @throws ValueError if not found
+     */
+    public static function from(mixed $value): mixed {
+        foreach (static::cases() as $case) {
+            if ($case->value === $value) {
+                return $value;
+            }
+        }
+
+        throw new ValueError("value {$value} cannot be represented as a value in enum ".static::class);
+    }
+    /**
+     * Returns an array of all the cases that exist in this enum
+     *
+     * @return EnumCase[] array of cases inside this enum
+     */
+    public static function cases(): array {
+        $reflection = new ReflectionClass(static::class);
+        $cases = [];
+        foreach ($reflection->getConstants() as $name => $val) {
+            array_push($cases, new EnumCase($name, $val));
+        }
+        return $cases;
+    }
+    /**
+     * Formats all possible enum values into a string
+     * Example:
+     * (31=>RED,32=>GREEN,33=>YELLOW)
+     * @return string the resulting string
+     */
+    public static function format(): string {
+        $result = "[";
+        foreach (static::cases() as $case) {
+            $result .= "{$case->value}=>{$case->name},";
+        }
+        $result[-1] = ']';
+        return $result;
+    }
 }
 
+/**
+ * This represents a single case within an Enum
+ */
 class EnumCase {
-	public string $name;
-	public mixed $value;
-	public function __construct($name,$value){
-		$this->name = $name;
-		$this->value = $value;
-	}
+    /** @var string the name of the case */
+    public string $name;
+    /** @var string the value of the case */
+    public mixed $value;
+    /**
+     * Constructs an EnumCase
+     *
+     * @param string $name the name of the case
+     * @param mixed $value the value of the case
+     */
+    public function __construct(string $name, mixed $value) {
+        $this->name = $name;
+        $this->value = $value;
+    }
 }

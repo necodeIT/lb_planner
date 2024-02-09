@@ -26,8 +26,10 @@ use core_user;
 
 /**
  * Provides helper methods for user related stuff.
- * @package local_lbplanner\helpers
- * @copyright LB PLANNER
+ *
+ * @package local_lbplanner
+ * @subpackage helpers
+ * @copyright 2024 NecodeIT
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class user_helper {

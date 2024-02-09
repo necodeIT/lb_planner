@@ -24,15 +24,31 @@ use local_lbplanner\helpers\feedback_helper;
 
 /**
  * Deletes feedback from the database.
+ *
+ * @package local_lbplanner
+ * @subpackage services_feedback
+ * @copyright 2024 necodeIT
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class feedback_delete_feedback extends external_api {
-    public static function delete_feedback_parameters() {
+    /**
+     * Parameters for delete_feedback.
+     * @return external_function_parameters
+     */
+    public static function delete_feedback_parameters(): external_function_parameters {
         return new external_function_parameters([
             'feedbackid' => new external_value(PARAM_INT, 'ID of the feedback to delete', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
         ]);
     }
 
-    public static function delete_feedback($feedbackid) {
+    /**
+     * Deletes feedback from the database.
+     *
+     * @param int $feedbackid ID of the feedback to delete
+     * @return void
+     * @throws \moodle_exception when feedback wasn't found
+     */
+    public static function delete_feedback(int $feedbackid) {
         global $DB, $USER;
 
         self::validate_parameters(
@@ -49,6 +65,10 @@ class feedback_delete_feedback extends external_api {
         $DB->delete_records(feedback_helper::LBPLANNER_FEEDBACK_TABLE, ['id' => $feedbackid]);
     }
 
+    /**
+     * Returns the structure of nothing.
+     * @return null
+     */
     public static function delete_feedback_returns() {
         return null;
     }

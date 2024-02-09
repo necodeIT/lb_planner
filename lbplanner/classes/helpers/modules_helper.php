@@ -13,8 +13,18 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+/**
+ * Collection of helper classes for handling modules
+ *
+ * @package local_lbplanner
+ * @subpackage helpers
+ * @copyright 2024 NecodeIT
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 
 namespace local_lbplanner\helpers;
+
+defined('MOODLE_INTERNAL') || die();
 
 use block_accessreview\external\get_module_data;
 use external_function_parameters;
@@ -25,15 +35,27 @@ use moodle_url;
 use local_lbplanner\polyfill\Enum;
 
 
-// TODO: revert to native enums once we migrate to php8
+// TODO: revert to native enums once we migrate to php8.
 
 /**
  * Stati a module can be in
  */
 class MODULE_STATUS extends Enum {
+    /**
+     * Finished module.
+     */
     const DONE = 0;
+    /**
+     * Uploaded module.
+     */
     const UPLOADED = 1;
+    /**
+     * Overdue module.
+     */
     const LATE = 2;
+    /**
+     * Todo module.
+     */
     const PENDING = 3;
 }
 
@@ -41,10 +63,25 @@ class MODULE_STATUS extends Enum {
  * Grades a module can receive
  */
 class MODULE_GRADE extends Enum {
+    /**
+     * Erweiterte Kompetenz vollständig.
+     */
     const EKV = 0;
+    /**
+     * Erweiterte Kompetenz überwiegend.
+     */
     const EK  = 1;
+    /**
+     * Grundlegende Kompetenz vollständig.
+     */
     const GKV = 2;
+    /**
+     * Grundlegende Kompetenz überwiegend.
+     */
     const GK  = 3;
+    /**
+     * Negative grade.
+     */
     const RIP = 4;
 }
 
@@ -52,10 +89,25 @@ class MODULE_GRADE extends Enum {
  * Module Types
  */
 class MODULE_TYPE extends Enum {
+    /**
+     * Grundlegende Kompetenz.
+     */
     const GK = 0;
+    /**
+     * Erweiterte Kompetenz.
+     */
     const EK  = 1;
+    /**
+     * Test i.e. exam.
+     */
     const TEST = 2;
+    /**
+     * TODO: ???
+     */
     const M  = 3;
+    /**
+     * TODO: ???
+     */
     const NONE = 4;
 }
 
@@ -106,7 +158,7 @@ class modules_helper {
      */
     public static function structure() : external_single_structure {
         return new external_single_structure(
-        array(
+        [
             'moduleid' => new external_value(PARAM_INT, 'Module ID'),
             'name' => new external_value(PARAM_TEXT, 'Shortened module name (max. 5 chars)'),
             'courseid' => new external_value(PARAM_INT, 'Course ID'),
@@ -115,17 +167,17 @@ class modules_helper {
             'url' => new external_value(PARAM_TEXT, 'URL to moodle page for module'),
             'grade' => new external_value(PARAM_INT, 'The grade of the module '.MODULE_GRADE::format()),
             'deadline' => new external_value(PARAM_INT, 'The deadline of the module set by the teacher'),
-        )
+        ]
         );
     }
 
     /**
      * Determins the enum value for a grade.
      *
-     * @param integer $grade The grade of the module.
-     * @param integer $maxgrade The max. grade of the module.
-     * @param integer $mingrade The min. grade of the module.
-     * @param integer $gradepass The grade to pass the module.
+     * @param int $grade The grade of the module.
+     * @param int $maxgrade The max. grade of the module.
+     * @param int $mingrade The min. grade of the module.
+     * @param int $gradepass The grade to pass the module.
      * @return integer The enum value for the grade.
      */
     public static function determin_uinified_grade(int $grade, int $maxgrade, int $mingrade, int $gradepass) : int {
@@ -153,9 +205,9 @@ class modules_helper {
     /**
      * Maps the given info to a module status.
      *
-     * @param boolean $submitted Whether the module is submitted.
-     * @param boolean $done Whether the module is completed.
-     * @param boolean $late Whether the module is late.
+     * @param bool $submitted Whether the module is submitted.
+     * @param bool $done Whether the module is completed.
+     * @param bool $late Whether the module is late.
      * @return integer The enum value for the module status.
      */
     public static function map_status(bool $submitted, bool $done, bool $late) : int {
@@ -206,8 +258,8 @@ class modules_helper {
     /**
      * Returns the url of the module.
      *
-     * @param integer $moduleid The id of the module.
-     * @param integer $courseid The id of the course.
+     * @param int $moduleid The id of the module.
+     * @param int $courseid The id of the course.
      * @return string The url of the module.
      */
     public static function get_module_url(int $moduleid, int $courseid) : string {
@@ -215,7 +267,7 @@ class modules_helper {
 
         $view = $DB->get_record(
             self::COURSE_MODULES_TABLE,
-            array('course' => $courseid, 'instance' => $moduleid, 'module' => 1)
+            ['course' => $courseid, 'instance' => $moduleid, 'module' => 1]
         );
 
         return strval(new moodle_url('/mod/assign/view.php?id='.$view->id));
@@ -224,8 +276,8 @@ class modules_helper {
     /**
      * Retrieves a module of the given id for the given user.
      *
-     * @param integer $moduleid The id of the module.
-     * @param integer $userid The id of the user.
+     * @param int $moduleid The id of the module.
+     * @param int $userid The id of the user.
      * @return array The module.
      */
     public static function get_module(int $moduleid, int $userid) : array {
@@ -233,22 +285,22 @@ class modules_helper {
         date_default_timezone_set('UTC');
 
         // Get module data.
-        $module = $DB->get_record(self::ASSIGN_TABLE, array('id' => $moduleid));
+        $module = $DB->get_record(self::ASSIGN_TABLE, ['id' => $moduleid]);
 
         // Determine module type.
         $type = self::determin_type($module->name);
 
         if ($type == MODULE_TYPE::NONE) {
-            return array();
+            return [];
         }
         // Check if there are any submissions or feedbacks for this module.
 
         $submitted = false;
 
-        if ($DB->record_exists(self::SUBMISSIONS_TABLE, array('assignment' => $moduleid, 'userid' => $userid))) {
+        if ($DB->record_exists(self::SUBMISSIONS_TABLE, ['assignment' => $moduleid, 'userid' => $userid])) {
             $submission = $DB->get_record(
                 self::SUBMISSIONS_TABLE,
-                array('assignment' => $moduleid, 'userid' => $userid)
+                ['assignment' => $moduleid, 'userid' => $userid]
             );
 
             $submitted = strval($submission->status) == self::SUBMISSION_STATUS_SUBMITTED;
@@ -257,12 +309,12 @@ class modules_helper {
         $done = false;
         $grade = null;
 
-        if ($DB->record_exists(self::GRADES_TABLE, array('assignment' => $moduleid, 'userid' => $userid))) {
-            $moduleboundaries = $DB->get_record(self::GRADE_ITEMS_TABLE, array('iteminstance' => $moduleid));
+        if ($DB->record_exists(self::GRADES_TABLE, ['assignment' => $moduleid, 'userid' => $userid])) {
+            $moduleboundaries = $DB->get_record(self::GRADE_ITEMS_TABLE, ['iteminstance' => $moduleid]);
 
             $mdlgrades = $DB->get_records(
                 self::GRADES_TABLE,
-                array('assignment' => $moduleid, 'userid' => $userid)
+                ['assignment' => $moduleid, 'userid' => $userid]
             );
 
             $mdlgrade = end($mdlgrades);
@@ -284,8 +336,8 @@ class modules_helper {
         $late = false;
         $planid = plan_helper::get_plan_id($userid);
 
-        if ($DB->record_exists(plan_helper::DEADLINES_TABLE, array('planid' => $planid, 'moduleid' => $moduleid))) {
-            $deadline = $DB->get_record(plan_helper::DEADLINES_TABLE, array('planid' => $planid, 'moduleid' => $moduleid));
+        if ($DB->record_exists(plan_helper::DEADLINES_TABLE, ['planid' => $planid, 'moduleid' => $moduleid])) {
+            $deadline = $DB->get_record(plan_helper::DEADLINES_TABLE, ['planid' => $planid, 'moduleid' => $moduleid]);
             $late = intval(date("Ymd", $deadline->deadlineend)) < intval(date("Ymd")) && !$done;
         }
 
@@ -293,7 +345,7 @@ class modules_helper {
 
         // Return the appropriate data.
 
-        return array(
+        return [
             'moduleid' => $moduleid,
             'name' => $module->name,
             'courseid' => $module->course,
@@ -302,22 +354,23 @@ class modules_helper {
             'url' => self::get_module_url($moduleid, $module->course),
             'grade' => $grade,
             'deadline' => $module->duedate > 0 ? $module->duedate : null,
-        );
+        ];
     }
 
     /**
      * Reteruns all modules for the given course id.
      *
-     * @param integer $courseid The id of the course.
-     * @param integer $userid The id of the user.
+     * @param int $courseid The id of the course.
+     * @param int $userid The id of the user.
+     * @param bool $ekenabled Whether EK modules should be included.
      * @return array The modules.
      */
     public static function get_all_course_modules(int $courseid, int $userid, bool $ekenabled) : array {
         global $DB;
 
-        $mdlmodules = $DB->get_records(self::ASSIGN_TABLE, array('course' => $courseid));
+        $mdlmodules = $DB->get_records(self::ASSIGN_TABLE, ['course' => $courseid]);
 
-        $modules = array();
+        $modules = [];
 
         foreach ($mdlmodules as $mdlmodule) {
             if (!$ekenabled && self::determin_type($mdlmodule->name) == MODULE_TYPE::EK) {

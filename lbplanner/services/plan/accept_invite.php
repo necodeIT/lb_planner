@@ -27,15 +27,31 @@ use local_lbplanner\helpers\NOTIF_TRIGGER;
 
 /**
  * Accept an invite to the plan.
+ *
+ * @package local_lbplanner
+ * @subpackage services_plan
+ * @copyright 2024 necodeIT
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class plan_accept_invite extends external_api {
-    public static function accept_invite_parameters() {
+    /**
+     * Parameters for accept_invite.
+     * @return external_function_parameters
+     */
+    public static function accept_invite_parameters(): external_function_parameters {
         return new external_function_parameters([
         'inviteid' => new external_value(PARAM_INT, 'the ID of the invite to be accepted', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
         ]);
     }
 
-    public static function accept_invite($inviteid) {
+    /**
+     * Accepts an invite
+     *
+     * @param int $inviteid the ID of the invite to be accepted
+     * @return void
+     * @throws \moodle_exception when invite not found, already accepted or declined
+     */
+    public static function accept_invite(int $inviteid) {
         global $DB, $USER;
 
         self::validate_parameters(self::accept_invite_parameters(), [
@@ -113,7 +129,10 @@ class plan_accept_invite extends external_api {
         }
     }
 
-
+    /**
+     * Returns the structure of nothing.
+     * @return null
+     */
     public static function accept_invite_returns() {
         return null;
     }

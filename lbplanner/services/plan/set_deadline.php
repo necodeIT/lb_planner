@@ -22,28 +22,37 @@ use external_value;
 use local_lbplanner\helpers\plan_helper;
 
 /**
- * Set the deadline for a module
+ * Set the deadline for a module.
+ *
+ * @package local_lbplanner
+ * @subpackage services_plan
+ * @copyright 2024 necodeIT
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class plan_set_deadline extends external_api {
+    /**
+     * Parameters for set_deadline.
+     * @return external_function_parameters
+     */
     public static function set_deadline_parameters() {
         return new external_function_parameters([
             'moduleid' => new external_value(
                 PARAM_INT,
-                'The ID of the module the deadline is for',
+                'ID of the module the deadline is for',
                 VALUE_REQUIRED,
                 null,
                 NULL_NOT_ALLOWED
             ),
             'deadlinestart' => new external_value(
                 PARAM_INT,
-                'The start of the deadline',
+                'Start of the deadline',
                 VALUE_REQUIRED,
                 null,
                 NULL_NOT_ALLOWED
             ),
             'deadlineend' => new external_value(
                 PARAM_INT,
-                'The end of the deadline',
+                'End of the deadline',
                 VALUE_REQUIRED,
                 null,
                 NULL_NOT_ALLOWED
@@ -51,7 +60,16 @@ class plan_set_deadline extends external_api {
         ]);
     }
 
-    public static function set_deadline($moduleid, $deadlinestart, $deadlineend) {
+    /**
+     * Set the deadline for a module
+     *
+     * @param int $moduleid ID of the module the deadline is for
+     * @param int $deadlinestart Start of the deadline
+     * @param int $deadlineend End of the deadline
+     * @return void
+     * @throws \moodle_exception when access denied
+     */
+    public static function set_deadline(int $moduleid, int $deadlinestart, int $deadlineend): external_function_parameters {
         global $DB, $USER;
 
         self::validate_parameters(
@@ -69,9 +87,9 @@ class plan_set_deadline extends external_api {
             throw new \moodle_exception('Access denied');
         }
 
-        // if a deadline already exists,
+        // If a deadline already exists.
         if (!$DB->record_exists(plan_helper::DEADLINES_TABLE, ['moduleid' => $moduleid, 'planid' => $planid])) {
-            // update the existing deadline
+            // Update the existing deadline.
             $deadline = $DB->get_record(plan_helper::DEADLINES_TABLE, ['moduleid' => $moduleid, 'planid' => $planid]);
 
             $deadline->deadlinestart = $deadlinestart;
@@ -79,7 +97,7 @@ class plan_set_deadline extends external_api {
 
             $DB->update_record(plan_helper::DEADLINES_TABLE, $deadline);
         } else {
-            // otherwise insert a new one
+            // Otherwise insert a new one.
             $deadline = new \stdClass();
 
             $deadline->planid = $planid;
@@ -91,6 +109,10 @@ class plan_set_deadline extends external_api {
         }
     }
 
+    /**
+     * Returns the structure of nothing.
+     * @return null
+     */
     public static function set_deadline_returns() {
         return null;
     }

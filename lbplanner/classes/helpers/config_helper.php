@@ -16,9 +16,21 @@
 
 namespace local_lbplanner\helpers;
 
+/**
+ * Helper class for config
+ *
+ * @package local_lbplanner
+ * @subpackage helpers
+ * @copyright 2024 NecodeIT
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 class config_helper {
+    /**
+     * Sets the current active year
+     */
     public static function set_default_active_year() {
         $currentmonth = idate('m');
+        // TODO: At least one of these comments ↓ is clearly wrong. Muhi's thing to fix.
         if ($currentmonth >= 8 && $currentmonth <= 12) {
             // Adding the default active year, when the plugin is installed for the first time.
             set_config(

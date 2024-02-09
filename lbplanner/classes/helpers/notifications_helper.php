@@ -13,13 +13,23 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+/**
+ * Provides helper classes for notification related stuff
+ *
+ * @package local_lbplanner
+ * @subpackage helpers
+ * @copyright 2024 NecodeIT
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 
 namespace local_lbplanner\helpers;
+
+defined('MOODLE_INTERNAL') || die();
 
 use external_single_structure;
 use external_value;
 
-// TODO: revert to native enums once we migrate to php8
+// TODO: revert to native enums once we migrate to php8.
 
 use local_lbplanner\polyfill\Enum;
 
@@ -27,21 +37,48 @@ use local_lbplanner\polyfill\Enum;
  * Stati a notification can be in
  */
 class NOTIF_STATUS extends Enum {
+    /**
+     * unread notification
+     */
     const UNREAD = 0;
+    /**
+     * read notification
+     */
     const READ = 1;
 }
 
+/**
+ * Possible triggers for sending a notification
+ */
 class NOTIF_TRIGGER extends Enum {
+    /**
+     * Invitation sent
+     */
     const INVITE = 0;
+    /**
+     * Invitation accepted
+     */
     const INVITE_ACCEPTED = 1;
+    /**
+     * Invitation declined
+     */
     const INVITE_DECLINED = 2;
+    /**
+     * User left the plan
+     */
     const PLAN_LEFT = 3;
+    /**
+     * User got removed from the plan
+     */
     const PLAN_REMOVED = 4;
+    /**
+     * User registered
+     */
     const USER_REGISTERED = 5;
 }
 
 /**
- * Provides helper methods for notification related stuff.
+ * Provides helper methods for notification related stuff
  */
 class notifications_helper {
     /**
@@ -50,12 +87,15 @@ class notifications_helper {
     const LBPLANNER_NOTIFICATION_TABLE = 'local_lbplanner_notification';
 
     /**
-     * @return external_single_structure The data structure of a module.
+     * Returns the data structure of a notification
+     *
+     * @return external_single_structure The data structure of a notification.
      */
     public static function structure() : external_single_structure {
         return new external_single_structure([
             'status' => new external_value(PARAM_INT, 'The status of the notification '.NOTIF_STATUS::format()),
-            'type' => new external_value(PARAM_INT, 'The type of the event that triggered the notification '.NOTIF_TRIGGER::format()),
+            'type' =>
+                new external_value(PARAM_INT, 'The type of the event that triggered the notification '.NOTIF_TRIGGER::format()),
             'info' => new external_value(PARAM_INT, 'Additional information about the notification'),
             'userid' => new external_value(PARAM_INT, 'The ID of the user for whom the notification is for'),
             'notificationid' => new external_value(PARAM_INT, 'The ID of the notification', NULL_NOT_ALLOWED),
@@ -67,9 +107,9 @@ class notifications_helper {
     /**
      * Notifies the given user about the given event, with the given info.
      *
-     * @param integer $userid The user to notify.
-     * @param integer $info Additional information as stringified json.
-     * @param integer $type The type of notification.
+     * @param int $userid The user to notify.
+     * @param int $info Additional information as stringified json.
+     * @param int $type The type of notification.
      * @return integer The id of the notification.
      */
     public static function notify_user( int $userid, int $info, int $type ): int {
