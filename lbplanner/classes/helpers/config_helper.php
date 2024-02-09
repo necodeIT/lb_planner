@@ -16,6 +16,7 @@
 
 namespace local_lbplanner\helpers;
 
+use core_component;
 use core_customfield\category_controller;
 use customfield_select\data_controller;
 use customfield_select\field_controller;
@@ -49,18 +50,21 @@ class   config_helper {
      * @throws \coding_exception
      */
     public static function add_customfield() {
-        if (in_array('modcustomfields', get_list_of_plugins('local'))) {
+        if (in_array('modcustomfields', core_component::get_plugin_list('local'))) {
             $handler = mod_handler::create();
-            $categoryid = $handler->create_category('lb-planner');
+            $categoryid = $handler->create_category('LB Planner');
             $categorycontroller = category_controller::create($categoryid, null, $handler);
             $categorycontroller->save();
             $record = new \stdClass();
             $record->type = 'select';
             $fieldcontroller = field_controller::create(0, $record, $categorycontroller);
-            $fieldcontroller->set('name', 'gk');
-            $fieldcontroller->set('description', 'GK');
+            $fieldcontroller->set('name', 'LB Planner GK/EK');
+            $fieldcontroller->set('description', 'Tracks whether the task is a GK or EK task');
             $fieldcontroller->set('type', 'select');
-            $fieldcontroller->set('configdata', json_encode(['options' => ['GK', 'EK']]));
+            // Because moodle wants me to save the configdata as a json string, I have to do this.
+            // I don't know why moodle does this, but it does. I don't like it. but I have to do it. so I do it.
+            $fieldcontroller->set('configdata', '{"required":"1","uniquevalues":"0","options":"GK\r\nEK\r\nGK and EK",
+                "defaultvalue":"GK","locked":"0","visibility":"2"}');
             $fieldcontroller->set('shortname', 'lb_planner_gk_ek');
             $fieldcontroller->save();
         }
