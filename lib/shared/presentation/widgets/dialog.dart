@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lb_planner/shared/shared.dart';
 
-/// Themed [Dialog] widget.
-class LpDialog extends StatefulWidget {
-  /// Themed ConfirmDialog widget.
-  LpDialog.confirm({
+/// Shows custom dialogs
+class Dialog extends StatefulWidget {
+  /// Creates the structure of the confirm dialog
+  Dialog.confirm({
     Key? key,
     required this.header,
     required this.body,
@@ -20,8 +20,8 @@ class LpDialog extends StatefulWidget {
     confirmOnly = false;
   }
 
-  /// Themed [AlertDialog] widget with just one button.
-  LpDialog.alert({
+  /// Creates the structure of the alert dialog
+  Dialog.alert({
     Key? key,
     required this.header,
     required this.body,
@@ -40,7 +40,7 @@ class LpDialog extends StatefulWidget {
   /// The body of the dialog.
   final Widget body;
 
-  /// Whether the confirm button should have [errorColor] as it's background color.
+  /// Whether the confirm button should have errorColor as it's background color.
   late final bool confirmIsBad;
 
   /// The text of the confirm button.
@@ -79,20 +79,20 @@ class LpDialog extends StatefulWidget {
   /// The padding of the buttons in the dialog.
   static const double btnPadding = 14;
 
-  /// The font size of the [title].
+  /// The font size of the title.
   static const double titleFontSize = 30;
 
   @override
-  State<LpDialog> createState() => _LpDialogState();
+  State<Dialog> createState() => _DialogState();
 }
 
-class _LpDialogState extends State<LpDialog> with TickerProviderStateMixin {
+class _DialogState extends State<Dialog> with TickerProviderStateMixin {
   late AnimationController _controller;
 
   @override
   void initState() {
     _controller =
-        AnimationController(vsync: this, duration: kNormalAnimationDuration);
+        AnimationController(vsync: this, duration: Duration(milliseconds: 300));
     _controller.forward();
     super.initState();
     focusNode.addListener(_ensureFocus);
@@ -100,15 +100,17 @@ class _LpDialogState extends State<LpDialog> with TickerProviderStateMixin {
     focusNode.requestFocus();
   }
 
+  /// Removes the widget from the widget tree.
   Future close() async {
     await _controller.reverse();
     widget.removeFromWidgetTree();
   }
 
+  ///Ensures focus if the focusNode doesn't have focus.
   void _ensureFocus() async {
     if (focusNode.hasFocus) return;
 
-    await Future.delayed(kNormalAnimationDuration);
+    await Future.delayed(Duration(milliseconds: 300));
 
     if (!mounted) return;
 
@@ -129,7 +131,6 @@ class _LpDialogState extends State<LpDialog> with TickerProviderStateMixin {
         }
       },
       child: FadeTransition(
-        // ignore: no-magic-number
         opacity: Tween<double>(begin: 0.4, end: 1).animate(
           CurvedAnimation(
             parent: _controller,
@@ -139,25 +140,25 @@ class _LpDialogState extends State<LpDialog> with TickerProviderStateMixin {
         child: ScaleTransition(
           child: AlertDialog(
             title: widget.header,
-            titlePadding: EdgeInsets.all(LpDialog.padding),
-            buttonPadding: EdgeInsets.only(
-                left: LpDialog.padding, right: LpDialog.padding),
+            titlePadding: EdgeInsets.all(Dialog.padding),
+            buttonPadding:
+                EdgeInsets.only(left: Dialog.padding, right: Dialog.padding),
             contentPadding: EdgeInsets.only(
-                bottom: LpDialog.padding,
-                left: LpDialog.padding,
-                right: LpDialog.padding),
+                bottom: Dialog.padding,
+                left: Dialog.padding,
+                right: Dialog.padding),
             content: ConstrainedBox(
               constraints: BoxConstraints(
                 minWidth:
-                    MediaQuery.of(context).size.width * LpDialog.widthFactor,
+                    MediaQuery.of(context).size.width * Dialog.widthFactor,
                 maxHeight:
-                    MediaQuery.of(context).size.height * LpDialog.heightFactor,
+                    MediaQuery.of(context).size.height * Dialog.heightFactor,
                 maxWidth:
-                    MediaQuery.of(context).size.width * LpDialog.widthFactor,
+                    MediaQuery.of(context).size.width * Dialog.widthFactor,
               ),
               child: AnimatedSize(
-                duration: kNormalAnimationDuration,
-                curve: kAnimationCurve,
+                duration: Duration(milliseconds: 300),
+                curve: Curves.easeOutCubic,
                 child: ConditionalWrapper(
                   condition: widget.scrollable,
                   wrapper: (context, child) => SingleChildScrollView(
@@ -177,25 +178,33 @@ class _LpDialogState extends State<LpDialog> with TickerProviderStateMixin {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   if (!widget.confirmOnly)
-                    LpButton(
-                      text: widget.cancelText ?? context.t.dialog_cancel,
-                      color: widget.confirmIsBad ? accentColor : errorColor,
-                      fontSize: LpDialog.btnFontSize,
-                      padding: LpDialog.btnPadding,
+                    ElevatedButton(
+                      child: Text(widget.cancelText ?? t.dialog_cancel),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: widget.confirmIsBad
+                            ? context.theme.colorScheme.primary
+                            : context.theme.colorScheme.error,
+                        textStyle: TextStyle(fontSize: Dialog.btnFontSize),
+                        padding: EdgeInsets.all(Dialog.btnPadding),
+                      ),
                       onPressed: () async {
                         await close();
                         widget.onCancel?.call();
                       },
                     ),
-                  NcSpacing.medium(),
-                  LpButton(
-                    text: widget.confirmText ??
+                  Spacing.medium(),
+                  ElevatedButton(
+                    child: Text(widget.confirmText ??
                         (widget.confirmOnly
-                            ? context.t.alertDialog_confirm
-                            : context.t.dialog_confirm),
-                    color: widget.confirmIsBad ? errorColor : accentColor,
-                    fontSize: LpDialog.btnFontSize,
-                    padding: LpDialog.btnPadding,
+                            ? t.alertDialog_confirm
+                            : t.dialog_confirm)),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: widget.confirmIsBad
+                          ? context.theme.colorScheme.error
+                          : context.theme.colorScheme.primary,
+                      textStyle: TextStyle(fontSize: Dialog.btnFontSize),
+                      padding: EdgeInsets.all(Dialog.btnPadding),
+                    ),
                     onPressed: () async {
                       await close();
                       widget.onConfirm?.call();
@@ -204,16 +213,16 @@ class _LpDialogState extends State<LpDialog> with TickerProviderStateMixin {
                 ],
               )
             ],
-            backgroundColor: NcThemes.current.primaryColor,
+            backgroundColor: context.theme.colorScheme.surface,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(kRadius)),
+              borderRadius: BorderRadius.all(Radius.circular(5)),
             ),
           ),
           // ignore: no-magic-number
           scale: Tween<double>(begin: 1, end: 0.85).animate(
             CurvedAnimation(
               parent: _controller,
-              curve: Interval(0.0, 0.5, curve: kDialogAnimationCurve),
+              curve: Interval(0.0, 0.5, curve: Curves.easeOut),
             ),
           ),
         ),
@@ -222,8 +231,8 @@ class _LpDialogState extends State<LpDialog> with TickerProviderStateMixin {
   }
 }
 
-/// Themed ConfirmDialog widget.
-void lpShowConfirmDialog(
+/// Shows an confirm dialog
+void showConfirmDialog(
   BuildContext context, {
   String? title,
   Widget? header,
@@ -241,22 +250,27 @@ void lpShowConfirmDialog(
   assert(header != null || title != null,
       'Either header or title must be provided.');
 
-  var key = GlobalKey<_LpDialogState>();
+  var key = GlobalKey<_DialogState>();
 
   OverlayEntry? dialogOverLay;
   OverlayEntry background =
       _generateBackground(() => key.currentState!.close());
 
-  var dialog = LpDialog.confirm(
+  var dialog = Dialog.confirm(
     key: key,
-    header: header ?? NcTitleText(title!, fontSize: LpDialog.titleFontSize),
+    header: header ??
+        Text(
+          title!,
+          style: TextStyle(fontSize: Dialog.titleFontSize),
+        ),
     body: ConditionalWidget(
       condition: body != null,
-      trueWidget: (_) => body!,
-      falseWidget: (_) => NcCaptionText(
-        message!,
-        overflow: TextOverflow.visible,
-      ),
+      ifTrue: body!,
+      ifFalse: Text(message!,
+          style: TextStyle(
+              overflow: TextOverflow.visible,
+              fontSize: 12,
+              letterSpacing: 0.4)),
     ),
     confirmText: confirmText,
     cancelText: cancelText,
@@ -274,12 +288,12 @@ void lpShowConfirmDialog(
     builder: (context) => dialog,
   );
 
-  Overlay.of(context)!.insert(background);
-  Overlay.of(context)!.insert(dialogOverLay);
+  Overlay.of(context).insert(background);
+  Overlay.of(context).insert(dialogOverLay);
 }
 
-/// Themed [AlertDialog] widget.
-void lpShowAlertDialog(
+/// Shows an alert dialog
+void showAlertDialog(
   BuildContext context, {
   String? title,
   Widget? header,
@@ -293,22 +307,27 @@ void lpShowAlertDialog(
       'Either body or message must be provided.');
   assert(header != null || title != null,
       'Either header or title must be provided.');
-  var key = GlobalKey<_LpDialogState>();
+  var key = GlobalKey<_DialogState>();
 
   OverlayEntry? dialogOverLay;
   OverlayEntry background =
       _generateBackground(() => key.currentState!.close());
 
-  var dialog = LpDialog.alert(
+  var dialog = Dialog.alert(
     key: key,
-    header: header ?? NcTitleText(title!, fontSize: LpDialog.titleFontSize),
+    header: header ??
+        Text(
+          title!,
+          style: TextStyle(fontSize: Dialog.titleFontSize),
+        ),
     body: ConditionalWidget(
       condition: body != null,
-      trueWidget: (_) => body!,
-      falseWidget: (_) => NcCaptionText(
-        message!,
-        overflow: TextOverflow.visible,
-      ),
+      ifTrue: body!,
+      ifFalse: Text(message!,
+          style: TextStyle(
+              overflow: TextOverflow.visible,
+              fontSize: 12,
+              letterSpacing: 0.4)),
     ),
     onConfirm: onConfirm,
     confirmText: confirmText,
@@ -323,10 +342,11 @@ void lpShowAlertDialog(
     builder: (context) => dialog,
   );
 
-  Overlay.of(context)!.insert(background);
-  Overlay.of(context)!.insert(dialogOverLay);
+  Overlay.of(context).insert(background);
+  Overlay.of(context).insert(dialogOverLay);
 }
 
+/// generates a background overlay for dismissing the dialog
 OverlayEntry _generateBackground(Function() dismiss) {
   return OverlayEntry(
     builder: (context) => GestureDetector(
