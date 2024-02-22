@@ -38,8 +38,7 @@ class UserProfileImg extends StatelessWidget {
         return ClipOval(
           child: ConditionalWidget(
             condition: user != null && user.profileImageUrl.isNotEmpty,
-            falseWidget: (_) => ShimmerEffect(height: size, width: size),
-            trueWidget: (_) => CachedNetworkImage(
+            ifTrue: CachedNetworkImage(
               imageUrl: user!.profileImageUrl,
               width: size,
               height: size,
@@ -51,6 +50,7 @@ class UserProfileImg extends StatelessWidget {
               ),
               cacheManager: cacheManager,
             ),
+            ifFalse: ShimmerEffect(height: size, width: size),
           ),
         );
       },

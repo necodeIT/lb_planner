@@ -45,7 +45,7 @@ class _FeedbackStatusTagState extends State<FeedbackStatusTag> {
             ),
       child: ConditionalWidget(
         condition: widget.label,
-        trueWidget: (context) => Text(
+        ifTrue: Text(
           widget.read
               ? t.admin_feedback_status_read
               : t.admin_feedback_status_unread,
@@ -56,7 +56,7 @@ class _FeedbackStatusTagState extends State<FeedbackStatusTag> {
           ),
           textAlign: TextAlign.center,
         ),
-        falseWidget: (context) => Text(
+        ifFalse: Text(
           widget.read
               ? t.admin_feedback_status_read
               : t.admin_feedback_status_unread,

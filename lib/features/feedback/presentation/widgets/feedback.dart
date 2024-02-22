@@ -43,7 +43,7 @@ class _AdminFeedbackRouteState extends State<AdminFeedbackRoute> {
       var sortedFeedbacks = AdminFeedbackRoute.sortFeedbacks(feedbacks);
 
       return ConditionalWidget(
-        falseWidget: (_) => Center(
+        ifFalse: Center(
           child: Text(
             t.admin_feedback_noFeedback,
             style: TextStyle(
@@ -55,7 +55,7 @@ class _AdminFeedbackRouteState extends State<AdminFeedbackRoute> {
           ),
         ),
         condition: sortedFeedbacks!.isNotEmpty,
-        trueWidget: (_) => Align(
+        ifTrue: Align(
           alignment: Alignment.topLeft,
           child: Column(
             children: [

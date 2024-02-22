@@ -46,11 +46,17 @@ class _AdminFeedbackPageRouteState extends State<AdminFeedbackPageRoute> {
     var currentIndex = sorted?.indexOf(feedback);
 
     if (sorted!.length - 1 > currentIndex! && currentIndex >= 0) {
+      // If there's a next item, navigate to the next feedback detail page
       var nextFeedback = sorted[currentIndex + 1];
       context.router.push(AdminFeedbackPageRoute(
-          feedbackId: nextFeedback.id, key: ValueKey(nextFeedback.id)));
+        feedbackId: nextFeedback.id,
+        key: ValueKey(nextFeedback.id),
+      ));
     } else {
+      // If there's no next item, navigate to the admin feedback list page
       AdminFeedbackRoute.info.push(context);
+      // Assuming AdminFeedbackRoute.info is a valid way to navigate back
+      // to the admin feedback list. If not, adjust this part according to your setup.
     }
   }
 
@@ -91,7 +97,7 @@ class _AdminFeedbackPageRouteState extends State<AdminFeedbackPageRoute> {
           leading: Icon(feedback.type.icon, color: feedback.type.color),
           trailing: ConditionalWidget(
             condition: deleted == 0,
-            trueWidget: (_) => HoverBuilder(
+            ifTrue: HoverBuilder(
               builder: (context, hover) => Icon(
                 Icons.delete,
                 color: hover
@@ -106,7 +112,7 @@ class _AdminFeedbackPageRouteState extends State<AdminFeedbackPageRoute> {
                 onConfirm: () => _deleteFeedback(context, ref, feedback),
               ),
             ),
-            falseWidget: (_) => CircularProgressIndicator(
+            ifFalse: CircularProgressIndicator(
                 color: context.theme.colorScheme.error),
           ),
           child: Column(
@@ -185,7 +191,7 @@ class _AdminFeedbackPageRouteState extends State<AdminFeedbackPageRoute> {
                 alignment: Alignment.centerRight,
                 child: ConditionalWidget(
                   condition: updated != 0,
-                  trueWidget: (_) => Row(
+                  ifTrue: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
@@ -203,7 +209,7 @@ class _AdminFeedbackPageRouteState extends State<AdminFeedbackPageRoute> {
                       CircularProgressIndicator(),
                     ],
                   ),
-                  falseWidget: (context) => TextButton.icon(
+                  ifFalse: TextButton.icon(
                     label: Text(feedback.read
                         ? t.admin_feedback_page_update
                         : t.admin_feedback_page_markRead),
