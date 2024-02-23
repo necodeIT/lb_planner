@@ -2,7 +2,7 @@ import 'package:flutter/material.dart' hide Feedback;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:lb_planner/features/feedback/domain/domain.dart';
-import 'package:lb_planner/features/feedback/presentation/widgets/feedback.dart';
+import 'package:lb_planner/features/feedback/presentation/screens/feedback.dart';
 import 'package:lb_planner/features/themes/domain/models/module_status_theme.dart';
 import 'package:lb_planner/shared/shared.dart';
 import 'package:lb_planner/features/feedback/presentation/widgets/widgets.dart';
@@ -10,19 +10,19 @@ import 'package:lb_planner/features/feedback/presentation/widgets/widgets.dart';
 @RoutePage()
 
 /// Admin feedback page displaying details about feedback.
-class AdminFeedbackPageRoute extends StatefulWidget {
+class AdminFeedbackScreen extends StatefulWidget {
   /// Admin feedback page displaying details about feedback.
-  const AdminFeedbackPageRoute({Key? key, required this.feedbackId})
+  const AdminFeedbackScreen({Key? key, required this.feedbackId})
       : super(key: key);
 
   /// The id of the feedback to display.
   final int feedbackId;
 
   @override
-  State<AdminFeedbackPageRoute> createState() => _AdminFeedbackPageRouteState();
+  State<AdminFeedbackScreen> createState() => _AdminFeedbackScreenState();
 }
 
-class _AdminFeedbackPageRouteState extends State<AdminFeedbackPageRoute> {
+class _AdminFeedbackScreenState extends State<AdminFeedbackScreen> {
   final commentController = TextEditingController();
 
   late int updated;
@@ -42,13 +42,13 @@ class _AdminFeedbackPageRouteState extends State<AdminFeedbackPageRoute> {
   }
 
   _pushNext(BuildContext context, WidgetRef ref, feedback) {
-    var sorted = AdminFeedbackRoute.sortFeedbacks(ref.read(feedbackProvider));
+    var sorted = AdminFeedbacksScreen.sortFeedbacks(ref.read(feedbackProvider));
     var currentIndex = sorted?.indexOf(feedback);
 
     if (sorted!.length - 1 > currentIndex! && currentIndex >= 0) {
       // If there's a next item, navigate to the next feedback detail page
       var nextFeedback = sorted[currentIndex + 1];
-      context.router.push(AdminFeedbackPageRoute(
+      context.router.push(AdminFeedbackRoute(
         feedbackId: nextFeedback.id,
         key: ValueKey(nextFeedback.id),
       ));
@@ -93,8 +93,9 @@ class _AdminFeedbackPageRouteState extends State<AdminFeedbackPageRoute> {
         int user = feedback.author;
 
         return LpContainer(
-          title: feedback.type.title(context),
-          leading: Icon(feedback.type.icon, color: feedback.type.color),
+          title: feedback.type.title(context), //swtich jsonvalues
+          leading:
+              Icon(feedback.type.icon, color: feedback.type.color(context)),
           trailing: ConditionalWidget(
             condition: deleted == 0,
             ifTrue: HoverBuilder(
@@ -122,7 +123,7 @@ class _AdminFeedbackPageRouteState extends State<AdminFeedbackPageRoute> {
               FeedbackStatusTag(read: feedback.read),
               Spacing.small(),
               Text(
-                t.admin_feedback_page_author(user),
+                t.admin_feedback_page_author(user as String),
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
                   overflow: TextOverflow.ellipsis,

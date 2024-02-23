@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:lb_planner/features/feedback/presentation/screens/feedback_page.dart';
 import 'package:lb_planner/features/themes/themes.dart';
 import 'package:lb_planner/shared/shared.dart';
 import 'package:auto_route/auto_route.dart';
@@ -109,7 +111,7 @@ class AppRouter extends _$AppRouter {
           path: '/theme-development',
         ),
         DefaultRoute(
-          page: LoginRoute.page,
+          page: AdminFeedbackRoute.page,
           path: '/login',
         )
       ];

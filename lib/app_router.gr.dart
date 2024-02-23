@@ -15,6 +15,16 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    AdminFeedbackRoute.name: (routeData) {
+      final args = routeData.argsAs<AdminFeedbackRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: AdminFeedbackScreen(
+          key: args.key,
+          feedbackId: args.feedbackId,
+        ),
+      );
+    },
     LoginRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -28,6 +38,44 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
   };
+}
+
+/// generated route for
+/// [AdminFeedbackScreen]
+class AdminFeedbackRoute extends PageRouteInfo<AdminFeedbackRouteArgs> {
+  AdminFeedbackRoute({
+    Key? key,
+    required int feedbackId,
+    List<PageRouteInfo>? children,
+  }) : super(
+          AdminFeedbackRoute.name,
+          args: AdminFeedbackRouteArgs(
+            key: key,
+            feedbackId: feedbackId,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'AdminFeedbackRoute';
+
+  static const PageInfo<AdminFeedbackRouteArgs> page =
+      PageInfo<AdminFeedbackRouteArgs>(name);
+}
+
+class AdminFeedbackRouteArgs {
+  const AdminFeedbackRouteArgs({
+    this.key,
+    required this.feedbackId,
+  });
+
+  final Key? key;
+
+  final int feedbackId;
+
+  @override
+  String toString() {
+    return 'AdminFeedbackRouteArgs{key: $key, feedbackId: $feedbackId}';
+  }
 }
 
 /// generated route for

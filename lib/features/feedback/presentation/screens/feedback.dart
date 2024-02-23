@@ -6,15 +6,15 @@ import 'package:lb_planner/features/feedback/domain/domain.dart';
 import 'package:lb_planner/features/feedback/presentation/widgets/widgets.dart';
 
 /// Admin feedback subroute.
-class AdminFeedbackRoute extends StatefulWidget {
+class AdminFeedbacksScreen extends StatefulWidget {
   /// Admin feedback subroute.
-  const AdminFeedbackRoute({Key? key}) : super(key: key);
+  const AdminFeedbacksScreen({Key? key}) : super(key: key);
 
   /// The font size of the header.
   static const double headerFontSize = 20;
 
   @override
-  State<AdminFeedbackRoute> createState() => _AdminFeedbackRouteState();
+  State<AdminFeedbacksScreen> createState() => _AdminFeedbacksScreenState();
 
   /// Sorts the given feedback list
   static List<Feedback>? sortFeedbacks(AsyncValue<List<Feedback>> feedbacks) {
@@ -34,13 +34,13 @@ class AdminFeedbackRoute extends StatefulWidget {
   }
 }
 
-class _AdminFeedbackRouteState extends State<AdminFeedbackRoute> {
+class _AdminFeedbacksScreenState extends State<AdminFeedbacksScreen> {
   @override
   Widget build(BuildContext context) {
     return Consumer(builder: (context, ref, _) {
       var feedbacks = ref.watch(feedbackProvider);
 
-      var sortedFeedbacks = AdminFeedbackRoute.sortFeedbacks(feedbacks);
+      var sortedFeedbacks = AdminFeedbacksScreen.sortFeedbacks(feedbacks);
 
       return ConditionalWidget(
         ifFalse: Center(
@@ -48,7 +48,7 @@ class _AdminFeedbackRouteState extends State<AdminFeedbackRoute> {
             t.admin_feedback_noFeedback,
             style: TextStyle(
               overflow: TextOverflow.ellipsis,
-              fontSize: AdminFeedbackRoute.headerFontSize,
+              fontSize: AdminFeedbacksScreen.headerFontSize,
               fontWeight: FontWeight.w600,
             ),
             textAlign: TextAlign.left,
@@ -66,7 +66,7 @@ class _AdminFeedbackRouteState extends State<AdminFeedbackRoute> {
                       t.admin_feedback_headers_user,
                       style: TextStyle(
                         overflow: TextOverflow.ellipsis,
-                        fontSize: AdminFeedbackRoute.headerFontSize,
+                        fontSize: AdminFeedbacksScreen.headerFontSize,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -77,7 +77,7 @@ class _AdminFeedbackRouteState extends State<AdminFeedbackRoute> {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         overflow: TextOverflow.ellipsis,
-                        fontSize: AdminFeedbackRoute.headerFontSize,
+                        fontSize: AdminFeedbacksScreen.headerFontSize,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -88,7 +88,7 @@ class _AdminFeedbackRouteState extends State<AdminFeedbackRoute> {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         overflow: TextOverflow.ellipsis,
-                        fontSize: AdminFeedbackRoute.headerFontSize,
+                        fontSize: AdminFeedbacksScreen.headerFontSize,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -99,7 +99,7 @@ class _AdminFeedbackRouteState extends State<AdminFeedbackRoute> {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         overflow: TextOverflow.ellipsis,
-                        fontSize: AdminFeedbackRoute.headerFontSize,
+                        fontSize: AdminFeedbacksScreen.headerFontSize,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -110,7 +110,7 @@ class _AdminFeedbackRouteState extends State<AdminFeedbackRoute> {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         overflow: TextOverflow.ellipsis,
-                        fontSize: AdminFeedbackRoute.headerFontSize,
+                        fontSize: AdminFeedbacksScreen.headerFontSize,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -121,7 +121,7 @@ class _AdminFeedbackRouteState extends State<AdminFeedbackRoute> {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         overflow: TextOverflow.ellipsis,
-                        fontSize: AdminFeedbackRoute.headerFontSize,
+                        fontSize: AdminFeedbacksScreen.headerFontSize,
                         fontWeight: FontWeight.w600,
                       ),
                     ),

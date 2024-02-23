@@ -1,3 +1,5 @@
+// ignore_for_file: public_member_api_docs
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -54,7 +56,7 @@ class _AdminFeedbackItemState extends ConsumerState<AdminFeedbackItem> {
 
     return GestureDetector(
       onTap: () => context.router.navigate(const LoginRoute())
-          AdminFeedbackPageRoute.info.push(context, params: {"id": feedbackId}),
+          AdminFeedbackScreen.info.push(context, params: {"id": feedbackId}),
       child: Card(
         child: Row(
           children: [
@@ -158,7 +160,7 @@ class _AdminFeedbackItemState extends ConsumerState<AdminFeedbackItem> {
   }
 }
 
-extension _AdminFeedbackItemHelper on FeedbackType {
+extension AdminFeedbackItemHelper on FeedbackType {
   String title(BuildContext context) {
     var t = context.t;
 
@@ -199,3 +201,4 @@ extension _AdminFeedbackItemHelper on FeedbackType {
     }
   }
 }
+
