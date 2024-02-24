@@ -112,7 +112,7 @@ class AppRouter extends _$AppRouter {
         ),
         DefaultRoute(
           page: AdminFeedbackRoute.page,
-          path: '/login',
+          path: '/feedback',
         )
       ];
 }

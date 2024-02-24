@@ -54,9 +54,8 @@ class _AdminFeedbackScreenState extends State<AdminFeedbackScreen> {
       ));
     } else {
       // If there's no next item, navigate to the admin feedback list page
-      AdminFeedbackRoute.info.push(context);
-      // Assuming AdminFeedbackRoute.info is a valid way to navigate back
-      // to the admin feedback list. If not, adjust this part according to your setup.
+
+      context.router.push(AdminFeedbackRoute(feedbackId: ));
     }
   }
 
@@ -105,7 +104,7 @@ class _AdminFeedbackScreenState extends State<AdminFeedbackScreen> {
                     ? context.theme.colorScheme.error
                     : ModuleStatusTheme.of(context).pendingColor,
               ),
-              onTap: () => ShowConfirmDialog(
+              onTap: () => showConfirmDialog(
                 context,
                 title: t.admin_feedback_page_deleteTitle,
                 message: t.admin_feedback_page_deleteText,

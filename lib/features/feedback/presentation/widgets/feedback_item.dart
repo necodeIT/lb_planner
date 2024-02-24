@@ -55,8 +55,8 @@ class _AdminFeedbackItemState extends ConsumerState<AdminFeedbackItem> {
     int? modifyingUser = feedback.modifiedByUserId;
 
     return GestureDetector(
-      onTap: () => context.router.navigate(const LoginRoute())
-          AdminFeedbackScreen.info.push(context, params: {"id": feedbackId}),
+      onTap: () =>
+          context.router.push(AdminFeedbackRoute(feedbackId: feedbackId)),
       child: Card(
         child: Row(
           children: [
@@ -201,4 +201,3 @@ extension AdminFeedbackItemHelper on FeedbackType {
     }
   }
 }
-

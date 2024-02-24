@@ -8,6 +8,7 @@ import 'package:lb_planner/features/feedback/presentation/widgets/widgets.dart';
 /// Admin feedback subroute.
 class AdminFeedbacksScreen extends StatefulWidget {
   /// Admin feedback subroute.
+
   const AdminFeedbacksScreen({Key? key}) : super(key: key);
 
   /// The font size of the header.
