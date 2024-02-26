@@ -20,8 +20,14 @@ use core_component;
 use core_customfield\category_controller;
 use customfield_select\data_controller;
 use customfield_select\field_controller;
-use local_modcustomfields\customfield\mod_handler as mod_handler;
-class   config_helper {
+use local_modcustomfields\customfield\mod_handler;
+use tool_mfa\local\factor\fallback;
+
+/**
+ * Class config_helper
+ * @package
+ */
+class config_helper {
     public static function set_default_active_year() {
         $currentmonth = idate('m');
         if ($currentmonth >= 8 && $currentmonth <= 12) {
@@ -50,23 +56,34 @@ class   config_helper {
      * @throws \coding_exception
      */
     public static function add_customfield() {
-        if (in_array('modcustomfields', core_component::get_plugin_list('local'))) {
-            $handler = mod_handler::create();
-            $categoryid = $handler->create_category('LB Planner');
-            $categorycontroller = category_controller::create($categoryid, null, $handler);
-            $categorycontroller->save();
-            $record = new \stdClass();
-            $record->type = 'select';
-            $fieldcontroller = field_controller::create(0, $record, $categorycontroller);
-            $fieldcontroller->set('name', 'LB Planner GK/EK');
-            $fieldcontroller->set('description', 'Tracks whether the task is a GK or EK task');
-            $fieldcontroller->set('type', 'select');
-            // Because moodle wants me to save the configdata as a json string, I have to do this.
-            // I don't know why moodle does this, but it does. I don't like it. but I have to do it. so I do it.
-            $fieldcontroller->set('configdata', '{"required":"1","uniquevalues":"0","options":"GK\r\nEK\r\nGK and EK",
-                "defaultvalue":"GK","locked":"0","visibility":"2"}');
-            $fieldcontroller->set('shortname', 'lb_planner_gk_ek');
-            $fieldcontroller->save();
+        // Check if the category is already created and only create it if it doesn't exist. get_config('local_lbplanner',
+        // 'categoryid') == false
+        // Check if plugin "modcustomfields" is installed and create the category and the custom field.
+        if (get_config('local_lbplanner', 'categoryid')) {
+            if (array_key_exists('modcustomfields', core_component::get_plugin_list('local'))) {
+                $handler = mod_handler::create();
+                $categoryid = $handler->create_category('LB Planner');
+                set_config('categoryid', $categoryid, 'local_lbplanner');
+                $categorycontroller = category_controller::create($categoryid, null, $handler);
+                $categorycontroller->save();
+                // Dont ask me why but moodle doesnt allow me to just insert the String "select" into the type field.
+                $record = new \stdClass();
+                $record->type = 'select';
+                $fieldcontroller = field_controller::create(0, $record, $categorycontroller);
+                // Added the default attributes for the custom field.
+                $fieldcontroller->set('name', 'LB Planner GK/EK');
+                $fieldcontroller->set('description', 'Tracks whether the task is a GK or EK task');
+                $fieldcontroller->set('type', 'select');
+                // Because moodle wants me to save the configdata as a json string, I have to do this.
+                // I don't know why moodle does this, but it does. I don't like it. but I have to do it. so I do it.
+                $fieldcontroller->set(
+                    'configdata',
+                    '{"required":"1","uniquevalues":"0","options":"GK\r\nEK\r\nGK and EK",
+                "defaultvalue":"GK","locked":"0","visibility":"2"}'
+                );
+                $fieldcontroller->set('shortname', 'lb_planner_gk_ek');
+                $fieldcontroller->save();
+            }
         }
     }
 }
