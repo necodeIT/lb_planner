@@ -5,6 +5,8 @@ import 'package:lb_planner/shared/shared.dart';
 import 'package:lb_planner/features/feedback/domain/domain.dart';
 import 'package:lb_planner/features/feedback/presentation/widgets/widgets.dart';
 
+@RoutePage()
+
 /// Admin feedback subroute.
 class AdminFeedbacksScreen extends StatefulWidget {
   /// Admin feedback subroute.
@@ -19,7 +21,7 @@ class AdminFeedbacksScreen extends StatefulWidget {
 
   /// Sorts the given feedback list
   static List<Feedback>? sortFeedbacks(AsyncValue<List<Feedback>> feedbacks) {
-    feedbacks.value!.sort(
+    feedbacks.value?.sort(
       (a, b) {
         var status = a.readAsInt.compareTo(b.readAsInt);
 
@@ -55,7 +57,7 @@ class _AdminFeedbacksScreenState extends State<AdminFeedbacksScreen> {
             textAlign: TextAlign.left,
           ),
         ),
-        condition: sortedFeedbacks!.isNotEmpty,
+        condition: sortedFeedbacks?.isNotEmpty ?? false,
         ifTrue: Align(
           alignment: Alignment.topLeft,
           child: Column(
@@ -134,10 +136,11 @@ class _AdminFeedbacksScreenState extends State<AdminFeedbacksScreen> {
                 child: ListView(
                   controller: ScrollController(),
                   children: [
-                    for (var feedback in sortedFeedbacks) ...[
-                      AdminFeedbackItem(feedbackId: feedback.id),
-                      Spacing.medium(),
-                    ],
+                    if (sortedFeedbacks != null)
+                      for (var feedback in sortedFeedbacks) ...[
+                        AdminFeedbackItem(feedbackId: feedback.id),
+                        Spacing.medium(),
+                      ],
                   ],
                 ),
               ),

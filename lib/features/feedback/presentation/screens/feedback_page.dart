@@ -55,7 +55,7 @@ class _AdminFeedbackScreenState extends State<AdminFeedbackScreen> {
     } else {
       // If there's no next item, navigate to the admin feedback list page
 
-      context.router.push(AdminFeedbackRoute(feedbackId: ));
+      context.router.push(AdminFeedbacksRoute());
     }
   }
 

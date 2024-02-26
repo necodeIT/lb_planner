@@ -4,6 +4,7 @@ import 'package:lb_planner/features/themes/themes.dart';
 import 'package:lb_planner/shared/shared.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:lb_planner/features/auth/auth.dart';
+import 'package:lb_planner/features/feedback/presentation/screens/feedback.dart';
 
 part 'app_router.gr.dart';
 
@@ -111,8 +112,9 @@ class AppRouter extends _$AppRouter {
           path: '/theme-development',
         ),
         DefaultRoute(
-          page: AdminFeedbackRoute.page,
+          page: AdminFeedbacksRoute.page,
           path: '/feedback',
+          initial: true,
         )
       ];
 }
