@@ -40,114 +40,118 @@ class AdminFeedbacksScreen extends StatefulWidget {
 class _AdminFeedbacksScreenState extends State<AdminFeedbacksScreen> {
   @override
   Widget build(BuildContext context) {
-    return Consumer(builder: (context, ref, _) {
-      var feedbacks = ref.watch(feedbackProvider);
+    return Material(
+      child: Sidebar(
+        body: Consumer(builder: (context, ref, _) {
+          var feedbacks = ref.watch(feedbackProvider);
 
-      var sortedFeedbacks = AdminFeedbacksScreen.sortFeedbacks(feedbacks);
+          var sortedFeedbacks = AdminFeedbacksScreen.sortFeedbacks(feedbacks);
 
-      return ConditionalWidget(
-        ifFalse: Center(
-          child: Text(
-            t.admin_feedback_noFeedback,
-            style: TextStyle(
-              overflow: TextOverflow.ellipsis,
-              fontSize: AdminFeedbacksScreen.headerFontSize,
-              fontWeight: FontWeight.w600,
+          return ConditionalWidget(
+            ifFalse: Center(
+              child: Text(
+                t.admin_feedback_noFeedback,
+                style: TextStyle(
+                  overflow: TextOverflow.ellipsis,
+                  fontSize: AdminFeedbacksScreen.headerFontSize,
+                  fontWeight: FontWeight.w600,
+                ),
+                textAlign: TextAlign.left,
+              ),
             ),
-            textAlign: TextAlign.left,
-          ),
-        ),
-        condition: sortedFeedbacks?.isNotEmpty ?? false,
-        ifTrue: Align(
-          alignment: Alignment.topLeft,
-          child: Column(
-            children: [
-              Row(
+            condition: sortedFeedbacks?.isNotEmpty ?? false,
+            ifTrue: Align(
+              alignment: Alignment.topLeft,
+              child: Column(
                 children: [
-                  Expanded(
-                    child: Text(
-                      t.admin_feedback_headers_user,
-                      style: TextStyle(
-                        overflow: TextOverflow.ellipsis,
-                        fontSize: AdminFeedbacksScreen.headerFontSize,
-                        fontWeight: FontWeight.w600,
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          t.admin_feedback_headers_user,
+                          style: TextStyle(
+                            overflow: TextOverflow.ellipsis,
+                            fontSize: AdminFeedbacksScreen.headerFontSize,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
                       ),
-                    ),
+                      Expanded(
+                        child: Text(
+                          t.admin_feedback_headers_status,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            overflow: TextOverflow.ellipsis,
+                            fontSize: AdminFeedbacksScreen.headerFontSize,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Text(
+                          t.admin_feedback_headers_type,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            overflow: TextOverflow.ellipsis,
+                            fontSize: AdminFeedbacksScreen.headerFontSize,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Text(
+                          t.admin_feedback_headers_lastModified,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            overflow: TextOverflow.ellipsis,
+                            fontSize: AdminFeedbacksScreen.headerFontSize,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Text(
+                          t.admin_feedback_headers_lastModifiedBy,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            overflow: TextOverflow.ellipsis,
+                            fontSize: AdminFeedbacksScreen.headerFontSize,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Text(
+                          t.admin_feedback_headers_timestamp,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            overflow: TextOverflow.ellipsis,
+                            fontSize: AdminFeedbacksScreen.headerFontSize,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
+                  Spacing.large(),
                   Expanded(
-                    child: Text(
-                      t.admin_feedback_headers_status,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        overflow: TextOverflow.ellipsis,
-                        fontSize: AdminFeedbacksScreen.headerFontSize,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Text(
-                      t.admin_feedback_headers_type,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        overflow: TextOverflow.ellipsis,
-                        fontSize: AdminFeedbacksScreen.headerFontSize,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Text(
-                      t.admin_feedback_headers_lastModified,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        overflow: TextOverflow.ellipsis,
-                        fontSize: AdminFeedbacksScreen.headerFontSize,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Text(
-                      t.admin_feedback_headers_lastModifiedBy,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        overflow: TextOverflow.ellipsis,
-                        fontSize: AdminFeedbacksScreen.headerFontSize,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Text(
-                      t.admin_feedback_headers_timestamp,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        overflow: TextOverflow.ellipsis,
-                        fontSize: AdminFeedbacksScreen.headerFontSize,
-                        fontWeight: FontWeight.w600,
-                      ),
+                    child: ListView(
+                      controller: ScrollController(),
+                      children: [
+                        if (sortedFeedbacks != null)
+                          for (var feedback in sortedFeedbacks) ...[
+                            AdminFeedbackItem(feedbackId: feedback.id),
+                            Spacing.medium(),
+                          ],
+                      ],
                     ),
                   ),
                 ],
               ),
-              Spacing.large(),
-              Expanded(
-                child: ListView(
-                  controller: ScrollController(),
-                  children: [
-                    if (sortedFeedbacks != null)
-                      for (var feedback in sortedFeedbacks) ...[
-                        AdminFeedbackItem(feedbackId: feedback.id),
-                        Spacing.medium(),
-                      ],
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-      );
-    });
+            ),
+          );
+        }),
+      ),
+    );
   }
 }

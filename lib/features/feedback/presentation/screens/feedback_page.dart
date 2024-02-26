@@ -73,157 +73,161 @@ class _AdminFeedbackScreenState extends State<AdminFeedbackScreen> {
   Widget build(BuildContext context) {
     bool _commenmtInit = false;
 
-    return Consumer(
-      builder: (context, ref, _) {
-        int feedbackId = widget.feedbackId;
+    return Material(
+      child: Sidebar(
+        body: Consumer(
+          builder: (context, ref, _) {
+            int feedbackId = widget.feedbackId;
 
-        var controller = ref.watch(feedbackController);
-        var feedback = controller.getFeedbackById(feedbackId);
+            var controller = ref.watch(feedbackController);
+            var feedback = controller.getFeedbackById(feedbackId);
 
-        if (ref.read(feedbackProvider).isLoading) {
-          return ShimmerEffect(height: AdminFeedbackItem.height);
-        }
+            if (ref.read(feedbackProvider).isLoading) {
+              return ShimmerEffect(height: AdminFeedbackItem.height);
+            }
 
-        if (!_commenmtInit) {
-          commentController.text = feedback.comment;
-          _commenmtInit = true;
-        }
+            if (!_commenmtInit) {
+              commentController.text = feedback.comment;
+              _commenmtInit = true;
+            }
 
-        int user = feedback.author;
+            int user = feedback.author;
 
-        return LpContainer(
-          title: feedback.type.title(context), //swtich jsonvalues
-          leading:
-              Icon(feedback.type.icon, color: feedback.type.color(context)),
-          trailing: ConditionalWidget(
-            condition: deleted == 0,
-            ifTrue: HoverBuilder(
-              builder: (context, hover) => Icon(
-                Icons.delete,
-                color: hover
-                    ? context.theme.colorScheme.error
-                    : ModuleStatusTheme.of(context).pendingColor,
-              ),
-              onTap: () => showConfirmDialog(
-                context,
-                title: t.admin_feedback_page_deleteTitle,
-                message: t.admin_feedback_page_deleteText,
-                confirmIsBad: true,
-                onConfirm: () => _deleteFeedback(context, ref, feedback),
-              ),
-            ),
-            ifFalse: CircularProgressIndicator(
-                color: context.theme.colorScheme.error),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Spacing.small(),
-              FeedbackStatusTag(read: feedback.read),
-              Spacing.small(),
-              Text(
-                t.admin_feedback_page_author(user as String),
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  overflow: TextOverflow.ellipsis,
-                  fontSize: AdminFeedbackItem.fontSize,
-                ),
-                textAlign: TextAlign.left,
-              ),
-              if (feedback.type == FeedbackType.bug)
-                Text(
-                  t.admin_feedback_page_logFile(feedback.logfile!),
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    overflow: TextOverflow.ellipsis,
-                    fontSize: AdminFeedbackItem.fontSize,
+            return LpContainer(
+              title: feedback.type.title(context), //swtich jsonvalues
+              leading:
+                  Icon(feedback.type.icon, color: feedback.type.color(context)),
+              trailing: ConditionalWidget(
+                condition: deleted == 0,
+                ifTrue: HoverBuilder(
+                  builder: (context, hover) => Icon(
+                    Icons.delete,
+                    color: hover
+                        ? context.theme.colorScheme.error
+                        : ModuleStatusTheme.of(context).pendingColor,
                   ),
-                  textAlign: TextAlign.left,
+                  onTap: () => showConfirmDialog(
+                    context,
+                    title: t.admin_feedback_page_deleteTitle,
+                    message: t.admin_feedback_page_deleteText,
+                    confirmIsBad: true,
+                    onConfirm: () => _deleteFeedback(context, ref, feedback),
+                  ),
                 ),
-              Text(
-                t.admin_feedback_page_id(feedback.id),
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  overflow: TextOverflow.ellipsis,
-                  fontSize: AdminFeedbackItem.fontSize,
-                ),
-                textAlign: TextAlign.left,
+                ifFalse: CircularProgressIndicator(
+                    color: context.theme.colorScheme.error),
               ),
-              Spacing.large(),
-              Expanded(
-                child: CustomScrollView(
-                  controller: ScrollController(),
-                  slivers: [
-                    SliverFillRemaining(
-                      hasScrollBody: false,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            child: Text(
-                              feedback.content,
-                              style: TextStyle(
-                                fontWeight: FontWeight.normal,
-                                overflow: TextOverflow.ellipsis,
-                                fontSize: AdminFeedbackItem.fontSize,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Spacing.small(),
+                  FeedbackStatusTag(read: feedback.read),
+                  Spacing.small(),
+                  Text(
+                    t.admin_feedback_page_author(user as String),
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      overflow: TextOverflow.ellipsis,
+                      fontSize: AdminFeedbackItem.fontSize,
+                    ),
+                    textAlign: TextAlign.left,
+                  ),
+                  if (feedback.type == FeedbackType.bug)
+                    Text(
+                      t.admin_feedback_page_logFile(feedback.logfile!),
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        overflow: TextOverflow.ellipsis,
+                        fontSize: AdminFeedbackItem.fontSize,
+                      ),
+                      textAlign: TextAlign.left,
+                    ),
+                  Text(
+                    t.admin_feedback_page_id(feedback.id),
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      overflow: TextOverflow.ellipsis,
+                      fontSize: AdminFeedbackItem.fontSize,
+                    ),
+                    textAlign: TextAlign.left,
+                  ),
+                  Spacing.large(),
+                  Expanded(
+                    child: CustomScrollView(
+                      controller: ScrollController(),
+                      slivers: [
+                        SliverFillRemaining(
+                          hasScrollBody: false,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  feedback.content,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.normal,
+                                    overflow: TextOverflow.ellipsis,
+                                    fontSize: AdminFeedbackItem.fontSize,
+                                  ),
+                                  textAlign: TextAlign.left,
+                                ),
                               ),
-                              textAlign: TextAlign.left,
-                            ),
+                            ],
                           ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Spacing.large(),
+                  Expanded(
+                    child: TextField(
+                        keyboardType: TextInputType.multiline,
+                        controller: commentController,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          hintText: t.admin_feedback_page_comment,
+                        )),
+                  ),
+                  Spacing.large(),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: ConditionalWidget(
+                      condition: updated != 0,
+                      ifTrue: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            feedback.read
+                                ? t.admin_feedback_page_update
+                                : t.admin_feedback_page_markRead,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              overflow: TextOverflow.ellipsis,
+                              fontSize: AdminFeedbackItem.fontSize,
+                            ),
+                            textAlign: TextAlign.left,
+                          ),
+                          Spacing.small(),
+                          CircularProgressIndicator(),
                         ],
                       ),
-                    ),
-                  ],
-                ),
-              ),
-              Spacing.large(),
-              Expanded(
-                child: TextField(
-                    keyboardType: TextInputType.multiline,
-                    controller: commentController,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: t.admin_feedback_page_comment,
-                    )),
-              ),
-              Spacing.large(),
-              Align(
-                alignment: Alignment.centerRight,
-                child: ConditionalWidget(
-                  condition: updated != 0,
-                  ifTrue: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        feedback.read
+                      ifFalse: TextButton.icon(
+                        label: Text(feedback.read
                             ? t.admin_feedback_page_update
-                            : t.admin_feedback_page_markRead,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          overflow: TextOverflow.ellipsis,
-                          fontSize: AdminFeedbackItem.fontSize,
-                        ),
-                        textAlign: TextAlign.left,
+                            : t.admin_feedback_page_markRead),
+                        onPressed: () => _updateFeedback(ref, feedback),
+                        icon: Icon(Feather.arrow_right_circle,
+                            size: AdminFeedbackItem.fontSize * 1.2,
+                            color: context.theme.colorScheme.primary),
                       ),
-                      Spacing.small(),
-                      CircularProgressIndicator(),
-                    ],
+                    ),
                   ),
-                  ifFalse: TextButton.icon(
-                    label: Text(feedback.read
-                        ? t.admin_feedback_page_update
-                        : t.admin_feedback_page_markRead),
-                    onPressed: () => _updateFeedback(ref, feedback),
-                    icon: Icon(Feather.arrow_right_circle,
-                        size: AdminFeedbackItem.fontSize * 1.2,
-                        color: context.theme.colorScheme.primary),
-                  ),
-                ),
+                ],
               ),
-            ],
-          ),
-        );
-      },
+            );
+          },
+        ),
+      ),
     );
   }
 }
