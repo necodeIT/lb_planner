@@ -53,7 +53,7 @@ class _UserNotificationsItemState extends ConsumerState<UserNotificationsItem> {
 
     switch (notification.type) {
       case NotificationType.invite:
-        int id = notification.payload!;
+        int id = notification.id;
 
         var invite = ref.watch(invitesProvider)[id];
 

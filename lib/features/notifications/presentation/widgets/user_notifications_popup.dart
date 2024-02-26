@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:lb_planner/features/notifications/domain/providers/notifications_provider.dart';
+import 'package:lb_planner/features/notifications/presentation/widgets/user_notifications_item.dart';
 import 'package:lb_planner/shared/shared.dart';
 
 /// Popup that displays all notifications the user received.
@@ -32,18 +34,21 @@ class _UserNotificationsPopupState extends State<UserNotificationsPopup> {
   @override
   Widget build(context) {
     return Consumer(builder: (context, ref, _) {
-      var notifications = ref
-          .watch(notificationsProvider)
-          .values
-          .where((e) => e.shouldDisplay(ref))
-          .toList();
+      var notifications = ref.watch(notificationsProvider);
 
-      notifications.sort((a, b) => b.timestamp.compareTo(a.timestamp));
+      notifications
+          .sort((a, b) => b.createdAtTimestamp.compareTo(a.createdAtTimestamp));
 
       return LpContainer(
         spacing: true,
-        leading: NcCaptionText(
-            t.user_notifications_notifications(notifications.length)),
+        leading: Text(
+          t.user_notifications_notifications(notifications.length),
+          style: TextStyle(
+            fontWeight: FontWeight.w600,
+            overflow: TextOverflow.ellipsis,
+          ),
+          textAlign: TextAlign.left,
+        ),
         trailing: GestureDetector(
           onTap: () {
             ref.read(notificationsController).markAllAsRead();
@@ -67,8 +72,8 @@ class _UserNotificationsPopupState extends State<UserNotificationsPopup> {
           falseWidget: (context) =>
               UniversalActor.fromRiveAnimation(animations_rive_newton),
         ),
-        width: width,
-        height: height,
+        width: 350,
+        height: 350,
       );
     });
   }
