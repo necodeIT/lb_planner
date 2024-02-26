@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lb_planner/shared/shared.dart';
 
 /// The header of the cours edit dialog.
@@ -62,7 +63,7 @@ class _CourseEditDialogHeaderState extends State<CourseEditDialogHeader> {
             child,
             GestureDetector(
               onTap: _enterEditMode,
-              child: LpIcon(
+              child: Icon(
                 Icons.edit,
               ),
             ),
