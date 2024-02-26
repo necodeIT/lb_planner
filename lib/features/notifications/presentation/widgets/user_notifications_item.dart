@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
-
+import 'package:lb_planner/shared/shared.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../domain/domain.dart';
+import 'package:shimmer/shimmer.dart';
 
 /// User notifications item.
 class UserNotificationsItem extends ConsumerStatefulWidget {
@@ -205,39 +207,59 @@ class _UserNotificationsItemState extends ConsumerState<UserNotificationsItem> {
 
     return ConditionalWidget(
       condition: loading,
-      trueWidget: (context) => LpShimmer(),
+      trueWidget: (context) => Shimmer.fromColors(
+        period: Duration(milliseconds: 2000),
+        child: Container(
+          height: 30,
+          width: 70,
+          decoration: BoxDecoration(
+            color: secondaryColor,
+            borderRadius: BorderRadius.circular(5),
+          ),
+        ),
+        baseColor: secondaryColor,
+        // ignore: no-magic-number
+        highlightColor: secondaryColor.lighten(0.02),
+      ),
       falseWidget: (context) => Container(
-        padding: EdgeInsets.all(NcSpacing.smallSpacing),
+        padding: EdgeInsets.all(Spacing.smallSpacing),
         decoration: BoxDecoration(
           color: secondaryColor,
-          borderRadius: BorderRadius.circular(kRadius),
+          borderRadius: BorderRadius.circular(5),
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            NcCaptionText(
+            Text(
               text,
-              overflow: TextOverflow.visible,
+              style: TextStyle(
+                fontWeight: FontWeight.w600,
+                overflow: TextOverflow.visible,
+              ),
+              textAlign: TextAlign.left,
             ),
-            NcSpacing.small(),
+            Spacing.small(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
                   children: [
-                    LpIcon(
+                    Icon(
                       Icons.access_time,
                       size: UserNotificationsItem.actionsFontSize,
                       // ignore: no-magic-number
                       color: textColor.withOpacity(.7),
                     ),
-                    NcSpacing.xs(),
-                    NcCaptionText(
+                    Spacing.xs(),
+                    Text(
                       timeago.format(notification.timestamp),
-                      // ignore: no-magic-number
-                      color: textColor.withOpacity(.7),
-                      fontSize: UserNotificationsItem.actionsFontSize,
+                      style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          overflow: TextOverflow.ellipsis,
+                          fontSize: UserNotificationsItem.actionsFontSize,
+                          color: textColor.withOpacity(.7)),
+                      textAlign: TextAlign.left,
                     ),
                   ],
                 ),
@@ -265,23 +287,25 @@ class _Action {
   Widget build(BuildContext context) {
     return ConditionalWidget(
       condition: loading,
-      trueWidget: (context) => LpLoadingIndicator.circular(),
+      trueWidget: (context) => CircularProgressIndicator(),
       falseWidget: (context) => ConditionalWidget(
-        condition: onPressed != null,
-        trueWidget: (_) => LpTextButton(
-          text: text,
-          color: accentColor,
-          decoration: TextDecoration.underline,
-          fontSize: UserNotificationsItem.actionsFontSize,
-          onPressed: onPressed,
-        ),
-        falseWidget: (_) => NcCaptionText(
-          text,
-          // ignore: no-magic-number
-          color: textColor.withOpacity(.7),
-          fontSize: UserNotificationsItem.actionsFontSize,
-        ),
-      ),
+          condition: onPressed != null,
+          trueWidget: (_) => LpTextButton(
+                text: text,
+                color: accentColor,
+                decoration: TextDecoration.underline,
+                fontSize: UserNotificationsItem.actionsFontSize,
+                onPressed: onPressed,
+              ),
+          falseWidget: (_) => Text(
+                text,
+                style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    overflow: TextOverflow.ellipsis,
+                    fontSize: UserNotificationsItem.actionsFontSize,
+                    color: textColor.withOpacity(.7)),
+                textAlign: TextAlign.left,
+              )),
     );
   }
 }
