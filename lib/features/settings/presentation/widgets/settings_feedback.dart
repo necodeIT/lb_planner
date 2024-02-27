@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:lb_planner/shared/shared.dart';
 
 /// Feedback section of the settings route.
@@ -73,33 +75,43 @@ class _SettingsFeedbackState extends State<SettingsFeedback> {
       title: t.settings_feedback,
       child: ConditionalWidget(
         condition: _submitFuture != null,
-        trueWidget: (context) => LpLoadingIndicator.circular(
-            size: SettingsFeedback.loadingIndicatorSize),
-        falseWidget: (_) => Column(
+        ifTrue: CircularProgressIndicator(
+            strokeWidth: SettingsFeedback.loadingIndicatorSize),
+        ifFalse: Column(
           children: [
             Align(
               alignment: Alignment.centerLeft,
-              child: LpDropdown<FeedbackTypes>(
-                fontSize: SettingsFeedback.fontSize,
+              child: DropdownButton<FeedbackTypes>(
+                style: context.theme.textTheme.bodyMedium!
+                    .copyWith(fontSize: SettingsFeedback.fontSize),
                 value: _feedbackType,
                 items: [
                   DropdownMenuItem(
-                      child: NcBodyText(t.settings_feedback_types_bug),
+                      child: Text(t.settings_feedback_types_bug,
+                          style: context.theme.textTheme.bodyMedium),
                       value: FeedbackTypes.bug),
                   DropdownMenuItem(
-                      child: NcBodyText(t.settings_feedback_types_error),
+                      child: Text(t.settings_feedback_types_error,
+                          style: context.theme.textTheme.bodyMedium),
                       value: FeedbackTypes.error),
                   DropdownMenuItem(
-                      child: NcBodyText(t.settings_feedback_types_suggestion),
+                      child: Text(t.settings_feedback_types_suggestion,
+                          style: context.theme.textTheme.bodyMedium),
                       value: FeedbackTypes.suggestion),
                   DropdownMenuItem(
-                      child: NcBodyText(t.settings_feedback_types_other),
+                      child: Text(t.settings_feedback_types_other,
+                          style: context.theme.textTheme.bodyMedium),
                       value: FeedbackTypes.other),
                 ],
                 onChanged: _setFeedbackType,
+                dropdownColor: context.theme.colorScheme.background,
+                icon: Icon(Ionicons.chevron_down),
+                borderRadius: BorderRadius.circular(5),
+                underline: SizedBox.shrink(),
+                focusColor: Colors.transparent,
               ),
             ),
-            NcSpacing.xs(),
+            Spacing.xs(),
             Expanded(
               child: LpTextField.filled(
                 fontSize: SettingsFeedback.fontSize,
@@ -108,7 +120,7 @@ class _SettingsFeedbackState extends State<SettingsFeedback> {
                 multiline: true,
               ),
             ),
-            NcSpacing.medium(),
+            Spacing.medium(),
             Align(
               alignment: Alignment.centerRight,
               child: Consumer(
@@ -122,7 +134,7 @@ class _SettingsFeedbackState extends State<SettingsFeedback> {
                 ),
               ),
             ),
-            NcSpacing.xs(),
+            Spacing.xs(),
           ],
         ),
       ),

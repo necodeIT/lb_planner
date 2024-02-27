@@ -11,3 +11,5 @@ export 'offset_on_hover.dart';
 export 'hover_builder.dart';
 export 'hoverable_widget.dart';
 export 'tag.dart';
+export 'conditional_widget.dart';
+export 'dialog.dart';
