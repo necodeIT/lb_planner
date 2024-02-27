@@ -28,20 +28,20 @@ class SettingsGeneralAboutRoute extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  VectorImage(code: kAppIcon, height: UpdateRoute.iconSize),
+                  VectorImage('assets/svg/app_icon.svg', height: 60),
                   NcTitleText(
                     UpdaterService.currentVersionName,
-                    fontSize: RouteTitle.titleSize,
+                    fontSize: 25,
                   ),
                 ],
               ),
               Spacing.large(),
-              NcLogo.horizontal(height: UpdateRoute.iconSize),
+              NcLogo.horizontal(height: 60),
             ],
           ),
           Spacing.large(),
           Expanded(
-            child: LpMarkdown.network(Uri.parse(readmeaUrl)),
+            child: MarkdownView.network(Uri.parse(readmeaUrl)),
           ),
         ],
       ),

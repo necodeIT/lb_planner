@@ -4,3 +4,6 @@ export 'settings_feedback.dart';
 export 'settings_courses.dart';
 export 'license.dart';
 export 'general.dart';
+export 'about.dart';
+export 'settings_themes.dart';
+export 'settings_theme_item.dart';
