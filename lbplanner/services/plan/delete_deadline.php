@@ -23,13 +23,22 @@ use local_lbplanner\helpers\plan_helper;
 
 /**
  * Delete a deadline from your plan
+ *
+ * @package local_lbplanner
+ * @subpackage services_plan
+ * @copyright 2024 necodeIT
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class plan_delete_deadline extends external_api {
-    public static function delete_deadline_parameters() {
+    /**
+     * Parameters for delete_deadline.
+     * @return external_function_parameters
+     */
+    public static function delete_deadline_parameters(): external_function_parameters {
         return new external_function_parameters([
             'moduleid' => new external_value(
                 PARAM_INT,
-                'The ID of the Module',
+                'ID of the Module',
                 VALUE_REQUIRED,
                 null,
                 NULL_NOT_ALLOWED
@@ -37,7 +46,14 @@ class plan_delete_deadline extends external_api {
         ]);
     }
 
-    public static function delete_deadline($moduleid) {
+    /**
+     * Delete a deadline.
+     *
+     * @param int $moduleid ID of the Module
+     * @return void
+     * @throws Exception when access denied
+     */
+    public static function delete_deadline(int $moduleid) {
         global $DB, $USER;
 
         self::validate_parameters(
@@ -56,12 +72,16 @@ class plan_delete_deadline extends external_api {
         $DB->delete_records(
             plan_helper::DEADLINES_TABLE,
             [
-                'planid' => $planid ,
+                'planid' => $planid,
                 'moduleid' => $moduleid,
             ]
         );
     }
 
+    /**
+     * Returns the structure of nothing.
+     * @return null
+     */
     public static function delete_deadline_returns() {
         return null;
     }

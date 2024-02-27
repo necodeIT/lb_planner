@@ -23,18 +23,35 @@ use local_lbplanner\helpers\plan_helper;
 use local_lbplanner\helpers\notifications_helper;
 use local_lbplanner\helpers\PLAN_ACCESS_TYPE;
 use local_lbplanner\helpers\PLAN_INVITE_STATE;
+use local_lbplanner\helpers\NOTIF_TRIGGER;
 
 /**
- * Update a invite from the plan.
+ * Accept an invite to the plan.
+ *
+ * @package local_lbplanner
+ * @subpackage services_plan
+ * @copyright 2024 necodeIT
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class plan_accept_invite extends external_api {
-    public static function accept_invite_parameters() {
+    /**
+     * Parameters for accept_invite.
+     * @return external_function_parameters
+     */
+    public static function accept_invite_parameters(): external_function_parameters {
         return new external_function_parameters([
-        'inviteid' => new external_value(PARAM_INT, 'The id of the plan', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
+        'inviteid' => new external_value(PARAM_INT, 'the ID of the invite to be accepted', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
         ]);
     }
 
-    public static function accept_invite($inviteid) {
+    /**
+     * Accepts an invite
+     *
+     * @param int $inviteid the ID of the invite to be accepted
+     * @return void
+     * @throws \moodle_exception when invite not found, already accepted or declined
+     */
+    public static function accept_invite(int $inviteid) {
         global $DB, $USER;
 
         self::validate_parameters(self::accept_invite_parameters(), [
@@ -45,7 +62,7 @@ class plan_accept_invite extends external_api {
             throw new \moodle_exception('Invite not found');
         }
         if (!$DB->record_exists(plan_helper::INVITES_TABLE,
-        [ 'id' => $inviteid, 'inviteeid' => $USER->id, 'status' => PLAN_INVITE_STATE::PENDING->value])) {
+        [ 'id' => $inviteid, 'inviteeid' => $USER->id, 'status' => PLAN_INVITE_STATE::PENDING])) {
             throw new \moodle_exception('Invite already accepted or declined');
         }
 
@@ -53,7 +70,7 @@ class plan_accept_invite extends external_api {
         [
             'id' => $inviteid,
             'inviteeid' => $USER->id,
-            'status' => PLAN_INVITE_STATE::PENDING->value,
+            'status' => PLAN_INVITE_STATE::PENDING,
         ],
         '*',
         MUST_EXIST
@@ -63,7 +80,7 @@ class plan_accept_invite extends external_api {
         notifications_helper::notify_user(
             $invite->inviterid,
             $invite->id,
-            notifications_helper::TRIGGER_INVITE_ACCEPTED
+            NOTIF_TRIGGER::INVITE_ACCEPTED
         );
 
         // Deletes the old plan if the user is the owner of it.
@@ -95,24 +112,27 @@ class plan_accept_invite extends external_api {
             MUST_EXIST
         );
 
-        $invite->status = PLAN_INVITE_STATE::ACCEPTED->value;
+        $invite->status = PLAN_INVITE_STATE::ACCEPTED;
 
         $DB->update_record(plan_helper::INVITES_TABLE, $invite);
 
-        $planaccess->accesstype = PLAN_ACCESS_TYPE::READ->value;
+        $planaccess->accesstype = PLAN_ACCESS_TYPE::READ;
         $planaccess->planid = $invite->planid;
 
         $DB->update_record(plan_helper::ACCESS_TABLE, $planaccess);
         $invites = plan_helper::get_invites_send($USER->id);
         foreach ($invites as $invite) {
-            if ($invite->status == PLAN_INVITE_STATE::PENDING->value) {
-                $invite->status = PLAN_INVITE_STATE::EXPIRED->value;
+            if ($invite->status == PLAN_INVITE_STATE::PENDING) {
+                $invite->status = PLAN_INVITE_STATE::EXPIRED;
                 $DB->update_record(plan_helper::INVITES_TABLE, $invite);
             }
         }
     }
 
-
+    /**
+     * Returns the structure of nothing.
+     * @return null
+     */
     public static function accept_invite_returns() {
         return null;
     }

@@ -29,9 +29,9 @@ use moodle_exception;
 /**
  * Get all the courses of the current year.
  *
- * Retrievs all the courses of the current school year.
  * @package local_lbplanner
- * @copyright 2023 necodeIT
+ * @subpackage services_courses
+ * @copyright 2024 necodeIT
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class courses_get_all_courses extends external_api {
@@ -68,6 +68,9 @@ class courses_get_all_courses extends external_api {
             // Check if the shortname contains a space.
             if (strpos($shortname, ' ') !== false) {
                     $shortname = substr($shortname, 0, strpos($shortname, ' '));
+            }
+            if (strlen($shortname) >= 5) {
+                    $shortname = substr($shortname, 0, 5);
             }
             // Check if the course is from the current year.
             if (course_helper::check_current_year($courseid)) {

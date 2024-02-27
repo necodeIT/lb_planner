@@ -24,17 +24,37 @@ use local_lbplanner\helpers\feedback_helper;
 
 /**
  * Updates feedback from the database.
+ *
+ * @package local_lbplanner
+ * @subpackage services_feedback
+ * @copyright 2024 necodeIT
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class feedback_update_feedback extends external_api {
-    public static function update_feedback_parameters() {
+    /**
+     * Parameters for update_feedback.
+     * @return external_function_parameters
+     */
+    public static function update_feedback_parameters(): external_function_parameters {
         return new external_function_parameters([
-            'feedbackid' => new external_value(PARAM_INT, 'The id of the course', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
-            'notes' => new external_value(PARAM_TEXT, 'The notes of the feedback', VALUE_DEFAULT, null, NULL_ALLOWED),
-            'status' => new external_value(PARAM_INT, 'The status of the feedback', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
+            'feedbackid' =>
+                new external_value(PARAM_INT, 'ID of the feedback to be updated', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
+            'notes' => new external_value(PARAM_TEXT, 'updated notes', VALUE_DEFAULT, null, NULL_ALLOWED),
+            'status' => new external_value(PARAM_INT, 'updated status', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
         ]);
     }
 
-    public static function update_feedback($feedbackid, $notes, $status) {
+    /**
+     * Updates feedback from the database.
+     *
+     * @param int $feedbackid ID of the feedback to be updated
+     * @param string $notes updated notes
+     * @param int $status updated status
+     * @see feedback_helper
+     * @return void
+     * @throws \moodle_exception when feedback not found or status invalid
+     */
+    public static function update_feedback(int $feedbackid, string $notes, int $status) {
         global $DB, $USER;
 
         self::validate_parameters(
@@ -50,7 +70,7 @@ class feedback_update_feedback extends external_api {
 
         $feedback = $DB->get_record(feedback_helper::LBPLANNER_FEEDBACK_TABLE, ['id' => $feedbackid], '*', MUST_EXIST);
         $feedback->notes = $notes;
-        if ($status > 1 || $status < 0) {
+        if ($status > 1 || $status < 0) { // TODO: use enum to validate.
             throw new \moodle_exception('Invalid status');
         }
         $feedback->status = $status;
@@ -60,6 +80,10 @@ class feedback_update_feedback extends external_api {
         $DB->update_record(feedback_helper::LBPLANNER_FEEDBACK_TABLE, $feedback);
     }
 
+    /**
+     * Returns the structure of nothing.
+     * @return null
+     */
     public static function update_feedback_returns() {
         return null;
     }

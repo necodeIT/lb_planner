@@ -22,14 +22,28 @@ use external_multiple_structure;
 use local_lbplanner\helpers\notifications_helper;
 
 /**
- * Get all the notifications of the given user.
+ * Get all the notifications of the user.
+ *
+ * @package local_lbplanner
+ * @subpackage services_notifications
+ * @copyright 2024 necodeIT
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class notifications_get_all_notifications extends external_api {
-    public static function get_all_notifications_parameters() {
+    /**
+     * Parameters for get_all_notifications.
+     * @return external_function_parameters
+     */
+    public static function get_all_notifications_parameters(): external_function_parameters {
         return new external_function_parameters([]);
     }
 
-    public static function get_all_notifications() {
+    /**
+     * Returns all the notifications of the user
+     *
+     * @return array
+     */
+    public static function get_all_notifications(): array {
         global $DB, $USER;
 
         $dbnotifications = $DB->get_records(notifications_helper::TABLE, ['userid' => $USER->id]);
@@ -50,7 +64,11 @@ class notifications_get_all_notifications extends external_api {
         return $notifications;
     }
 
-    public static function get_all_notifications_returns() {
+    /**
+     * Returns the structure of the array of notifications.
+     * @return external_multiple_structure
+     */
+    public static function get_all_notifications_returns(): external_multiple_structure {
         return new external_multiple_structure(
             notifications_helper::structure()
         );
