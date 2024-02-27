@@ -26,7 +26,7 @@ use local_lbplanner\helpers\config_helper;
 class config_add_customfield extends external_api {
     public static function add_customfield_parameters() {
         return new external_function_parameters(
-            array()
+            []
         );
     }
 
