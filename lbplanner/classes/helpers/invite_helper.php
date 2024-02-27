@@ -22,18 +22,19 @@ use external_value;
 /**
  * Helper class for plan invites
  *
- * @package local_lbplanner
+ * @package    local_lbplanner
  * @subpackage helpers
- * @copyright 2024 NecodeIT
- * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @copyright  2024 NecodeIT
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class invite_helper {
 
     /**
      * Returns the data structure of an invite.
+     *
      * @return external_single_structure The data structure of an invite.
      */
-    public static function structure() : external_single_structure {
+    public static function structure(): external_single_structure {
         return new external_single_structure(
             [
                 'id' => new external_value(PARAM_INT, 'invite ID'),

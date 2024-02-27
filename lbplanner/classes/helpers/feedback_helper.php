@@ -27,10 +27,10 @@ use local_lbplanner\helpers\user_helper;
 /**
  * Helper class for feedback
  *
- * @package local_lbplanner
+ * @package    local_lbplanner
  * @subpackage helpers
- * @copyright 2024 NecodeIT
- * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @copyright  2024 NecodeIT
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class feedback_helper {
 
@@ -44,7 +44,6 @@ class feedback_helper {
      */
     const STATUS_READ = 1;
 
-
     /**
      * The name of the table which is used by LP to store feedback in
      */
@@ -55,7 +54,7 @@ class feedback_helper {
      *
      * @return external_single_structure The structure of a module.
      */
-    public static function structure() : external_single_structure {
+    public static function structure(): external_single_structure {
         return new external_single_structure(
             [
                 'content' => new external_value(PARAM_TEXT, 'Content of the feedback'),
@@ -71,33 +70,38 @@ class feedback_helper {
             ]
         );
     }
+
     /**
      * Gives back the feedback of the given feedbackid
      *
      * @param int $feedbackid The id of the feedback
+     *
      * @return stdClass The feedback
      */
-    public static function get_feedback(int $feedbackid) : stdClass {
+    public static function get_feedback(int $feedbackid): stdClass {
         global $DB;
         return $DB->get_record(self::LBPLANNER_FEEDBACK_TABLE, ['id' => $feedbackid]);
     }
+
     /**
      * Checks if the user has access to feedback
      *
      * @throws \moodle_exception when the user has no access
      */
     public static function assert_admin_access() {
-        if (!has_capability(user_helper::CAPABILITY_ADMIN, \context_system::instance()) &&
-        !has_capability(user_helper::CAPABILITY_MANAGER, \context_system::instance())) {
+        if (!has_capability(user_helper::CAPABILITY_ADMIN, \context_system::instance())
+            && !has_capability(user_helper::CAPABILITY_MANAGER, \context_system::instance())
+        ) {
             throw new \moodle_exception('Acces denied');
         }
     }
 
     /**
      * Returns all feedback records.
+     *
      * @return array all feedback records
      */
-    public static function get_all_feedbacks() : array {
+    public static function get_all_feedbacks(): array {
         global $DB;
         return $DB->get_records(self::LBPLANNER_FEEDBACK_TABLE);
     }

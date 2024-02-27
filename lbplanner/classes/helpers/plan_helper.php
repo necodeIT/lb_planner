@@ -16,10 +16,10 @@
 /**
  * Provides helper classes for any tables related with the planning function of the app
  *
- * @package local_lbplanner
+ * @package    local_lbplanner
  * @subpackage helpers
- * @copyright 2024 NecodeIT
- * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @copyright  2024 NecodeIT
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 namespace local_lbplanner\helpers;
@@ -119,9 +119,10 @@ class plan_helper {
      * Returns a list of user id's that are members of the plan.
      *
      * @param int $planid The id of the plan.
+     *
      * @return array An array of user id's.
      */
-    public static function get_plan_members(int $planid):array {
+    public static function get_plan_members(int $planid): array {
         global $DB;
         $members = $DB->get_records(self::ACCESS_TABLE, ['planid' => $planid]);
         return $members;
@@ -131,9 +132,10 @@ class plan_helper {
      * Returns the user id of the owner of the plan.
      *
      * @param int $planid The id of the plan.
+     *
      * @return integer The user id of the owner.
      */
-    public static function get_owner(int $planid):int {
+    public static function get_owner(int $planid): int {
         global $DB;
 
         $owner = $DB->get_field(
@@ -148,9 +150,10 @@ class plan_helper {
      * Returns the id of the plan that the given user is a member of.
      *
      * @param int $userid The id of the user.
+     *
      * @return integer The id of the plan the given user is a member of.
      */
-    public static function get_plan_id(int $userid):int {
+    public static function get_plan_id(int $userid): int {
         global $DB;
         $planid = $DB->get_field(self::ACCESS_TABLE, 'planid', ['userid' => $userid]);
         return $planid;
@@ -161,6 +164,7 @@ class plan_helper {
      *
      * @param int $userid The id of the user.
      * @param int $planid The id of the plan.
+     *
      * @return int The access type of the given user for the given plan.
      */
     public static function get_access_type(int $userid, int $planid): int {
@@ -184,9 +188,10 @@ class plan_helper {
      *
      * @param int $planid The id of the plan.
      * @param int $userid The id of the user.
+     *
      * @return boolean True if the given user has editing permissions for the given plan.
      */
-    public static function check_edit_permissions(int $planid, int $userid):bool {
+    public static function check_edit_permissions(int $planid, int $userid): bool {
         $access = self::get_access_type($userid, $planid);
 
         return $access === PLAN_ACCESS_TYPE::OWNER || $access === PLAN_ACCESS_TYPE::WRITE;
@@ -196,6 +201,7 @@ class plan_helper {
      * Returns a list of all deadlines for the given plan.
      *
      * @param int $planid The id of the plan.
+     *
      * @return array A list of all deadlines for the given plan.
      */
     public static function get_deadlines(int $planid): array {
@@ -220,9 +226,10 @@ class plan_helper {
      * Retrieves all the information available about the given plan.
      *
      * @param int $planid The id of the plan.
+     *
      * @return array An array containing all the information available about the given plan.
      */
-    public static function get_plan(int $planid) : array {
+    public static function get_plan(int $planid): array {
         global $DB;
 
         $plan = $DB->get_record(self::TABLE, ['id' => $planid]);
@@ -249,7 +256,7 @@ class plan_helper {
      *
      * @return external_single_structure The structure.
      */
-    public static function plan_structure() : external_single_structure {
+    public static function plan_structure(): external_single_structure {
         return new external_single_structure(
             [
                 'name' => new external_value(PARAM_TEXT, 'Name of the plan'),
@@ -268,7 +275,7 @@ class plan_helper {
                     new external_single_structure(
                         [
                             'userid' => new external_value(PARAM_INT, 'The id of the user'),
-                            'accesstype' => new external_value(PARAM_INT, 'The role of the user '.PLAN_ACCESS_TYPE::format()),
+                            'accesstype' => new external_value(PARAM_INT, 'The role of the user ' . PLAN_ACCESS_TYPE::format()),
                         ]
                     )
                 ),
@@ -281,9 +288,10 @@ class plan_helper {
      *
      * @param int $planid The id of the plan.
      * @param int $userid The id of the user.
+     *
      * @return integer The id of the new copy of the plan.
      */
-    public static function copy_plan(int $planid, int $userid) : int {
+    public static function copy_plan(int $planid, int $userid): int {
         global $DB;
 
         $user = user_helper::get_mdl_user_info($userid);
@@ -302,15 +310,17 @@ class plan_helper {
         }
         return $newplanid;
     }
+
     /**
      * Removes the user from the given plan.
      *
-     * @param int $planid the plan id.
-     * @param int $userid the user id.
+     * @param int $planid       the plan id.
+     * @param int $userid       the user id.
      * @param int $removeuserid the user id to remove.
+     *
      * @return int The ID of the new plan for the removed user
      */
-    public static function remove_user(int $planid, int $userid, int $removeuserid) : int {
+    public static function remove_user(int $planid, int $userid, int $removeuserid): int {
         global $DB;
         if (self::get_owner($planid) != $userid) {
             throw new \moodle_exception('Access denied');
@@ -342,24 +352,28 @@ class plan_helper {
 
         return $newplanid;
     }
+
     /**
      * Get all invites that have been sent by the user.
      *
      * @param int $userid ID of the sender
+     *
      * @return array an array of invites sent by the user
      */
-    public static function get_invites_send(int $userid):array {
+    public static function get_invites_send(int $userid): array {
         global $DB;
         $invites = $DB->get_records(self::INVITES_TABLE, ['inviterid' => $userid]);
         return $invites;
     }
+
     /**
      * Get all invites that have been received by the user.
      *
      * @param int $userid ID of the receiver
+     *
      * @return array an array of invites received by the user
      */
-    public static function get_invites_received(int $userid):array {
+    public static function get_invites_received(int $userid): array {
         global $DB;
         $invites = $DB->get_records(self::INVITES_TABLE, ['inviteeid' => $userid]);
         return $invites;

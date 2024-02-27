@@ -16,10 +16,10 @@
 /**
  * Provides helper classes for notification related stuff
  *
- * @package local_lbplanner
+ * @package    local_lbplanner
  * @subpackage helpers
- * @copyright 2024 NecodeIT
- * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @copyright  2024 NecodeIT
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 namespace local_lbplanner\helpers;
@@ -91,11 +91,11 @@ class notifications_helper {
      *
      * @return external_single_structure The data structure of a notification.
      */
-    public static function structure() : external_single_structure {
+    public static function structure(): external_single_structure {
         return new external_single_structure([
-            'status' => new external_value(PARAM_INT, 'The status of the notification '.NOTIF_STATUS::format()),
+            'status' => new external_value(PARAM_INT, 'The status of the notification ' . NOTIF_STATUS::format()),
             'type' =>
-                new external_value(PARAM_INT, 'The type of the event that triggered the notification '.NOTIF_TRIGGER::format()),
+                new external_value(PARAM_INT, 'The type of the event that triggered the notification ' . NOTIF_TRIGGER::format()),
             'info' => new external_value(PARAM_INT, 'Additional information about the notification'),
             'userid' => new external_value(PARAM_INT, 'The ID of the user for whom the notification is for'),
             'notificationid' => new external_value(PARAM_INT, 'The ID of the notification', NULL_NOT_ALLOWED),
@@ -108,11 +108,12 @@ class notifications_helper {
      * Notifies the given user about the given event, with the given info.
      *
      * @param int $userid The user to notify.
-     * @param int $info Additional information as stringified json.
-     * @param int $type The type of notification.
+     * @param int $info   Additional information as stringified json.
+     * @param int $type   The type of notification.
+     *
      * @return integer The id of the notification.
      */
-    public static function notify_user( int $userid, int $info, int $type ): int {
+    public static function notify_user(int $userid, int $info, int $type): int {
         global $DB;
 
         $notification = new \stdClass();
