@@ -22,23 +22,42 @@ use external_value;
 use local_lbplanner\helpers\notifications_helper;
 
 /**
- * Update the notification status of the given user and id.
+ * Update the notification status.
+ *
+ * @package local_lbplanner
+ * @subpackage services_notifications
+ * @copyright 2024 necodeIT
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class notifications_update_notification extends external_api {
-    public static function update_notification_parameters() {
+    /**
+     * Parameters for update_notification.
+     * @return external_function_parameters
+     */
+    public static function update_notification_parameters(): external_function_parameters {
         return new external_function_parameters([
             'status' => new external_value(
                 PARAM_INT,
-                'The status of the notification {0: unread, 1: read}',
+                'notification status {0: unread, 1: read}',
                 VALUE_REQUIRED,
                 null,
                 NULL_NOT_ALLOWED
             ),
-            'notificationid' => new external_value(PARAM_INT, 'The ID of the notification', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
+            'notificationid' =>
+                new external_value(PARAM_INT, 'ID of the notification to be updated', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
         ]);
     }
 
-    public static function update_notification($status, $notificationid) {
+    /**
+     * Update the notification status.
+     *
+     * @param int $status notification status
+     * @see notifications_helper
+     * @param int $notificationid ID of the notification to be updated
+     * @return void
+     * @throws \moodle_exception when the notification doesn't exist
+     */
+    public static function update_notification(int $status, int $notificationid) {
         global $DB;
 
         self::validate_parameters(
@@ -57,6 +76,10 @@ class notifications_update_notification extends external_api {
         $DB->update_record(notifications_helper::TABLE, $notification);
     }
 
+    /**
+     * Returns the structure of nothing.
+     * @return null
+     */
     public static function update_notification_returns() {
         return null;
     }

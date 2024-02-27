@@ -18,17 +18,32 @@ namespace local_lbplanner_services;
 
 use external_api;
 use external_function_parameters;
+use external_single_structure;
 use local_lbplanner\helpers\plan_helper;
 
 /**
  * Get the plan of the given user.
+ *
+ * @package local_lbplanner
+ * @subpackage services_plan
+ * @copyright 2024 necodeIT
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class plan_get_plan extends external_api {
-    public static function get_plan_parameters() {
+    /**
+     * Parameters for get_plan.
+     * @return external_function_parameters
+     */
+    public static function get_plan_parameters(): external_function_parameters {
         return new external_function_parameters([]);
     }
 
-    public static function get_plan() {
+    /**
+     * Returns the plan of the current user.
+     *
+     * @return array
+     */
+    public static function get_plan(): array {
         global $DB, $USER;
 
         $planid = plan_helper::get_plan_id($USER->id);
@@ -36,7 +51,11 @@ class plan_get_plan extends external_api {
         return plan_helper::get_plan($planid);
     }
 
-    public static function get_plan_returns() {
+    /**
+     * Returns the structure of the plan.
+     * @return external_single_structure
+     */
+    public static function get_plan_returns(): external_single_structure {
         return plan_helper::plan_structure();
     }
 }

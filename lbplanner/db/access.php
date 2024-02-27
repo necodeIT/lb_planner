@@ -13,30 +13,36 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+/**
+ * contains access levels, i.e. capabilities
+ *
+ * @package local_lbplanner
+ * @subpackage db
+ * @copyright 2024 NecodeIT
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 
 defined('MOODLE_INTERNAL') || die();
 
-$capabilities = array(
-    'local/lb_planner:student' => array(
+$capabilities = [
+    'local/lb_planner:student' => [
         'riskbitmask' => RISK_SPAM,
         'captype' => 'write',
         'contextlevel' => CONTEXT_SYSTEM,
-    ),
-    'local/lb_planner:teacher' => array(
+    ],
+    'local/lb_planner:teacher' => [
         'riskbitmask' => RISK_SPAM || RISK_PERSONAL,
         'captype' => 'write',
         'contextlevel' => CONTEXT_SYSTEM,
-    ),
-    'local/lb_planner:admin' => array(
+    ],
+    'local/lb_planner:admin' => [
         'riskbitmask' => RISK_SPAM || RISK_PERSONAL,
         'captype' => 'write',
         'contextlevel' => CONTEXT_SYSTEM,
-    ),
-    'local/lb_planner:manager' => array(
+    ],
+    'local/lb_planner:manager' => [
         'riskbitmask' => RISK_SPAM || RISK_PERSONAL,
         'captype' => 'write',
         'contextlevel' => CONTEXT_SYSTEM,
-    )
-
-
-);
+    ],
+];

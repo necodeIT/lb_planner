@@ -18,21 +18,32 @@ namespace local_lbplanner_services;
 
 use external_api;
 use external_function_parameters;
+use external_single_structure;
 use external_value;
 use local_lbplanner\helpers\invite_helper;
+use local_lbplanner\helpers\NOTIF_TRIGGER;
 use local_lbplanner\helpers\plan_helper;
 use local_lbplanner\helpers\notifications_helper;
 use local_lbplanner\helpers\PLAN_INVITE_STATE;
 
 /**
- * Invite a user to your plan
+ * Invite a user to the current user's plan
+ *
+ * @package local_lbplanner
+ * @subpackage services_plan
+ * @copyright 2024 necodeIT
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class plan_invite_user extends external_api {
-    public static function invite_user_parameters() {
+    /**
+     * Parameters for invite_user.
+     * @return external_function_parameters
+     */
+    public static function invite_user_parameters(): external_function_parameters {
         return new external_function_parameters([
             'inviteeid' => new external_value(
                 PARAM_INT,
-                'The id of the user who gets invited',
+                'ID of the user who gets invited',
                 VALUE_REQUIRED,
                 null,
                 NULL_NOT_ALLOWED
@@ -40,7 +51,13 @@ class plan_invite_user extends external_api {
         ]);
     }
 
-    public static function invite_user($inviteeid) {
+    /**
+     * Invite a user to the current user's plan
+     *
+     * @param int $inviteeid ID of the user who gets invited
+     * @return mixed the newly created invite
+     */
+    public static function invite_user(int $inviteeid): mixed {
         global $DB, $USER;
 
         self::validate_parameters(
@@ -64,7 +81,7 @@ class plan_invite_user extends external_api {
 
         if ($DB->record_exists(
                 plan_helper::INVITES_TABLE,
-                ['inviteeid' => $inviteeid, 'planid' => $planid, 'status' => PLAN_INVITE_STATE::PENDING->value]
+                ['inviteeid' => $inviteeid, 'planid' => $planid, 'status' => PLAN_INVITE_STATE::PENDING]
             )) {
             throw new \moodle_exception('User is already invited');
         }
@@ -75,7 +92,7 @@ class plan_invite_user extends external_api {
         $invite->inviterid = $USER->id;
         $invite->inviteeid = $inviteeid;
         $invite->timestamp = time();
-        $invite->status = PLAN_INVITE_STATE::PENDING->value;
+        $invite->status = PLAN_INVITE_STATE::PENDING;
 
         $invite->id = $DB->insert_record(plan_helper::INVITES_TABLE, $invite);
 
@@ -83,13 +100,17 @@ class plan_invite_user extends external_api {
         notifications_helper::notify_user(
             $inviteeid,
             $invite->id,
-            notifications_helper::TRIGGER_INVITE
+            NOTIF_TRIGGER::INVITE
         );
 
         return $invite;
     }
 
-    public static function invite_user_returns() {
+    /**
+     * Returns the structure of the invite.
+     * @return external_single_structure
+     */
+    public static function invite_user_returns(): external_single_structure {
         return invite_helper::structure();
     }
 }

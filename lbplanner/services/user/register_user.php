@@ -22,6 +22,7 @@ use external_function_parameters;
 use external_single_structure;
 use external_value;
 use invalid_parameter_exception;
+use local_lbplanner\helpers\NOTIF_TRIGGER;
 use local_lbplanner\helpers\PLAN_ACCESS_TYPE;
 use local_lbplanner\helpers\PLAN_EK;
 use local_lbplanner\helpers\user_helper;
@@ -33,9 +34,10 @@ use stdClass;
 /**
  * Register a new user in the lbplanner app.
  *
- * @package    local_lbplanner
- * @copyright  2023 necodeIT
- * @license    https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package local_lbplanner
+ * @subpackage services_user
+ * @copyright 2024 necodeIT
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class user_register_user extends external_api {
     /**
@@ -63,7 +65,7 @@ class user_register_user extends external_api {
                 VALUE_DEFAULT,
                 0,
                 NULL_NOT_ALLOWED,
-            )
+            ),
         ]);
     }
 
@@ -100,18 +102,18 @@ class user_register_user extends external_api {
         $DB->insert_record(user_helper::LB_PLANNER_USER_TABLE, $lbplanneruser);
         $plan = new stdClass();
         $plan->name = 'Plan for ' . $USER->username;
-        $plan->enableek = plan_helper::EK_ENABLED;
+        $plan->enableek = PLAN_EK::ENABLED;
 
         $planid = $DB->insert_record(plan_helper::TABLE, $plan);
 
         $planaccess = new stdClass();
         $planaccess->userid = $userid;
-        $planaccess->accesstype = PLAN_ACCESS_TYPE::OWNER->value;
+        $planaccess->accesstype = PLAN_ACCESS_TYPE::OWNER;
         $planaccess->planid = $planid;
 
         $DB->insert_record(plan_helper::ACCESS_TABLE, $planaccess);
 
-        notifications_helper::notify_user($userid, -1, notifications_helper::TRIGGER_USER_REGISTERED);
+        notifications_helper::notify_user($userid, -1, NOTIF_TRIGGER::USER_REGISTERED);
 
         return [
             'userid' => $lbplanneruser->userid,

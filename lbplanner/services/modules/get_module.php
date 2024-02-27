@@ -16,39 +16,60 @@
 
 namespace local_lbplanner_services;
 
-use core\context\user;
 use external_api;
 use external_function_parameters;
+use external_single_structure;
 use external_value;
 use local_lbplanner\helpers\modules_helper;
-use context_module;
-use course_modinfo;
+use local_lbplanner\helpers\plan_helper;
+use local_lbplanner\helpers\user_helper;
 
 /**
  * Get the data for a module.
+ *
+ * @package local_lbplanner
+ * @subpackage services_modules
+ * @copyright 2024 necodeIT
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class modules_get_module extends external_api {
-    public static function get_module_parameters() {
+    /**
+     * Parameters for get_module.
+     * @return external_function_parameters
+     */
+    public static function get_module_parameters(): external_function_parameters {
         return new external_function_parameters([
             'moduleid' => new external_value(PARAM_INT, 'The id of the module', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
+            'userid' => new external_value(PARAM_INT, 'The id of the user', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
         ]);
     }
 
-    public static function get_module($moduleid) {
-        global $DB, $USER, $CFG;
-        require_once($CFG->dirroot . '/mod/assign/lib.php');
+    /**
+     * Returns the data for a module
+     *
+     * @param int $moduleid The ID of the course
+     * @param int $userid The ID of the user
+     * @return array the module
+     */
+    public static function get_module(int $moduleid, int $userid): array {
+        global $DB;
 
-        self::validate_parameters(self::get_module_parameters(), ['moduleid' => $moduleid]);
-        var_dump(assign_get_coursemodule_info($moduleid));
+        self::validate_parameters(self::get_module_parameters(), ['moduleid' => $moduleid, 'userid' => $userid]);
 
-        /*if (!$DB->record_exists(modules_helper::MDL_ASSIGN_TABLE, array('id' => $moduleid))) {
+        user_helper::assert_access($userid);
+
+        if (!$DB->record_exists(modules_helper::MDL_ASSIGN_TABLE, ['id' => $moduleid])) {
             throw new \moodle_exception('Module not found');
-        }*/
+        }
 
-        return null;
+        return modules_helper::get_module($moduleid, $userid);
     }
 
-    public static function get_module_returns() {
+    /**
+     * Returns the structure of the module.
+     * @return external_single_structure
+     */
+    public static function get_module_returns(): external_single_structure {
         return modules_helper::structure();
     }
 }

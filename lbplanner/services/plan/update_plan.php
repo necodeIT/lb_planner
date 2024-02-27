@@ -22,21 +22,30 @@ use external_value;
 use local_lbplanner\helpers\plan_helper;
 
 /**
- * Update the plan of the given user.
+ * Update the plan details.
+ *
+ * @package local_lbplanner
+ * @subpackage services_plan
+ * @copyright 2024 necodeIT
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class plan_update_plan extends external_api {
-    public static function update_plan_parameters() {
+    /**
+     * Parameters for update_plan.
+     * @return external_function_parameters
+     */
+    public static function update_plan_parameters(): external_function_parameters {
         return new external_function_parameters([
             'planname' => new external_value(
                 PARAM_TEXT,
-                'The Name of the Plan',
+                'Name of the Plan',
                 VALUE_REQUIRED,
                 null,
                 NULL_NOT_ALLOWED
             ),
             'enableek' => new external_value(
                 PARAM_BOOL,
-                'If the plan is enabled for ek',
+                'Whether EK is enabled for the plan',
                 VALUE_REQUIRED,
                 null,
                 NULL_NOT_ALLOWED
@@ -44,7 +53,15 @@ class plan_update_plan extends external_api {
         ]);
     }
 
-    public static function update_plan($planname, $enableek) {
+    /**
+     * Update the plan details.
+     *
+     * @param string $planname Name of the Plan
+     * @param bool $enableek Whether EK is enabled for the plan
+     * @return void
+     * @throws Exception when access denied
+     */
+    public static function update_plan(string $planname, bool $enableek) {
         global $DB, $USER;
 
         self::validate_parameters(
@@ -65,6 +82,10 @@ class plan_update_plan extends external_api {
         $DB->update_record(plan_helper::TABLE, $plan);
     }
 
+    /**
+     * Returns the structure of nothing.
+     * @return null
+     */
     public static function update_plan_returns() {
         return null;
     }

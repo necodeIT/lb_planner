@@ -18,6 +18,7 @@ namespace local_lbplanner_services;
 
 use external_api;
 use external_function_parameters;
+use local_lbplanner\helpers\NOTIF_TRIGGER;
 use local_lbplanner\helpers\plan_helper;
 use local_lbplanner\helpers\notifications_helper;
 use local_lbplanner\helpers\PLAN_ACCESS_TYPE;
@@ -25,18 +26,35 @@ use local_lbplanner\helpers\PLAN_INVITE_STATE;
 
 /**
  * Leave your plan
+ *
  * if no other user exists in the plan, the user can't leave
+ *
+ * @package local_lbplanner
+ * @subpackage services_plan
+ * @copyright 2024 necodeIT
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class plan_leave_plan extends external_api {
-    public static function leave_plan_parameters() {
+    /**
+     * Parameters for leave_plan.
+     * @return external_function_parameters
+     */
+    public static function leave_plan_parameters(): external_function_parameters {
         return new external_function_parameters([]);
     }
 
+    /**
+     * Leave your plan
+     *
+     * @return void
+     * @throws \moodle_exception when user is only member left in plan
+     */
     public static function leave_plan() {
         global $DB, $USER;
 
         $planid = plan_helper::get_plan_id($USER->id);
 
+        // TODO: remove useless check.
         if (plan_helper::get_access_type($USER->id, $planid) === PLAN_ACCESS_TYPE::NONE) {
             throw new \moodle_exception('User is not a member of this plan');
         }
@@ -54,7 +72,7 @@ class plan_leave_plan extends external_api {
                 if ($member->userid == $USER->id) {
                     continue;
                 }
-                if ($member->accesstype == PLAN_ACCESS_TYPE::WRITE->value) {
+                if ($member->accesstype == PLAN_ACCESS_TYPE::WRITE) {
                     $writemembers[] = $member;
                 }
                 $allmembers[] = $member;
@@ -68,7 +86,7 @@ class plan_leave_plan extends external_api {
                 plan_helper::ACCESS_TABLE,
                 ['planid' => $planid, 'userid' => $newowner], '*', MUST_EXIST
             );
-            $newowneraccess->accesstype = PLAN_ACCESS_TYPE::OWNER->value;
+            $newowneraccess->accesstype = PLAN_ACCESS_TYPE::OWNER;
             $DB->update_record(plan_helper::ACCESS_TABLE, $newowneraccess);
         }
 
@@ -80,15 +98,15 @@ class plan_leave_plan extends external_api {
         );
 
         $oldaccess->planid = $newplanid;
-        $oldaccess->accesstype = PLAN_ACCESS_TYPE::OWNER->value;
+        $oldaccess->accesstype = PLAN_ACCESS_TYPE::OWNER;
 
         $DB->update_record(plan_helper::ACCESS_TABLE, $oldaccess);
 
         // Notify plan owner that user has left his plan.
         $invites = plan_helper::get_invites_send($USER->id);
         foreach ($invites as $invite) {
-            if ($invite->status == PLAN_INVITE_STATE::PENDING->value) {
-                $invite->status = PLAN_INVITE_STATE::EXPIRED->value;
+            if ($invite->status == PLAN_INVITE_STATE::PENDING) {
+                $invite->status = PLAN_INVITE_STATE::EXPIRED;
                 $DB->update_record(plan_helper::INVITES_TABLE, $invite);
             }
         }
@@ -96,9 +114,14 @@ class plan_leave_plan extends external_api {
         notifications_helper::notify_user(
             plan_helper::get_owner($planid),
             $USER->id,
-            notifications_helper::TRIGGER_PLAN_LEFT
+            NOTIF_TRIGGER::PLAN_LEFT
         );
     }
+
+    /**
+     * Returns the structure of nothing.
+     * @return null
+     */
     public static function leave_plan_returns() {
         return null;
     }
