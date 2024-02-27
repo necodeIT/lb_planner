@@ -35,9 +35,8 @@ class config_helper {
      */
     public static function set_default_active_year() {
         $currentmonth = idate('m');
-        // TODO: At least one of these comments ↓ is clearly wrong. Muhi's thing to fix.
+        // Adding the default active year, when the plugin is installed for the first time.
         if ($currentmonth >= 8 && $currentmonth <= 12) {
-            // Adding the default active year, when the plugin is installed for the first time.
             set_config(
                 'defaultactiveyear',
                 substr(strval(idate('Y')), 2)
@@ -46,7 +45,6 @@ class config_helper {
                 'local_lbplanner'
             );
         } else {
-            // Adding the default active year, when the plugin is installed for the first time.
             set_config(
                 'defaultactiveyear',
                 substr(strval(idate('Y') - 1), 2)
@@ -86,14 +84,14 @@ class config_helper {
 
                 $fieldcontroller = field_controller::create(0, $record, $categorycontroller);
                 // Added the default attributes for the custom field.
-                $fieldcontroller->set('name', 'LB Planner GK/EK');
-                $fieldcontroller->set('description', 'Tracks whether the task is a GK or EK task');
+                $fieldcontroller->set('name', 'LB Planner Task Type');
+                $fieldcontroller->set('description', 'Tracks whether the task is GK/EK/GKandEK/TEST/SA/M');
                 $fieldcontroller->set('type', 'select');
                 // Because moodle wants me to save the configdata as a json string, I have to do this.
                 // I don't know why moodle does this, but it does. I don't like it. but I have to do it. so I do it.
                 $fieldcontroller->set(
                     'configdata',
-                    '{"required":"1","uniquevalues":"0","options":"GK\r\nEK\r\nGK and EK",
+                    '{"required":"1","uniquevalues":"0","options":"GK\r\nEK\r\nGK and EK\r\nTEST\r\nSA\r\nM",
                 "defaultvalue":"GK","locked":"0","visibility":"2"}'
                 );
                 $fieldcontroller->set('shortname', 'lb_planner_gk_ek');
