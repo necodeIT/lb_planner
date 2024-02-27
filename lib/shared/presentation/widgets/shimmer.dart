@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lb_planner/shared/presentation/widgets/color_utils.dart';
 import 'package:lb_planner/shared/shared.dart';
 import 'package:shimmer/shimmer.dart';
 
