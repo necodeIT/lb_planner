@@ -35,21 +35,23 @@ class config_helper {
      */
     public static function set_default_active_year() {
         $currentmonth = idate('m');
+        $currentyear = idate('Y') % 100;
+        $lastyear = $currentyear - 1;
+        $nextyear = $currentyear + 1;
         // Adding the default active year, when the plugin is installed for the first time.
+        // If the current month is between August and December, the default active year is set to current year and the next year.
         if ($currentmonth >= 8 && $currentmonth <= 12) {
             set_config(
                 'defaultactiveyear',
-                substr(strval(idate('Y')), 2)
-                . '/' .
-                substr(strval(idate('Y') + 1), 2),
+                $currentyear . '/' . $nextyear,
                 'local_lbplanner'
             );
+            // If the current month is between January and July, the default active year is set to the previous year and the
+            // current year.
         } else {
             set_config(
                 'defaultactiveyear',
-                substr(strval(idate('Y') - 1), 2)
-                . '/' .
-                substr(strval(idate('Y')), 2),
+                $lastyear . '/' . $currentyear,
                 'local_lbplanner'
             );
         }
@@ -59,7 +61,6 @@ class config_helper {
      * Adds a customfield to moodle for each activity where teachers can select GK EK or both.
      *
      * Default value is GK.
-     * Requires the following plugin 'modcustomfields'
      * @throws \coding_exception
      * @throws \moodle_exception
      * @throws \coding_exception
@@ -102,7 +103,7 @@ class config_helper {
 
     /**
      * Get the category id from the config
-     * @return int the category id
+     * @return int the category id if it is set, -1 otherwise
      */
     public static function get_category_id(): int {
         if (!get_config('local_lbplanner', 'categoryid')) {
