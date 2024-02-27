@@ -27,10 +27,10 @@ use core_user;
 /**
  * Provides helper methods for user related stuff.
  *
- * @package local_lbplanner
+ * @package    local_lbplanner
  * @subpackage helpers
- * @copyright 2024 NecodeIT
- * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @copyright  2024 NecodeIT
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class user_helper {
 
@@ -57,12 +57,13 @@ class user_helper {
     /**
      * Maps CAPABILITY shortnames to their corresponding enum value.
      */
-    const CAPABILITY_ENUMS = [
-        self::CAPABILITY_ADMIN => 1,
-        self::CAPABILITY_MANAGER => 2,
-        self::CAPABILITY_TEACHER => 4,
-        self::CAPABILITY_STUDENT => 8,
-    ];
+    const CAPABILITY_ENUMS
+        = [
+            self::CAPABILITY_ADMIN => 1,
+            self::CAPABILITY_MANAGER => 2,
+            self::CAPABILITY_TEACHER => 4,
+            self::CAPABILITY_STUDENT => 8,
+        ];
 
     /**
      * Name of the user database
@@ -73,9 +74,10 @@ class user_helper {
      * Checks if the current user has access to the given user id.
      *
      * @param int $userid The id of the user to check access for.
+     *
      * @return bool True if the current user has access to the given user id, false otherwise.
      */
-    public static function check_access(int $userid):bool {
+    public static function check_access(int $userid): bool {
         global $USER;
         return $USER->id == $userid;
     }
@@ -85,6 +87,7 @@ class user_helper {
      * Throws an exception if the current user does not have access.
      *
      * @param int $userid The id of the user to check access for.
+     *
      * @return void
      * @throws moodle_exception
      */
@@ -97,7 +100,9 @@ class user_helper {
 
     /**
      * Checks if the given user is an admin.
+     *
      * @param int $userid The id of the user to check.
+     *
      * @return bool True if the given user is an admin, false otherwise.
      * @throws coding_exception
      * @throws dml_exception
@@ -106,6 +111,7 @@ class user_helper {
         $context = context_system::instance();
         return has_capability(self::CAPABILITY_ADMIN, $context, $userid, false);
     }
+
     /**
      * Gives back a bitmask which represents the capabilities of the given user.
      * 0 = no capabilities
@@ -127,11 +133,12 @@ class user_helper {
      *
      *
      * @param int $userid The id of the user to check access for.
+     *
      * @return int The capabilities of the given user.
      * @throws coding_exception
      * @throws dml_exception
      */
-    public static function get_user_capability_bitmask(int $userid) : int {
+    public static function get_user_capability_bitmask(int $userid): int {
         $capabilities = 0;
         $context = context_system::instance();
         if (has_capability(self::CAPABILITY_ADMIN, $context, $userid, false)) {
@@ -148,10 +155,12 @@ class user_helper {
         }
         return $capabilities;
     }
+
     /**
      * Checks if the given user exists in the LB_PLANNER_USER database.
      *
      * @param int $userid The id of the user to check.
+     *
      * @return bool True if the user exists, false otherwise.
      * @throws dml_exception
      */
@@ -171,6 +180,7 @@ class user_helper {
      * ```
      *
      * @param int $userid The id of the user to retrieve.
+     *
      * @return stdClass The user with the given id.
      * @throws dml_exception
      */
@@ -181,9 +191,9 @@ class user_helper {
 
     /**
      * Retrieves the full name of the user with the given id.
-     * @deprecated not in use
      *
      * @return string The full name of the user with the given id.
+     * @deprecated not in use
      */
     public static function get_complete_name(): string {
         global $USER;
@@ -192,10 +202,12 @@ class user_helper {
 
     /**
      * This Function is used to get the user picture of a user.
+     *
      * @param int $userid The id of the user to retrieve the picture for.
-     * @throws coding_exception
-     * @throws dml_exception
+     *
      * @return string The url of the user picture.
+     * @throws dml_exception
+     * @throws coding_exception
      */
     public static function get_mdl_user_picture(int $userid): string {
         global $PAGE;

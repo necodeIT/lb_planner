@@ -25,8 +25,6 @@
 use local_lbplanner\helpers\config_helper;
 
 
-defined('MOODLE_INTERNAL') || die;
-
 /**
  * Runs when plugin is first installed
  */

@@ -62,7 +62,7 @@ class courses_update_course extends external_api {
      * @throws invalid_parameter_exception
      * @throws moodle_exception
      */
-    public static function update_course( $courseid, $color, $shortname, $enabled): void {
+    public static function update_course($courseid, $color, $shortname, $enabled): void {
         global $DB , $USER;
 
         self::validate_parameters(
