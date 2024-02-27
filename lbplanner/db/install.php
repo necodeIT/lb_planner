@@ -20,11 +20,10 @@ use local_lbplanner\helpers\config_helper;
 defined('MOODLE_INTERNAL') || die;
 
 /**
- * @throws coding_exception
- * @throws moodle_exception
+ * Runs when plugin is first installed
  */
 function xmldb_local_lbplanner_install() {
-    global $DB;
+    config_helper::set_default_active_year();
+    config_helper::add_customfield();
 }
-config_helper::set_default_active_year();
-config_helper::add_customfield();
+

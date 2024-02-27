@@ -22,12 +22,12 @@ use customfield_select\field_controller;
 use local_modcustomfields\customfield\mod_handler;
 
 /**
- * Helper class for configs
+ * Helper class for config
  *
- * @package    local_lbplanner
+ * @package local_lbplanner
  * @subpackage helpers
- * @copyright  2024 NecodeIT
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @copyright 2024 NecodeIT
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class config_helper {
     public static function set_default_active_year() {
