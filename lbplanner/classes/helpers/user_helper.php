@@ -194,7 +194,6 @@ class user_helper {
      *
      * @return string The full name of the user with the given id.
      * @deprecated not in use
-     *
      */
     public static function get_complete_name(): string {
         global $USER;
