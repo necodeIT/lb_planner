@@ -22,18 +22,15 @@
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-use local_lbplanner\helpers\user_helper;
 use local_lbplanner\helpers\config_helper;
+
 
 defined('MOODLE_INTERNAL') || die;
 
 /**
  * Runs when plugin is first installed
- * right now, it does nothing
  */
 function xmldb_local_lbplanner_install() {
-    global $DB;
+    config_helper::set_default_active_year();
+    config_helper::add_customfield();
 }
-
-config_helper::set_default_active_year();
-
