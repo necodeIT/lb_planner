@@ -1,4 +1,5 @@
-part of lbplanner_widgets;
+import 'package:flutter/material.dart';
+import 'package:lb_planner/shared/shared.dart';
 
 /// Themed [Container] widget.
 class LpContainer extends StatelessWidget {
@@ -60,14 +61,14 @@ class LpContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      duration: kFastAnimationDuration,
+      duration: Duration(milliseconds: 100),
       padding: window
-          ? EdgeInsets.only(bottom: NcSpacing.smallSpacing)
-          : const EdgeInsets.all(NcSpacing.smallSpacing),
+          ? EdgeInsets.only(bottom: Spacing.smallSpacing)
+          : const EdgeInsets.all(Spacing.smallSpacing),
       decoration: BoxDecoration(
-        color: primaryColor,
+        color: context.theme.colorScheme.primary,
         boxShadow: kElevationToShadow[6],
-        borderRadius: BorderRadius.circular(kRadius),
+        borderRadius: BorderRadius.circular(5),
       ),
       width: width,
       height: height,
@@ -78,14 +79,12 @@ class LpContainer extends StatelessWidget {
             ConditionalWrapper(
               condition: window,
               wrapper: (context, child) => AnimatedContainer(
-                duration: kFastAnimationDuration,
+                duration: Duration(milliseconds: 100),
                 padding: EdgeInsets.only(
-                    left: NcSpacing.smallSpacing,
-                    right: NcSpacing.smallSpacing),
+                    left: Spacing.smallSpacing, right: Spacing.smallSpacing),
                 decoration: BoxDecoration(
-                  color: secondaryColor,
-                  borderRadius:
-                      BorderRadius.vertical(top: Radius.circular(kRadius)),
+                  color: context.theme.colorScheme.secondary,
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(5)),
                 ),
                 child: child,
               ),
@@ -95,11 +94,15 @@ class LpContainer extends StatelessWidget {
                   Row(
                     children: [
                       if (leading != null) leading!,
-                      if (leading != null) NcSpacing.small(),
+                      if (leading != null) Spacing.small(),
                       if (title != null)
-                        NcCaptionText(
+                        Text(
                           title!,
-                          fontSize: titleFontSize,
+                          style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              overflow: TextOverflow.ellipsis,
+                              fontSize: titleFontSize),
+                          textAlign: TextAlign.left,
                         ),
                     ],
                   ),
@@ -107,7 +110,7 @@ class LpContainer extends StatelessWidget {
                 ],
               ),
             ),
-            if (spacing) NcSpacing.small(),
+            if (spacing) Spacing.small(),
             Expanded(child: child),
           ],
         ),

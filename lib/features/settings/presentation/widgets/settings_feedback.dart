@@ -52,7 +52,7 @@ class _SettingsFeedbackState extends State<SettingsFeedback> {
       if (response.succeeded) _feedbackController.text = "";
     });
 
-    lpShowAlertDialog(
+    showAlertDialog(
       context,
       title: response.succeeded
           ? t.settings_feedback_submitted_title
