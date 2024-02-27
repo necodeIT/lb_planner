@@ -17,7 +17,14 @@
 use local_lbplanner\helpers\config_helper;
 
 function xmldb_local_lbplanner_upgrade($oldversion) {
-    config_helper::set_default_active_year();
+    global $DB;
+    $dbman = $DB->get_manager(); // Loads ddl manager and xmldb classes.
+    if ($oldversion < 2024022700) {
+        // Perform the upgrade from version 2019031200 to the next version.
+        config_helper::set_default_active_year();
+        config_helper::add_customfield();
+        // The content of this section should be generated using the XMLDB Editor.
+    }
     return true;
 }
 

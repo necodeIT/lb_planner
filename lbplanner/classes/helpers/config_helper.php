@@ -18,14 +18,16 @@ namespace local_lbplanner\helpers;
 
 use core_component;
 use core_customfield\category_controller;
-use customfield_select\data_controller;
 use customfield_select\field_controller;
 use local_modcustomfields\customfield\mod_handler;
-use tool_mfa\local\factor\fallback;
 
 /**
- * Class config_helper
- * @package
+ * Helper class for configs
+ *
+ * @package    local_lbplanner
+ * @subpackage helpers
+ * @copyright  2024 NecodeIT
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class config_helper {
     public static function set_default_active_year() {
@@ -35,7 +37,7 @@ class config_helper {
             set_config(
                 'defaultactiveyear',
                 substr(strval(idate('Y')), 2)
-                .'/'.
+                . '/' .
                 substr(strval(idate('Y') + 1), 2),
                 'local_lbplanner'
             );
@@ -44,7 +46,7 @@ class config_helper {
             set_config(
                 'defaultactiveyear',
                 substr(strval(idate('Y') - 1), 2)
-                .'/'.
+                . '/' .
                 substr(strval(idate('Y')), 2),
                 'local_lbplanner'
             );
@@ -52,23 +54,32 @@ class config_helper {
     }
 
     /**
+     * Adds a customfield to moodle for each activity where teachers can select GK EK or both.
+     *
+     * Default value is GK.
+     * Requires the following plugin 'modcustomfields'
+     * @throws \coding_exception
      * @throws \moodle_exception
      * @throws \coding_exception
      */
-    public static function add_customfield() {
-        // Check if the category is already created and only create it if it doesn't exist. get_config('local_lbplanner',
-        // 'categoryid') == false
+    public static function add_customfield(): void {
+        // Check if the category is already created and only create it if it doesn't exist.
         // Check if plugin "modcustomfields" is installed and create the category and the custom field.
-        if (get_config('local_lbplanner', 'categoryid')) {
+        if (!get_config('local_lbplanner', 'categoryid')) {
+
             if (array_key_exists('modcustomfields', core_component::get_plugin_list('local'))) {
+
                 $handler = mod_handler::create();
                 $categoryid = $handler->create_category('LB Planner');
+
                 set_config('categoryid', $categoryid, 'local_lbplanner');
                 $categorycontroller = category_controller::create($categoryid, null, $handler);
                 $categorycontroller->save();
+
                 // Dont ask me why but moodle doesnt allow me to just insert the String "select" into the type field.
                 $record = new \stdClass();
                 $record->type = 'select';
+
                 $fieldcontroller = field_controller::create(0, $record, $categorycontroller);
                 // Added the default attributes for the custom field.
                 $fieldcontroller->set('name', 'LB Planner GK/EK');
@@ -84,6 +95,18 @@ class config_helper {
                 $fieldcontroller->set('shortname', 'lb_planner_gk_ek');
                 $fieldcontroller->save();
             }
+        }
+    }
+
+    /**
+     * Get the category id from the config
+     * @return int the category id
+     */
+    public static function get_category_id(): int {
+        if (!get_config('local_lbplanner', 'categoryid')) {
+            return -1;
+        } else {
+            return intval(get_config('local_lbplanner', 'categoryid'));
         }
     }
 }

@@ -1,6 +1,9 @@
 name: CI
 
 on:
+  push:
+      branches:
+            - LP-204-Add-Custom-fields-for-each-activity # Temporary. Will be changed to `moodle` when refactor is complete
   pull_request:
     types:
       - opened
