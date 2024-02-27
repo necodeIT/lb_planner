@@ -213,18 +213,18 @@ class _UserNotificationsItemState extends ConsumerState<UserNotificationsItem> {
           height: 30,
           width: 70,
           decoration: BoxDecoration(
-            color: secondaryColor,
+            color: context.theme.colorScheme.surface,
             borderRadius: BorderRadius.circular(5),
           ),
         ),
-        baseColor: secondaryColor,
+        baseColor: context.theme.colorScheme.surface,
         // ignore: no-magic-number
-        highlightColor: secondaryColor.lighten(0.02),
+        highlightColor: context.theme.colorScheme.surface.lighten(0.02),
       ),
       falseWidget: (context) => Container(
         padding: EdgeInsets.all(Spacing.smallSpacing),
         decoration: BoxDecoration(
-          color: secondaryColor,
+          color: context.theme.colorScheme.surface,
           borderRadius: BorderRadius.circular(5),
         ),
         child: Column(
@@ -249,7 +249,8 @@ class _UserNotificationsItemState extends ConsumerState<UserNotificationsItem> {
                       Icons.access_time,
                       size: UserNotificationsItem.actionsFontSize,
                       // ignore: no-magic-number
-                      color: textColor.withOpacity(.7),
+                      color: context.theme.textTheme.bodySmall!.color!
+                          .withOpacity(.7),
                     ),
                     Spacing.xs(),
                     Text(
@@ -258,7 +259,8 @@ class _UserNotificationsItemState extends ConsumerState<UserNotificationsItem> {
                           fontWeight: FontWeight.w600,
                           overflow: TextOverflow.ellipsis,
                           fontSize: UserNotificationsItem.actionsFontSize,
-                          color: textColor.withOpacity(.7)),
+                          color: context.theme.textTheme.bodySmall!.color!
+                              .withOpacity(.7)),
                       textAlign: TextAlign.left,
                     ),
                   ],
@@ -290,20 +292,19 @@ class _Action {
       trueWidget: (context) => CircularProgressIndicator(),
       falseWidget: (context) => ConditionalWidget(
           condition: onPressed != null,
-          trueWidget: (_) => LpTextButton(
+          trueWidget: (_) => TextButton(
                 text: text,
-                color: accentColor,
+                color: context.theme.colorScheme.primary,
                 decoration: TextDecoration.underline,
                 fontSize: UserNotificationsItem.actionsFontSize,
                 onPressed: onPressed,
               ),
           falseWidget: (_) => Text(
                 text,
-                style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    overflow: TextOverflow.ellipsis,
-                    fontSize: UserNotificationsItem.actionsFontSize,
-                    color: textColor.withOpacity(.7)),
+                style: context.theme.textTheme.bodySmall!.copyWith(
+                  color:
+                      context.theme.textTheme.bodySmall!.color!.withOpacity(.7),
+                ),
                 textAlign: TextAlign.left,
               )),
     );

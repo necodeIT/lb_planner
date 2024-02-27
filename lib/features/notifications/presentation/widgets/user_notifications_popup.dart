@@ -52,7 +52,6 @@ class _UserNotificationsPopupState extends State<UserNotificationsPopup> {
         trailing: GestureDetector(
           onTap: () {
             ref.read(notificationsController).markAllAsRead();
-            close();
           },
           child: Icon(
             Icons.close,
@@ -70,7 +69,7 @@ class _UserNotificationsPopupState extends State<UserNotificationsPopup> {
             ],
           ),
           falseWidget: (context) =>
-              UniversalActor.fromRiveAnimation(animations_rive_newton),
+              VectorImage('assets/svg/notification.svg', width: 200),
         ),
         width: 350,
         height: 350,
