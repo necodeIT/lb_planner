@@ -71,7 +71,7 @@ class ScreenTitleBar extends ConsumerWidget {
                 width: profileImageSize,
                 height: profileImageSize,
                 child: CircleAvatar(
-                  // TODO: backgroundImage: fallback image
+                  child: Icon(Icons.account_circle_rounded),
                   foregroundImage: NetworkImage(user.profileImageUrl),
                 ),
               ),

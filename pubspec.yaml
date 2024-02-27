@@ -44,6 +44,7 @@ dependencies:
   flutter_cache_manager: ^3.3.1
   cached_network_image: ^3.3.0
   timeago: ^3.6.0
+  enum_to_string: ^2.0.1
 
 
 dev_dependencies:

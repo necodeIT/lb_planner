@@ -115,6 +115,7 @@ class AppRouter extends _$AppRouter {
           page: AdminFeedbacksRoute.page,
           path: '/feedback',
           initial: true,
+          title: (context, data) => context.t.admin_feedback_routeName,
         ),
       ];
 }
@@ -122,6 +123,7 @@ class AppRouter extends _$AppRouter {
 /// Implements [CustomRoute] with some default settings.
 class DefaultRoute extends CustomRoute {
   /// Implements [CustomRoute] with some default settings.
-  DefaultRoute({required super.page, required super.path, super.initial})
+  DefaultRoute(
+      {required super.page, required super.path, super.initial, super.title})
       : super(transitionsBuilder: TransitionsBuilders.noTransition);
 }
