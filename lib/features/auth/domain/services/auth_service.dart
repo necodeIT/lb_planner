@@ -1,9 +1,9 @@
-import 'package:logging/logging.dart';
+import 'package:lb_planner/shared/shared.dart';
 
 /// Base class for all authenitaction services.
-abstract class AuthService {
-  /// The logger to use for this instance.
-  Logger get log => Logger("AuthService.$runtimeType");
+abstract class AuthService extends Service {
+  /// Initializes a new instance of [AuthService] with logging set up.
+  AuthService() : super("Auth");
 
   /// Requests a token the given [username] and [password].
   ///

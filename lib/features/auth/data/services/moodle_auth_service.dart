@@ -15,7 +15,7 @@ class MoodleAuthService extends AuthService {
 
   @override
   Future<String> requestToken(String username, String password) async {
-    log.info("Requesting token for user $username");
+    log("Requesting token for user $username");
 
     final url =
         "${config.kMoodleServerAdress}/login/token.php?service=$webService&moodlewsrestformat=json";
@@ -32,14 +32,14 @@ class MoodleAuthService extends AuthService {
     );
 
     if (response.statusCode == 200) {
-      log.info("Token request successful");
+      log("Token request successful");
 
       final body = response.body as JSON;
 
       final token = body["token"];
 
       if (token == null) {
-        log.severe("Token request failed: $body");
+        log("Token request failed", body);
 
         throw Exception("Failed to request token: $body");
       }
@@ -47,15 +47,14 @@ class MoodleAuthService extends AuthService {
       return token;
     }
 
-    log.severe(
-        "Token request failed with status code ${response.statusCode}, body: ${response.body}");
+    log("Token request failed with status code ${response.statusCode}, body: ${response.body}");
 
     throw Exception("Failed to request token");
   }
 
   @override
   Future<bool> validateToken(String token) async {
-    log.info("Verifying token [redacted]....");
+    log("Verifying token [redacted]....");
 
     var response = await networkService.post(
         "${config.kMoodleServerAdress}/webservice/rest/server.php",
@@ -65,8 +64,7 @@ class MoodleAuthService extends AuthService {
         });
 
     if (response.isNotOk) {
-      log.info(
-          "Got response ${response.statusCode} from token validation. Invaildating token by default.");
+      log("Got response ${response.statusCode} from token validation. Invaildating token by default.");
 
       return false;
     }
@@ -78,18 +76,18 @@ class MoodleAuthService extends AuthService {
     var errorCode = body["errorcode"];
 
     if (errorCode == "accessexception") {
-      log.info("Token expired");
+      log("Token expired");
 
       return false;
     }
 
     if (errorCode == "invalidtoken") {
-      log.info("Token invalid");
+      log("Token invalid");
 
       return false;
     }
 
-    log.info("Token is valid");
+    log("Token is valid");
 
     return true;
   }

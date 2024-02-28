@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:lb_planner/shared/domain/services/app_dir_service.dart';
+import 'package:lb_planner/shared/shared.dart';
 
 /// `LocalConfigService` is an abstract class designed to manage local configuration files.
 /// It provides a generic interface for loading and saving configuration data of type [T].
@@ -14,7 +14,7 @@ import 'package:lb_planner/shared/domain/services/app_dir_service.dart';
 ///   // Implement loadConfig and saveConfig methods
 /// }
 /// ```
-abstract class LocalConfigService<T> {
+abstract class LocalConfigService<T> extends Service {
   /// The name of the configuration file.
   final String fileName;
 
@@ -33,7 +33,7 @@ abstract class LocalConfigService<T> {
   ///   // Implement loadConfig and saveConfig methods
   /// }
   /// ```
-  LocalConfigService(this.appDirService, this.fileName);
+  LocalConfigService(this.appDirService, this.fileName) : super("LocalConfig");
 
   /// Returns a [Future] that resolves to a [File] object representing the configuration file.
   ///
@@ -46,7 +46,11 @@ abstract class LocalConfigService<T> {
   Future<File> resolveConfigFile() async {
     var dir = await appDirService.resolveApplicationDirectory();
 
-    return File("${dir.path}/$fileName");
+    var f = File("${dir.path}/$fileName");
+
+    log("Resolved configuration file to $f");
+
+    return f;
   }
 
   /// Abstract method to load the configuration data.
@@ -65,13 +69,25 @@ abstract class LocalConfigService<T> {
   ///
   /// Default implementation checks if the configuration file exists however this may be overridden.
   Future<bool> canLoadConfig() async {
+    log("Checking availability of configuration file $fileName");
+
     var configFile = await resolveConfigFile();
 
-    return configFile.existsSync();
+    var exists = configFile.existsSync();
+
+    if (!exists) {
+      log("$fileName does not exist");
+    } else {
+      log("$fileName exists");
+    }
+
+    return exists;
   }
 
   /// Deletes the configuration file.
   Future<void> deleteConfig() async {
+    log("Deleting $fileName");
+
     var configFile = await resolveConfigFile();
 
     await configFile.delete();
