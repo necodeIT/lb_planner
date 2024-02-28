@@ -8,6 +8,7 @@ import 'package:lb_planner/shared/shared.dart';
 ///
 /// NOTE: Depending on the way the app was installed, updates may have to be installed manually. In this case [canPatch] will return `false`.
 abstract class PatcherService extends Service {
+  /// Initializes a new instance of [PatcherService] with logging set up.
   const PatcherService() : super("Patcher");
 
   /// Downloads and installs a given release.
@@ -18,10 +19,13 @@ abstract class PatcherService extends Service {
   Future<void> patch(
     Release release, {
     void Function(double progress)? onProgress,
-  }) =>
-      throw UnsupportedError(
-        "Can't patch, as patching is not supported.",
-      );
+  }) {
+    log("Patch not supported.");
+
+    throw UnsupportedError(
+      "Can't patch, as patching is not supported.",
+    );
+  }
 
   /// Whether the app can be patched automatically.
   ///
@@ -33,8 +37,11 @@ abstract class PatcherService extends Service {
   /// Returns the instructions for manually installing a given release in markdown format.
   ///
   /// Throws an [UnsupportedError] if [canPatch] returns `true`.
-  String getInstructions(BuildContext context, Release release) =>
-      throw UnsupportedError(
-        "Can't get instructions for patching, as patching is supported.",
-      );
+  String getInstructions(BuildContext context, Release release) {
+    log("Instructions not supported.");
+
+    throw UnsupportedError(
+      "Can't get instructions for patching, as patching is supported.",
+    );
+  }
 }

@@ -20,13 +20,20 @@ class InnoSetupPatcherService extends PatcherService {
     Release release, {
     void Function(double progress)? onProgress,
   }) async {
+    log("Patching application...");
+
     final setup = await downloadService.download(
       release.downloads.windows,
       "$kAppName Setup ${release.versionString}.exe",
       onProgress: (_, __, progess) => onProgress?.call(progess),
     );
 
+    log("Installer downloaded to ${setup.absolute.path}.");
+    log("Launching installer...");
+
     await Process.start(setup.absolute.path, []);
+
+    log("Installer launched. Exiting application...");
 
     exit(0);
   }
