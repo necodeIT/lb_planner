@@ -13,6 +13,11 @@ mixin RepositoryMixin {
 
   /// Logs a [message] with optional [error] and [stackTrace].
   void log(Object message, [Object? error, StackTrace? stackTrace]) {
+    if (error != null) {
+      _log.severe(message, error, stackTrace);
+      return;
+    }
+
     _log.info(message, error, stackTrace);
   }
 }

@@ -1,9 +1,10 @@
 import 'package:lb_planner/features/auth/auth.dart';
+import 'package:lb_planner/shared/utils/warn_mixin.dart';
 
 /// Implementation of [UserDataSource] to use when no token is available.
 ///
 /// This implementation will not throw any errors, but will return empty lists and default values instead.
-class TokenUnavailableUserDataSource extends UserDataSource {
+class TokenUnavailableUserDataSource extends UserDataSource with StubWarnMixin {
   /// The reason why the token is not available.
   final String reason;
 
@@ -22,21 +23,21 @@ class TokenUnavailableUserDataSource extends UserDataSource {
 
   @override
   Future<List<User>> fetchAllUsers() async {
-    _warn("fetchAllUsers");
+    warn("fetchAllUsers", error, stackTrace);
 
     return [];
   }
 
   @override
   Future<User> fetchCurrentUser() async {
-    _warn("fetchCurrentUser");
+    warn("fetchCurrentUser", error, stackTrace);
 
     return _defaultUser;
   }
 
   @override
   Future<User> updateUser(User user) async {
-    _warn("updateUser");
+    warn("updateUser", error, stackTrace);
 
     return _defaultUser;
   }
@@ -44,14 +45,8 @@ class TokenUnavailableUserDataSource extends UserDataSource {
   User get _defaultUser =>
       User(id: -1, username: "", firstname: "", lastname: "");
 
-  void _warn(String method) => log(
-        "Called $method on TokenUnavailableUserDataSource: $reason",
-        error,
-        stackTrace,
-      );
-
   @override
   Future<void> deleteUser(User user) async {
-    _warn("deleteUser");
+    warn("deleteUser", error, stackTrace);
   }
 }

@@ -16,6 +16,11 @@ abstract class Service {
 
   /// Logs a [message] with optional [error] and [stackTrace].
   void log(Object message, [Object? error, StackTrace? stackTrace]) {
+    if (error != null) {
+      _log.warning(message, error, stackTrace);
+      return;
+    }
+
     _log.finer(message, error, stackTrace);
   }
 }

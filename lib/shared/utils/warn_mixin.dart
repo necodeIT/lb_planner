@@ -1,5 +1,4 @@
 import 'package:lb_planner/shared/shared.dart';
-import 'package:logging/logging.dart';
 
 /// A mixin that adds a [warn] method to a class.
 ///
@@ -21,10 +20,12 @@ mixin StubWarnMixin on ILoggable {
   /// }
   /// ```
   ///
-  /// If you think that the method may cause errors, use [error] instead.
-  void warn(String method) {
+  /// If you think that the method may cause errors, use [shout] instead.
+  void warn(String method, [Object? error, StackTrace? stackTrace]) {
     log(
       "Method `$runtimeType.$method` was called on a stub class. Even though this should not happen, you can releax, as this won't cause any errors.",
+      error,
+      stackTrace,
     );
   }
 
@@ -43,9 +44,11 @@ mixin StubWarnMixin on ILoggable {
   ///   }
   /// }
   /// ```
-  void error(String method) {
+  void shout(String method, [Object? error, StackTrace? stackTrace]) {
     log(
-      "Method `$method` was called on a stub class ($runtimeType). THIS SHOULD NOT HAPPEN. This may cause errors.",
+      "Method `$method` was called on a stub class ($runtimeType). THIS SHOULD NOT HAPPEN and may cause errors.",
+      error,
+      stackTrace,
     );
   }
 }

@@ -17,6 +17,11 @@ abstract class DataSource implements ILoggable {
 
   @override
   void log(Object message, [Object? error, StackTrace? stackTrace]) {
+    if (error != null) {
+      _log.warning(message, error, stackTrace);
+      return;
+    }
+
     _log.fine(message, error, stackTrace);
   }
 }
