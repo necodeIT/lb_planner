@@ -1,7 +1,9 @@
+import 'package:flutter/widgets.dart';
 import 'package:lb_planner/features/themes/themes.dart';
 import 'package:lb_planner/shared/shared.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:lb_planner/features/auth/auth.dart';
+import 'package:logging/logging.dart';
 
 part 'app_router.gr.dart';
 
@@ -120,4 +122,32 @@ class DefaultRoute extends CustomRoute {
   /// Implements [CustomRoute] with some default settings.
   DefaultRoute({required super.page, required super.path, super.initial})
       : super(transitionsBuilder: TransitionsBuilders.noTransition);
+}
+
+/// Logs all navigation events.
+class NavigationLogger extends NavigatorObserver {
+  void _log(String action, Route route, Route? previousRoute) {
+    Logger("Navigation").finest(
+        "$action ${route.settings.name} <-- ${previousRoute?.settings.name}");
+  }
+
+  @override
+  void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {
+    _log('Pushed', route, previousRoute);
+  }
+
+  @override
+  void didPop(Route<dynamic> route, Route<dynamic>? previousRoute) {
+    _log('Popped', route, previousRoute);
+  }
+
+  @override
+  void didRemove(Route<dynamic> route, Route<dynamic>? previousRoute) {
+    _log('Removed', route, previousRoute);
+  }
+
+  @override
+  void didReplace({Route<dynamic>? newRoute, Route<dynamic>? oldRoute}) {
+    _log('Replaced', newRoute!, oldRoute);
+  }
 }

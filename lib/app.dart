@@ -22,7 +22,11 @@ class App extends ConsumerWidget {
     final locale = ref.watch(userProvider)?.locale;
 
     return MaterialApp.router(
-      routerConfig: _router.config(),
+      routerConfig: _router.config(
+        navigatorObservers: () => [
+          NavigationLogger(),
+        ],
+      ),
       locale: locale,
       supportedLocales: AppLocalizations.supportedLocales,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
