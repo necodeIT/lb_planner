@@ -18,6 +18,8 @@ class DioDownloadService extends DownloadService {
     String name, {
     void Function(int total, int downloaded, double percent)? onProgress,
   }) async {
+    log('Downloading file from $url to temporary directory with name $name');
+
     final dir = await getTemporaryDirectory();
     final file = File('${dir.path}/$name');
 
@@ -30,6 +32,8 @@ class DioDownloadService extends DownloadService {
     );
 
     if (!file.existsSync()) throw Exception('Download failed');
+
+    log('Download complete, file saved to ${file.path}');
 
     return file;
   }

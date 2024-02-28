@@ -7,7 +7,7 @@ import 'package:lb_planner/shared/domain/domain.dart';
 ///
 /// This implementation uses the [getApplicationDocumentsDirectory] function.
 /// On macOS applications are sandboxed and the app directory is already unique to the app.
-class MacOsAppDirService implements AppDirService {
+class MacOsAppDirService extends AppDirService {
   @override
   Future<Directory> resolveApplicationDirectory() =>
       getApplicationDocumentsDirectory();

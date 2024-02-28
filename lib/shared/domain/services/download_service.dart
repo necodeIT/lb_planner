@@ -1,9 +1,14 @@
 import 'dart:io';
 
+import 'package:lb_planner/shared/shared.dart';
+
 /// Base class for all download services.
 ///
 /// A download service is responsible for downloading a file from a given URL.
-abstract class DownloadService {
+abstract class DownloadService extends Service {
+  /// Initializes a new instance of [DownloadService] with logging set up.
+  DownloadService() : super("Download");
+
   /// Downloads a file from a given [url] to the temporary directory with the given [name].
   ///
   /// Returns a future that resolves to the downloaded [File].

@@ -8,7 +8,7 @@ import 'package:lb_planner/configs/version.dart' as config;
 /// Implementation of [AppDirService] for Windows.
 ///
 /// This implementation uses the [getApplicationDocumentsDirectory] function and creates a subdirectory for the app based on [config.kAppName].
-class WindowsAppDirService implements AppDirService {
+class WindowsAppDirService extends AppDirService {
   @override
   Future<Directory> resolveApplicationDirectory() async {
     var dir = await getApplicationDocumentsDirectory();

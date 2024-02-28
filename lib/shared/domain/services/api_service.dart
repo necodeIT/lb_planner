@@ -1,12 +1,10 @@
 import 'package:either_dart/either.dart';
-import 'package:lb_planner/shared/domain/services/services.dart';
-import 'package:lb_planner/shared/domain/models/models.dart';
-import 'package:logging/logging.dart';
+import 'package:lb_planner/shared/shared.dart';
 
 /// Abstracts the communication with an API using [NetworkService].
-abstract class ApiService {
-  /// The [Logger] instance for this class.
-  Logger get log => Logger("ApiService.$runtimeType");
+abstract class ApiService extends Service {
+  /// Initializes a new instance of [ApiService] with logging set up.
+  ApiService() : super("API");
 
   /// Calls the specified [function] on the Moodle-API with the specified [token].
   ///

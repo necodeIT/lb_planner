@@ -14,25 +14,30 @@ class DioNetworkService extends NetworkService {
   Future<HttpResponse> get(String url,
       {Map<String, String>? headers,
       Map<String, String>? queryParameters}) async {
-    log.fine("Sending GET request to $url");
+    log("Sending GET request to $url with query parameters $queryParameters and headers $headers");
 
-    var r = await dio.get(url,
-        queryParameters: queryParameters, options: Options(headers: headers));
+    try {
+      var r = await dio.get(url,
+          queryParameters: queryParameters, options: Options(headers: headers));
 
-    log.fine(
-        "GET request to $url returned ${r.statusCode} ${r.data.toString()}");
+      log("GET request to $url returned with status code ${r.statusCode}: ${r.data.toString().length > 100 ? "[response was truncated due to it's length]" : r.data}");
 
-    return HttpResponse(statusCode: r.statusCode, body: r.data);
+      return HttpResponse(statusCode: r.statusCode, body: r.data);
+    } catch (e, stackTrace) {
+      log("Failed to send GET request to $url", e, stackTrace);
+
+      rethrow;
+    }
   }
 
   @override
   Future<HttpResponse> post(String url,
       {Map<String, String>? headers, body}) async {
-    log.fine("Sending POST request to $url");
+    log("Sending POST request to $url");
 
     var r = await dio.post(url, data: body, options: Options(headers: headers));
 
-    log.fine("POST request to $url returned ${r.statusCode} [data redacted]}");
+    log("POST request to $url returned ${r.statusCode} [data redacted]}");
 
     return HttpResponse(statusCode: r.statusCode, body: r.data);
   }

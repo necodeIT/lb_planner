@@ -1,12 +1,11 @@
-import 'package:lb_planner/shared/domain/models/http_response.dart';
-import 'package:logging/logging.dart';
+import 'package:lb_planner/shared/shared.dart';
 
 /// A base class for all network services that provides common HTTP operations.
 ///
 /// Implement this class to create specific network services for your application.
-abstract class NetworkService {
-  /// The [Logger] instance for this class.
-  Logger get log => Logger("NetworkService.$runtimeType");
+abstract class NetworkService extends Service {
+  /// Initializes a new instance of [NetworkService] with logging set up.
+  NetworkService() : super("Network");
 
   /// Sends a GET request to the specified [url].
   ///
