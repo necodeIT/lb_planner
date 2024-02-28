@@ -10,7 +10,7 @@ import 'package:lb_planner/shared/shared.dart';
 /// If you want to get the current settings, see [userProvider].
 final settingsProvider = Provider<SettingsProviderState>((ref) {
   final user = ref.watch(userProvider);
-  final controller = ref.watch(userController);
+  final controller = ref.watch(userRepositoryProvider);
   final appDirService = ref.watch(appDirServiceProvider);
 
   return SettingsProviderState(user, controller, appDirService);

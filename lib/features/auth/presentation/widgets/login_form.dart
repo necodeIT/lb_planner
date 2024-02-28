@@ -50,7 +50,7 @@ class _LoginFormState extends ConsumerState<LoginForm> {
 
   /// Tries to login the user with the username and password entered in the form
   login() {
-    final tokenController = ref.watch(userTokenController);
+    final tokenController = ref.watch(userTokenRepositoryProvider);
 
     tokenController.login(_userNameController.text, _passwordController.text);
 
@@ -129,7 +129,8 @@ class _LoginFormState extends ConsumerState<LoginForm> {
                             ),
                           )
                         : Text(t.auth_loginForm_login,
-                            style: const TextStyle(fontWeight: FontWeight.w600)),
+                            style:
+                                const TextStyle(fontWeight: FontWeight.w600)),
                     onPressed: login,
                   ),
                 ),

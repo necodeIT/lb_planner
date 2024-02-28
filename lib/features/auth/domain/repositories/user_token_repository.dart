@@ -4,8 +4,11 @@ import 'package:lb_planner/features/auth/domain/domain.dart';
 import 'package:lb_planner/shared/shared.dart';
 import 'package:riverpod/riverpod.dart';
 
-/// The state of [userTokenProvider]
-class UserTokenState extends AsyncNotifier<UserToken> {
+/// Repository responsible for managing the user's token.
+///
+/// See [userTokenProvider] and [userTokenRepositoryProvider] for usage.
+class UserTokenRepository extends AsyncNotifier<UserToken>
+    with RepositoryMixin {
   /// The [LocalConfigService] used to load and save the user token.
   late LocalConfigService<UserToken> localConfigService;
 
@@ -17,6 +20,8 @@ class UserTokenState extends AsyncNotifier<UserToken> {
 
   @override
   FutureOr<UserToken> build() async {
+    log("Attempting to load tokens from previous session...");
+
     localConfigService = ref.watch(userTokenLocalConfigServiceProvider);
     moodleMobileAppAuthService =
         ref.watch(authServiceProvider(kMoodleMobileAppServiceName));
@@ -24,11 +29,16 @@ class UserTokenState extends AsyncNotifier<UserToken> {
         ref.watch(authServiceProvider(kLbPlannerApiServiceName));
 
     if (!await localConfigService.canLoadConfig()) {
+      log("No previous session tokens found");
+
       throw StateError(
-          "Could not load user tokens, as the file config file does not exist");
+        "Could not load user tokens, as the file config file does not exist",
+      );
     }
 
     var tokens = await localConfigService.loadConfig();
+
+    log("Validating previous tokens...");
 
     var moodleValid = await moodleMobileAppAuthService
         .validateToken(tokens.moodleMobileAppToken);
@@ -36,8 +46,12 @@ class UserTokenState extends AsyncNotifier<UserToken> {
         await lbPlannerApiAuthService.validateToken(tokens.lbPlannerApiToken);
 
     if (!lbPlannerValid || !moodleValid) {
+      log("Found invalid user tokens, please re-authenticate");
+
       throw StateError("Found invalid user tokens, please re-authenticate");
     }
+
+    log("Loaded tokens from previous session");
 
     return tokens;
   }
@@ -46,6 +60,7 @@ class UserTokenState extends AsyncNotifier<UserToken> {
   ///
   /// If you want to log in the user see [login].
   Future<void> logout() async {
+    log("Logging out user...");
     state = const AsyncLoading();
 
     await localConfigService.deleteConfig();
@@ -57,6 +72,8 @@ class UserTokenState extends AsyncNotifier<UserToken> {
   ///
   /// This method will attempt to log the user in with the given [username] and [password].
   Future<void> login(String username, String password) async {
+    log("Logging in user...");
+
     state = const AsyncLoading();
 
     state = await AsyncValue.guard(() async {
@@ -66,8 +83,11 @@ class UserTokenState extends AsyncNotifier<UserToken> {
           await lbPlannerApiAuthService.requestToken(username, password);
 
       var tokens = UserToken(
-          moodleMobileAppToken: moodleMobileAppToken,
-          lbPlannerApiToken: lbPlannerApiToken);
+        moodleMobileAppToken: moodleMobileAppToken,
+        lbPlannerApiToken: lbPlannerApiToken,
+      );
+
+      log("User logged in successfully");
 
       await localConfigService.saveConfig(tokens);
 

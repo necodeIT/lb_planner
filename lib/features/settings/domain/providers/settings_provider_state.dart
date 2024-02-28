@@ -12,7 +12,7 @@ class SettingsProviderState {
   late User? user;
 
   /// The controller used for updating the user.
-  late UserProvider controller;
+  late UserRepository controller;
 
   /// The service used for accessing the app directory.
   ///
