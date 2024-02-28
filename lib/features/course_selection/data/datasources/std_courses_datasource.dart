@@ -15,6 +15,8 @@ class StdCoursesDataSource extends CoursesDataSource {
 
   @override
   Future<Course> fetchCourseById(int id) async {
+    log("Fetching course with id $id...");
+
     final response = await apiService.callFunction(
       function: "local_lbplanner_courses_get_course",
       token: token.lbPlannerApiToken,
@@ -24,6 +26,8 @@ class StdCoursesDataSource extends CoursesDataSource {
     );
 
     if (response.failed) {
+      log("Failed to fetch course with id $id.", response.body);
+
       throw Exception("Failed to fetch course with id $id: ${response.body}");
     }
 
@@ -32,6 +36,8 @@ class StdCoursesDataSource extends CoursesDataSource {
 
   @override
   Future<List<Course>> fetchCourses() async {
+    log("Fetching all courses...");
+
     final response = await apiService.callFunction(
       function: "local_lbplanner_courses_get_courses",
       token: token.lbPlannerApiToken,
@@ -39,14 +45,22 @@ class StdCoursesDataSource extends CoursesDataSource {
     );
 
     if (response.failed) {
+      log("Failed to fetch courses.", response.body);
+
       throw Exception("Failed to fetch courses: ${response.body}");
     }
 
-    return response.expectMultiple().map(Course.fromJson).toList();
+    final course = response.expectMultiple().map(Course.fromJson).toList();
+
+    log("Fetched ${course.length} courses.");
+
+    return course;
   }
 
   @override
   Future<void> updateCourse(Course course) async {
+    log("Updating course with id ${course.id}...");
+
     final response = await apiService.callFunction(
       function: "local_lbplanner_courses_update_course",
       token: token.lbPlannerApiToken,
@@ -59,8 +73,12 @@ class StdCoursesDataSource extends CoursesDataSource {
     );
 
     if (response.failed) {
+      log("Failed to update course with id ${course.id}.", response.body);
+
       throw Exception("Failed to update course: ${response.body}");
     }
+
+    log("Updated course with id ${course.id}.");
 
     return;
   }

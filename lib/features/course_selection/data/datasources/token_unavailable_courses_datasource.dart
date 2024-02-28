@@ -2,9 +2,8 @@ import 'package:lb_planner/features/course_selection/course_selection.dart';
 import 'package:lb_planner/shared/utils/warn_mixin.dart';
 
 /// Placeholder implementatnion of [CoursesDataSource] if the user is not logged in.
-class TokenUnavailableCoursesDataSource
-    with StubWarnMixin
-    implements CoursesDataSource {
+class TokenUnavailableCoursesDataSource extends CoursesDataSource
+    with StubWarnMixin {
   /// Placeholder implementatnion of [CoursesDataSource] if the user is not logged in.
   TokenUnavailableCoursesDataSource();
 

@@ -1,9 +1,10 @@
+import 'package:lb_planner/shared/shared.dart';
 import 'package:logging/logging.dart';
 
 /// Base class for all data sources.
 ///
 /// Provides a method for logging messages and errors.
-abstract class DataSource {
+abstract class DataSource implements ILoggable {
   /// THe name of the data source.
   final String _name;
 
@@ -14,7 +15,7 @@ abstract class DataSource {
 
   Logger get _log => Logger("DataSource.$_name.$runtimeType");
 
-  /// Logs a [message] with optional [error] and [stackTrace].
+  @override
   void log(Object message, [Object? error, StackTrace? stackTrace]) {
     _log.fine(message, error, stackTrace);
   }
