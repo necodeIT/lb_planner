@@ -19,7 +19,7 @@ class IsUpdateAvailableProviderState extends AsyncNotifier<bool> {
 
   /// Checks whether an update is available.
   Future<void> checkForUpdates() async {
-    state = AsyncLoading();
+    state = const AsyncLoading();
 
     state = await AsyncValue.guard(releaseRepository.isUpdateAvailable);
   }

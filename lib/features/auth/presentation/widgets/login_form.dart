@@ -68,19 +68,19 @@ class _LoginFormState extends ConsumerState<LoginForm> {
       child: Container(
         color: theme.colorScheme.background,
         child: ConstrainedBox(
-          constraints: BoxConstraints(maxWidth: LoginForm.width),
+          constraints: const BoxConstraints(maxWidth: LoginForm.width),
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Logo(
+                const Logo(
                   size: 80,
                 ),
-                SizedBox(width: 30, height: 30),
+                const SizedBox(width: 30, height: 30),
                 TextField(
                   controller: _userNameController,
                   decoration: InputDecoration(
-                    hintStyle: TextStyle(fontSize: 18),
+                    hintStyle: const TextStyle(fontSize: 18),
                     hintText: t.login_username,
                     errorText: userToken.hasError && hasAttemptedLogin
                         ? t.login_invalidUsernameOrPassword
@@ -88,13 +88,13 @@ class _LoginFormState extends ConsumerState<LoginForm> {
                   ),
                   onSubmitted: (_) => _pwFocusNode.requestFocus(),
                 ),
-                SizedBox(width: 25, height: 25),
+                const SizedBox(width: 25, height: 25),
                 TextField(
                   focusNode: _pwFocusNode,
                   controller: _passwordController,
                   obscureText: !_showPassword,
                   decoration: InputDecoration(
-                      hintStyle: TextStyle(fontSize: 18),
+                      hintStyle: const TextStyle(fontSize: 18),
                       hintText: t.login_password,
                       errorText: userToken.hasError && hasAttemptedLogin
                           ? t.login_invalidUsernameOrPassword
@@ -113,7 +113,7 @@ class _LoginFormState extends ConsumerState<LoginForm> {
                       )),
                   onSubmitted: (_) => login(),
                 ),
-                SizedBox(width: 30, height: 30),
+                const SizedBox(width: 30, height: 30),
                 SizedBox(
                   width: LoginForm.width,
                   child: ElevatedButton(
@@ -129,7 +129,7 @@ class _LoginFormState extends ConsumerState<LoginForm> {
                             ),
                           )
                         : Text(t.auth_loginForm_login,
-                            style: TextStyle(fontWeight: FontWeight.w600)),
+                            style: const TextStyle(fontWeight: FontWeight.w600)),
                     onPressed: login,
                   ),
                 ),

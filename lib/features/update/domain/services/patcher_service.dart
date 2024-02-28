@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:lb_planner/features/update/update.dart';
+import 'package:lb_planner/shared/shared.dart';
 
 /// Base class for all patcher services.
 ///
 /// A patcher service is responsible for downloading and installing updates.
 ///
 /// NOTE: Depending on the way the app was installed, updates may have to be installed manually. In this case [canPatch] will return `false`.
-abstract class PatcherService {
+abstract class PatcherService extends Service {
+  const PatcherService() : super("Patcher");
+
   /// Downloads and installs a given release.
   ///
   /// Use [onProgress] to get the progress of the download in percent. `progress` is a value between `0` and `1`.

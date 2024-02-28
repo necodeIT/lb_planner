@@ -51,7 +51,7 @@ class ScreenTitleBar extends ConsumerWidget {
                   Feather.arrow_left_circle,
                   size: iconSize,
                 ),
-              if (parent != null) SizedBox(width: 10),
+              if (parent != null) const SizedBox(width: 10),
               Text(
                 currentRoute.title(context),
                 style: titleStyle,
@@ -66,7 +66,7 @@ class ScreenTitleBar extends ConsumerWidget {
                 Icons.notifications_outlined,
                 size: iconSize,
               ),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
               SizedBox(
                 width: profileImageSize,
                 height: profileImageSize,
@@ -75,7 +75,7 @@ class ScreenTitleBar extends ConsumerWidget {
                   foregroundImage: NetworkImage(user.profileImageUrl),
                 ),
               ),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,

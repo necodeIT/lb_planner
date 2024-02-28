@@ -52,7 +52,7 @@ abstract class AutoRefreshAsyncNotifier<T> extends AsyncNotifier<T> {
       if (isPaused) return;
 
       if (setStateToLoadingOnRefresh) {
-        state = AsyncValue.loading();
+        state = const AsyncValue.loading();
       }
 
       var newState = await AsyncValue.guard(() async => await onRefresh());

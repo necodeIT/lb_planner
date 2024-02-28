@@ -45,7 +45,7 @@ class Sidebar extends ConsumerWidget {
                         .onSurface
                         .withOpacity(0.1),
                     blurRadius: 10,
-                    offset: Offset(0, 0),
+                    offset: const Offset(0, 0),
                   ),
                 ],
               ),
@@ -54,7 +54,7 @@ class Sidebar extends ConsumerWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   // Top items
-                  Column(
+                  const Column(
                     children: [
                       SidebarItem(
                         icon: Icons.dashboard,
@@ -74,25 +74,25 @@ class Sidebar extends ConsumerWidget {
                   Column(
                     children: [
                       if (kDebugMode)
-                        SidebarItem(
+                        const SidebarItem(
                           route: ThemeDevelopmentRoute(),
                           icon: FontAwesome.paint_brush,
                         ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       if (user?.isElevated ?? false)
-                        SidebarItem(
+                        const SidebarItem(
                           icon: Icons.admin_panel_settings,
                           // TODO: swap with admin route once implemented
                           route: ThemeDevelopmentRoute(),
                         ),
-                      if (user?.isElevated ?? false) SizedBox(height: 10),
-                      SidebarItem(
+                      if (user?.isElevated ?? false) const SizedBox(height: 10),
+                      const SidebarItem(
                         icon: Icons.settings,
                         // TODO: swap with settings route once implemented
                         route: ThemeDevelopmentRoute(),
                       ),
-                      SizedBox(height: 10),
-                      SidebarItem(
+                      const SizedBox(height: 10),
+                      const SidebarItem(
                         // TODO: swap with login route once implemented
                         route: ThemeDevelopmentRoute(),
                         icon: Icons.logout,
@@ -108,13 +108,13 @@ class Sidebar extends ConsumerWidget {
                 padding: const EdgeInsets.all(30),
                 child: Column(
                   children: [
-                    ScreenTitleBar(),
-                    SizedBox(height: 20),
+                    const ScreenTitleBar(),
+                    const SizedBox(height: 20),
                     Builder(
                       builder: (context) {
                         return Expanded(
                           child: PageTransitionSwitcher(
-                            duration: Duration(milliseconds: 500),
+                            duration: const Duration(milliseconds: 500),
                             transitionBuilder:
                                 (child, animation, secondaryAnimation) =>
                                     SharedAxisTransition(

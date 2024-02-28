@@ -10,7 +10,7 @@ abstract class DataSource {
   /// Base class for all data sources.
   ///
   /// Provides a method for logging messages and errors.
-  DataSource(this._name);
+  const DataSource(this._name);
 
   Logger get _log => Logger("DataSource.$_name.$runtimeType");
 

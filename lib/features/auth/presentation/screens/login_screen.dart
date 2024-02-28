@@ -52,10 +52,10 @@ class _LoginRouteState extends State<LoginScreen> {
               ),
             );
           }),
-          Align(
+          const Align(
             alignment: Alignment.centerRight,
             child: Padding(
-              padding: const EdgeInsets.only(right: LoginScreen.formPadding),
+              padding: EdgeInsets.only(right: LoginScreen.formPadding),
               child: LoginForm(),
             ),
           ),

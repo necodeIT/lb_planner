@@ -38,7 +38,7 @@ class _ThemeDevelopmentScreenState
       child: Builder(builder: (context) {
         return Scaffold(
           body: SingleChildScrollView(
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             child: SizedBox(
               width: double.infinity,
               child: Column(
@@ -50,7 +50,7 @@ class _ThemeDevelopmentScreenState
                         selectedThemeBase!.icon,
                         color: selectedThemeBase!.iconColor,
                       ),
-                      SizedBox(width: 8),
+                      const SizedBox(width: 8),
                       Text(
                         'Theme',
                         style: Theme.of(context).textTheme.headlineMedium,
@@ -76,7 +76,7 @@ class _ThemeDevelopmentScreenState
                     'Typography',
                     style: Theme.of(context).textTheme.headlineMedium,
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   Text('Headline1',
                       style: Theme.of(context).textTheme.displayLarge),
                   Text('Headline2',
@@ -101,57 +101,57 @@ class _ThemeDevelopmentScreenState
                   Text('Button', style: Theme.of(context).textTheme.labelLarge),
                   Text('Overline',
                       style: Theme.of(context).textTheme.labelSmall),
-                  SizedBox(height: 32),
+                  const SizedBox(height: 32),
                   Text(
                     'Buttons',
                     style: Theme.of(context).textTheme.headlineMedium,
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   ElevatedButton(
                     onPressed: () {},
-                    child: Text('Elevated Button'),
+                    child: const Text('Elevated Button'),
                   ),
                   TextButton(
                     onPressed: () {},
-                    child: Text('Text Button'),
+                    child: const Text('Text Button'),
                   ),
                   OutlinedButton(
                     onPressed: () {},
-                    child: Text('Outlined Button'),
+                    child: const Text('Outlined Button'),
                   ),
-                  SizedBox(height: 32),
+                  const SizedBox(height: 32),
                   Text(
                     'Colors',
                     style: Theme.of(context).textTheme.headlineMedium,
                   ),
-                  SizedBox(height: 32),
+                  const SizedBox(height: 32),
                   Text(
                     'Icons',
                     style: Theme.of(context).textTheme.headlineMedium,
                   ),
-                  SizedBox(height: 16),
-                  Icon(Icons.favorite),
-                  Icon(Icons.share),
-                  Icon(Icons.comment),
-                  SizedBox(height: 32),
+                  const SizedBox(height: 16),
+                  const Icon(Icons.favorite),
+                  const Icon(Icons.share),
+                  const Icon(Icons.comment),
+                  const SizedBox(height: 32),
                   Text(
                     'Input Fields',
                     style: Theme.of(context).textTheme.headlineMedium,
                   ),
-                  SizedBox(height: 16),
-                  TextField(
+                  const SizedBox(height: 16),
+                  const TextField(
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Text Field',
                     ),
                   ),
-                  TextField(
+                  const TextField(
                     decoration: InputDecoration(
                       labelText: 'Text Field',
                     ),
                   ),
                   // TODO: add more widgets as components are added
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   Wrap(
                     spacing: 16,
                     runSpacing: 16,

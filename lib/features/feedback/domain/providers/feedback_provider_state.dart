@@ -61,7 +61,7 @@ class FeedbackProviderState extends AutoRefreshAsyncNotifier<List<Feedback>> {
   ///
   /// It is safe to call this method multiple times on the same [feedback] to update the [comment].
   Future<void> markFeedbackAsRead(Feedback feedback, {String? comment}) async {
-    state = AsyncLoading();
+    state = const AsyncLoading();
 
     await _feedbackRepository.updateFeedback(
       feedback.copyWith(

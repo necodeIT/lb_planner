@@ -90,8 +90,8 @@ class VectorImage extends StatelessWidget {
         }
         if (snapshot.connectionState == ConnectionState.waiting) {
           return SizedBox(
-            child: Center(
-              child: const CircularProgressIndicator(),
+            child: const Center(
+              child: CircularProgressIndicator(),
             ),
             width: width,
             height: height,

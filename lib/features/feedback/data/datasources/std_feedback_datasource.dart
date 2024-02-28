@@ -21,8 +21,7 @@ class StdFeedbackDataSource extends FeedbackDataSource {
       body: {},
     );
 
-    // TODO: replace with `response.failed` once #52 is merged
-    if (response.isNotOk) {
+    if (response.failed) {
       throw Exception("Failed to delete feedback: ${response.body}");
     }
   }
@@ -35,8 +34,7 @@ class StdFeedbackDataSource extends FeedbackDataSource {
       body: {},
     );
 
-    // TODO: replace with `response.failed` once #52 is merged
-    if (response.isNotOk) {
+    if (response.failed) {
       throw Exception("Failed to fetch all feedbacks: ${response.body}");
     }
 
@@ -62,8 +60,7 @@ class StdFeedbackDataSource extends FeedbackDataSource {
       },
     );
 
-    // TODO: replace with `response.failed` once #52 is merged
-    if (response.isNotOk) {
+    if (response.failed) {
       throw Exception("Failed to submit feedback: ${response.body}");
     }
   }
@@ -80,8 +77,7 @@ class StdFeedbackDataSource extends FeedbackDataSource {
       },
     );
 
-    // TODO: replace with `response.failed` once #52 is merged
-    if (response.isNotOk) {
+    if (response.failed) {
       throw Exception("Failed to update feedback: ${response.body}");
     }
   }

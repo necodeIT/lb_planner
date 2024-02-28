@@ -10,7 +10,7 @@ abstract class Service {
   /// Base class for all services.
   ///
   /// Provides a method for logging messages and errors.
-  Service(this._name);
+  const Service(this._name);
 
   Logger get _log => Logger("Service.$_name.$runtimeType");
 

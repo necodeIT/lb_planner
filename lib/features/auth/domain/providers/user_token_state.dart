@@ -46,7 +46,7 @@ class UserTokenState extends AsyncNotifier<UserToken> {
   ///
   /// If you want to log in the user see [login].
   Future<void> logout() async {
-    state = AsyncLoading();
+    state = const AsyncLoading();
 
     await localConfigService.deleteConfig();
 
@@ -57,7 +57,7 @@ class UserTokenState extends AsyncNotifier<UserToken> {
   ///
   /// This method will attempt to log the user in with the given [username] and [password].
   Future<void> login(String username, String password) async {
-    state = AsyncLoading();
+    state = const AsyncLoading();
 
     state = await AsyncValue.guard(() async {
       var moodleMobileAppToken =

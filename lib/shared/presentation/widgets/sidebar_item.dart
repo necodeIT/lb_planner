@@ -57,7 +57,7 @@ class SidebarItem extends StatelessWidget {
         context.navigateTo(route);
       },
       builder: (context, hover) => AnimatedContainer(
-        duration: Duration(milliseconds: 200),
+        duration: const Duration(milliseconds: 200),
         curve: Curves.ease,
         width: size,
         height: size,
