@@ -1,10 +1,14 @@
 import 'package:lb_planner/features/feedback/feedback.dart';
 import 'package:lb_planner/features/auth/auth.dart';
+import 'package:lb_planner/shared/shared.dart';
 
 /// Base class for all feedback data sources.
 ///
 /// A [FeedbackDataSource] is a 1:1 mapping to the API endpoints related to feedback.
-abstract class FeedbackDataSource {
+abstract class FeedbackDataSource extends DataSource {
+  /// Initializes a new instance of [FeedbackDataSource] with logging set up.
+  FeedbackDataSource() : super("Feedback");
+
   /// Submits feedback with the given [message] and [type].
   ///
   /// If [type] is [FeedbackType.bug], the [logFilePath] should be provided.

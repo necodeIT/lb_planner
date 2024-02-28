@@ -4,9 +4,6 @@ import 'package:lb_planner/shared/utils/warn_mixin.dart';
 /// Placeholder implementatnion of [CoursesDataSource] if the user is not logged in.
 class TokenUnavailableCoursesDataSource extends CoursesDataSource
     with StubWarnMixin {
-  /// Placeholder implementatnion of [CoursesDataSource] if the user is not logged in.
-  TokenUnavailableCoursesDataSource();
-
   @override
   Future<Course> fetchCourseById(int id) async {
     warn("fetchCourseById");
