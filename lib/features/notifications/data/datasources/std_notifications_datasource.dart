@@ -15,6 +15,8 @@ class StdNotificationsDataSource extends NotificationsDataSource {
 
   @override
   Future<List<Notification>> fetchNotifications() async {
+    log("Fetching all notifications");
+
     final response = await apiService.callFunction(
       function: "local_lbplanner_notifications_get_all_notifications",
       token: token.lbPlannerApiToken,
@@ -22,6 +24,8 @@ class StdNotificationsDataSource extends NotificationsDataSource {
     );
 
     if (response.failed) {
+      log("Failed to fetch notifications", response.body);
+
       throw Exception(
         "Failed to fetch notifications with status code ${response.statusCode}",
       );
@@ -29,11 +33,15 @@ class StdNotificationsDataSource extends NotificationsDataSource {
 
     final json = response.expectMultiple();
 
+    log("Fetched ${json.length} notifications");
+
     return json.map((e) => Notification.fromJson(e)).toList();
   }
 
   @override
   Future<Notification> updateNotification(Notification notification) async {
+    log("Updating notification#$notification");
+
     final response = await apiService.callFunction(
       function: "local_lbplanner_notifications_update_notification",
       token: token.lbPlannerApiToken,
@@ -44,12 +52,16 @@ class StdNotificationsDataSource extends NotificationsDataSource {
     );
 
     if (response.failed) {
+      log("Failed to update notification#$notification", response.body);
+
       throw Exception(
         "Failed to update notification with status code ${response.statusCode}",
       );
     }
 
     final json = response.expectSingle();
+
+    log("Updated notification#$notification");
 
     return Notification.fromJson(json);
   }

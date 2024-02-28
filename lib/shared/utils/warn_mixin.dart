@@ -46,7 +46,7 @@ mixin StubWarnMixin on ILoggable {
   /// ```
   void shout(String method, [Object? error, StackTrace? stackTrace]) {
     log(
-      "Method `$method` was called on a stub class ($runtimeType). THIS SHOULD NOT HAPPEN and may cause errors.",
+      "Method `$method` was called on a stub class ($runtimeType). This must not happen and may cause errors.",
       error,
       stackTrace,
     );
