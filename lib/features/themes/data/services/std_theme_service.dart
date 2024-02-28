@@ -7,6 +7,8 @@ class StdThemeService extends ThemeService<ThemeData> {
   ThemeData generateTheme(ThemeBase themeBase) {
     final templateTheme = ThemeData(brightness: themeBase.brightness);
 
+    log("Generating ${themeBase.name} theme");
+
     return ThemeData(
       brightness: themeBase.brightness,
       useMaterial3: false,
