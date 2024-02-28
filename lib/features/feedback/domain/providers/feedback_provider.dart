@@ -5,13 +5,13 @@ import 'package:riverpod/riverpod.dart';
 ///
 /// Note: The list will be empty if the user does not have the permission to view the feedbacks.
 ///
-/// If you want to perform CRUD operations, use [feedbackProvider].
+/// If you want to perform CRUD operations, use [feedbackRepositoryProvider].
 final feedbackProvider =
-    AsyncNotifierProvider<FeedbackProviderState, List<Feedback>>(() {
-  return FeedbackProviderState();
+    AsyncNotifierProvider<FeedbackRepository, List<Feedback>>(() {
+  return FeedbackRepository();
 });
 
-/// Exposes CRUD operations for [feedbackProvider].
+/// Provides [FeedbackRepository] for CRUD operations.
 ///
 /// If you only want to view the feedbacks, use [feedbackProvider].
-final feedbackController = feedbackProvider.notifier;
+final feedbackRepositoryProvider = feedbackProvider.notifier;
