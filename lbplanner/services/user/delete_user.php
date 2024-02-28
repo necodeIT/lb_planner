@@ -25,6 +25,7 @@ use local_lbplanner\helpers\user_helper;
 use local_lbplanner\helpers\plan_helper;
 use local_lbplanner\helpers\course_helper;
 use local_lbplanner\helpers\notifications_helper;
+use local_lbplanner\helpers\PLAN_ACCESS_TYPE;
 use moodle_exception;
 
 /**
@@ -81,7 +82,7 @@ class user_delete_user extends external_api {
         if (
             !(count(plan_helper::get_plan_members($planid)) == 1 )
             &&
-            !(plan_helper::get_access_type($planid, $userid) == plan_helper::ACCESS_TYPE_OWNER)) {
+            !(plan_helper::get_access_type($planid, $userid) == PLAN_ACCESS_TYPE::OWNER)) {
             self::call_external_function('local_lbplanner_plan_leave_plan', ['userid' => $userid, 'planid' => $planid]);
         }
         $DB->delete_records(plan_helper::DEADLINES_TABLE, ['planid' => $planid]);

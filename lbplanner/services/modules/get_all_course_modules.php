@@ -16,6 +16,7 @@
 
 namespace local_lbplanner_services;
 
+use course_modinfo;
 use external_api;
 use external_function_parameters;
 use external_multiple_structure;
@@ -38,36 +39,26 @@ class modules_get_all_course_modules extends external_api {
      */
     public static function get_all_course_modules_parameters(): external_function_parameters {
         return new external_function_parameters([
-            'courseid' => new external_value(PARAM_INT, 'The id of the course', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
-            'userid' => new external_value(PARAM_INT, 'The id of the user', VALUE_REQUIRED, null, NULL_NOT_ALLOWED),
-            'ekenabled' => new external_value(
-            PARAM_BOOL,
-            'Whether or not to include ek modules',
-            VALUE_REQUIRED,
-            false,
-            NULL_NOT_ALLOWED),
-        ]);
+            'courseid' => new external_value(PARAM_INT, 'The id of the course', VALUE_REQUIRED, null, NULL_NOT_ALLOWED)]);
     }
 
     /**
      * Returns all the modules inside a course.
      *
      * @param int $courseid The ID of the course
-     * @param int $userid The ID of the user
      * @param bool $ekenabled whether or not to include ek modules
      * @return array the modules
      */
-    public static function get_all_course_modules(int $courseid, int $userid, bool $ekenabled): array {
-        global $DB;
+    public static function get_all_course_modules(int $courseid): array {
+        global $DB, $USER;
 
         self::validate_parameters(
             self::get_all_course_modules_parameters(),
-            ['courseid' => $courseid, 'userid' => $userid, 'ekenabled' => $ekenabled]
+            ['courseid' => $courseid]
         );
-
-        user_helper::assert_access($userid);
-
-        return modules_helper::get_all_course_modules($courseid, $userid, $ekenabled);
+        var_dump(get_course($courseid));
+        die(var_dump(course_modinfo::get_array_of_activities(get_course($courseid))));
+        return modules_helper::get_all_course_modules($courseid);
     }
 
     /**

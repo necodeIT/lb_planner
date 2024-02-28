@@ -32,8 +32,6 @@ use external_single_structure;
 use external_value;
 use moodle_url;
 
-use local_lbplanner\polyfill\Enum;
-
 
 // TODO: revert to native enums once we migrate to php8.
 
@@ -102,11 +100,11 @@ class MODULE_TYPE extends Enum {
      */
     const TEST = 2;
     /**
-     * TODO: ???
+     * Mitarbeit.
      */
     const M  = 3;
     /**
-     * TODO: ???
+     * No type.
      */
     const NONE = 4;
 }
@@ -125,7 +123,7 @@ class modules_helper {
      *
      * @return external_single_structure The structure of a module.
      */
-    public static function structure() : external_single_structure {
+    public static function structure(): external_single_structure {
         return new external_single_structure(
         [
             'moduleid' => new external_value(PARAM_INT, 'Module ID'),
@@ -149,7 +147,7 @@ class modules_helper {
      * @param int $gradepass The grade to pass the module.
      * @return integer The enum value for the grade.
      */
-    public static function determin_uinified_grade(int $grade, int $maxgrade, int $mingrade, int $gradepass) : int {
+    public static function determin_uinified_grade(int $grade, int $maxgrade, int $mingrade, int $gradepass): int {
         if ($grade < $gradepass) {
             return MODULE_GRADE::RIP;
         }
@@ -179,7 +177,7 @@ class modules_helper {
      * @param bool $late Whether the module is late.
      * @return integer The enum value for the module status.
      */
-    public static function map_status(bool $submitted, bool $done, bool $late) : int {
+    public static function map_status(bool $submitted, bool $done, bool $late): int {
         if ($done) {
             return MODULE_STATUS::DONE;
         } else if ($submitted) {
@@ -197,7 +195,7 @@ class modules_helper {
      * @param string $modulename The name of the module.
      * @return integer The enum value for the module type.
      */
-    public static function determin_type(string $modulename) : int {
+    public static function determin_type(string $modulename): int {
         // Convert module name to uppercase.
         $modulename = strtoupper($modulename);
 
@@ -231,7 +229,7 @@ class modules_helper {
      * @param int $courseid The id of the course.
      * @return string The url of the module.
      */
-    public static function get_module_url(int $moduleid, int $courseid) : string {
+    public static function get_module_url(int $moduleid, int $courseid): string {
         global $DB;
 
         $view = $DB->get_record(
@@ -249,7 +247,7 @@ class modules_helper {
      * @param int $userid The id of the user.
      * @return array The module.
      */
-    public static function get_module(int $moduleid, int $userid) : array {
+    public static function get_module(int $moduleid, int $userid): array {
         global $DB;
         date_default_timezone_set('UTC');
 
@@ -334,7 +332,7 @@ class modules_helper {
      * @param bool $ekenabled Whether EK modules should be included.
      * @return array The modules.
      */
-    public static function get_all_course_modules(int $courseid, int $userid, bool $ekenabled) : array {
+    public static function get_all_course_modules(int $courseid, int $userid, bool $ekenabled): array {
         global $DB;
 
         $mdlmodules = $DB->get_records(self::ASSIGN_TABLE, ['course' => $courseid]);
