@@ -1,5 +1,4 @@
 import 'package:lb_planner/features/auth/auth.dart';
-import 'package:logging/logging.dart';
 
 /// Implementation of [UserDataSource] to use when no token is available.
 ///
@@ -10,9 +9,6 @@ class TokenUnavailableUserDataSource extends UserDataSource {
 
   /// The stack trace of the error (if available) of the error (if any) that caused the token to be unavailable.
   final StackTrace? stackTrace;
-
-  /// The logger to use.
-  final Logger logger = Logger("TokenUnavailableUserDataSource");
 
   /// The error that caused the token to be unavailable (if available).
   final Object? error;
@@ -48,10 +44,11 @@ class TokenUnavailableUserDataSource extends UserDataSource {
   User get _defaultUser =>
       User(id: -1, username: "", firstname: "", lastname: "");
 
-  void _warn(String method) => logger.warning(
-      "Called $method on TokenUnavailableUserDataSource: $reason",
-      error,
-      stackTrace);
+  void _warn(String method) => log(
+        "Called $method on TokenUnavailableUserDataSource: $reason",
+        error,
+        stackTrace,
+      );
 
   @override
   Future<void> deleteUser(User user) async {

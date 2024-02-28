@@ -1,7 +1,11 @@
 import 'package:lb_planner/features/auth/auth.dart';
+import 'package:lb_planner/shared/shared.dart';
 
 /// Bser class for all data sources for [User]s.
-abstract class UserDataSource {
+abstract class UserDataSource extends DataSource {
+  /// Initializes a new instance of [UserDataSource] with logging set up.
+  UserDataSource() : super("User");
+
   /// Fetches the current user.
   Future<User> fetchCurrentUser();
 
