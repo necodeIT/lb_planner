@@ -23,6 +23,7 @@ use external_multiple_structure;
 use external_value;
 use local_lbplanner\helpers\modules_helper;
 use local_lbplanner\helpers\user_helper;
+use local_lbplanner\helpers\module;
 
 /**
  * Get all the modules of the given course.
@@ -50,14 +51,18 @@ class modules_get_all_course_modules extends external_api {
      * @return array the modules
      */
     public static function get_all_course_modules(int $courseid): array {
-        global $DB, $USER;
+        global $DB, $USER, $CFG;
+        require_once($CFG->dirroot . '/course/lib.php');
 
         self::validate_parameters(
             self::get_all_course_modules_parameters(),
             ['courseid' => $courseid]
         );
-        var_dump(get_course($courseid));
-        die(var_dump(course_modinfo::get_array_of_activities(get_course($courseid))));
+        $activities = course_modinfo::get_array_of_activities(get_course($courseid));
+        $modules = [];
+        foreach ($activities as $activity) {
+            new module()
+        }
         return modules_helper::get_all_course_modules($courseid);
     }
 

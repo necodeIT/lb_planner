@@ -352,3 +352,23 @@ class modules_helper {
         return $modules;
     }
 }
+class module {
+    public $moduleid;
+    public $name;
+    public $courseid;
+    public $status;
+    public $type;
+    public $url;
+    public $grade;
+    public $deadline;
+    public function __construct($moduleid, $name, $courseid, $status, $type, $url, $grade, $deadline) {
+        $this->moduleid = $moduleid;
+        $this->name = $name;
+        $this->courseid = $courseid;
+        $this->status = $status;
+        $this->type = $type;
+        $this->url = $url;
+        $this->grade = $grade;
+        $this->deadline = $deadline;
+    }
+}
