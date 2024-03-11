@@ -10,3 +10,4 @@ export 'scale_on_hover.dart';
 export 'offset_on_hover.dart';
 export 'hover_builder.dart';
 export 'hoverable_widget.dart';
+export 'conditional_widget.dart';

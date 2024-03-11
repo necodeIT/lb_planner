@@ -69,7 +69,7 @@ class DashboardStatusOverviewChart extends StatelessWidget {
 
             return ConditionalWidget(
               condition: stats.totalModules > 0,
-              trueWidget: (context) => Row(
+              ifTrue: Row(
                 children: [
                   DashboardStatusOverviewBar(
                       width: doneWidth.safeValue, color: successColor),
@@ -84,7 +84,7 @@ class DashboardStatusOverviewChart extends StatelessWidget {
                       width: pendingWidth.safeValue, color: neutralColor),
                 ],
               ),
-              falseWidget: (context) => Center(
+              ifFalse: Center(
                 child: NcBodyText(context.t.dashboard_statusOverview_noData),
               ),
             );
