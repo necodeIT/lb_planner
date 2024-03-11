@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../../../shared/shared.dart';
 
 /// Exams section of the dashboard route.
 class DashboardExams extends StatefulWidget {
@@ -6,7 +9,12 @@ class DashboardExams extends StatefulWidget {
   const DashboardExams({Key? key}) : super(key: key);
 
   @override
-  Widget build(context, t) {
+  State<StatefulWidget> createState() => _DashboardExamsState();
+}
+
+class _DashboardExamsState extends State<DashboardExams> {
+  @override
+  Widget build(BuildContext context) {
     return Consumer(builder: (context, ref, _) {
       var modules = ref.watch(modulesProvider);
 
@@ -30,17 +38,17 @@ class DashboardExams extends StatefulWidget {
         width: double.infinity,
         child: ConditionalWidget(
           condition: exams.isNotEmpty,
-          trueWidget: (context) => ListView(
+          ifTrue: ListView(
             children: [
               for (var exam in exams) ...[
                 ModuleWidget.date(
                   moduleId: exam.id,
                 ),
-                NcSpacing.small(),
+                Spacing.small(),
               ],
             ],
           ),
-          falseWidget: (context) => Center(
+          ifFalse: Center(
             child: NcBodyText(t.dashboard_exams_noExams),
           ),
         ),
