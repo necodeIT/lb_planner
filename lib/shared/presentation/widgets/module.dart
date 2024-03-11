@@ -156,9 +156,7 @@ class _ModuleWidgetState extends State<ModuleWidget> {
                       ifTrue: LpCheckbox(
                           value:
                               module.status.isUploaded || module.status.isDone),
-                      ifFalse:Widget container(Color color,
-                                [IconData? icon, bool outlined = false]) =>
-                            Container(
+                      ifFalse: Container(
                               // ignore: no-magic-number
                               width: 18,
                               // ignore: no-magic-number
@@ -170,7 +168,7 @@ class _ModuleWidgetState extends State<ModuleWidget> {
                                   // ignore: no-magic-number
                                   width: 2,
                                 ),
-                                borderRadius: BorderRadius.circular(kRadius),
+                                borderRadius: BorderRadius.circular(5),
                               ),
                               child: outlined
                                   ? null
