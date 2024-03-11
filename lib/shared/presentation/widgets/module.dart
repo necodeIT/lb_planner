@@ -89,7 +89,7 @@ class _ModuleWidgetState extends State<ModuleWidget> {
     return Consumer(builder: (context, ref, _) {
       var module = ref.watch(modulesProvider)[moduleId];
 
-      if (module == null) return LpShimmer();
+      if (module == null) return ShimmerEffect();
 
       var courses = ref.watch(coursesProvider);
        var course = courses[module.courseId]!;
@@ -196,9 +196,9 @@ class _ModuleWidgetState extends State<ModuleWidget> {
                 ],
               ),
             ),
-          );
-        },
-        ifFalse: LpShimmer(height: height, width: width),
+          )
+        ,
+        ifFalse: ShimmerEffect(height: height, width: width),
       );
     });
   }
