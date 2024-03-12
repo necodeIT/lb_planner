@@ -229,15 +229,9 @@ class modules_helper {
      * @param int $courseid The id of the course.
      * @return string The url of the module.
      */
-    public static function get_module_url(int $moduleid, int $courseid): string {
-        global $DB;
-
-        $view = $DB->get_record(
-            self::COURSE_MODULES_TABLE,
-            ['course' => $courseid, 'instance' => $moduleid, 'module' => 1]
-        );
-
-        return strval(new moodle_url('/mod/assign/view.php?id='.$view->id));
+    public static function get_module_url(string $type, int $cmid): string {
+        $url = new moodle_url('/mod/'.$type.'/view.php', ['id' => $cmid]);
+        return $url->out(false);
     }
 
     /**
