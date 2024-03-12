@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:lb_planner/shared/shared.dart';
 
 /// Courses selector for settings.
 class SettingsCourses extends StatefulWidget {
@@ -45,7 +46,7 @@ class _SettingsCoursesState extends State<SettingsCourses> {
       return LpContainer(
         trailing: Expanded(
           child: LpTextField.filled(
-            prefixIcon: Ionicons.search,
+            prefixIcon: Icons.search,
             placeholder: t.settings_courses_searchCourses,
             controller: _searchController,
             fontSize: LoginSelectCourseCourseSelection.searchFontSize,
@@ -62,7 +63,7 @@ class _SettingsCoursesState extends State<SettingsCourses> {
                   courseId: course.id,
                   key: ValueKey(course.id),
                 ),
-                NcSpacing.xs(),
+                Spacing.xs(),
               ]
           ],
         ),
