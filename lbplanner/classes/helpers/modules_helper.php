@@ -31,9 +31,13 @@ use local_lbplanner\helpers\config_helper;
 use core_customfield\category_controller;
 use customfield_select\data_controller;
 use customfield_select\field_controller;
+use block_accessreview\external\get_module_data;
+use external_function_parameters;
 use external_single_structure;
 use external_value;
 use moodle_url;
+
+use local_lbplanner\enums\{MODULE_STATUS, MODULE_GRADE, MODULE_TYPE};
 
 /**
  * Contains helper functions for working with modules.
@@ -49,7 +53,7 @@ class modules_helper {
      *
      * @return external_single_structure The structure of a module.
      */
-    public static function structure(): external_single_structure {
+    public static function structure() : external_single_structure {
         return new external_single_structure(
         [
             'moduleid' => new external_value(PARAM_INT, 'Module ID'),
@@ -73,7 +77,7 @@ class modules_helper {
      * @param int $gradepass The grade to pass the module.
      * @return integer The enum value for the grade.
      */
-    public static function determin_uinified_grade(int $grade, int $maxgrade, int $mingrade, int $gradepass): int {
+    public static function determin_uinified_grade(int $grade, int $maxgrade, int $mingrade, int $gradepass) : int {
         if ($grade < $gradepass) {
             return MODULE_GRADE::RIP;
         }

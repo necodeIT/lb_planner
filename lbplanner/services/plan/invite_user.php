@@ -21,10 +21,9 @@ use external_function_parameters;
 use external_single_structure;
 use external_value;
 use local_lbplanner\helpers\invite_helper;
-use local_lbplanner\helpers\NOTIF_TRIGGER;
 use local_lbplanner\helpers\plan_helper;
 use local_lbplanner\helpers\notifications_helper;
-use local_lbplanner\helpers\PLAN_INVITE_STATE;
+use local_lbplanner\enums\{NOTIF_TRIGGER, PLAN_INVITE_STATE};
 
 /**
  * Invite a user to the current user's plan
