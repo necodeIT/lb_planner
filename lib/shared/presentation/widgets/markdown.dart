@@ -35,44 +35,46 @@ class MarkdownView extends ConsumerWidget {
 
     return ConditionalWidget(
       condition: data == null,
-      ifTrue: FutureBuilder<HttpResponse>(
-        future: networkService.get(source.toString()),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            if (snapshot.data!.isOk) {
-              return _buildMarkdown(context, snapshot.data!.body);
-            }
+      ifTrue: Builder(builder: (context) {
+        return FutureBuilder<HttpResponse>(
+          future: networkService.get(source.toString()),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              if (snapshot.data!.isOk) {
+                return _buildMarkdown(context, snapshot.data!.body);
+              }
 
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Icon(
-                  FontAwesome.exclamation_triangle,
-                  color: context.theme.colorScheme.error,
-                  size: 60,
-                ),
-                Spacing.small(),
-                Text(
-                  context.t.widgets_markdown_networkError(source.toString()),
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 12, letterSpacing: 0.4),
-                ),
-                Spacing.large(),
-                ElevatedButton(
-                  child: Text(
-                      context.t.widgets_markdown_networkError_openInBrowser),
-                  onPressed: () => launchUrl(source!),
-                )
-              ],
-            );
-          } else {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-        },
-      ),
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Icon(
+                    FontAwesome.exclamation_triangle,
+                    color: context.theme.colorScheme.error,
+                    size: 60,
+                  ),
+                  Spacing.small(),
+                  Text(
+                    context.t.widgets_markdown_networkError(source.toString()),
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 12, letterSpacing: 0.4),
+                  ),
+                  Spacing.large(),
+                  ElevatedButton(
+                    child: Text(
+                        context.t.widgets_markdown_networkError_openInBrowser),
+                    onPressed: () => launchUrl(source!),
+                  )
+                ],
+              );
+            } else {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          },
+        );
+      }),
       ifFalse: _buildMarkdown(context, data!),
     );
   }
