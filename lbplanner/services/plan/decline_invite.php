@@ -21,7 +21,7 @@ use external_function_parameters;
 use external_value;
 use local_lbplanner\helpers\plan_helper;
 use local_lbplanner\helpers\notifications_helper;
-use local_lbplanner\enums\{NOTIF_TRIGGER,PLAN_INVITE_STATE};
+use local_lbplanner\enums\{NOTIF_TRIGGER, PLAN_INVITE_STATE};
 
 /**
  * Decline an invite from the plan.

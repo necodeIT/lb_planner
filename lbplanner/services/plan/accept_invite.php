@@ -21,7 +21,7 @@ use external_function_parameters;
 use external_value;
 use local_lbplanner\helpers\plan_helper;
 use local_lbplanner\helpers\notifications_helper;
-use local_lbplanner\enums\{PLAN_ACCESS_TYPE,PLAN_INVITE_STATE,NOTIF_TRIGGER};
+use local_lbplanner\enums\{PLAN_ACCESS_TYPE, PLAN_INVITE_STATE, NOTIF_TRIGGER};
 
 /**
  * Accept an invite to the plan.

@@ -26,7 +26,7 @@ namespace local_lbplanner\helpers;
 
 use external_single_structure;
 use external_value;
-use local_lbplanner\enums\{NOTIF_STATUS,NOTIF_TRIGGER};
+use local_lbplanner\enums\{NOTIF_STATUS, NOTIF_TRIGGER};
 
 /**
  * Provides helper methods for notification related stuff
