@@ -6,7 +6,7 @@ import 'package:lb_planner/features/update/update.dart';
 /// Renders an update screen, which allows the user to update the app.
 
 @RoutePage()
-class UpdateScreen extends ConsumerStatefulWidget {
+class UpdateScreen extends ConsumerStatefulWidget with SidebarWrapperMixin {
   /// Renders an update screen, which allows the user to update the app.
   const UpdateScreen({Key? key}) : super(key: key);
 

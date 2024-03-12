@@ -113,13 +113,18 @@ class AppRouter extends _$AppRouter {
           page: LoginRoute.page,
           path: '/login',
         ),
-        DefaultRoute(page: UpdateRoute.page, path: '/update', initial: true)
+        DefaultRoute(
+            page: UpdateRoute.page,
+            path: '/update',
+            initial: true,
+            title: (context, data) => context.t.update_btn),
       ];
 }
 
 /// Implements [CustomRoute] with some default settings.
 class DefaultRoute extends CustomRoute {
   /// Implements [CustomRoute] with some default settings.
-  DefaultRoute({required super.page, required super.path, super.initial})
+  DefaultRoute(
+      {required super.page, required super.path, super.initial, super.title})
       : super(transitionsBuilder: TransitionsBuilders.noTransition);
 }
