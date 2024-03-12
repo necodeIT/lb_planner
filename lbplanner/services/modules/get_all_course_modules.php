@@ -16,14 +16,16 @@
 
 namespace local_lbplanner_services;
 
+
+use core_external\external_single_structure;
 use course_modinfo;
 use external_api;
 use external_function_parameters;
 use external_multiple_structure;
 use external_value;
 use local_lbplanner\helpers\modules_helper;
-use local_lbplanner\helpers\user_helper;
-use local_lbplanner\helpers\module;
+use local_lbplanner\model\activity;
+use moodle_url;
 
 /**
  * Get all the modules of the given course.
@@ -48,12 +50,12 @@ class modules_get_all_course_modules extends external_api {
      *
      * @param int $courseid The ID of the course
      * @param bool $ekenabled whether or not to include ek modules
-     * @return array the modules
+     * @return array|null the modules
      */
-    public static function get_all_course_modules(int $courseid): array {
+    public static function get_all_course_modules(int $courseid): ?array {
         global $DB, $USER, $CFG;
         require_once($CFG->dirroot . '/course/lib.php');
-
+        // path to the module class which is in this plugin
         self::validate_parameters(
             self::get_all_course_modules_parameters(),
             ['courseid' => $courseid]
@@ -61,18 +63,23 @@ class modules_get_all_course_modules extends external_api {
         $activities = course_modinfo::get_array_of_activities(get_course($courseid));
         $modules = [];
         foreach ($activities as $activity) {
-            new module()
+            $type = $activity->mod;
+            $id = $activity->id;
+            $deadline = $activity->duedate;
+            $name = $activity->name;
+            $cmid = $activity->cm;
+            $url = new moodle_url('/mod/'.$type.'/view.php', ['id' => $cmid]);
+            $modules[] = new activity($id, $name, $courseid , null, $type, $url->out(false), null, $deadline);
         }
-        return modules_helper::get_all_course_modules($courseid);
+        die(var_dump($modules));
+        return $type;
     }
 
     /**
      * Returns the structure of the module array.
      * @return external_multiple_structure
      */
-    public static function get_all_course_modules_returns(): external_multiple_structure {
-        return new external_multiple_structure(
-            modules_helper::structure(),
-        );
+    public static function get_all_course_modules_returns() {
+        new external_value(PARAM_INT, 'Module ID');
     }
 }
