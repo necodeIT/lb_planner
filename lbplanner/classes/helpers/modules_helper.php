@@ -156,11 +156,11 @@ class modules_helper {
         } else if ($type == 2) {
             return MODULE_TYPE::EK;
         } else if ($type == 3) {
-            return MODULE_TYPE::GK_EK;
+            return MODULE_TYPE::GK;
         } else if ($type == 4) {
             return MODULE_TYPE::TEST;
         } else if ($type == 5) {
-            return MODULE_TYPE::SA;
+            return MODULE_TYPE::TEST;
         } else if ($type == 6) {
             return MODULE_TYPE::M;
         }
