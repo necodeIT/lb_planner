@@ -19,7 +19,7 @@ namespace local_lbplanner_services;
 use external_api;
 use external_function_parameters;
 use external_value;
-use local_lbplanner\helpers\PLAN_ACCESS_TYPE;
+use local_lbplanner\enums\PLAN_ACCESS_TYPE;
 use local_lbplanner\helpers\plan_helper;
 
 /**
