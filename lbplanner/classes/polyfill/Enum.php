@@ -24,8 +24,6 @@
 
 namespace local_lbplanner\polyfill;
 
-defined('MOODLE_INTERNAL') || die();
-
 use ReflectionClass;
 use ValueError;
 use lb_planner_local\polyfill\EnumCase;

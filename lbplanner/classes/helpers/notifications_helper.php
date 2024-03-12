@@ -24,8 +24,6 @@
 
 namespace local_lbplanner\helpers;
 
-defined('MOODLE_INTERNAL') || die();
-
 use external_single_structure;
 use external_value;
 use local_lbplanner\enums\{NOTIF_STATUS,NOTIF_TRIGGER};
