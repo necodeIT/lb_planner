@@ -2,6 +2,7 @@ import 'package:lb_planner/features/themes/themes.dart';
 import 'package:lb_planner/shared/shared.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:lb_planner/features/auth/auth.dart';
+import 'package:lb_planner/features/update/update.dart';
 
 part 'app_router.gr.dart';
 
@@ -111,13 +112,19 @@ class AppRouter extends _$AppRouter {
         DefaultRoute(
           page: LoginRoute.page,
           path: '/login',
-        )
+          initial: true,
+        ),
+        DefaultRoute(
+            page: UpdateRoute.page,
+            path: '/update',
+            title: (context, data) => context.t.update_btn),
       ];
 }
 
 /// Implements [CustomRoute] with some default settings.
 class DefaultRoute extends CustomRoute {
   /// Implements [CustomRoute] with some default settings.
-  DefaultRoute({required super.page, required super.path, super.initial})
+  DefaultRoute(
+      {required super.page, required super.path, super.initial, super.title})
       : super(transitionsBuilder: TransitionsBuilders.noTransition);
 }
