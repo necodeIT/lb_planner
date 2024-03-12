@@ -9,9 +9,9 @@ import 'package:lb_planner/features/feedback/presentation/widgets/widgets.dart';
 
 @RoutePage()
 
-/// Admin feedback page displaying details about feedback.
+/// Displays details about feedback.
 class AdminFeedbackScreen extends StatefulWidget {
-  /// Admin feedback page displaying details about feedback.
+  /// Displays details about feedback.
   const AdminFeedbackScreen({Key? key, required this.feedbackId})
       : super(key: key);
 

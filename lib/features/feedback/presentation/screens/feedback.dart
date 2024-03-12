@@ -7,10 +7,9 @@ import 'package:lb_planner/features/feedback/presentation/widgets/widgets.dart';
 
 @RoutePage()
 
-/// Admin feedback subroute.
+/// Shows all feedbacks for the admin.
 class AdminFeedbacksScreen extends StatefulWidget {
-  /// Admin feedback subroute.
-
+  /// Shows all feedbacks for the admin.
   const AdminFeedbacksScreen({Key? key}) : super(key: key);
 
   /// The font size of the header.

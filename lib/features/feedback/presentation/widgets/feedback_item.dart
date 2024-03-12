@@ -1,6 +1,3 @@
-// ignore_for_file: public_member_api_docs
-
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lb_planner/features/auth/auth.dart';
@@ -10,9 +7,9 @@ import 'package:lb_planner/features/feedback/domain/domain.dart';
 import 'package:lb_planner/features/feedback/presentation/presentation.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
-/// Feedback item.
+/// Shows the feedback item for the admin.
 class AdminFeedbackItem extends ConsumerStatefulWidget {
-  /// Feedback item.
+  /// Shows the feedback item for the admin.
   const AdminFeedbackItem({Key? key, required this.feedbackId})
       : super(key: key);
 
@@ -160,7 +157,9 @@ class _AdminFeedbackItemState extends ConsumerState<AdminFeedbackItem> {
   }
 }
 
+/// Helps to return the title of the feedback type.
 extension AdminFeedbackItemHelper on FeedbackType {
+  /// Returns the title of the feedback type.
   String title(BuildContext context) {
     var t = context.t;
 
@@ -176,6 +175,7 @@ extension AdminFeedbackItemHelper on FeedbackType {
     }
   }
 
+  /// Returns the icon of the feedback type.
   IconData get icon {
     switch (this) {
       case FeedbackType.bug:
@@ -189,6 +189,7 @@ extension AdminFeedbackItemHelper on FeedbackType {
     }
   }
 
+  /// Returns the color of the feedback type.
   Color color(BuildContext context) {
     switch (this) {
       case FeedbackType.bug:
