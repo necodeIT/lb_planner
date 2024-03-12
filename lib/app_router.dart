@@ -112,11 +112,11 @@ class AppRouter extends _$AppRouter {
         DefaultRoute(
           page: LoginRoute.page,
           path: '/login',
+          initial: true,
         ),
         DefaultRoute(
             page: UpdateRoute.page,
             path: '/update',
-            initial: true,
             title: (context, data) => context.t.update_btn),
       ];
 }

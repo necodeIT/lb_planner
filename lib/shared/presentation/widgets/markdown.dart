@@ -39,7 +39,7 @@ class MarkdownView extends ConsumerWidget {
         future: networkService.get(source.toString()),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            if (snapshot.data!.statusCode == 200) {
+            if (snapshot.data!.isOk) {
               return _buildMarkdown(context, snapshot.data!.body);
             }
 
@@ -53,9 +53,11 @@ class MarkdownView extends ConsumerWidget {
                   size: 60,
                 ),
                 Spacing.small(),
-                Text(context.t.widgets_markdown_networkError(source.toString()),
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 12, letterSpacing: 0.4)),
+                Text(
+                  context.t.widgets_markdown_networkError(source.toString()),
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 12, letterSpacing: 0.4),
+                ),
                 Spacing.large(),
                 ElevatedButton(
                   child: Text(
