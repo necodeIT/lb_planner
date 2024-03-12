@@ -30,18 +30,18 @@ namespace lb_planner_local\polyfill;
  * This represents a single case within an Enum
  */
 class EnumCase {
-	/** @var string the name of the case */
-	public string $name;
-	/** @var string the value of the case */
-	public mixed $value;
-	/**
-	 * Constructs an EnumCase
-	 *
-	 * @param string $name the name of the case
-	 * @param mixed $value the value of the case
-	 */
-	public function __construct(string $name, mixed $value) {
-		$this->name = $name;
-		$this->value = $value;
-	}
+    /** @var string the name of the case */
+    public string $name;
+    /** @var string the value of the case */
+    public mixed $value;
+    /**
+     * Constructs an EnumCase
+     *
+     * @param string $name the name of the case
+     * @param mixed $value the value of the case
+     */
+    public function __construct(string $name, mixed $value) {
+        $this->name = $name;
+        $this->value = $value;
+    }
 };
