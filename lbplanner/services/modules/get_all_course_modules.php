@@ -17,14 +17,18 @@
 namespace local_lbplanner_services;
 
 
+use core_customfield\category_controller;
 use core_external\external_single_structure;
 use course_modinfo;
+use customfield_select\data_controller;
+use customfield_select\field_controller;
 use external_api;
 use external_function_parameters;
 use external_multiple_structure;
 use external_value;
 use local_lbplanner\helpers\modules_helper;
 use local_lbplanner\model\activity;
+use local_lbplanner\helpers\config_helper;
 use moodle_url;
 
 /**
@@ -63,15 +67,17 @@ class modules_get_all_course_modules extends external_api {
         $activities = course_modinfo::get_array_of_activities(get_course($courseid));
         $modules = [];
         foreach ($activities as $activity) {
-            $type = $activity->mod;
+            $modtype = $activity->mod;
             $id = $activity->id;
             $deadline = $activity->duedate;
             $name = $activity->name;
             $cmid = $activity->cm;
-            $url = new moodle_url('/mod/'.$type.'/view.php', ['id' => $cmid]);
-            $modules[] = new activity($id, $name, $courseid , null, $type, $url->out(false), null, $deadline);
+            $url = modules_helper::get_module_url($modtype, $cmid);
+            $modules[] = new activity($id, $name, $courseid , $modtype, null, $url, null, $deadline);
         }
-        die(var_dump($modules));
+        $categorycontroller = category_controller::create(config_helper::get_category_id());
+        $datacontrollers[] = $categorycontroller->get_handler()->get_instance_data(392);
+        die(var_dump($datacontrollers));
         return $type;
     }
 

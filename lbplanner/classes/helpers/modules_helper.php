@@ -26,88 +26,14 @@ namespace local_lbplanner\helpers;
 
 defined('MOODLE_INTERNAL') || die();
 
-use block_accessreview\external\get_module_data;
-use external_function_parameters;
+use core_customfield\category;
+use local_lbplanner\helpers\config_helper;
+use core_customfield\category_controller;
+use customfield_select\data_controller;
+use customfield_select\field_controller;
 use external_single_structure;
 use external_value;
 use moodle_url;
-
-
-// TODO: revert to native enums once we migrate to php8.
-
-/**
- * Stati a module can be in
- */
-class MODULE_STATUS extends Enum {
-    /**
-     * Finished module.
-     */
-    const DONE = 0;
-    /**
-     * Uploaded module.
-     */
-    const UPLOADED = 1;
-    /**
-     * Overdue module.
-     */
-    const LATE = 2;
-    /**
-     * Todo module.
-     */
-    const PENDING = 3;
-}
-
-/**
- * Grades a module can receive
- */
-class MODULE_GRADE extends Enum {
-    /**
-     * Erweiterte Kompetenz vollständig.
-     */
-    const EKV = 0;
-    /**
-     * Erweiterte Kompetenz überwiegend.
-     */
-    const EK  = 1;
-    /**
-     * Grundlegende Kompetenz vollständig.
-     */
-    const GKV = 2;
-    /**
-     * Grundlegende Kompetenz überwiegend.
-     */
-    const GK  = 3;
-    /**
-     * Negative grade.
-     */
-    const RIP = 4;
-}
-
-/**
- * Module Types
- */
-class MODULE_TYPE extends Enum {
-    /**
-     * Grundlegende Kompetenz.
-     */
-    const GK = 0;
-    /**
-     * Erweiterte Kompetenz.
-     */
-    const EK  = 1;
-    /**
-     * Test i.e. exam.
-     */
-    const TEST = 2;
-    /**
-     * Mitarbeit.
-     */
-    const M  = 3;
-    /**
-     * No type.
-     */
-    const NONE = 4;
-}
 
 /**
  * Contains helper functions for working with modules.
@@ -193,9 +119,10 @@ class modules_helper {
      * Maps the given name to a module type.
      *
      * @param string $modulename The name of the module.
+     * @param int $cmid The coursemodule id of the module.
      * @return integer The enum value for the module type.
      */
-    public static function determin_type(string $modulename): int {
+    public static function determin_type(string $modulename, int $cmid): int {
         // Convert module name to uppercase.
         $modulename = strtoupper($modulename);
 
@@ -215,6 +142,22 @@ class modules_helper {
 
         // Return TYPE_EK if the name contains 'M'.
         if (strpos($modulename, '[M]') !== false) {
+            return MODULE_TYPE::M;
+        }
+        $categorycontroller = category_controller::create(config_helper::get_category_id());
+        $datacontroller = $categorycontroller->get_handler()->get_instance_data($cmid)[0];
+        $type = intval($datacontroller->get('value'));
+        if ($type == 1) {
+            return MODULE_TYPE::GK;
+        } else if ($type == 2) {
+            return MODULE_TYPE::EK;
+        } else if ($type == 3) {
+            return MODULE_TYPE::GK_EK;
+        } else if ($type == 4) {
+            return MODULE_TYPE::TEST;
+        } else if ($type == 5) {
+            return MODULE_TYPE::SA;
+        } else if ($type == 6) {
             return MODULE_TYPE::M;
         }
 
@@ -344,25 +287,5 @@ class modules_helper {
         }
 
         return $modules;
-    }
-}
-class module {
-    public $moduleid;
-    public $name;
-    public $courseid;
-    public $status;
-    public $type;
-    public $url;
-    public $grade;
-    public $deadline;
-    public function __construct($moduleid, $name, $courseid, $status, $type, $url, $grade, $deadline) {
-        $this->moduleid = $moduleid;
-        $this->name = $name;
-        $this->courseid = $courseid;
-        $this->status = $status;
-        $this->type = $type;
-        $this->url = $url;
-        $this->grade = $grade;
-        $this->deadline = $deadline;
     }
 }

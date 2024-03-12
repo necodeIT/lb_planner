@@ -33,7 +33,9 @@ class activity {
     public $url;
     public $grade;
     public $deadline;
-    public function __construct($moduleid, $name, $courseid, $status, $type, $url, $grade, $deadline) {
+    public $modtype;
+    public function __construct($moduleid, $name, $courseid, $status, $modtype, $type, $url, $grade, $deadline) {
+        $this->modtype = $modtype;
         $this->moduleid = $moduleid;
         $this->name = $name;
         $this->courseid = $courseid;
