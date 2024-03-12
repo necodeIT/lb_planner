@@ -29,7 +29,7 @@ use external_function_parameters;
 use external_single_structure;
 use external_value;
 use moodle_url;
-use local_lbplanner\enums\{MODULE_STATUS,MODULE_GRADE,MODULE_TYPE};
+use local_lbplanner\enums\{MODULE_STATUS, MODULE_GRADE, MODULE_TYPE};
 
 /**
  * Contains helper functions for working with modules.

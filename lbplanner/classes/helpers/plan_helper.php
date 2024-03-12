@@ -232,7 +232,7 @@ class plan_helper {
     public static function copy_plan(int $planid, int $userid): int {
         global $DB;
 
-        $user = user_helper::get_mdl_user_info($userid); // TODO: get_mdl_user_info doesn't exist anymore
+        $user = user_helper::get_mdl_user_info($userid); // TODO: get_mdl_user_info doesn't exist anymore.
 
         $plan = $DB->get_record(self::TABLE, ['id' => $planid]);
         $plan->name = $plan->name . ' (' . $user->username . ')';

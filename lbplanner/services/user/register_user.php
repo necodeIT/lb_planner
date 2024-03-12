@@ -22,7 +22,7 @@ use external_function_parameters;
 use external_single_structure;
 use external_value;
 use invalid_parameter_exception;
-use local_lbplanner\helpers\{user_helper,plan_helper,notifications_helper};
+use local_lbplanner\helpers\{user_helper, plan_helper, notifications_helper};
 use local_lbplanner\enums\{NOTIF_TRIGGER, PLAN_ACCESS_TYPE, PLAN_EK};
 use moodle_exception;
 use stdClass;
