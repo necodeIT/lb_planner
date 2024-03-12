@@ -15,6 +15,22 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    AdminFeedbackRoute.name: (routeData) {
+      final args = routeData.argsAs<AdminFeedbackRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: AdminFeedbackScreen(
+          key: args.key,
+          feedbackId: args.feedbackId,
+        ),
+      );
+    },
+    AdminFeedbacksRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const AdminFeedbacksScreen(),
+      );
+    },
     LoginRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -28,6 +44,58 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
   };
+}
+
+/// generated route for
+/// [AdminFeedbackScreen]
+class AdminFeedbackRoute extends PageRouteInfo<AdminFeedbackRouteArgs> {
+  AdminFeedbackRoute({
+    Key? key,
+    required int feedbackId,
+    List<PageRouteInfo>? children,
+  }) : super(
+          AdminFeedbackRoute.name,
+          args: AdminFeedbackRouteArgs(
+            key: key,
+            feedbackId: feedbackId,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'AdminFeedbackRoute';
+
+  static const PageInfo<AdminFeedbackRouteArgs> page =
+      PageInfo<AdminFeedbackRouteArgs>(name);
+}
+
+class AdminFeedbackRouteArgs {
+  const AdminFeedbackRouteArgs({
+    this.key,
+    required this.feedbackId,
+  });
+
+  final Key? key;
+
+  final int feedbackId;
+
+  @override
+  String toString() {
+    return 'AdminFeedbackRouteArgs{key: $key, feedbackId: $feedbackId}';
+  }
+}
+
+/// generated route for
+/// [AdminFeedbacksScreen]
+class AdminFeedbacksRoute extends PageRouteInfo<void> {
+  const AdminFeedbacksRoute({List<PageRouteInfo>? children})
+      : super(
+          AdminFeedbacksRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'AdminFeedbacksRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for

@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 /// Allows you to add spacing or padding in both the vertical and horizontal directions,
 /// or separately in either the vertical or horizontal direction.
