@@ -20,6 +20,7 @@ namespace local_lbplanner_services;
 use core_completion\cm_completion_details;
 use core_customfield\category_controller;
 use core_external\external_single_structure;
+use core_h5p\core;
 use course_modinfo;
 use customfield_select\data_controller;
 use external_api;
@@ -28,9 +29,7 @@ use external_multiple_structure;
 use external_value;
 use local_lbplanner\model\activity;
 use local_lbplanner\helpers\modules_helper;
-use local_lbplanner\helpers\config_helper;
-use cm_info;
-use moodle_url;
+use stdClass;
 
 /**
  * Get all the modules of the given course.
@@ -69,6 +68,9 @@ class modules_get_all_course_modules extends external_api {
         $modules = [];
         foreach ($activities as $activity) {
             $modtype = $activity->mod;
+            if ($modtype !== 'assign' || $modtype !== 'quiz') {
+                continue;
+            }
             $id = $activity->id;
             $deadline = $activity->duedate;
             $name = $activity->name;
@@ -85,9 +87,14 @@ class modules_get_all_course_modules extends external_api {
                 1,
                 $deadline
             );
-
-        cm_info::cr}
-        course_modinfo::instance($courseid)->get_
+        }
+        die(var_dump());
+        $test = new stdClass();
+        $test->id = 392;
+        die(var_dump(assign_get_user_grades($test, $USER->id)));
+        $completion = new \completion_info(get_course($courseid));
+        $courseandcm = get_course_and_cm_from_cmid(392, null, $courseid, $USER->id);
+        die(var_dump(get_course_and_cm_from_cmid(392, null, $courseid, $USER->id)));
         die(var_dump(cm_completion_details::get_instance(get_fast_modinfo($courseid, $USER->id))->get_details()));
         return $type;
     }
