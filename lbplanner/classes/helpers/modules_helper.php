@@ -24,19 +24,16 @@
 
 namespace local_lbplanner\helpers;
 
-defined('MOODLE_INTERNAL') || die();
 
 use core_customfield\category;
 use local_lbplanner\helpers\config_helper;
 use core_customfield\category_controller;
 use customfield_select\data_controller;
 use customfield_select\field_controller;
-use block_accessreview\external\get_module_data;
 use external_function_parameters;
 use external_single_structure;
 use external_value;
 use moodle_url;
-
 use local_lbplanner\enums\{MODULE_STATUS, MODULE_GRADE, MODULE_TYPE};
 
 /**
