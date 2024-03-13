@@ -1,5 +1,5 @@
 <?php
-// This file is part of local_lbplanner.
+// This file is part of the local_lbplanner.
 //
 // Moodle is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -14,23 +14,38 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 /**
- * Defines versioning
+ * enum for plan access type
  *
  * @package local_lbplanner
+ * @subpackage enums
  * @copyright 2024 NecodeIT
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
+namespace local_lbplanner\enums;
 
-$release = '0.0.0';
+// TODO: revert to native enums once we migrate to php8.
 
-$plugin->component = 'local_lbplanner';
-$plugin->release = 'Alpha v.'.$release;
-$plugin->version = 2024031200;
-$plugin->dependencies = [
-    // Depend upon version 2023110600 of local_modcustomfields.
-    'local_modcustomfields' => 2023110600,
-];
+use local_lbplanner\polyfill\Enum;
 
-set_config('release', $release, 'local_lbplanner');
+/**
+ * Levels of access that a user can have for a plan
+ */
+class PLAN_ACCESS_TYPE extends Enum {
+    /**
+     * owning the plan
+     */
+    const OWNER = 0;
+    /**
+     * allowed to modify the plan
+     */
+    const WRITE = 1;
+    /**
+     * allowed to look at the plan
+     */
+    const READ = 2;
+    /**
+     * disallowed
+     */
+    const NONE = -1;
+}

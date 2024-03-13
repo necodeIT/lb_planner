@@ -24,72 +24,10 @@
 
 namespace local_lbplanner\helpers;
 
-defined('MOODLE_INTERNAL') || die();
-
 use external_single_structure;
 use external_value;
 use external_multiple_structure;
-use local_lbplanner\polyfill\Enum;
-
-// TODO: revert to native enums once we migrate to php8.
-
-/**
- * Levels of access that a user can have for a plan
- */
-class PLAN_ACCESS_TYPE extends Enum {
-    /**
-     * owning the plan
-     */
-    const OWNER = 0;
-    /**
-     * allowed to modify the plan
-     */
-    const WRITE = 1;
-    /**
-     * allowed to look at the plan
-     */
-    const READ = 2;
-    /**
-     * disallowed
-     */
-    const NONE = -1;
-}
-
-/**
- * Whether EK modules are enabled inside the planner
- */
-class PLAN_EK extends Enum {
-    /**
-     * EK hidden
-     */
-    const DISABLED = 0;
-    /**
-     * EK visible
-     */
-    const ENABLED = 1;
-}
-
-/**
- * States an invite can be in
- */
-class PLAN_INVITE_STATE extends Enum {
-    /**
-     * pending invite
-     */
-    const PENDING = 0;
-    /**
-     * accepted invite
-     */
-    const ACCEPTED = 1;
-    /**
-     * declined invite
-     */
-    const DECLINED = 2;
-    /**
-     * expired invite
-     */
-    const EXPIRED = 3;
-}
+use local_lbplanner\enums\PLAN_ACCESS_TYPE;
 
 /**
  * Provides helper methods for any tables related with the planning function of the app
@@ -294,7 +232,7 @@ class plan_helper {
     public static function copy_plan(int $planid, int $userid): int {
         global $DB;
 
-        $user = user_helper::get_mdl_user_info($userid);
+        $user = user_helper::get_mdl_user_info($userid); // TODO: get_mdl_user_info doesn't exist anymore.
 
         $plan = $DB->get_record(self::TABLE, ['id' => $planid]);
         $plan->name = $plan->name . ' (' . $user->username . ')';

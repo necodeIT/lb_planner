@@ -1,5 +1,5 @@
 <?php
-// This file is part of local_lbplanner.
+// This file is part of the local_lbplanner.
 //
 // Moodle is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -14,23 +14,36 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 /**
- * Defines versioning
+ * case for enums
  *
  * @package local_lbplanner
+ * @subpackage polyfill
  * @copyright 2024 NecodeIT
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+namespace lb_planner_local\polyfill;
+
 defined('MOODLE_INTERNAL') || die();
 
-$release = '0.0.0';
+// TODO: revert to native enums once we migrate to php8.
 
-$plugin->component = 'local_lbplanner';
-$plugin->release = 'Alpha v.'.$release;
-$plugin->version = 2024031200;
-$plugin->dependencies = [
-    // Depend upon version 2023110600 of local_modcustomfields.
-    'local_modcustomfields' => 2023110600,
-];
-
-set_config('release', $release, 'local_lbplanner');
+/**
+ * This represents a single case within an Enum
+ */
+class EnumCase {
+    /** @var string the name of the case */
+    public string $name;
+    /** @var string the value of the case */
+    public mixed $value;
+    /**
+     * Constructs an EnumCase
+     *
+     * @param string $name the name of the case
+     * @param mixed $value the value of the case
+     */
+    public function __construct(string $name, mixed $value) {
+        $this->name = $name;
+        $this->value = $value;
+    }
+};

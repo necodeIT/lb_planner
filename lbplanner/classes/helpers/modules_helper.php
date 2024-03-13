@@ -24,92 +24,12 @@
 
 namespace local_lbplanner\helpers;
 
-defined('MOODLE_INTERNAL') || die();
-
 use block_accessreview\external\get_module_data;
 use external_function_parameters;
 use external_single_structure;
 use external_value;
 use moodle_url;
-
-use local_lbplanner\polyfill\Enum;
-
-
-// TODO: revert to native enums once we migrate to php8.
-
-/**
- * Stati a module can be in
- */
-class MODULE_STATUS extends Enum {
-    /**
-     * Finished module.
-     */
-    const DONE = 0;
-    /**
-     * Uploaded module.
-     */
-    const UPLOADED = 1;
-    /**
-     * Overdue module.
-     */
-    const LATE = 2;
-    /**
-     * Todo module.
-     */
-    const PENDING = 3;
-}
-
-/**
- * Grades a module can receive
- */
-class MODULE_GRADE extends Enum {
-    /**
-     * Erweiterte Kompetenz vollständig.
-     */
-    const EKV = 0;
-    /**
-     * Erweiterte Kompetenz überwiegend.
-     */
-    const EK  = 1;
-    /**
-     * Grundlegende Kompetenz vollständig.
-     */
-    const GKV = 2;
-    /**
-     * Grundlegende Kompetenz überwiegend.
-     */
-    const GK  = 3;
-    /**
-     * Negative grade.
-     */
-    const RIP = 4;
-}
-
-/**
- * Module Types
- */
-class MODULE_TYPE extends Enum {
-    /**
-     * Grundlegende Kompetenz.
-     */
-    const GK = 0;
-    /**
-     * Erweiterte Kompetenz.
-     */
-    const EK  = 1;
-    /**
-     * Test i.e. exam.
-     */
-    const TEST = 2;
-    /**
-     * TODO: ???
-     */
-    const M  = 3;
-    /**
-     * TODO: ???
-     */
-    const NONE = 4;
-}
+use local_lbplanner\enums\{MODULE_STATUS, MODULE_GRADE, MODULE_TYPE};
 
 /**
  * Contains helper functions for working with modules.

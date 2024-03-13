@@ -24,58 +24,9 @@
 
 namespace local_lbplanner\helpers;
 
-defined('MOODLE_INTERNAL') || die();
-
 use external_single_structure;
 use external_value;
-
-// TODO: revert to native enums once we migrate to php8.
-
-use local_lbplanner\polyfill\Enum;
-
-/**
- * Stati a notification can be in
- */
-class NOTIF_STATUS extends Enum {
-    /**
-     * unread notification
-     */
-    const UNREAD = 0;
-    /**
-     * read notification
-     */
-    const READ = 1;
-}
-
-/**
- * Possible triggers for sending a notification
- */
-class NOTIF_TRIGGER extends Enum {
-    /**
-     * Invitation sent
-     */
-    const INVITE = 0;
-    /**
-     * Invitation accepted
-     */
-    const INVITE_ACCEPTED = 1;
-    /**
-     * Invitation declined
-     */
-    const INVITE_DECLINED = 2;
-    /**
-     * User left the plan
-     */
-    const PLAN_LEFT = 3;
-    /**
-     * User got removed from the plan
-     */
-    const PLAN_REMOVED = 4;
-    /**
-     * User registered
-     */
-    const USER_REGISTERED = 5;
-}
+use local_lbplanner\enums\{NOTIF_STATUS, NOTIF_TRIGGER};
 
 /**
  * Provides helper methods for notification related stuff

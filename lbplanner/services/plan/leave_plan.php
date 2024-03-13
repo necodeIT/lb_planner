@@ -18,11 +18,9 @@ namespace local_lbplanner_services;
 
 use external_api;
 use external_function_parameters;
-use local_lbplanner\helpers\NOTIF_TRIGGER;
 use local_lbplanner\helpers\plan_helper;
 use local_lbplanner\helpers\notifications_helper;
-use local_lbplanner\helpers\PLAN_ACCESS_TYPE;
-use local_lbplanner\helpers\PLAN_INVITE_STATE;
+use local_lbplanner\enums\{NOTIF_TRIGGER, PLAN_ACCESS_TYPE, PLAN_INVITE_STATE};
 
 /**
  * Leave your plan
