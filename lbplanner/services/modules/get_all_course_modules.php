@@ -17,6 +17,7 @@
 namespace local_lbplanner_services;
 
 
+use core_completion\cm_completion_details;
 use core_customfield\category_controller;
 use core_external\external_single_structure;
 use course_modinfo;
@@ -28,6 +29,7 @@ use external_value;
 use local_lbplanner\model\activity;
 use local_lbplanner\helpers\modules_helper;
 use local_lbplanner\helpers\config_helper;
+use cm_info;
 use moodle_url;
 
 /**
@@ -72,20 +74,21 @@ class modules_get_all_course_modules extends external_api {
             $name = $activity->name;
             $cmid = $activity->cm;
             $url = modules_helper::get_module_url($modtype, $cmid);
-            $modules[] = new activity($id,
+            $modules[] = new activity(
+                $id,
                 $name,
                 $courseid,
-                modules_helper::determin_type($name, $cmid),
-                $modtype,
                 1,
+                $modtype,
+                modules_helper::determin_type($name, $cmid),
                 $url,
-                null,
+                1,
                 $deadline
             );
-        }
-        $categorycontroller = category_controller::create(config_helper::get_category_id());
-        $datacontrollers[] = $categorycontroller->get_handler()->get_instance_data(392);
-        die(var_dump($datacontrollers));
+
+        cm_info::cr}
+        course_modinfo::instance($courseid)->get_
+        die(var_dump(cm_completion_details::get_instance(get_fast_modinfo($courseid, $USER->id))->get_details()));
         return $type;
     }
 

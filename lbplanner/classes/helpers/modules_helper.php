@@ -41,16 +41,11 @@ use local_lbplanner\enums\{MODULE_STATUS, MODULE_GRADE, MODULE_TYPE};
  */
 class modules_helper {
     /**
-     * Submitted status name of a submission.
-     */
-    const SUBMISSION_STATUS_SUBMITTED = 'submitted';
-
-    /**
      * The return structure of a module.
      *
      * @return external_single_structure The structure of a module.
      */
-    public static function structure() : external_single_structure {
+    public static function structure(): external_single_structure {
         return new external_single_structure(
         [
             'moduleid' => new external_value(PARAM_INT, 'Module ID'),
@@ -74,7 +69,7 @@ class modules_helper {
      * @param int $gradepass The grade to pass the module.
      * @return integer The enum value for the grade.
      */
-    public static function determin_uinified_grade(int $grade, int $maxgrade, int $mingrade, int $gradepass) : int {
+    public static function determin_uinified_grade(int $grade, int $maxgrade, int $mingrade, int $gradepass): int {
         if ($grade < $gradepass) {
             return MODULE_GRADE::RIP;
         }
